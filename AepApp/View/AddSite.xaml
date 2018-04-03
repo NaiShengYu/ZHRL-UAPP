@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.AddSite">
+    <ContentPage.Content>
+        <StackLayout >
+            <StackLayout Orientation="Horizontal" BackgroundColor="White" Margin="0,10,0,0">
+                <Label Text="地址"  Margin="10,0,0,0" VerticalOptions="Center"/>
+                <Entry Placeholder="edrs.station.gov.cn"  HorizontalOptions="FillAndExpand" Margin="10,0,20,0" VerticalOptions="Center" x:Name="siteAddr"/>
+            </StackLayout>
+            <Label Text="请输入监测站EDRS链接地址"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

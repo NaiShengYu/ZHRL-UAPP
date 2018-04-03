@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.SelectSitePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView  x:Name="HeaderList" HorizontalOptions="Fill" >
+                <!--<ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" Detail="{Binding Detail}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>-->
+                <ListView.Footer HorizontalOptions="Fill">
+                        <Grid BackgroundColor="#EFEFF4" HeightRequest="40" HorizontalOptions="Fill" RowSpacing="0" ColumnSpacing="0">
+                            <Label x:Name="select_site" TextColor="Black" Text="添加站点" FontSize="15" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"></Label>
+                            <Image HeightRequest="18" WidthRequest="15" Source="right" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Select_site"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                </ListView.Footer>
+
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

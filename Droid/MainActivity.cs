@@ -1,12 +1,9 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using OxyPlot;
 
 namespace AepApp.Droid
 {
@@ -18,10 +15,13 @@ namespace AepApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            App.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
+            App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-
+            OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             LoadApplication(new App());
         }
 
