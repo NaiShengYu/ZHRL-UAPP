@@ -135,6 +135,15 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.121934\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="BTProgressHUD">
+      <HintPath>..\packages\BTProgressHUD.1.2.0.2\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Hud.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Hud.1.0.5\lib\Xamarin.iOS10\Plugin.Hud.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Hud">
+      <HintPath>..\packages\Xam.Plugin.Hud.1.0.5\lib\Xamarin.iOS10\Plugin.Hud.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
