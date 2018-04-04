@@ -16,6 +16,7 @@ namespace AepApp.View
 	public partial class AddSite : ContentPage
 	{
         private String result;
+        private String site;
 		public AddSite ()
 		{
 			InitializeComponent ();          
@@ -23,18 +24,19 @@ namespace AepApp.View
             ToolbarItems.Add(new ToolbarItem("添加", "",  () =>
             {
                 //请求该站点数据
-                reqSiteData();
+                ReqSiteData();
                // App.Database.SaveItemAsync();
                //await Navigation.PopAsync(false);
 
             }));
         }
 
-        private void reqSiteData()
+        private void ReqSiteData()
         {
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
+                site = this.siteAddr.Text;
                 string uri = "https://192.168.2.97/api/login/getstationName";               
                 result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri);
                 //string parama = "Password=" + pwd + "&" + "UserName=" + account + "&" + "grant_type=password";
