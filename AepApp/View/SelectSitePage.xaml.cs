@@ -16,10 +16,7 @@ namespace AepApp.View
         public SelectSitePage()
         {
             InitializeComponent();
-            this.Title = "选择站点";          
-            HeaderList.ItemsSource = new List<string>() {
-                "List Item 1","List Item 2","List Item 3","List Item 4","List Item 5"
-            };
+            this.Title = "选择站点";                 
             HeaderList.ItemSelected += (sender, e) => {
                 var a = e.SelectedItem;            
                 DependencyService.Get<Sample.IToast>().ShortAlert(a + "");
