@@ -19,6 +19,8 @@ namespace Todo
 
         public string siteAddr { get; set; }
 
+        public string id { get; set; }
+
        // public string Notes { get; set; }
 
        // public bool Done { get; set; }

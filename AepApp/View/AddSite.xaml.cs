@@ -35,27 +35,14 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                //if(this.siteAddr.Text.length ==0||this.siteAddr.Text ==null){
-                    
-                //    return;
-                //}
+                
                 string uri = "https://"+this.siteAddr.Text+"/api/login/getstationName?stationurl="+this.siteAddr.Text;               
-                result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri);
-                //string parama = "Password=" + pwd + "&" + "UserName=" + account + "&" + "grant_type=password";
-                //try
-                //{
-                //    result = EasyWebRequest.sendPOSTHttpWebRequest(uri, parama);
-
-                //}
-                //catch (Exception ex)
-                //{
-                //    DisplayAlert("错误提示", ex.Message, "OK");
-                //}
-
+                result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri);          
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
                 Console.WriteLine("ex:" + result);
+                //添加站点
 
             };
             wrk.RunWorkerAsync();
