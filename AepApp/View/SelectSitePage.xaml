@@ -5,11 +5,11 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView  x:Name="HeaderList" HorizontalOptions="Fill" >
-                <!--<ListView.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Title}" Detail="{Binding Detail}"/>
+                        <TextCell Text="{Binding Name}" Detail="{Binding SiteAddr}"/>
                     </DataTemplate>
-                </ListView.ItemTemplate>-->
+                </ListView.ItemTemplate>
                 <ListView.Footer HorizontalOptions="Fill">
                         <Grid BackgroundColor="#EFEFF4" HeightRequest="40" HorizontalOptions="Fill" RowSpacing="0" ColumnSpacing="0">
                             <Label x:Name="select_site" TextColor="Black" Text="添加站点" FontSize="15" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"></Label>

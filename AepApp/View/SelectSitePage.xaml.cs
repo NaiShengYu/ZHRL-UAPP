@@ -42,5 +42,16 @@ namespace AepApp.View
             //DependencyService.Get<Sample.IToast>().ShortAlert("选择站点");
             //Navigation.PushAsync(new SelectSitePage());
         }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Reset the 'resume' id, since we just want to re-start here
+            ((App)App.Current).ResumeAtTodoId = -1;
+            //TodoItemDatabase database =  App.Database;          
+            //List<TodoItem> todoItems = await App.Database.GetItemsAsync();
+            HeaderList.ItemsSource = await App.Database.GetItemsAsync();
+            //Console.WriteLine("数据库内容:" + todoItems);
+        }
     }
 }

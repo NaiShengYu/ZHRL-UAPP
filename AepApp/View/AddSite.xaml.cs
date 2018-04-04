@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using Plugin.Hud;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json;
+using AepApp.Models;
+using Todo;
 
 namespace AepApp.View
 {
@@ -22,23 +25,25 @@ namespace AepApp.View
 		{
 			InitializeComponent ();          
             this.Title = "添加站点";
-            ToolbarItems.Add(new ToolbarItem("添加", "",  () =>
+            ToolbarItems.Add(new ToolbarItem("添加", "", () =>
             {
                 var aaaa = this.siteAddr.Text;
                 if (aaaa == null || aaaa.Length == 0)
                 {
                     CrossHud.Current.ShowError(message: "请输入站点IP", timeout: new TimeSpan(0, 0, 2), cancelCallback: cancel);
                 }
-                else {
+                else
+                {
                     CrossHud.Current.Show("加载中...");
                     //请求该站点数据
                     reqSiteData();
-                }                         
-               // App.Database.SaveItemAsync();
-               //await Navigation.PopAsync(false);
+                }
+                // App.Database.SaveItemAsync();
+                //await Navigation.PopAsync(false);
 
             }));
-        }
+
+        }     
 
         private void reqSiteData()
         {
@@ -49,20 +54,40 @@ namespace AepApp.View
                 string uri = "https://"+this.siteAddr.Text+"/api/login/getstationName?stationurl="+this.siteAddr.Text;               
                 result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri);          
             };
-            wrk.RunWorkerCompleted += (sender1, e1) =>
-            {
-                Console.WriteLine("ex:" + result);
+            wrk.RunWorkerCompleted +=(sender1, e1) =>
+            {               
+                AddSitePageModel model = JsonConvert.DeserializeObject<AddSitePageModel>(result);
+                TodoItem todoItem = new TodoItem();
+                todoItem.SiteId = model.id;
+                todoItem.Name = model.name;
+                todoItem.SiteAddr = this.siteAddr.Text;               
+                saveData(todoItem);
+                Console.WriteLine("ex:" + model);
                 //添加站点
                 CrossHud.Current.Dismiss();
             };
             wrk.RunWorkerAsync();
         }
+        
+        private void saveData(TodoItem todoItem)
+        {
+            BackgroundWorker wrk = new BackgroundWorker();
+            wrk.DoWork += (sender1, e1) =>
+            {
+               App.Database.SaveItemAsync(todoItem);
+            };
+            wrk.RunWorkerCompleted += (sender1, e1) =>
+            {
 
+            };
+            wrk.RunWorkerAsync();
+        }
+           
         private void cancel()
         {
             CrossHud.Current.Dismiss();
         }
-
+        
         protected override bool OnBackButtonPressed()
         {           
             return true;

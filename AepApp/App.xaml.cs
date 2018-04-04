@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using AepApp.Interface;
 using AepApp.View;
 using Todo;
@@ -36,17 +37,16 @@ namespace AepApp
             MainPage = new NavigationPage(new LoginPage());
         }
         public static TodoItemDatabase Database
-
-		{
-			get
-			{
-				if (database == null)
-				{
-					database = new TodoItemDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
-				}
-				return database;
-			}
-		}
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new TodoItemDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return database;
+            }
+        }
         public int ResumeAtTodoId { get; set; }
 
 
