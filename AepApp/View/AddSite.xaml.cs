@@ -55,21 +55,43 @@ namespace AepApp.View
                 result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri);          
             };
             wrk.RunWorkerCompleted +=(sender1, e1) =>
-            {               
+            {
+                bool isContainSite = false;
                 AddSitePageModel model = JsonConvert.DeserializeObject<AddSitePageModel>(result);
                 TodoItem todoItem = new TodoItem();
                 todoItem.SiteId = model.id;
                 todoItem.Name = model.name;
-                todoItem.SiteAddr = this.siteAddr.Text;               
-                saveData(todoItem);
-                Console.WriteLine("ex:" + model);
+                todoItem.SiteAddr = this.siteAddr.Text;
+
+                if (App.todoItemList.Count != 0)
+                {
+                    foreach (var item in App.todoItemList) //遍历站点数据
+                    {
+                        if (item.SiteAddr.Equals(todoItem.SiteAddr)) {
+                            isContainSite = true;
+                            break;
+                        }
+                            
+                    }
+                }
+
+                if (!isContainSite)
+                {
+                    saveData(todoItem);
+                    CrossHud.Current.Dismiss();
+                }
+                else {
+                    CrossHud.Current.Dismiss();
+                    Navigation.PopAsync();
+                }
+                //Console.WriteLine("ex:" + model);
                 //添加站点
-                CrossHud.Current.Dismiss();
+                
             };
             wrk.RunWorkerAsync();
-        }
-        
-        private void saveData(TodoItem todoItem)
+        }  
+
+        private  void saveData(TodoItem todoItem)
         {
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
@@ -78,7 +100,7 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-
+                Navigation.PopAsync();
             };
             wrk.RunWorkerAsync();
         }

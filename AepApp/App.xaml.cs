@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using AepApp.Interface;
 using AepApp.View;
@@ -18,6 +19,7 @@ namespace AepApp
         public static string SiteData = "site";
 
         public static int itemNum = 0;
+        public static List<TodoItem> todoItemList = new List<TodoItem> ();
         static TodoItemDatabase database;
 
         public App()

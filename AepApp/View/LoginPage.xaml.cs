@@ -7,6 +7,7 @@ using Xamarin.Auth;
 using Xamarin.Forms;
 using Plugin.Hud;
 using Xamarin.Forms.Xaml;
+using Todo;
 
 namespace AepApp.View
 {
@@ -71,9 +72,15 @@ namespace AepApp.View
             Navigation.PushAsync(new SelectSitePage());
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
-
+            //获取数据库的数据
+            ((App)App.Current).ResumeAtTodoId = -1;
+            List<TodoItem> todoItems = await App.Database.GetItemsAsync();
+            if (todoItems != null && todoItems.Count != 0 ) {
+                TodoItem item = todoItems[App.itemNum];
+                site_name.Text = item.Name;
+            }           
             //获取存储文件下的内容
             var acc = AccountStore.Create().FindAccountsForService(App.appName).LastOrDefault();
             var siteData = AccountStore.Create().FindAccountsForService(App.SiteData).LastOrDefault();
@@ -85,22 +92,8 @@ namespace AepApp.View
                     password.Text = acc.Properties["pwd"];
                     remember_pwd.IsToggled = true;
                 }
-                isFirstAppear = false;
-                if (siteData == null)
-                {
-                    Account account = new Account {
-                        
-                    };
-                }
-                else {
-
-                }
-            }
-            else
-            {
-
-                DependencyService.Get<Sample.IToast>().ShortAlert("我又回来啦");
-            }
+                isFirstAppear = false;                
+            }          
         }
     }
 }
