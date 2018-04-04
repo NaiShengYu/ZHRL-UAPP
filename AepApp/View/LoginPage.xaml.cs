@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Auth;
 using Xamarin.Forms;
+using Plugin.Hud;
 using Xamarin.Forms.Xaml;
 
 namespace AepApp.View
@@ -28,6 +29,7 @@ namespace AepApp.View
             var siteNmae = site_name.Text;
             if (acc == null || acc.Length == 0)
             {
+                
                 DisplayAlert("提示", "账号不能为空", "确定");
                 //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
             }

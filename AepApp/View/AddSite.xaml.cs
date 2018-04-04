@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Plugin.Hud;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -35,7 +35,12 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                
+                Console.WriteLine("添加站点");
+                var aaaa = this.siteAddr.Text;
+                if(aaaa.Length == 0 || this.siteAddr.Text ==null){
+                    CrossHud.Current.ShowError(message: "请输入站点IP");
+                    return;
+                }
                 string uri = "https://"+this.siteAddr.Text+"/api/login/getstationName?stationurl="+this.siteAddr.Text;               
                 result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri);          
             };

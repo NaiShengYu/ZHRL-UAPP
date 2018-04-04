@@ -26,6 +26,2178 @@ namespace AepApp.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::AndroidHUD.Resource.Attribute.ahBarColor = global::AepApp.Droid.Resource.Attribute.ahBarColor;
+			global::AndroidHUD.Resource.Attribute.ahBarLength = global::AepApp.Droid.Resource.Attribute.ahBarLength;
+			global::AndroidHUD.Resource.Attribute.ahBarWidth = global::AepApp.Droid.Resource.Attribute.ahBarWidth;
+			global::AndroidHUD.Resource.Attribute.ahCircleColor = global::AepApp.Droid.Resource.Attribute.ahCircleColor;
+			global::AndroidHUD.Resource.Attribute.ahDelayMillis = global::AepApp.Droid.Resource.Attribute.ahDelayMillis;
+			global::AndroidHUD.Resource.Attribute.ahRadius = global::AepApp.Droid.Resource.Attribute.ahRadius;
+			global::AndroidHUD.Resource.Attribute.ahRimColor = global::AepApp.Droid.Resource.Attribute.ahRimColor;
+			global::AndroidHUD.Resource.Attribute.ahRimWidth = global::AepApp.Droid.Resource.Attribute.ahRimWidth;
+			global::AndroidHUD.Resource.Attribute.ahSpinSpeed = global::AepApp.Droid.Resource.Attribute.ahSpinSpeed;
+			global::AndroidHUD.Resource.Attribute.ahText = global::AepApp.Droid.Resource.Attribute.ahText;
+			global::AndroidHUD.Resource.Attribute.ahTextColor = global::AepApp.Droid.Resource.Attribute.ahTextColor;
+			global::AndroidHUD.Resource.Attribute.ahTextSize = global::AepApp.Droid.Resource.Attribute.ahTextSize;
+			global::AndroidHUD.Resource.Drawable.ic_errorstatus = global::AepApp.Droid.Resource.Drawable.ic_errorstatus;
+			global::AndroidHUD.Resource.Drawable.ic_successstatus = global::AepApp.Droid.Resource.Drawable.ic_successstatus;
+			global::AndroidHUD.Resource.Drawable.roundedbg = global::AepApp.Droid.Resource.Drawable.roundedbg;
+			global::AndroidHUD.Resource.Drawable.roundedbgdark = global::AepApp.Droid.Resource.Drawable.roundedbgdark;
+			global::AndroidHUD.Resource.Id.loadingImage = global::AepApp.Droid.Resource.Id.loadingImage;
+			global::AndroidHUD.Resource.Id.loadingProgressBar = global::AepApp.Droid.Resource.Id.loadingProgressBar;
+			global::AndroidHUD.Resource.Id.loadingProgressWheel = global::AepApp.Droid.Resource.Id.loadingProgressWheel;
+			global::AndroidHUD.Resource.Id.textViewStatus = global::AepApp.Droid.Resource.Id.textViewStatus;
+			global::AndroidHUD.Resource.Layout.loading = global::AepApp.Droid.Resource.Layout.loading;
+			global::AndroidHUD.Resource.Layout.loadingimage = global::AepApp.Droid.Resource.Layout.loadingimage;
+			global::AndroidHUD.Resource.Layout.loadingprogress = global::AepApp.Droid.Resource.Layout.loadingprogress;
+			global::AndroidHUD.Resource.String.library_name = global::AepApp.Droid.Resource.String.library_name;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel = global::AepApp.Droid.Resource.Styleable.ProgressWheel;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarColor = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahBarColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarLength = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahBarLength;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarWidth = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahBarWidth;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahCircleColor = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahCircleColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahDelayMillis = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahDelayMillis;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRadius = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahRadius;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimColor = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahRimColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimWidth = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahRimWidth;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahSpinSpeed = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahSpinSpeed;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahText;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::Plugin.Hud.Resource.Animation.abc_fade_in = global::AepApp.Droid.Resource.Animation.abc_fade_in;
+			global::Plugin.Hud.Resource.Animation.abc_fade_out = global::AepApp.Droid.Resource.Animation.abc_fade_out;
+			global::Plugin.Hud.Resource.Animation.abc_grow_fade_in_from_bottom = global::AepApp.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::Plugin.Hud.Resource.Animation.abc_popup_enter = global::AepApp.Droid.Resource.Animation.abc_popup_enter;
+			global::Plugin.Hud.Resource.Animation.abc_popup_exit = global::AepApp.Droid.Resource.Animation.abc_popup_exit;
+			global::Plugin.Hud.Resource.Animation.abc_shrink_fade_out_from_bottom = global::AepApp.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::Plugin.Hud.Resource.Animation.abc_slide_in_bottom = global::AepApp.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::Plugin.Hud.Resource.Animation.abc_slide_in_top = global::AepApp.Droid.Resource.Animation.abc_slide_in_top;
+			global::Plugin.Hud.Resource.Animation.abc_slide_out_bottom = global::AepApp.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::Plugin.Hud.Resource.Animation.abc_slide_out_top = global::AepApp.Droid.Resource.Animation.abc_slide_out_top;
+			global::Plugin.Hud.Resource.Animation.design_bottom_sheet_slide_in = global::AepApp.Droid.Resource.Animation.design_bottom_sheet_slide_in;
+			global::Plugin.Hud.Resource.Animation.design_bottom_sheet_slide_out = global::AepApp.Droid.Resource.Animation.design_bottom_sheet_slide_out;
+			global::Plugin.Hud.Resource.Animation.design_fab_in = global::AepApp.Droid.Resource.Animation.design_fab_in;
+			global::Plugin.Hud.Resource.Animation.design_fab_out = global::AepApp.Droid.Resource.Animation.design_fab_out;
+			global::Plugin.Hud.Resource.Animation.design_snackbar_in = global::AepApp.Droid.Resource.Animation.design_snackbar_in;
+			global::Plugin.Hud.Resource.Animation.design_snackbar_out = global::AepApp.Droid.Resource.Animation.design_snackbar_out;
+			global::Plugin.Hud.Resource.Animator.design_appbar_state_list_animator = global::AepApp.Droid.Resource.Animator.design_appbar_state_list_animator;
+			global::Plugin.Hud.Resource.Attribute.actionBarDivider = global::AepApp.Droid.Resource.Attribute.actionBarDivider;
+			global::Plugin.Hud.Resource.Attribute.actionBarItemBackground = global::AepApp.Droid.Resource.Attribute.actionBarItemBackground;
+			global::Plugin.Hud.Resource.Attribute.actionBarPopupTheme = global::AepApp.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::Plugin.Hud.Resource.Attribute.actionBarSize = global::AepApp.Droid.Resource.Attribute.actionBarSize;
+			global::Plugin.Hud.Resource.Attribute.actionBarSplitStyle = global::AepApp.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::Plugin.Hud.Resource.Attribute.actionBarStyle = global::AepApp.Droid.Resource.Attribute.actionBarStyle;
+			global::Plugin.Hud.Resource.Attribute.actionBarTabBarStyle = global::AepApp.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::Plugin.Hud.Resource.Attribute.actionBarTabStyle = global::AepApp.Droid.Resource.Attribute.actionBarTabStyle;
+			global::Plugin.Hud.Resource.Attribute.actionBarTabTextStyle = global::AepApp.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::Plugin.Hud.Resource.Attribute.actionBarTheme = global::AepApp.Droid.Resource.Attribute.actionBarTheme;
+			global::Plugin.Hud.Resource.Attribute.actionBarWidgetTheme = global::AepApp.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::Plugin.Hud.Resource.Attribute.actionButtonStyle = global::AepApp.Droid.Resource.Attribute.actionButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.actionDropDownStyle = global::AepApp.Droid.Resource.Attribute.actionDropDownStyle;
+			global::Plugin.Hud.Resource.Attribute.actionLayout = global::AepApp.Droid.Resource.Attribute.actionLayout;
+			global::Plugin.Hud.Resource.Attribute.actionMenuTextAppearance = global::AepApp.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.actionMenuTextColor = global::AepApp.Droid.Resource.Attribute.actionMenuTextColor;
+			global::Plugin.Hud.Resource.Attribute.actionModeBackground = global::AepApp.Droid.Resource.Attribute.actionModeBackground;
+			global::Plugin.Hud.Resource.Attribute.actionModeCloseButtonStyle = global::AepApp.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.actionModeCloseDrawable = global::AepApp.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::Plugin.Hud.Resource.Attribute.actionModeCopyDrawable = global::AepApp.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::Plugin.Hud.Resource.Attribute.actionModeCutDrawable = global::AepApp.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::Plugin.Hud.Resource.Attribute.actionModeFindDrawable = global::AepApp.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::Plugin.Hud.Resource.Attribute.actionModePasteDrawable = global::AepApp.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::Plugin.Hud.Resource.Attribute.actionModePopupWindowStyle = global::AepApp.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::Plugin.Hud.Resource.Attribute.actionModeSelectAllDrawable = global::AepApp.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::Plugin.Hud.Resource.Attribute.actionModeShareDrawable = global::AepApp.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::Plugin.Hud.Resource.Attribute.actionModeSplitBackground = global::AepApp.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::Plugin.Hud.Resource.Attribute.actionModeStyle = global::AepApp.Droid.Resource.Attribute.actionModeStyle;
+			global::Plugin.Hud.Resource.Attribute.actionModeWebSearchDrawable = global::AepApp.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::Plugin.Hud.Resource.Attribute.actionOverflowButtonStyle = global::AepApp.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.actionOverflowMenuStyle = global::AepApp.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::Plugin.Hud.Resource.Attribute.actionProviderClass = global::AepApp.Droid.Resource.Attribute.actionProviderClass;
+			global::Plugin.Hud.Resource.Attribute.actionViewClass = global::AepApp.Droid.Resource.Attribute.actionViewClass;
+			global::Plugin.Hud.Resource.Attribute.activityChooserViewStyle = global::AepApp.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::Plugin.Hud.Resource.Attribute.ahBarColor = global::AepApp.Droid.Resource.Attribute.ahBarColor;
+			global::Plugin.Hud.Resource.Attribute.ahBarLength = global::AepApp.Droid.Resource.Attribute.ahBarLength;
+			global::Plugin.Hud.Resource.Attribute.ahBarWidth = global::AepApp.Droid.Resource.Attribute.ahBarWidth;
+			global::Plugin.Hud.Resource.Attribute.ahCircleColor = global::AepApp.Droid.Resource.Attribute.ahCircleColor;
+			global::Plugin.Hud.Resource.Attribute.ahDelayMillis = global::AepApp.Droid.Resource.Attribute.ahDelayMillis;
+			global::Plugin.Hud.Resource.Attribute.ahRadius = global::AepApp.Droid.Resource.Attribute.ahRadius;
+			global::Plugin.Hud.Resource.Attribute.ahRimColor = global::AepApp.Droid.Resource.Attribute.ahRimColor;
+			global::Plugin.Hud.Resource.Attribute.ahRimWidth = global::AepApp.Droid.Resource.Attribute.ahRimWidth;
+			global::Plugin.Hud.Resource.Attribute.ahSpinSpeed = global::AepApp.Droid.Resource.Attribute.ahSpinSpeed;
+			global::Plugin.Hud.Resource.Attribute.ahText = global::AepApp.Droid.Resource.Attribute.ahText;
+			global::Plugin.Hud.Resource.Attribute.ahTextColor = global::AepApp.Droid.Resource.Attribute.ahTextColor;
+			global::Plugin.Hud.Resource.Attribute.ahTextSize = global::AepApp.Droid.Resource.Attribute.ahTextSize;
+			global::Plugin.Hud.Resource.Attribute.alertDialogButtonGroupStyle = global::AepApp.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::Plugin.Hud.Resource.Attribute.alertDialogCenterButtons = global::AepApp.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::Plugin.Hud.Resource.Attribute.alertDialogStyle = global::AepApp.Droid.Resource.Attribute.alertDialogStyle;
+			global::Plugin.Hud.Resource.Attribute.alertDialogTheme = global::AepApp.Droid.Resource.Attribute.alertDialogTheme;
+			global::Plugin.Hud.Resource.Attribute.allowStacking = global::AepApp.Droid.Resource.Attribute.allowStacking;
+			global::Plugin.Hud.Resource.Attribute.alpha = global::AepApp.Droid.Resource.Attribute.alpha;
+			global::Plugin.Hud.Resource.Attribute.arrowHeadLength = global::AepApp.Droid.Resource.Attribute.arrowHeadLength;
+			global::Plugin.Hud.Resource.Attribute.arrowShaftLength = global::AepApp.Droid.Resource.Attribute.arrowShaftLength;
+			global::Plugin.Hud.Resource.Attribute.autoCompleteTextViewStyle = global::AepApp.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::Plugin.Hud.Resource.Attribute.background = global::AepApp.Droid.Resource.Attribute.background;
+			global::Plugin.Hud.Resource.Attribute.backgroundSplit = global::AepApp.Droid.Resource.Attribute.backgroundSplit;
+			global::Plugin.Hud.Resource.Attribute.backgroundStacked = global::AepApp.Droid.Resource.Attribute.backgroundStacked;
+			global::Plugin.Hud.Resource.Attribute.backgroundTint = global::AepApp.Droid.Resource.Attribute.backgroundTint;
+			global::Plugin.Hud.Resource.Attribute.backgroundTintMode = global::AepApp.Droid.Resource.Attribute.backgroundTintMode;
+			global::Plugin.Hud.Resource.Attribute.barLength = global::AepApp.Droid.Resource.Attribute.barLength;
+			global::Plugin.Hud.Resource.Attribute.behavior_autoHide = global::AepApp.Droid.Resource.Attribute.behavior_autoHide;
+			global::Plugin.Hud.Resource.Attribute.behavior_hideable = global::AepApp.Droid.Resource.Attribute.behavior_hideable;
+			global::Plugin.Hud.Resource.Attribute.behavior_overlapTop = global::AepApp.Droid.Resource.Attribute.behavior_overlapTop;
+			global::Plugin.Hud.Resource.Attribute.behavior_peekHeight = global::AepApp.Droid.Resource.Attribute.behavior_peekHeight;
+			global::Plugin.Hud.Resource.Attribute.behavior_skipCollapsed = global::AepApp.Droid.Resource.Attribute.behavior_skipCollapsed;
+			global::Plugin.Hud.Resource.Attribute.borderWidth = global::AepApp.Droid.Resource.Attribute.borderWidth;
+			global::Plugin.Hud.Resource.Attribute.borderlessButtonStyle = global::AepApp.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.bottomSheetDialogTheme = global::AepApp.Droid.Resource.Attribute.bottomSheetDialogTheme;
+			global::Plugin.Hud.Resource.Attribute.bottomSheetStyle = global::AepApp.Droid.Resource.Attribute.bottomSheetStyle;
+			global::Plugin.Hud.Resource.Attribute.buttonBarButtonStyle = global::AepApp.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.buttonBarNegativeButtonStyle = global::AepApp.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.buttonBarNeutralButtonStyle = global::AepApp.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.buttonBarPositiveButtonStyle = global::AepApp.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.buttonBarStyle = global::AepApp.Droid.Resource.Attribute.buttonBarStyle;
+			global::Plugin.Hud.Resource.Attribute.buttonGravity = global::AepApp.Droid.Resource.Attribute.buttonGravity;
+			global::Plugin.Hud.Resource.Attribute.buttonPanelSideLayout = global::AepApp.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::Plugin.Hud.Resource.Attribute.buttonStyle = global::AepApp.Droid.Resource.Attribute.buttonStyle;
+			global::Plugin.Hud.Resource.Attribute.buttonStyleSmall = global::AepApp.Droid.Resource.Attribute.buttonStyleSmall;
+			global::Plugin.Hud.Resource.Attribute.buttonTint = global::AepApp.Droid.Resource.Attribute.buttonTint;
+			global::Plugin.Hud.Resource.Attribute.buttonTintMode = global::AepApp.Droid.Resource.Attribute.buttonTintMode;
+			global::Plugin.Hud.Resource.Attribute.cardBackgroundColor = global::AepApp.Droid.Resource.Attribute.cardBackgroundColor;
+			global::Plugin.Hud.Resource.Attribute.cardCornerRadius = global::AepApp.Droid.Resource.Attribute.cardCornerRadius;
+			global::Plugin.Hud.Resource.Attribute.cardElevation = global::AepApp.Droid.Resource.Attribute.cardElevation;
+			global::Plugin.Hud.Resource.Attribute.cardMaxElevation = global::AepApp.Droid.Resource.Attribute.cardMaxElevation;
+			global::Plugin.Hud.Resource.Attribute.cardPreventCornerOverlap = global::AepApp.Droid.Resource.Attribute.cardPreventCornerOverlap;
+			global::Plugin.Hud.Resource.Attribute.cardUseCompatPadding = global::AepApp.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::Plugin.Hud.Resource.Attribute.checkboxStyle = global::AepApp.Droid.Resource.Attribute.checkboxStyle;
+			global::Plugin.Hud.Resource.Attribute.checkedTextViewStyle = global::AepApp.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::Plugin.Hud.Resource.Attribute.closeIcon = global::AepApp.Droid.Resource.Attribute.closeIcon;
+			global::Plugin.Hud.Resource.Attribute.closeItemLayout = global::AepApp.Droid.Resource.Attribute.closeItemLayout;
+			global::Plugin.Hud.Resource.Attribute.collapseContentDescription = global::AepApp.Droid.Resource.Attribute.collapseContentDescription;
+			global::Plugin.Hud.Resource.Attribute.collapseIcon = global::AepApp.Droid.Resource.Attribute.collapseIcon;
+			global::Plugin.Hud.Resource.Attribute.collapsedTitleGravity = global::AepApp.Droid.Resource.Attribute.collapsedTitleGravity;
+			global::Plugin.Hud.Resource.Attribute.collapsedTitleTextAppearance = global::AepApp.Droid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.color = global::AepApp.Droid.Resource.Attribute.color;
+			global::Plugin.Hud.Resource.Attribute.colorAccent = global::AepApp.Droid.Resource.Attribute.colorAccent;
+			global::Plugin.Hud.Resource.Attribute.colorBackgroundFloating = global::AepApp.Droid.Resource.Attribute.colorBackgroundFloating;
+			global::Plugin.Hud.Resource.Attribute.colorButtonNormal = global::AepApp.Droid.Resource.Attribute.colorButtonNormal;
+			global::Plugin.Hud.Resource.Attribute.colorControlActivated = global::AepApp.Droid.Resource.Attribute.colorControlActivated;
+			global::Plugin.Hud.Resource.Attribute.colorControlHighlight = global::AepApp.Droid.Resource.Attribute.colorControlHighlight;
+			global::Plugin.Hud.Resource.Attribute.colorControlNormal = global::AepApp.Droid.Resource.Attribute.colorControlNormal;
+			global::Plugin.Hud.Resource.Attribute.colorPrimary = global::AepApp.Droid.Resource.Attribute.colorPrimary;
+			global::Plugin.Hud.Resource.Attribute.colorPrimaryDark = global::AepApp.Droid.Resource.Attribute.colorPrimaryDark;
+			global::Plugin.Hud.Resource.Attribute.colorSwitchThumbNormal = global::AepApp.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::Plugin.Hud.Resource.Attribute.commitIcon = global::AepApp.Droid.Resource.Attribute.commitIcon;
+			global::Plugin.Hud.Resource.Attribute.contentInsetEnd = global::AepApp.Droid.Resource.Attribute.contentInsetEnd;
+			global::Plugin.Hud.Resource.Attribute.contentInsetEndWithActions = global::AepApp.Droid.Resource.Attribute.contentInsetEndWithActions;
+			global::Plugin.Hud.Resource.Attribute.contentInsetLeft = global::AepApp.Droid.Resource.Attribute.contentInsetLeft;
+			global::Plugin.Hud.Resource.Attribute.contentInsetRight = global::AepApp.Droid.Resource.Attribute.contentInsetRight;
+			global::Plugin.Hud.Resource.Attribute.contentInsetStart = global::AepApp.Droid.Resource.Attribute.contentInsetStart;
+			global::Plugin.Hud.Resource.Attribute.contentInsetStartWithNavigation = global::AepApp.Droid.Resource.Attribute.contentInsetStartWithNavigation;
+			global::Plugin.Hud.Resource.Attribute.contentPadding = global::AepApp.Droid.Resource.Attribute.contentPadding;
+			global::Plugin.Hud.Resource.Attribute.contentPaddingBottom = global::AepApp.Droid.Resource.Attribute.contentPaddingBottom;
+			global::Plugin.Hud.Resource.Attribute.contentPaddingLeft = global::AepApp.Droid.Resource.Attribute.contentPaddingLeft;
+			global::Plugin.Hud.Resource.Attribute.contentPaddingRight = global::AepApp.Droid.Resource.Attribute.contentPaddingRight;
+			global::Plugin.Hud.Resource.Attribute.contentPaddingTop = global::AepApp.Droid.Resource.Attribute.contentPaddingTop;
+			global::Plugin.Hud.Resource.Attribute.contentScrim = global::AepApp.Droid.Resource.Attribute.contentScrim;
+			global::Plugin.Hud.Resource.Attribute.controlBackground = global::AepApp.Droid.Resource.Attribute.controlBackground;
+			global::Plugin.Hud.Resource.Attribute.counterEnabled = global::AepApp.Droid.Resource.Attribute.counterEnabled;
+			global::Plugin.Hud.Resource.Attribute.counterMaxLength = global::AepApp.Droid.Resource.Attribute.counterMaxLength;
+			global::Plugin.Hud.Resource.Attribute.counterOverflowTextAppearance = global::AepApp.Droid.Resource.Attribute.counterOverflowTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.counterTextAppearance = global::AepApp.Droid.Resource.Attribute.counterTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.customNavigationLayout = global::AepApp.Droid.Resource.Attribute.customNavigationLayout;
+			global::Plugin.Hud.Resource.Attribute.defaultQueryHint = global::AepApp.Droid.Resource.Attribute.defaultQueryHint;
+			global::Plugin.Hud.Resource.Attribute.dialogPreferredPadding = global::AepApp.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::Plugin.Hud.Resource.Attribute.dialogTheme = global::AepApp.Droid.Resource.Attribute.dialogTheme;
+			global::Plugin.Hud.Resource.Attribute.displayOptions = global::AepApp.Droid.Resource.Attribute.displayOptions;
+			global::Plugin.Hud.Resource.Attribute.divider = global::AepApp.Droid.Resource.Attribute.divider;
+			global::Plugin.Hud.Resource.Attribute.dividerHorizontal = global::AepApp.Droid.Resource.Attribute.dividerHorizontal;
+			global::Plugin.Hud.Resource.Attribute.dividerPadding = global::AepApp.Droid.Resource.Attribute.dividerPadding;
+			global::Plugin.Hud.Resource.Attribute.dividerVertical = global::AepApp.Droid.Resource.Attribute.dividerVertical;
+			global::Plugin.Hud.Resource.Attribute.drawableSize = global::AepApp.Droid.Resource.Attribute.drawableSize;
+			global::Plugin.Hud.Resource.Attribute.drawerArrowStyle = global::AepApp.Droid.Resource.Attribute.drawerArrowStyle;
+			global::Plugin.Hud.Resource.Attribute.dropDownListViewStyle = global::AepApp.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::Plugin.Hud.Resource.Attribute.dropdownListPreferredItemHeight = global::AepApp.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Plugin.Hud.Resource.Attribute.editTextBackground = global::AepApp.Droid.Resource.Attribute.editTextBackground;
+			global::Plugin.Hud.Resource.Attribute.editTextColor = global::AepApp.Droid.Resource.Attribute.editTextColor;
+			global::Plugin.Hud.Resource.Attribute.editTextStyle = global::AepApp.Droid.Resource.Attribute.editTextStyle;
+			global::Plugin.Hud.Resource.Attribute.elevation = global::AepApp.Droid.Resource.Attribute.elevation;
+			global::Plugin.Hud.Resource.Attribute.errorEnabled = global::AepApp.Droid.Resource.Attribute.errorEnabled;
+			global::Plugin.Hud.Resource.Attribute.errorTextAppearance = global::AepApp.Droid.Resource.Attribute.errorTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.expandActivityOverflowButtonDrawable = global::AepApp.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::Plugin.Hud.Resource.Attribute.expanded = global::AepApp.Droid.Resource.Attribute.expanded;
+			global::Plugin.Hud.Resource.Attribute.expandedTitleGravity = global::AepApp.Droid.Resource.Attribute.expandedTitleGravity;
+			global::Plugin.Hud.Resource.Attribute.expandedTitleMargin = global::AepApp.Droid.Resource.Attribute.expandedTitleMargin;
+			global::Plugin.Hud.Resource.Attribute.expandedTitleMarginBottom = global::AepApp.Droid.Resource.Attribute.expandedTitleMarginBottom;
+			global::Plugin.Hud.Resource.Attribute.expandedTitleMarginEnd = global::AepApp.Droid.Resource.Attribute.expandedTitleMarginEnd;
+			global::Plugin.Hud.Resource.Attribute.expandedTitleMarginStart = global::AepApp.Droid.Resource.Attribute.expandedTitleMarginStart;
+			global::Plugin.Hud.Resource.Attribute.expandedTitleMarginTop = global::AepApp.Droid.Resource.Attribute.expandedTitleMarginTop;
+			global::Plugin.Hud.Resource.Attribute.expandedTitleTextAppearance = global::AepApp.Droid.Resource.Attribute.expandedTitleTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.externalRouteEnabledDrawable = global::AepApp.Droid.Resource.Attribute.externalRouteEnabledDrawable;
+			global::Plugin.Hud.Resource.Attribute.fabSize = global::AepApp.Droid.Resource.Attribute.fabSize;
+			global::Plugin.Hud.Resource.Attribute.foregroundInsidePadding = global::AepApp.Droid.Resource.Attribute.foregroundInsidePadding;
+			global::Plugin.Hud.Resource.Attribute.gapBetweenBars = global::AepApp.Droid.Resource.Attribute.gapBetweenBars;
+			global::Plugin.Hud.Resource.Attribute.goIcon = global::AepApp.Droid.Resource.Attribute.goIcon;
+			global::Plugin.Hud.Resource.Attribute.headerLayout = global::AepApp.Droid.Resource.Attribute.headerLayout;
+			global::Plugin.Hud.Resource.Attribute.height = global::AepApp.Droid.Resource.Attribute.height;
+			global::Plugin.Hud.Resource.Attribute.hideOnContentScroll = global::AepApp.Droid.Resource.Attribute.hideOnContentScroll;
+			global::Plugin.Hud.Resource.Attribute.hintAnimationEnabled = global::AepApp.Droid.Resource.Attribute.hintAnimationEnabled;
+			global::Plugin.Hud.Resource.Attribute.hintEnabled = global::AepApp.Droid.Resource.Attribute.hintEnabled;
+			global::Plugin.Hud.Resource.Attribute.hintTextAppearance = global::AepApp.Droid.Resource.Attribute.hintTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.homeAsUpIndicator = global::AepApp.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::Plugin.Hud.Resource.Attribute.homeLayout = global::AepApp.Droid.Resource.Attribute.homeLayout;
+			global::Plugin.Hud.Resource.Attribute.icon = global::AepApp.Droid.Resource.Attribute.icon;
+			global::Plugin.Hud.Resource.Attribute.iconifiedByDefault = global::AepApp.Droid.Resource.Attribute.iconifiedByDefault;
+			global::Plugin.Hud.Resource.Attribute.imageButtonStyle = global::AepApp.Droid.Resource.Attribute.imageButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.indeterminateProgressStyle = global::AepApp.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::Plugin.Hud.Resource.Attribute.initialActivityCount = global::AepApp.Droid.Resource.Attribute.initialActivityCount;
+			global::Plugin.Hud.Resource.Attribute.insetForeground = global::AepApp.Droid.Resource.Attribute.insetForeground;
+			global::Plugin.Hud.Resource.Attribute.isLightTheme = global::AepApp.Droid.Resource.Attribute.isLightTheme;
+			global::Plugin.Hud.Resource.Attribute.itemBackground = global::AepApp.Droid.Resource.Attribute.itemBackground;
+			global::Plugin.Hud.Resource.Attribute.itemIconTint = global::AepApp.Droid.Resource.Attribute.itemIconTint;
+			global::Plugin.Hud.Resource.Attribute.itemPadding = global::AepApp.Droid.Resource.Attribute.itemPadding;
+			global::Plugin.Hud.Resource.Attribute.itemTextAppearance = global::AepApp.Droid.Resource.Attribute.itemTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.itemTextColor = global::AepApp.Droid.Resource.Attribute.itemTextColor;
+			global::Plugin.Hud.Resource.Attribute.keylines = global::AepApp.Droid.Resource.Attribute.keylines;
+			global::Plugin.Hud.Resource.Attribute.layout = global::AepApp.Droid.Resource.Attribute.layout;
+			global::Plugin.Hud.Resource.Attribute.layoutManager = global::AepApp.Droid.Resource.Attribute.layoutManager;
+			global::Plugin.Hud.Resource.Attribute.layout_anchor = global::AepApp.Droid.Resource.Attribute.layout_anchor;
+			global::Plugin.Hud.Resource.Attribute.layout_anchorGravity = global::AepApp.Droid.Resource.Attribute.layout_anchorGravity;
+			global::Plugin.Hud.Resource.Attribute.layout_behavior = global::AepApp.Droid.Resource.Attribute.layout_behavior;
+			global::Plugin.Hud.Resource.Attribute.layout_collapseMode = global::AepApp.Droid.Resource.Attribute.layout_collapseMode;
+			global::Plugin.Hud.Resource.Attribute.layout_collapseParallaxMultiplier = global::AepApp.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::Plugin.Hud.Resource.Attribute.layout_dodgeInsetEdges = global::AepApp.Droid.Resource.Attribute.layout_dodgeInsetEdges;
+			global::Plugin.Hud.Resource.Attribute.layout_insetEdge = global::AepApp.Droid.Resource.Attribute.layout_insetEdge;
+			global::Plugin.Hud.Resource.Attribute.layout_keyline = global::AepApp.Droid.Resource.Attribute.layout_keyline;
+			global::Plugin.Hud.Resource.Attribute.layout_scrollFlags = global::AepApp.Droid.Resource.Attribute.layout_scrollFlags;
+			global::Plugin.Hud.Resource.Attribute.layout_scrollInterpolator = global::AepApp.Droid.Resource.Attribute.layout_scrollInterpolator;
+			global::Plugin.Hud.Resource.Attribute.listChoiceBackgroundIndicator = global::AepApp.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Plugin.Hud.Resource.Attribute.listDividerAlertDialog = global::AepApp.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::Plugin.Hud.Resource.Attribute.listItemLayout = global::AepApp.Droid.Resource.Attribute.listItemLayout;
+			global::Plugin.Hud.Resource.Attribute.listLayout = global::AepApp.Droid.Resource.Attribute.listLayout;
+			global::Plugin.Hud.Resource.Attribute.listMenuViewStyle = global::AepApp.Droid.Resource.Attribute.listMenuViewStyle;
+			global::Plugin.Hud.Resource.Attribute.listPopupWindowStyle = global::AepApp.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::Plugin.Hud.Resource.Attribute.listPreferredItemHeight = global::AepApp.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::Plugin.Hud.Resource.Attribute.listPreferredItemHeightLarge = global::AepApp.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::Plugin.Hud.Resource.Attribute.listPreferredItemHeightSmall = global::AepApp.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Plugin.Hud.Resource.Attribute.listPreferredItemPaddingLeft = global::AepApp.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::Plugin.Hud.Resource.Attribute.listPreferredItemPaddingRight = global::AepApp.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Plugin.Hud.Resource.Attribute.logo = global::AepApp.Droid.Resource.Attribute.logo;
+			global::Plugin.Hud.Resource.Attribute.logoDescription = global::AepApp.Droid.Resource.Attribute.logoDescription;
+			global::Plugin.Hud.Resource.Attribute.maxActionInlineWidth = global::AepApp.Droid.Resource.Attribute.maxActionInlineWidth;
+			global::Plugin.Hud.Resource.Attribute.maxButtonHeight = global::AepApp.Droid.Resource.Attribute.maxButtonHeight;
+			global::Plugin.Hud.Resource.Attribute.measureWithLargestChild = global::AepApp.Droid.Resource.Attribute.measureWithLargestChild;
+			global::Plugin.Hud.Resource.Attribute.mediaRouteAudioTrackDrawable = global::AepApp.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable;
+			global::Plugin.Hud.Resource.Attribute.mediaRouteButtonStyle = global::AepApp.Droid.Resource.Attribute.mediaRouteButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.mediaRouteCloseDrawable = global::AepApp.Droid.Resource.Attribute.mediaRouteCloseDrawable;
+			global::Plugin.Hud.Resource.Attribute.mediaRouteControlPanelThemeOverlay = global::AepApp.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay;
+			global::Plugin.Hud.Resource.Attribute.mediaRouteDefaultIconDrawable = global::AepApp.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable;
+			global::Plugin.Hud.Resource.Attribute.mediaRoutePauseDrawable = global::AepApp.Droid.Resource.Attribute.mediaRoutePauseDrawable;
+			global::Plugin.Hud.Resource.Attribute.mediaRoutePlayDrawable = global::AepApp.Droid.Resource.Attribute.mediaRoutePlayDrawable;
+			global::Plugin.Hud.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable = global::AepApp.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable;
+			global::Plugin.Hud.Resource.Attribute.mediaRouteSpeakerIconDrawable = global::AepApp.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable;
+			global::Plugin.Hud.Resource.Attribute.mediaRouteTheme = global::AepApp.Droid.Resource.Attribute.mediaRouteTheme;
+			global::Plugin.Hud.Resource.Attribute.mediaRouteTvIconDrawable = global::AepApp.Droid.Resource.Attribute.mediaRouteTvIconDrawable;
+			global::Plugin.Hud.Resource.Attribute.menu = global::AepApp.Droid.Resource.Attribute.menu;
+			global::Plugin.Hud.Resource.Attribute.multiChoiceItemLayout = global::AepApp.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::Plugin.Hud.Resource.Attribute.navigationContentDescription = global::AepApp.Droid.Resource.Attribute.navigationContentDescription;
+			global::Plugin.Hud.Resource.Attribute.navigationIcon = global::AepApp.Droid.Resource.Attribute.navigationIcon;
+			global::Plugin.Hud.Resource.Attribute.navigationMode = global::AepApp.Droid.Resource.Attribute.navigationMode;
+			global::Plugin.Hud.Resource.Attribute.overlapAnchor = global::AepApp.Droid.Resource.Attribute.overlapAnchor;
+			global::Plugin.Hud.Resource.Attribute.paddingBottomNoButtons = global::AepApp.Droid.Resource.Attribute.paddingBottomNoButtons;
+			global::Plugin.Hud.Resource.Attribute.paddingEnd = global::AepApp.Droid.Resource.Attribute.paddingEnd;
+			global::Plugin.Hud.Resource.Attribute.paddingStart = global::AepApp.Droid.Resource.Attribute.paddingStart;
+			global::Plugin.Hud.Resource.Attribute.paddingTopNoTitle = global::AepApp.Droid.Resource.Attribute.paddingTopNoTitle;
+			global::Plugin.Hud.Resource.Attribute.panelBackground = global::AepApp.Droid.Resource.Attribute.panelBackground;
+			global::Plugin.Hud.Resource.Attribute.panelMenuListTheme = global::AepApp.Droid.Resource.Attribute.panelMenuListTheme;
+			global::Plugin.Hud.Resource.Attribute.panelMenuListWidth = global::AepApp.Droid.Resource.Attribute.panelMenuListWidth;
+			global::Plugin.Hud.Resource.Attribute.passwordToggleContentDescription = global::AepApp.Droid.Resource.Attribute.passwordToggleContentDescription;
+			global::Plugin.Hud.Resource.Attribute.passwordToggleDrawable = global::AepApp.Droid.Resource.Attribute.passwordToggleDrawable;
+			global::Plugin.Hud.Resource.Attribute.passwordToggleEnabled = global::AepApp.Droid.Resource.Attribute.passwordToggleEnabled;
+			global::Plugin.Hud.Resource.Attribute.passwordToggleTint = global::AepApp.Droid.Resource.Attribute.passwordToggleTint;
+			global::Plugin.Hud.Resource.Attribute.passwordToggleTintMode = global::AepApp.Droid.Resource.Attribute.passwordToggleTintMode;
+			global::Plugin.Hud.Resource.Attribute.popupMenuStyle = global::AepApp.Droid.Resource.Attribute.popupMenuStyle;
+			global::Plugin.Hud.Resource.Attribute.popupTheme = global::AepApp.Droid.Resource.Attribute.popupTheme;
+			global::Plugin.Hud.Resource.Attribute.popupWindowStyle = global::AepApp.Droid.Resource.Attribute.popupWindowStyle;
+			global::Plugin.Hud.Resource.Attribute.preserveIconSpacing = global::AepApp.Droid.Resource.Attribute.preserveIconSpacing;
+			global::Plugin.Hud.Resource.Attribute.pressedTranslationZ = global::AepApp.Droid.Resource.Attribute.pressedTranslationZ;
+			global::Plugin.Hud.Resource.Attribute.progressBarPadding = global::AepApp.Droid.Resource.Attribute.progressBarPadding;
+			global::Plugin.Hud.Resource.Attribute.progressBarStyle = global::AepApp.Droid.Resource.Attribute.progressBarStyle;
+			global::Plugin.Hud.Resource.Attribute.queryBackground = global::AepApp.Droid.Resource.Attribute.queryBackground;
+			global::Plugin.Hud.Resource.Attribute.queryHint = global::AepApp.Droid.Resource.Attribute.queryHint;
+			global::Plugin.Hud.Resource.Attribute.radioButtonStyle = global::AepApp.Droid.Resource.Attribute.radioButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.ratingBarStyle = global::AepApp.Droid.Resource.Attribute.ratingBarStyle;
+			global::Plugin.Hud.Resource.Attribute.ratingBarStyleIndicator = global::AepApp.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::Plugin.Hud.Resource.Attribute.ratingBarStyleSmall = global::AepApp.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Plugin.Hud.Resource.Attribute.reverseLayout = global::AepApp.Droid.Resource.Attribute.reverseLayout;
+			global::Plugin.Hud.Resource.Attribute.rippleColor = global::AepApp.Droid.Resource.Attribute.rippleColor;
+			global::Plugin.Hud.Resource.Attribute.scrimAnimationDuration = global::AepApp.Droid.Resource.Attribute.scrimAnimationDuration;
+			global::Plugin.Hud.Resource.Attribute.scrimVisibleHeightTrigger = global::AepApp.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Plugin.Hud.Resource.Attribute.searchHintIcon = global::AepApp.Droid.Resource.Attribute.searchHintIcon;
+			global::Plugin.Hud.Resource.Attribute.searchIcon = global::AepApp.Droid.Resource.Attribute.searchIcon;
+			global::Plugin.Hud.Resource.Attribute.searchViewStyle = global::AepApp.Droid.Resource.Attribute.searchViewStyle;
+			global::Plugin.Hud.Resource.Attribute.seekBarStyle = global::AepApp.Droid.Resource.Attribute.seekBarStyle;
+			global::Plugin.Hud.Resource.Attribute.selectableItemBackground = global::AepApp.Droid.Resource.Attribute.selectableItemBackground;
+			global::Plugin.Hud.Resource.Attribute.selectableItemBackgroundBorderless = global::AepApp.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Plugin.Hud.Resource.Attribute.showAsAction = global::AepApp.Droid.Resource.Attribute.showAsAction;
+			global::Plugin.Hud.Resource.Attribute.showDividers = global::AepApp.Droid.Resource.Attribute.showDividers;
+			global::Plugin.Hud.Resource.Attribute.showText = global::AepApp.Droid.Resource.Attribute.showText;
+			global::Plugin.Hud.Resource.Attribute.showTitle = global::AepApp.Droid.Resource.Attribute.showTitle;
+			global::Plugin.Hud.Resource.Attribute.singleChoiceItemLayout = global::AepApp.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::Plugin.Hud.Resource.Attribute.spanCount = global::AepApp.Droid.Resource.Attribute.spanCount;
+			global::Plugin.Hud.Resource.Attribute.spinBars = global::AepApp.Droid.Resource.Attribute.spinBars;
+			global::Plugin.Hud.Resource.Attribute.spinnerDropDownItemStyle = global::AepApp.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::Plugin.Hud.Resource.Attribute.spinnerStyle = global::AepApp.Droid.Resource.Attribute.spinnerStyle;
+			global::Plugin.Hud.Resource.Attribute.splitTrack = global::AepApp.Droid.Resource.Attribute.splitTrack;
+			global::Plugin.Hud.Resource.Attribute.srcCompat = global::AepApp.Droid.Resource.Attribute.srcCompat;
+			global::Plugin.Hud.Resource.Attribute.stackFromEnd = global::AepApp.Droid.Resource.Attribute.stackFromEnd;
+			global::Plugin.Hud.Resource.Attribute.state_above_anchor = global::AepApp.Droid.Resource.Attribute.state_above_anchor;
+			global::Plugin.Hud.Resource.Attribute.state_collapsed = global::AepApp.Droid.Resource.Attribute.state_collapsed;
+			global::Plugin.Hud.Resource.Attribute.state_collapsible = global::AepApp.Droid.Resource.Attribute.state_collapsible;
+			global::Plugin.Hud.Resource.Attribute.statusBarBackground = global::AepApp.Droid.Resource.Attribute.statusBarBackground;
+			global::Plugin.Hud.Resource.Attribute.statusBarScrim = global::AepApp.Droid.Resource.Attribute.statusBarScrim;
+			global::Plugin.Hud.Resource.Attribute.subMenuArrow = global::AepApp.Droid.Resource.Attribute.subMenuArrow;
+			global::Plugin.Hud.Resource.Attribute.submitBackground = global::AepApp.Droid.Resource.Attribute.submitBackground;
+			global::Plugin.Hud.Resource.Attribute.subtitle = global::AepApp.Droid.Resource.Attribute.subtitle;
+			global::Plugin.Hud.Resource.Attribute.subtitleTextAppearance = global::AepApp.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.subtitleTextColor = global::AepApp.Droid.Resource.Attribute.subtitleTextColor;
+			global::Plugin.Hud.Resource.Attribute.subtitleTextStyle = global::AepApp.Droid.Resource.Attribute.subtitleTextStyle;
+			global::Plugin.Hud.Resource.Attribute.suggestionRowLayout = global::AepApp.Droid.Resource.Attribute.suggestionRowLayout;
+			global::Plugin.Hud.Resource.Attribute.switchMinWidth = global::AepApp.Droid.Resource.Attribute.switchMinWidth;
+			global::Plugin.Hud.Resource.Attribute.switchPadding = global::AepApp.Droid.Resource.Attribute.switchPadding;
+			global::Plugin.Hud.Resource.Attribute.switchStyle = global::AepApp.Droid.Resource.Attribute.switchStyle;
+			global::Plugin.Hud.Resource.Attribute.switchTextAppearance = global::AepApp.Droid.Resource.Attribute.switchTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.tabBackground = global::AepApp.Droid.Resource.Attribute.tabBackground;
+			global::Plugin.Hud.Resource.Attribute.tabContentStart = global::AepApp.Droid.Resource.Attribute.tabContentStart;
+			global::Plugin.Hud.Resource.Attribute.tabGravity = global::AepApp.Droid.Resource.Attribute.tabGravity;
+			global::Plugin.Hud.Resource.Attribute.tabIndicatorColor = global::AepApp.Droid.Resource.Attribute.tabIndicatorColor;
+			global::Plugin.Hud.Resource.Attribute.tabIndicatorHeight = global::AepApp.Droid.Resource.Attribute.tabIndicatorHeight;
+			global::Plugin.Hud.Resource.Attribute.tabMaxWidth = global::AepApp.Droid.Resource.Attribute.tabMaxWidth;
+			global::Plugin.Hud.Resource.Attribute.tabMinWidth = global::AepApp.Droid.Resource.Attribute.tabMinWidth;
+			global::Plugin.Hud.Resource.Attribute.tabMode = global::AepApp.Droid.Resource.Attribute.tabMode;
+			global::Plugin.Hud.Resource.Attribute.tabPadding = global::AepApp.Droid.Resource.Attribute.tabPadding;
+			global::Plugin.Hud.Resource.Attribute.tabPaddingBottom = global::AepApp.Droid.Resource.Attribute.tabPaddingBottom;
+			global::Plugin.Hud.Resource.Attribute.tabPaddingEnd = global::AepApp.Droid.Resource.Attribute.tabPaddingEnd;
+			global::Plugin.Hud.Resource.Attribute.tabPaddingStart = global::AepApp.Droid.Resource.Attribute.tabPaddingStart;
+			global::Plugin.Hud.Resource.Attribute.tabPaddingTop = global::AepApp.Droid.Resource.Attribute.tabPaddingTop;
+			global::Plugin.Hud.Resource.Attribute.tabSelectedTextColor = global::AepApp.Droid.Resource.Attribute.tabSelectedTextColor;
+			global::Plugin.Hud.Resource.Attribute.tabTextAppearance = global::AepApp.Droid.Resource.Attribute.tabTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.tabTextColor = global::AepApp.Droid.Resource.Attribute.tabTextColor;
+			global::Plugin.Hud.Resource.Attribute.textAllCaps = global::AepApp.Droid.Resource.Attribute.textAllCaps;
+			global::Plugin.Hud.Resource.Attribute.textAppearanceLargePopupMenu = global::AepApp.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::Plugin.Hud.Resource.Attribute.textAppearanceListItem = global::AepApp.Droid.Resource.Attribute.textAppearanceListItem;
+			global::Plugin.Hud.Resource.Attribute.textAppearanceListItemSmall = global::AepApp.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::Plugin.Hud.Resource.Attribute.textAppearancePopupMenuHeader = global::AepApp.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
+			global::Plugin.Hud.Resource.Attribute.textAppearanceSearchResultSubtitle = global::AepApp.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::Plugin.Hud.Resource.Attribute.textAppearanceSearchResultTitle = global::AepApp.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::Plugin.Hud.Resource.Attribute.textAppearanceSmallPopupMenu = global::AepApp.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::Plugin.Hud.Resource.Attribute.textColorAlertDialogListItem = global::AepApp.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::Plugin.Hud.Resource.Attribute.textColorError = global::AepApp.Droid.Resource.Attribute.textColorError;
+			global::Plugin.Hud.Resource.Attribute.textColorSearchUrl = global::AepApp.Droid.Resource.Attribute.textColorSearchUrl;
+			global::Plugin.Hud.Resource.Attribute.theme = global::AepApp.Droid.Resource.Attribute.theme;
+			global::Plugin.Hud.Resource.Attribute.thickness = global::AepApp.Droid.Resource.Attribute.thickness;
+			global::Plugin.Hud.Resource.Attribute.thumbTextPadding = global::AepApp.Droid.Resource.Attribute.thumbTextPadding;
+			global::Plugin.Hud.Resource.Attribute.thumbTint = global::AepApp.Droid.Resource.Attribute.thumbTint;
+			global::Plugin.Hud.Resource.Attribute.thumbTintMode = global::AepApp.Droid.Resource.Attribute.thumbTintMode;
+			global::Plugin.Hud.Resource.Attribute.tickMark = global::AepApp.Droid.Resource.Attribute.tickMark;
+			global::Plugin.Hud.Resource.Attribute.tickMarkTint = global::AepApp.Droid.Resource.Attribute.tickMarkTint;
+			global::Plugin.Hud.Resource.Attribute.tickMarkTintMode = global::AepApp.Droid.Resource.Attribute.tickMarkTintMode;
+			global::Plugin.Hud.Resource.Attribute.title = global::AepApp.Droid.Resource.Attribute.title;
+			global::Plugin.Hud.Resource.Attribute.titleEnabled = global::AepApp.Droid.Resource.Attribute.titleEnabled;
+			global::Plugin.Hud.Resource.Attribute.titleMargin = global::AepApp.Droid.Resource.Attribute.titleMargin;
+			global::Plugin.Hud.Resource.Attribute.titleMarginBottom = global::AepApp.Droid.Resource.Attribute.titleMarginBottom;
+			global::Plugin.Hud.Resource.Attribute.titleMarginEnd = global::AepApp.Droid.Resource.Attribute.titleMarginEnd;
+			global::Plugin.Hud.Resource.Attribute.titleMarginStart = global::AepApp.Droid.Resource.Attribute.titleMarginStart;
+			global::Plugin.Hud.Resource.Attribute.titleMarginTop = global::AepApp.Droid.Resource.Attribute.titleMarginTop;
+			global::Plugin.Hud.Resource.Attribute.titleMargins = global::AepApp.Droid.Resource.Attribute.titleMargins;
+			global::Plugin.Hud.Resource.Attribute.titleTextAppearance = global::AepApp.Droid.Resource.Attribute.titleTextAppearance;
+			global::Plugin.Hud.Resource.Attribute.titleTextColor = global::AepApp.Droid.Resource.Attribute.titleTextColor;
+			global::Plugin.Hud.Resource.Attribute.titleTextStyle = global::AepApp.Droid.Resource.Attribute.titleTextStyle;
+			global::Plugin.Hud.Resource.Attribute.toolbarId = global::AepApp.Droid.Resource.Attribute.toolbarId;
+			global::Plugin.Hud.Resource.Attribute.toolbarNavigationButtonStyle = global::AepApp.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::Plugin.Hud.Resource.Attribute.toolbarStyle = global::AepApp.Droid.Resource.Attribute.toolbarStyle;
+			global::Plugin.Hud.Resource.Attribute.track = global::AepApp.Droid.Resource.Attribute.track;
+			global::Plugin.Hud.Resource.Attribute.trackTint = global::AepApp.Droid.Resource.Attribute.trackTint;
+			global::Plugin.Hud.Resource.Attribute.trackTintMode = global::AepApp.Droid.Resource.Attribute.trackTintMode;
+			global::Plugin.Hud.Resource.Attribute.useCompatPadding = global::AepApp.Droid.Resource.Attribute.useCompatPadding;
+			global::Plugin.Hud.Resource.Attribute.voiceIcon = global::AepApp.Droid.Resource.Attribute.voiceIcon;
+			global::Plugin.Hud.Resource.Attribute.windowActionBar = global::AepApp.Droid.Resource.Attribute.windowActionBar;
+			global::Plugin.Hud.Resource.Attribute.windowActionBarOverlay = global::AepApp.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::Plugin.Hud.Resource.Attribute.windowActionModeOverlay = global::AepApp.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::Plugin.Hud.Resource.Attribute.windowFixedHeightMajor = global::AepApp.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::Plugin.Hud.Resource.Attribute.windowFixedHeightMinor = global::AepApp.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::Plugin.Hud.Resource.Attribute.windowFixedWidthMajor = global::AepApp.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::Plugin.Hud.Resource.Attribute.windowFixedWidthMinor = global::AepApp.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::Plugin.Hud.Resource.Attribute.windowMinWidthMajor = global::AepApp.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::Plugin.Hud.Resource.Attribute.windowMinWidthMinor = global::AepApp.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::Plugin.Hud.Resource.Attribute.windowNoTitle = global::AepApp.Droid.Resource.Attribute.windowNoTitle;
+			global::Plugin.Hud.Resource.Boolean.abc_action_bar_embed_tabs = global::AepApp.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Plugin.Hud.Resource.Boolean.abc_allow_stacked_button_bar = global::AepApp.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::Plugin.Hud.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::AepApp.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::Plugin.Hud.Resource.Boolean.abc_config_closeDialogWhenTouchOutside = global::AepApp.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside;
+			global::Plugin.Hud.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::AepApp.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
+			global::Plugin.Hud.Resource.Color.abc_background_cache_hint_selector_material_dark = global::AepApp.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::Plugin.Hud.Resource.Color.abc_background_cache_hint_selector_material_light = global::AepApp.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::Plugin.Hud.Resource.Color.abc_btn_colored_borderless_text_material = global::AepApp.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::Plugin.Hud.Resource.Color.abc_btn_colored_text_material = global::AepApp.Droid.Resource.Color.abc_btn_colored_text_material;
+			global::Plugin.Hud.Resource.Color.abc_color_highlight_material = global::AepApp.Droid.Resource.Color.abc_color_highlight_material;
+			global::Plugin.Hud.Resource.Color.abc_hint_foreground_material_dark = global::AepApp.Droid.Resource.Color.abc_hint_foreground_material_dark;
+			global::Plugin.Hud.Resource.Color.abc_hint_foreground_material_light = global::AepApp.Droid.Resource.Color.abc_hint_foreground_material_light;
+			global::Plugin.Hud.Resource.Color.abc_input_method_navigation_guard = global::AepApp.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::Plugin.Hud.Resource.Color.abc_primary_text_disable_only_material_dark = global::AepApp.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::Plugin.Hud.Resource.Color.abc_primary_text_disable_only_material_light = global::AepApp.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::Plugin.Hud.Resource.Color.abc_primary_text_material_dark = global::AepApp.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::Plugin.Hud.Resource.Color.abc_primary_text_material_light = global::AepApp.Droid.Resource.Color.abc_primary_text_material_light;
+			global::Plugin.Hud.Resource.Color.abc_search_url_text = global::AepApp.Droid.Resource.Color.abc_search_url_text;
+			global::Plugin.Hud.Resource.Color.abc_search_url_text_normal = global::AepApp.Droid.Resource.Color.abc_search_url_text_normal;
+			global::Plugin.Hud.Resource.Color.abc_search_url_text_pressed = global::AepApp.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::Plugin.Hud.Resource.Color.abc_search_url_text_selected = global::AepApp.Droid.Resource.Color.abc_search_url_text_selected;
+			global::Plugin.Hud.Resource.Color.abc_secondary_text_material_dark = global::AepApp.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::Plugin.Hud.Resource.Color.abc_secondary_text_material_light = global::AepApp.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::Plugin.Hud.Resource.Color.abc_tint_btn_checkable = global::AepApp.Droid.Resource.Color.abc_tint_btn_checkable;
+			global::Plugin.Hud.Resource.Color.abc_tint_default = global::AepApp.Droid.Resource.Color.abc_tint_default;
+			global::Plugin.Hud.Resource.Color.abc_tint_edittext = global::AepApp.Droid.Resource.Color.abc_tint_edittext;
+			global::Plugin.Hud.Resource.Color.abc_tint_seek_thumb = global::AepApp.Droid.Resource.Color.abc_tint_seek_thumb;
+			global::Plugin.Hud.Resource.Color.abc_tint_spinner = global::AepApp.Droid.Resource.Color.abc_tint_spinner;
+			global::Plugin.Hud.Resource.Color.abc_tint_switch_thumb = global::AepApp.Droid.Resource.Color.abc_tint_switch_thumb;
+			global::Plugin.Hud.Resource.Color.abc_tint_switch_track = global::AepApp.Droid.Resource.Color.abc_tint_switch_track;
+			global::Plugin.Hud.Resource.Color.accent_material_dark = global::AepApp.Droid.Resource.Color.accent_material_dark;
+			global::Plugin.Hud.Resource.Color.accent_material_light = global::AepApp.Droid.Resource.Color.accent_material_light;
+			global::Plugin.Hud.Resource.Color.background_floating_material_dark = global::AepApp.Droid.Resource.Color.background_floating_material_dark;
+			global::Plugin.Hud.Resource.Color.background_floating_material_light = global::AepApp.Droid.Resource.Color.background_floating_material_light;
+			global::Plugin.Hud.Resource.Color.background_material_dark = global::AepApp.Droid.Resource.Color.background_material_dark;
+			global::Plugin.Hud.Resource.Color.background_material_light = global::AepApp.Droid.Resource.Color.background_material_light;
+			global::Plugin.Hud.Resource.Color.bright_foreground_disabled_material_dark = global::AepApp.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::Plugin.Hud.Resource.Color.bright_foreground_disabled_material_light = global::AepApp.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::Plugin.Hud.Resource.Color.bright_foreground_inverse_material_dark = global::AepApp.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::Plugin.Hud.Resource.Color.bright_foreground_inverse_material_light = global::AepApp.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::Plugin.Hud.Resource.Color.bright_foreground_material_dark = global::AepApp.Droid.Resource.Color.bright_foreground_material_dark;
+			global::Plugin.Hud.Resource.Color.bright_foreground_material_light = global::AepApp.Droid.Resource.Color.bright_foreground_material_light;
+			global::Plugin.Hud.Resource.Color.button_material_dark = global::AepApp.Droid.Resource.Color.button_material_dark;
+			global::Plugin.Hud.Resource.Color.button_material_light = global::AepApp.Droid.Resource.Color.button_material_light;
+			global::Plugin.Hud.Resource.Color.cardview_dark_background = global::AepApp.Droid.Resource.Color.cardview_dark_background;
+			global::Plugin.Hud.Resource.Color.cardview_light_background = global::AepApp.Droid.Resource.Color.cardview_light_background;
+			global::Plugin.Hud.Resource.Color.cardview_shadow_end_color = global::AepApp.Droid.Resource.Color.cardview_shadow_end_color;
+			global::Plugin.Hud.Resource.Color.cardview_shadow_start_color = global::AepApp.Droid.Resource.Color.cardview_shadow_start_color;
+			global::Plugin.Hud.Resource.Color.design_bottom_navigation_shadow_color = global::AepApp.Droid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::Plugin.Hud.Resource.Color.design_error = global::AepApp.Droid.Resource.Color.design_error;
+			global::Plugin.Hud.Resource.Color.design_fab_shadow_end_color = global::AepApp.Droid.Resource.Color.design_fab_shadow_end_color;
+			global::Plugin.Hud.Resource.Color.design_fab_shadow_mid_color = global::AepApp.Droid.Resource.Color.design_fab_shadow_mid_color;
+			global::Plugin.Hud.Resource.Color.design_fab_shadow_start_color = global::AepApp.Droid.Resource.Color.design_fab_shadow_start_color;
+			global::Plugin.Hud.Resource.Color.design_fab_stroke_end_inner_color = global::AepApp.Droid.Resource.Color.design_fab_stroke_end_inner_color;
+			global::Plugin.Hud.Resource.Color.design_fab_stroke_end_outer_color = global::AepApp.Droid.Resource.Color.design_fab_stroke_end_outer_color;
+			global::Plugin.Hud.Resource.Color.design_fab_stroke_top_inner_color = global::AepApp.Droid.Resource.Color.design_fab_stroke_top_inner_color;
+			global::Plugin.Hud.Resource.Color.design_fab_stroke_top_outer_color = global::AepApp.Droid.Resource.Color.design_fab_stroke_top_outer_color;
+			global::Plugin.Hud.Resource.Color.design_snackbar_background_color = global::AepApp.Droid.Resource.Color.design_snackbar_background_color;
+			global::Plugin.Hud.Resource.Color.design_textinput_error_color_dark = global::AepApp.Droid.Resource.Color.design_textinput_error_color_dark;
+			global::Plugin.Hud.Resource.Color.design_textinput_error_color_light = global::AepApp.Droid.Resource.Color.design_textinput_error_color_light;
+			global::Plugin.Hud.Resource.Color.design_tint_password_toggle = global::AepApp.Droid.Resource.Color.design_tint_password_toggle;
+			global::Plugin.Hud.Resource.Color.dim_foreground_disabled_material_dark = global::AepApp.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::Plugin.Hud.Resource.Color.dim_foreground_disabled_material_light = global::AepApp.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::Plugin.Hud.Resource.Color.dim_foreground_material_dark = global::AepApp.Droid.Resource.Color.dim_foreground_material_dark;
+			global::Plugin.Hud.Resource.Color.dim_foreground_material_light = global::AepApp.Droid.Resource.Color.dim_foreground_material_light;
+			global::Plugin.Hud.Resource.Color.foreground_material_dark = global::AepApp.Droid.Resource.Color.foreground_material_dark;
+			global::Plugin.Hud.Resource.Color.foreground_material_light = global::AepApp.Droid.Resource.Color.foreground_material_light;
+			global::Plugin.Hud.Resource.Color.highlighted_text_material_dark = global::AepApp.Droid.Resource.Color.highlighted_text_material_dark;
+			global::Plugin.Hud.Resource.Color.highlighted_text_material_light = global::AepApp.Droid.Resource.Color.highlighted_text_material_light;
+			global::Plugin.Hud.Resource.Color.material_blue_grey_800 = global::AepApp.Droid.Resource.Color.material_blue_grey_800;
+			global::Plugin.Hud.Resource.Color.material_blue_grey_900 = global::AepApp.Droid.Resource.Color.material_blue_grey_900;
+			global::Plugin.Hud.Resource.Color.material_blue_grey_950 = global::AepApp.Droid.Resource.Color.material_blue_grey_950;
+			global::Plugin.Hud.Resource.Color.material_deep_teal_200 = global::AepApp.Droid.Resource.Color.material_deep_teal_200;
+			global::Plugin.Hud.Resource.Color.material_deep_teal_500 = global::AepApp.Droid.Resource.Color.material_deep_teal_500;
+			global::Plugin.Hud.Resource.Color.material_grey_100 = global::AepApp.Droid.Resource.Color.material_grey_100;
+			global::Plugin.Hud.Resource.Color.material_grey_300 = global::AepApp.Droid.Resource.Color.material_grey_300;
+			global::Plugin.Hud.Resource.Color.material_grey_50 = global::AepApp.Droid.Resource.Color.material_grey_50;
+			global::Plugin.Hud.Resource.Color.material_grey_600 = global::AepApp.Droid.Resource.Color.material_grey_600;
+			global::Plugin.Hud.Resource.Color.material_grey_800 = global::AepApp.Droid.Resource.Color.material_grey_800;
+			global::Plugin.Hud.Resource.Color.material_grey_850 = global::AepApp.Droid.Resource.Color.material_grey_850;
+			global::Plugin.Hud.Resource.Color.material_grey_900 = global::AepApp.Droid.Resource.Color.material_grey_900;
+			global::Plugin.Hud.Resource.Color.notification_action_color_filter = global::AepApp.Droid.Resource.Color.notification_action_color_filter;
+			global::Plugin.Hud.Resource.Color.notification_icon_bg_color = global::AepApp.Droid.Resource.Color.notification_icon_bg_color;
+			global::Plugin.Hud.Resource.Color.notification_material_background_media_default_color = global::AepApp.Droid.Resource.Color.notification_material_background_media_default_color;
+			global::Plugin.Hud.Resource.Color.primary_dark_material_dark = global::AepApp.Droid.Resource.Color.primary_dark_material_dark;
+			global::Plugin.Hud.Resource.Color.primary_dark_material_light = global::AepApp.Droid.Resource.Color.primary_dark_material_light;
+			global::Plugin.Hud.Resource.Color.primary_material_dark = global::AepApp.Droid.Resource.Color.primary_material_dark;
+			global::Plugin.Hud.Resource.Color.primary_material_light = global::AepApp.Droid.Resource.Color.primary_material_light;
+			global::Plugin.Hud.Resource.Color.primary_text_default_material_dark = global::AepApp.Droid.Resource.Color.primary_text_default_material_dark;
+			global::Plugin.Hud.Resource.Color.primary_text_default_material_light = global::AepApp.Droid.Resource.Color.primary_text_default_material_light;
+			global::Plugin.Hud.Resource.Color.primary_text_disabled_material_dark = global::AepApp.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::Plugin.Hud.Resource.Color.primary_text_disabled_material_light = global::AepApp.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::Plugin.Hud.Resource.Color.ripple_material_dark = global::AepApp.Droid.Resource.Color.ripple_material_dark;
+			global::Plugin.Hud.Resource.Color.ripple_material_light = global::AepApp.Droid.Resource.Color.ripple_material_light;
+			global::Plugin.Hud.Resource.Color.secondary_text_default_material_dark = global::AepApp.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::Plugin.Hud.Resource.Color.secondary_text_default_material_light = global::AepApp.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Plugin.Hud.Resource.Color.secondary_text_disabled_material_dark = global::AepApp.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::Plugin.Hud.Resource.Color.secondary_text_disabled_material_light = global::AepApp.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::Plugin.Hud.Resource.Color.switch_thumb_disabled_material_dark = global::AepApp.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::Plugin.Hud.Resource.Color.switch_thumb_disabled_material_light = global::AepApp.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::Plugin.Hud.Resource.Color.switch_thumb_material_dark = global::AepApp.Droid.Resource.Color.switch_thumb_material_dark;
+			global::Plugin.Hud.Resource.Color.switch_thumb_material_light = global::AepApp.Droid.Resource.Color.switch_thumb_material_light;
+			global::Plugin.Hud.Resource.Color.switch_thumb_normal_material_dark = global::AepApp.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::Plugin.Hud.Resource.Color.switch_thumb_normal_material_light = global::AepApp.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_content_inset_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::AepApp.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_default_height_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_default_padding_end_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_default_padding_start_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_elevation_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_elevation_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_progress_bar_size = global::AepApp.Droid.Resource.Dimension.abc_action_bar_progress_bar_size;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_stacked_max_height = global::AepApp.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::AepApp.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::AepApp.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_button_min_height_material = global::AepApp.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_button_min_width_material = global::AepApp.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::Plugin.Hud.Resource.Dimension.abc_action_button_min_width_overflow_material = global::AepApp.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::Plugin.Hud.Resource.Dimension.abc_alert_dialog_button_bar_height = global::AepApp.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::Plugin.Hud.Resource.Dimension.abc_button_inset_horizontal_material = global::AepApp.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::Plugin.Hud.Resource.Dimension.abc_button_inset_vertical_material = global::AepApp.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::Plugin.Hud.Resource.Dimension.abc_button_padding_horizontal_material = global::AepApp.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::Plugin.Hud.Resource.Dimension.abc_button_padding_vertical_material = global::AepApp.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::Plugin.Hud.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::AepApp.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
+			global::Plugin.Hud.Resource.Dimension.abc_config_prefDialogWidth = global::AepApp.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::Plugin.Hud.Resource.Dimension.abc_control_corner_material = global::AepApp.Droid.Resource.Dimension.abc_control_corner_material;
+			global::Plugin.Hud.Resource.Dimension.abc_control_inset_material = global::AepApp.Droid.Resource.Dimension.abc_control_inset_material;
+			global::Plugin.Hud.Resource.Dimension.abc_control_padding_material = global::AepApp.Droid.Resource.Dimension.abc_control_padding_material;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_fixed_height_major = global::AepApp.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_fixed_height_minor = global::AepApp.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_fixed_width_major = global::AepApp.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_fixed_width_minor = global::AepApp.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::AepApp.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::AepApp.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_min_width_major = global::AepApp.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_min_width_minor = global::AepApp.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_padding_material = global::AepApp.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_padding_top_material = global::AepApp.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::Plugin.Hud.Resource.Dimension.abc_dialog_title_divider_material = global::AepApp.Droid.Resource.Dimension.abc_dialog_title_divider_material;
+			global::Plugin.Hud.Resource.Dimension.abc_disabled_alpha_material_dark = global::AepApp.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::Plugin.Hud.Resource.Dimension.abc_disabled_alpha_material_light = global::AepApp.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::Plugin.Hud.Resource.Dimension.abc_dropdownitem_icon_width = global::AepApp.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::Plugin.Hud.Resource.Dimension.abc_dropdownitem_text_padding_left = global::AepApp.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::Plugin.Hud.Resource.Dimension.abc_dropdownitem_text_padding_right = global::AepApp.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::Plugin.Hud.Resource.Dimension.abc_edit_text_inset_bottom_material = global::AepApp.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::Plugin.Hud.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::AepApp.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::Plugin.Hud.Resource.Dimension.abc_edit_text_inset_top_material = global::AepApp.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::Plugin.Hud.Resource.Dimension.abc_floating_window_z = global::AepApp.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Plugin.Hud.Resource.Dimension.abc_list_item_padding_horizontal_material = global::AepApp.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::Plugin.Hud.Resource.Dimension.abc_panel_menu_list_width = global::AepApp.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::Plugin.Hud.Resource.Dimension.abc_progress_bar_height_material = global::AepApp.Droid.Resource.Dimension.abc_progress_bar_height_material;
+			global::Plugin.Hud.Resource.Dimension.abc_search_view_preferred_height = global::AepApp.Droid.Resource.Dimension.abc_search_view_preferred_height;
+			global::Plugin.Hud.Resource.Dimension.abc_search_view_preferred_width = global::AepApp.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::Plugin.Hud.Resource.Dimension.abc_seekbar_track_background_height_material = global::AepApp.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::Plugin.Hud.Resource.Dimension.abc_seekbar_track_progress_height_material = global::AepApp.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::Plugin.Hud.Resource.Dimension.abc_select_dialog_padding_start_material = global::AepApp.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::Plugin.Hud.Resource.Dimension.abc_switch_padding = global::AepApp.Droid.Resource.Dimension.abc_switch_padding;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_body_1_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_body_2_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_button_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_caption_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_display_1_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_display_2_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_display_3_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_display_4_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_headline_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_large_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_medium_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_menu_header_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_menu_header_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_menu_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_small_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_subhead_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::AepApp.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_title_material = global::AepApp.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::Plugin.Hud.Resource.Dimension.abc_text_size_title_material_toolbar = global::AepApp.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::Plugin.Hud.Resource.Dimension.cardview_compat_inset_shadow = global::AepApp.Droid.Resource.Dimension.cardview_compat_inset_shadow;
+			global::Plugin.Hud.Resource.Dimension.cardview_default_elevation = global::AepApp.Droid.Resource.Dimension.cardview_default_elevation;
+			global::Plugin.Hud.Resource.Dimension.cardview_default_radius = global::AepApp.Droid.Resource.Dimension.cardview_default_radius;
+			global::Plugin.Hud.Resource.Dimension.design_appbar_elevation = global::AepApp.Droid.Resource.Dimension.design_appbar_elevation;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::AepApp.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_navigation_active_text_size = global::AepApp.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_navigation_elevation = global::AepApp.Droid.Resource.Dimension.design_bottom_navigation_elevation;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_navigation_height = global::AepApp.Droid.Resource.Dimension.design_bottom_navigation_height;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_navigation_item_max_width = global::AepApp.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_navigation_item_min_width = global::AepApp.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_navigation_margin = global::AepApp.Droid.Resource.Dimension.design_bottom_navigation_margin;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_navigation_shadow_height = global::AepApp.Droid.Resource.Dimension.design_bottom_navigation_shadow_height;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_navigation_text_size = global::AepApp.Droid.Resource.Dimension.design_bottom_navigation_text_size;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_sheet_modal_elevation = global::AepApp.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::Plugin.Hud.Resource.Dimension.design_bottom_sheet_peek_height_min = global::AepApp.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min;
+			global::Plugin.Hud.Resource.Dimension.design_fab_border_width = global::AepApp.Droid.Resource.Dimension.design_fab_border_width;
+			global::Plugin.Hud.Resource.Dimension.design_fab_elevation = global::AepApp.Droid.Resource.Dimension.design_fab_elevation;
+			global::Plugin.Hud.Resource.Dimension.design_fab_image_size = global::AepApp.Droid.Resource.Dimension.design_fab_image_size;
+			global::Plugin.Hud.Resource.Dimension.design_fab_size_mini = global::AepApp.Droid.Resource.Dimension.design_fab_size_mini;
+			global::Plugin.Hud.Resource.Dimension.design_fab_size_normal = global::AepApp.Droid.Resource.Dimension.design_fab_size_normal;
+			global::Plugin.Hud.Resource.Dimension.design_fab_translation_z_pressed = global::AepApp.Droid.Resource.Dimension.design_fab_translation_z_pressed;
+			global::Plugin.Hud.Resource.Dimension.design_navigation_elevation = global::AepApp.Droid.Resource.Dimension.design_navigation_elevation;
+			global::Plugin.Hud.Resource.Dimension.design_navigation_icon_padding = global::AepApp.Droid.Resource.Dimension.design_navigation_icon_padding;
+			global::Plugin.Hud.Resource.Dimension.design_navigation_icon_size = global::AepApp.Droid.Resource.Dimension.design_navigation_icon_size;
+			global::Plugin.Hud.Resource.Dimension.design_navigation_max_width = global::AepApp.Droid.Resource.Dimension.design_navigation_max_width;
+			global::Plugin.Hud.Resource.Dimension.design_navigation_padding_bottom = global::AepApp.Droid.Resource.Dimension.design_navigation_padding_bottom;
+			global::Plugin.Hud.Resource.Dimension.design_navigation_separator_vertical_padding = global::AepApp.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_action_inline_max_width = global::AepApp.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_background_corner_radius = global::AepApp.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_elevation = global::AepApp.Droid.Resource.Dimension.design_snackbar_elevation;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::AepApp.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_max_width = global::AepApp.Droid.Resource.Dimension.design_snackbar_max_width;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_min_width = global::AepApp.Droid.Resource.Dimension.design_snackbar_min_width;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_padding_horizontal = global::AepApp.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_padding_vertical = global::AepApp.Droid.Resource.Dimension.design_snackbar_padding_vertical;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::AepApp.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
+			global::Plugin.Hud.Resource.Dimension.design_snackbar_text_size = global::AepApp.Droid.Resource.Dimension.design_snackbar_text_size;
+			global::Plugin.Hud.Resource.Dimension.design_tab_max_width = global::AepApp.Droid.Resource.Dimension.design_tab_max_width;
+			global::Plugin.Hud.Resource.Dimension.design_tab_scrollable_min_width = global::AepApp.Droid.Resource.Dimension.design_tab_scrollable_min_width;
+			global::Plugin.Hud.Resource.Dimension.design_tab_text_size = global::AepApp.Droid.Resource.Dimension.design_tab_text_size;
+			global::Plugin.Hud.Resource.Dimension.design_tab_text_size_2line = global::AepApp.Droid.Resource.Dimension.design_tab_text_size_2line;
+			global::Plugin.Hud.Resource.Dimension.disabled_alpha_material_dark = global::AepApp.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::Plugin.Hud.Resource.Dimension.disabled_alpha_material_light = global::AepApp.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::Plugin.Hud.Resource.Dimension.highlight_alpha_material_colored = global::AepApp.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::Plugin.Hud.Resource.Dimension.highlight_alpha_material_dark = global::AepApp.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::Plugin.Hud.Resource.Dimension.highlight_alpha_material_light = global::AepApp.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::Plugin.Hud.Resource.Dimension.hint_alpha_material_dark = global::AepApp.Droid.Resource.Dimension.hint_alpha_material_dark;
+			global::Plugin.Hud.Resource.Dimension.hint_alpha_material_light = global::AepApp.Droid.Resource.Dimension.hint_alpha_material_light;
+			global::Plugin.Hud.Resource.Dimension.hint_pressed_alpha_material_dark = global::AepApp.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::Plugin.Hud.Resource.Dimension.hint_pressed_alpha_material_light = global::AepApp.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
+			global::Plugin.Hud.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::AepApp.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Plugin.Hud.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::AepApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Plugin.Hud.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::AepApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Plugin.Hud.Resource.Dimension.mr_controller_volume_group_list_item_height = global::AepApp.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height;
+			global::Plugin.Hud.Resource.Dimension.mr_controller_volume_group_list_item_icon_size = global::AepApp.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size;
+			global::Plugin.Hud.Resource.Dimension.mr_controller_volume_group_list_max_height = global::AepApp.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height;
+			global::Plugin.Hud.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::AepApp.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top;
+			global::Plugin.Hud.Resource.Dimension.mr_dialog_fixed_width_major = global::AepApp.Droid.Resource.Dimension.mr_dialog_fixed_width_major;
+			global::Plugin.Hud.Resource.Dimension.mr_dialog_fixed_width_minor = global::AepApp.Droid.Resource.Dimension.mr_dialog_fixed_width_minor;
+			global::Plugin.Hud.Resource.Dimension.notification_action_icon_size = global::AepApp.Droid.Resource.Dimension.notification_action_icon_size;
+			global::Plugin.Hud.Resource.Dimension.notification_action_text_size = global::AepApp.Droid.Resource.Dimension.notification_action_text_size;
+			global::Plugin.Hud.Resource.Dimension.notification_big_circle_margin = global::AepApp.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::Plugin.Hud.Resource.Dimension.notification_content_margin_start = global::AepApp.Droid.Resource.Dimension.notification_content_margin_start;
+			global::Plugin.Hud.Resource.Dimension.notification_large_icon_height = global::AepApp.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Plugin.Hud.Resource.Dimension.notification_large_icon_width = global::AepApp.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Plugin.Hud.Resource.Dimension.notification_main_column_padding_top = global::AepApp.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::Plugin.Hud.Resource.Dimension.notification_media_narrow_margin = global::AepApp.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::Plugin.Hud.Resource.Dimension.notification_right_icon_size = global::AepApp.Droid.Resource.Dimension.notification_right_icon_size;
+			global::Plugin.Hud.Resource.Dimension.notification_right_side_padding_top = global::AepApp.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::Plugin.Hud.Resource.Dimension.notification_small_icon_background_padding = global::AepApp.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Plugin.Hud.Resource.Dimension.notification_small_icon_size_as_large = global::AepApp.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Plugin.Hud.Resource.Dimension.notification_subtext_size = global::AepApp.Droid.Resource.Dimension.notification_subtext_size;
+			global::Plugin.Hud.Resource.Dimension.notification_top_pad = global::AepApp.Droid.Resource.Dimension.notification_top_pad;
+			global::Plugin.Hud.Resource.Dimension.notification_top_pad_large_text = global::AepApp.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Plugin.Hud.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_action_bar_item_background_material = global::AepApp.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_borderless_material = global::AepApp.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_check_material = global::AepApp.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::AepApp.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::AepApp.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_colored_material = global::AepApp.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_default_mtrl_shape = global::AepApp.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_radio_material = global::AepApp.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::AepApp.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::AepApp.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::AepApp.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::Plugin.Hud.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::AepApp.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::Plugin.Hud.Resource.Drawable.abc_cab_background_internal_bg = global::AepApp.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::Plugin.Hud.Resource.Drawable.abc_cab_background_top_material = global::AepApp.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::Plugin.Hud.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_control_background_material = global::AepApp.Droid.Resource.Drawable.abc_control_background_material;
+			global::Plugin.Hud.Resource.Drawable.abc_dialog_material_background = global::AepApp.Droid.Resource.Drawable.abc_dialog_material_background;
+			global::Plugin.Hud.Resource.Drawable.abc_edit_text_material = global::AepApp.Droid.Resource.Drawable.abc_edit_text_material;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_ab_back_material = global::AepApp.Droid.Resource.Drawable.abc_ic_ab_back_material;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::AepApp.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_clear_material = global::AepApp.Droid.Resource.Drawable.abc_ic_clear_material;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_go_search_api_material = global::AepApp.Droid.Resource.Drawable.abc_ic_go_search_api_material;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::AepApp.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_menu_overflow_material = global::AepApp.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::AepApp.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_search_api_material = global::AepApp.Droid.Resource.Drawable.abc_ic_search_api_material;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_star_black_16dp = global::AepApp.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_star_black_36dp = global::AepApp.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_star_black_48dp = global::AepApp.Droid.Resource.Drawable.abc_ic_star_black_48dp;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_star_half_black_16dp = global::AepApp.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_star_half_black_36dp = global::AepApp.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_star_half_black_48dp = global::AepApp.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::Plugin.Hud.Resource.Drawable.abc_ic_voice_search_api_material = global::AepApp.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
+			global::Plugin.Hud.Resource.Drawable.abc_item_background_holo_dark = global::AepApp.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::Plugin.Hud.Resource.Drawable.abc_item_background_holo_light = global::AepApp.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::Plugin.Hud.Resource.Drawable.abc_list_divider_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_list_focused_holo = global::AepApp.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::Plugin.Hud.Resource.Drawable.abc_list_longpressed_holo = global::AepApp.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::Plugin.Hud.Resource.Drawable.abc_list_pressed_holo_dark = global::AepApp.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::Plugin.Hud.Resource.Drawable.abc_list_pressed_holo_light = global::AepApp.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::Plugin.Hud.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::AepApp.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::Plugin.Hud.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::AepApp.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::Plugin.Hud.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::AepApp.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::Plugin.Hud.Resource.Drawable.abc_list_selector_disabled_holo_light = global::AepApp.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::Plugin.Hud.Resource.Drawable.abc_list_selector_holo_dark = global::AepApp.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::Plugin.Hud.Resource.Drawable.abc_list_selector_holo_light = global::AepApp.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::Plugin.Hud.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::AepApp.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::Plugin.Hud.Resource.Drawable.abc_popup_background_mtrl_mult = global::AepApp.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::Plugin.Hud.Resource.Drawable.abc_ratingbar_indicator_material = global::AepApp.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::Plugin.Hud.Resource.Drawable.abc_ratingbar_material = global::AepApp.Droid.Resource.Drawable.abc_ratingbar_material;
+			global::Plugin.Hud.Resource.Drawable.abc_ratingbar_small_material = global::AepApp.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::Plugin.Hud.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::AepApp.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::Plugin.Hud.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::AepApp.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::Plugin.Hud.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_seekbar_thumb_material = global::AepApp.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::Plugin.Hud.Resource.Drawable.abc_seekbar_tick_mark_material = global::AepApp.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
+			global::Plugin.Hud.Resource.Drawable.abc_seekbar_track_material = global::AepApp.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::Plugin.Hud.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::AepApp.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_spinner_textfield_background_material = global::AepApp.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::Plugin.Hud.Resource.Drawable.abc_switch_thumb_material = global::AepApp.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::Plugin.Hud.Resource.Drawable.abc_switch_track_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_tab_indicator_material = global::AepApp.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::Plugin.Hud.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_text_cursor_material = global::AepApp.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::Plugin.Hud.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::AepApp.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::Plugin.Hud.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::AepApp.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::Plugin.Hud.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::AepApp.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::Plugin.Hud.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::AepApp.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::Plugin.Hud.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::AepApp.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::Plugin.Hud.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::AepApp.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
+			global::Plugin.Hud.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::AepApp.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Plugin.Hud.Resource.Drawable.abc_textfield_search_material = global::AepApp.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::Plugin.Hud.Resource.Drawable.abc_vector_test = global::AepApp.Droid.Resource.Drawable.abc_vector_test;
+			global::Plugin.Hud.Resource.Drawable.avd_hide_password = global::AepApp.Droid.Resource.Drawable.avd_hide_password;
+			global::Plugin.Hud.Resource.Drawable.avd_show_password = global::AepApp.Droid.Resource.Drawable.avd_show_password;
+			global::Plugin.Hud.Resource.Drawable.design_bottom_navigation_item_background = global::AepApp.Droid.Resource.Drawable.design_bottom_navigation_item_background;
+			global::Plugin.Hud.Resource.Drawable.design_fab_background = global::AepApp.Droid.Resource.Drawable.design_fab_background;
+			global::Plugin.Hud.Resource.Drawable.design_ic_visibility = global::AepApp.Droid.Resource.Drawable.design_ic_visibility;
+			global::Plugin.Hud.Resource.Drawable.design_ic_visibility_off = global::AepApp.Droid.Resource.Drawable.design_ic_visibility_off;
+			global::Plugin.Hud.Resource.Drawable.design_password_eye = global::AepApp.Droid.Resource.Drawable.design_password_eye;
+			global::Plugin.Hud.Resource.Drawable.design_snackbar_background = global::AepApp.Droid.Resource.Drawable.design_snackbar_background;
+			global::Plugin.Hud.Resource.Drawable.ic_audiotrack_dark = global::AepApp.Droid.Resource.Drawable.ic_audiotrack_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_audiotrack_light = global::AepApp.Droid.Resource.Drawable.ic_audiotrack_light;
+			global::Plugin.Hud.Resource.Drawable.ic_dialog_close_dark = global::AepApp.Droid.Resource.Drawable.ic_dialog_close_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_dialog_close_light = global::AepApp.Droid.Resource.Drawable.ic_dialog_close_light;
+			global::Plugin.Hud.Resource.Drawable.ic_errorstatus = global::AepApp.Droid.Resource.Drawable.ic_errorstatus;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_00 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_00;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_01 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_01;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_02 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_02;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_03 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_03;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_04 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_04;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_05 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_05;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_06 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_06;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_07 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_07;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_08 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_08;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_09 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_09;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_10 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_10;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_11 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_11;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_12 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_12;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_13 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_13;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_14 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_14;
+			global::Plugin.Hud.Resource.Drawable.ic_group_collapse_15 = global::AepApp.Droid.Resource.Drawable.ic_group_collapse_15;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_00 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_00;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_01 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_01;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_02 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_02;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_03 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_03;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_04 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_04;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_05 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_05;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_06 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_06;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_07 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_07;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_08 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_08;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_09 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_09;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_10 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_10;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_11 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_11;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_12 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_12;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_13 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_13;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_14 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_14;
+			global::Plugin.Hud.Resource.Drawable.ic_group_expand_15 = global::AepApp.Droid.Resource.Drawable.ic_group_expand_15;
+			global::Plugin.Hud.Resource.Drawable.ic_media_pause_dark = global::AepApp.Droid.Resource.Drawable.ic_media_pause_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_media_pause_light = global::AepApp.Droid.Resource.Drawable.ic_media_pause_light;
+			global::Plugin.Hud.Resource.Drawable.ic_media_play_dark = global::AepApp.Droid.Resource.Drawable.ic_media_play_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_media_play_light = global::AepApp.Droid.Resource.Drawable.ic_media_play_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_00_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_00_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_00_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_00_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_01_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_01_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_01_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_01_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_02_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_02_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_02_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_02_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_03_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_03_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_03_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_03_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_04_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_04_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_04_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_04_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_05_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_05_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_05_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_05_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_06_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_06_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_06_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_06_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_07_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_07_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_07_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_07_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_08_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_08_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_08_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_08_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_09_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_09_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_09_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_09_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_10_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_10_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_10_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_10_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_11_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_11_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_11_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_11_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_12_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_12_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_12_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_12_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_13_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_13_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_13_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_13_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_14_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_14_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_14_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_14_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_15_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_15_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_15_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_15_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_16_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_16_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_16_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_16_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_17_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_17_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_17_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_17_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_18_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_18_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_18_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_18_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_19_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_19_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_19_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_19_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_20_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_20_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_20_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_20_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_21_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_21_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_21_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_21_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_22_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_22_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connected_22_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connected_22_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_00_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_00_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_00_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_01_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_01_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_01_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_02_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_02_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_02_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_03_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_03_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_03_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_04_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_04_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_04_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_05_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_05_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_05_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_06_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_06_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_06_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_07_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_07_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_07_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_08_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_08_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_08_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_09_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_09_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_09_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_10_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_10_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_10_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_11_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_11_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_11_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_12_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_12_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_12_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_13_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_13_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_13_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_14_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_14_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_14_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_15_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_15_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_15_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_16_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_16_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_16_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_17_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_17_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_17_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_18_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_18_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_18_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_19_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_19_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_19_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_20_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_20_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_20_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_21_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_21_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_21_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_22_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_connecting_22_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_connecting_22_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_disabled_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_disabled_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_disabled_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_disabled_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_disconnected_dark = global::AepApp.Droid.Resource.Drawable.ic_mr_button_disconnected_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_disconnected_light = global::AepApp.Droid.Resource.Drawable.ic_mr_button_disconnected_light;
+			global::Plugin.Hud.Resource.Drawable.ic_mr_button_grey = global::AepApp.Droid.Resource.Drawable.ic_mr_button_grey;
+			global::Plugin.Hud.Resource.Drawable.ic_successstatus = global::AepApp.Droid.Resource.Drawable.ic_successstatus;
+			global::Plugin.Hud.Resource.Drawable.ic_vol_type_speaker_dark = global::AepApp.Droid.Resource.Drawable.ic_vol_type_speaker_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_vol_type_speaker_group_dark = global::AepApp.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_vol_type_speaker_group_light = global::AepApp.Droid.Resource.Drawable.ic_vol_type_speaker_group_light;
+			global::Plugin.Hud.Resource.Drawable.ic_vol_type_speaker_light = global::AepApp.Droid.Resource.Drawable.ic_vol_type_speaker_light;
+			global::Plugin.Hud.Resource.Drawable.ic_vol_type_tv_dark = global::AepApp.Droid.Resource.Drawable.ic_vol_type_tv_dark;
+			global::Plugin.Hud.Resource.Drawable.ic_vol_type_tv_light = global::AepApp.Droid.Resource.Drawable.ic_vol_type_tv_light;
+			global::Plugin.Hud.Resource.Drawable.mr_button_connected_dark = global::AepApp.Droid.Resource.Drawable.mr_button_connected_dark;
+			global::Plugin.Hud.Resource.Drawable.mr_button_connected_light = global::AepApp.Droid.Resource.Drawable.mr_button_connected_light;
+			global::Plugin.Hud.Resource.Drawable.mr_button_connecting_dark = global::AepApp.Droid.Resource.Drawable.mr_button_connecting_dark;
+			global::Plugin.Hud.Resource.Drawable.mr_button_connecting_light = global::AepApp.Droid.Resource.Drawable.mr_button_connecting_light;
+			global::Plugin.Hud.Resource.Drawable.mr_button_dark = global::AepApp.Droid.Resource.Drawable.mr_button_dark;
+			global::Plugin.Hud.Resource.Drawable.mr_button_light = global::AepApp.Droid.Resource.Drawable.mr_button_light;
+			global::Plugin.Hud.Resource.Drawable.mr_dialog_close_dark = global::AepApp.Droid.Resource.Drawable.mr_dialog_close_dark;
+			global::Plugin.Hud.Resource.Drawable.mr_dialog_close_light = global::AepApp.Droid.Resource.Drawable.mr_dialog_close_light;
+			global::Plugin.Hud.Resource.Drawable.mr_dialog_material_background_dark = global::AepApp.Droid.Resource.Drawable.mr_dialog_material_background_dark;
+			global::Plugin.Hud.Resource.Drawable.mr_dialog_material_background_light = global::AepApp.Droid.Resource.Drawable.mr_dialog_material_background_light;
+			global::Plugin.Hud.Resource.Drawable.mr_group_collapse = global::AepApp.Droid.Resource.Drawable.mr_group_collapse;
+			global::Plugin.Hud.Resource.Drawable.mr_group_expand = global::AepApp.Droid.Resource.Drawable.mr_group_expand;
+			global::Plugin.Hud.Resource.Drawable.mr_media_pause_dark = global::AepApp.Droid.Resource.Drawable.mr_media_pause_dark;
+			global::Plugin.Hud.Resource.Drawable.mr_media_pause_light = global::AepApp.Droid.Resource.Drawable.mr_media_pause_light;
+			global::Plugin.Hud.Resource.Drawable.mr_media_play_dark = global::AepApp.Droid.Resource.Drawable.mr_media_play_dark;
+			global::Plugin.Hud.Resource.Drawable.mr_media_play_light = global::AepApp.Droid.Resource.Drawable.mr_media_play_light;
+			global::Plugin.Hud.Resource.Drawable.mr_vol_type_audiotrack_dark = global::AepApp.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark;
+			global::Plugin.Hud.Resource.Drawable.mr_vol_type_audiotrack_light = global::AepApp.Droid.Resource.Drawable.mr_vol_type_audiotrack_light;
+			global::Plugin.Hud.Resource.Drawable.navigation_empty_icon = global::AepApp.Droid.Resource.Drawable.navigation_empty_icon;
+			global::Plugin.Hud.Resource.Drawable.notification_action_background = global::AepApp.Droid.Resource.Drawable.notification_action_background;
+			global::Plugin.Hud.Resource.Drawable.notification_bg = global::AepApp.Droid.Resource.Drawable.notification_bg;
+			global::Plugin.Hud.Resource.Drawable.notification_bg_low = global::AepApp.Droid.Resource.Drawable.notification_bg_low;
+			global::Plugin.Hud.Resource.Drawable.notification_bg_low_normal = global::AepApp.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::Plugin.Hud.Resource.Drawable.notification_bg_low_pressed = global::AepApp.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::Plugin.Hud.Resource.Drawable.notification_bg_normal = global::AepApp.Droid.Resource.Drawable.notification_bg_normal;
+			global::Plugin.Hud.Resource.Drawable.notification_bg_normal_pressed = global::AepApp.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Plugin.Hud.Resource.Drawable.notification_icon_background = global::AepApp.Droid.Resource.Drawable.notification_icon_background;
+			global::Plugin.Hud.Resource.Drawable.notification_template_icon_bg = global::AepApp.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Plugin.Hud.Resource.Drawable.notification_template_icon_low_bg = global::AepApp.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Plugin.Hud.Resource.Drawable.notification_tile_bg = global::AepApp.Droid.Resource.Drawable.notification_tile_bg;
+			global::Plugin.Hud.Resource.Drawable.notify_panel_notification_icon_bg = global::AepApp.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Plugin.Hud.Resource.Drawable.roundedbg = global::AepApp.Droid.Resource.Drawable.roundedbg;
+			global::Plugin.Hud.Resource.Drawable.roundedbgdark = global::AepApp.Droid.Resource.Drawable.roundedbgdark;
+			global::Plugin.Hud.Resource.Id.action0 = global::AepApp.Droid.Resource.Id.action0;
+			global::Plugin.Hud.Resource.Id.action_bar = global::AepApp.Droid.Resource.Id.action_bar;
+			global::Plugin.Hud.Resource.Id.action_bar_activity_content = global::AepApp.Droid.Resource.Id.action_bar_activity_content;
+			global::Plugin.Hud.Resource.Id.action_bar_container = global::AepApp.Droid.Resource.Id.action_bar_container;
+			global::Plugin.Hud.Resource.Id.action_bar_root = global::AepApp.Droid.Resource.Id.action_bar_root;
+			global::Plugin.Hud.Resource.Id.action_bar_spinner = global::AepApp.Droid.Resource.Id.action_bar_spinner;
+			global::Plugin.Hud.Resource.Id.action_bar_subtitle = global::AepApp.Droid.Resource.Id.action_bar_subtitle;
+			global::Plugin.Hud.Resource.Id.action_bar_title = global::AepApp.Droid.Resource.Id.action_bar_title;
+			global::Plugin.Hud.Resource.Id.action_container = global::AepApp.Droid.Resource.Id.action_container;
+			global::Plugin.Hud.Resource.Id.action_context_bar = global::AepApp.Droid.Resource.Id.action_context_bar;
+			global::Plugin.Hud.Resource.Id.action_divider = global::AepApp.Droid.Resource.Id.action_divider;
+			global::Plugin.Hud.Resource.Id.action_image = global::AepApp.Droid.Resource.Id.action_image;
+			global::Plugin.Hud.Resource.Id.action_menu_divider = global::AepApp.Droid.Resource.Id.action_menu_divider;
+			global::Plugin.Hud.Resource.Id.action_menu_presenter = global::AepApp.Droid.Resource.Id.action_menu_presenter;
+			global::Plugin.Hud.Resource.Id.action_mode_bar = global::AepApp.Droid.Resource.Id.action_mode_bar;
+			global::Plugin.Hud.Resource.Id.action_mode_bar_stub = global::AepApp.Droid.Resource.Id.action_mode_bar_stub;
+			global::Plugin.Hud.Resource.Id.action_mode_close_button = global::AepApp.Droid.Resource.Id.action_mode_close_button;
+			global::Plugin.Hud.Resource.Id.action_text = global::AepApp.Droid.Resource.Id.action_text;
+			global::Plugin.Hud.Resource.Id.actions = global::AepApp.Droid.Resource.Id.actions;
+			global::Plugin.Hud.Resource.Id.activity_chooser_view_content = global::AepApp.Droid.Resource.Id.activity_chooser_view_content;
+			global::Plugin.Hud.Resource.Id.add = global::AepApp.Droid.Resource.Id.add;
+			global::Plugin.Hud.Resource.Id.alertTitle = global::AepApp.Droid.Resource.Id.alertTitle;
+			global::Plugin.Hud.Resource.Id.all = global::AepApp.Droid.Resource.Id.all;
+			global::Plugin.Hud.Resource.Id.always = global::AepApp.Droid.Resource.Id.always;
+			global::Plugin.Hud.Resource.Id.auto = global::AepApp.Droid.Resource.Id.auto;
+			global::Plugin.Hud.Resource.Id.beginning = global::AepApp.Droid.Resource.Id.beginning;
+			global::Plugin.Hud.Resource.Id.bottom = global::AepApp.Droid.Resource.Id.bottom;
+			global::Plugin.Hud.Resource.Id.buttonPanel = global::AepApp.Droid.Resource.Id.buttonPanel;
+			global::Plugin.Hud.Resource.Id.cancel_action = global::AepApp.Droid.Resource.Id.cancel_action;
+			global::Plugin.Hud.Resource.Id.center = global::AepApp.Droid.Resource.Id.center;
+			global::Plugin.Hud.Resource.Id.center_horizontal = global::AepApp.Droid.Resource.Id.center_horizontal;
+			global::Plugin.Hud.Resource.Id.center_vertical = global::AepApp.Droid.Resource.Id.center_vertical;
+			global::Plugin.Hud.Resource.Id.checkbox = global::AepApp.Droid.Resource.Id.checkbox;
+			global::Plugin.Hud.Resource.Id.chronometer = global::AepApp.Droid.Resource.Id.chronometer;
+			global::Plugin.Hud.Resource.Id.clip_horizontal = global::AepApp.Droid.Resource.Id.clip_horizontal;
+			global::Plugin.Hud.Resource.Id.clip_vertical = global::AepApp.Droid.Resource.Id.clip_vertical;
+			global::Plugin.Hud.Resource.Id.collapseActionView = global::AepApp.Droid.Resource.Id.collapseActionView;
+			global::Plugin.Hud.Resource.Id.contentPanel = global::AepApp.Droid.Resource.Id.contentPanel;
+			global::Plugin.Hud.Resource.Id.custom = global::AepApp.Droid.Resource.Id.custom;
+			global::Plugin.Hud.Resource.Id.customPanel = global::AepApp.Droid.Resource.Id.customPanel;
+			global::Plugin.Hud.Resource.Id.decor_content_parent = global::AepApp.Droid.Resource.Id.decor_content_parent;
+			global::Plugin.Hud.Resource.Id.default_activity_button = global::AepApp.Droid.Resource.Id.default_activity_button;
+			global::Plugin.Hud.Resource.Id.design_bottom_sheet = global::AepApp.Droid.Resource.Id.design_bottom_sheet;
+			global::Plugin.Hud.Resource.Id.design_menu_item_action_area = global::AepApp.Droid.Resource.Id.design_menu_item_action_area;
+			global::Plugin.Hud.Resource.Id.design_menu_item_action_area_stub = global::AepApp.Droid.Resource.Id.design_menu_item_action_area_stub;
+			global::Plugin.Hud.Resource.Id.design_menu_item_text = global::AepApp.Droid.Resource.Id.design_menu_item_text;
+			global::Plugin.Hud.Resource.Id.design_navigation_view = global::AepApp.Droid.Resource.Id.design_navigation_view;
+			global::Plugin.Hud.Resource.Id.disableHome = global::AepApp.Droid.Resource.Id.disableHome;
+			global::Plugin.Hud.Resource.Id.edit_query = global::AepApp.Droid.Resource.Id.edit_query;
+			global::Plugin.Hud.Resource.Id.end = global::AepApp.Droid.Resource.Id.end;
+			global::Plugin.Hud.Resource.Id.end_padder = global::AepApp.Droid.Resource.Id.end_padder;
+			global::Plugin.Hud.Resource.Id.enterAlways = global::AepApp.Droid.Resource.Id.enterAlways;
+			global::Plugin.Hud.Resource.Id.enterAlwaysCollapsed = global::AepApp.Droid.Resource.Id.enterAlwaysCollapsed;
+			global::Plugin.Hud.Resource.Id.exitUntilCollapsed = global::AepApp.Droid.Resource.Id.exitUntilCollapsed;
+			global::Plugin.Hud.Resource.Id.expand_activities_button = global::AepApp.Droid.Resource.Id.expand_activities_button;
+			global::Plugin.Hud.Resource.Id.expanded_menu = global::AepApp.Droid.Resource.Id.expanded_menu;
+			global::Plugin.Hud.Resource.Id.fill = global::AepApp.Droid.Resource.Id.fill;
+			global::Plugin.Hud.Resource.Id.fill_horizontal = global::AepApp.Droid.Resource.Id.fill_horizontal;
+			global::Plugin.Hud.Resource.Id.fill_vertical = global::AepApp.Droid.Resource.Id.fill_vertical;
+			global::Plugin.Hud.Resource.Id.@fixed = global::AepApp.Droid.Resource.Id.@fixed;
+			global::Plugin.Hud.Resource.Id.home = global::AepApp.Droid.Resource.Id.home;
+			global::Plugin.Hud.Resource.Id.homeAsUp = global::AepApp.Droid.Resource.Id.homeAsUp;
+			global::Plugin.Hud.Resource.Id.icon = global::AepApp.Droid.Resource.Id.icon;
+			global::Plugin.Hud.Resource.Id.icon_group = global::AepApp.Droid.Resource.Id.icon_group;
+			global::Plugin.Hud.Resource.Id.ifRoom = global::AepApp.Droid.Resource.Id.ifRoom;
+			global::Plugin.Hud.Resource.Id.image = global::AepApp.Droid.Resource.Id.image;
+			global::Plugin.Hud.Resource.Id.info = global::AepApp.Droid.Resource.Id.info;
+			global::Plugin.Hud.Resource.Id.item_touch_helper_previous_elevation = global::AepApp.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Plugin.Hud.Resource.Id.largeLabel = global::AepApp.Droid.Resource.Id.largeLabel;
+			global::Plugin.Hud.Resource.Id.left = global::AepApp.Droid.Resource.Id.left;
+			global::Plugin.Hud.Resource.Id.line1 = global::AepApp.Droid.Resource.Id.line1;
+			global::Plugin.Hud.Resource.Id.line3 = global::AepApp.Droid.Resource.Id.line3;
+			global::Plugin.Hud.Resource.Id.listMode = global::AepApp.Droid.Resource.Id.listMode;
+			global::Plugin.Hud.Resource.Id.list_item = global::AepApp.Droid.Resource.Id.list_item;
+			global::Plugin.Hud.Resource.Id.loadingImage = global::AepApp.Droid.Resource.Id.loadingImage;
+			global::Plugin.Hud.Resource.Id.loadingProgressBar = global::AepApp.Droid.Resource.Id.loadingProgressBar;
+			global::Plugin.Hud.Resource.Id.loadingProgressWheel = global::AepApp.Droid.Resource.Id.loadingProgressWheel;
+			global::Plugin.Hud.Resource.Id.masked = global::AepApp.Droid.Resource.Id.masked;
+			global::Plugin.Hud.Resource.Id.media_actions = global::AepApp.Droid.Resource.Id.media_actions;
+			global::Plugin.Hud.Resource.Id.middle = global::AepApp.Droid.Resource.Id.middle;
+			global::Plugin.Hud.Resource.Id.mini = global::AepApp.Droid.Resource.Id.mini;
+			global::Plugin.Hud.Resource.Id.mr_art = global::AepApp.Droid.Resource.Id.mr_art;
+			global::Plugin.Hud.Resource.Id.mr_chooser_list = global::AepApp.Droid.Resource.Id.mr_chooser_list;
+			global::Plugin.Hud.Resource.Id.mr_chooser_route_desc = global::AepApp.Droid.Resource.Id.mr_chooser_route_desc;
+			global::Plugin.Hud.Resource.Id.mr_chooser_route_icon = global::AepApp.Droid.Resource.Id.mr_chooser_route_icon;
+			global::Plugin.Hud.Resource.Id.mr_chooser_route_name = global::AepApp.Droid.Resource.Id.mr_chooser_route_name;
+			global::Plugin.Hud.Resource.Id.mr_chooser_title = global::AepApp.Droid.Resource.Id.mr_chooser_title;
+			global::Plugin.Hud.Resource.Id.mr_close = global::AepApp.Droid.Resource.Id.mr_close;
+			global::Plugin.Hud.Resource.Id.mr_control_divider = global::AepApp.Droid.Resource.Id.mr_control_divider;
+			global::Plugin.Hud.Resource.Id.mr_control_subtitle = global::AepApp.Droid.Resource.Id.mr_control_subtitle;
+			global::Plugin.Hud.Resource.Id.mr_control_title = global::AepApp.Droid.Resource.Id.mr_control_title;
+			global::Plugin.Hud.Resource.Id.mr_control_title_container = global::AepApp.Droid.Resource.Id.mr_control_title_container;
+			global::Plugin.Hud.Resource.Id.mr_custom_control = global::AepApp.Droid.Resource.Id.mr_custom_control;
+			global::Plugin.Hud.Resource.Id.mr_default_control = global::AepApp.Droid.Resource.Id.mr_default_control;
+			global::Plugin.Hud.Resource.Id.mr_dialog_area = global::AepApp.Droid.Resource.Id.mr_dialog_area;
+			global::Plugin.Hud.Resource.Id.mr_expandable_area = global::AepApp.Droid.Resource.Id.mr_expandable_area;
+			global::Plugin.Hud.Resource.Id.mr_group_expand_collapse = global::AepApp.Droid.Resource.Id.mr_group_expand_collapse;
+			global::Plugin.Hud.Resource.Id.mr_media_main_control = global::AepApp.Droid.Resource.Id.mr_media_main_control;
+			global::Plugin.Hud.Resource.Id.mr_name = global::AepApp.Droid.Resource.Id.mr_name;
+			global::Plugin.Hud.Resource.Id.mr_playback_control = global::AepApp.Droid.Resource.Id.mr_playback_control;
+			global::Plugin.Hud.Resource.Id.mr_title_bar = global::AepApp.Droid.Resource.Id.mr_title_bar;
+			global::Plugin.Hud.Resource.Id.mr_volume_control = global::AepApp.Droid.Resource.Id.mr_volume_control;
+			global::Plugin.Hud.Resource.Id.mr_volume_group_list = global::AepApp.Droid.Resource.Id.mr_volume_group_list;
+			global::Plugin.Hud.Resource.Id.mr_volume_item_icon = global::AepApp.Droid.Resource.Id.mr_volume_item_icon;
+			global::Plugin.Hud.Resource.Id.mr_volume_slider = global::AepApp.Droid.Resource.Id.mr_volume_slider;
+			global::Plugin.Hud.Resource.Id.multiply = global::AepApp.Droid.Resource.Id.multiply;
+			global::Plugin.Hud.Resource.Id.navigation_header_container = global::AepApp.Droid.Resource.Id.navigation_header_container;
+			global::Plugin.Hud.Resource.Id.never = global::AepApp.Droid.Resource.Id.never;
+			global::Plugin.Hud.Resource.Id.none = global::AepApp.Droid.Resource.Id.none;
+			global::Plugin.Hud.Resource.Id.normal = global::AepApp.Droid.Resource.Id.normal;
+			global::Plugin.Hud.Resource.Id.notification_background = global::AepApp.Droid.Resource.Id.notification_background;
+			global::Plugin.Hud.Resource.Id.notification_main_column = global::AepApp.Droid.Resource.Id.notification_main_column;
+			global::Plugin.Hud.Resource.Id.notification_main_column_container = global::AepApp.Droid.Resource.Id.notification_main_column_container;
+			global::Plugin.Hud.Resource.Id.parallax = global::AepApp.Droid.Resource.Id.parallax;
+			global::Plugin.Hud.Resource.Id.parentPanel = global::AepApp.Droid.Resource.Id.parentPanel;
+			global::Plugin.Hud.Resource.Id.pin = global::AepApp.Droid.Resource.Id.pin;
+			global::Plugin.Hud.Resource.Id.progress_circular = global::AepApp.Droid.Resource.Id.progress_circular;
+			global::Plugin.Hud.Resource.Id.progress_horizontal = global::AepApp.Droid.Resource.Id.progress_horizontal;
+			global::Plugin.Hud.Resource.Id.radio = global::AepApp.Droid.Resource.Id.radio;
+			global::Plugin.Hud.Resource.Id.right = global::AepApp.Droid.Resource.Id.right;
+			global::Plugin.Hud.Resource.Id.right_icon = global::AepApp.Droid.Resource.Id.right_icon;
+			global::Plugin.Hud.Resource.Id.right_side = global::AepApp.Droid.Resource.Id.right_side;
+			global::Plugin.Hud.Resource.Id.screen = global::AepApp.Droid.Resource.Id.screen;
+			global::Plugin.Hud.Resource.Id.scroll = global::AepApp.Droid.Resource.Id.scroll;
+			global::Plugin.Hud.Resource.Id.scrollIndicatorDown = global::AepApp.Droid.Resource.Id.scrollIndicatorDown;
+			global::Plugin.Hud.Resource.Id.scrollIndicatorUp = global::AepApp.Droid.Resource.Id.scrollIndicatorUp;
+			global::Plugin.Hud.Resource.Id.scrollView = global::AepApp.Droid.Resource.Id.scrollView;
+			global::Plugin.Hud.Resource.Id.scrollable = global::AepApp.Droid.Resource.Id.scrollable;
+			global::Plugin.Hud.Resource.Id.search_badge = global::AepApp.Droid.Resource.Id.search_badge;
+			global::Plugin.Hud.Resource.Id.search_bar = global::AepApp.Droid.Resource.Id.search_bar;
+			global::Plugin.Hud.Resource.Id.search_button = global::AepApp.Droid.Resource.Id.search_button;
+			global::Plugin.Hud.Resource.Id.search_close_btn = global::AepApp.Droid.Resource.Id.search_close_btn;
+			global::Plugin.Hud.Resource.Id.search_edit_frame = global::AepApp.Droid.Resource.Id.search_edit_frame;
+			global::Plugin.Hud.Resource.Id.search_go_btn = global::AepApp.Droid.Resource.Id.search_go_btn;
+			global::Plugin.Hud.Resource.Id.search_mag_icon = global::AepApp.Droid.Resource.Id.search_mag_icon;
+			global::Plugin.Hud.Resource.Id.search_plate = global::AepApp.Droid.Resource.Id.search_plate;
+			global::Plugin.Hud.Resource.Id.search_src_text = global::AepApp.Droid.Resource.Id.search_src_text;
+			global::Plugin.Hud.Resource.Id.search_voice_btn = global::AepApp.Droid.Resource.Id.search_voice_btn;
+			global::Plugin.Hud.Resource.Id.select_dialog_listview = global::AepApp.Droid.Resource.Id.select_dialog_listview;
+			global::Plugin.Hud.Resource.Id.shortcut = global::AepApp.Droid.Resource.Id.shortcut;
+			global::Plugin.Hud.Resource.Id.showCustom = global::AepApp.Droid.Resource.Id.showCustom;
+			global::Plugin.Hud.Resource.Id.showHome = global::AepApp.Droid.Resource.Id.showHome;
+			global::Plugin.Hud.Resource.Id.showTitle = global::AepApp.Droid.Resource.Id.showTitle;
+			global::Plugin.Hud.Resource.Id.smallLabel = global::AepApp.Droid.Resource.Id.smallLabel;
+			global::Plugin.Hud.Resource.Id.snackbar_action = global::AepApp.Droid.Resource.Id.snackbar_action;
+			global::Plugin.Hud.Resource.Id.snackbar_text = global::AepApp.Droid.Resource.Id.snackbar_text;
+			global::Plugin.Hud.Resource.Id.snap = global::AepApp.Droid.Resource.Id.snap;
+			global::Plugin.Hud.Resource.Id.spacer = global::AepApp.Droid.Resource.Id.spacer;
+			global::Plugin.Hud.Resource.Id.split_action_bar = global::AepApp.Droid.Resource.Id.split_action_bar;
+			global::Plugin.Hud.Resource.Id.src_atop = global::AepApp.Droid.Resource.Id.src_atop;
+			global::Plugin.Hud.Resource.Id.src_in = global::AepApp.Droid.Resource.Id.src_in;
+			global::Plugin.Hud.Resource.Id.src_over = global::AepApp.Droid.Resource.Id.src_over;
+			global::Plugin.Hud.Resource.Id.start = global::AepApp.Droid.Resource.Id.start;
+			global::Plugin.Hud.Resource.Id.status_bar_latest_event_content = global::AepApp.Droid.Resource.Id.status_bar_latest_event_content;
+			global::Plugin.Hud.Resource.Id.submenuarrow = global::AepApp.Droid.Resource.Id.submenuarrow;
+			global::Plugin.Hud.Resource.Id.submit_area = global::AepApp.Droid.Resource.Id.submit_area;
+			global::Plugin.Hud.Resource.Id.tabMode = global::AepApp.Droid.Resource.Id.tabMode;
+			global::Plugin.Hud.Resource.Id.text = global::AepApp.Droid.Resource.Id.text;
+			global::Plugin.Hud.Resource.Id.text2 = global::AepApp.Droid.Resource.Id.text2;
+			global::Plugin.Hud.Resource.Id.textSpacerNoButtons = global::AepApp.Droid.Resource.Id.textSpacerNoButtons;
+			global::Plugin.Hud.Resource.Id.textSpacerNoTitle = global::AepApp.Droid.Resource.Id.textSpacerNoTitle;
+			global::Plugin.Hud.Resource.Id.textViewStatus = global::AepApp.Droid.Resource.Id.textViewStatus;
+			global::Plugin.Hud.Resource.Id.text_input_password_toggle = global::AepApp.Droid.Resource.Id.text_input_password_toggle;
+			global::Plugin.Hud.Resource.Id.textinput_counter = global::AepApp.Droid.Resource.Id.textinput_counter;
+			global::Plugin.Hud.Resource.Id.textinput_error = global::AepApp.Droid.Resource.Id.textinput_error;
+			global::Plugin.Hud.Resource.Id.time = global::AepApp.Droid.Resource.Id.time;
+			global::Plugin.Hud.Resource.Id.title = global::AepApp.Droid.Resource.Id.title;
+			global::Plugin.Hud.Resource.Id.titleDividerNoCustom = global::AepApp.Droid.Resource.Id.titleDividerNoCustom;
+			global::Plugin.Hud.Resource.Id.title_template = global::AepApp.Droid.Resource.Id.title_template;
+			global::Plugin.Hud.Resource.Id.top = global::AepApp.Droid.Resource.Id.top;
+			global::Plugin.Hud.Resource.Id.topPanel = global::AepApp.Droid.Resource.Id.topPanel;
+			global::Plugin.Hud.Resource.Id.touch_outside = global::AepApp.Droid.Resource.Id.touch_outside;
+			global::Plugin.Hud.Resource.Id.transition_current_scene = global::AepApp.Droid.Resource.Id.transition_current_scene;
+			global::Plugin.Hud.Resource.Id.transition_scene_layoutid_cache = global::AepApp.Droid.Resource.Id.transition_scene_layoutid_cache;
+			global::Plugin.Hud.Resource.Id.up = global::AepApp.Droid.Resource.Id.up;
+			global::Plugin.Hud.Resource.Id.useLogo = global::AepApp.Droid.Resource.Id.useLogo;
+			global::Plugin.Hud.Resource.Id.view_offset_helper = global::AepApp.Droid.Resource.Id.view_offset_helper;
+			global::Plugin.Hud.Resource.Id.visible = global::AepApp.Droid.Resource.Id.visible;
+			global::Plugin.Hud.Resource.Id.volume_item_container = global::AepApp.Droid.Resource.Id.volume_item_container;
+			global::Plugin.Hud.Resource.Id.withText = global::AepApp.Droid.Resource.Id.withText;
+			global::Plugin.Hud.Resource.Id.wrap_content = global::AepApp.Droid.Resource.Id.wrap_content;
+			global::Plugin.Hud.Resource.Integer.abc_config_activityDefaultDur = global::AepApp.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::Plugin.Hud.Resource.Integer.abc_config_activityShortDur = global::AepApp.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::Plugin.Hud.Resource.Integer.app_bar_elevation_anim_duration = global::AepApp.Droid.Resource.Integer.app_bar_elevation_anim_duration;
+			global::Plugin.Hud.Resource.Integer.bottom_sheet_slide_duration = global::AepApp.Droid.Resource.Integer.bottom_sheet_slide_duration;
+			global::Plugin.Hud.Resource.Integer.cancel_button_image_alpha = global::AepApp.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::Plugin.Hud.Resource.Integer.design_snackbar_text_max_lines = global::AepApp.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::Plugin.Hud.Resource.Integer.hide_password_duration = global::AepApp.Droid.Resource.Integer.hide_password_duration;
+			global::Plugin.Hud.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::AepApp.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
+			global::Plugin.Hud.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::AepApp.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
+			global::Plugin.Hud.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::AepApp.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
+			global::Plugin.Hud.Resource.Integer.show_password_duration = global::AepApp.Droid.Resource.Integer.show_password_duration;
+			global::Plugin.Hud.Resource.Integer.status_bar_notification_info_maxnum = global::AepApp.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Plugin.Hud.Resource.Interpolator.mr_fast_out_slow_in = global::AepApp.Droid.Resource.Interpolator.mr_fast_out_slow_in;
+			global::Plugin.Hud.Resource.Interpolator.mr_linear_out_slow_in = global::AepApp.Droid.Resource.Interpolator.mr_linear_out_slow_in;
+			global::Plugin.Hud.Resource.Layout.abc_action_bar_title_item = global::AepApp.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::Plugin.Hud.Resource.Layout.abc_action_bar_up_container = global::AepApp.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::Plugin.Hud.Resource.Layout.abc_action_bar_view_list_nav_layout = global::AepApp.Droid.Resource.Layout.abc_action_bar_view_list_nav_layout;
+			global::Plugin.Hud.Resource.Layout.abc_action_menu_item_layout = global::AepApp.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::Plugin.Hud.Resource.Layout.abc_action_menu_layout = global::AepApp.Droid.Resource.Layout.abc_action_menu_layout;
+			global::Plugin.Hud.Resource.Layout.abc_action_mode_bar = global::AepApp.Droid.Resource.Layout.abc_action_mode_bar;
+			global::Plugin.Hud.Resource.Layout.abc_action_mode_close_item_material = global::AepApp.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::Plugin.Hud.Resource.Layout.abc_activity_chooser_view = global::AepApp.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::Plugin.Hud.Resource.Layout.abc_activity_chooser_view_list_item = global::AepApp.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::Plugin.Hud.Resource.Layout.abc_alert_dialog_button_bar_material = global::AepApp.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::Plugin.Hud.Resource.Layout.abc_alert_dialog_material = global::AepApp.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::Plugin.Hud.Resource.Layout.abc_alert_dialog_title_material = global::AepApp.Droid.Resource.Layout.abc_alert_dialog_title_material;
+			global::Plugin.Hud.Resource.Layout.abc_dialog_title_material = global::AepApp.Droid.Resource.Layout.abc_dialog_title_material;
+			global::Plugin.Hud.Resource.Layout.abc_expanded_menu_layout = global::AepApp.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::Plugin.Hud.Resource.Layout.abc_list_menu_item_checkbox = global::AepApp.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::Plugin.Hud.Resource.Layout.abc_list_menu_item_icon = global::AepApp.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::Plugin.Hud.Resource.Layout.abc_list_menu_item_layout = global::AepApp.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::Plugin.Hud.Resource.Layout.abc_list_menu_item_radio = global::AepApp.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::Plugin.Hud.Resource.Layout.abc_popup_menu_header_item_layout = global::AepApp.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
+			global::Plugin.Hud.Resource.Layout.abc_popup_menu_item_layout = global::AepApp.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::Plugin.Hud.Resource.Layout.abc_screen_content_include = global::AepApp.Droid.Resource.Layout.abc_screen_content_include;
+			global::Plugin.Hud.Resource.Layout.abc_screen_simple = global::AepApp.Droid.Resource.Layout.abc_screen_simple;
+			global::Plugin.Hud.Resource.Layout.abc_screen_simple_overlay_action_mode = global::AepApp.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::Plugin.Hud.Resource.Layout.abc_screen_toolbar = global::AepApp.Droid.Resource.Layout.abc_screen_toolbar;
+			global::Plugin.Hud.Resource.Layout.abc_search_dropdown_item_icons_2line = global::AepApp.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::Plugin.Hud.Resource.Layout.abc_search_view = global::AepApp.Droid.Resource.Layout.abc_search_view;
+			global::Plugin.Hud.Resource.Layout.abc_select_dialog_material = global::AepApp.Droid.Resource.Layout.abc_select_dialog_material;
+			global::Plugin.Hud.Resource.Layout.design_bottom_navigation_item = global::AepApp.Droid.Resource.Layout.design_bottom_navigation_item;
+			global::Plugin.Hud.Resource.Layout.design_bottom_sheet_dialog = global::AepApp.Droid.Resource.Layout.design_bottom_sheet_dialog;
+			global::Plugin.Hud.Resource.Layout.design_layout_snackbar = global::AepApp.Droid.Resource.Layout.design_layout_snackbar;
+			global::Plugin.Hud.Resource.Layout.design_layout_snackbar_include = global::AepApp.Droid.Resource.Layout.design_layout_snackbar_include;
+			global::Plugin.Hud.Resource.Layout.design_layout_tab_icon = global::AepApp.Droid.Resource.Layout.design_layout_tab_icon;
+			global::Plugin.Hud.Resource.Layout.design_layout_tab_text = global::AepApp.Droid.Resource.Layout.design_layout_tab_text;
+			global::Plugin.Hud.Resource.Layout.design_menu_item_action_area = global::AepApp.Droid.Resource.Layout.design_menu_item_action_area;
+			global::Plugin.Hud.Resource.Layout.design_navigation_item = global::AepApp.Droid.Resource.Layout.design_navigation_item;
+			global::Plugin.Hud.Resource.Layout.design_navigation_item_header = global::AepApp.Droid.Resource.Layout.design_navigation_item_header;
+			global::Plugin.Hud.Resource.Layout.design_navigation_item_separator = global::AepApp.Droid.Resource.Layout.design_navigation_item_separator;
+			global::Plugin.Hud.Resource.Layout.design_navigation_item_subheader = global::AepApp.Droid.Resource.Layout.design_navigation_item_subheader;
+			global::Plugin.Hud.Resource.Layout.design_navigation_menu = global::AepApp.Droid.Resource.Layout.design_navigation_menu;
+			global::Plugin.Hud.Resource.Layout.design_navigation_menu_item = global::AepApp.Droid.Resource.Layout.design_navigation_menu_item;
+			global::Plugin.Hud.Resource.Layout.design_text_input_password_icon = global::AepApp.Droid.Resource.Layout.design_text_input_password_icon;
+			global::Plugin.Hud.Resource.Layout.loading = global::AepApp.Droid.Resource.Layout.loading;
+			global::Plugin.Hud.Resource.Layout.loadingimage = global::AepApp.Droid.Resource.Layout.loadingimage;
+			global::Plugin.Hud.Resource.Layout.loadingprogress = global::AepApp.Droid.Resource.Layout.loadingprogress;
+			global::Plugin.Hud.Resource.Layout.mr_chooser_dialog = global::AepApp.Droid.Resource.Layout.mr_chooser_dialog;
+			global::Plugin.Hud.Resource.Layout.mr_chooser_list_item = global::AepApp.Droid.Resource.Layout.mr_chooser_list_item;
+			global::Plugin.Hud.Resource.Layout.mr_controller_material_dialog_b = global::AepApp.Droid.Resource.Layout.mr_controller_material_dialog_b;
+			global::Plugin.Hud.Resource.Layout.mr_controller_volume_item = global::AepApp.Droid.Resource.Layout.mr_controller_volume_item;
+			global::Plugin.Hud.Resource.Layout.mr_playback_control = global::AepApp.Droid.Resource.Layout.mr_playback_control;
+			global::Plugin.Hud.Resource.Layout.mr_volume_control = global::AepApp.Droid.Resource.Layout.mr_volume_control;
+			global::Plugin.Hud.Resource.Layout.notification_action = global::AepApp.Droid.Resource.Layout.notification_action;
+			global::Plugin.Hud.Resource.Layout.notification_action_tombstone = global::AepApp.Droid.Resource.Layout.notification_action_tombstone;
+			global::Plugin.Hud.Resource.Layout.notification_media_action = global::AepApp.Droid.Resource.Layout.notification_media_action;
+			global::Plugin.Hud.Resource.Layout.notification_media_cancel_action = global::AepApp.Droid.Resource.Layout.notification_media_cancel_action;
+			global::Plugin.Hud.Resource.Layout.notification_template_big_media = global::AepApp.Droid.Resource.Layout.notification_template_big_media;
+			global::Plugin.Hud.Resource.Layout.notification_template_big_media_custom = global::AepApp.Droid.Resource.Layout.notification_template_big_media_custom;
+			global::Plugin.Hud.Resource.Layout.notification_template_big_media_narrow = global::AepApp.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::Plugin.Hud.Resource.Layout.notification_template_big_media_narrow_custom = global::AepApp.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::Plugin.Hud.Resource.Layout.notification_template_custom_big = global::AepApp.Droid.Resource.Layout.notification_template_custom_big;
+			global::Plugin.Hud.Resource.Layout.notification_template_icon_group = global::AepApp.Droid.Resource.Layout.notification_template_icon_group;
+			global::Plugin.Hud.Resource.Layout.notification_template_lines_media = global::AepApp.Droid.Resource.Layout.notification_template_lines_media;
+			global::Plugin.Hud.Resource.Layout.notification_template_media = global::AepApp.Droid.Resource.Layout.notification_template_media;
+			global::Plugin.Hud.Resource.Layout.notification_template_media_custom = global::AepApp.Droid.Resource.Layout.notification_template_media_custom;
+			global::Plugin.Hud.Resource.Layout.notification_template_part_chronometer = global::AepApp.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Plugin.Hud.Resource.Layout.notification_template_part_time = global::AepApp.Droid.Resource.Layout.notification_template_part_time;
+			global::Plugin.Hud.Resource.Layout.select_dialog_item_material = global::AepApp.Droid.Resource.Layout.select_dialog_item_material;
+			global::Plugin.Hud.Resource.Layout.select_dialog_multichoice_material = global::AepApp.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::Plugin.Hud.Resource.Layout.select_dialog_singlechoice_material = global::AepApp.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::Plugin.Hud.Resource.Layout.support_simple_spinner_dropdown_item = global::AepApp.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Plugin.Hud.Resource.String.abc_action_bar_home_description = global::AepApp.Droid.Resource.String.abc_action_bar_home_description;
+			global::Plugin.Hud.Resource.String.abc_action_bar_home_description_format = global::AepApp.Droid.Resource.String.abc_action_bar_home_description_format;
+			global::Plugin.Hud.Resource.String.abc_action_bar_home_subtitle_description_format = global::AepApp.Droid.Resource.String.abc_action_bar_home_subtitle_description_format;
+			global::Plugin.Hud.Resource.String.abc_action_bar_up_description = global::AepApp.Droid.Resource.String.abc_action_bar_up_description;
+			global::Plugin.Hud.Resource.String.abc_action_menu_overflow_description = global::AepApp.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::Plugin.Hud.Resource.String.abc_action_mode_done = global::AepApp.Droid.Resource.String.abc_action_mode_done;
+			global::Plugin.Hud.Resource.String.abc_activity_chooser_view_see_all = global::AepApp.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::Plugin.Hud.Resource.String.abc_activitychooserview_choose_application = global::AepApp.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::Plugin.Hud.Resource.String.abc_capital_off = global::AepApp.Droid.Resource.String.abc_capital_off;
+			global::Plugin.Hud.Resource.String.abc_capital_on = global::AepApp.Droid.Resource.String.abc_capital_on;
+			global::Plugin.Hud.Resource.String.abc_font_family_body_1_material = global::AepApp.Droid.Resource.String.abc_font_family_body_1_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_body_2_material = global::AepApp.Droid.Resource.String.abc_font_family_body_2_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_button_material = global::AepApp.Droid.Resource.String.abc_font_family_button_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_caption_material = global::AepApp.Droid.Resource.String.abc_font_family_caption_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_display_1_material = global::AepApp.Droid.Resource.String.abc_font_family_display_1_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_display_2_material = global::AepApp.Droid.Resource.String.abc_font_family_display_2_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_display_3_material = global::AepApp.Droid.Resource.String.abc_font_family_display_3_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_display_4_material = global::AepApp.Droid.Resource.String.abc_font_family_display_4_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_headline_material = global::AepApp.Droid.Resource.String.abc_font_family_headline_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_menu_material = global::AepApp.Droid.Resource.String.abc_font_family_menu_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_subhead_material = global::AepApp.Droid.Resource.String.abc_font_family_subhead_material;
+			global::Plugin.Hud.Resource.String.abc_font_family_title_material = global::AepApp.Droid.Resource.String.abc_font_family_title_material;
+			global::Plugin.Hud.Resource.String.abc_search_hint = global::AepApp.Droid.Resource.String.abc_search_hint;
+			global::Plugin.Hud.Resource.String.abc_searchview_description_clear = global::AepApp.Droid.Resource.String.abc_searchview_description_clear;
+			global::Plugin.Hud.Resource.String.abc_searchview_description_query = global::AepApp.Droid.Resource.String.abc_searchview_description_query;
+			global::Plugin.Hud.Resource.String.abc_searchview_description_search = global::AepApp.Droid.Resource.String.abc_searchview_description_search;
+			global::Plugin.Hud.Resource.String.abc_searchview_description_submit = global::AepApp.Droid.Resource.String.abc_searchview_description_submit;
+			global::Plugin.Hud.Resource.String.abc_searchview_description_voice = global::AepApp.Droid.Resource.String.abc_searchview_description_voice;
+			global::Plugin.Hud.Resource.String.abc_shareactionprovider_share_with = global::AepApp.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::Plugin.Hud.Resource.String.abc_shareactionprovider_share_with_application = global::AepApp.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::Plugin.Hud.Resource.String.abc_toolbar_collapse_description = global::AepApp.Droid.Resource.String.abc_toolbar_collapse_description;
+			global::Plugin.Hud.Resource.String.appbar_scrolling_view_behavior = global::AepApp.Droid.Resource.String.appbar_scrolling_view_behavior;
+			global::Plugin.Hud.Resource.String.bottom_sheet_behavior = global::AepApp.Droid.Resource.String.bottom_sheet_behavior;
+			global::Plugin.Hud.Resource.String.character_counter_pattern = global::AepApp.Droid.Resource.String.character_counter_pattern;
+			global::Plugin.Hud.Resource.String.library_name = global::AepApp.Droid.Resource.String.library_name;
+			global::Plugin.Hud.Resource.String.mr_button_content_description = global::AepApp.Droid.Resource.String.mr_button_content_description;
+			global::Plugin.Hud.Resource.String.mr_cast_button_connected = global::AepApp.Droid.Resource.String.mr_cast_button_connected;
+			global::Plugin.Hud.Resource.String.mr_cast_button_connecting = global::AepApp.Droid.Resource.String.mr_cast_button_connecting;
+			global::Plugin.Hud.Resource.String.mr_cast_button_disconnected = global::AepApp.Droid.Resource.String.mr_cast_button_disconnected;
+			global::Plugin.Hud.Resource.String.mr_chooser_searching = global::AepApp.Droid.Resource.String.mr_chooser_searching;
+			global::Plugin.Hud.Resource.String.mr_chooser_title = global::AepApp.Droid.Resource.String.mr_chooser_title;
+			global::Plugin.Hud.Resource.String.mr_controller_album_art = global::AepApp.Droid.Resource.String.mr_controller_album_art;
+			global::Plugin.Hud.Resource.String.mr_controller_casting_screen = global::AepApp.Droid.Resource.String.mr_controller_casting_screen;
+			global::Plugin.Hud.Resource.String.mr_controller_close_description = global::AepApp.Droid.Resource.String.mr_controller_close_description;
+			global::Plugin.Hud.Resource.String.mr_controller_collapse_group = global::AepApp.Droid.Resource.String.mr_controller_collapse_group;
+			global::Plugin.Hud.Resource.String.mr_controller_disconnect = global::AepApp.Droid.Resource.String.mr_controller_disconnect;
+			global::Plugin.Hud.Resource.String.mr_controller_expand_group = global::AepApp.Droid.Resource.String.mr_controller_expand_group;
+			global::Plugin.Hud.Resource.String.mr_controller_no_info_available = global::AepApp.Droid.Resource.String.mr_controller_no_info_available;
+			global::Plugin.Hud.Resource.String.mr_controller_no_media_selected = global::AepApp.Droid.Resource.String.mr_controller_no_media_selected;
+			global::Plugin.Hud.Resource.String.mr_controller_pause = global::AepApp.Droid.Resource.String.mr_controller_pause;
+			global::Plugin.Hud.Resource.String.mr_controller_play = global::AepApp.Droid.Resource.String.mr_controller_play;
+			global::Plugin.Hud.Resource.String.mr_controller_stop = global::AepApp.Droid.Resource.String.mr_controller_stop;
+			global::Plugin.Hud.Resource.String.mr_controller_volume_slider = global::AepApp.Droid.Resource.String.mr_controller_volume_slider;
+			global::Plugin.Hud.Resource.String.mr_system_route_name = global::AepApp.Droid.Resource.String.mr_system_route_name;
+			global::Plugin.Hud.Resource.String.mr_user_route_category_name = global::AepApp.Droid.Resource.String.mr_user_route_category_name;
+			global::Plugin.Hud.Resource.String.password_toggle_content_description = global::AepApp.Droid.Resource.String.password_toggle_content_description;
+			global::Plugin.Hud.Resource.String.path_password_eye = global::AepApp.Droid.Resource.String.path_password_eye;
+			global::Plugin.Hud.Resource.String.path_password_eye_mask_strike_through = global::AepApp.Droid.Resource.String.path_password_eye_mask_strike_through;
+			global::Plugin.Hud.Resource.String.path_password_eye_mask_visible = global::AepApp.Droid.Resource.String.path_password_eye_mask_visible;
+			global::Plugin.Hud.Resource.String.path_password_strike_through = global::AepApp.Droid.Resource.String.path_password_strike_through;
+			global::Plugin.Hud.Resource.String.search_menu_title = global::AepApp.Droid.Resource.String.search_menu_title;
+			global::Plugin.Hud.Resource.String.status_bar_notification_info_overflow = global::AepApp.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Plugin.Hud.Resource.Style.AlertDialog_AppCompat = global::AepApp.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::Plugin.Hud.Resource.Style.AlertDialog_AppCompat_Light = global::AepApp.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Animation_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Animation_AppCompat_DropDownUp = global::AepApp.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::Plugin.Hud.Resource.Style.Animation_Design_BottomSheetDialog = global::AepApp.Droid.Resource.Style.Animation_Design_BottomSheetDialog;
+			global::Plugin.Hud.Resource.Style.Base_AlertDialog_AppCompat = global::AepApp.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_AlertDialog_AppCompat_Light = global::AepApp.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Base_Animation_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::AepApp.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::Plugin.Hud.Resource.Style.Base_CardView = global::AepApp.Droid.Resource.Style.Base_CardView;
+			global::Plugin.Hud.Resource.Style.Base_DialogWindowTitle_AppCompat = global::AepApp.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::AepApp.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Button = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Large = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Small = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Title = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::AepApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::AepApp.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::AepApp.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Plugin.Hud.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::AepApp.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Light = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Plugin.Hud.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::AepApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Plugin.Hud.Resource.Style.Base_ThemeOverlay_AppCompat = global::AepApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::AepApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::Plugin.Hud.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::AepApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::Plugin.Hud.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::AepApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Plugin.Hud.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::AepApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Plugin.Hud.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::AepApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::AepApp.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::AepApp.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Hud.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::AepApp.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
+			global::Plugin.Hud.Resource.Style.Base_V21_Theme_AppCompat = global::AepApp.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_V21_Theme_AppCompat_Light = global::AepApp.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::AepApp.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_V22_Theme_AppCompat = global::AepApp.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_V22_Theme_AppCompat_Light = global::AepApp.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Base_V23_Theme_AppCompat = global::AepApp.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_V23_Theme_AppCompat_Light = global::AepApp.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Base_V7_Theme_AppCompat = global::AepApp.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::Plugin.Hud.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_V7_Theme_AppCompat_Light = global::AepApp.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::AepApp.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::AepApp.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Hud.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::AepApp.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActionBar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActionButton = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActionMode = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Button = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Button_Small = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_EditText = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ImageButton = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ListView = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_RatingBar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_SearchView = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_SeekBar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Spinner = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Toolbar = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::Plugin.Hud.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::AepApp.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Plugin.Hud.Resource.Style.Base_Widget_Design_AppBarLayout = global::AepApp.Droid.Resource.Style.Base_Widget_Design_AppBarLayout;
+			global::Plugin.Hud.Resource.Style.Base_Widget_Design_TabLayout = global::AepApp.Droid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::Plugin.Hud.Resource.Style.CardView = global::AepApp.Droid.Resource.Style.CardView;
+			global::Plugin.Hud.Resource.Style.CardView_Dark = global::AepApp.Droid.Resource.Style.CardView_Dark;
+			global::Plugin.Hud.Resource.Style.CardView_Light = global::AepApp.Droid.Resource.Style.CardView_Light;
+			global::Plugin.Hud.Resource.Style.Platform_AppCompat = global::AepApp.Droid.Resource.Style.Platform_AppCompat;
+			global::Plugin.Hud.Resource.Style.Platform_AppCompat_Light = global::AepApp.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Platform_ThemeOverlay_AppCompat = global::AepApp.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::Plugin.Hud.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::AepApp.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::Plugin.Hud.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::AepApp.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Platform_V11_AppCompat = global::AepApp.Droid.Resource.Style.Platform_V11_AppCompat;
+			global::Plugin.Hud.Resource.Style.Platform_V11_AppCompat_Light = global::AepApp.Droid.Resource.Style.Platform_V11_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Platform_V14_AppCompat = global::AepApp.Droid.Resource.Style.Platform_V14_AppCompat;
+			global::Plugin.Hud.Resource.Style.Platform_V14_AppCompat_Light = global::AepApp.Droid.Resource.Style.Platform_V14_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Platform_V21_AppCompat = global::AepApp.Droid.Resource.Style.Platform_V21_AppCompat;
+			global::Plugin.Hud.Resource.Style.Platform_V21_AppCompat_Light = global::AepApp.Droid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Platform_V25_AppCompat = global::AepApp.Droid.Resource.Style.Platform_V25_AppCompat;
+			global::Plugin.Hud.Resource.Style.Platform_V25_AppCompat_Light = global::AepApp.Droid.Resource.Style.Platform_V25_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Platform_Widget_AppCompat_Spinner = global::AepApp.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::AepApp.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::Plugin.Hud.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::AepApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::Plugin.Hud.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::AepApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::Plugin.Hud.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::AepApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Body1 = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Body2 = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Button = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Caption = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Display1 = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Display2 = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Display3 = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Display4 = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Headline = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Large = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Medium = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Menu = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification_Info = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification_Line2 = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification_Media = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Media;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification_Time = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification_Title = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Small = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Subhead = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Title = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::Plugin.Hud.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::AepApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::AepApp.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Design_Counter = global::AepApp.Droid.Resource.Style.TextAppearance_Design_Counter;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Design_Counter_Overflow = global::AepApp.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Design_Error = global::AepApp.Droid.Resource.Style.TextAppearance_Design_Error;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Design_Hint = global::AepApp.Droid.Resource.Style.TextAppearance_Design_Hint;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Design_Snackbar_Message = global::AepApp.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Design_Tab = global::AepApp.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::Plugin.Hud.Resource.Style.TextAppearance_MediaRouter_PrimaryText = global::AepApp.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText;
+			global::Plugin.Hud.Resource.Style.TextAppearance_MediaRouter_SecondaryText = global::AepApp.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText;
+			global::Plugin.Hud.Resource.Style.TextAppearance_MediaRouter_Title = global::AepApp.Droid.Resource.Style.TextAppearance_MediaRouter_Title;
+			global::Plugin.Hud.Resource.Style.TextAppearance_StatusBar_EventContent = global::AepApp.Droid.Resource.Style.TextAppearance_StatusBar_EventContent;
+			global::Plugin.Hud.Resource.Style.TextAppearance_StatusBar_EventContent_Info = global::AepApp.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Info;
+			global::Plugin.Hud.Resource.Style.TextAppearance_StatusBar_EventContent_Line2 = global::AepApp.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Line2;
+			global::Plugin.Hud.Resource.Style.TextAppearance_StatusBar_EventContent_Time = global::AepApp.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Time;
+			global::Plugin.Hud.Resource.Style.TextAppearance_StatusBar_EventContent_Title = global::AepApp.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Title;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::AepApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::AepApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Plugin.Hud.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::AepApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat = global::AepApp.Droid.Resource.Style.Theme_AppCompat;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_CompactMenu = global::AepApp.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_DayNight = global::AepApp.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::AepApp.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::AepApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::AepApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::AepApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::AepApp.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::AepApp.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Dialog_Alert = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::AepApp.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Light = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Light_Dialog = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::AepApp.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Plugin.Hud.Resource.Style.Theme_AppCompat_NoActionBar = global::AepApp.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Plugin.Hud.Resource.Style.Theme_Design = global::AepApp.Droid.Resource.Style.Theme_Design;
+			global::Plugin.Hud.Resource.Style.Theme_Design_BottomSheetDialog = global::AepApp.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::Plugin.Hud.Resource.Style.Theme_Design_Light = global::AepApp.Droid.Resource.Style.Theme_Design_Light;
+			global::Plugin.Hud.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::AepApp.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::Plugin.Hud.Resource.Style.Theme_Design_Light_NoActionBar = global::AepApp.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::Plugin.Hud.Resource.Style.Theme_Design_NoActionBar = global::AepApp.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::Plugin.Hud.Resource.Style.Theme_MediaRouter = global::AepApp.Droid.Resource.Style.Theme_MediaRouter;
+			global::Plugin.Hud.Resource.Style.Theme_MediaRouter_Light = global::AepApp.Droid.Resource.Style.Theme_MediaRouter_Light;
+			global::Plugin.Hud.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel = global::AepApp.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel;
+			global::Plugin.Hud.Resource.Style.Theme_MediaRouter_LightControlPanel = global::AepApp.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel;
+			global::Plugin.Hud.Resource.Style.ThemeOverlay_AppCompat = global::AepApp.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::Plugin.Hud.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::AepApp.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::Plugin.Hud.Resource.Style.ThemeOverlay_AppCompat_Dark = global::AepApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::Plugin.Hud.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::AepApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Plugin.Hud.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::AepApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.Hud.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::AepApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Plugin.Hud.Resource.Style.ThemeOverlay_AppCompat_Light = global::AepApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::Plugin.Hud.Resource.Style.ThemeOverlay_MediaRouter_Dark = global::AepApp.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark;
+			global::Plugin.Hud.Resource.Style.ThemeOverlay_MediaRouter_Light = global::AepApp.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActionBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActionButton = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActionMode = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ActivityChooserView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Button = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Button_Borderless = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Button_Colored = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Button_Small = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ButtonBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::AepApp.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::AepApp.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::AepApp.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::AepApp.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::AepApp.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_EditText = global::AepApp.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ImageButton = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionButton = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_SearchView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ListMenuView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ListPopupWindow = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ListView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ListView_DropDown = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ListView_Menu = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_NotificationActionContainer = global::AepApp.Droid.Resource.Style.Widget_AppCompat_NotificationActionContainer;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_NotificationActionText = global::AepApp.Droid.Resource.Style.Widget_AppCompat_NotificationActionText;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_PopupMenu = global::AepApp.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::AepApp.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_PopupWindow = global::AepApp.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ProgressBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::AepApp.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_RatingBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::AepApp.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_RatingBar_Small = global::AepApp.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_SearchView = global::AepApp.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_SeekBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::AepApp.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Spinner = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::AepApp.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Toolbar = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::Plugin.Hud.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::AepApp.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Plugin.Hud.Resource.Style.Widget_Design_AppBarLayout = global::AepApp.Droid.Resource.Style.Widget_Design_AppBarLayout;
+			global::Plugin.Hud.Resource.Style.Widget_Design_BottomNavigationView = global::AepApp.Droid.Resource.Style.Widget_Design_BottomNavigationView;
+			global::Plugin.Hud.Resource.Style.Widget_Design_BottomSheet_Modal = global::AepApp.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
+			global::Plugin.Hud.Resource.Style.Widget_Design_CollapsingToolbar = global::AepApp.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
+			global::Plugin.Hud.Resource.Style.Widget_Design_CoordinatorLayout = global::AepApp.Droid.Resource.Style.Widget_Design_CoordinatorLayout;
+			global::Plugin.Hud.Resource.Style.Widget_Design_FloatingActionButton = global::AepApp.Droid.Resource.Style.Widget_Design_FloatingActionButton;
+			global::Plugin.Hud.Resource.Style.Widget_Design_NavigationView = global::AepApp.Droid.Resource.Style.Widget_Design_NavigationView;
+			global::Plugin.Hud.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::AepApp.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
+			global::Plugin.Hud.Resource.Style.Widget_Design_Snackbar = global::AepApp.Droid.Resource.Style.Widget_Design_Snackbar;
+			global::Plugin.Hud.Resource.Style.Widget_Design_TabLayout = global::AepApp.Droid.Resource.Style.Widget_Design_TabLayout;
+			global::Plugin.Hud.Resource.Style.Widget_Design_TextInputLayout = global::AepApp.Droid.Resource.Style.Widget_Design_TextInputLayout;
+			global::Plugin.Hud.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::AepApp.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
+			global::Plugin.Hud.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::AepApp.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
+			global::Plugin.Hud.Resource.Styleable.ActionBar = global::AepApp.Droid.Resource.Styleable.ActionBar;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_background = global::AepApp.Droid.Resource.Styleable.ActionBar_background;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_backgroundSplit = global::AepApp.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_backgroundStacked = global::AepApp.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_contentInsetEnd = global::AepApp.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::AepApp.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_contentInsetLeft = global::AepApp.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_contentInsetRight = global::AepApp.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_contentInsetStart = global::AepApp.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::AepApp.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_customNavigationLayout = global::AepApp.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_displayOptions = global::AepApp.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_divider = global::AepApp.Droid.Resource.Styleable.ActionBar_divider;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_elevation = global::AepApp.Droid.Resource.Styleable.ActionBar_elevation;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_height = global::AepApp.Droid.Resource.Styleable.ActionBar_height;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_hideOnContentScroll = global::AepApp.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_homeAsUpIndicator = global::AepApp.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_homeLayout = global::AepApp.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_icon = global::AepApp.Droid.Resource.Styleable.ActionBar_icon;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::AepApp.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_itemPadding = global::AepApp.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_logo = global::AepApp.Droid.Resource.Styleable.ActionBar_logo;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_navigationMode = global::AepApp.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_popupTheme = global::AepApp.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_progressBarPadding = global::AepApp.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_progressBarStyle = global::AepApp.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_subtitle = global::AepApp.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_subtitleTextStyle = global::AepApp.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_title = global::AepApp.Droid.Resource.Styleable.ActionBar_title;
+			global::Plugin.Hud.Resource.Styleable.ActionBar_titleTextStyle = global::AepApp.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::Plugin.Hud.Resource.Styleable.ActionBarLayout = global::AepApp.Droid.Resource.Styleable.ActionBarLayout;
+			global::Plugin.Hud.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::AepApp.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::Plugin.Hud.Resource.Styleable.ActionMenuItemView = global::AepApp.Droid.Resource.Styleable.ActionMenuItemView;
+			global::Plugin.Hud.Resource.Styleable.ActionMenuItemView_android_minWidth = global::AepApp.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::Plugin.Hud.Resource.Styleable.ActionMenuView = global::AepApp.Droid.Resource.Styleable.ActionMenuView;
+			global::Plugin.Hud.Resource.Styleable.ActionMode = global::AepApp.Droid.Resource.Styleable.ActionMode;
+			global::Plugin.Hud.Resource.Styleable.ActionMode_background = global::AepApp.Droid.Resource.Styleable.ActionMode_background;
+			global::Plugin.Hud.Resource.Styleable.ActionMode_backgroundSplit = global::AepApp.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::Plugin.Hud.Resource.Styleable.ActionMode_closeItemLayout = global::AepApp.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::Plugin.Hud.Resource.Styleable.ActionMode_height = global::AepApp.Droid.Resource.Styleable.ActionMode_height;
+			global::Plugin.Hud.Resource.Styleable.ActionMode_subtitleTextStyle = global::AepApp.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::Plugin.Hud.Resource.Styleable.ActionMode_titleTextStyle = global::AepApp.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::Plugin.Hud.Resource.Styleable.ActivityChooserView = global::AepApp.Droid.Resource.Styleable.ActivityChooserView;
+			global::Plugin.Hud.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::AepApp.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::Plugin.Hud.Resource.Styleable.ActivityChooserView_initialActivityCount = global::AepApp.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::Plugin.Hud.Resource.Styleable.AlertDialog = global::AepApp.Droid.Resource.Styleable.AlertDialog;
+			global::Plugin.Hud.Resource.Styleable.AlertDialog_android_layout = global::AepApp.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::Plugin.Hud.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::AepApp.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::Plugin.Hud.Resource.Styleable.AlertDialog_listItemLayout = global::AepApp.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::Plugin.Hud.Resource.Styleable.AlertDialog_listLayout = global::AepApp.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::Plugin.Hud.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::AepApp.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::Plugin.Hud.Resource.Styleable.AlertDialog_showTitle = global::AepApp.Droid.Resource.Styleable.AlertDialog_showTitle;
+			global::Plugin.Hud.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::AepApp.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayout = global::AepApp.Droid.Resource.Styleable.AppBarLayout;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayout_android_background = global::AepApp.Droid.Resource.Styleable.AppBarLayout_android_background;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayout_elevation = global::AepApp.Droid.Resource.Styleable.AppBarLayout_elevation;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayout_expanded = global::AepApp.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayoutStates = global::AepApp.Droid.Resource.Styleable.AppBarLayoutStates;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::AepApp.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::AepApp.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayout_Layout = global::AepApp.Droid.Resource.Styleable.AppBarLayout_Layout;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::AepApp.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
+			global::Plugin.Hud.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::AepApp.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
+			global::Plugin.Hud.Resource.Styleable.AppCompatImageView = global::AepApp.Droid.Resource.Styleable.AppCompatImageView;
+			global::Plugin.Hud.Resource.Styleable.AppCompatImageView_android_src = global::AepApp.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::Plugin.Hud.Resource.Styleable.AppCompatImageView_srcCompat = global::AepApp.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::Plugin.Hud.Resource.Styleable.AppCompatSeekBar = global::AepApp.Droid.Resource.Styleable.AppCompatSeekBar;
+			global::Plugin.Hud.Resource.Styleable.AppCompatSeekBar_android_thumb = global::AepApp.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::Plugin.Hud.Resource.Styleable.AppCompatSeekBar_tickMark = global::AepApp.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::Plugin.Hud.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::AepApp.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::Plugin.Hud.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::AepApp.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextHelper = global::AepApp.Droid.Resource.Styleable.AppCompatTextHelper;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::AepApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::AepApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::AepApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::AepApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::AepApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::AepApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::AepApp.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextView = global::AepApp.Droid.Resource.Styleable.AppCompatTextView;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextView_android_textAppearance = global::AepApp.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTextView_textAllCaps = global::AepApp.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme = global::AepApp.Droid.Resource.Styleable.AppCompatTheme;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarDivider = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarSize = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarTheme = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeBackground = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_buttonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_checkboxStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_colorAccent = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_colorControlActivated = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_colorControlNormal = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_colorPrimary = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_controlBackground = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_dialogTheme = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_dividerVertical = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_editTextBackground = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_editTextColor = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_editTextStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_panelBackground = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_searchViewStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_seekBarStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_spinnerStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_switchStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_toolbarStyle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowActionBar = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::Plugin.Hud.Resource.Styleable.AppCompatTheme_windowNoTitle = global::AepApp.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::Plugin.Hud.Resource.Styleable.BottomNavigationView = global::AepApp.Droid.Resource.Styleable.BottomNavigationView;
+			global::Plugin.Hud.Resource.Styleable.BottomNavigationView_elevation = global::AepApp.Droid.Resource.Styleable.BottomNavigationView_elevation;
+			global::Plugin.Hud.Resource.Styleable.BottomNavigationView_itemBackground = global::AepApp.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::Plugin.Hud.Resource.Styleable.BottomNavigationView_itemIconTint = global::AepApp.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::Plugin.Hud.Resource.Styleable.BottomNavigationView_itemTextColor = global::AepApp.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::Plugin.Hud.Resource.Styleable.BottomNavigationView_menu = global::AepApp.Droid.Resource.Styleable.BottomNavigationView_menu;
+			global::Plugin.Hud.Resource.Styleable.BottomSheetBehavior_Layout = global::AepApp.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::Plugin.Hud.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::AepApp.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
+			global::Plugin.Hud.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::AepApp.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
+			global::Plugin.Hud.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::AepApp.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
+			global::Plugin.Hud.Resource.Styleable.ButtonBarLayout = global::AepApp.Droid.Resource.Styleable.ButtonBarLayout;
+			global::Plugin.Hud.Resource.Styleable.ButtonBarLayout_allowStacking = global::AepApp.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::Plugin.Hud.Resource.Styleable.CardView = global::AepApp.Droid.Resource.Styleable.CardView;
+			global::Plugin.Hud.Resource.Styleable.CardView_android_minHeight = global::AepApp.Droid.Resource.Styleable.CardView_android_minHeight;
+			global::Plugin.Hud.Resource.Styleable.CardView_android_minWidth = global::AepApp.Droid.Resource.Styleable.CardView_android_minWidth;
+			global::Plugin.Hud.Resource.Styleable.CardView_cardBackgroundColor = global::AepApp.Droid.Resource.Styleable.CardView_cardBackgroundColor;
+			global::Plugin.Hud.Resource.Styleable.CardView_cardCornerRadius = global::AepApp.Droid.Resource.Styleable.CardView_cardCornerRadius;
+			global::Plugin.Hud.Resource.Styleable.CardView_cardElevation = global::AepApp.Droid.Resource.Styleable.CardView_cardElevation;
+			global::Plugin.Hud.Resource.Styleable.CardView_cardMaxElevation = global::AepApp.Droid.Resource.Styleable.CardView_cardMaxElevation;
+			global::Plugin.Hud.Resource.Styleable.CardView_cardPreventCornerOverlap = global::AepApp.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
+			global::Plugin.Hud.Resource.Styleable.CardView_cardUseCompatPadding = global::AepApp.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
+			global::Plugin.Hud.Resource.Styleable.CardView_contentPadding = global::AepApp.Droid.Resource.Styleable.CardView_contentPadding;
+			global::Plugin.Hud.Resource.Styleable.CardView_contentPaddingBottom = global::AepApp.Droid.Resource.Styleable.CardView_contentPaddingBottom;
+			global::Plugin.Hud.Resource.Styleable.CardView_contentPaddingLeft = global::AepApp.Droid.Resource.Styleable.CardView_contentPaddingLeft;
+			global::Plugin.Hud.Resource.Styleable.CardView_contentPaddingRight = global::AepApp.Droid.Resource.Styleable.CardView_contentPaddingRight;
+			global::Plugin.Hud.Resource.Styleable.CardView_contentPaddingTop = global::AepApp.Droid.Resource.Styleable.CardView_contentPaddingTop;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_title = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_Layout = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::Plugin.Hud.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::AepApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::Plugin.Hud.Resource.Styleable.ColorStateListItem = global::AepApp.Droid.Resource.Styleable.ColorStateListItem;
+			global::Plugin.Hud.Resource.Styleable.ColorStateListItem_alpha = global::AepApp.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Plugin.Hud.Resource.Styleable.ColorStateListItem_android_alpha = global::AepApp.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Plugin.Hud.Resource.Styleable.ColorStateListItem_android_color = global::AepApp.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::Plugin.Hud.Resource.Styleable.CompoundButton = global::AepApp.Droid.Resource.Styleable.CompoundButton;
+			global::Plugin.Hud.Resource.Styleable.CompoundButton_android_button = global::AepApp.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Plugin.Hud.Resource.Styleable.CompoundButton_buttonTint = global::AepApp.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::Plugin.Hud.Resource.Styleable.CompoundButton_buttonTintMode = global::AepApp.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_keylines = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_keylines;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_Layout = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_Layout;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
+			global::Plugin.Hud.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::AepApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
+			global::Plugin.Hud.Resource.Styleable.DesignTheme = global::AepApp.Droid.Resource.Styleable.DesignTheme;
+			global::Plugin.Hud.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::AepApp.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
+			global::Plugin.Hud.Resource.Styleable.DesignTheme_bottomSheetStyle = global::AepApp.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
+			global::Plugin.Hud.Resource.Styleable.DesignTheme_textColorError = global::AepApp.Droid.Resource.Styleable.DesignTheme_textColorError;
+			global::Plugin.Hud.Resource.Styleable.DrawerArrowToggle = global::AepApp.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::Plugin.Hud.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::AepApp.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::Plugin.Hud.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::AepApp.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::Plugin.Hud.Resource.Styleable.DrawerArrowToggle_barLength = global::AepApp.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::Plugin.Hud.Resource.Styleable.DrawerArrowToggle_color = global::AepApp.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::Plugin.Hud.Resource.Styleable.DrawerArrowToggle_drawableSize = global::AepApp.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::Plugin.Hud.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::AepApp.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::Plugin.Hud.Resource.Styleable.DrawerArrowToggle_spinBars = global::AepApp.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::Plugin.Hud.Resource.Styleable.DrawerArrowToggle_thickness = global::AepApp.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton = global::AepApp.Droid.Resource.Styleable.FloatingActionButton;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_backgroundTint = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_borderWidth = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_elevation = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_elevation;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_fabSize = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_rippleColor = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_useCompatPadding = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::Plugin.Hud.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::AepApp.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
+			global::Plugin.Hud.Resource.Styleable.ForegroundLinearLayout = global::AepApp.Droid.Resource.Styleable.ForegroundLinearLayout;
+			global::Plugin.Hud.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::AepApp.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
+			global::Plugin.Hud.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::AepApp.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
+			global::Plugin.Hud.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::AepApp.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_android_gravity = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_android_orientation = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_divider = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_showDividers = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_Layout = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::Plugin.Hud.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::AepApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Plugin.Hud.Resource.Styleable.ListPopupWindow = global::AepApp.Droid.Resource.Styleable.ListPopupWindow;
+			global::Plugin.Hud.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::AepApp.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::Plugin.Hud.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::AepApp.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::Plugin.Hud.Resource.Styleable.MediaRouteButton = global::AepApp.Droid.Resource.Styleable.MediaRouteButton;
+			global::Plugin.Hud.Resource.Styleable.MediaRouteButton_android_minHeight = global::AepApp.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
+			global::Plugin.Hud.Resource.Styleable.MediaRouteButton_android_minWidth = global::AepApp.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
+			global::Plugin.Hud.Resource.Styleable.MediaRouteButton_buttonTint = global::AepApp.Droid.Resource.Styleable.MediaRouteButton_buttonTint;
+			global::Plugin.Hud.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::AepApp.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
+			global::Plugin.Hud.Resource.Styleable.MenuGroup = global::AepApp.Droid.Resource.Styleable.MenuGroup;
+			global::Plugin.Hud.Resource.Styleable.MenuGroup_android_checkableBehavior = global::AepApp.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::Plugin.Hud.Resource.Styleable.MenuGroup_android_enabled = global::AepApp.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::Plugin.Hud.Resource.Styleable.MenuGroup_android_id = global::AepApp.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::Plugin.Hud.Resource.Styleable.MenuGroup_android_menuCategory = global::AepApp.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::Plugin.Hud.Resource.Styleable.MenuGroup_android_orderInCategory = global::AepApp.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::Plugin.Hud.Resource.Styleable.MenuGroup_android_visible = global::AepApp.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::Plugin.Hud.Resource.Styleable.MenuItem = global::AepApp.Droid.Resource.Styleable.MenuItem;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_actionLayout = global::AepApp.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_actionProviderClass = global::AepApp.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_actionViewClass = global::AepApp.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::AepApp.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_checkable = global::AepApp.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_checked = global::AepApp.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_enabled = global::AepApp.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_icon = global::AepApp.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_id = global::AepApp.Droid.Resource.Styleable.MenuItem_android_id;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_menuCategory = global::AepApp.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_numericShortcut = global::AepApp.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_onClick = global::AepApp.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_orderInCategory = global::AepApp.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_title = global::AepApp.Droid.Resource.Styleable.MenuItem_android_title;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_titleCondensed = global::AepApp.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_android_visible = global::AepApp.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::Plugin.Hud.Resource.Styleable.MenuItem_showAsAction = global::AepApp.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::Plugin.Hud.Resource.Styleable.MenuView = global::AepApp.Droid.Resource.Styleable.MenuView;
+			global::Plugin.Hud.Resource.Styleable.MenuView_android_headerBackground = global::AepApp.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::Plugin.Hud.Resource.Styleable.MenuView_android_horizontalDivider = global::AepApp.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::Plugin.Hud.Resource.Styleable.MenuView_android_itemBackground = global::AepApp.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::Plugin.Hud.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::AepApp.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::Plugin.Hud.Resource.Styleable.MenuView_android_itemTextAppearance = global::AepApp.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.MenuView_android_verticalDivider = global::AepApp.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::Plugin.Hud.Resource.Styleable.MenuView_android_windowAnimationStyle = global::AepApp.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::Plugin.Hud.Resource.Styleable.MenuView_preserveIconSpacing = global::AepApp.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::Plugin.Hud.Resource.Styleable.MenuView_subMenuArrow = global::AepApp.Droid.Resource.Styleable.MenuView_subMenuArrow;
+			global::Plugin.Hud.Resource.Styleable.NavigationView = global::AepApp.Droid.Resource.Styleable.NavigationView;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_android_background = global::AepApp.Droid.Resource.Styleable.NavigationView_android_background;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::AepApp.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_android_maxWidth = global::AepApp.Droid.Resource.Styleable.NavigationView_android_maxWidth;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_elevation = global::AepApp.Droid.Resource.Styleable.NavigationView_elevation;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_headerLayout = global::AepApp.Droid.Resource.Styleable.NavigationView_headerLayout;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_itemBackground = global::AepApp.Droid.Resource.Styleable.NavigationView_itemBackground;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_itemIconTint = global::AepApp.Droid.Resource.Styleable.NavigationView_itemIconTint;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_itemTextAppearance = global::AepApp.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_itemTextColor = global::AepApp.Droid.Resource.Styleable.NavigationView_itemTextColor;
+			global::Plugin.Hud.Resource.Styleable.NavigationView_menu = global::AepApp.Droid.Resource.Styleable.NavigationView_menu;
+			global::Plugin.Hud.Resource.Styleable.PopupWindow = global::AepApp.Droid.Resource.Styleable.PopupWindow;
+			global::Plugin.Hud.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::AepApp.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
+			global::Plugin.Hud.Resource.Styleable.PopupWindow_android_popupBackground = global::AepApp.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::Plugin.Hud.Resource.Styleable.PopupWindow_overlapAnchor = global::AepApp.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Plugin.Hud.Resource.Styleable.PopupWindowBackgroundState = global::AepApp.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Plugin.Hud.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::AepApp.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel = global::AepApp.Droid.Resource.Styleable.ProgressWheel;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahBarColor = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahBarColor;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahBarLength = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahBarLength;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahBarWidth = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahBarWidth;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahCircleColor = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahCircleColor;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahDelayMillis = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahDelayMillis;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahRadius = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahRadius;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahRimColor = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahRimColor;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahRimWidth = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahRimWidth;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahSpinSpeed = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahSpinSpeed;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahText = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahText;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahTextColor = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
+			global::Plugin.Hud.Resource.Styleable.ProgressWheel_ahTextSize = global::AepApp.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::Plugin.Hud.Resource.Styleable.RecycleListView = global::AepApp.Droid.Resource.Styleable.RecycleListView;
+			global::Plugin.Hud.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::AepApp.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::Plugin.Hud.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::AepApp.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
+			global::Plugin.Hud.Resource.Styleable.RecyclerView = global::AepApp.Droid.Resource.Styleable.RecyclerView;
+			global::Plugin.Hud.Resource.Styleable.RecyclerView_android_descendantFocusability = global::AepApp.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Plugin.Hud.Resource.Styleable.RecyclerView_android_orientation = global::AepApp.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Plugin.Hud.Resource.Styleable.RecyclerView_layoutManager = global::AepApp.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Plugin.Hud.Resource.Styleable.RecyclerView_reverseLayout = global::AepApp.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Plugin.Hud.Resource.Styleable.RecyclerView_spanCount = global::AepApp.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Plugin.Hud.Resource.Styleable.RecyclerView_stackFromEnd = global::AepApp.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Plugin.Hud.Resource.Styleable.ScrimInsetsFrameLayout = global::AepApp.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
+			global::Plugin.Hud.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::AepApp.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::Plugin.Hud.Resource.Styleable.ScrollingViewBehavior_Layout = global::AepApp.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
+			global::Plugin.Hud.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::AepApp.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Plugin.Hud.Resource.Styleable.SearchView = global::AepApp.Droid.Resource.Styleable.SearchView;
+			global::Plugin.Hud.Resource.Styleable.SearchView_android_focusable = global::AepApp.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::Plugin.Hud.Resource.Styleable.SearchView_android_imeOptions = global::AepApp.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::Plugin.Hud.Resource.Styleable.SearchView_android_inputType = global::AepApp.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::Plugin.Hud.Resource.Styleable.SearchView_android_maxWidth = global::AepApp.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::Plugin.Hud.Resource.Styleable.SearchView_closeIcon = global::AepApp.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::Plugin.Hud.Resource.Styleable.SearchView_commitIcon = global::AepApp.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::Plugin.Hud.Resource.Styleable.SearchView_defaultQueryHint = global::AepApp.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::Plugin.Hud.Resource.Styleable.SearchView_goIcon = global::AepApp.Droid.Resource.Styleable.SearchView_goIcon;
+			global::Plugin.Hud.Resource.Styleable.SearchView_iconifiedByDefault = global::AepApp.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::Plugin.Hud.Resource.Styleable.SearchView_layout = global::AepApp.Droid.Resource.Styleable.SearchView_layout;
+			global::Plugin.Hud.Resource.Styleable.SearchView_queryBackground = global::AepApp.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::Plugin.Hud.Resource.Styleable.SearchView_queryHint = global::AepApp.Droid.Resource.Styleable.SearchView_queryHint;
+			global::Plugin.Hud.Resource.Styleable.SearchView_searchHintIcon = global::AepApp.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::Plugin.Hud.Resource.Styleable.SearchView_searchIcon = global::AepApp.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::Plugin.Hud.Resource.Styleable.SearchView_submitBackground = global::AepApp.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::Plugin.Hud.Resource.Styleable.SearchView_suggestionRowLayout = global::AepApp.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::Plugin.Hud.Resource.Styleable.SearchView_voiceIcon = global::AepApp.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::Plugin.Hud.Resource.Styleable.SnackbarLayout = global::AepApp.Droid.Resource.Styleable.SnackbarLayout;
+			global::Plugin.Hud.Resource.Styleable.SnackbarLayout_android_maxWidth = global::AepApp.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
+			global::Plugin.Hud.Resource.Styleable.SnackbarLayout_elevation = global::AepApp.Droid.Resource.Styleable.SnackbarLayout_elevation;
+			global::Plugin.Hud.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::AepApp.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::Plugin.Hud.Resource.Styleable.Spinner = global::AepApp.Droid.Resource.Styleable.Spinner;
+			global::Plugin.Hud.Resource.Styleable.Spinner_android_dropDownWidth = global::AepApp.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::Plugin.Hud.Resource.Styleable.Spinner_android_entries = global::AepApp.Droid.Resource.Styleable.Spinner_android_entries;
+			global::Plugin.Hud.Resource.Styleable.Spinner_android_popupBackground = global::AepApp.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::Plugin.Hud.Resource.Styleable.Spinner_android_prompt = global::AepApp.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::Plugin.Hud.Resource.Styleable.Spinner_popupTheme = global::AepApp.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat = global::AepApp.Droid.Resource.Styleable.SwitchCompat;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_android_textOff = global::AepApp.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_android_textOn = global::AepApp.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_android_thumb = global::AepApp.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_showText = global::AepApp.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_splitTrack = global::AepApp.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_switchMinWidth = global::AepApp.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_switchPadding = global::AepApp.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_switchTextAppearance = global::AepApp.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_thumbTextPadding = global::AepApp.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_thumbTint = global::AepApp.Droid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_thumbTintMode = global::AepApp.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_track = global::AepApp.Droid.Resource.Styleable.SwitchCompat_track;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_trackTint = global::AepApp.Droid.Resource.Styleable.SwitchCompat_trackTint;
+			global::Plugin.Hud.Resource.Styleable.SwitchCompat_trackTintMode = global::AepApp.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
+			global::Plugin.Hud.Resource.Styleable.TabItem = global::AepApp.Droid.Resource.Styleable.TabItem;
+			global::Plugin.Hud.Resource.Styleable.TabItem_android_icon = global::AepApp.Droid.Resource.Styleable.TabItem_android_icon;
+			global::Plugin.Hud.Resource.Styleable.TabItem_android_layout = global::AepApp.Droid.Resource.Styleable.TabItem_android_layout;
+			global::Plugin.Hud.Resource.Styleable.TabItem_android_text = global::AepApp.Droid.Resource.Styleable.TabItem_android_text;
+			global::Plugin.Hud.Resource.Styleable.TabLayout = global::AepApp.Droid.Resource.Styleable.TabLayout;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabBackground = global::AepApp.Droid.Resource.Styleable.TabLayout_tabBackground;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabContentStart = global::AepApp.Droid.Resource.Styleable.TabLayout_tabContentStart;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabGravity = global::AepApp.Droid.Resource.Styleable.TabLayout_tabGravity;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabIndicatorColor = global::AepApp.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabIndicatorHeight = global::AepApp.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabMaxWidth = global::AepApp.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabMinWidth = global::AepApp.Droid.Resource.Styleable.TabLayout_tabMinWidth;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabMode = global::AepApp.Droid.Resource.Styleable.TabLayout_tabMode;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabPadding = global::AepApp.Droid.Resource.Styleable.TabLayout_tabPadding;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabPaddingBottom = global::AepApp.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabPaddingEnd = global::AepApp.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabPaddingStart = global::AepApp.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabPaddingTop = global::AepApp.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabSelectedTextColor = global::AepApp.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabTextAppearance = global::AepApp.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.TabLayout_tabTextColor = global::AepApp.Droid.Resource.Styleable.TabLayout_tabTextColor;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance = global::AepApp.Droid.Resource.Styleable.TextAppearance;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_android_shadowColor = global::AepApp.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_android_shadowDx = global::AepApp.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_android_shadowDy = global::AepApp.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_android_shadowRadius = global::AepApp.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_android_textColor = global::AepApp.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_android_textColorHint = global::AepApp.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_android_textSize = global::AepApp.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_android_textStyle = global::AepApp.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_android_typeface = global::AepApp.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::Plugin.Hud.Resource.Styleable.TextAppearance_textAllCaps = global::AepApp.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout = global::AepApp.Droid.Resource.Styleable.TextInputLayout;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_android_hint = global::AepApp.Droid.Resource.Styleable.TextInputLayout_android_hint;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_android_textColorHint = global::AepApp.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_counterEnabled = global::AepApp.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_counterMaxLength = global::AepApp.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::AepApp.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_counterTextAppearance = global::AepApp.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_errorEnabled = global::AepApp.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_errorTextAppearance = global::AepApp.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::AepApp.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_hintEnabled = global::AepApp.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_hintTextAppearance = global::AepApp.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::AepApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::AepApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::AepApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_passwordToggleTint = global::AepApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
+			global::Plugin.Hud.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::AepApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::Plugin.Hud.Resource.Styleable.Toolbar = global::AepApp.Droid.Resource.Styleable.Toolbar;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_android_gravity = global::AepApp.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_android_minHeight = global::AepApp.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_buttonGravity = global::AepApp.Droid.Resource.Styleable.Toolbar_buttonGravity;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_collapseContentDescription = global::AepApp.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_collapseIcon = global::AepApp.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_contentInsetEnd = global::AepApp.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::AepApp.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_contentInsetLeft = global::AepApp.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_contentInsetRight = global::AepApp.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_contentInsetStart = global::AepApp.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::AepApp.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_logo = global::AepApp.Droid.Resource.Styleable.Toolbar_logo;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_logoDescription = global::AepApp.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_maxButtonHeight = global::AepApp.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_navigationContentDescription = global::AepApp.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_navigationIcon = global::AepApp.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_popupTheme = global::AepApp.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_subtitle = global::AepApp.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_subtitleTextAppearance = global::AepApp.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_subtitleTextColor = global::AepApp.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_title = global::AepApp.Droid.Resource.Styleable.Toolbar_title;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_titleMargin = global::AepApp.Droid.Resource.Styleable.Toolbar_titleMargin;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_titleMarginBottom = global::AepApp.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_titleMarginEnd = global::AepApp.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_titleMarginStart = global::AepApp.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_titleMarginTop = global::AepApp.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_titleMargins = global::AepApp.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_titleTextAppearance = global::AepApp.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::Plugin.Hud.Resource.Styleable.Toolbar_titleTextColor = global::AepApp.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Plugin.Hud.Resource.Styleable.View = global::AepApp.Droid.Resource.Styleable.View;
+			global::Plugin.Hud.Resource.Styleable.View_android_focusable = global::AepApp.Droid.Resource.Styleable.View_android_focusable;
+			global::Plugin.Hud.Resource.Styleable.View_android_theme = global::AepApp.Droid.Resource.Styleable.View_android_theme;
+			global::Plugin.Hud.Resource.Styleable.View_paddingEnd = global::AepApp.Droid.Resource.Styleable.View_paddingEnd;
+			global::Plugin.Hud.Resource.Styleable.View_paddingStart = global::AepApp.Droid.Resource.Styleable.View_paddingStart;
+			global::Plugin.Hud.Resource.Styleable.View_theme = global::AepApp.Droid.Resource.Styleable.View_theme;
+			global::Plugin.Hud.Resource.Styleable.ViewBackgroundHelper = global::AepApp.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::Plugin.Hud.Resource.Styleable.ViewBackgroundHelper_android_background = global::AepApp.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::Plugin.Hud.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::AepApp.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::Plugin.Hud.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::AepApp.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::Plugin.Hud.Resource.Styleable.ViewStubCompat = global::AepApp.Droid.Resource.Styleable.ViewStubCompat;
+			global::Plugin.Hud.Resource.Styleable.ViewStubCompat_android_id = global::AepApp.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::Plugin.Hud.Resource.Styleable.ViewStubCompat_android_inflatedId = global::AepApp.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::Plugin.Hud.Resource.Styleable.ViewStubCompat_android_layout = global::AepApp.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::Xamarin.Auth.Resource.Animation.slide_in_right = global::AepApp.Droid.Resource.Animation.slide_in_right;
 			global::Xamarin.Auth.Resource.Animation.slide_out_left = global::AepApp.Droid.Resource.Animation.slide_out_left;
 			global::Xamarin.Auth.Resource.Boolean.abc_action_bar_embed_tabs = global::AepApp.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
@@ -109,6 +2281,7 @@ namespace AepApp.Droid
 			global::Xamarin.Auth.Resource.Layout.notification_template_media_custom = global::AepApp.Droid.Resource.Layout.notification_template_media_custom;
 			global::Xamarin.Auth.Resource.Layout.notification_template_part_chronometer = global::AepApp.Droid.Resource.Layout.notification_template_part_chronometer;
 			global::Xamarin.Auth.Resource.Layout.notification_template_part_time = global::AepApp.Droid.Resource.Layout.notification_template_part_time;
+			global::Xamarin.Auth.Resource.String.library_name = global::AepApp.Droid.Resource.String.library_name;
 			global::Xamarin.Auth.Resource.String.status_bar_notification_info_overflow = global::AepApp.Droid.Resource.String.status_bar_notification_info_overflow;
 			global::Xamarin.Auth.Resource.String.title_activity_webview = global::AepApp.Droid.Resource.String.title_activity_webview;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::AepApp.Droid.Resource.Attribute.actionBarSize;
@@ -301,6 +2474,42 @@ namespace AepApp.Droid
 			
 			// aapt resource value: 0x7f010082
 			public const int activityChooserViewStyle = 2130772098;
+			
+			// aapt resource value: 0x7f010158
+			public const int ahBarColor = 2130772312;
+			
+			// aapt resource value: 0x7f010160
+			public const int ahBarLength = 2130772320;
+			
+			// aapt resource value: 0x7f01015f
+			public const int ahBarWidth = 2130772319;
+			
+			// aapt resource value: 0x7f01015d
+			public const int ahCircleColor = 2130772317;
+			
+			// aapt resource value: 0x7f01015c
+			public const int ahDelayMillis = 2130772316;
+			
+			// aapt resource value: 0x7f01015e
+			public const int ahRadius = 2130772318;
+			
+			// aapt resource value: 0x7f010159
+			public const int ahRimColor = 2130772313;
+			
+			// aapt resource value: 0x7f01015a
+			public const int ahRimWidth = 2130772314;
+			
+			// aapt resource value: 0x7f01015b
+			public const int ahSpinSpeed = 2130772315;
+			
+			// aapt resource value: 0x7f010155
+			public const int ahText = 2130772309;
+			
+			// aapt resource value: 0x7f010156
+			public const int ahTextColor = 2130772310;
+			
+			// aapt resource value: 0x7f010157
+			public const int ahTextSize = 2130772311;
 			
 			// aapt resource value: 0x7f0100a7
 			public const int alertDialogButtonGroupStyle = 2130772135;
@@ -2286,26 +4495,26 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f020054
 			public const int avd_hide_password = 2130837588;
 			
-			// aapt resource value: 0x7f02011c
-			public const int avd_hide_password_1 = 2130837788;
+			// aapt resource value: 0x7f020120
+			public const int avd_hide_password_1 = 2130837792;
 			
-			// aapt resource value: 0x7f02011d
-			public const int avd_hide_password_2 = 2130837789;
+			// aapt resource value: 0x7f020121
+			public const int avd_hide_password_2 = 2130837793;
 			
-			// aapt resource value: 0x7f02011e
-			public const int avd_hide_password_3 = 2130837790;
+			// aapt resource value: 0x7f020122
+			public const int avd_hide_password_3 = 2130837794;
 			
 			// aapt resource value: 0x7f020055
 			public const int avd_show_password = 2130837589;
 			
-			// aapt resource value: 0x7f02011f
-			public const int avd_show_password_1 = 2130837791;
+			// aapt resource value: 0x7f020123
+			public const int avd_show_password_1 = 2130837795;
 			
-			// aapt resource value: 0x7f020120
-			public const int avd_show_password_2 = 2130837792;
+			// aapt resource value: 0x7f020124
+			public const int avd_show_password_2 = 2130837796;
 			
-			// aapt resource value: 0x7f020121
-			public const int avd_show_password_3 = 2130837793;
+			// aapt resource value: 0x7f020125
+			public const int avd_show_password_3 = 2130837797;
 			
 			// aapt resource value: 0x7f020056
 			public const int design_bottom_navigation_item_background = 2130837590;
@@ -2350,556 +4559,568 @@ namespace AepApp.Droid
 			public const int ic_dialog_close_light = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_group_collapse_00 = 2130837604;
+			public const int ic_errorstatus = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_group_collapse_01 = 2130837605;
+			public const int ic_group_collapse_00 = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_group_collapse_02 = 2130837606;
+			public const int ic_group_collapse_01 = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int ic_group_collapse_03 = 2130837607;
+			public const int ic_group_collapse_02 = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int ic_group_collapse_04 = 2130837608;
+			public const int ic_group_collapse_03 = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int ic_group_collapse_05 = 2130837609;
+			public const int ic_group_collapse_04 = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int ic_group_collapse_06 = 2130837610;
+			public const int ic_group_collapse_05 = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int ic_group_collapse_07 = 2130837611;
+			public const int ic_group_collapse_06 = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int ic_group_collapse_08 = 2130837612;
+			public const int ic_group_collapse_07 = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int ic_group_collapse_09 = 2130837613;
+			public const int ic_group_collapse_08 = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int ic_group_collapse_10 = 2130837614;
+			public const int ic_group_collapse_09 = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int ic_group_collapse_11 = 2130837615;
+			public const int ic_group_collapse_10 = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int ic_group_collapse_12 = 2130837616;
+			public const int ic_group_collapse_11 = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int ic_group_collapse_13 = 2130837617;
+			public const int ic_group_collapse_12 = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int ic_group_collapse_14 = 2130837618;
+			public const int ic_group_collapse_13 = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int ic_group_collapse_15 = 2130837619;
+			public const int ic_group_collapse_14 = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int ic_group_expand_00 = 2130837620;
+			public const int ic_group_collapse_15 = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int ic_group_expand_01 = 2130837621;
+			public const int ic_group_expand_00 = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int ic_group_expand_02 = 2130837622;
+			public const int ic_group_expand_01 = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int ic_group_expand_03 = 2130837623;
+			public const int ic_group_expand_02 = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int ic_group_expand_04 = 2130837624;
+			public const int ic_group_expand_03 = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int ic_group_expand_05 = 2130837625;
+			public const int ic_group_expand_04 = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int ic_group_expand_06 = 2130837626;
+			public const int ic_group_expand_05 = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int ic_group_expand_07 = 2130837627;
+			public const int ic_group_expand_06 = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int ic_group_expand_08 = 2130837628;
+			public const int ic_group_expand_07 = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int ic_group_expand_09 = 2130837629;
+			public const int ic_group_expand_08 = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int ic_group_expand_10 = 2130837630;
+			public const int ic_group_expand_09 = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int ic_group_expand_11 = 2130837631;
+			public const int ic_group_expand_10 = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int ic_group_expand_12 = 2130837632;
+			public const int ic_group_expand_11 = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int ic_group_expand_13 = 2130837633;
+			public const int ic_group_expand_12 = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int ic_group_expand_14 = 2130837634;
+			public const int ic_group_expand_13 = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int ic_group_expand_15 = 2130837635;
+			public const int ic_group_expand_14 = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int ic_media_pause_dark = 2130837636;
+			public const int ic_group_expand_15 = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int ic_media_pause_light = 2130837637;
+			public const int ic_media_pause_dark = 2130837637;
 			
 			// aapt resource value: 0x7f020086
-			public const int ic_media_play_dark = 2130837638;
+			public const int ic_media_pause_light = 2130837638;
 			
 			// aapt resource value: 0x7f020087
-			public const int ic_media_play_light = 2130837639;
+			public const int ic_media_play_dark = 2130837639;
 			
 			// aapt resource value: 0x7f020088
-			public const int ic_media_stop_dark = 2130837640;
+			public const int ic_media_play_light = 2130837640;
 			
 			// aapt resource value: 0x7f020089
-			public const int ic_media_stop_light = 2130837641;
+			public const int ic_media_stop_dark = 2130837641;
 			
 			// aapt resource value: 0x7f02008a
-			public const int ic_mr_button_connected_00_dark = 2130837642;
+			public const int ic_media_stop_light = 2130837642;
 			
 			// aapt resource value: 0x7f02008b
-			public const int ic_mr_button_connected_00_light = 2130837643;
+			public const int ic_mr_button_connected_00_dark = 2130837643;
 			
 			// aapt resource value: 0x7f02008c
-			public const int ic_mr_button_connected_01_dark = 2130837644;
+			public const int ic_mr_button_connected_00_light = 2130837644;
 			
 			// aapt resource value: 0x7f02008d
-			public const int ic_mr_button_connected_01_light = 2130837645;
+			public const int ic_mr_button_connected_01_dark = 2130837645;
 			
 			// aapt resource value: 0x7f02008e
-			public const int ic_mr_button_connected_02_dark = 2130837646;
+			public const int ic_mr_button_connected_01_light = 2130837646;
 			
 			// aapt resource value: 0x7f02008f
-			public const int ic_mr_button_connected_02_light = 2130837647;
+			public const int ic_mr_button_connected_02_dark = 2130837647;
 			
 			// aapt resource value: 0x7f020090
-			public const int ic_mr_button_connected_03_dark = 2130837648;
+			public const int ic_mr_button_connected_02_light = 2130837648;
 			
 			// aapt resource value: 0x7f020091
-			public const int ic_mr_button_connected_03_light = 2130837649;
+			public const int ic_mr_button_connected_03_dark = 2130837649;
 			
 			// aapt resource value: 0x7f020092
-			public const int ic_mr_button_connected_04_dark = 2130837650;
+			public const int ic_mr_button_connected_03_light = 2130837650;
 			
 			// aapt resource value: 0x7f020093
-			public const int ic_mr_button_connected_04_light = 2130837651;
+			public const int ic_mr_button_connected_04_dark = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int ic_mr_button_connected_05_dark = 2130837652;
+			public const int ic_mr_button_connected_04_light = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int ic_mr_button_connected_05_light = 2130837653;
+			public const int ic_mr_button_connected_05_dark = 2130837653;
 			
 			// aapt resource value: 0x7f020096
-			public const int ic_mr_button_connected_06_dark = 2130837654;
+			public const int ic_mr_button_connected_05_light = 2130837654;
 			
 			// aapt resource value: 0x7f020097
-			public const int ic_mr_button_connected_06_light = 2130837655;
+			public const int ic_mr_button_connected_06_dark = 2130837655;
 			
 			// aapt resource value: 0x7f020098
-			public const int ic_mr_button_connected_07_dark = 2130837656;
+			public const int ic_mr_button_connected_06_light = 2130837656;
 			
 			// aapt resource value: 0x7f020099
-			public const int ic_mr_button_connected_07_light = 2130837657;
+			public const int ic_mr_button_connected_07_dark = 2130837657;
 			
 			// aapt resource value: 0x7f02009a
-			public const int ic_mr_button_connected_08_dark = 2130837658;
+			public const int ic_mr_button_connected_07_light = 2130837658;
 			
 			// aapt resource value: 0x7f02009b
-			public const int ic_mr_button_connected_08_light = 2130837659;
+			public const int ic_mr_button_connected_08_dark = 2130837659;
 			
 			// aapt resource value: 0x7f02009c
-			public const int ic_mr_button_connected_09_dark = 2130837660;
+			public const int ic_mr_button_connected_08_light = 2130837660;
 			
 			// aapt resource value: 0x7f02009d
-			public const int ic_mr_button_connected_09_light = 2130837661;
+			public const int ic_mr_button_connected_09_dark = 2130837661;
 			
 			// aapt resource value: 0x7f02009e
-			public const int ic_mr_button_connected_10_dark = 2130837662;
+			public const int ic_mr_button_connected_09_light = 2130837662;
 			
 			// aapt resource value: 0x7f02009f
-			public const int ic_mr_button_connected_10_light = 2130837663;
+			public const int ic_mr_button_connected_10_dark = 2130837663;
 			
 			// aapt resource value: 0x7f0200a0
-			public const int ic_mr_button_connected_11_dark = 2130837664;
+			public const int ic_mr_button_connected_10_light = 2130837664;
 			
 			// aapt resource value: 0x7f0200a1
-			public const int ic_mr_button_connected_11_light = 2130837665;
+			public const int ic_mr_button_connected_11_dark = 2130837665;
 			
 			// aapt resource value: 0x7f0200a2
-			public const int ic_mr_button_connected_12_dark = 2130837666;
+			public const int ic_mr_button_connected_11_light = 2130837666;
 			
 			// aapt resource value: 0x7f0200a3
-			public const int ic_mr_button_connected_12_light = 2130837667;
+			public const int ic_mr_button_connected_12_dark = 2130837667;
 			
 			// aapt resource value: 0x7f0200a4
-			public const int ic_mr_button_connected_13_dark = 2130837668;
+			public const int ic_mr_button_connected_12_light = 2130837668;
 			
 			// aapt resource value: 0x7f0200a5
-			public const int ic_mr_button_connected_13_light = 2130837669;
+			public const int ic_mr_button_connected_13_dark = 2130837669;
 			
 			// aapt resource value: 0x7f0200a6
-			public const int ic_mr_button_connected_14_dark = 2130837670;
+			public const int ic_mr_button_connected_13_light = 2130837670;
 			
 			// aapt resource value: 0x7f0200a7
-			public const int ic_mr_button_connected_14_light = 2130837671;
+			public const int ic_mr_button_connected_14_dark = 2130837671;
 			
 			// aapt resource value: 0x7f0200a8
-			public const int ic_mr_button_connected_15_dark = 2130837672;
+			public const int ic_mr_button_connected_14_light = 2130837672;
 			
 			// aapt resource value: 0x7f0200a9
-			public const int ic_mr_button_connected_15_light = 2130837673;
+			public const int ic_mr_button_connected_15_dark = 2130837673;
 			
 			// aapt resource value: 0x7f0200aa
-			public const int ic_mr_button_connected_16_dark = 2130837674;
+			public const int ic_mr_button_connected_15_light = 2130837674;
 			
 			// aapt resource value: 0x7f0200ab
-			public const int ic_mr_button_connected_16_light = 2130837675;
+			public const int ic_mr_button_connected_16_dark = 2130837675;
 			
 			// aapt resource value: 0x7f0200ac
-			public const int ic_mr_button_connected_17_dark = 2130837676;
+			public const int ic_mr_button_connected_16_light = 2130837676;
 			
 			// aapt resource value: 0x7f0200ad
-			public const int ic_mr_button_connected_17_light = 2130837677;
+			public const int ic_mr_button_connected_17_dark = 2130837677;
 			
 			// aapt resource value: 0x7f0200ae
-			public const int ic_mr_button_connected_18_dark = 2130837678;
+			public const int ic_mr_button_connected_17_light = 2130837678;
 			
 			// aapt resource value: 0x7f0200af
-			public const int ic_mr_button_connected_18_light = 2130837679;
+			public const int ic_mr_button_connected_18_dark = 2130837679;
 			
 			// aapt resource value: 0x7f0200b0
-			public const int ic_mr_button_connected_19_dark = 2130837680;
+			public const int ic_mr_button_connected_18_light = 2130837680;
 			
 			// aapt resource value: 0x7f0200b1
-			public const int ic_mr_button_connected_19_light = 2130837681;
+			public const int ic_mr_button_connected_19_dark = 2130837681;
 			
 			// aapt resource value: 0x7f0200b2
-			public const int ic_mr_button_connected_20_dark = 2130837682;
+			public const int ic_mr_button_connected_19_light = 2130837682;
 			
 			// aapt resource value: 0x7f0200b3
-			public const int ic_mr_button_connected_20_light = 2130837683;
+			public const int ic_mr_button_connected_20_dark = 2130837683;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int ic_mr_button_connected_21_dark = 2130837684;
+			public const int ic_mr_button_connected_20_light = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int ic_mr_button_connected_21_light = 2130837685;
+			public const int ic_mr_button_connected_21_dark = 2130837685;
 			
 			// aapt resource value: 0x7f0200b6
-			public const int ic_mr_button_connected_22_dark = 2130837686;
+			public const int ic_mr_button_connected_21_light = 2130837686;
 			
 			// aapt resource value: 0x7f0200b7
-			public const int ic_mr_button_connected_22_light = 2130837687;
+			public const int ic_mr_button_connected_22_dark = 2130837687;
 			
 			// aapt resource value: 0x7f0200b8
-			public const int ic_mr_button_connecting_00_dark = 2130837688;
+			public const int ic_mr_button_connected_22_light = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int ic_mr_button_connecting_00_light = 2130837689;
+			public const int ic_mr_button_connecting_00_dark = 2130837689;
 			
 			// aapt resource value: 0x7f0200ba
-			public const int ic_mr_button_connecting_01_dark = 2130837690;
+			public const int ic_mr_button_connecting_00_light = 2130837690;
 			
 			// aapt resource value: 0x7f0200bb
-			public const int ic_mr_button_connecting_01_light = 2130837691;
+			public const int ic_mr_button_connecting_01_dark = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int ic_mr_button_connecting_02_dark = 2130837692;
+			public const int ic_mr_button_connecting_01_light = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int ic_mr_button_connecting_02_light = 2130837693;
+			public const int ic_mr_button_connecting_02_dark = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int ic_mr_button_connecting_03_dark = 2130837694;
+			public const int ic_mr_button_connecting_02_light = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int ic_mr_button_connecting_03_light = 2130837695;
+			public const int ic_mr_button_connecting_03_dark = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int ic_mr_button_connecting_04_dark = 2130837696;
+			public const int ic_mr_button_connecting_03_light = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int ic_mr_button_connecting_04_light = 2130837697;
+			public const int ic_mr_button_connecting_04_dark = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int ic_mr_button_connecting_05_dark = 2130837698;
+			public const int ic_mr_button_connecting_04_light = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int ic_mr_button_connecting_05_light = 2130837699;
+			public const int ic_mr_button_connecting_05_dark = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int ic_mr_button_connecting_06_dark = 2130837700;
+			public const int ic_mr_button_connecting_05_light = 2130837700;
 			
 			// aapt resource value: 0x7f0200c5
-			public const int ic_mr_button_connecting_06_light = 2130837701;
+			public const int ic_mr_button_connecting_06_dark = 2130837701;
 			
 			// aapt resource value: 0x7f0200c6
-			public const int ic_mr_button_connecting_07_dark = 2130837702;
+			public const int ic_mr_button_connecting_06_light = 2130837702;
 			
 			// aapt resource value: 0x7f0200c7
-			public const int ic_mr_button_connecting_07_light = 2130837703;
+			public const int ic_mr_button_connecting_07_dark = 2130837703;
 			
 			// aapt resource value: 0x7f0200c8
-			public const int ic_mr_button_connecting_08_dark = 2130837704;
+			public const int ic_mr_button_connecting_07_light = 2130837704;
 			
 			// aapt resource value: 0x7f0200c9
-			public const int ic_mr_button_connecting_08_light = 2130837705;
+			public const int ic_mr_button_connecting_08_dark = 2130837705;
 			
 			// aapt resource value: 0x7f0200ca
-			public const int ic_mr_button_connecting_09_dark = 2130837706;
+			public const int ic_mr_button_connecting_08_light = 2130837706;
 			
 			// aapt resource value: 0x7f0200cb
-			public const int ic_mr_button_connecting_09_light = 2130837707;
+			public const int ic_mr_button_connecting_09_dark = 2130837707;
 			
 			// aapt resource value: 0x7f0200cc
-			public const int ic_mr_button_connecting_10_dark = 2130837708;
+			public const int ic_mr_button_connecting_09_light = 2130837708;
 			
 			// aapt resource value: 0x7f0200cd
-			public const int ic_mr_button_connecting_10_light = 2130837709;
+			public const int ic_mr_button_connecting_10_dark = 2130837709;
 			
 			// aapt resource value: 0x7f0200ce
-			public const int ic_mr_button_connecting_11_dark = 2130837710;
+			public const int ic_mr_button_connecting_10_light = 2130837710;
 			
 			// aapt resource value: 0x7f0200cf
-			public const int ic_mr_button_connecting_11_light = 2130837711;
+			public const int ic_mr_button_connecting_11_dark = 2130837711;
 			
 			// aapt resource value: 0x7f0200d0
-			public const int ic_mr_button_connecting_12_dark = 2130837712;
+			public const int ic_mr_button_connecting_11_light = 2130837712;
 			
 			// aapt resource value: 0x7f0200d1
-			public const int ic_mr_button_connecting_12_light = 2130837713;
+			public const int ic_mr_button_connecting_12_dark = 2130837713;
 			
 			// aapt resource value: 0x7f0200d2
-			public const int ic_mr_button_connecting_13_dark = 2130837714;
+			public const int ic_mr_button_connecting_12_light = 2130837714;
 			
 			// aapt resource value: 0x7f0200d3
-			public const int ic_mr_button_connecting_13_light = 2130837715;
+			public const int ic_mr_button_connecting_13_dark = 2130837715;
 			
 			// aapt resource value: 0x7f0200d4
-			public const int ic_mr_button_connecting_14_dark = 2130837716;
+			public const int ic_mr_button_connecting_13_light = 2130837716;
 			
 			// aapt resource value: 0x7f0200d5
-			public const int ic_mr_button_connecting_14_light = 2130837717;
+			public const int ic_mr_button_connecting_14_dark = 2130837717;
 			
 			// aapt resource value: 0x7f0200d6
-			public const int ic_mr_button_connecting_15_dark = 2130837718;
+			public const int ic_mr_button_connecting_14_light = 2130837718;
 			
 			// aapt resource value: 0x7f0200d7
-			public const int ic_mr_button_connecting_15_light = 2130837719;
+			public const int ic_mr_button_connecting_15_dark = 2130837719;
 			
 			// aapt resource value: 0x7f0200d8
-			public const int ic_mr_button_connecting_16_dark = 2130837720;
+			public const int ic_mr_button_connecting_15_light = 2130837720;
 			
 			// aapt resource value: 0x7f0200d9
-			public const int ic_mr_button_connecting_16_light = 2130837721;
+			public const int ic_mr_button_connecting_16_dark = 2130837721;
 			
 			// aapt resource value: 0x7f0200da
-			public const int ic_mr_button_connecting_17_dark = 2130837722;
+			public const int ic_mr_button_connecting_16_light = 2130837722;
 			
 			// aapt resource value: 0x7f0200db
-			public const int ic_mr_button_connecting_17_light = 2130837723;
+			public const int ic_mr_button_connecting_17_dark = 2130837723;
 			
 			// aapt resource value: 0x7f0200dc
-			public const int ic_mr_button_connecting_18_dark = 2130837724;
+			public const int ic_mr_button_connecting_17_light = 2130837724;
 			
 			// aapt resource value: 0x7f0200dd
-			public const int ic_mr_button_connecting_18_light = 2130837725;
+			public const int ic_mr_button_connecting_18_dark = 2130837725;
 			
 			// aapt resource value: 0x7f0200de
-			public const int ic_mr_button_connecting_19_dark = 2130837726;
+			public const int ic_mr_button_connecting_18_light = 2130837726;
 			
 			// aapt resource value: 0x7f0200df
-			public const int ic_mr_button_connecting_19_light = 2130837727;
+			public const int ic_mr_button_connecting_19_dark = 2130837727;
 			
 			// aapt resource value: 0x7f0200e0
-			public const int ic_mr_button_connecting_20_dark = 2130837728;
+			public const int ic_mr_button_connecting_19_light = 2130837728;
 			
 			// aapt resource value: 0x7f0200e1
-			public const int ic_mr_button_connecting_20_light = 2130837729;
+			public const int ic_mr_button_connecting_20_dark = 2130837729;
 			
 			// aapt resource value: 0x7f0200e2
-			public const int ic_mr_button_connecting_21_dark = 2130837730;
+			public const int ic_mr_button_connecting_20_light = 2130837730;
 			
 			// aapt resource value: 0x7f0200e3
-			public const int ic_mr_button_connecting_21_light = 2130837731;
+			public const int ic_mr_button_connecting_21_dark = 2130837731;
 			
 			// aapt resource value: 0x7f0200e4
-			public const int ic_mr_button_connecting_22_dark = 2130837732;
+			public const int ic_mr_button_connecting_21_light = 2130837732;
 			
 			// aapt resource value: 0x7f0200e5
-			public const int ic_mr_button_connecting_22_light = 2130837733;
+			public const int ic_mr_button_connecting_22_dark = 2130837733;
 			
 			// aapt resource value: 0x7f0200e6
-			public const int ic_mr_button_disabled_dark = 2130837734;
+			public const int ic_mr_button_connecting_22_light = 2130837734;
 			
 			// aapt resource value: 0x7f0200e7
-			public const int ic_mr_button_disabled_light = 2130837735;
+			public const int ic_mr_button_disabled_dark = 2130837735;
 			
 			// aapt resource value: 0x7f0200e8
-			public const int ic_mr_button_disconnected_dark = 2130837736;
+			public const int ic_mr_button_disabled_light = 2130837736;
 			
 			// aapt resource value: 0x7f0200e9
-			public const int ic_mr_button_disconnected_light = 2130837737;
+			public const int ic_mr_button_disconnected_dark = 2130837737;
 			
 			// aapt resource value: 0x7f0200ea
-			public const int ic_mr_button_grey = 2130837738;
+			public const int ic_mr_button_disconnected_light = 2130837738;
 			
 			// aapt resource value: 0x7f0200eb
-			public const int ic_vol_type_speaker_dark = 2130837739;
+			public const int ic_mr_button_grey = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
-			public const int ic_vol_type_speaker_group_dark = 2130837740;
+			public const int ic_successstatus = 2130837740;
 			
 			// aapt resource value: 0x7f0200ed
-			public const int ic_vol_type_speaker_group_light = 2130837741;
+			public const int ic_vol_type_speaker_dark = 2130837741;
 			
 			// aapt resource value: 0x7f0200ee
-			public const int ic_vol_type_speaker_light = 2130837742;
+			public const int ic_vol_type_speaker_group_dark = 2130837742;
 			
 			// aapt resource value: 0x7f0200ef
-			public const int ic_vol_type_tv_dark = 2130837743;
+			public const int ic_vol_type_speaker_group_light = 2130837743;
 			
 			// aapt resource value: 0x7f0200f0
-			public const int ic_vol_type_tv_light = 2130837744;
+			public const int ic_vol_type_speaker_light = 2130837744;
 			
 			// aapt resource value: 0x7f0200f1
-			public const int icon = 2130837745;
+			public const int ic_vol_type_tv_dark = 2130837745;
 			
 			// aapt resource value: 0x7f0200f2
-			public const int mr_button_connected_dark = 2130837746;
+			public const int ic_vol_type_tv_light = 2130837746;
 			
 			// aapt resource value: 0x7f0200f3
-			public const int mr_button_connected_light = 2130837747;
+			public const int icon = 2130837747;
 			
 			// aapt resource value: 0x7f0200f4
-			public const int mr_button_connecting_dark = 2130837748;
+			public const int mr_button_connected_dark = 2130837748;
 			
 			// aapt resource value: 0x7f0200f5
-			public const int mr_button_connecting_light = 2130837749;
+			public const int mr_button_connected_light = 2130837749;
 			
 			// aapt resource value: 0x7f0200f6
-			public const int mr_button_dark = 2130837750;
+			public const int mr_button_connecting_dark = 2130837750;
 			
 			// aapt resource value: 0x7f0200f7
-			public const int mr_button_light = 2130837751;
+			public const int mr_button_connecting_light = 2130837751;
 			
 			// aapt resource value: 0x7f0200f8
-			public const int mr_dialog_close_dark = 2130837752;
+			public const int mr_button_dark = 2130837752;
 			
 			// aapt resource value: 0x7f0200f9
-			public const int mr_dialog_close_light = 2130837753;
+			public const int mr_button_light = 2130837753;
 			
 			// aapt resource value: 0x7f0200fa
-			public const int mr_dialog_material_background_dark = 2130837754;
+			public const int mr_dialog_close_dark = 2130837754;
 			
 			// aapt resource value: 0x7f0200fb
-			public const int mr_dialog_material_background_light = 2130837755;
+			public const int mr_dialog_close_light = 2130837755;
 			
 			// aapt resource value: 0x7f0200fc
-			public const int mr_group_collapse = 2130837756;
+			public const int mr_dialog_material_background_dark = 2130837756;
 			
 			// aapt resource value: 0x7f0200fd
-			public const int mr_group_expand = 2130837757;
+			public const int mr_dialog_material_background_light = 2130837757;
 			
 			// aapt resource value: 0x7f0200fe
-			public const int mr_media_pause_dark = 2130837758;
+			public const int mr_group_collapse = 2130837758;
 			
 			// aapt resource value: 0x7f0200ff
-			public const int mr_media_pause_light = 2130837759;
+			public const int mr_group_expand = 2130837759;
 			
 			// aapt resource value: 0x7f020100
-			public const int mr_media_play_dark = 2130837760;
+			public const int mr_media_pause_dark = 2130837760;
 			
 			// aapt resource value: 0x7f020101
-			public const int mr_media_play_light = 2130837761;
+			public const int mr_media_pause_light = 2130837761;
 			
 			// aapt resource value: 0x7f020102
-			public const int mr_media_stop_dark = 2130837762;
+			public const int mr_media_play_dark = 2130837762;
 			
 			// aapt resource value: 0x7f020103
-			public const int mr_media_stop_light = 2130837763;
+			public const int mr_media_play_light = 2130837763;
 			
 			// aapt resource value: 0x7f020104
-			public const int mr_vol_type_audiotrack_dark = 2130837764;
+			public const int mr_media_stop_dark = 2130837764;
 			
 			// aapt resource value: 0x7f020105
-			public const int mr_vol_type_audiotrack_light = 2130837765;
+			public const int mr_media_stop_light = 2130837765;
 			
 			// aapt resource value: 0x7f020106
-			public const int navigation_empty_icon = 2130837766;
+			public const int mr_vol_type_audiotrack_dark = 2130837766;
 			
 			// aapt resource value: 0x7f020107
-			public const int noise = 2130837767;
+			public const int mr_vol_type_audiotrack_light = 2130837767;
 			
 			// aapt resource value: 0x7f020108
-			public const int notification_action_background = 2130837768;
+			public const int navigation_empty_icon = 2130837768;
 			
 			// aapt resource value: 0x7f020109
-			public const int notification_bg = 2130837769;
+			public const int noise = 2130837769;
 			
 			// aapt resource value: 0x7f02010a
-			public const int notification_bg_low = 2130837770;
+			public const int notification_action_background = 2130837770;
 			
 			// aapt resource value: 0x7f02010b
-			public const int notification_bg_low_normal = 2130837771;
+			public const int notification_bg = 2130837771;
 			
 			// aapt resource value: 0x7f02010c
-			public const int notification_bg_low_pressed = 2130837772;
+			public const int notification_bg_low = 2130837772;
 			
 			// aapt resource value: 0x7f02010d
-			public const int notification_bg_normal = 2130837773;
+			public const int notification_bg_low_normal = 2130837773;
 			
 			// aapt resource value: 0x7f02010e
-			public const int notification_bg_normal_pressed = 2130837774;
+			public const int notification_bg_low_pressed = 2130837774;
 			
 			// aapt resource value: 0x7f02010f
-			public const int notification_icon_background = 2130837775;
-			
-			// aapt resource value: 0x7f02011a
-			public const int notification_template_icon_bg = 2130837786;
-			
-			// aapt resource value: 0x7f02011b
-			public const int notification_template_icon_low_bg = 2130837787;
+			public const int notification_bg_normal = 2130837775;
 			
 			// aapt resource value: 0x7f020110
-			public const int notification_tile_bg = 2130837776;
+			public const int notification_bg_normal_pressed = 2130837776;
 			
 			// aapt resource value: 0x7f020111
-			public const int notify_panel_notification_icon_bg = 2130837777;
+			public const int notification_icon_background = 2130837777;
+			
+			// aapt resource value: 0x7f02011e
+			public const int notification_template_icon_bg = 2130837790;
+			
+			// aapt resource value: 0x7f02011f
+			public const int notification_template_icon_low_bg = 2130837791;
 			
 			// aapt resource value: 0x7f020112
-			public const int poll = 2130837778;
+			public const int notification_tile_bg = 2130837778;
 			
 			// aapt resource value: 0x7f020113
-			public const int radiation = 2130837779;
+			public const int notify_panel_notification_icon_bg = 2130837779;
 			
 			// aapt resource value: 0x7f020114
-			public const int right = 2130837780;
+			public const int poll = 2130837780;
 			
 			// aapt resource value: 0x7f020115
-			public const int soil = 2130837781;
+			public const int radiation = 2130837781;
 			
 			// aapt resource value: 0x7f020116
-			public const int tree = 2130837782;
+			public const int right = 2130837782;
 			
 			// aapt resource value: 0x7f020117
-			public const int voc = 2130837783;
+			public const int roundedbg = 2130837783;
 			
 			// aapt resource value: 0x7f020118
-			public const int water = 2130837784;
+			public const int roundedbgdark = 2130837784;
 			
 			// aapt resource value: 0x7f020119
-			public const int xamarin_logo = 2130837785;
+			public const int soil = 2130837785;
+			
+			// aapt resource value: 0x7f02011a
+			public const int tree = 2130837786;
+			
+			// aapt resource value: 0x7f02011b
+			public const int voc = 2130837787;
+			
+			// aapt resource value: 0x7f02011c
+			public const int water = 2130837788;
+			
+			// aapt resource value: 0x7f02011d
+			public const int xamarin_logo = 2130837789;
 			
 			static Drawable()
 			{
@@ -2914,8 +5135,8 @@ namespace AepApp.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f09009f
-			public const int action0 = 2131296415;
+			// aapt resource value: 0x7f0900a3
+			public const int action0 = 2131296419;
 			
 			// aapt resource value: 0x7f090064
 			public const int action_bar = 2131296356;
@@ -2938,17 +5159,17 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090041
 			public const int action_bar_title = 2131296321;
 			
-			// aapt resource value: 0x7f09009c
-			public const int action_container = 2131296412;
+			// aapt resource value: 0x7f0900a0
+			public const int action_container = 2131296416;
 			
 			// aapt resource value: 0x7f090065
 			public const int action_context_bar = 2131296357;
 			
-			// aapt resource value: 0x7f0900a3
-			public const int action_divider = 2131296419;
+			// aapt resource value: 0x7f0900a7
+			public const int action_divider = 2131296423;
 			
-			// aapt resource value: 0x7f09009d
-			public const int action_image = 2131296413;
+			// aapt resource value: 0x7f0900a1
+			public const int action_image = 2131296417;
 			
 			// aapt resource value: 0x7f090003
 			public const int action_menu_divider = 2131296259;
@@ -2965,11 +5186,11 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090043
 			public const int action_mode_close_button = 2131296323;
 			
-			// aapt resource value: 0x7f09009e
-			public const int action_text = 2131296414;
+			// aapt resource value: 0x7f0900a2
+			public const int action_text = 2131296418;
 			
-			// aapt resource value: 0x7f0900ac
-			public const int actions = 2131296428;
+			// aapt resource value: 0x7f0900b0
+			public const int actions = 2131296432;
 			
 			// aapt resource value: 0x7f090044
 			public const int activity_chooser_view_content = 2131296324;
@@ -2998,8 +5219,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f09004b
 			public const int buttonPanel = 2131296331;
 			
-			// aapt resource value: 0x7f0900a0
-			public const int cancel_action = 2131296416;
+			// aapt resource value: 0x7f0900a4
+			public const int cancel_action = 2131296420;
 			
 			// aapt resource value: 0x7f090030
 			public const int center = 2131296304;
@@ -3013,8 +5234,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f09005b
 			public const int checkbox = 2131296347;
 			
-			// aapt resource value: 0x7f0900a8
-			public const int chronometer = 2131296424;
+			// aapt resource value: 0x7f0900ac
+			public const int chronometer = 2131296428;
 			
 			// aapt resource value: 0x7f090039
 			public const int clip_horizontal = 2131296313;
@@ -3070,8 +5291,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090021
 			public const int end = 2131296289;
 			
-			// aapt resource value: 0x7f0900b2
-			public const int end_padder = 2131296434;
+			// aapt resource value: 0x7f0900b6
+			public const int end_padder = 2131296438;
 			
 			// aapt resource value: 0x7f09002a
 			public const int enterAlways = 2131296298;
@@ -3109,8 +5330,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090049
 			public const int icon = 2131296329;
 			
-			// aapt resource value: 0x7f0900ad
-			public const int icon_group = 2131296429;
+			// aapt resource value: 0x7f0900b1
+			public const int icon_group = 2131296433;
 			
 			// aapt resource value: 0x7f090025
 			public const int ifRoom = 2131296293;
@@ -3118,8 +5339,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090046
 			public const int image = 2131296326;
 			
-			// aapt resource value: 0x7f0900a9
-			public const int info = 2131296425;
+			// aapt resource value: 0x7f0900ad
+			public const int info = 2131296429;
 			
 			// aapt resource value: 0x7f090000
 			public const int item_touch_helper_previous_elevation = 2131296256;
@@ -3130,11 +5351,11 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090034
 			public const int left = 2131296308;
 			
-			// aapt resource value: 0x7f0900ae
-			public const int line1 = 2131296430;
+			// aapt resource value: 0x7f0900b2
+			public const int line1 = 2131296434;
 			
-			// aapt resource value: 0x7f0900b0
-			public const int line3 = 2131296432;
+			// aapt resource value: 0x7f0900b4
+			public const int line3 = 2131296436;
 			
 			// aapt resource value: 0x7f09000f
 			public const int listMode = 2131296271;
@@ -3142,11 +5363,20 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090048
 			public const int list_item = 2131296328;
 			
-			// aapt resource value: 0x7f0900b6
-			public const int masked = 2131296438;
+			// aapt resource value: 0x7f090084
+			public const int loadingImage = 2131296388;
 			
-			// aapt resource value: 0x7f0900a2
-			public const int media_actions = 2131296418;
+			// aapt resource value: 0x7f090082
+			public const int loadingProgressBar = 2131296386;
+			
+			// aapt resource value: 0x7f090085
+			public const int loadingProgressWheel = 2131296389;
+			
+			// aapt resource value: 0x7f0900ba
+			public const int masked = 2131296442;
+			
+			// aapt resource value: 0x7f0900a6
+			public const int media_actions = 2131296422;
 			
 			// aapt resource value: 0x7f090022
 			public const int middle = 2131296290;
@@ -3154,80 +5384,80 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f09003e
 			public const int mini = 2131296318;
 			
-			// aapt resource value: 0x7f09008e
-			public const int mr_art = 2131296398;
-			
-			// aapt resource value: 0x7f090083
-			public const int mr_chooser_list = 2131296387;
-			
-			// aapt resource value: 0x7f090086
-			public const int mr_chooser_route_desc = 2131296390;
-			
-			// aapt resource value: 0x7f090084
-			public const int mr_chooser_route_icon = 2131296388;
-			
-			// aapt resource value: 0x7f090085
-			public const int mr_chooser_route_name = 2131296389;
-			
-			// aapt resource value: 0x7f090082
-			public const int mr_chooser_title = 2131296386;
-			
-			// aapt resource value: 0x7f09008b
-			public const int mr_close = 2131296395;
-			
-			// aapt resource value: 0x7f090091
-			public const int mr_control_divider = 2131296401;
-			
-			// aapt resource value: 0x7f090097
-			public const int mr_control_playback_ctrl = 2131296407;
-			
-			// aapt resource value: 0x7f09009a
-			public const int mr_control_subtitle = 2131296410;
-			
-			// aapt resource value: 0x7f090099
-			public const int mr_control_title = 2131296409;
-			
-			// aapt resource value: 0x7f090098
-			public const int mr_control_title_container = 2131296408;
-			
-			// aapt resource value: 0x7f09008c
-			public const int mr_custom_control = 2131296396;
-			
-			// aapt resource value: 0x7f09008d
-			public const int mr_default_control = 2131296397;
-			
-			// aapt resource value: 0x7f090088
-			public const int mr_dialog_area = 2131296392;
+			// aapt resource value: 0x7f090092
+			public const int mr_art = 2131296402;
 			
 			// aapt resource value: 0x7f090087
-			public const int mr_expandable_area = 2131296391;
-			
-			// aapt resource value: 0x7f09009b
-			public const int mr_group_expand_collapse = 2131296411;
-			
-			// aapt resource value: 0x7f09008f
-			public const int mr_media_main_control = 2131296399;
+			public const int mr_chooser_list = 2131296391;
 			
 			// aapt resource value: 0x7f09008a
-			public const int mr_name = 2131296394;
+			public const int mr_chooser_route_desc = 2131296394;
 			
-			// aapt resource value: 0x7f090090
-			public const int mr_playback_control = 2131296400;
+			// aapt resource value: 0x7f090088
+			public const int mr_chooser_route_icon = 2131296392;
 			
 			// aapt resource value: 0x7f090089
-			public const int mr_title_bar = 2131296393;
+			public const int mr_chooser_route_name = 2131296393;
 			
-			// aapt resource value: 0x7f090092
-			public const int mr_volume_control = 2131296402;
+			// aapt resource value: 0x7f090086
+			public const int mr_chooser_title = 2131296390;
 			
-			// aapt resource value: 0x7f090093
-			public const int mr_volume_group_list = 2131296403;
+			// aapt resource value: 0x7f09008f
+			public const int mr_close = 2131296399;
 			
 			// aapt resource value: 0x7f090095
-			public const int mr_volume_item_icon = 2131296405;
+			public const int mr_control_divider = 2131296405;
+			
+			// aapt resource value: 0x7f09009b
+			public const int mr_control_playback_ctrl = 2131296411;
+			
+			// aapt resource value: 0x7f09009e
+			public const int mr_control_subtitle = 2131296414;
+			
+			// aapt resource value: 0x7f09009d
+			public const int mr_control_title = 2131296413;
+			
+			// aapt resource value: 0x7f09009c
+			public const int mr_control_title_container = 2131296412;
+			
+			// aapt resource value: 0x7f090090
+			public const int mr_custom_control = 2131296400;
+			
+			// aapt resource value: 0x7f090091
+			public const int mr_default_control = 2131296401;
+			
+			// aapt resource value: 0x7f09008c
+			public const int mr_dialog_area = 2131296396;
+			
+			// aapt resource value: 0x7f09008b
+			public const int mr_expandable_area = 2131296395;
+			
+			// aapt resource value: 0x7f09009f
+			public const int mr_group_expand_collapse = 2131296415;
+			
+			// aapt resource value: 0x7f090093
+			public const int mr_media_main_control = 2131296403;
+			
+			// aapt resource value: 0x7f09008e
+			public const int mr_name = 2131296398;
+			
+			// aapt resource value: 0x7f090094
+			public const int mr_playback_control = 2131296404;
+			
+			// aapt resource value: 0x7f09008d
+			public const int mr_title_bar = 2131296397;
 			
 			// aapt resource value: 0x7f090096
-			public const int mr_volume_slider = 2131296406;
+			public const int mr_volume_control = 2131296406;
+			
+			// aapt resource value: 0x7f090097
+			public const int mr_volume_group_list = 2131296407;
+			
+			// aapt resource value: 0x7f090099
+			public const int mr_volume_item_icon = 2131296409;
+			
+			// aapt resource value: 0x7f09009a
+			public const int mr_volume_slider = 2131296410;
 			
 			// aapt resource value: 0x7f090019
 			public const int multiply = 2131296281;
@@ -3244,14 +5474,14 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090010
 			public const int normal = 2131296272;
 			
-			// aapt resource value: 0x7f0900ab
-			public const int notification_background = 2131296427;
+			// aapt resource value: 0x7f0900af
+			public const int notification_background = 2131296431;
 			
-			// aapt resource value: 0x7f0900a5
-			public const int notification_main_column = 2131296421;
+			// aapt resource value: 0x7f0900a9
+			public const int notification_main_column = 2131296425;
 			
-			// aapt resource value: 0x7f0900a4
-			public const int notification_main_column_container = 2131296420;
+			// aapt resource value: 0x7f0900a8
+			public const int notification_main_column_container = 2131296424;
 			
 			// aapt resource value: 0x7f090037
 			public const int parallax = 2131296311;
@@ -3274,11 +5504,11 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090035
 			public const int right = 2131296309;
 			
-			// aapt resource value: 0x7f0900aa
-			public const int right_icon = 2131296426;
+			// aapt resource value: 0x7f0900ae
+			public const int right_icon = 2131296430;
 			
-			// aapt resource value: 0x7f0900a6
-			public const int right_side = 2131296422;
+			// aapt resource value: 0x7f0900aa
+			public const int right_side = 2131296426;
 			
 			// aapt resource value: 0x7f09001a
 			public const int screen = 2131296282;
@@ -3343,8 +5573,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090017
 			public const int showTitle = 2131296279;
 			
-			// aapt resource value: 0x7f0900b3
-			public const int sliding_tabs = 2131296435;
+			// aapt resource value: 0x7f0900b7
+			public const int sliding_tabs = 2131296439;
 			
 			// aapt resource value: 0x7f090074
 			public const int smallLabel = 2131296372;
@@ -3376,8 +5606,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090036
 			public const int start = 2131296310;
 			
-			// aapt resource value: 0x7f0900a1
-			public const int status_bar_latest_event_content = 2131296417;
+			// aapt resource value: 0x7f0900a5
+			public const int status_bar_latest_event_content = 2131296421;
 			
 			// aapt resource value: 0x7f09005e
 			public const int submenuarrow = 2131296350;
@@ -3388,17 +5618,20 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090011
 			public const int tabMode = 2131296273;
 			
-			// aapt resource value: 0x7f0900b1
-			public const int text = 2131296433;
+			// aapt resource value: 0x7f0900b5
+			public const int text = 2131296437;
 			
-			// aapt resource value: 0x7f0900af
-			public const int text2 = 2131296431;
+			// aapt resource value: 0x7f0900b3
+			public const int text2 = 2131296435;
 			
 			// aapt resource value: 0x7f090052
 			public const int textSpacerNoButtons = 2131296338;
 			
 			// aapt resource value: 0x7f090051
 			public const int textSpacerNoTitle = 2131296337;
+			
+			// aapt resource value: 0x7f090083
+			public const int textViewStatus = 2131296387;
 			
 			// aapt resource value: 0x7f090081
 			public const int text_input_password_toggle = 2131296385;
@@ -3409,8 +5642,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f09000d
 			public const int textinput_error = 2131296269;
 			
-			// aapt resource value: 0x7f0900a7
-			public const int time = 2131296423;
+			// aapt resource value: 0x7f0900ab
+			public const int time = 2131296427;
 			
 			// aapt resource value: 0x7f09004a
 			public const int title = 2131296330;
@@ -3421,8 +5654,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f090057
 			public const int title_template = 2131296343;
 			
-			// aapt resource value: 0x7f0900b4
-			public const int toolbar = 2131296436;
+			// aapt resource value: 0x7f0900b8
+			public const int toolbar = 2131296440;
 			
 			// aapt resource value: 0x7f090029
 			public const int top = 2131296297;
@@ -3448,11 +5681,11 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f09000e
 			public const int view_offset_helper = 2131296270;
 			
-			// aapt resource value: 0x7f0900b5
-			public const int visible = 2131296437;
+			// aapt resource value: 0x7f0900b9
+			public const int visible = 2131296441;
 			
-			// aapt resource value: 0x7f090094
-			public const int volume_item_container = 2131296404;
+			// aapt resource value: 0x7f090098
+			public const int volume_item_container = 2131296408;
 			
 			// aapt resource value: 0x7f090073
 			public const int webview = 2131296371;
@@ -3671,85 +5904,94 @@ namespace AepApp.Droid
 			public const int design_text_input_password_icon = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int mr_chooser_dialog = 2130903082;
+			public const int loading = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int mr_chooser_list_item = 2130903083;
+			public const int loadingimage = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int mr_controller_material_dialog_b = 2130903084;
+			public const int loadingprogress = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int mr_controller_volume_item = 2130903085;
+			public const int mr_chooser_dialog = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int mr_playback_control = 2130903086;
+			public const int mr_chooser_list_item = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int mr_volume_control = 2130903087;
+			public const int mr_controller_material_dialog_b = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int notification_action = 2130903088;
+			public const int mr_controller_volume_item = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int notification_action_tombstone = 2130903089;
+			public const int mr_playback_control = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_media_action = 2130903090;
+			public const int mr_volume_control = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_media_cancel_action = 2130903091;
+			public const int notification_action = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_template_big_media = 2130903092;
+			public const int notification_action_tombstone = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_template_big_media_custom = 2130903093;
+			public const int notification_media_action = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_template_big_media_narrow = 2130903094;
+			public const int notification_media_cancel_action = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_big_media_narrow_custom = 2130903095;
+			public const int notification_template_big_media = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int notification_template_custom_big = 2130903096;
+			public const int notification_template_big_media_custom = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int notification_template_icon_group = 2130903097;
+			public const int notification_template_big_media_narrow = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int notification_template_lines_media = 2130903098;
+			public const int notification_template_big_media_narrow_custom = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int notification_template_media = 2130903099;
+			public const int notification_template_custom_big = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int notification_template_media_custom = 2130903100;
+			public const int notification_template_icon_group = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int notification_template_part_chronometer = 2130903101;
+			public const int notification_template_lines_media = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int notification_template_part_time = 2130903102;
+			public const int notification_template_media = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int select_dialog_item_material = 2130903103;
+			public const int notification_template_media_custom = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int select_dialog_multichoice_material = 2130903104;
+			public const int notification_template_part_chronometer = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int select_dialog_singlechoice_material = 2130903105;
+			public const int notification_template_part_time = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int support_simple_spinner_dropdown_item = 2130903106;
+			public const int select_dialog_item_material = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int Tabbar = 2130903107;
+			public const int select_dialog_multichoice_material = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int Toolbar = 2130903108;
+			public const int select_dialog_singlechoice_material = 2130903108;
+			
+			// aapt resource value: 0x7f030045
+			public const int support_simple_spinner_dropdown_item = 2130903109;
+			
+			// aapt resource value: 0x7f030046
+			public const int Tabbar = 2130903110;
+			
+			// aapt resource value: 0x7f030047
+			public const int Toolbar = 2130903111;
 			
 			static Layout()
 			{
@@ -3865,6 +6107,9 @@ namespace AepApp.Droid
 			
 			// aapt resource value: 0x7f070039
 			public const int character_counter_pattern = 2131165241;
+			
+			// aapt resource value: 0x7f07003f
+			public const int library_name = 2131165247;
 			
 			// aapt resource value: 0x7f070001
 			public const int mr_button_content_description = 2131165185;
@@ -6562,6 +8807,56 @@ namespace AepApp.Droid
 			
 			// aapt resource value: 0
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
+			
+			public static int[] ProgressWheel = new int[] {
+					2130772309,
+					2130772310,
+					2130772311,
+					2130772312,
+					2130772313,
+					2130772314,
+					2130772315,
+					2130772316,
+					2130772317,
+					2130772318,
+					2130772319,
+					2130772320};
+			
+			// aapt resource value: 3
+			public const int ProgressWheel_ahBarColor = 3;
+			
+			// aapt resource value: 11
+			public const int ProgressWheel_ahBarLength = 11;
+			
+			// aapt resource value: 10
+			public const int ProgressWheel_ahBarWidth = 10;
+			
+			// aapt resource value: 8
+			public const int ProgressWheel_ahCircleColor = 8;
+			
+			// aapt resource value: 7
+			public const int ProgressWheel_ahDelayMillis = 7;
+			
+			// aapt resource value: 9
+			public const int ProgressWheel_ahRadius = 9;
+			
+			// aapt resource value: 4
+			public const int ProgressWheel_ahRimColor = 4;
+			
+			// aapt resource value: 5
+			public const int ProgressWheel_ahRimWidth = 5;
+			
+			// aapt resource value: 6
+			public const int ProgressWheel_ahSpinSpeed = 6;
+			
+			// aapt resource value: 0
+			public const int ProgressWheel_ahText = 0;
+			
+			// aapt resource value: 1
+			public const int ProgressWheel_ahTextColor = 1;
+			
+			// aapt resource value: 2
+			public const int ProgressWheel_ahTextSize = 2;
 			
 			public static int[] RecycleListView = new int[] {
 					2130772179,
