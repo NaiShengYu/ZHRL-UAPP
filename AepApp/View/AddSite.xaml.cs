@@ -35,7 +35,11 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                string uri = "https://192.168.2.97/api/login/getstationName";               
+                //if(this.siteAddr.Text.length ==0||this.siteAddr.Text ==null){
+                    
+                //    return;
+                //}
+                string uri = "https://"+this.siteAddr.Text+"/api/login/getstationName?stationurl="+this.siteAddr.Text;               
                 result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri);
                 //string parama = "Password=" + pwd + "&" + "UserName=" + account + "&" + "grant_type=password";
                 //try
