@@ -26,6 +26,10 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Platform.xaml.cs">
+      <DependentUpon>Platform.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\SelectSitePage.xaml.cs">
       <DependentUpon>SelectSitePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -53,6 +57,12 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\AddSite.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Platform.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Plugin.Hud;
 using Xamarin.Forms.Xaml;
 using Todo;
+using System.ComponentModel;
 
 namespace AepApp.View
 {
@@ -20,7 +21,7 @@ namespace AepApp.View
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetBackButtonTitle(this, "");
-
+           
         }
 
         private void Login(object sender, EventArgs e)
@@ -36,11 +37,13 @@ namespace AepApp.View
             }
             else if (pwd == null || pwd.Length == 0)
             {
-                DependencyService.Get<Sample.IToast>().ShortAlert("密码不能为空");
+                DisplayAlert("提示", "密码不能为空", "确定");
+                //DependencyService.Get<Sample.IToast>().ShortAlert("密码不能为空");
             }
             else if (siteNmae == null || siteNmae.Length == 0)
             {
-                DependencyService.Get<Sample.IToast>().ShortAlert("请先添加站点");
+                DisplayAlert("提示", "请先添加站点", "确定");
+                //DependencyService.Get<Sample.IToast>().ShortAlert("请先添加站点");
             }
             else
             {
@@ -63,7 +66,24 @@ namespace AepApp.View
                     }
                 }
                 //请求登陆
+                ReqLoginHttp();
             }
+        }
+
+        private void ReqLoginHttp()
+        {
+            Navigation.PushAsync(new Platform());
+            //BackgroundWorker wrk = new BackgroundWorker();
+            //wrk.DoWork += (sender1, e1) =>
+            //{
+            //  //http请求
+
+            //};
+            //wrk.RunWorkerCompleted += (sender1, e1) =>
+            //{
+            //    Navigation.PushAsync(new EnvironmentalPlatform());
+            //};
+            //wrk.RunWorkerAsync();
         }
 
         private void Select_site(object sender, EventArgs e)
