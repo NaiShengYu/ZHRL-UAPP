@@ -13,10 +13,34 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Margin="5,0,0,0" Source="voc.png" x:Name="c1" Grid.Column="0" VerticalOptions="Center"/>
-                    <Image Margin="5,0,0,0" Source="air.png" x:Name="c2" Grid.Column="1" VerticalOptions="Center"/>
-                    <Image Margin="5,0,0,0" Source="water.png" x:Name="c3" Grid.Column="2" VerticalOptions="Center"/>
-                    <Image Margin="5,0,0,0" Source="noise.png" x:Name="c4" Grid.Column="3" VerticalOptions="Center"/>
+                    <Image Margin="5,0,0,0" Source="voc.png" x:Name="c1" Grid.Column="0" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="VOC_CLK"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Margin="5,0,0,0" Source="air.png" x:Name="c2" Grid.Column="1" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="AIR_CLK"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Margin="5,0,0,0" Source="water.png" x:Name="c3" Grid.Column="2" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="WATER_CLK"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Margin="5,0,0,0" Source="noise.png" x:Name="c4" Grid.Column="3" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="NOISE_CLK"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
                 </Grid>    
                 <Grid ColumnSpacing="0" RowSpacing="0" HeightRequest="{Binding Source={Reference c1}, Path=Height}" Margin="5,5,5,0">
                     <Grid.ColumnDefinitions >
@@ -25,15 +49,51 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Margin="5,0,0,0" x:Name="c5"  Source="soil.png" Grid.Column="0" VerticalOptions="Center"/>
-                    <Image Margin="5,0,0,0" x:Name="c6"  Source="radiation.png" Grid.Column="1" VerticalOptions="Center"/>
-                    <Image Margin="5,0,0,0" x:Name="c7"  Source="dust.png" Grid.Column="2" VerticalOptions="Center"/>
-                    <Image Margin="5,0,0,0" x:Name="c8"  Source="hazard.png" Grid.Column="3" VerticalOptions="Center"/>
+                    <Image Margin="5,0,0,0" x:Name="c5"  Source="soil.png" Grid.Column="0" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="SOIL_CLK"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Margin="5,0,0,0" x:Name="c6"  Source="radiation.png" Grid.Column="1" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="RADIATION_CLK"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Margin="5,0,0,0" x:Name="c7"  Source="dust.png" Grid.Column="2" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="DUST_CLK"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Margin="5,0,0,0" x:Name="c8"  Source="hazard.png" Grid.Column="3" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="HAZARD_CLK"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
                 </Grid>
                 <Label Text="应急智慧调度决策" Margin="5,10,0,0"/>
-                <Image Source="emerg.png" x:Name="c9" Grid.Row="1"  HorizontalOptions="Fill" Margin="5,5,5,0"/>
+                <Image Source="emerg.png" x:Name="c9" Grid.Row="1"  HorizontalOptions="Fill" Margin="5,5,5,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="EMERG_CLK"
+                                NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label Text="污染源在线" Margin="5,10,0,0"/>
-                <Image Source="poll.png" x:Name="c10" Grid.Row="2"   HorizontalOptions="Fill" Margin="5,5,5,0"/>
+                <Image Source="poll.png" x:Name="c10" Grid.Row="2"   HorizontalOptions="Fill" Margin="5,5,5,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="POLL_CLK"
+                                NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
