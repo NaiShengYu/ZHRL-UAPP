@@ -28,12 +28,12 @@ namespace AepApp.View
 
         private void AIR_CLK(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new AirPage());
         }
 
         private void WATER_CLK(object sender, EventArgs e)
         {
-            //DependencyService.Get<Sample.IToast>().ShortAlert("(●ˇ∀ˇ●)");
+            DependencyService.Get<Sample.IToast>().ShortAlert("(●ˇ∀ˇ●)");
         }
 
         private void NOISE_CLK(object sender, EventArgs e)

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.AirPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
+            <SearchBar Placeholder="搜索站点名称"></SearchBar>
+            <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10" Margin="0,5,0,5">
+                <Label Text="排名" Margin="20,0,0,0"/>
+                <Label Text="站点" Margin="30,0,0,0"/>
+                <Label Text="主要污染物" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0"/>
+                <Label Text="AQI(ug/m3)" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+            </StackLayout>
+            <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
+            <ListView x:Name="listView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="0">
+                                <Label Text="{Binding Rank}" Margin="20,0,0,0"/>
+                                <Label Text="{Binding SiteName}" Margin="30,0,0,0"/>
+                                <Label Text="{Binding MajorPollutants}" HorizontalOptions="CenterAndExpand" Margin="30,0,0,0"/>
+                                <Label Text="{Binding UnitCount}" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                                <Image Source="right.png" Margin="0,0,5,0"/>
+                        </StackLayout>               
+                    </ViewCell>
+                </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
