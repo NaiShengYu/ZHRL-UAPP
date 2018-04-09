@@ -71,14 +71,16 @@ namespace CloudWTO.Services
 
             public static string sendPOSTHttpWebRequest(string url, string param)
         {
+           
 
             try
-            {
+            {            
                 ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
                 byte[] bs = Encoding.GetEncoding("UTF-8").GetBytes(param);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
                 req.Method = "POST";
-                req.ContentType = "application/x-www-form-urlencoded";
+                //req.ContentType = "application/x-www-form-urlencoded";
+                req.ContentType = "application/json";
                 //req.Headers.Add(HttpRequestHeader.Authorization,@"string");//给请求添加权限
                 req.ContentLength = bs.Length;
                 Stream requestStream = req.GetRequestStream();

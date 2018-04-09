@@ -9,6 +9,9 @@ using Plugin.Hud;
 using Xamarin.Forms.Xaml;
 using Todo;
 using System.ComponentModel;
+using CloudWTO.Services;
+using AepApp.Models;
+using Newtonsoft.Json;
 
 namespace AepApp.View
 {
@@ -16,6 +19,12 @@ namespace AepApp.View
     public partial class LoginPage : ContentPage
     {
         private bool isFirstAppear = true;
+        private string result = "";
+        private string acc;
+        private string pwd;
+        private string siteNmae;
+        private TodoItem item;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -26,9 +35,9 @@ namespace AepApp.View
 
         private void Login(object sender, EventArgs e)
         {
-            var acc = account.Text;
-            var pwd = password.Text;
-            var siteNmae = site_name.Text;
+             acc = account.Text;
+             pwd = password.Text;
+             siteNmae = site_name.Text;
             if (acc == null || acc.Length == 0)
             {
                 
@@ -72,7 +81,47 @@ namespace AepApp.View
 
         private void ReqLoginHttp()
         {
-            Navigation.PushAsync(new Platform());
+            if (App.BaseUrl.Equals(""))
+            {
+                DisplayAlert("提示", "请先添加站点", "确定");
+            }
+            else {
+                CrossHud.Current.Show("登陆中...");
+                BackgroundWorker wrk = new BackgroundWorker();
+                wrk.DoWork += (sender1, e1) =>
+                {
+                    string uri = App.BaseUrl + "/api/login/Login";
+                    LoginPageModels.loginParameter parameter = new LoginPageModels.loginParameter();
+                    parameter.Password = pwd;
+                    parameter.UserName = acc;
+                    parameter.rememberStatus = true;
+                    parameter.sid = item.SiteId;
+                    parameter.sname = item.Name;
+                    parameter.userdel = 1;                    
+                    string param = JsonConvert.SerializeObject(parameter);
+                    result = EasyWebRequest.sendPOSTHttpWebRequest(uri, param);
+                };
+                wrk.RunWorkerCompleted += (sender1, e1) =>
+                {                   
+                    LoginPageModels.haveToken haveToken = new LoginPageModels.haveToken();
+                    haveToken = JsonConvert.DeserializeObject<LoginPageModels.haveToken>(result);
+                    if (haveToken.success.Equals("false"))
+                    {
+                        CrossHud.Current.Dismiss();
+                        DisplayAlert("提示", "登录失败", "确定");
+                    }
+                    else
+                    {
+                        App.token = haveToken.token;
+                        CrossHud.Current.Dismiss();
+                        Navigation.PushAsync(new Platform());
+                    }
+
+                };
+                wrk.RunWorkerAsync();
+            }
+            //Navigation.PushAsync(new Platform());
+
             //BackgroundWorker wrk = new BackgroundWorker();
             //wrk.DoWork += (sender1, e1) =>
             //{
@@ -98,8 +147,9 @@ namespace AepApp.View
             ((App)App.Current).ResumeAtTodoId = -1;
             List<TodoItem> todoItems = await App.Database.GetItemsAsync();
             if (todoItems != null && todoItems.Count != 0 ) {
-                TodoItem item = todoItems[App.itemNum];
+                item = todoItems[App.itemNum];
                 site_name.Text = item.Name;
+                App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
             }           
             //获取存储文件下的内容
             var acc = AccountStore.Create().FindAccountsForService(App.appName).LastOrDefault();
@@ -113,7 +163,8 @@ namespace AepApp.View
                     remember_pwd.IsToggled = true;
                 }
                 isFirstAppear = false;                
-            }          
+            }
+                      
         }
     }
 }

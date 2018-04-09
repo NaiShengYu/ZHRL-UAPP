@@ -5,15 +5,15 @@ using AepApp.Interface;
 using AepApp.View;
 using Todo;
 using Xamarin.Forms;
-
+using Newtonsoft.Json;
 namespace AepApp
 {
     public partial class App : Application
     {
         public static bool UseMockDataStore = true;
-        public static string BackendUrl = "https://localhost:5000";
+        public static string BackendUrl = "https://localhost:5000";      
         //public static double pid = 3.14;
-        public static string BaseURL = "";
+        public static string BaseUrl = "";
         public static string token = "";
         public static string appName = "Aep";
         public static string SiteData = "site";
@@ -25,6 +25,7 @@ namespace AepApp
         public App()
         {
             InitializeComponent();
+           
 
             //if (UseMockDataStore)
             //    DependencyService.Register<MockDataStore>();
