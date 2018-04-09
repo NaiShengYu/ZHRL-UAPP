@@ -52,7 +52,8 @@ namespace AepApp.View
             {
                // Console.WriteLine("添加站点");                               
                 string uri = "https://"+this.siteAddr.Text+"/api/login/getstationName?stationurl="+this.siteAddr.Text;               
-                result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri);          
+                result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri); 
+
             };
             wrk.RunWorkerCompleted +=(sender1, e1) =>
             {

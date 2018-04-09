@@ -6,6 +6,9 @@ using AepApp.View;
 using Todo;
 using Xamarin.Forms;
 using Newtonsoft.Json;
+
+using AepApp.View.Monitor;
+
 namespace AepApp
 {
     public partial class App : Application
@@ -38,6 +41,10 @@ namespace AepApp
             //    MainPage = new NavigationPage(new MainPage());
 
             MainPage = new NavigationPage(new LoginPage());
+
+            //MainPage = new NavigationPage(new MonitorPage());
+
+
         }
         public static TodoItemDatabase Database
         {
