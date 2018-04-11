@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.PollutionourceOnlinePage">
+    <ContentPage.Content>
+            <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
+            <SearchBar Placeholder="搜索站点名称" TextChanged="Handle_TextChanged" x:Name="seach"></SearchBar>
+            <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
+            <ListView x:Name="listView" RowHeight="60">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center" Spacing="0">
+                                <Label Margin="20,0,20,0" Text="{Binding name}" VerticalTextAlignment="Center" />
+                                <Label Margin="0,0,15,0" Text="{Binding count}" HorizontalOptions="EndAndExpand" BackgroundColor="Red" TextColor="White" WidthRequest="40" HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Font="17" />
+                        </StackLayout>               
+                    </ViewCell>
+                </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
