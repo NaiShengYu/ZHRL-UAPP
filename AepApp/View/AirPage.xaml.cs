@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
+
 namespace AepApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -55,22 +57,32 @@ namespace AepApp.View
                 airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(result);
                 //排序
                 //testList = testList.OrderBy(u=>u.age).ToList();
-                
-                for (int i = 0; i < airPages.Count; i++)
-                {
-                    AirPageModels.AirInfo item = airPages[i];
 
-                    if (item.info == null)//数据匹配
-                    {
-                        hasNoAirDate.Add(item);
-                    }
-                    else {
-                        hasAirDate.Add(item);
-                    }
+                airPages.Sort((a, b) => { if (a.info == null) return 1; else if (b.info == null) return -1; else return -a.info.AQI.CompareTo(b.info.AQI); });
+                for (int i = 0; i < airPages.Count; i++) {
+                    airPages[i].Rank = (i + 1)+ "";
                 }
-                airPages.RemoveRange(0,airPages.Count);
-                airPages.AddRange(hasAirDate);
-                airPages.AddRange(hasNoAirDate);
+
+                //for (int i = 0; i < airPages.Count; i++)
+                //{
+                //    AirPageModels.AirInfo item = airPages[i];
+
+                //    if (item.info == null)//数据匹配
+                //    {
+                //        hasNoAirDate.Add(item);
+                //    }
+                //    else {
+                //        hasAirDate.Add(item);
+                //    }
+                //}
+                //hasAirDate.Sort(delegate (AirPageModels.Pollutant x, AirPageModels.Pollutant y)
+                //{
+                //    return y.AQI.CompareTo(x.AQI);
+                //});
+                //var result1 = hasAirDate.OrderBy(a => a.info.AQI);               
+                //airPages.RemoveRange(0,airPages.Count);
+                //airPages.AddRange(hasAirDate);
+                //airPages.AddRange(hasNoAirDate);
                 listView.ItemsSource = airPages;
                 CrossHud.Current.Dismiss();
             };
@@ -79,12 +91,24 @@ namespace AepApp.View
 
         private void PMSort(object sender, EventArgs e)
         {
-            UnitName.Text = "PM2.5(ug/m3)";
+            UnitName.Text = "PM2.5(μg/m³)";
+            //listView.ItemTemplate.SetBinding(Label.TextProperty, "info.PM25");
+            listView.ItemTemplate = this.Resources["pm25"] as DataTemplate;
         }
 
         private void AQIsort(object sender, EventArgs e)
         {
-            UnitName.Text = "AQI(ug/m3)";
+            UnitName.Text = "AQI";
+            //listView.ItemTemplate.SetBinding(Label.TextProperty, "info.AQI");
+            listView.ItemTemplate = this.Resources["aqi"] as DataTemplate;
+        }
+
+        private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            AirPageModels.AirInfo airInfo =  e.SelectedItem as AirPageModels.AirInfo;
         }
     }
+
+ 
+
 }

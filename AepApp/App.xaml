@@ -13,6 +13,7 @@
                 <Setter Property="BarBackgroundColor" Value="rgb(45,126, 251)" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

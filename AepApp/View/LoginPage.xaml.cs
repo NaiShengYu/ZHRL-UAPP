@@ -77,6 +77,7 @@ namespace AepApp.View
                 }
                 //请求登陆
                 ReqLoginHttp();
+                
             }
         }
 
@@ -115,7 +116,8 @@ namespace AepApp.View
                     {
                         App.token = haveToken.token;
                         CrossHud.Current.Dismiss();
-                        Navigation.PushAsync(new Platform());
+                        // Navigation.PushAsync(new Platform());
+                        Navigation.PushAsync(new AirPage());
                     }
 
                 };
