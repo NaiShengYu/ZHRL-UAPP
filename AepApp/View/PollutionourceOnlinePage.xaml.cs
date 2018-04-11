@@ -35,8 +35,6 @@ namespace AepApp.View
         {
             InitializeComponent();
             this.Title = "污染源在线";
-            var aa = "sssssssssss";
-            Console.WriteLine(aa);
             ReqPollutionSiteData();
         }
 

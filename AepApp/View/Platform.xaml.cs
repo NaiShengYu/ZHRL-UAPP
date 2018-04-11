@@ -62,7 +62,7 @@ namespace AepApp.View
         }
         private void POLL_CLK(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PollutionourceOnlinePage());
+           
         }
 
     }
