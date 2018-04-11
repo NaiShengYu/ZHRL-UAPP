@@ -54,9 +54,11 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                string test = "[{                    'StationId': 'f695c6da-880e-4db6-bf57-16239d477aba',        'StationName': '安吉城东',        'StationLng': 119.69527435,        'StationLat': 30.59805489,        'info': []    }                ]";
-                List<AirPageModels.AirInfo>  info = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(test);
-                //listView.ItemsSource = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(result);
+                //string test = "[{                    'StationId': 'f695c6da-880e-4db6-bf57-16239d477aba',        'StationName': '安吉城东',        'StationLng': 119.69527435,        'StationLat': 30.59805489,        'info': []   }                ]";
+                string test = result.Replace("null", "[]");
+                //List<AirPageModels.AirInfo>  info = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(test);
+                Console.WriteLine(test);
+                listView.ItemsSource = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(test);
             };
             wrk.RunWorkerAsync();
         }
