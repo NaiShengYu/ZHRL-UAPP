@@ -10,7 +10,7 @@
                 <Label Text="排名" Margin="20,0,0,0"/>
                 <Label Text="站点" Margin="30,0,0,0"/>
                 <Label Text="主要污染物" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0"/>
-                <Label Text="AQI(ug/m3)" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                <Label x:Name="UnitName" Text="AQI(ug/m3)" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
             </StackLayout>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
             <ListView x:Name="listView">
@@ -18,10 +18,10 @@
                     <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="0">
-                                <Label Text="{Binding Rank}" Margin="20,0,0,0"/>
-                                <Label Text="{Binding SiteName}" Margin="30,0,0,0"/>
-                                <Label Text="{Binding MajorPollutants}" HorizontalOptions="CenterAndExpand" Margin="30,0,0,0"/>
-                                <Label Text="{Binding UnitCount}" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
+                                <Label Margin="20,0,0,0"/>
+                                <Label Text="{Binding StationName}" Margin="30,0,0,0"/>
+                                <Label HorizontalOptions="CenterAndExpand" Margin="30,0,0,0"/>
+                                <Label HorizontalOptions="EndAndExpand" Margin="0,0,10,0"/>
                                 <Image Source="right.png" Margin="0,0,5,0"/>
                         </StackLayout>               
                     </ViewCell>
@@ -29,8 +29,8 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand"  HorizontalOptions="Center">
-                <Button Text="PM2.5排序" Margin="0,0,45,0"/>
-                <Button Text="AQI排序" Margin="45,0,0,0"/>
+                <Button Text="PM2.5排序" Margin="0,0,45,0" Clicked="PMSort"/>
+                <Button Text="AQI排序" Margin="45,0,0,0" Clicked="AQIsort"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

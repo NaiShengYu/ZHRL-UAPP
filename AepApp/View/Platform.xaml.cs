@@ -23,7 +23,7 @@ namespace AepApp.View
 
         private void VOC_CLK(object sender, EventArgs e)
         {
-            DependencyService.Get<Sample.IToast>().ShortAlert("(●'◡'●)");
+           
         }
 
         private void AIR_CLK(object sender, EventArgs e)
@@ -33,36 +33,36 @@ namespace AepApp.View
 
         private void WATER_CLK(object sender, EventArgs e)
         {
-            DependencyService.Get<Sample.IToast>().ShortAlert("(●ˇ∀ˇ●)");
+          
         }
 
         private void NOISE_CLK(object sender, EventArgs e)
         {
-            DependencyService.Get<Sample.IToast>().ShortAlert("(￣︶￣)");
+           
         }
         private void SOIL_CLK(object sender, EventArgs e)
         {
-            DependencyService.Get<Sample.IToast>().ShortAlert("╥﹏╥...");
+           
         }
         private void RADIATION_CLK(object sender, EventArgs e)
         {
-            DependencyService.Get<Sample.IToast>().ShortAlert("┑(￣Д ￣)┍");
+           
         }
         private void DUST_CLK(object sender, EventArgs e)
         {
-            DependencyService.Get<Sample.IToast>().ShortAlert("(oﾟvﾟ)ノ");
+            
         }
         private void HAZARD_CLK(object sender, EventArgs e)
         {
-            DependencyService.Get<Sample.IToast>().ShortAlert("(o゜▽゜)o☆");
+            
         }
         private void EMERG_CLK(object sender, EventArgs e)
         {
-            DependencyService.Get<Sample.IToast>().ShortAlert("ε=ε=ε=(~￣▽￣)~");
+            
         }
         private void POLL_CLK(object sender, EventArgs e)
         {
-            DependencyService.Get<Sample.IToast>().ShortAlert("U•ェ•*U");
+            
         }
 
     }

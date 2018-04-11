@@ -27,7 +27,9 @@ namespace CloudWTO.Services
             ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             //req.Host = "example.com";
-            req.Headers.Add(HttpRequestHeader.Authorization, App.token);//给请求添加权限
+            req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + App.token);//给请求添加权限
+            req.ContentType = "application/json";
+            req.Method = "GET";
             HttpWebResponse res;
             try
             {

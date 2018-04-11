@@ -35,48 +35,49 @@ namespace AepApp.View
 
         private void Login(object sender, EventArgs e)
         {
-             acc = account.Text;
-             pwd = password.Text;
-             siteNmae = site_name.Text;
-            if (acc == null || acc.Length == 0)
-            {
-                
-                DisplayAlert("提示", "账号不能为空", "确定");
-                //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
-            }
-            else if (pwd == null || pwd.Length == 0)
-            {
-                DisplayAlert("提示", "密码不能为空", "确定");
-                //DependencyService.Get<Sample.IToast>().ShortAlert("密码不能为空");
-            }
-            else if (siteNmae == null || siteNmae.Length == 0)
-            {
-                DisplayAlert("提示", "请先添加站点", "确定");
-                //DependencyService.Get<Sample.IToast>().ShortAlert("请先添加站点");
-            }
-            else
-            {
-                if (remember_pwd.IsToggled)
-                {
-                    Account count = new Account
-                    {
-                        Username = acc
-                    };
-                    count.Properties.Add("pwd", pwd);
-                    AccountStore.Create().Save(count, App.appName);
-                }
-                else
-                {
-                    //循环删除所存的数据
-                    IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.appName);
-                    for (int i = 0; i < outs.Count(); i++)
-                    {
-                        AccountStore.Create().Delete(outs.ElementAt(i), App.appName);
-                    }
-                }
-                //请求登陆
-                ReqLoginHttp();
-            }
+            Navigation.PushAsync(new MapPage());
+            // acc = account.Text;
+            // pwd = password.Text;
+            // siteNmae = site_name.Text;
+            //if (acc == null || acc.Length == 0)
+            //{
+
+            //    DisplayAlert("提示", "账号不能为空", "确定");
+            //    //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
+            //}
+            //else if (pwd == null || pwd.Length == 0)
+            //{
+            //    DisplayAlert("提示", "密码不能为空", "确定");
+            //    //DependencyService.Get<Sample.IToast>().ShortAlert("密码不能为空");
+            //}
+            //else if (siteNmae == null || siteNmae.Length == 0)
+            //{
+            //    DisplayAlert("提示", "请先添加站点", "确定");
+            //    //DependencyService.Get<Sample.IToast>().ShortAlert("请先添加站点");
+            //}
+            //else
+            //{
+            //    if (remember_pwd.IsToggled)
+            //    {
+            //        Account count = new Account
+            //        {
+            //            Username = acc
+            //        };
+            //        count.Properties.Add("pwd", pwd);
+            //        AccountStore.Create().Save(count, App.appName);
+            //    }
+            //    else
+            //    {
+            //        //循环删除所存的数据
+            //        IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.appName);
+            //        for (int i = 0; i < outs.Count(); i++)
+            //        {
+            //            AccountStore.Create().Delete(outs.ElementAt(i), App.appName);
+            //        }
+            //    }
+            //请求登陆
+            //ReqLoginHttp();
+       // }
         }
 
         private void ReqLoginHttp()
@@ -119,20 +120,7 @@ namespace AepApp.View
 
                 };
                 wrk.RunWorkerAsync();
-            }
-            //Navigation.PushAsync(new Platform());
-
-            //BackgroundWorker wrk = new BackgroundWorker();
-            //wrk.DoWork += (sender1, e1) =>
-            //{
-            //  //http请求
-
-            //};
-            //wrk.RunWorkerCompleted += (sender1, e1) =>
-            //{
-            //    Navigation.PushAsync(new EnvironmentalPlatform());
-            //};
-            //wrk.RunWorkerAsync();
+            }         
         }
 
         private void Select_site(object sender, EventArgs e)

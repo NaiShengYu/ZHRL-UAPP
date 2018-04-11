@@ -22,6 +22,9 @@ namespace AepApp.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
+            //百度地图配置
+            Xamarin.FormsBaiduMaps.Init(null);
+
             LoadApplication(new App());
         }
 
