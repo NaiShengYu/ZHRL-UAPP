@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.MonitorPage">
+    <ContentPage.Content>
+        
+          <StackLayout>
+            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" RowHeight="50">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" FontSize="17" Margin="10,10,10,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding title}"/>
+                               <Image Grid.Column="1" />
+<!--                                <Label Grid.Column="1"  Margin="5,10,10,10" TextColor="White" Text="通过"/>-->
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+        
+    </ContentPage.Content>
+</ContentPage>

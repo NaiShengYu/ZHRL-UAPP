@@ -44,12 +44,25 @@
       <DependentUpon>SelectSitePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApproval.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApprovalInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\ProjectApprovalOnePage.xaml.cs">
+      <DependentUpon>ProjectApprovalOnePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\MonitorPage.xaml.cs">
+      <DependentUpon>MonitorPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\ProjectApprovalOnePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\MonitorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\LoginPage.xaml">
@@ -72,13 +85,13 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Platform.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\AirPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

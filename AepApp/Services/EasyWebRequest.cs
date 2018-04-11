@@ -56,16 +56,28 @@ namespace CloudWTO.Services
             HttpWebResponse res;
             try
             {
+                Console.WriteLine("ex:666666");
+
                 res = (HttpWebResponse)req.GetResponse();
+                Console.WriteLine("ex:0000000");
 
             }
             catch (WebException ex)
             {
+                Console.WriteLine("ex:"+ex.Message);
+
                 res = (HttpWebResponse)ex.Response;
+                Console.WriteLine("ex:555555555");
 
             }
+            Console.WriteLine("ex:1111111");
+
             StreamReader sr = new StreamReader(res.GetResponseStream());
+            Console.WriteLine("ex:22222222" );
+
             string result = sr.ReadToEnd();
+            Console.WriteLine("ex:333333333");
+
             Console.WriteLine("ex:" + result);
 
             return result;
@@ -102,6 +114,31 @@ namespace CloudWTO.Services
                 
             }         
         }
+
+        public static string sendGetWithAuthorHttpWebRequest(string url)
+        {
+            ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            //req.Host = "example.com";
+            req.Headers.Add(HttpRequestHeader.Authorization, "Bearer 37e1ebe3-fbeb-4a0a-b899-1ac606ab978b");//给请求添加权限
+            HttpWebResponse res;
+            try
+            {
+                res = (HttpWebResponse)req.GetResponse();
+
+            }
+            catch (WebException ex)
+            {
+                res = (HttpWebResponse)ex.Response;
+
+            }
+            StreamReader sr = new StreamReader(res.GetResponseStream());
+            string result = sr.ReadToEnd();
+            Console.WriteLine("ex:" + result);
+
+            return result;
+        }
+
 
 
         static bool MyCertHandler(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors error)
