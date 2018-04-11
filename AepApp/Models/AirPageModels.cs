@@ -14,16 +14,17 @@ namespace AepApp.Models
             public string StationName { get; set; }
             public string StationLng { get; set; }
             public string StationLat { get; set; }
-            public List<Pollutant> info { get; set; }
+            public Pollutant info { get; set; }
             //public string info { get; set; }
         }
+      
         internal class Pollutant
         {
             public string facId { get; set; }
             public string facName { get; set; }
             public string AQI { get; set; }
             public string PM25 { get; set; }
-            public List<AQI_INFO> AQIInfo { get; set; }
+            public AQI_INFO AQIInfo { get; set; }
         }
         internal class AQI_INFO
         {
