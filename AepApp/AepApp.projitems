@@ -44,8 +44,6 @@
       <DependentUpon>SelectSitePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApproval.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApprovalInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\ProjectApprovalOnePage.xaml.cs">
       <DependentUpon>ProjectApprovalOnePage.xaml</DependentUpon>
     </Compile>

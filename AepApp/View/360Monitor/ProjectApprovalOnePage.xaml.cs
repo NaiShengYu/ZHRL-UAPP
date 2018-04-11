@@ -48,7 +48,7 @@ namespace AepApp.View.Monitor
         internal class titleName
         {
             public string count { get; set; }
-            public ProjectApproval items { get; set; }
+            //public ProjectApproval items { get; set; }
             public string ncount { get; set; }
         }
 
