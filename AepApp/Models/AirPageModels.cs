@@ -9,7 +9,7 @@ namespace AepApp.Models
 {
 	public class AirPageModels 
 	{
-        internal  class AirInfo {
+        public class AirInfo {
             public string StationId { get; set; }
             public string StationName { get; set; }
             public string StationLng { get; set; }
@@ -18,8 +18,8 @@ namespace AepApp.Models
             public string Rank { get; set; }
             //public string info { get; set; }
         }
-      
-        internal class Pollutant
+
+        public class Pollutant
         {
             public string facId { get; set; }
             public string facName { get; set; }
@@ -27,7 +27,7 @@ namespace AepApp.Models
             public double PM25 { get; set; }
             public AQI_INFO AQIInfo { get; set; }
         }
-        internal class AQI_INFO
+        public class AQI_INFO
         {
             public double AQI { get; set; }
             public string AQILevel { get; set; }
