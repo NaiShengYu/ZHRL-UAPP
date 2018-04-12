@@ -3,10 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AepApp.View.AirDetailPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical">
+
+            <Grid BackgroundColor="#EFEFF4" HeightRequest="40" HorizontalOptions="Fill" RowSpacing="0" ColumnSpacing="0">
+                <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
+                <Label x:Name="health" HorizontalOptions="Start" Margin="70,0,0,0" VerticalTextAlignment="Center"/>
+            </Grid>
+            <ListView x:Name="listView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Label HorizontalOptions="Start" Text="{Binding gasName}" VerticalOptions="Center"  />
+                                <Label HorizontalOptions="End"  WidthRequest="50" Text="μg/m³" VerticalOptions="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

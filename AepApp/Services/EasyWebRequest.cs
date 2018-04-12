@@ -114,6 +114,37 @@ namespace CloudWTO.Services
                 
             }         
         }
+        public static string sendPOSTHttpWebWithTokenRequest(string url, string param)
+        {
+
+
+            try
+            {
+                ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
+                byte[] bs = Encoding.GetEncoding("UTF-8").GetBytes(param);
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                req.ContentType = "application/json";
+                req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + App.token);//给请求添加权限
+                req.ContentLength = bs.Length;
+                req.Method = "POST";
+                //req.ContentType = "application/x-www-form-urlencoded";               
+                Stream requestStream = req.GetRequestStream();
+                requestStream.Write(bs, 0, bs.Length);
+                requestStream.Close();
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                StreamReader sr = new StreamReader(res.GetResponseStream());
+                string result = sr.ReadToEnd();
+
+                sr.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ex:" + ex.Message);
+                return ex.Message;
+
+            }
+        }
 
         public static string sendGetWithAuthorHttpWebRequest(string url)
         {

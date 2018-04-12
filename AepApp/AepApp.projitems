@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IFileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IToast.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddSitePageModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AirDetailModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LoginPageModels.cs" />
