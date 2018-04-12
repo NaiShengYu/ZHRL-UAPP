@@ -15,6 +15,6 @@ namespace AepApp.Models
         public string PROJECT_LIFE_CYCLE { get; set; }
         public string project_status { get; set; }
         public string rn { get; set; }
-        //public List<ProjectFileData> FileData { get; set; }
+        public List<ProjectFileData> FileData { get; set; }
     }
 }

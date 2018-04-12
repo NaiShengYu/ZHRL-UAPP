@@ -33,7 +33,7 @@ namespace AepApp.View.Monitor
 
         EnterpriseModel _preiseModel = null;//企业模型
         int _page = 1;//当前页数
-        bool _haveMore = true;
+        bool _haveMore = true;//判断是否有更多的数据
         ObservableCollection<ProjectApproval> dataList = new ObservableCollection<ProjectApproval>();
 
 
@@ -48,9 +48,9 @@ namespace AepApp.View.Monitor
             };
             wrk.RunWorkerCompleted += (sender, e) => {
                 //listV.ItemsSource = dataList;
+                Console.WriteLine("解析结果："+ list);
             };
             wrk.RunWorkerAsync();
-
         }
 
         titleName list = null;
@@ -62,7 +62,11 @@ namespace AepApp.View.Monitor
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);
+                //var jsetting = new JsonSerializerSettings();
+                //jsetting.NullValueHandling = NullValueHandling.Ignore;//这个设置，反序列化的时候，不处理为空的值。
+
                 list = JsonConvert.DeserializeObject<titleName>(result);
+
                 if (_page == 1)
                     dataList.Clear();
                 for (int i = 0; i < list.items.Count;i ++){
@@ -70,7 +74,7 @@ namespace AepApp.View.Monitor
                     dataList.Add(item);
                 }
 
-                if (list.count <= dataList.Count)
+                if (int.Parse(list.count) <= dataList.Count)
                     _haveMore = false;
                 else
                     _haveMore = true;
@@ -78,13 +82,14 @@ namespace AepApp.View.Monitor
             }
             catch (Exception ex)
             {
+                
                 DisplayAlert("Alert", ex.Message, "OK");
             }
         }
 
         internal class titleName
         {
-            public int count { get; set; }
+            public string count { get; set; }
             public List<ProjectApproval> items { get; set; }
             public string ncount { get; set; }
         }
