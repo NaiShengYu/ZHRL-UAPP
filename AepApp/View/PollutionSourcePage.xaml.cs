@@ -9,22 +9,27 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AepApp.View.Monitor;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 namespace AepApp.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PollutionSourcePage : ContentPage
 	{
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            var enterModel = e.SelectedItem as EnterpriseModel;
+            if (enterModel == null)
+                return;
+            Navigation.PushAsync(new MonitorPage(enterModel));
+            listView.SelectedItem = null;
+        }
+
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-
-
             var search = sender as SearchBar;
             Console.WriteLine(e.NewTextValue);
-
             getCurrentData(e.NewTextValue);
 
         }
