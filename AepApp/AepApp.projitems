@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IToast.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddSitePageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirPageModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LoginPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItemDatabase.cs" />
@@ -38,6 +39,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\Platform.xaml.cs">
       <DependentUpon>Platform.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\PollutionSourcePage.xaml.cs">
+      <DependentUpon>PollutionSourcePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\SelectSitePage.xaml.cs">
@@ -96,6 +101,12 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MapPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\PollutionSourcePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

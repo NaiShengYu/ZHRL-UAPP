@@ -1,6 +1,7 @@
 ﻿using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using Plugin.Hud;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,15 +12,15 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Plugin.Hud;//提示框库
 
 namespace AepApp.View
 {
-    public partial class PollutionourceOnlinePage : ContentPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class PollutionSourcePage : ContentPage
+	{
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-       
+
 
             var search = sender as SearchBar;
             Console.WriteLine(e.NewTextValue);
@@ -31,7 +32,7 @@ namespace AepApp.View
         private string result;
         resutlDic res = null;
         ObservableCollection<EnterpriseModel> dataList = new ObservableCollection<EnterpriseModel>();
-        public PollutionourceOnlinePage()
+        public PollutionSourcePage()
         {
             InitializeComponent();
             this.Title = "污染源在线";
@@ -59,7 +60,7 @@ namespace AepApp.View
                 CrossHud.Current.Dismiss();
                 getCurrentData("");
                 listView.ItemsSource = dataList;
-          
+
             };
             wrk.RunWorkerAsync();
         }
@@ -71,10 +72,10 @@ namespace AepApp.View
             {
                 EnterpriseModel item = res.Items[i];
 
-                    if (item.name.Contains(value))//数据匹配
-                    {
-                        dataList.Add(item);
-                    }
+                if (item.name.Contains(value))//数据匹配
+                {
+                    dataList.Add(item);
+                }
             }
         }
 
@@ -82,6 +83,6 @@ namespace AepApp.View
         {
             public int count { get; set; }
             public List<EnterpriseModel> Items { get; set; }
-        } 
+        }
     }
 }
