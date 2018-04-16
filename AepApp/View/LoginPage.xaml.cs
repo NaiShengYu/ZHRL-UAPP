@@ -117,7 +117,8 @@ namespace AepApp.View
                         App.token = haveToken.token;
                         CrossHud.Current.Dismiss();
                         //Navigation.PushAsync(new Platform());
-                        Navigation.PushAsync(new Platform());
+                         Navigation.PushAsync(new AirPage());
+                        //Navigation.PushAsync(new TestOxyPage());
                     }
 
                 };

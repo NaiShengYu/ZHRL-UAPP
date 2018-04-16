@@ -1,26 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AepApp.View.AirDetailPage">
+             x:Class="AepApp.View.AirDetailPage"         
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             xmlns:chart="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
+    
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-
-            <Grid BackgroundColor="#EFEFF4" HeightRequest="40" HorizontalOptions="Fill" RowSpacing="0" ColumnSpacing="0">
-                <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
-                <Label x:Name="health" HorizontalOptions="Start" Margin="70,0,0,0" VerticalTextAlignment="Center"/>
-            </Grid>
-            <ListView x:Name="listView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid RowSpacing="0" ColumnSpacing="0">
-                                <Label HorizontalOptions="Start" Text="{Binding gasName}" VerticalOptions="Center"  />
-                                <Label HorizontalOptions="End"  WidthRequest="50" Text="μg/m³" VerticalOptions="Center"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+                <Grid BackgroundColor="#EFEFF4" HeightRequest="40" HorizontalOptions="Fill" RowSpacing="0" ColumnSpacing="0">
+                    <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
+                    <Label x:Name="health" HorizontalOptions="Start" Margin="70,0,0,0" VerticalTextAlignment="Center"/>
+                </Grid>
+                <ListView x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="45">
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Label HorizontalOptions="Start" Text="{Binding gasName}" VerticalOptions="Center"  Margin="20,0,0,0"/>
+                                    <Label HorizontalOptions="End" Text="{Binding FacValueDetails.val, StringFormat='{0:0.00}'}" Margin="0,0,55,0" VerticalOptions="Center"/>
+                                    <Label HorizontalOptions="End"  WidthRequest="50" Text="{Binding unit}" VerticalOptions="Center"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                    <Button Text="24小时" Clicked="Hours" BackgroundColor="Gray" x:Name="hours"/>
+                    <Button Text="30天" Clicked="Days" BackgroundColor="White" x:Name="days"/>
+                </StackLayout>
+                <oxy:PlotView x:Name="oxyPlot" HeightRequest="250" 
+                            />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LoginPageModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OxyDataPageModle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItemDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\EasyWebRequest.cs" />
@@ -62,6 +63,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApproval.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectFileData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\TestOxyPage.xaml.cs">
+      <DependentUpon>TestOxyPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -119,6 +124,12 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\AirDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\TestOxyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
