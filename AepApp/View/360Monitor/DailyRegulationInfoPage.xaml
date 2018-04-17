@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.DailyRegulationInfoPage">
+    <ContentPage.Content>
+         <ScrollView>
+            <StackLayout HorizontalOptions="Fill" Spacing="1" BackgroundColor="#F2F2F2">
+                
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="执法时间" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label  Text="{Binding SUPERVISEDATEInfo}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="执法人员" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding SUPERVISOR}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="执法内容" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding CONTEXT}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="执法要求" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding IMPROVECONTEXT}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+   
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

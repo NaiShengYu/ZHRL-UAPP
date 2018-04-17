@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.SupervisionAndInspectionPage">
+    <ContentPage.Content>
+                      <StackLayout>
+            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" RowHeight="130" ItemAppearing="Handle_ItemAppearing">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                        <StackLayout HorizontalOptions="Start">
+                                <Label Grid.Column="0" FontSize="17" Margin="15,10,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding NAMEName}"/>
+                                <Label Grid.Column="0" FontSize="17" Margin="15,0,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding INPUTUSERName}"/>
+                                <Label Grid.Column="0" FontSize="17" Margin="15,0,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding CHECKPERSONName}"/>
+                                <Label Grid.Column="0" FontSize="17" Margin="15,0,10,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding MONITORDATEName}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

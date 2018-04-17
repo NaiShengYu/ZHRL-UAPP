@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.LettersAndVisitsInfoPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="Fill" Spacing="1" BackgroundColor="#F2F2F2">
+                <StackLayout  BackgroundColor="#F2F2F2" VerticalOptions="Center">
+                    <Label Text="信访内容" Font="19" Margin="15,15,10,10" VerticalTextAlignment="Center" VerticalOptions="Center" />
+                </StackLayout>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="处理状况" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label  Text="{Binding STATEDESC}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="处理部门" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding DepartmenName}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="信访编号" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding SERIALNO}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="信访时间" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding ORDERDATE}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="投诉主题" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding TITLE}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="信访来源" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding SourceName}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="信访缘由" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding ReasonName}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="重要程度" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="重要" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="信访录入人" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding editname}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="投诉内容" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding SPETITIONCONTENT}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="投诉人" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding PETITIONERNAME}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="投诉人电话" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding TELEPHONE}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="涉及企业" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding name}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="环保联络人" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding CONTACTNAME}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="联络人电话" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding CONTACTTEL}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+
+                <StackLayout HeightRequest="50" BackgroundColor="#F2F2F2" VerticalOptions="Center">
+                    <Label Text="处理情况" Font="19" Margin="15,15,10,10" VerticalTextAlignment="Center" VerticalOptions="Center" />
+                </StackLayout>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="办理日期" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding ENDLINEDATE}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="办结日期" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding UPDATEDATETIME}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="办案人员" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding ProcessorName}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="领导批示" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding SIGNUSERID}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="处理结果" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="{Binding RESULTCONTENT}" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="对领导批示" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="局领导批示" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+                <Grid BackgroundColor="White" MinimumHeightRequest="45"><Label Text="审核意见" Font="17" Margin="15,5,0,5" WidthRequest="100" HorizontalOptions="Start" VerticalTextAlignment="Center" TextColor="#1E90FF" /><Label Text="" Font="17" Margin="127,10,10,10" HorizontalOptions="Fill"/></Grid>
+               
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

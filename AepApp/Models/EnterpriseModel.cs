@@ -16,6 +16,9 @@ namespace AepApp.Models
         public string name { get; set; }
         public string stvalue { get; set; }
         public string time { get; set; }
-        public decimal value { get; set; }
+        public decimal? value { get; set; }
+
+       
+
     }
 }
