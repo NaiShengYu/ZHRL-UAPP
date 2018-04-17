@@ -63,54 +63,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApproval.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectFileData.cs" />
-<<<<<<< Updated upstream
     <Compile Include="$(MSBuildThisFileDirectory)View\TestOxyPage.xaml.cs">
       <DependentUpon>TestOxyPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-=======
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\ProjectApprovalInfoPage.xaml.cs">
-      <DependentUpon>ProjectApprovalInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\EmissionPermitManagementPage.xaml.cs">
-      <DependentUpon>EmissionPermitManagementPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\EmissionPermitManagement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\EmissionPermitManagementInfoPage.xaml.cs">
-      <DependentUpon>EmissionPermitManagementInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\LettersAndVisitsPage.xaml.cs">
-      <DependentUpon>LettersAndVisitsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\LettersAndVisits.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\LettersAndVisitsInfoPage.xaml.cs">
-      <DependentUpon>LettersAndVisitsInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\HtmlRemoval.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\DailyRegulationPage.xaml.cs">
-      <DependentUpon>DailyRegulationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\DailyRegulation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\DailyRegulationInfoPage.xaml.cs">
-      <DependentUpon>DailyRegulationInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\ElectroniPcunishmentPage.xaml.cs">
-      <DependentUpon>ElectroniPcunishmentPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ElectroniPcunishMentList.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ElectroniPcunishimentInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\ElectroniPcunishMentInfoPage.xaml.cs">
-      <DependentUpon>ElectroniPcunishMentInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\SupervisionAndInspectionPage.xaml.cs">
-      <DependentUpon>SupervisionAndInspectionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\SupervisionAndInspection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)View\360Monitor\SupervisionAndInspectionInfoPage.xaml.cs">
-      <DependentUpon>SupervisionAndInspectionInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\SupervisionAndInspectionInfo.cs" />
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -119,50 +75,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\MonitorPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\ProjectApprovalInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\EmissionPermitManagementPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\EmissionPermitManagementInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\LettersAndVisitsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\LettersAndVisitsInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\DailyRegulationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\DailyRegulationInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\ElectroniPcunishmentPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\ElectroniPcunishMentInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\SupervisionAndInspectionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\360Monitor\SupervisionAndInspectionInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

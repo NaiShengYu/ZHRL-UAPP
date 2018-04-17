@@ -5,28 +5,16 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using AepApp.Models;
 using CloudWTO.Services;
-using Plugin.Hud;
 #if __MOBILE__
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 #endif
 
+using AepApp.Models;
 namespace AepApp.View.Monitor
 {
     public partial class ProjectApprovalOnePage : ContentPage
     {
-        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
-        {
-            var selectItem = e.SelectedItem as ProjectApproval;
-            if (selectItem == null)
-                return;
-            Navigation.PushAsync(new ProjectApprovalInfoPage(selectItem));
-            listV.SelectedItem = null;
-
-        }
-
-
-
         void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
         {
         
@@ -51,25 +39,21 @@ namespace AepApp.View.Monitor
 
         public ProjectApprovalOnePage(EnterpriseModel enterpriseModel)
         {
-
-            InitializeComponent();
-            NavigationPage.SetBackButtonTitle(this, "");
             _preiseModel = enterpriseModel;
-            this.Title = "项目审批列表";
+            this.Title = "项目审批";
 
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender, e) => {
-                CrossHud.Current.Show("请求中...");
                 makeData();
             };
             wrk.RunWorkerCompleted += (sender, e) => {
-                listV.ItemsSource = dataList;
+                //listV.ItemsSource = dataList;
                 Console.WriteLine("解析结果："+ list);
             };
             wrk.RunWorkerAsync();
         }
 
-        aaaa list = null;
+        titleName list = null;
         void makeData()
         {
             try
@@ -80,9 +64,8 @@ namespace AepApp.View.Monitor
                 Console.WriteLine("请求结果：" + result);
                 //var jsetting = new JsonSerializerSettings();
                 //jsetting.NullValueHandling = NullValueHandling.Ignore;//这个设置，反序列化的时候，不处理为空的值。
-                //result = "{'items':[],'count':'5.0','ncount':'2.0'}";
-                list = JsonConvert.DeserializeObject<aaaa>(result);
-                CrossHud.Current.Dismiss();
+
+                list = JsonConvert.DeserializeObject<titleName>(result);
 
                 if (_page == 1)
                     dataList.Clear();
@@ -91,7 +74,7 @@ namespace AepApp.View.Monitor
                     dataList.Add(item);
                 }
 
-                if (list.count <= (float)dataList.Count)
+                if (int.Parse(list.count) <= dataList.Count)
                     _haveMore = false;
                 else
                     _haveMore = true;
@@ -99,15 +82,16 @@ namespace AepApp.View.Monitor
             }
             catch (Exception ex)
             {
-                CrossHud.Current.ShowError( message:ex.Message,timeout:new TimeSpan(0,0,5));
+                
+                DisplayAlert("Alert", ex.Message, "OK");
             }
         }
 
-        public class aaaa
+        internal class titleName
         {
-            public float count { get; set; }
+            public string count { get; set; }
             public List<ProjectApproval> items { get; set; }
-            public float ncount { get; set; }
+            public string ncount { get; set; }
         }
     }
 }

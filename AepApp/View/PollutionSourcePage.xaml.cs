@@ -54,17 +54,7 @@ namespace AepApp.View
                 CrossHud.Current.Show("请求中...");
                 string uri = App.BaseUrl + "/api/AppEnterprise/GetEnterpriseList?keys=";
                 result = EasyWebRequest.sendGetHttpWebRequest(uri);
-
-                try{
-                    res = JsonConvert.DeserializeObject<resutlDic>(result);
-
-                }catch (Exception ex){
-                    Console.WriteLine("解析错误：" +ex);
-                }
-
-
-
-                Console.WriteLine(res);
+                res = JsonConvert.DeserializeObject<resutlDic>(result);
                 res.Items.Sort(delegate (EnterpriseModel x, EnterpriseModel y)
                 {
                     return y.count.CompareTo(x.count);
