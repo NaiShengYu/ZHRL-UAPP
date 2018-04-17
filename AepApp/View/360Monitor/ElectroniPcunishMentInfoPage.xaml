@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.ElectroniPcunishMentInfoPage">
+    <ContentPage.Content>
+           <StackLayout>
+            <ListView x:Name="listV" HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                                <StackLayout>
+                                    <Label FontSize="17" Margin="10,10,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding content}" />
+                                    <Label FontSize="17" Margin="10,5,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding dateName}" />
+                                    <Label FontSize="17" Margin="10,5,10,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding processingName}" />
+
+                            </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

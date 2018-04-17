@@ -10,27 +10,27 @@ using Plugin.Hud;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 #endif
-
 namespace AepApp.View.Monitor
 {
-    public partial class ProjectApprovalOnePage : ContentPage
+    public partial class DailyRegulationPage : ContentPage
     {
+
+
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            var selectItem = e.SelectedItem as ProjectApproval;
+            var selectItem = e.SelectedItem as DailyRegulation;
             if (selectItem == null)
                 return;
-            Navigation.PushAsync(new ProjectApprovalInfoPage(selectItem));
+            Navigation.PushAsync(new DailyRegulationInfoPage(selectItem));
             listV.SelectedItem = null;
 
         }
 
 
-
         void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
         {
 
-            ProjectApproval item = e.Item as ProjectApproval;
+            DailyRegulation item = e.Item as DailyRegulation;
             if (item == dataList[dataList.Count - 1] && _haveMore == true && item != null)
             {
                 _page += 1;
@@ -46,16 +46,16 @@ namespace AepApp.View.Monitor
         EnterpriseModel _preiseModel = null;//企业模型
         int _page = 1;//当前页数
         bool _haveMore = true;//判断是否有更多的数据
-        ObservableCollection<ProjectApproval> dataList = new ObservableCollection<ProjectApproval>();
+        ObservableCollection<DailyRegulation> dataList = new ObservableCollection<DailyRegulation>();
 
-
-        public ProjectApprovalOnePage(EnterpriseModel enterpriseModel)
+        public DailyRegulationPage(EnterpriseModel enterpriseModel)
         {
-
             InitializeComponent();
+
+
             NavigationPage.SetBackButtonTitle(this, "");
             _preiseModel = enterpriseModel;
-            this.Title = "项目审批列表";
+            this.Title = "日常监管列表";
 
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender, e) => {
@@ -64,7 +64,6 @@ namespace AepApp.View.Monitor
             };
             wrk.RunWorkerCompleted += (sender, e) => {
                 listV.ItemsSource = dataList;
-                Console.WriteLine("解析结果：" + list);
             };
             wrk.RunWorkerAsync();
         }
@@ -74,7 +73,7 @@ namespace AepApp.View.Monitor
         {
             try
             {
-                string url = App.BaseUrl + "/api/AppEnterprise/GetApprovalList?id=" + _preiseModel.id + "&pageindx=" + _page + "&pageSize=10";
+                string url = App.BaseUrl + "/api/AppEnterprise/GetFirmSuperviseList?id=" + _preiseModel.id + "&pageindx=" + _page + "&pageSize=10";
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);
@@ -88,7 +87,7 @@ namespace AepApp.View.Monitor
                     dataList.Clear();
                 for (int i = 0; i < list.items.Count; i++)
                 {
-                    ProjectApproval item = list.items[i];
+                    DailyRegulation item = list.items[i];
                     dataList.Add(item);
                 }
 
@@ -100,15 +99,15 @@ namespace AepApp.View.Monitor
             }
             catch (Exception ex)
             {
-                CrossHud.Current.ShowError(message: ex.Message, timeout: new TimeSpan(0, 0, 5));
+                CrossHud.Current.ShowError(message: ex.Message, timeout: new TimeSpan(0, 0, 3));
             }
         }
 
         public class aaaa
         {
             public float count { get; set; }
-            public List<ProjectApproval> items { get; set; }
-            public float ncount { get; set; }
+            public List<DailyRegulation> items { get; set; }
         }
+
     }
 }
