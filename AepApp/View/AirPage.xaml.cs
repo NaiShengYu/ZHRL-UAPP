@@ -31,7 +31,8 @@ namespace AepApp.View
             this.Title = "环境空气站";
             ToolbarItems.Add(new ToolbarItem("", "map.png", () =>
             {
-                Navigation.PushAsync(new MapPage());
+                //Navigation.PushAsync(new MapPage());
+                Navigation.PushAsync(new TestOxyPage());
             }));
             //请求网络数据
             CrossHud.Current.Show("加载中...");

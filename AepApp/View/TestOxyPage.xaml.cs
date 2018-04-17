@@ -16,8 +16,8 @@ namespace AepApp.View
 		public TestOxyPage ()
 		{
 			InitializeComponent ();
-            var data = new OxyDataPageModle().AreaModel;
-            abc.Model = data;
+            //var data = new OxyDataPageModle().AreaModel;
+            //abc.Model = data;
         }
 	}
 }

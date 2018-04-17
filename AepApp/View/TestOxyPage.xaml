@@ -4,10 +4,11 @@
               xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
              x:Class="AepApp.View.TestOxyPage">
     <ContentPage.Content>
-        <AbsoluteLayout>
+        <!--<AbsoluteLayout>
             <oxy:PlotView Model="{Binding AreaModel }" x:Name="abc" 
                   AbsoluteLayout.LayoutBounds="10,30,.9,.9"
                   AbsoluteLayout.LayoutFlags="WidthProportional,HeightProportional"/>
-        </AbsoluteLayout>
+        </AbsoluteLayout>-->
+        <Image Source="pin_purple"/>
     </ContentPage.Content>
 </ContentPage>

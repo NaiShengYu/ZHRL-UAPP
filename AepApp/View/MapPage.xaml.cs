@@ -76,16 +76,18 @@ namespace AepApp.View
                 Points = new ObservableCollection<Coordinate>(coords),
                 Color = Color.Blue,
                 FillColor = Color.Red.MultiplyAlpha(0.7),
-                Width = 2
+                Width = 2,
+                Title = "多边形",               
             });
-
+        
             map.Circles.Add(new Circle
             {
                 Coordinate = map.Center,
                 Color = Color.Green,
                 FillColor = Color.Yellow.MultiplyAlpha(0.2),
                 Radius = 200,
-                Width = 2
+                Width = 2,
+                Title = "圆",
             });
 
             Task.Run(() =>
@@ -157,6 +159,10 @@ namespace AepApp.View
 
         void AddPin(Coordinate coord)
         {
+            //var img1 = XImage.FromResource("AepApp.Droid.voc.png");
+            //var img2 = XImage.FromFile("voc.png");
+            var img3 = XImage.FromBundle("voc");
+            //var img4= XImage.FromResource("AepApp.Droid.voc.png");
             Pin annotation = new Pin
             {
                 Title = coord,
@@ -164,9 +170,13 @@ namespace AepApp.View
                 Animate = true,
                 Draggable = true,
                 Enabled3D = true,
-                Image = XImage.FromStream(
-                    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("App1.Images.pin_purple.png")
-                )
+                Image = img3
+                //Image = XImage.FromStream(
+                //    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("App1.Images.pin_purple.png")
+                //)
+                //Image = XImage.FromResource(
+                //    "AepApp.Droid.voc.png"
+                //)
             };
             map.Pins.Add(annotation);
 
