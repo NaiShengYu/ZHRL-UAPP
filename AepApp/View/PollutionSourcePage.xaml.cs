@@ -22,7 +22,7 @@ namespace AepApp.View
             var enterModel = e.SelectedItem as EnterpriseModel;
             if (enterModel == null)
                 return;
-            Navigation.PushAsync(new MonitorPage(enterModel));
+            Navigation.PushAsync(new PollutionSourceInfoPage(enterModel));
             listView.SelectedItem = null;
         }
 
@@ -42,6 +42,13 @@ namespace AepApp.View
             InitializeComponent();
             this.Title = "污染源在线";
             ReqPollutionSiteData();
+            NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
+
+            ToolbarItems.Add(new ToolbarItem("", "map", () =>
+            {
+                Navigation.PushAsync(new MapPage());
+
+            }));
         }
 
 
