@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.LettersAndVisitsPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AepApp.View"
+             Title = "信访管理列表"
+             x:Class="AepApp.View.Monitor.LettersAndVisitsPage">
     <ContentPage.Content>
-              <StackLayout>
-            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" RowHeight="130" ItemAppearing="Handle_ItemAppearing">
+        <Grid>
+            <BoxView HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" BackgroundColor="#1d6eeb" />
+            <Label Text="{Binding name}" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" TextColor="White"
+                   VerticalTextAlignment="Center" Margin="10,0,0,0" FontSize="17"/>
+
+            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" RowHeight="130" ItemAppearing="Handle_ItemAppearing" Margin="0,45,0,0" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell >
-                        <StackLayout HorizontalOptions="Start">
-                                <Label Grid.Column="0" FontSize="17" Margin="15,10,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding TITLEName}"/>
-                                <Label Grid.Column="0" FontSize="17" Margin="15,0,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding ORDERDATEName}"/>
-                                <Label Grid.Column="0" FontSize="17" Margin="15,0,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding CLOSECASEDATEName}"/>
-                                <Label Grid.Column="0" FontSize="17" Margin="15,0,10,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding STATEDESCName}"/>
+                        <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                            <StackLayout HorizontalOptions="Start" Spacing="0" BackgroundColor="White">
+                                <Grid BackgroundColor="White" Margin="0,10,0,0">
+                                    <Label Text="信访标题" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Start" TextColor="Black" />
+                                    <Label  Text="{Binding TITLE}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill" VerticalOptions="Start"/>
+                                </Grid>
+                                <Grid BackgroundColor="White" >
+                                    <Label Text="投诉时间" Font="17" Margin="15,0,0,0" WidthRequest="100" TextColor="Black" />
+                                    <Label  Text="{Binding ORDERDATE, StringFormat='{0:yyyy-MM-dd}'}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill"/>
+                                </Grid>
+                                <Grid BackgroundColor="White" >
+                                    <Label Text="结束时间" Font="17" Margin="15,0,0,0" WidthRequest="100" TextColor="Black" />
+                                    <Label  Text="{Binding CLOSECASEDATE, StringFormat='{0:yyyy-MM-dd}'}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill"/>
+                                </Grid>
+                                <Grid BackgroundColor="White" Margin="0,0,0,10">
+                                    <Label Text="状态" Font="17" Margin="15,0,0,0" WidthRequest="100" TextColor="Black" />
+                                    <Label  Text="{Binding STATEDESC}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill"/>
+                                </Grid>
                             </StackLayout>
-                        </ViewCell>
+                        </local:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

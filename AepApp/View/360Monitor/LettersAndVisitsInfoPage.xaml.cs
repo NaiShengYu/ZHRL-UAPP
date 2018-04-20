@@ -15,11 +15,20 @@ namespace AepApp.View.Monitor
 {
     public partial class LettersAndVisitsInfoPage : ContentPage
     {
+        private EnterpriseModel _ent;
+
+        public EnterpriseModel Enterprise
+        {
+            get { return _ent; }
+            set { _ent = value; }
+        }
+
         LettersAndVisits _lettersAndVisits = null;
-        public LettersAndVisitsInfoPage(LettersAndVisits LAndV)
+        public LettersAndVisitsInfoPage(LettersAndVisits LAndV, EnterpriseModel ent)
         {
             InitializeComponent();
-
+            _ent = ent;
+            this.BindingContext = Enterprise;
             NavigationPage.SetBackButtonTitle(this, "");
             _lettersAndVisits = LAndV;
             this.Title = _lettersAndVisits.TITLE;
@@ -34,7 +43,7 @@ namespace AepApp.View.Monitor
             {
                 try
                 {
-                    this.BindingContext = currentModel;
+                    sv.BindingContext = currentModel;
 
                 }
                 catch (Exception ex)
@@ -84,7 +93,7 @@ namespace AepApp.View.Monitor
             public string ID { get; set; }
             public string SERIALNO { get; set; }
             public string TITLE { get; set; }
-            public string ORDERDATE { get; set; }
+            public DateTime ORDERDATE { get; set; }
             public string SOURCEID { get; set; }
             public string REASONID { get; set; }
             public string IMPORTANCEID { get; set; }
@@ -98,8 +107,8 @@ namespace AepApp.View.Monitor
             public string CLOSECASESTATE { get; set; }
             public string EDITORUSERID { get; set; }
             public string CREATEDATETIME { get; set; }
-            public string UPDATEDATETIME { get; set; }
-            public string ENDLINEDATE { get; set; }
+            public DateTime UPDATEDATETIME { get; set; }
+            public DateTime ENDLINEDATE { get; set; }
             public string PROCESSUSERID { get; set; }
             public string PROCESSDATETIME { get; set; }
             public string DEPARTMENTID { get; set; }

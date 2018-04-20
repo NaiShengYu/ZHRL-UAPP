@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.ElectroniPcunishmentPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.Monitor.ElectroniPcunishmentPage"
+              xmlns:local="clr-namespace:AepApp.View"
+            Title = "电子处罚列表">
     <ContentPage.Content>
-           <StackLayout>
-            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" ItemAppearing="Handle_ItemAppearing" HasUnevenRows="true">
+        <Grid>
+            <BoxView HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" BackgroundColor="#1d6eeb" />
+            <Label Text="{Binding name}" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" TextColor="White"
+                   VerticalTextAlignment="Center" Margin="10,0,0,0" FontSize="17"/>
+            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" ItemAppearing="Handle_ItemAppearing" HasUnevenRows="true" Margin="0,45,0,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <Grid>
+                        <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                            <Grid Margin="10,0,10,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="100" />
                                 </Grid.ColumnDefinitions>
-                                <StackLayout Grid.Column="0">
-                                    <Label FontSize="17" Margin="10,10,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding name}" />
-                                    <Label FontSize="17" Margin="10,0,10,5" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding content}" />
-                                </StackLayout>
-                                <BoxView Grid.Column="1" Margin="10,45,10,45"   BackgroundColor="Blue" HeightRequest="40"/>
-                                <Label Grid.Column="1" Margin="5,10,10,10" TextColor="White" Text="{Binding state}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HeightRequest="40">
+                                <Label FontSize="17" TextColor="Black" Margin="0,10,0,0" VerticalOptions="Start" Text="{Binding title}" LineBreakMode="NoWrap" />
+                                <Label FontSize="15" Grid.ColumnSpan="2" Margin="0,40,0,10" HorizontalTextAlignment="Start" Text="{Binding content}" />
+                                <BoxView Grid.Column="1" Margin="0,10,0,0" VerticalOptions="Start" HeightRequest="25"  BackgroundColor="#2d7efb" />
+                                <Label Grid.Column="1" Margin="0,10,0,0" VerticalOptions="Start" HeightRequest="25" TextColor="White" Text="{Binding state}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
                                 </Label>
                             </Grid>
-                        </ViewCell>
+                        </local:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

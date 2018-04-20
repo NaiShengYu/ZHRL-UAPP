@@ -7,7 +7,7 @@ namespace AepApp.Models
         public string ID { get; set; }
         public string FILENAME { get; set; }
         public string SUFFIX { get; set; }
-        public string UPDATEDATE { get; set; }
+        public DateTime UPDATEDATE { get; set; }
         public float MODULECODE { get; set; }
         public string FILESAVENAME { get; set; }
         public string UPDATEUSER { get; set; }
@@ -43,17 +43,17 @@ namespace AepApp.Models
 
         }
 
-        public string UPDATEDATEName{
+        //public string UPDATEDATEName{
 
-            get{
-                if (UPDATEDATE.Length > 0)
-                    return UPDATEDATE.Substring(0, 10);
-                else
-                    return "";
-            }
-            set{}
+        //    get{
+        //        if (UPDATEDATE.Length > 0)
+        //            return UPDATEDATE.Substring(0, 10);
+        //        else
+        //            return "";
+        //    }
+        //    set{}
 
-        }
+        //}
 
 
     }

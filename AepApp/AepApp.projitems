@@ -35,6 +35,8 @@
       <DependentUpon>AirPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\CurvedCornersLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\ExtendedViewCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
       <SubType>Code</SubType>

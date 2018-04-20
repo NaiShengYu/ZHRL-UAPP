@@ -14,16 +14,21 @@ namespace AepApp.View.Monitor
 {
     public partial class DailyRegulationPage : ContentPage
     {
+        private EnterpriseModel _ent;
 
+        public EnterpriseModel Enterprise
+        {
+            get { return _ent; }
+            set { _ent = value; }
+        }
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             var selectItem = e.SelectedItem as DailyRegulation;
             if (selectItem == null)
                 return;
-            Navigation.PushAsync(new DailyRegulationInfoPage(selectItem));
+            Navigation.PushAsync(new DailyRegulationInfoPage(selectItem, _ent));
             listV.SelectedItem = null;
-
         }
 
 
@@ -43,19 +48,16 @@ namespace AepApp.View.Monitor
 
         }
 
-        EnterpriseModel _preiseModel = null;//企业模型
         int _page = 1;//当前页数
         bool _haveMore = true;//判断是否有更多的数据
         ObservableCollection<DailyRegulation> dataList = new ObservableCollection<DailyRegulation>();
 
-        public DailyRegulationPage(EnterpriseModel enterpriseModel)
+        public DailyRegulationPage(EnterpriseModel ent)
         {
             InitializeComponent();
-
-
+            _ent = ent;
+            this.BindingContext = Enterprise;
             NavigationPage.SetBackButtonTitle(this, "");
-            _preiseModel = enterpriseModel;
-            this.Title = "日常监管列表";
 
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender, e) => {
@@ -73,7 +75,7 @@ namespace AepApp.View.Monitor
         {
             try
             {
-                string url = App.BaseUrl + "/api/AppEnterprise/GetFirmSuperviseList?id=" + _preiseModel.id + "&pageindx=" + _page + "&pageSize=10";
+                string url = App.BaseUrl + "/api/AppEnterprise/GetFirmSuperviseList?id=" + _ent.id + "&pageindx=" + _page + "&pageSize=10";
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);

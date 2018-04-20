@@ -20,7 +20,8 @@ namespace AepApp.View.Monitor
             var selectItem = e.SelectedItem as ProjectApproval;
             if (selectItem == null)
                 return;
-            Navigation.PushAsync(new ProjectApprovalInfoPage(selectItem));
+            if (selectItem.FileData.Count == 0) return;
+            Navigation.PushAsync(new ProjectApprovalInfoPage(selectItem, _ent));
             listV.SelectedItem = null;
 
         }
@@ -43,7 +44,14 @@ namespace AepApp.View.Monitor
 
         }
 
-        EnterpriseModel _preiseModel = null;//企业模型
+        private EnterpriseModel _ent;
+
+        public EnterpriseModel Enterprise
+        {
+            get { return _ent; }
+            set { _ent = value; }
+        }
+
         int _page = 1;//当前页数
         bool _haveMore = true;//判断是否有更多的数据
         ObservableCollection<ProjectApproval> dataList = new ObservableCollection<ProjectApproval>();
@@ -54,8 +62,8 @@ namespace AepApp.View.Monitor
 
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-            _preiseModel = enterpriseModel;
-            this.Title = "项目审批列表";
+            _ent = enterpriseModel;
+            this.BindingContext = Enterprise;
 
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender, e) => {
@@ -74,7 +82,7 @@ namespace AepApp.View.Monitor
         {
             try
             {
-                string url = App.BaseUrl + "/api/AppEnterprise/GetApprovalList?id=" + _preiseModel.id + "&pageindx=" + _page + "&pageSize=10";
+                string url = App.BaseUrl + "/api/AppEnterprise/GetApprovalList?id=" + _ent.id + "&pageindx=" + _page + "&pageSize=10";
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);

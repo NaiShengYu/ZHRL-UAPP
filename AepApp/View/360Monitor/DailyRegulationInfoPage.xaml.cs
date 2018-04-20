@@ -14,12 +14,20 @@ namespace AepApp.View.Monitor
 {
     public partial class DailyRegulationInfoPage : ContentPage
     {
-        public DailyRegulationInfoPage(DailyRegulation daily)
+        private EnterpriseModel _ent;
+
+        public EnterpriseModel Enterprise
+        {
+            get { return _ent; }
+            set { _ent = value; }
+        }
+
+        public DailyRegulationInfoPage(DailyRegulation daily, EnterpriseModel ent)
         {
             InitializeComponent();
-
-            this.BindingContext = daily;
-
+            _ent = ent;
+            this.BindingContext = Enterprise;
+            sv.BindingContext = daily;
         }
     }
 }

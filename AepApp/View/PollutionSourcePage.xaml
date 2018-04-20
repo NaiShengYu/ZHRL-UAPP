@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:local="clr-namespace:AepApp.View"
              x:Class="AepApp.View.PollutionSourcePage">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
@@ -9,10 +10,12 @@
             <ListView x:Name="listView" RowHeight="60" ItemSelected="Handle_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center" Spacing="0">
-                                <Label Margin="20,0,20,0" Text="{Binding name}" VerticalTextAlignment="Center" />
-                                <Label Margin="0,0,15,0" Text="{Binding count}" HorizontalOptions="EndAndExpand" BackgroundColor="Red" TextColor="White" WidthRequest="40" HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Font="17" IsVisible="true">
+                        <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                            <Grid HorizontalOptions="Fill" VerticalOptions="Center">
+                                <Label Margin="20,0,0,0" FontSize="17" TextColor="Black" Text="{Binding name}" VerticalOptions="Center"/>
+                                <local:CurvedCornersLabel Text="{Binding count}" Margin="0,0,20,0" HorizontalOptions="End"
+                                                          CurvedBackgroundColor="#c00000" TextColor="White" MinimumWidthRequest="26" HeightRequest="26" CurvedCornerRadius="13"
+                                                          VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Font="17" IsVisible="true" VerticalOptions="Center">
                                     <Label.Triggers>
                                           <DataTrigger TargetType="Label"
                                               Binding="{Binding count}"
@@ -20,10 +23,9 @@
                                               <Setter Property="IsVisible" Value="false" />
                                           </DataTrigger>
                                       </Label.Triggers>
-                                </Label>
-                            </StackLayout>
-                        </ViewCell>
-
+                                </local:CurvedCornersLabel>
+                            </Grid>
+                        </local:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

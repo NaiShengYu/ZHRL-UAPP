@@ -20,7 +20,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>D:\aep\AepApp\AepApp\\Droid\azura.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>C:\Users\bchan.AZURA\Documents\azura.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>123456</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>azura</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>123456</AndroidSigningKeyPass>
@@ -191,6 +191,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurvedCornersLabelRenderer.cs" />
+    <Compile Include="ExtendedViewCellRenderer.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="OxyExData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -249,6 +251,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="voc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\tick_blue.png" />
   </ItemGroup>
   <Import Project="..\AepApp\AepApp.projitems" Label="Shared" Condition="Exists('..\AepApp\AepApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
