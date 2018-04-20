@@ -254,7 +254,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\dot.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="air.png" />
+    <EmbeddedResource Include="pin.png" />
   </ItemGroup>
   <Import Project="..\AepApp\AepApp.projitems" Label="Shared" Condition="Exists('..\AepApp\AepApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

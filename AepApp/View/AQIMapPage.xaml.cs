@@ -67,10 +67,10 @@ namespace AepApp.View
         {
             //XImage im =  XImage.FromResource("AepApp.Droid.Resources.dot.png");
             //XImage im1 =  XImage.FromBundle("AepApp.Droid.Resources.dot.png");
-            //XImage im2=  XImage.FromFile("AepApp.Droid.Resources.dot.png");
-            XImage im4 = XImage.FromStream(
-            typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.voc.png")
-            );
+            //XImage im2=  XImage.FromFile("AepApp.Droid.Resources.dot.png");        
+            //XImage im6 = XImage.FromStream(
+            //typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.dot.png")
+            //);
             int count = pinInfo.Count;
             for (int i = 0; i < count; i++) {
                 Pin annotation = new Pin
@@ -84,8 +84,9 @@ namespace AepApp.View
                     //Image = XImage.FromStream(
                     //typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.voc.png")
                     //)
-                    Image = im4
-
+                    Image = XImage.FromStream(
+                    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin.png")
+                    )
                 };
                 map.Pins.Add(annotation);
                 
@@ -364,7 +365,7 @@ namespace AepApp.View
                 int count = map.Pins.Count;
                 for (int i = 0; i <count; i++) {
                     if (map.Pins[i].Tag.Equals(factor.stationId)) {
-                        map.Pins[i].Title = details[0].val + "";
+                        map.Pins[i].Title = details[0].val + "";                       
                     }
                 }
             };
