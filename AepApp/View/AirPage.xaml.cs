@@ -23,6 +23,7 @@ namespace AepApp.View
         private string result;
         ObservableCollection<AirPageModels.AirInfo> dataList = new ObservableCollection<AirPageModels.AirInfo>();
         private List<AirPageModels.AirInfo> airPages = new List<AirPageModels.AirInfo>();
+        private List<AirPageModels.AirInfo> sendPages = new List<AirPageModels.AirInfo>(); //将有数据的信息传入地图界面使用
 
         public AirPage()
         {
@@ -32,7 +33,7 @@ namespace AepApp.View
             ToolbarItems.Add(new ToolbarItem("", "map.png", () =>
             {
                 //Navigation.PushAsync(new MapPage());
-                Navigation.PushAsync(new TestOxyPage());
+                Navigation.PushAsync(new AQIMapPage(sendPages));
             }));
             //请求网络数据
             CrossHud.Current.Show("加载中...");
@@ -51,6 +52,7 @@ namespace AepApp.View
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
                 airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(result);
+
                 SortAQI();                
                 listView.ItemsSource = dataList;
                 CrossHud.Current.Dismiss();
@@ -61,10 +63,14 @@ namespace AepApp.View
         private void SortAQI()
         {
             airPages.Sort((a, b) => { if (a.info == null) return 1; else if (b.info == null) return -1; else return -a.info.AQI.CompareTo(b.info.AQI); });
+            sendPages.Clear();
             for (int i = 0; i < airPages.Count; i++)
             {
-                airPages[i].Rank = (i + 1) + "";
-
+                airPages[i].Rank = (i + 1) + "";               
+                if (airPages[i].info != null) {
+                    AirPageModels.AirInfo info = airPages[i];
+                    sendPages.Add(info);
+                }
             }
             getCurrentData("");
         }

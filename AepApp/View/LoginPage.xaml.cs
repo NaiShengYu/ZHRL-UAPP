@@ -117,7 +117,7 @@ namespace AepApp.View
                         App.token = haveToken.token;
                         CrossHud.Current.Dismiss();
                         Navigation.PushAsync(new Platform());
-                        // Navigation.PushAsync(new AirPage());
+                        Navigation.PushAsync(new AirPage());
                         //Navigation.PushAsync(new TestOxyPage());
                     }
 
@@ -131,7 +131,7 @@ namespace AepApp.View
             //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
             Navigation.PushAsync(new SelectSitePage());
         }
-
+        
         protected override async void OnAppearing()
         {
             //获取数据库的数据

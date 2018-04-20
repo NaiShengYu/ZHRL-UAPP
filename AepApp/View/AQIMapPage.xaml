@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:Xamarin.Forms.BaiduMaps;assembly=Xamarin.Forms.BaiduMaps"
+             x:Class="AepApp.View.AQIMapPage">
+    <ContentPage.Content>
+        <Grid>
+            <m:Map x:Name="map"></m:Map>
+            <Grid VerticalOptions="EndAndExpand" BackgroundColor="#4169E1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" BackgroundColor="Gray" TextColor="White" Text="AQI" Clicked="AQI" x:Name="aqi"/>
+                <Button Grid.Column="1" BackgroundColor="#4169E1" TextColor="White" Text="PM10" Clicked="PM10" x:Name="pm10"/>
+                <Button Grid.Column="2" BackgroundColor="#4169E1" TextColor="White" Text="PM2.5" Clicked="PM2_5" x:Name="pm25"/>
+                <Button Grid.Column="3" BackgroundColor="#4169E1" TextColor="White" Text="O3" Clicked="O3" x:Name="o3"/>
+                <Button Grid.Column="4" BackgroundColor="#4169E1" TextColor="White" Text="CO" Clicked="CO" x:Name="co"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

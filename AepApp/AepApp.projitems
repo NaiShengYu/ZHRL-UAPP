@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddSitePageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirDetailModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirPageModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AQIMapPageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LoginPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OxyDataPageModle.cs" />
@@ -33,6 +34,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\AirPage.xaml.cs">
       <DependentUpon>AirPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\AQIMapPage.xaml.cs">
+      <DependentUpon>AQIMapPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\LoginPage.xaml.cs">
@@ -218,6 +223,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Images\pin_purple.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\AQIMapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

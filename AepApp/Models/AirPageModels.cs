@@ -12,8 +12,8 @@ namespace AepApp.Models
         public class AirInfo {
             public string StationId { get; set; }
             public string StationName { get; set; }
-            public string StationLng { get; set; }
-            public string StationLat { get; set; }
+            public double StationLng { get; set; }
+            public double StationLat { get; set; }
             public Pollutant info { get; set; }
             public string Rank { get; set; }
             //public string info { get; set; }

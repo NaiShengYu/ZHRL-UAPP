@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Reflection;
+using System.IO;
 
 
 #if __MOBILE__
@@ -65,44 +66,44 @@ namespace AepApp.View
             InitLocationService();
             InitEvents();
 
-            Coordinate[] coords = {
-                new Coordinate(40.044, 116.391),
-                new Coordinate(39.861, 116.284),
-                new Coordinate(39.861, 116.468)
-            };
+            //Coordinate[] coords = {
+            //    new Coordinate(40.044, 116.391),
+            //    new Coordinate(39.861, 116.284),
+            //    new Coordinate(39.861, 116.468)
+            //};
 
-            map.Polygons.Add(new Polygon
-            {
-                Points = new ObservableCollection<Coordinate>(coords),
-                Color = Color.Blue,
-                FillColor = Color.Red.MultiplyAlpha(0.7),
-                Width = 2,
-                Title = "多边形",               
-            });
+            //map.Polygons.Add(new Polygon
+            //{
+            //    Points = new ObservableCollection<Coordinate>(coords),
+            //    Color = Color.Blue,
+            //    FillColor = Color.Red.MultiplyAlpha(0.7),
+            //    Width = 2,
+            //    Title = "多边形",               
+            //});
         
-            map.Circles.Add(new Circle
-            {
-                Coordinate = map.Center,
-                Color = Color.Green,
-                FillColor = Color.Yellow.MultiplyAlpha(0.2),
-                Radius = 200,
-                Width = 2,
-                Title = "圆",
-            });
+            //map.Circles.Add(new Circle
+            //{
+            //    Coordinate = map.Center,
+            //    Color = Color.Green,
+            //    FillColor = Color.Yellow.MultiplyAlpha(0.2),
+            //    Radius = 200,
+            //    Width = 2,
+            //    Title = "圆",
+            //});
 
-            Task.Run(() =>
-            {
-                for (; ; )
-                {
-                    Task.Delay(1000).Wait();
+            //Task.Run(() =>
+            //{
+            //    for (; ; )
+            //    {
+            //        Task.Delay(1000).Wait();
 
-                    var p = map.Polygons[0].Points[0];
-                    p = new Coordinate(p.Latitude + 0.002, p.Longitude);
-                    map.Polygons[0].Points[0] = p;
+            //        var p = map.Polygons[0].Points[0];
+            //        p = new Coordinate(p.Latitude + 0.002, p.Longitude);
+            //        map.Polygons[0].Points[0] = p;
 
-                    map.Circles[0].Radius += 100;
-                }
-            });
+            //        map.Circles[0].Radius += 100;
+            //    }
+            //});
 
             // 坐标转换
             IProjection proj = map.Projection;
@@ -160,26 +161,32 @@ namespace AepApp.View
         void AddPin(Coordinate coord)
         {
             //var img1 = XImage.FromResource("AepApp.Droid.voc.png");
-            //var img2 = XImage.FromFile("voc.png");
-            var img3 = XImage.FromBundle("voc");
+            //XImage img2 = XImage.FromFile("voc.png");         
+            //var img3 = XImage.FromBundle("voc");
             //var img4= XImage.FromResource("AepApp.Droid.voc.png");
+            //Stream aaaaa = typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream(this.GetType(),"AepApp.Images.pin_purple.png");
+            //Stream bbbb = typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin_purple.png");
+            //Stream bbbb = typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.voc.png");
+            // FileStream ccc = typeof(MapPage).GetTypeInfo().Assembly.GetFile("voc.png");
             Pin annotation = new Pin
             {
                 Title = coord,
                 Coordinate = coord,
                 Animate = true,
-                Draggable = true,
+                Draggable = false,
                 Enabled3D = true,
-                Image = img3
-                //Image = XImage.FromStream(
-                //    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("App1.Images.pin_purple.png")
-                //)
+                //Image = img2
+                Image = XImage.FromStream(
+                    //typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("App1.Images.pin_purple.png")
+                   // bbbb
+                    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.voc.png")
+                )
                 //Image = XImage.FromResource(
                 //    "AepApp.Droid.voc.png"
                 //)
             };
             map.Pins.Add(annotation);
-
+            
             annotation.Drag += (o, e) =>
             {
                 Pin self = o as Pin;
@@ -190,14 +197,16 @@ namespace AepApp.View
                 {
                     map.Polylines[0].Points[i] = self.Coordinate;
                 }
-            };
-
+            };            
             annotation.Clicked += (_, e) =>
             {
                 Console.WriteLine("clicked");
-                ((Pin)_).Image = XImage.FromStream(
-                    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("Sample.Images.10660.png")
-                );
+                Pin self = _ as Pin;
+                DependencyService.Get<Sample.IToast>().ShortAlert("......");
+                //self.Title = "sfcdef";
+                //((Pin)_).Image = XImage.FromStream(
+                //    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("Sample.Images.10660.png")
+                //);
             };
 
             if (0 == map.Polylines.Count && map.Pins.Count > 1)
