@@ -186,6 +186,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="CurvedCornersLabelRenderer.cs" />
+    <Compile Include="ExtendedViewCellRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Toast_Ios.cs" />
     <Compile Include="FileHelper.cs" />
@@ -238,6 +240,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tick_blue.png" />
   </ItemGroup>
   <Import Project="..\AepApp\AepApp.projitems" Label="Shared" Condition="Exists('..\AepApp\AepApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

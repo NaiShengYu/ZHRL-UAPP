@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.ProjectApprovalInfoPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:AepApp.View"
+             x:Class="AepApp.View.Monitor.ProjectApprovalInfoPage">
     <ContentPage.Content>
-        <StackLayout>
-            <ListView x:Name="listV" RowHeight="65" >
+        <Grid>
+            <BoxView HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" BackgroundColor="#1d6eeb" />
+            <Label Text="{Binding name}" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" TextColor="White"
+                   VerticalTextAlignment="Center" Margin="10,0,0,0" FontSize="17"/>
+
+            <ListView x:Name="listV" RowHeight="65" Margin="0,45,0,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                                <StackLayout Grid.Column="0" HorizontalOptions="Fill">
-                                    <Label FontSize="17" Margin="10,10,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding modulName}" />
-                                    <Label FontSize="17" Margin="10,0,10,5" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding UPDATEDATE}" />
+                        <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                            <StackLayout Margin="10,0,10,0" VerticalOptions="Center">
+                                <Label FontSize="17" TextColor="Black" Text="{Binding modulName}" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15" Text="{Binding FULLNAME}" />
+                                    <Label FontSize="15" Text=", " />
+                                    <Label FontSize="15" Text="{Binding UPDATEDATE, StringFormat='{0:yyyy-MM-dd}'}}" />
                                 </StackLayout>
-                        </ViewCell>
+                            </StackLayout>
+                        </local:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
-        
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.MonitorPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Monitor.MonitorPage"
+              xmlns:local="clr-namespace:AepApp.View"
+             Title="360监控">
     <ContentPage.Content>
-        
-          <StackLayout>
-            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" RowHeight="50">
+        <Grid>
+            <BoxView HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" BackgroundColor="#1d6eeb" />
+            <Label Text="{Binding name}" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" TextColor="White"
+                   VerticalTextAlignment="Center" Margin="10,0,0,0" FontSize="17"/>
+            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" RowHeight="50" Margin="0,45,0,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="40" />
-                                </Grid.ColumnDefinitions>
-
-                                <Label Grid.Column="0" FontSize="17" Margin="10,10,10,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding title}"/>
-                               <Image Grid.Column="1" />
-<!--                                <Label Grid.Column="1"  Margin="5,10,10,10" TextColor="White" Text="通过"/>-->
+                        <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                            <Grid VerticalOptions="Center">
+                                <Label FontSize="17"  TextColor="Black" Margin="10,10,10,10" Text="{Binding}"/>
+                                <Image Source="right.png" HorizontalOptions="End" Margin="0,0,10,0" />
                             </Grid>
-                        </ViewCell>
+                        </local:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
-
-        
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

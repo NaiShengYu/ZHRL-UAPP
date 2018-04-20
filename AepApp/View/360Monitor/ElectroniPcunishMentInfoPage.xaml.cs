@@ -16,18 +16,23 @@ namespace AepApp.View.Monitor
 {
     public partial class ElectroniPcunishMentInfoPage : ContentPage
     {
-        public ElectroniPcunishMentInfoPage(ElectroniPcunishMentList electroniPcunish)
+        private EnterpriseModel _ent;
+
+        public EnterpriseModel Enterprise
+        {
+            get { return _ent; }
+            set { _ent = value; }
+        }
+
+        public ElectroniPcunishMentInfoPage(ElectroniPcunishMentList electroniPcunish, EnterpriseModel ent)
         {
             InitializeComponent();
-
+            _ent = ent;
+            this.BindingContext = Enterprise;
             NavigationPage.SetBackButtonTitle(this, "");
             this.Title = electroniPcunish.title;
 
-
             listV.ItemsSource = electroniPcunish.items;
-
-
-
         }
     }
 }

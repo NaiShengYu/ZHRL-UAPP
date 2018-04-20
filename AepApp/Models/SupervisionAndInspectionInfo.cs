@@ -3,7 +3,6 @@ namespace AepApp.Models
 {
     public class SupervisionAndInspectionInfo
     {
-
         public string ID { get; set; }
         public string TEMPLATEID { get; set; }
         public string VALUE { get; set; }
@@ -15,7 +14,7 @@ namespace AepApp.Models
         {
             get
             {
-                return VALUE + "(" + UNIT + ")";
+                return VALUE + " " + UNIT;
             }
 
             set { }

@@ -8,7 +8,7 @@ namespace AepApp.Models
     public class ProjectApproval
     {
         public int id { get; set; }
-        public string ENV_CREATE_TIME { get; set; }
+        public DateTime ENV_CREATE_TIME { get; set; }
         public string PROJECT_NAME { get; set; }
         public int ENV_PROCESSING_STAGE { get; set; }
         public int COM_PROCESSING_STAGE { get; set; }
