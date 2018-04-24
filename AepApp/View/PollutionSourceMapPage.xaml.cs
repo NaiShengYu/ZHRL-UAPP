@@ -1,30 +1,34 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
+using Plugin.Hud;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AepApp.View.Monitor;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 using System.Reflection;
 using System.IO;
-
-
+using System.Diagnostics;
 #if __MOBILE__
 using Xamarin.Forms.BaiduMaps;
 #endif
-
-
 namespace AepApp.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MapPage : ContentPage
-	{
-		public MapPage ()
-		{
-			InitializeComponent ();
-            this.Title = "AQI分布情况";
+    public partial class PollutionSourceMapPage : ContentPage
+    {
+        public PollutionSourceMapPage(ObservableCollection<EnterpriseModel> enterList)
+        {
+            InitializeComponent();
+            this.Title = "污染源在线";
+            //ReqPollutionSiteData();
+            NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
             IMapManager mapManager = DependencyService.Get<IMapManager>();
             Console.WriteLine(mapManager.CoordinateType);
@@ -58,8 +62,9 @@ namespace AepApp.View
                 new Coordinate(41, 117)
             ));//139599.429229778 in iOS, 139689.085961837 in Android
 
-        }
 
+
+        }
         public void MapLoaded(object sender, EventArgs x)
         {
             map.ShowScaleBar = true;
@@ -80,7 +85,7 @@ namespace AepApp.View
             //    Width = 2,
             //    Title = "多边形",               
             //});
-        
+
             //map.Circles.Add(new Circle
             //{
             //    Coordinate = map.Center,
@@ -176,21 +181,21 @@ namespace AepApp.View
                 Draggable = false,
                 Enabled3D = true,
                 //Image = img2
-
+           
+                              
                 //Image = XImage.FromResource(
                 //    "AepApp.Droid.voc.png"
                 //)
             };
             if (Device.RuntimePlatform == Device.iOS)
-                annotation.Image = XImage.FromStream(typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.iOS.pin.png"));
+                annotation.Image = XImage.FromResource("pin_red.png");
             else
                  annotation.Image = XImage.FromStream(
-                    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin.png")
+                    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.voc.png")
             );
             
-
             map.Pins.Add(annotation);
-            
+
             annotation.Drag += (o, e) =>
             {
                 Pin self = o as Pin;
@@ -201,7 +206,7 @@ namespace AepApp.View
                 {
                     map.Polylines[0].Points[i] = self.Coordinate;
                 }
-            };            
+            };
             annotation.Clicked += (_, e) =>
             {
                 Console.WriteLine("clicked");
@@ -231,5 +236,7 @@ namespace AepApp.View
                 map.Polylines[0].Points.Add(annotation.Coordinate);
             }
         }
+
+
     }
 }

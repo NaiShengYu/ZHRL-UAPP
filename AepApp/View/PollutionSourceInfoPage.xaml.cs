@@ -60,21 +60,32 @@ namespace AepApp.View
         {
             var but = sender as Button;
             var tup = _uidatadict[but];
-            var port=tup.Item1;
-            var factor = tup.Item2;
-            _currentPort = port;
-            _currentFactor = factor;
+            _currentPort=tup.Item1;
+            _currentFactor = tup.Item2;
+            _currentStack.BackgroundColor = Color.White;
+            _currentStack = tup.Item3;
+            _currentStack.BackgroundColor = Color.FromRgb(242, 242, 242);
             haveHistoryData();
 
         }
 
         EnterpriseModel _enterprise = null;
-        ObservableCollection<FactorForDateData> _chartData = null;//因子24小时、30天数据
+        //因子24小时、30天数据
+        ObservableCollection<FactorForDateData> _chartData = null;
         ObservableCollection<ProjectApprovalInfoDischargePort> group = new ObservableCollection<ProjectApprovalInfoDischargePort>();
         bool _is24Select = true;
         bool _is30Select = false;
-        ProjectApprovalInfoDischargePort _currentPort = null;//当前排口
-        ProjectApprovalInfoFactor _currentFactor = null;//当前因子
+        //当前排口
+        ProjectApprovalInfoDischargePort _currentPort = null;
+        //当前因子
+        ProjectApprovalInfoFactor _currentFactor = null;
+        //当前的stakeLayout,用于改变颜色
+        StackLayout _currentStack = null;
+
+        //用于存放按钮和按钮对应的数据，通过他来修改按钮背景颜色，和获取站点以及站点因子
+        Dictionary<Button, Tuple<ProjectApprovalInfoDischargePort, ProjectApprovalInfoFactor, StackLayout>> _uidatadict
+      = new Dictionary<Button, Tuple<ProjectApprovalInfoDischargePort, ProjectApprovalInfoFactor, StackLayout>>();
+
         public PollutionSourceInfoPage(EnterpriseModel preiseModel)
         {
             InitializeComponent();
@@ -145,9 +156,7 @@ namespace AepApp.View
 
         }
 
-        Dictionary<Button, Tuple<ProjectApprovalInfoDischargePort, ProjectApprovalInfoFactor>> _uidatadict 
-        = new Dictionary<Button, Tuple<ProjectApprovalInfoDischargePort,ProjectApprovalInfoFactor>>();
-
+      
         //根据因子个数来增加
         void CreatView(){
             ScrollView scr = new ScrollView(){
@@ -185,6 +194,8 @@ namespace AepApp.View
                     if(i==0 && j ==0){
                         _currentPort = port;
                         _currentFactor = factor;
+                        stack.BackgroundColor = Color.FromRgb(242, 242, 242);
+                        _currentStack = stack;
                         haveHistoryData();
                     }
 
@@ -193,7 +204,6 @@ namespace AepApp.View
                     //参数名称按钮
                     Button infobut = new Button
                     {
-                        BackgroundColor = Color.White,
                         Text = "   " + factor.name,
                         Font = Font.SystemFontOfSize(17.0),
                         HeightRequest = 50,
@@ -224,7 +234,7 @@ namespace AepApp.View
                         BindingContext = factor,
                     };
                     backBut.Clicked += selectFactor;
-                    _uidatadict.Add(backBut, new Tuple<ProjectApprovalInfoDischargePort, ProjectApprovalInfoFactor>(port,factor));
+                    _uidatadict.Add(backBut, new Tuple<ProjectApprovalInfoDischargePort, ProjectApprovalInfoFactor,StackLayout>(port,factor,stack));
 
                     G.Children.Add(backBut);
                     layout.Children.Add(G);
@@ -237,6 +247,10 @@ namespace AepApp.View
         //处理数据
         void ProcessingData()
         {
+            //防止为空的时候崩溃
+            if (_chartData == null)
+                return;
+            
             var plotModel1 = new PlotModel();
             var lineSeries = new LineSeries();
             lineSeries.Background = OxyColor.FromRgb(200, 200, 200);
@@ -270,6 +284,10 @@ namespace AepApp.View
                 Position = AxisPosition.Left,//Y轴的位置
                 ExtraGridlineStyle = LineStyle.Dash,//
             };
+
+            //设置Y轴最大最小值
+            float min = float.MaxValue;
+            float max = float.MinValue;
             //获取所有点
             for (int i = 0; i < num; i++)
             {
@@ -282,8 +300,14 @@ namespace AepApp.View
                     dt = DateTime.ParseExact(value, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
                 }
                 double abc = DateTimeAxis.ToDouble(dt);
-                lineSeries.Points.Add(new DataPoint(abc, para.value));
+                    lineSeries.Points.Add(new DataPoint(abc, para.value.Value));
+
+                    min = Math.Min(para.value.Value, min);//设置Y轴最小值
+                    max = Math.Max(para.value.Value, max);//设置Y轴最大值
+
             }
+            ylx.Minimum = min - (max - min) * 0.05;
+            ylx.Maximum = max + (max - min) * 0.05;
 
             plotModel1.Axes.Add(dtx); //添加时间轴（X轴）         
             plotModel1.Axes.Add(ylx); //添加Y轴

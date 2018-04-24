@@ -116,6 +116,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApprovalInfoDischargePort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApprovalInfoFactor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\FactorForDateData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\PollutionSourceMapPage.xaml.cs">
+      <DependentUpon>PollutionSourceMapPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -172,6 +175,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\PollutionSourceInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\PollutionSourceMapPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

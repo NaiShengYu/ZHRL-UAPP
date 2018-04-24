@@ -26,17 +26,16 @@ namespace AepApp.View
             listView.SelectedItem = null;
         }
 
+        //搜索框内容变化监控
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            var search = sender as SearchBar;
-            Console.WriteLine(e.NewTextValue);
             getCurrentData(e.NewTextValue);
-
         }
 
         private string result;
         resutlDic res = null;
         ObservableCollection<EnterpriseModel> dataList = new ObservableCollection<EnterpriseModel>();
+       
         public PollutionSourcePage()
         {
             InitializeComponent();
@@ -46,11 +45,10 @@ namespace AepApp.View
 
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
-                Navigation.PushAsync(new MapPage());
+                Navigation.PushAsync(new PollutionSourceMapPage(dataList));
 
             }));
         }
-
 
         private void ReqPollutionSiteData()
         {
