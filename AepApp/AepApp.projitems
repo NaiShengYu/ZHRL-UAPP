@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApprovalInfoDischargePort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApprovalInfoFactor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\FactorForDateData.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />

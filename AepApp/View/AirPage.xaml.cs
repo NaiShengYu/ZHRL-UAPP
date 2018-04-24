@@ -51,10 +51,15 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(result);
 
-                SortAQI();                
-                listView.ItemsSource = dataList;
+                try{
+                    airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(result);
+                    SortAQI();
+                    listView.ItemsSource = dataList;
+                }catch{
+                    
+                }
+              
                 CrossHud.Current.Dismiss();
             };
             wrk.RunWorkerAsync();

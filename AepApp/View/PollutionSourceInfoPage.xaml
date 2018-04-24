@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.PollutionSourceInfoPage" xmlns:chart="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
     <ContentPage.Content>
-        <Grid>
+        <Grid x:Name="GridName">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
-                <RowDefinition Height="220" />
+                <RowDefinition Height="240" />
             </Grid.RowDefinitions>
-            <ListView x:Name="listV" HasUnevenRows="true" IsGroupingEnabled="true" GroupDisplayBinding="{Binding nameAndType}">
+       <!--     <ListView x:Name="listV" HasUnevenRows="true" IsGroupingEnabled="true" GroupDisplayBinding="{Binding nameAndType}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center" Spacing="0">
-                                <!--                                                <Label Text="sssss"/>-->
+                                                                                <Label Text="sssss"/>
                                 <Label Margin="20,0,20,0" Text="{Binding name}" VerticalTextAlignment="Center" />
                                 <Label Margin="0,0,15,0" Text="{Binding count}" HorizontalOptions="EndAndExpand" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
             <StackLayout Grid.Row="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Orientation="Horizontal">
-                <Button Text="360监控" WidthRequest="80" Font="18" BackgroundColor="Silver" Clicked="Handle_360" />
-                <Button Text="24小时" WidthRequest="80" Font="18" BackgroundColor="rgb(34,145,224)" Clicked="Handle_24Hour" />
-                <Button Text="30天" WidthRequest="80" Font="18" BackgroundColor="Silver" Clicked="Handle_30day" />
+                <Button x:Name="_360But" Text="360监控" WidthRequest="80" Font="18" BackgroundColor="Silver" Clicked="Handle_360" />
+                <Button x:Name="_24But" Text="24小时" WidthRequest="80" Font="18" BackgroundColor="rgb(34,145,224)" Clicked="Handle_24Hour" />
+                <Button x:Name="_30But" Text="30天" WidthRequest="80" Font="18" BackgroundColor="Silver" Clicked="Handle_30day" />
             </StackLayout>
             <StackLayout Grid.Row="2">
-                <chart:PlotView x:Name="pView" HeightRequest="220" BackgroundColor="Silver">
+                <chart:PlotView x:Name="pView" HeightRequest="240" BackgroundColor="Silver">
                 </chart:PlotView>
             </StackLayout>
         </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

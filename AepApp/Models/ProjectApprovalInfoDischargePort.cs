@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace AepApp.Models
 {
-    public class ProjectApprovalInfoDischargePort : ObservableCollection<ProjectApprovalInfoFactor>
+    public class ProjectApprovalInfoDischargePort 
     {
         //public event PropertyChangedEventHandler PropertyChanged;
 
@@ -18,9 +18,8 @@ namespace AepApp.Models
         public string name { get; set; }
         public string ptype { get; set; }
         public string typename { get; set; }
-        //private ObservableCollection<ProjectApprovalInfoFactor> _factors = new ObservableCollection<ProjectApprovalInfoFactor>();
+        public ObservableCollection<ProjectApprovalInfoFactor> items = new ObservableCollection<ProjectApprovalInfoFactor>();
 
-        public ObservableCollection<ProjectApprovalInfoFactor> items => this;
 
         public string nameAndType
         {
