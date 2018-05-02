@@ -16,17 +16,17 @@ using Xamarin.Forms.Xaml;
 
 namespace AepApp.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AQIMapPage : ContentPage
-	{
-        
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AQIMapPage : ContentPage
+    {
+
         private List<AirPageModels.AirInfo> sendPage = new List<AirPageModels.AirInfo>();
         private List<AQIMapPageModel.ValueForSite> valueForSites = new List<AQIMapPageModel.ValueForSite>(); //封装了地图上站点id和站点因子数据
         private string result;
         List<AirDetailModels.Factors> factors = new List<AirDetailModels.Factors>();
-        public AQIMapPage (List<AirPageModels.AirInfo> sendPages)
-		{
-			InitializeComponent ();
+        public AQIMapPage(List<AirPageModels.AirInfo> sendPages)
+        {
+            InitializeComponent();
             InitializeComponent();
             this.Title = "AQI分布情况";
             this.sendPage = sendPages;
@@ -34,12 +34,13 @@ namespace AepApp.View
             Console.WriteLine(mapManager.CoordinateType);
             mapManager.CoordinateType = CoordType.GCJ02;
             Console.WriteLine(mapManager.CoordinateType);
-
             map.Loaded += MapLoaded; //地图相关操作   
-            
+
             //数据相关操作
-            if (sendPage.Count != 0) {
-                for (int i = 0; i < sendPage.Count; i++) { 
+            if (sendPage.Count != 0)
+            {
+                for (int i = 0; i < sendPage.Count; i++)
+                {
                     //将AQI的值数据封装
                     AQIMapPageModel.ValueForSite value = new AQIMapPageModel.ValueForSite();
                     value.stationId = sendPage[i].StationId;
@@ -57,10 +58,11 @@ namespace AepApp.View
             map.ShowScaleBar = true;
             //InitLocationService();
             //InitEvents();
-            if (sendPage.Count != 0) {
+            if (sendPage.Count != 0)
+            {
                 AddPin(sendPage);
             }
-            
+
         }
 
         private void AddPin(List<AirPageModels.AirInfo> pinInfo)
@@ -72,7 +74,8 @@ namespace AepApp.View
             //typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.dot.png")
             //);
             int count = pinInfo.Count;
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < count; i++)
+            {
                 Pin annotation = new Pin
                 {
                     Title = pinInfo[i].info.AQI + "",
@@ -81,22 +84,32 @@ namespace AepApp.View
                     Draggable = false,
                     Enabled3D = false,
                     Tag = pinInfo[i].StationId,
-                    //Image = XImage.FromStream(
-                    //typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.voc.png")
-                    //)
-                    Image = XImage.FromStream(
-                    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin.png")
-                    )
+               
                 };
+
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    
+                    annotation.Image = XImage.FromStream(
+                        typeof(AQIMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.iOS.pin.png")
+                       );
+                    }
+                else
+                {
+                    annotation.Image = XImage.FromStream(
+                        typeof(AQIMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin.png")
+                        );
+                    }
                 map.Pins.Add(annotation);
-                
+
+
             }
             map.Center = new Coordinate(pinInfo[0].StationLat, pinInfo[0].StationLng);
         }
 
         private void AQI(object sender, EventArgs e)
         {
-            ChangeButtonBG(1);          
+            ChangeButtonBG(1);
         }
         private void PM10(object sender, EventArgs e)
         {
@@ -119,20 +132,21 @@ namespace AepApp.View
         }
         private void ChangeButtonBG(int num)
         {
-            int count = valueForSites.Count; 
+            int count = valueForSites.Count;
             aqi.BackgroundColor = Color.FromHex("#4169E1");
             pm10.BackgroundColor = Color.FromHex("#4169E1");
             pm25.BackgroundColor = Color.FromHex("#4169E1");
             o3.BackgroundColor = Color.FromHex("#4169E1");
             co.BackgroundColor = Color.FromHex("#4169E1");
-            switch (num) {
+            switch (num)
+            {
                 case 1:
                     aqi.BackgroundColor = Color.Gray;
-                    AddPinTitleValueForAQI(count);                   
+                    AddPinTitleValueForAQI(count);
                     break;
                 case 2:
                     pm10.BackgroundColor = Color.Gray;
-                    AddPinTitleValueForPM10(count);                                                             
+                    AddPinTitleValueForPM10(count);
                     break;
                 case 3:
                     pm25.BackgroundColor = Color.Gray;
@@ -296,20 +310,28 @@ namespace AepApp.View
                 result = EasyWebRequest.sendGetHttpWebRequest(uri);
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
-            {               
+            {
                 List<AirDetailModels.Factors> factor = JsonConvert.DeserializeObject<List<AirDetailModels.Factors>>(result);
-                for (int i = 0;i < factor.Count; i++) {
+                for (int i = 0; i < factor.Count; i++)
+                {
                     AirDetailModels.Factors facValue = factor[i];
-                    if (facValue.gasName.Equals("PM10")) {
+                    if (facValue.gasName.Equals("PM10"))
+                    {
                         value.PM10Id = facValue.id;
                         continue;
-                    } else if (facValue.gasName.Equals("PM2.5")) {
+                    }
+                    else if (facValue.gasName.Equals("PM2.5"))
+                    {
                         value.PM25Id = facValue.id;
                         continue;
-                    }else if (facValue.gasName.Equals("O₃")) {
+                    }
+                    else if (facValue.gasName.Equals("O₃"))
+                    {
                         value.O3Id = facValue.id;
                         continue;
-                    }else if (facValue.gasName.Equals("CO")) {
+                    }
+                    else if (facValue.gasName.Equals("CO"))
+                    {
                         value.COId = facValue.id;
                         continue;
                     }
@@ -317,7 +339,7 @@ namespace AepApp.View
             };
             wrk.RunWorkerAsync();
         }
-        private void ReqLastRefFacVals(AQIMapPageModel.ValueForSite factor,int valueName)
+        private void ReqLastRefFacVals(AQIMapPageModel.ValueForSite factor, int valueName)
         {
             List<AirDetailModels.FacValsDetails> details = null;
             BackgroundWorker wrk = new BackgroundWorker();
@@ -325,7 +347,8 @@ namespace AepApp.View
             {
                 string uri = App.BaseUrl + "/api/FactorData/GetLastRefFacVals";
                 AirDetailModels.FacValsParam parameter = new AirDetailModels.FacValsParam();
-                switch (valueName) {
+                switch (valueName)
+                {
                     case 2:
                         parameter.facId = factor.PM10Id;
                         break;
@@ -338,7 +361,7 @@ namespace AepApp.View
                     case 5:
                         parameter.facId = factor.COId;
                         break;
-                }               
+                }
                 parameter.fromType = 0;
                 parameter.refIds = new string[] { factor.stationId };
                 string param = JsonConvert.SerializeObject(parameter);
@@ -347,7 +370,8 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                switch (valueName) {
+                switch (valueName)
+                {
                     case 2:
                         factor.PM10Value = details[0].val;
                         break;
@@ -363,9 +387,11 @@ namespace AepApp.View
                 }
                 //利用TAG来绑定站点id，根据站点id封装站点数据
                 int count = map.Pins.Count;
-                for (int i = 0; i <count; i++) {
-                    if (map.Pins[i].Tag.Equals(factor.stationId)) {
-                        map.Pins[i].Title = details[0].val + "";                       
+                for (int i = 0; i < count; i++)
+                {
+                    if (map.Pins[i].Tag.Equals(factor.stationId))
+                    {
+                        map.Pins[i].Title = details[0].val + "";
                     }
                 }
             };

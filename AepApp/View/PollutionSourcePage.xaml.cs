@@ -68,7 +68,12 @@ namespace AepApp.View
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
                 CrossHud.Current.Dismiss();
-                getCurrentData("");
+                try{
+                    getCurrentData("");
+                }
+                catch{
+                    
+                }
                 listView.ItemsSource = dataList;
 
             };

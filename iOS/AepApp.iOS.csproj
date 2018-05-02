@@ -204,7 +204,6 @@
     <BundleResource Include="BaiduMapAPI_Map.framework\Resources\mapapi.bundle\files\cfg\a\mode_2\map.sty" />
     <BundleResource Include="BaiduMapAPI_Map.framework\Resources\mapapi.bundle\files\cfg\a\mode_4\map.rs" />
     <BundleResource Include="BaiduMapAPI_Map.framework\Resources\mapapi.bundle\files\cfg\a\mode_4\map.sty" />
-    <BundleResource Include="BaiduMapAPI_Map.framework\Resources\mapapi.bundle\files\cfg\idrres\.DS_Store" />
     <BundleResource Include="BaiduMapAPI_Map.framework\Resources\mapapi.bundle\files\cfg\idrres\DVIndoor.cfg" />
     <BundleResource Include="BaiduMapAPI_Map.framework\Resources\mapapi.bundle\files\cfg\idrres\ResPackIndoorMap.rs" />
     <BundleResource Include="BaiduMapAPI_Map.framework\Resources\mapapi.bundle\files\cfg\idrres\baseindoormap.sty" />
@@ -316,7 +315,6 @@
     <BundleResource Include="images\pin_red%402x.png" />
     <BundleResource Include="Resources\map%403x.png" />
     <BundleResource Include="Resources\map%402x.png" />
-    <BundleResource Include="pin.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -354,7 +352,6 @@
     <None Include="BaiduMapAPI_Location.framework\Headers\BMKLocationComponent.h" />
     <None Include="BaiduMapAPI_Location.framework\Headers\BMKLocationService.h" />
     <None Include="BaiduMapAPI_Location.framework\Headers\BMKLocationVersion.h" />
-    <None Include="BaiduMapAPI_Map.framework\.DS_Store" />
     <None Include="BaiduMapAPI_Map.framework\BaiduMapAPI_Map" />
     <None Include="BaiduMapAPI_Map.framework\readme.txt" />
     <None Include="BaiduMapAPI_Map.framework\Headers\BMKActionPaopaoView.h" />
@@ -390,7 +387,6 @@
     <None Include="BaiduMapAPI_Map.framework\Headers\BMKShape.h" />
     <None Include="BaiduMapAPI_Map.framework\Headers\BMKTileLayer.h" />
     <None Include="BaiduMapAPI_Map.framework\Headers\BMKTileLayerView.h" />
-    <None Include="BaiduMapAPI_Map.framework\Resources\.DS_Store" />
     <None Include="BaiduMapAPI_Radar.framework\.DS_Store" />
     <None Include="BaiduMapAPI_Radar.framework\BaiduMapAPI_Radar" />
     <None Include="BaiduMapAPI_Radar.framework\readme.txt" />
@@ -508,6 +504,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tick_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="pin.png" />
   </ItemGroup>
   <Import Project="..\AepApp\AepApp.projitems" Label="Shared" Condition="Exists('..\AepApp\AepApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

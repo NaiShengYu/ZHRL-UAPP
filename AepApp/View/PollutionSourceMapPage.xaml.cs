@@ -23,11 +23,20 @@ namespace AepApp.View
 {
     public partial class PollutionSourceMapPage : ContentPage
     {
+        void Annotation_Clicked(object sender, EventArgs e)
+        {
+            Pin pin = sender as Pin;
+            Console.WriteLine("点击了大头针：" + pin.Tag);
+            Navigation.PushAsync(new PollutionSourceInfoPage(pin.Tag as EnterpriseModel));
+
+        }
+
+        ObservableCollection<EnterpriseModel> _enterList = null;
         public PollutionSourceMapPage(ObservableCollection<EnterpriseModel> enterList)
         {
             InitializeComponent();
             this.Title = "污染源在线";
-            //ReqPollutionSiteData();
+            _enterList = enterList;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
             IMapManager mapManager = DependencyService.Get<IMapManager>();
@@ -37,86 +46,21 @@ namespace AepApp.View
 
             map.Loaded += MapLoaded;
 
-            IOfflineMap offlineMap = DependencyService.Get<IOfflineMap>();
-            offlineMap.HasUpdate += (_, e) =>
-            {
-                Console.WriteLine("OfflineMap has update: " + e.CityID);
-            };
-            offlineMap.Downloading += (_, e) =>
-            {
-                Console.WriteLine("OfflineMap downloading: " + e.CityID);
-            };
-
-            var list = offlineMap.HotList;
-            list = offlineMap.AllList;
-            //offlineMap.Remove(131);
-            var curr = offlineMap.Current;
-            //offlineMap.Start(27);
-            //offlineMap.Start(75);
-            curr = offlineMap.Current;
-
-            // 计算
-            ICalculateUtils calc = DependencyService.Get<ICalculateUtils>();
-            Console.WriteLine(calc.CalculateDistance(
-                new Coordinate(40, 116),
-                new Coordinate(41, 117)
-            ));//139599.429229778 in iOS, 139689.085961837 in Android
-
-
-
         }
         public void MapLoaded(object sender, EventArgs x)
         {
             map.ShowScaleBar = true;
             InitLocationService();
-            InitEvents();
+            if (_enterList !=null){
+                for (int i = 0; i < _enterList.Count;i ++){
+                    EnterpriseModel enter = _enterList[i];
+                    AddPin(enter);
+                }
 
-            //Coordinate[] coords = {
-            //    new Coordinate(40.044, 116.391),
-            //    new Coordinate(39.861, 116.284),
-            //    new Coordinate(39.861, 116.468)
-            //};
-
-            //map.Polygons.Add(new Polygon
-            //{
-            //    Points = new ObservableCollection<Coordinate>(coords),
-            //    Color = Color.Blue,
-            //    FillColor = Color.Red.MultiplyAlpha(0.7),
-            //    Width = 2,
-            //    Title = "多边形",               
-            //});
-
-            //map.Circles.Add(new Circle
-            //{
-            //    Coordinate = map.Center,
-            //    Color = Color.Green,
-            //    FillColor = Color.Yellow.MultiplyAlpha(0.2),
-            //    Radius = 200,
-            //    Width = 2,
-            //    Title = "圆",
-            //});
-
-            //Task.Run(() =>
-            //{
-            //    for (; ; )
-            //    {
-            //        Task.Delay(1000).Wait();
-
-            //        var p = map.Polygons[0].Points[0];
-            //        p = new Coordinate(p.Latitude + 0.002, p.Longitude);
-            //        map.Polygons[0].Points[0] = p;
-
-            //        map.Circles[0].Radius += 100;
-            //    }
-            //});
-
-            // 坐标转换
-            IProjection proj = map.Projection;
-            var coord = proj.ToCoordinate(new Point(100, 100));
-            Console.WriteLine(proj.ToScreen(coord));
+            }       
         }
 
-        private static bool moved = false;
+        private bool moved = false;
         public void InitLocationService()
         {
             map.LocationService.LocationUpdated += (_, e) =>
@@ -135,106 +79,35 @@ namespace AepApp.View
             };
 
             map.LocationService.Start();
-        }
-
-        public void InitEvents()
+        }    
+        //添加大头针
+        void AddPin(EnterpriseModel enter)
         {
-            //btnTrack.Clicked += (_, e) => {
-            //    if (map.ShowUserLocation)
-            //    {
-            //        map.UserTrackingMode = UserTrackingMode.None;
-            //        map.ShowUserLocation = false;
-            //    }
-            //    else
-            //    {
-            //        map.UserTrackingMode = UserTrackingMode.Follow;
-            //        map.ShowUserLocation = true;
-            //    }
-            //};
-
-            map.LongClicked += (_, e) =>
-            {
-                AddPin(e.Coordinate);
-            };
-
-            map.StatusChanged += (_, e) =>
-            {
-                //Debug.WriteLine(map.Center + " @" + map.ZoomLevel);
-            };
-        }
-
-        void AddPin(Coordinate coord)
-        {
-            //var img1 = XImage.FromResource("AepApp.Droid.voc.png");
-            //XImage img2 = XImage.FromFile("voc.png");         
-            //var img3 = XImage.FromBundle("voc");
-            //var img4= XImage.FromResource("AepApp.Droid.voc.png");
-            //Stream aaaaa = typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream(this.GetType(),"AepApp.Images.pin_purple.png");
-            //Stream bbbb = typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin_purple.png");
-            //Stream bbbb = typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.voc.png");
-            // FileStream ccc = typeof(MapPage).GetTypeInfo().Assembly.GetFile("voc.png");
             Pin annotation = new Pin
             {
-                Title = coord,
-                Coordinate = coord,
+                //Title = enter.value.ToString(),
+                Coordinate = new Coordinate(double.Parse(enter.lat), double.Parse(enter.lng)),
                 Animate = true,
                 Draggable = false,
                 Enabled3D = true,
-                //Image = img2
-           
-                              
-                //Image = XImage.FromResource(
-                //    "AepApp.Droid.voc.png"
-                //)
             };
             if (Device.RuntimePlatform == Device.iOS)
-                annotation.Image = XImage.FromResource("pin_red.png");
+            {
+                annotation.Image = XImage.FromStream(
+                    typeof(AQIMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.iOS.pin.png")
+                   );
+            }
             else
-                 annotation.Image = XImage.FromStream(
-                    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.voc.png")
-            );
-            
+            {
+                annotation.Image = XImage.FromStream(
+                    typeof(AQIMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin.png")
+                    );
+            }
+            annotation.Tag = enter;
+            annotation.Clicked += Annotation_Clicked;
             map.Pins.Add(annotation);
 
-            annotation.Drag += (o, e) =>
-            {
-                Pin self = o as Pin;
-                self.Title = null;//self.Coordinate;
-                int i = map.Pins.IndexOf(self);
-
-                if (map.Polylines.Count > 0 && i > -1)
-                {
-                    map.Polylines[0].Points[i] = self.Coordinate;
-                }
-            };
-            annotation.Clicked += (_, e) =>
-            {
-                Console.WriteLine("clicked");
-                Pin self = _ as Pin;
-                DependencyService.Get<Sample.IToast>().ShortAlert("......");
-                //self.Title = "sfcdef";
-                //((Pin)_).Image = XImage.FromStream(
-                //    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("Sample.Images.10660.png")
-                //);
-            };
-
-            if (0 == map.Polylines.Count && map.Pins.Count > 1)
-            {
-                Polyline polyline = new Polyline
-                {
-                    Points = new ObservableCollection<Coordinate> {
-                        map.Pins[0].Coordinate, map.Pins[1].Coordinate
-                    },
-                    Width = 4,
-                    Color = Color.Purple
-                };
-
-                map.Polylines.Add(polyline);
-            }
-            else if (map.Polylines.Count > 0)
-            {
-                map.Polylines[0].Points.Add(annotation.Coordinate);
-            }
+         
         }
 
 
