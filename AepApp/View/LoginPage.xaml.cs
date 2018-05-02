@@ -137,11 +137,20 @@ namespace AepApp.View
             //获取数据库的数据
             ((App)App.Current).ResumeAtTodoId = -1;
             List<TodoItem> todoItems = await App.Database.GetItemsAsync();
-            if (todoItems != null && todoItems.Count != 0 ) {
-                item = todoItems[App.itemNum];
-                site_name.Text = item.Name;
-                App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
-            }           
+
+            if (todoItems != null && todoItems.Count != 0)
+            {
+
+                for (int i = 0; i < todoItems.Count; i++)
+                {
+                     item = todoItems[i];
+                    if (item.isCurrent == true)
+                    {
+                        site_name.Text = item.Name;
+                        App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
+                    }
+                }
+            }
             //获取存储文件下的内容
             var acc = AccountStore.Create().FindAccountsForService(App.appName).LastOrDefault();
             var siteData = AccountStore.Create().FindAccountsForService(App.SiteData).LastOrDefault();

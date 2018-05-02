@@ -63,6 +63,7 @@ namespace AepApp.View
                 todoItem.SiteId = model.id;
                 todoItem.Name = model.name;
                 todoItem.SiteAddr = this.siteAddr.Text;
+                todoItem.isCurrent = false;
 
                 if (App.todoItemList.Count != 0)
                 {

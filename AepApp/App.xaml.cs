@@ -21,7 +21,6 @@ namespace AepApp
         public static string appName = "Aep";
         public static string SiteData = "site";
 
-        public static int itemNum = 0;
         public static List<TodoItem> todoItemList = new List<TodoItem> ();
         static TodoItemDatabase database;
 
