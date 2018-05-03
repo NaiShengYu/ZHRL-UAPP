@@ -519,6 +519,27 @@
       <Name>Xamarin.Forms.BaiduMaps</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_darkred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_red.png" />
+  </ItemGroup>
   <Import Project="..\AepApp\AepApp.projitems" Label="Shared" Condition="Exists('..\AepApp\AepApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.121934\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.121934\build\netstandard1.0\Xamarin.Forms.targets')" />
