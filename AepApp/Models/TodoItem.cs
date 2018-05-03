@@ -9,5 +9,6 @@ namespace Todo
         public string Name { get; set; }
         public string SiteId { get; set; }
         public string SiteAddr { get; set; }
+        public bool isCurrent { get; set; }
     }
 }

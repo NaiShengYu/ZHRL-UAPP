@@ -116,9 +116,8 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                CreatView();
                 CrossHud.Current.Dismiss();
-
+                CreatView();               
             };
             wrk.RunWorkerAsync();
         }
@@ -128,7 +127,7 @@ namespace AepApp.View
         {
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
-            {
+            {           
                 CrossHud.Current.Show("请求中...");
                 string uri = App.BaseUrl + "/api/AppEnterprise/GetPortFactorList?fid=" + _currentFactor.id + "&type="+_is30Select  + "&id=" + _currentPort.id;
                 var result = EasyWebRequest.sendGetHttpWebRequest(uri);
@@ -232,6 +231,7 @@ namespace AepApp.View
                         Margin = new Thickness(0),
                         BorderRadius = 0,
                         BindingContext = factor,
+                        BackgroundColor = Color.Transparent,
                     };
                     backBut.Clicked += selectFactor;
                     _uidatadict.Add(backBut, new Tuple<ProjectApprovalInfoDischargePort, ProjectApprovalInfoFactor,StackLayout>(port,factor,stack));

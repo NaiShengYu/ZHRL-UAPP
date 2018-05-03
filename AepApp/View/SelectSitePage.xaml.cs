@@ -20,7 +20,24 @@ namespace AepApp.View
            
             HeaderList.ItemSelected += (sender, e) => {
                 TodoItem item = (TodoItem)e.SelectedItem;
-                App.itemNum = item.ID - 1;
+
+                for (int i = 0; i < App.todoItemList.Count; i++){
+                    TodoItem todoitem = App.todoItemList[i];
+                  
+                    if (todoitem.isCurrent == true)//找到上一个选中的站点
+                    {
+                        if (todoitem.SiteAddr == item.SiteAddr)//如果选中的站点和原来的相同退出循环
+                            return;
+                        
+                        todoitem.ID = 1;
+                        todoitem.isCurrent = false;
+                        App.Database.SaveItemAsync(todoitem);
+                    }
+                }
+
+                item.isCurrent = true;
+                App.Database.SaveItemAsync(item);
+
 
                 //DependencyService.Get<Sample.IToast>().ShortAlert(a + "");
                 //HeaderList.SelectedItem = a;
