@@ -83,31 +83,60 @@ namespace AepApp.View
         //添加大头针
         void AddPin(EnterpriseModel enter)
         {
-            Pin annotation = new Pin
-            {
-                //Title = enter.value.ToString(),
-                Coordinate = new Coordinate(double.Parse(enter.lat), double.Parse(enter.lng)),
-                Animate = true,
-                Draggable = false,
-                Enabled3D = true,
-            };
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                annotation.Image = XImage.FromStream(
-                    typeof(AQIMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.iOS.pin.png")
-                   );
-            }
-            else
-            {
-                annotation.Image = XImage.FromStream(
-                    typeof(AQIMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin.png")
-                    );
-            }
-            annotation.Tag = enter;
-            annotation.Clicked += Annotation_Clicked;
-            map.Pins.Add(annotation);
+            //Pin annotation = new Pin
+            //{
+            //    //Title = enter.value.ToString(),
+            //    Coordinate = new Coordinate(double.Parse(enter.lat), double.Parse(enter.lng)),
+            //    Animate = true,
+            //    Draggable = false,
+            //    Enabled3D = true,
+            //};
+            //if (Device.RuntimePlatform == Device.iOS)
+            //{
+            //    annotation.Image = XImage.FromStream(
+            //        typeof(AQIMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.iOS.pin.png")
+            //       );
+            //}
+            //else
+            //{
+            //    annotation.Image = XImage.FromStream(
+            //        typeof(AQIMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin.png")
+            //        );
+            //}
+            //annotation.Tag = enter;
+            //annotation.Clicked += Annotation_Clicked;
+            //map.Pins.Add(annotation);
 
-         
+
+            Pin pin = new Pin
+            {
+                Coordinate = new Coordinate(double.Parse(enter.lat), double.Parse(enter.lng)),
+                Animate = false,
+                Draggable = false,
+                Enabled3D = false,
+                Image = XImage.FromStream(typeof(MapPage2).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.label_back_blue.png")),
+                AnchorY = 0.5f,
+                AnchorX = 0.5f
+            };
+            pin.Tag = enter;
+            pin.Clicked += Annotation_Clicked;
+            map.Pins.Add(pin);
+
+            string name = enter.name;
+            if (enter.name.Length > 6) name = enter.name.Substring(0, 5) + "...";
+
+            Xamarin.Forms.BaiduMaps.Label label = new Xamarin.Forms.BaiduMaps.Label
+            {
+                Title = name,
+                Coordinate = new Coordinate(double.Parse(enter.lat), double.Parse(enter.lng)),
+                BackgroundColor = Color.FromRgb(55, 113, 184),
+                FontColor = Color.White,
+                FontSize = 22
+            };
+            label.Tag = enter;
+            label.Clicked += Annotation_Clicked;
+            map.Labels.Add(label);
+
         }
 
 

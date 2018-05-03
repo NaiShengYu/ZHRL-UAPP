@@ -17,6 +17,7 @@ namespace AepApp.Models
             public Pollutant info { get; set; }
             public string Rank { get; set; }
             //public string info { get; set; }
+            public AQIMapPageModel.ValueForSite values;
         }
 
         public class Pollutant

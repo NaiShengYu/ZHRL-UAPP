@@ -19,11 +19,11 @@ using Xamarin.Forms.BaiduMaps;
 namespace AepApp.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MapPage : ContentPage
-	{
-		public MapPage ()
-		{
-			InitializeComponent ();
+    public partial class MapPage : ContentPage
+    {
+        public MapPage()
+        {
+            InitializeComponent();
             this.Title = "AQI分布情况";
 
             IMapManager mapManager = DependencyService.Get<IMapManager>();
@@ -80,7 +80,7 @@ namespace AepApp.View
             //    Width = 2,
             //    Title = "多边形",               
             //});
-        
+
             //map.Circles.Add(new Circle
             //{
             //    Coordinate = map.Center,
@@ -106,9 +106,9 @@ namespace AepApp.View
             //});
 
             // 坐标转换
-            IProjection proj = map.Projection;
-            var coord = proj.ToCoordinate(new Point(100, 100));
-            Console.WriteLine(proj.ToScreen(coord));
+            //IProjection proj = map.Projection;
+            //var coord = proj.ToCoordinate(new Point(100, 100));
+            //Console.WriteLine(proj.ToScreen(coord));
         }
 
         private static bool moved = false;
@@ -184,13 +184,13 @@ namespace AepApp.View
             if (Device.RuntimePlatform == Device.iOS)
                 annotation.Image = XImage.FromStream(typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.iOS.pin.png"));
             else
-                 annotation.Image = XImage.FromStream(
-                    typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin.png")
-            );
-            
+                annotation.Image = XImage.FromStream(
+                   typeof(MapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.pin.png")
+           );
+
 
             map.Pins.Add(annotation);
-            
+
             annotation.Drag += (o, e) =>
             {
                 Pin self = o as Pin;
@@ -201,7 +201,7 @@ namespace AepApp.View
                 {
                     map.Polylines[0].Points[i] = self.Coordinate;
                 }
-            };            
+            };
             annotation.Clicked += (_, e) =>
             {
                 Console.WriteLine("clicked");
@@ -221,7 +221,7 @@ namespace AepApp.View
                         map.Pins[0].Coordinate, map.Pins[1].Coordinate
                     },
                     Width = 4,
-                    Color = Color.Purple
+                    //Color = Color.Purple
                 };
 
                 map.Polylines.Add(polyline);

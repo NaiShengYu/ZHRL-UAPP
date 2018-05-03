@@ -33,7 +33,8 @@ namespace AepApp.View
             ToolbarItems.Add(new ToolbarItem("", "map.png", () =>
             {
                 //Navigation.PushAsync(new MapPage());
-                Navigation.PushAsync(new AQIMapPage(sendPages));
+                //Navigation.PushAsync(new AQIMapPage(sendPages));
+                Navigation.PushAsync(new MapPage2(sendPages));
             }));
             //请求网络数据
             CrossHud.Current.Show("加载中...");

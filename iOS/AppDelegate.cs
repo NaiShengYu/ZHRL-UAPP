@@ -18,8 +18,8 @@ namespace AepApp.iOS
             global::Xamarin.Forms.Forms.Init();
            
             OxyPlot.Xamarin.Forms.Platform.iOS.PlotViewRenderer.Init();
-            LoadApplication(new App());
             Xamarin.FormsBaiduMaps.Init("20Nb1nC8Zsj0achB9mAZ4PBG8YkYbpXU");
+            LoadApplication(new App());
 
 
             return base.FinishedLaunching(app, options);

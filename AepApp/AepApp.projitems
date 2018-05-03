@@ -41,8 +41,8 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\MapPage.xaml.cs">
-      <DependentUpon>MapPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MapPage2.xaml.cs">
+      <DependentUpon>MapPage2.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\Platform.xaml.cs">
@@ -222,12 +222,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MapPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\PollutionSourcePage.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -242,6 +236,12 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\TestOxyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MapPage2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -49,9 +49,6 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BMapBinding.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.BaiduMaps.1.3.1\lib\MonoAndroid10\BMapBinding.Droid.dll</HintPath>
-    </Reference>
     <Reference Include="OxyPlot, Version=1.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Core.1.0.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll</HintPath>
     </Reference>
@@ -154,12 +151,6 @@
     <Reference Include="Xamarin.Auth, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Auth.1.6.0.1\lib\MonoAndroid10\Xamarin.Auth.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.BaiduMaps, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.BaiduMaps.1.3.1\lib\MonoAndroid10\Xamarin.Forms.BaiduMaps.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.BaiduMaps.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.BaiduMaps.1.3.1\lib\MonoAndroid10\Xamarin.Forms.BaiduMaps.Droid.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.121934\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
@@ -190,7 +181,7 @@
     </None>
     <None Include="Resources\AboutResources.txt" />
     <None Include="packages.config" />
-    <None Include="pin.png" />
+    <EmbeddedResource Include="pin.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurvedCornersLabelRenderer.cs" />
@@ -256,6 +247,41 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\tick_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BMapBinding.Droid\BMapBinding.Droid.csproj">
+      <Project>{0b512933-8b33-43be-8878-317db02b0d48}</Project>
+      <Name>BMapBinding.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xamarin.Forms.BaiduMaps.Droid\Xamarin.Forms.BaiduMaps.Droid.csproj">
+      <Project>{3f0db3aa-986b-4801-a1b9-c0df3016c2b6}</Project>
+      <Name>Xamarin.Forms.BaiduMaps.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xamarin.Forms.BaiduMaps\Xamarin.Forms.BaiduMaps.csproj">
+      <Project>{ad7ae334-360d-4769-8f72-bd79c078fe87}</Project>
+      <Name>Xamarin.Forms.BaiduMaps</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_darkred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="label_back_orange.png" />
   </ItemGroup>
   <Import Project="..\AepApp\AepApp.projitems" Label="Shared" Condition="Exists('..\AepApp\AepApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
