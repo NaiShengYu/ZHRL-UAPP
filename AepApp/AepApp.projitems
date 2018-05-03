@@ -123,6 +123,7 @@
       <DependentUpon>AQIMapPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\AQIMapPageModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MonitorModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />

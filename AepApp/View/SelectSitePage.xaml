@@ -15,7 +15,17 @@
                                     <Label Text="{Binding SiteAddr}" Font="15" Margin="15,0,0,10" />
                                 </StackLayout>
 
-                                <Image Source="tick_blue.png" HeightRequest="26" WidthRequest="26" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" />
+                                <Image Source="tick_blue.png" HeightRequest="26" WidthRequest="26" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0">
+                                    <Image.Triggers>
+                                     <DataTrigger TargetType="Image"
+                                              Binding="{Binding isCurrent}"
+                                              Value="false">
+                                              <Setter Property="IsVisible" Value="false" />
+                                          </DataTrigger>                                        
+                                    </Image.Triggers>
+
+                                    
+                                </Image>
                             </Grid>
                         </local:ExtendedViewCell>
                     </DataTemplate>

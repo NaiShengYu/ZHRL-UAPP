@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Xamarin.Forms.2.5.0.121934\build\netstandard1.0\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.121934\build\netstandard1.0\Xamarin.Forms.props')" />
   <PropertyGroup>
@@ -67,7 +67,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Peng Lin (SPJS63EGU6)</CodesignKey>
+    <CodesignKey>iPhone Developer: tao Zeng (J7L5CVGTZX)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
@@ -78,8 +78,11 @@
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
+<<<<<<< HEAD
     <CodesignProvision>
     </CodesignProvision>
+=======
+>>>>>>> 2b716a9... 修改了360监控功能
     <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -framework MapKit -framework CoreMotion -framework CoreGraphics
     -framework QuartzCore -framework CoreText -framework CoreLocation -framework SystemConfiguration  
     -framework CoreTelephony -framework OpenGLES -framework Foundation -framework Security  

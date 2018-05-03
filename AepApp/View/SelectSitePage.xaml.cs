@@ -37,7 +37,7 @@ namespace AepApp.View
 
                 item.isCurrent = true;
                 App.Database.SaveItemAsync(item);
-
+                HeaderList.ItemsSource = App.todoItemList;
 
                 //DependencyService.Get<Sample.IToast>().ShortAlert(a + "");
                 //HeaderList.SelectedItem = a;

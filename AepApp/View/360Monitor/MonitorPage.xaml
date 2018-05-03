@@ -3,22 +3,104 @@
               xmlns:local="clr-namespace:AepApp.View"
              Title="360监控">
     <ContentPage.Content>
-        <Grid>
+        <Grid RowSpacing="0">
             <BoxView HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" BackgroundColor="#1d6eeb" />
             <Label Text="{Binding name}" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" TextColor="White"
                    VerticalTextAlignment="Center" Margin="10,0,0,0" FontSize="17"/>
-            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" RowHeight="50" Margin="0,45,0,0">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
-                            <Grid VerticalOptions="Center">
-                                <Label FontSize="17"  TextColor="Black" Margin="10,10,10,10" Text="{Binding}"/>
-                                <Image Source="right.png" HorizontalOptions="End" Margin="0,0,10,0" />
-                            </Grid>
-                        </local:ExtendedViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+             <ScrollView x:Name="sv" Margin="0,45,0,0" >
+                <StackLayout x:Name="stac" Spacing="0" BackgroundColor="White" >
+                    <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
+                        <Label Text="项目审批" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Center" TextColor="Black" />
+                        <Label Text="{Binding xmsp}" Font="23" Margin="127,0,40,0" HorizontalOptions="Fill" VerticalOptions="Center" HorizontalTextAlignment="End" IsVisible="true" TextColor="Red">
+                             <Label.Triggers>
+                                          <DataTrigger TargetType="Label"
+                                              Binding="{Binding xmsp}"
+                                              Value="0">
+                                              <Setter Property="IsVisible" Value="false" />
+                                          </DataTrigger>
+                                      </Label.Triggers>
+                        </Label>
+                        <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
+                        <Button Margin="0" Clicked="Handle_Clicked1"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                   <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
+                        <Label Text="排污许可证管理" Font="17" Margin="15,0,0,0" WidthRequest="140" VerticalOptions="Center" TextColor="Black" />
+                        <Label Text="{Binding pwxk}" Font="23" Margin="157,0,40,0" HorizontalOptions="Fill" VerticalOptions="Center" HorizontalTextAlignment="End" IsVisible="true" TextColor="Red">
+                             <Label.Triggers>
+                                          <DataTrigger TargetType="Label"
+                                              Binding="{Binding pwxk}"
+                                              Value="0">
+                                              <Setter Property="IsVisible" Value="false" />
+                                          </DataTrigger>
+                                      </Label.Triggers>
+                        </Label>
+                        <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
+                        <Button Margin="0" Clicked="Handle_Clicked2"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                    <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
+                            <Label Text="信访管理" Font="17" WidthRequest="100" VerticalOptions="Center"  Margin="15,0,0,0"/>
+                            <Label Text="{Binding xf}" Font="23" Margin="127,0,40,0" WidthRequest="100" VerticalOptions="Center" HorizontalTextAlignment="End" IsVisible="true" TextColor="Red">
+                             <Label.Triggers>
+                                          <DataTrigger TargetType="Label"
+                                              Binding="{Binding xf}"
+                                              Value="0">
+                                              <Setter Property="IsVisible" Value="false" />
+                                          </DataTrigger>
+                                      </Label.Triggers>
+                        </Label>
+                            <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
+                        <Button Margin="0" Clicked="Handle_Clicked3"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                    <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
+                        <Label Text="日常监管" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Center"/>
+                        <Label Text="{Binding rqjg}" Font="23" Margin="127,0,40,0" HorizontalOptions="Fill" VerticalOptions="Center" HorizontalTextAlignment="End" IsVisible="true" TextColor="Red">
+                             <Label.Triggers>
+                                          <DataTrigger TargetType="Label"
+                                              Binding="{Binding rqjg}"
+                                              Value="0">
+                                              <Setter Property="IsVisible" Value="false" />
+                                          </DataTrigger>
+                                      </Label.Triggers>
+                        </Label>
+                        <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
+                        <Button Margin="0" Clicked="Handle_Clicked4"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                    <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
+                        <Label Text="电子处罚" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Center"/>
+                        <Label Text="{Binding dzcf}" Font="23" Margin="127,0,40,0" HorizontalOptions="Fill" VerticalOptions="Center" HorizontalTextAlignment="End" IsVisible="true" TextColor="Red">
+                             <Label.Triggers>
+                                          <DataTrigger TargetType="Label"
+                                              Binding="{Binding dzcf}"
+                                              Value="0">
+                                              <Setter Property="IsVisible" Value="false" />
+                                          </DataTrigger>
+                                      </Label.Triggers>
+                        </Label>
+                        <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
+                        <Button Margin="0" Clicked="Handle_Clicked5"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                    <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
+                        <Label Text="监督检查" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Center"/>
+                        <Label Text="{Binding jdjc}" Font="23" Margin="127,0,40,0" HorizontalOptions="Fill" VerticalOptions="Center" HorizontalTextAlignment="End" IsVisible="true" TextColor="Red">
+                             <Label.Triggers>
+                                          <DataTrigger TargetType="Label"
+                                              Binding="{Binding jdjc}"
+                                              Value="0">
+                                              <Setter Property="IsVisible" Value="false" />
+                                          </DataTrigger>
+                                      </Label.Triggers>
+                        </Label>
+                        <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
+                        <Button Margin="0" Clicked="Handle_Clicked6"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                </StackLayout>
+            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
