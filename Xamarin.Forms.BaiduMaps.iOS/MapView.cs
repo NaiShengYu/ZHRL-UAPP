@@ -3,7 +3,9 @@ using System.Diagnostics;
 
 using CoreLocation;
 using Xamarin.Forms.Platform.iOS;
-
+using UIKit;
+using Foundation;
+using CoreGraphics;
 using BMapBinding;
 
 namespace Xamarin.Forms.BaiduMaps.iOS
@@ -25,18 +27,40 @@ namespace Xamarin.Forms.BaiduMaps.iOS
                     Pin ann = map.Map.Pins.Find(annotation);
                     if (null != ann) {
                         BMKPinAnnotationView annotationView = new BMKPinAnnotationView(annotation, "myAnnotation");
-                        annotationView.PinColor = BMKPinAnnotationColor.Purple;
-                        annotationView.AnimatesDrop = ann.Animate;
-                        annotationView.Draggable = ann.Draggable;
+                        annotationView.Image = new UIImage("pin.png");
+
+                        //if (null != ann.Image)
+                        //{
+                        //    annotationView.Image = ann.Image.ToNative();
+                        //}
+
+                        //annotationView.Bounds = new CGRect(0,0,100,100);
+                      
+                        annotationView.BackgroundColor = UIColor.Black;
+                        annotationView.CanShowCallout = false;//不显示气泡
+                        var lab = new UILabel();
+                        lab.BackgroundColor = UIColor.Blue;
+                        lab.Text = ann.Title;
+                        lab.Center = new CGPoint(annotationView.Bounds.Width/2,annotationView.Bounds.Height/2-10);
+                        //Console.WriteLine(annotationView.Bounds);
+                        lab.Bounds = new CGRect(0, 0, 100, 40);
+                        //lab.Alpha = (System.nfloat)0.3;
+                        lab.AdjustsFontSizeToFitWidth = true;
+                        lab.Lines = 3;
+                        lab.TextAlignment = UITextAlignment.Center;
+                        annotationView.AddSubview(lab);
+
+                        //annotationView.PinColor = BMKPinAnnotationColor.Purple;
+                        //annotationView.AnimatesDrop = ann.Animate;
+                        //annotationView.Draggable = ann.Draggable;
                         // 开启后动态设置Image会导致pin图片拉伸
                         //annotationView.Enabled3D = ann.Enabled3D;
 
                         // 防止空白气泡弹出
-                        annotationView.CanShowCallout = !string.IsNullOrEmpty(ann.Title);
+                        //annotationView.CanShowCallout = !string.IsNullOrEmpty(ann.Title);
 
-                        if (null != ann.Image) {
-                            annotationView.Image = ann.Image.ToNative();
-                        }
+                        annotationView.BringSubviewToFront(lab);
+
 
                         return annotationView;
                     }

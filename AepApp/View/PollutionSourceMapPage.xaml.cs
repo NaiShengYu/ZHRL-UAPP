@@ -111,13 +111,26 @@ namespace AepApp.View
             Pin pin = new Pin
             {
                 Coordinate = new Coordinate(double.Parse(enter.lat), double.Parse(enter.lng)),
+                Title = enter.name,
                 Animate = false,
                 Draggable = false,
                 Enabled3D = false,
-                Image = XImage.FromStream(typeof(MapPage2).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.label_back_blue.png")),
                 AnchorY = 0.5f,
                 AnchorX = 0.5f
             };
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                pin.Image = XImage.FromStream(
+                    typeof(PollutionSourceMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.iOS.label_back_blue.png")
+                   );
+            }
+            else
+            {
+                pin.Image = XImage.FromStream(
+                    typeof(PollutionSourceMapPage).GetTypeInfo().Assembly.GetManifestResourceStream("AepApp.Droid.label_back_blue.png")
+                    );
+            }
             pin.Tag = enter;
             pin.Clicked += Annotation_Clicked;
             map.Pins.Add(pin);

@@ -37,6 +37,8 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSupportedAbis />
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+<AndroidKeyStore>True</AndroidKeyStore>
+<AndroidSigningKeyStore>/Users/nashengyu/Desktop/git/AepApp.Xamarin.Forms.git/Droid/azura.keystore</AndroidSigningKeyStore>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
