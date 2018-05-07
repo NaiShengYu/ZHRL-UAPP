@@ -34,6 +34,9 @@ namespace AepApp.View
         AzmCoord sw = new AzmCoord(0, 0);
         AzmCoord ne = new AzmCoord(0, 0);
 
+        public AzmMarkerView TappedMarker { get; set; }
+        public AzmLabelView MarkerPopupLabel { get; set; }
+
         public AzMapView()
         {
             InitializeComponent();
@@ -41,6 +44,8 @@ namespace AepApp.View
             UpdateRanges();
             this.SizeChanged += AzMapView_SizeChanged;
             ActiveMap = this;
+            TappedMarker = null;
+            MarkerPopupLabel = null;
         }
 
         private void UpdateRanges()
@@ -72,7 +77,6 @@ namespace AepApp.View
                     ov.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - ov.Anchor.X, (vpmaxy - p.Y) * tilesize - ov.Anchor.Y, ov.Size.Width, ov.Size.Height));
                 }
             }
-
         }
 
         private void AzMapView_SizeChanged(object sender, EventArgs e)
@@ -339,6 +343,7 @@ namespace AepApp.View
             {
                 foreach (AzmOverlayView o in e.NewItems)
                 {
+                    o.MapView = this;
                     Point p = GetXYFromCoord(level, o.Coord);
 
                     o.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - o.Anchor.X, (vpmaxy - p.Y) * tilesize - o.Anchor.Y, o.Size.Width, o.Size.Height));
@@ -369,6 +374,7 @@ namespace AepApp.View
 
     public class AzmOverlayView : Xamarin.Forms.TemplatedView
     {
+        public AzMapView MapView { get; set; }
         public AzmCoord Coord { get; set; }
         public Size Size { get; set; }
         public Point Anchor { get; set; }
@@ -410,11 +416,12 @@ namespace AepApp.View
             set { SetValue(TextColorProperty, value); }
         }
 
-        public AzmLabelView(string text, AzmCoord coord = null, double widthrequest = 100.0)
+        public AzmLabelView(string text, AzmCoord coord = null, double maxwidthrequest = 100.0)
         {
+            if (text == null) text = "";
             BackgroundColor = Color.FromHex("#002060");
             Text = text.Trim();
-            WidthRequest = widthrequest;
+            WidthRequest = maxwidthrequest;
             if (coord != null) Coord = new AzmCoord(coord.lng, coord.lat);
             ControlTemplate dt = AzMapView.ActiveMap.Resources["azmlabeltemp"] as ControlTemplate;
             ControlTemplate = dt;
@@ -434,6 +441,91 @@ namespace AepApp.View
         private void Tap_Tapped(object sender, EventArgs e)
         {
             if (OnTapped != null) OnTapped(this, e);
+        }
+    }
+
+    public class AzmMarkerView : AzmOverlayView
+    {
+        public delegate void OnPopupTappedEventHandler(object sender, EventArgs e);
+        public event OnPopupTappedEventHandler OnPopupTapped;
+
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(
+            propertyName: nameof(Text),
+            returnType: typeof(string),
+            declaringType: typeof(AzmMarkerView),
+            defaultValue: default(string)
+        );
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
+            propertyName: nameof(TextColor),
+            returnType: typeof(Color),
+            declaringType: typeof(AzmMarkerView),
+            defaultValue: Color.White
+        );
+
+        public Color TextColor
+        {
+            get { return (Color)GetValue(TextColorProperty); }
+            set { SetValue(TextColorProperty, value); }
+        }
+
+        public static readonly BindableProperty SourceProperty = BindableProperty.Create(
+            propertyName: nameof(Source),
+            returnType: typeof(ImageSource),
+            declaringType: typeof(AzmMarkerView),
+            defaultValue: null
+        );
+
+        public ImageSource Source
+        {
+            get { return (ImageSource)GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
+        }
+
+        public AzmMarkerView(ImageSource source, Size size, AzmCoord coord = null, double popupmaxwidthrequest = 100.0)
+        {
+            Source = source;
+            Size = size;
+            Anchor = new Point(size.Width / 2, size.Height);
+            if (coord != null) Coord = new AzmCoord(coord.lng, coord.lat);
+            ControlTemplate dt = AzMapView.ActiveMap.Resources["azmmarkertemp"] as ControlTemplate;
+            ControlTemplate = dt;
+
+            TapGestureRecognizer tap = new TapGestureRecognizer();
+            tap.Tapped += Marker_Tapped;
+            this.GestureRecognizers.Add(tap);
+        }
+
+        private void Marker_Tapped(object sender, EventArgs e)
+        {
+            if (MapView.MarkerPopupLabel != null)
+            {
+                MapView.Overlays.Remove(MapView.MarkerPopupLabel);
+                MapView.TappedMarker = null;
+            }
+
+            AzmLabelView lv = new AzmLabelView(Text, Coord)
+            {
+                BackgroundColor = Color.FromHex("#ccc"),
+                TextColor = Color.FromHex("#444"),
+            };
+            lv.Anchor = new Point(lv.Anchor.X, lv.Anchor.Y + Size.Height);
+            lv.OnTapped += Popup_OnTapped;
+            MapView.Overlays.Add(lv);
+
+            MapView.MarkerPopupLabel = lv;
+            MapView.TappedMarker = this;
+        }
+
+        private void Popup_OnTapped(object sender, EventArgs e)
+        {
+            if (OnPopupTapped != null) OnPopupTapped(sender, e);
         }
     }
 

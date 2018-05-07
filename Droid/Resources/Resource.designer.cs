@@ -4495,26 +4495,26 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f020054
 			public const int avd_hide_password = 2130837588;
 			
-			// aapt resource value: 0x7f020123
-			public const int avd_hide_password_1 = 2130837795;
-			
-			// aapt resource value: 0x7f020124
-			public const int avd_hide_password_2 = 2130837796;
-			
 			// aapt resource value: 0x7f020125
-			public const int avd_hide_password_3 = 2130837797;
+			public const int avd_hide_password_1 = 2130837797;
+			
+			// aapt resource value: 0x7f020126
+			public const int avd_hide_password_2 = 2130837798;
+			
+			// aapt resource value: 0x7f020127
+			public const int avd_hide_password_3 = 2130837799;
 			
 			// aapt resource value: 0x7f020055
 			public const int avd_show_password = 2130837589;
 			
-			// aapt resource value: 0x7f020126
-			public const int avd_show_password_1 = 2130837798;
-			
-			// aapt resource value: 0x7f020127
-			public const int avd_show_password_2 = 2130837799;
-			
 			// aapt resource value: 0x7f020128
-			public const int avd_show_password_3 = 2130837800;
+			public const int avd_show_password_1 = 2130837800;
+			
+			// aapt resource value: 0x7f020129
+			public const int avd_show_password_2 = 2130837801;
+			
+			// aapt resource value: 0x7f02012a
+			public const int avd_show_password_3 = 2130837802;
 			
 			// aapt resource value: 0x7f020056
 			public const int design_bottom_navigation_item_background = 2130837590;
@@ -5083,11 +5083,11 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f020112
 			public const int notification_icon_background = 2130837778;
 			
-			// aapt resource value: 0x7f020121
-			public const int notification_template_icon_bg = 2130837793;
+			// aapt resource value: 0x7f020123
+			public const int notification_template_icon_bg = 2130837795;
 			
-			// aapt resource value: 0x7f020122
-			public const int notification_template_icon_low_bg = 2130837794;
+			// aapt resource value: 0x7f020124
+			public const int notification_template_icon_low_bg = 2130837796;
 			
 			// aapt resource value: 0x7f020113
 			public const int notification_tile_bg = 2130837779;
@@ -5130,6 +5130,12 @@ namespace AepApp.Droid
 			
 			// aapt resource value: 0x7f020120
 			public const int xamarin_logo = 2130837792;
+			
+			// aapt resource value: 0x7f020121
+			public const int zoomin = 2130837793;
+			
+			// aapt resource value: 0x7f020122
+			public const int zoomout = 2130837794;
 			
 			static Drawable()
 			{

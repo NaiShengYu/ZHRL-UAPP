@@ -48,6 +48,29 @@ namespace AepApp.View
                     lv.OnTapped += Enterprise_OnTapped;
                     map.Overlays.Add(lv);
 
+
+
+                    ////// Marker usage sample
+
+                    //ImageSource src = null;
+
+                    //if (Device.RuntimePlatform == Device.iOS)
+                    //{
+                    //    src = ImageSource.FromFile("pin.png");
+                    //}
+                    //else
+                    //{
+                    //    src = ImageSource.FromStream(() =>
+                    //       Assembly.GetExecutingAssembly().GetManifestResourceStream("AepApp.Droid.pin.png")
+                    //    );
+                    //}
+                    //AzmMarkerView mv = new AzmMarkerView(src, new Size(24, 24), new AzmCoord(lng, lat))
+                    //{
+                    //    Text = enter.name
+                    //};
+                    //map.Overlays.Add(mv);
+
+
                     x += lng;
                     y += lat;
                     cnt++;

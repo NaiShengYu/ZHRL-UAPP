@@ -101,7 +101,6 @@ namespace AepApp.View
             }
         }
 
-
         private void ButtonClicked(object sender, EventArgs e)
         {
             Button b = sender as Button;

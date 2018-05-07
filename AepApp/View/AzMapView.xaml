@@ -14,6 +14,12 @@
                            WidthRequest="15.4" HeightRequest="7" Margin="0,0,0,-7" />
                 </Grid>
             </ControlTemplate>
+            <ControlTemplate x:Key="azmmarkertemp">
+                <Grid BindingContext="{TemplateBinding BindingContext}">
+                    <Image Source="{TemplateBinding Source}" HorizontalOptions="Center" VerticalOptions="End"
+                           WidthRequest="{TemplateBinding WidthRequest}" HeightRequest="{TemplateBinding WidthRequest}" Margin="0,0,0,0" />
+                </Grid>
+            </ControlTemplate>
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
@@ -28,8 +34,16 @@
             <Label x:Name="lblcx" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="60,0,0,0" />
             <Label x:Name="lblcy" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="120,0,0,0"/>
 
-            <Button Text="+" WidthRequest="50" HeightRequest="50" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,60,5" Clicked="zoomin_Clicked"/>
-            <Button Text="-" WidthRequest="50" HeightRequest="50" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,5,5" Clicked="zoomout_Clicked"/>
+            <Image Opacity="0.7" WidthRequest="35" HeightRequest="35" Source="zoomin.png" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,50,10">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="zoomin_Clicked" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Opacity="0.7" WidthRequest="35" HeightRequest="35" Source="zoomout.png" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,10,10">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="zoomout_Clicked" />
+                </Image.GestureRecognizers>
+            </Image>
         </Grid>
     </ContentView.Content>
 </ContentView>
