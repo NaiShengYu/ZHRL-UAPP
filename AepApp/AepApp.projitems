@@ -35,14 +35,14 @@
       <DependentUpon>AirPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\AzMapView.xaml.cs">
+      <DependentUpon>AzMapView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\CurvedCornersLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\ExtendedViewCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\MapPage2.xaml.cs">
-      <DependentUpon>MapPage2.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\Platform.xaml.cs">
@@ -240,9 +240,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MapPage2.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\AzMapView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

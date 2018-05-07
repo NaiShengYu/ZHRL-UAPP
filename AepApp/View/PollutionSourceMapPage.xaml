@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:m="clr-namespace:Xamarin.Forms.BaiduMaps;assembly=Xamarin.Forms.BaiduMaps"            
+              xmlns:m="clr-namespace:AepApp.View" Title = "污染源在线"
              x:Class="AepApp.View.PollutionSourceMapPage">
     <ContentPage.Content>
         <Grid>
-        <m:Map x:Name="map"></m:Map>
-         </Grid>
+            <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

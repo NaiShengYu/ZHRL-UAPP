@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:m="clr-namespace:Xamarin.Forms.BaiduMaps;assembly=Xamarin.Forms.BaiduMaps"
-             x:Class="AepApp.View.AQIMapPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+              xmlns:m="clr-namespace:AepApp.View" Title = "AQI分布情况"
+          x:Class="AepApp.View.AQIMapPage">
     <ContentPage.Content>
-          <Grid>
-            <m:Map x:Name="map"></m:Map>
-            <Grid VerticalOptions="EndAndExpand" BackgroundColor="#4169E1">
+        <Grid>
+            <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="0,0,0,45"/>
+            <Grid VerticalOptions="EndAndExpand" BackgroundColor="#4169E1" HeightRequest="45">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -14,11 +14,31 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" BackgroundColor="Gray" TextColor="White" Text="AQI" Clicked="AQI" x:Name="aqi"/>
-                <Button Grid.Column="1" BackgroundColor="#4169E1" TextColor="White" Text="PM10" Clicked="PM10" x:Name="pm10"/>
-                <Button Grid.Column="2" BackgroundColor="#4169E1" TextColor="White" Text="PM2.5" Clicked="PM2_5" x:Name="pm25"/>
-                <Button Grid.Column="3" BackgroundColor="#4169E1" TextColor="White" Text="O3" Clicked="O3" x:Name="o3"/>
-                <Button Grid.Column="4" BackgroundColor="#4169E1" TextColor="White" Text="CO" Clicked="CO" x:Name="co"/>
+                <Button Grid.Column="0" BackgroundColor="Gray" TextColor="White" Text="AQI" Clicked="ButtonClicked" x:Name="aqi">
+                    <Button.BindingContext>
+                        <sys:String>AQI</sys:String>
+                    </Button.BindingContext>
+                </Button>
+                <Button Grid.Column="1" BackgroundColor="#4169E1" TextColor="White" Text="PM10" Clicked="ButtonClicked" x:Name="pm10" >
+                    <Button.BindingContext>
+                        <sys:String>PM10</sys:String>
+                    </Button.BindingContext>
+                </Button>
+                <Button Grid.Column="2" BackgroundColor="#4169E1" TextColor="White" Text="PM2.5" Clicked="ButtonClicked" x:Name="pm25" >
+                    <Button.BindingContext>
+                        <sys:String>PM25</sys:String>
+                    </Button.BindingContext>
+                </Button>
+                <Button Grid.Column="3" BackgroundColor="#4169E1" TextColor="White" Text="O3" Clicked="ButtonClicked" x:Name="o3" >
+                    <Button.BindingContext>
+                        <sys:String>O3</sys:String>
+                    </Button.BindingContext>
+                </Button>
+                <Button Grid.Column="4" BackgroundColor="#4169E1" TextColor="White" Text="CO" Clicked="ButtonClicked" x:Name="co" >
+                    <Button.BindingContext>
+                        <sys:String>CO</sys:String>
+                    </Button.BindingContext>
+                </Button>
             </Grid>
         </Grid>
     </ContentPage.Content>

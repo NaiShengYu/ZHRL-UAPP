@@ -5,24 +5,24 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="aqi">
-                <ViewCell>
+                <ViewCell Height="45">
                     <Grid VerticalOptions="Center">
-                        <Label HorizontalOptions="Start"  Text="{Binding Rank}"  Margin="10,0,0,0" WidthRequest="50" HorizontalTextAlignment="Center" />
-                        <Label HorizontalOptions="Fill"   Text="{Binding StationName}" Margin="85,0,0,0"/>
-                        <Label HorizontalOptions="End"    Text="{Binding info.facName}" Margin="0,0,100,0" WidthRequest="100" HorizontalTextAlignment="Center"/>
-                        <Label HorizontalOptions="End"    Text="{Binding info.AQI}"  WidthRequest="75" Margin="0,0,15,0" HorizontalTextAlignment="Center"/>
-                        <Image HorizontalOptions="End"  WidthRequest="5" Source="right.png" Margin="0,0,5,0"/>
+                        <Label HorizontalOptions="Start" VerticalOptions="Center"  Text="{Binding Rank}"  Margin="5,0,0,0" WidthRequest="30" FontSize="12" HorizontalTextAlignment="Center" />
+                        <Label HorizontalOptions="Start"  VerticalOptions="Center"  Text="{Binding StationName}" Margin="40,0,0,0"/>
+                        <Label HorizontalOptions="Start"   VerticalOptions="Center"  Text="{Binding info.facName}" Margin="120,0,0,0" WidthRequest="100" HorizontalTextAlignment="Center"/>
+                        <Label HorizontalOptions="Fill"   VerticalOptions="Center"  Text="{Binding info.AQI}"  Margin="230,0,30,0" HorizontalTextAlignment="Center"/>
+                        <Image HorizontalOptions="End"   VerticalOptions="Center"   WidthRequest="10" HeightRequest="12" Source="right.png" Margin="0,0,10,0"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="pm25">
-                <ViewCell>
+                <ViewCell Height="45">
                     <Grid VerticalOptions="Center">
-                        <Label HorizontalOptions="Start"  Text="{Binding Rank}"  Margin="10,0,0,0" WidthRequest="50" HorizontalTextAlignment="Center" />
-                        <Label HorizontalOptions="Fill"   Text="{Binding StationName}" Margin="85,0,0,0"/>
-                        <Label HorizontalOptions="End"    Text="{Binding info.facName}" Margin="0,0,100,0" WidthRequest="100" HorizontalTextAlignment="Center"/>
-                        <Label HorizontalOptions="End"    Text="{Binding info.PM25}"  WidthRequest="75" Margin="0,0,15,0" HorizontalTextAlignment="Center"/>
-                        <Image HorizontalOptions="End"  WidthRequest="5" Source="right.png" Margin="0,0,5,0"/>
+                        <Label HorizontalOptions="Start" VerticalOptions="Center" Text="{Binding Rank}"  Margin="5,0,0,0" WidthRequest="30" FontSize="12" HorizontalTextAlignment="Center" />
+                        <Label HorizontalOptions="Start"  VerticalOptions="Center" Text="{Binding StationName}" Margin="40,0,0,0"/>
+                        <Label HorizontalOptions="Start"   VerticalOptions="Center" Text="{Binding info.facName}" Margin="120,0,0,0" WidthRequest="100" HorizontalTextAlignment="Center"/>
+                        <Label HorizontalOptions="Fill"   VerticalOptions="Center" Text="{Binding info.PM25}"  Margin="230,0,30,0" HorizontalTextAlignment="Center"/>
+                        <Image HorizontalOptions="End"   VerticalOptions="Center" WidthRequest="10" HeightRequest="12" Source="right.png" Margin="0,0,10,0"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
@@ -33,11 +33,11 @@
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
             <SearchBar Placeholder="搜索站点名称" TextChanged="SearchBar_TextChanged" x:Name="searchbar"></SearchBar>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
-            <Grid Margin="0,5,0,5">
-                <Label HorizontalOptions="Start" WidthRequest="50" Text="排名" Margin="20,0,0,0"/>
-                <Label HorizontalOptions="Fill"  Text="站点" Margin="90,0,0,0"/>
-                <Label HorizontalOptions="End"   Text="主要污染物" Margin="0,0,110,0"/>
-                <Label HorizontalOptions="End"   WidthRequest="100" x:Name="UnitName" Text="AQI" Margin="0,0,0,0"  HorizontalTextAlignment="Center"/>
+            <Grid Margin="0,0,0,0" BackgroundColor="#f0f0f0" HeightRequest="45">
+                <!--<Label HorizontalOptions="Start" WidthRequest="50" Text="排名" Margin="20,0,0,0"/>-->
+                <Label HorizontalOptions="Start"  Text="站点" Margin="40,0,0,0" VerticalOptions="Center"/>
+                <Label HorizontalOptions="Start"  Text="主要污染物" Margin="120,0,0,0" WidthRequest="100" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                <Label HorizontalOptions="Fill"   x:Name="UnitName" Text="AQI" Margin="230,0,30,0"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
             </Grid>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
             <ListView x:Name="listView" ItemTemplate="{StaticResource aqi}"  ItemSelected="listView_ItemSelected"/>

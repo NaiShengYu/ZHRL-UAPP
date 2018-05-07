@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.AzMapView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="azmlabeltemp">
+                <Grid BackgroundColor="White" BindingContext="{TemplateBinding BindingContext}">
+                    <Grid BackgroundColor="{TemplateBinding BackgroundColor}" Margin="1">
+                        <Label TextColor="{TemplateBinding TextColor}" FontSize="14" Text="{Binding name}" Margin="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
+                              LineBreakMode="CharacterWrap"  VerticalOptions="CenterAndExpand" />
+                    </Grid>
+                    <Image Source="tri_white.png" HorizontalOptions="Center" VerticalOptions="End"
+                           WidthRequest="15.4" HeightRequest="7" Margin="0,0,0,-7" />
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid>
+            <AbsoluteLayout x:Name="map" BackgroundColor="#f0f0f0">
+                <AbsoluteLayout.GestureRecognizers>
+                    <PanGestureRecognizer PanUpdated="OnPanUpdated" />
+                </AbsoluteLayout.GestureRecognizers>
+            </AbsoluteLayout>
+
+            <Label x:Name="lbllevel" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" />
+            <Label x:Name="lblcx" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="60,0,0,0" />
+            <Label x:Name="lblcy" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="120,0,0,0"/>
+
+            <Button Text="+" WidthRequest="50" HeightRequest="50" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,60,5" Clicked="zoomin_Clicked"/>
+            <Button Text="-" WidthRequest="50" HeightRequest="50" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,5,5" Clicked="zoomout_Clicked"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
