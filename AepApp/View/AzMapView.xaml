@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:s="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="AepApp.View.AzMapView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -24,26 +25,52 @@
     </ContentView.Resources>
     <ContentView.Content>
         <Grid>
-            <AbsoluteLayout x:Name="map" BackgroundColor="#f0f0f0">
+            <AbsoluteLayout x:Name="tile" BackgroundColor="#f0f0f0">
                 <AbsoluteLayout.GestureRecognizers>
                     <PanGestureRecognizer PanUpdated="OnPanUpdated" />
                 </AbsoluteLayout.GestureRecognizers>
             </AbsoluteLayout>
 
-            <Label x:Name="lbllevel" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" />
-            <Label x:Name="lblcx" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="60,0,0,0" />
-            <Label x:Name="lblcy" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="120,0,0,0"/>
+            <s:SKCanvasView x:Name="can" PaintSurface="SKCanvasView_PaintSurface" IsVisible="False" />
 
-            <Image Opacity="0.7" WidthRequest="35" HeightRequest="35" Source="zoomin.png" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,50,10">
+            <AbsoluteLayout x:Name="overlayviews" BackgroundColor="Transparent">
+                <AbsoluteLayout.GestureRecognizers>
+                    <PanGestureRecognizer PanUpdated="OnPanUpdated" />
+                </AbsoluteLayout.GestureRecognizers>
+            </AbsoluteLayout>
+
+
+            <Label IsVisible="False" x:Name="lbllevel" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" />
+            <Label IsVisible="False" x:Name="lblcx" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="60,0,0,0" />
+            <Label IsVisible="False" x:Name="lblcy" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="120,0,0,0"/>
+
+            <Image Opacity="1.0" WidthRequest="50" HeightRequest="50" Source="zoomin.png" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,65,10">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="zoomin_Clicked" />
                 </Image.GestureRecognizers>
             </Image>
-            <Image Opacity="0.7" WidthRequest="35" HeightRequest="35" Source="zoomout.png" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,10,10">
+            <Image Opacity="1.0" WidthRequest="50" HeightRequest="50" Source="zoomout.png" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,10,10">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="zoomout_Clicked" />
                 </Image.GestureRecognizers>
             </Image>
+
+            <Image Opacity="1.0" WidthRequest="50" HeightRequest="50" Source="type_normal.png" VerticalOptions="End" HorizontalOptions="Start" Margin="10,0,0,10">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="normal_Clicked" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Opacity="1.0" WidthRequest="50" HeightRequest="50" Source="type_sat.png" VerticalOptions="End" HorizontalOptions="Start" Margin="65,0,0,10">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="sat_Clicked" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Opacity="1.0" WidthRequest="50" HeightRequest="50" Source="type_hybrid.png" VerticalOptions="End" HorizontalOptions="Start" Margin="120,0,0,10">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="hybrid_Clicked" />
+                </Image.GestureRecognizers>
+            </Image>
+
         </Grid>
     </ContentView.Content>
 </ContentView>

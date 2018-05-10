@@ -27,7 +27,7 @@ namespace AepApp
         public App()
         {
             InitializeComponent();
-           
+
 
             //if (UseMockDataStore)
             //    DependencyService.Register<MockDataStore>();
@@ -40,6 +40,7 @@ namespace AepApp
             //    MainPage = new NavigationPage(new MainPage());
 
             MainPage = new NavigationPage(new LoginPage());
+            //MainPage = new NavigationPage(new TestMapPage());
 
             //MainPage = new NavigationPage(new MonitorPage());
 
