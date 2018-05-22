@@ -85,6 +85,8 @@ namespace AepApp.View
             MarkerPopupLabel = null;
 
             MapType = AzmMapType.Normal;
+
+            SetCenter(8, new AzmCoord(120.0, 29.9));
         }
 
         private void UpdateRanges()
@@ -820,6 +822,212 @@ namespace AepApp.View
                         case 196627: col = Color.FromHex("#e6ede2").ToSKColor(); break;
                         case 196630: col = Color.FromHex("#edebdd").ToSKColor(); break;
                         case 196632: col = Color.FromHex("#eaf1f5").ToSKColor(); break;
+                            //北京地铁站 
+                        case 196634: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196635: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196636: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196637: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196638: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196639: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196640: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196641: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196642: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196643: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196644: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196645: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196646: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196647: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196648: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196649: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196650: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196765: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196801: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196803: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+                        case 196804: col = Color.FromHex("#84bcf8").ToSKColor(); break;
+
+                            //天津
+                        case 196703: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196704: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196705: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196706: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196758: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //厦门
+                        case 196809: col = Color.FromHex("#6089b5").ToSKColor(); break;
+                            //贵阳
+                        case 196782: col = Color.FromHex("#6089b5").ToSKColor(); break;
+
+                            //石家庄
+                        case 196781: col = Color.FromHex("#afd475").ToSKColor(); break;
+                        case 196780: col = Color.FromHex("#afd475").ToSKColor(); break;
+
+                            //合肥
+                        case 196790: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196773: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //南宁
+                        case 196755: col = Color.FromHex("#f7715d").ToSKColor(); break;
+                        case 196800: col = Color.FromHex("#f7715d").ToSKColor(); break;
+
+                            //东莞
+                        case 196753: col = Color.FromHex("#afd475").ToSKColor(); break;
+
+                            //福州
+                        case 196756: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //南昌
+                        case 196787: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196748: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //长春
+                        case 196724: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196783: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196725: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //大连
+                        case 196743: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196745: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196687: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196746: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196686: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+
+                            //无锡
+                        case 196735: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196740: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //长沙
+                        case 196759: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196757: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196732: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+
+                            //郑州
+                        case 196761: col = Color.FromHex("#bbb378").ToSKColor(); break;
+                        case 196726: col = Color.FromHex("#bbb378").ToSKColor(); break;
+                        case 196776: col = Color.FromHex("#bbb378").ToSKColor(); break;
+
+                            //青岛
+                        case 196747: col = Color.FromHex("#afd475").ToSKColor(); break;
+                        case 196793: col = Color.FromHex("#afd475").ToSKColor(); break;
+
+                            //哈尔滨
+                        case 196691: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196767: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //杭州
+                        case 196692: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196739: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196741: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //昆明
+                        case 196733: col = Color.FromHex("#afd475").ToSKColor(); break;
+                        case 196788: col = Color.FromHex("#afd475").ToSKColor(); break;
+                        case 196694: col = Color.FromHex("#afd475").ToSKColor(); break;
+                        case 196775: col = Color.FromHex("#afd475").ToSKColor(); break;
+                        case 196695: col = Color.FromHex("#afd475").ToSKColor(); break;
+
+                            //苏州
+                        case 196778: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196779: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196702: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196701: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //西安
+                        case 196762: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196710: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196711: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //重庆
+                        case 196729: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196728: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196727: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196730: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196807: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196806: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196731: col = Color.FromHex("#60a656").ToSKColor(); break;
+
+                            //沈阳
+                        case 196700: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196699: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //成都
+                        case 196684: col = Color.FromHex("#5fa1c8").ToSKColor(); break;
+                        case 196685: col = Color.FromHex("#5fa1c8").ToSKColor(); break;
+                        case 196749: col = Color.FromHex("#5fa1c8").ToSKColor(); break;
+                        case 196760: col = Color.FromHex("#5fa1c8").ToSKColor(); break;
+                        case 196789: col = Color.FromHex("#5fa1c8").ToSKColor(); break;
+                        case 196792: col = Color.FromHex("#5fa1c8").ToSKColor(); break;
+
+                            //南京
+                        case 196738: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196768: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196697: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196698: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196742: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196696: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196791: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196736: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196805: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196737: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+
+                            //深圳
+                        case 196679: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196681: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196763: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196683: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196682: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196754: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196764: col = Color.FromHex("#60a656").ToSKColor(); break;
+                        case 196680: col = Color.FromHex("#60a656").ToSKColor(); break;
+                            
+                            //武汉
+                        case 196708: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196707: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196772: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196709: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196798: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196750: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+                        case 196799: col = Color.FromHex("#6a77aa").ToSKColor(); break;
+
+                            //广州
+                        case 196657: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196658: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196653: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196652: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196660: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196690: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196654: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196659: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196655: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196656: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196797: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196796: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196766: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196651: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196795: col = Color.FromHex("#d05755").ToSKColor(); break;
+
+                            //上海背景色
+                        case 196672: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196664: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196677: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196675: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196676: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196673: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196678: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196662: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196663: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196670: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196671: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196666: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196810: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196668: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196661: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196794: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196667: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196674: col = Color.FromHex("#d05755").ToSKColor(); break;
+                        case 196669: col = Color.FromHex("#d05755").ToSKColor(); break;
+
+                           
+
 
                         case 196713: col = Color.FromHex("#d1577c").ToSKColor(); break;
                         case 196715: col = Color.FromHex("#d1577c").ToSKColor(); break;
@@ -829,9 +1037,6 @@ namespace AepApp.View
                         case 196721: col = Color.FromHex("#d1577c").ToSKColor(); break;
                         case 196722: col = Color.FromHex("#d1577c").ToSKColor(); break;
                         case 196723: col = Color.FromHex("#d1577c").ToSKColor(); break;
-
-
-
                         case 196734: col = Color.FromHex("#569dd2").ToSKColor(); break;
                         case 196744: col = Color.FromHex("#569cd1").ToSKColor(); break;
                         case 196769: col = Color.FromHex("#efece7").ToSKColor(); break;
@@ -904,8 +1109,9 @@ namespace AepApp.View
                         case 65563: col = Color.FromHex("#1d9740").ToSKColor(); icon = 7; break;
                         case 65564: col = Color.FromHex("#1d9740").ToSKColor(); icon = 8; break;
                         case 65565: col = Color.FromHex("#1d9740").ToSKColor(); icon = 9; break;
+                        case 65566: col = Color.FromHex("#5f6f97").ToSKColor(); icon = 10; break;
                         case 65567: col = Color.FromHex("#5f6f97").ToSKColor(); icon = 11; break;
-                        case 65568: col = Color.FromHex("#797979").ToSKColor(); break;
+                        case 65568: col = Color.FromHex("#797979").ToSKColor(); icon = 12; break;
                         case 65569: col = Color.FromHex("#797979").ToSKColor(); icon = 13; break;
                         case 65570: col = Color.FromHex("#417dcc").ToSKColor(); icon = 14; break;
                         case 65571: col = Color.FromHex("#5f6f97").ToSKColor(); icon = 15; break;
@@ -929,9 +1135,13 @@ namespace AepApp.View
                         case 65593: col = Color.FromHex("#8b7de7").ToSKColor(); icon = 37; break;
                         case 65594: col = Color.FromHex("#797979").ToSKColor(); icon = 5; break;
                         case 65595: col = Color.FromHex("#8a8a88").ToSKColor(); break;
+                        case 65596: col = Color.FromHex("#797979").ToSKColor(); icon = 40; break;
+                        case 65597: col = Color.FromHex("#797979").ToSKColor(); icon = 41; break;
                         case 65598: col = Color.FromHex("#797979").ToSKColor(); icon = 42; break;
+                        case 65599: col = Color.FromHex("#797979").ToSKColor(); icon = 43; break;
                         case 65600: col = Color.FromHex("#797979").ToSKColor(); break;
                         case 65601: col = Color.FromHex("#8a8a88").ToSKColor(); break;
+                        case 65602: col = Color.FromHex("#797979").ToSKColor(); icon = 46; break;
                         case 65604: col = Color.FromHex("#797979").ToSKColor(); icon = 48; break;
                         case 65605: col = Color.FromHex("#797979").ToSKColor(); icon = 14; break;
                         case 65606: col = Color.FromHex("#797979").ToSKColor(); break;
@@ -942,16 +1152,154 @@ namespace AepApp.View
                         case 65610: col = Color.FromHex("#fff").ToSKColor();
                             backcol = Color.FromHex("#009a00").ToSKColor(); textsize = 8; break;
                         case 65611: col = Color.FromHex("#797979").ToSKColor(); icon = 55; break;
+                        case 65613: col = Color.FromHex("#000").ToSKColor(); icon = 58; break;
                         case 65614: col = Color.FromHex("#000").ToSKColor(); icon = 59; break;
                         case 65615: col = Color.FromHex("#000").ToSKColor(); icon = 60; break;
                         case 65616: col = Color.FromHex("#000").ToSKColor(); icon = 61; break;
                         case 65617: col = Color.FromHex("#797979").ToSKColor(); icon = 62; break;
+                        case 65618: col = Color.FromHex("#797979").ToSKColor(); icon = 63; break;
+                        case 65619: col = Color.FromHex("#797979").ToSKColor(); icon = 64; break;
                         case 65620: col = Color.FromHex("#797979").ToSKColor(); icon = 65; break;
                         case 65622: col = Color.FromHex("#797979").ToSKColor(); icon = 66; break;
                         case 65623: col = Color.FromHex("#797979").ToSKColor(); icon = 67; break;
+                        case 65624: col = Color.FromHex("#797979").ToSKColor(); icon = 68; break;
+                        case 65625: col = Color.FromHex("#797979").ToSKColor(); icon = 160; break;
+                        case 65626: col = Color.FromHex("#797979").ToSKColor(); icon = 69; break;
                         case 65627: col = Color.FromHex("#797979").ToSKColor(); icon = 70; break;     // subway station name
+                        case 65628: col = Color.FromHex("#797979").ToSKColor(); icon = 71; break;
+                        case 65629: col = Color.FromHex("#797979").ToSKColor(); icon = 72; break;
+                        case 65630: col = Color.FromHex("#797979").ToSKColor(); icon = 74; break;
                         case 65631: col = Color.FromHex("#000").ToSKColor(); icon = 73; break;     // atm
                         case 65632: col = Color.FromHex("#797979").ToSKColor(); break;     // subway station name
+                        case 65869: col = Color.FromHex("#797979").ToSKColor();textsize = 8; break;   
+                        case 66064: col = Color.FromHex("#797979").ToSKColor();icon = 341;textsize = 8; break;   
+                        case 66111: col = Color.FromHex("#C2C2C2").ToSKColor(); textsize = 8; break;
+                        case 66114: col = Color.FromHex("#C2C2C2").ToSKColor(); textsize = 8; break;
+                        case 66115: col = Color.FromHex("#C2C2C2").ToSKColor(); textsize = 12; break;
+
+                            // 北京站点名称字体颜色
+                        case 65634: col = Color.FromHex("#000000").ToSKColor(); break;     
+                        case 65635: col = Color.FromHex("#000000").ToSKColor(); break; 
+                            // 天津站点名称字体颜色    
+                        case 65664: col = Color.FromHex("#000000").ToSKColor(); break;    
+                        case 65665: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //厦门站点名称字体颜色
+                        case 66102: col = Color.FromHex("#000000").ToSKColor(); break;   
+                            //贵阳
+                        case 66045: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //石家庄
+                        case 66038: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 66039: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //合肥
+                        case 65896: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65895: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //南宁
+                        case 65696: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65697: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //东莞
+                        case 65695: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //福州
+                        case 65699: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //南昌
+                        case 65692: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65691: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //长春
+                        case 65646: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65647: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65871: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //大连
+                        case 65650: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65651: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //无锡
+                        case 65682: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65683: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //长沙
+                        case 65676: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65677: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //郑州站点
+                        //case 65672: col = Color.FromHex("#000000").ToSKColor();icon = 94; break;   
+                        //case 65673: col = Color.FromHex("#000000").ToSKColor();icon = 94; break;   
+                        //case 65883: col = Color.FromHex("#000000").ToSKColor();icon = 94; break;   
+                        case 65672: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65673: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65883: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+
+                            //青岛
+                        case 65690: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65689: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //哈尔滨
+                        case 65674: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65675: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //杭州
+                        case 65658: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65659: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //昆明
+                        case 65656: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65657: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //苏州
+                        case 65662: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65663: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //西安
+                        case 65652: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65653: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //重庆
+                        case 65666: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65667: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //沈阳
+                        case 65648: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65649: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //成都
+                        case 65654: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65655: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //高雄
+                        case 66065: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //南京
+                        case 65636: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65637: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //深圳
+                        case 65638: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65639: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //武汉
+                        case 65644: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65645: col = Color.FromHex("#000000").ToSKColor(); break;   
+
+                            //广州站点
+                        case 65640: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65641: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65642: col = Color.FromHex("#000000").ToSKColor(); break;   
+                        case 65643: col = Color.FromHex("#000000").ToSKColor(); break;  
+
+                            //上海
+                        case 65660: col = Color.FromHex("#000000").ToSKColor(); break;  
+                        case 65661: col = Color.FromHex("#000000").ToSKColor(); break;  
+
+
+
                         case 65668: col = Color.FromHex("#333333").ToSKColor(); icon = 113; break;     // hong kong subway station name
                         case 65669: col = Color.FromHex("#333333").ToSKColor(); icon = 113; break;     // hong kong subway station name
                         case 65680: col = Color.FromHex("#333333").ToSKColor(); icon = 121; break;     // ningbo subway station name
@@ -960,12 +1308,19 @@ namespace AepApp.View
                         case 65686: col = Color.FromHex("#8a8a88").ToSKColor(); textsize = 15; break;
                         case 65687: col = Color.FromHex("#a8bb9e").ToSKColor(); textsize = 15; break;
                         case 65688: col = Color.FromHex("#b9b7a0").ToSKColor(); textsize = 15; break;
+                        case 65693: col = Color.FromHex("#8a8a88").ToSKColor(); textsize = 10; break;
                         case 65700: col = Color.FromHex("#000").ToSKColor(); icon = 165; break;
                         case 65701: col = Color.FromHex("#000").ToSKColor(); icon = 166; break;
                         case 65702: col = Color.FromHex("#000").ToSKColor(); icon = 167; break;
                         case 65703: col = Color.FromHex("#000").ToSKColor(); icon = 168; break;
                         case 65704: col = Color.FromHex("#797979").ToSKColor(); icon = 169; break;
                         case 65705: col = Color.FromHex("#797979").ToSKColor(); icon = 170; break;
+                        case 65706: col = Color.FromHex("#797979").ToSKColor(); icon = 171; break;
+                        case 65707: col = Color.FromHex("#797979").ToSKColor(); icon = 172; break;
+                        case 65708: col = Color.FromHex("#000").ToSKColor(); icon = 61; break;
+                        case 65709: col = Color.FromHex("#000").ToSKColor(); icon = 160; break;
+                        case 65710: col = Color.FromHex("#797979").ToSKColor(); icon = 32; break;
+                        case 65711: col = Color.FromHex("#797979").ToSKColor(); icon = 176; break;
                         case 65712: col = Color.FromHex("#797979").ToSKColor(); icon = 5; break;
                         case 65713: col = Color.FromHex("#797979").ToSKColor(); icon = 28; break;
                         case 65714: col = Color.FromHex("#797979").ToSKColor(); icon = 5; break;
@@ -975,11 +1330,71 @@ namespace AepApp.View
                         case 65741: col = Color.FromHex("#5f6f97").ToSKColor(); icon = 53; break;
                         case 65742: col = Color.FromHex("#5f6f97").ToSKColor(); break;
                         case 65743: col = Color.FromHex("#8b7de7").ToSKColor(); break;
+                        case 65744: col = Color.FromHex("#5f6f97").ToSKColor(); icon = 124; break;
+
                         case 65755: col = Color.FromHex("#b8a790").ToSKColor(); textsize = 15; break;
                         case 65756: col = Color.FromHex("#caa1a2").ToSKColor(); textsize = 15; break;
                         case 65757: col = Color.FromHex("#bdbcbc").ToSKColor(); textsize = 15; break;
-                        case 65853: col = Color.FromHex("#bc023c").ToSKColor(); icon = 309; break;
-                        case 65857: col = Color.FromHex("#006fc1").ToSKColor(); icon = 307; break;
+                        case 65877: col = Color.FromHex("#bdbcbc").ToSKColor(); textsize = 8; break;
+
+                     
+                        case 65836: col = Color.FromHex("#84bcf8").ToSKColor(); icon = 300; break;//北京出站口
+                        case 65851: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//天津出站口
+                        case 65864: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//天津出站口
+                        case 65853: col = Color.FromHex("#bc023c").ToSKColor(); icon = 309; break;//香港
+                        case 65857: col = Color.FromHex("#006fc1").ToSKColor(); icon = 307; break;//宁波
+                        case 66104: col = Color.FromHex("#6089b5").ToSKColor(); icon = 307; break;//厦门
+                        case 66047: col = Color.FromHex("#6a77aa").ToSKColor(); icon = 304; break;//贵阳 
+                        case 66040: col = Color.FromHex("#afd475").ToSKColor(); icon = 303; break;//石家庄
+                            
+                        case 65893: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//合肥
+                       
+                        case 65862: col = Color.FromHex("#f7715d").ToSKColor(); icon = 301; break;//南宁
+
+                        case 65861: col = Color.FromHex("#afd475").ToSKColor(); icon = 303; break;//东莞出站口
+
+                        case 65863: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//福州出站口
+
+                        case 65860: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//南昌出站口
+
+                        case 65842: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//长春出站口
+
+                        case 65844: col = Color.FromHex("#6a77aa").ToSKColor(); icon = 304; break;//大连出站口
+
+                        case 65858: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//无锡出站口
+
+                        case 65856: col = Color.FromHex("#6a77aa").ToSKColor(); icon = 304; break;//长沙出站口
+
+                        case 65854: col = Color.FromHex("#bbb378").ToSKColor(); icon = 305; break;//郑州出站口
+
+                        case 65859: col = Color.FromHex("#afd475").ToSKColor(); icon = 303; break;//青岛出站口
+                       
+                        case 65855: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//哈尔滨出站口
+
+                        case 65848: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//杭州出站口
+
+                        case 65847: col = Color.FromHex("#afd475").ToSKColor(); icon = 303; break;//昆明出站口
+
+                        case 65850: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//苏州出站口
+
+                        case 65845: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//西安出站口
+
+                        case 65852: col = Color.FromHex("#60a656").ToSKColor(); icon = 302; break;//重庆出站口
+                      
+                        case 65843: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//沈阳出站口
+
+                        case 65846: col = Color.FromHex("#5fa1c8").ToSKColor(); icon = 307; break;//成都出站口
+
+                        case 65837: col = Color.FromHex("#d75a5d").ToSKColor(); icon = 306; break;//南京出站口
+
+                        case 65838: col = Color.FromHex("#60a656").ToSKColor(); icon = 302; break;//深圳出站口
+
+                        case 65841: col = Color.FromHex("#6a77aa").ToSKColor(); icon = 304; break;//武汉出站口
+
+                        case 65839: col = Color.FromHex("#d05755").ToSKColor(); icon = 306; break;//广州出站口
+                        case 65840: col = Color.FromHex("#d05755").ToSKColor(); icon = 306; break;//广州出站口
+
+                        case 65849: col = Color.FromHex("#d05755").ToSKColor(); icon = 306; break;//上海出站口
 
 
                         case 65976: col = Color.FromHex("#fff").ToSKColor();            // hk disney line
@@ -1010,22 +1425,580 @@ namespace AepApp.View
 
 
 
-
+                            //宁波铁路线lab颜色
                         case 65998: col = Color.FromHex("#fff").ToSKColor();            // subway line label
                             backcol = Color.FromHex("#6da2d9").ToSKColor(); break;
                         case 66008: col = Color.FromHex("#fff").ToSKColor();            // subway line label
                             backcol = Color.FromHex("#e17a7e").ToSKColor(); break;
+                                                       
+                            //北京地铁路线lab颜色
+                        case 65901:
+                            col = Color.FromHex("#fff").ToSKColor();            // 北京地铁1号线（1971年01月15日）三轨 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65902:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#6fa3d7").ToSKColor(); break;
+                        case 65903:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#77d0ce").ToSKColor(); break;
+                        case 65904:
+                            col = Color.FromHex("#fff").ToSKColor();            // 5 line label
+                            backcol = Color.FromHex("#bb6d9c").ToSKColor(); break;
+                        case 65905:
+                            col = Color.FromHex("#fff").ToSKColor();            // 6 line label
+                            backcol = Color.FromHex("#f4c36a").ToSKColor(); break;
+                        case 65913:
+                            col = Color.FromHex("#fff").ToSKColor();            // 7 line label
+                            backcol = Color.FromHex("#f4c36a").ToSKColor(); break;
+                        case 65906:
+                            col = Color.FromHex("#fff").ToSKColor();            // 8 line label
+                            backcol = Color.FromHex("#76bb72").ToSKColor(); break;
+                        case 65907:
+                            col = Color.FromHex("#fff").ToSKColor();            // 9 line label
+                            backcol = Color.FromHex("#bcca6b").ToSKColor(); break;
+                        case 65897:
+                            col = Color.FromHex("#fff").ToSKColor();            // 10 line label
+                            backcol = Color.FromHex("#77c1f6").ToSKColor(); break;
+                        case 65898:
+                            col = Color.FromHex("#fff").ToSKColor();            // 13 line label
+                            backcol = Color.FromHex("#f4c36a").ToSKColor(); break;
+                        case 65899:
+                            col = Color.FromHex("#fff").ToSKColor();            // 14 line label
+                            backcol = Color.FromHex("#d7a49d").ToSKColor(); break;
+                        case 65900:
+                            col = Color.FromHex("#fff").ToSKColor();            // 15 line label
+                            backcol = Color.FromHex("#997e9e").ToSKColor(); break;
+                        case 65914:
+                            col = Color.FromHex("#fff").ToSKColor();            // 16 line label
+                            backcol = Color.FromHex("#bcca6b").ToSKColor(); break;
+                        case 65912:
+                            col = Color.FromHex("#fff").ToSKColor();            // 机场 line label
+                            backcol = Color.FromHex("#a193bb").ToSKColor(); break;
+                        case 65911:
+                            col = Color.FromHex("#fff").ToSKColor();            // 亦庄 line label
+                            backcol = Color.FromHex("#dd91bf").ToSKColor(); break;
+                        case 65910:
+                            col = Color.FromHex("#fff").ToSKColor();            //房山 line label
+                            backcol = Color.FromHex("#ea9378").ToSKColor(); break;
+                        case 65909:
+                            col = Color.FromHex("#fff").ToSKColor();            //昌平 line label
+                            backcol = Color.FromHex("#f4b1d2").ToSKColor(); break;
+                        case 66093:
+                            col = Color.FromHex("#fff").ToSKColor();            // 燕房line label
+                            backcol = Color.FromHex("#e8855a").ToSKColor(); break;
+                        case 66096:
+                            col = Color.FromHex("#fff").ToSKColor();            // 西郊 line label
+                            backcol = Color.FromHex("#e77275").ToSKColor(); break;
+                        case 66095:
+                            col = Color.FromHex("#fff").ToSKColor();            // s1 line label
+                            backcol = Color.FromHex("#e66b72").ToSKColor(); break;
+                      
+                            //天津
+                        case 65967:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65968:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#bcca6b").ToSKColor(); break;
+                        case 65969:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#77d0ce").ToSKColor(); break;
+                        case 66020:
+                            col = Color.FromHex("#fff").ToSKColor();            // 6 line label
+                            backcol = Color.FromHex("#bb6d9c").ToSKColor(); break;
+                        case 65970:
+                            col = Color.FromHex("#fff").ToSKColor();            // 9 line label
+                            backcol = Color.FromHex("#6fa3d7").ToSKColor(); break;
+
+                            //台北
+                        case 66075:
+                            col = Color.FromHex("#fff").ToSKColor();            // 文湖线 line label
+                            backcol = Color.FromHex("#d7a49d").ToSKColor(); break;
+                        case 66072:
+                            col = Color.FromHex("#fff").ToSKColor();            // 淡水信义线（1997年） line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 66073:
+                            col = Color.FromHex("#fff").ToSKColor();            //松山新店线（2000年）line label
+                            backcol = Color.FromHex("#76bb72").ToSKColor(); break;
+                        case 66074:
+                            col = Color.FromHex("#fff").ToSKColor();            //松山新店线（2000年）line label
+                            backcol = Color.FromHex("#76bb72").ToSKColor(); break;
+                        case 66078:
+                            col = Color.FromHex("#fff").ToSKColor();            // 中和新芦线（2002年） line label
+                            backcol = Color.FromHex("#f3c36d").ToSKColor(); break;
+                        case 66079:
+                            col = Color.FromHex("#fff").ToSKColor();            // 中和新芦线（2002年） line label
+                            backcol = Color.FromHex("#f3c36d").ToSKColor(); break;
+                        case 66071:
+                            col = Color.FromHex("#fff").ToSKColor();            // 板南线（2005年） line label
+                            backcol = Color.FromHex("#77c1f6").ToSKColor(); break;
+                        case 66080:
+                            col = Color.FromHex("#fff").ToSKColor();            // 板南线（2005年） line label
+                            backcol = Color.FromHex("#77c1f6").ToSKColor(); break;
+                        case 66077:
+                            col = Color.FromHex("#fff").ToSKColor();            //新北投线（2010年） line label
+                            backcol = Color.FromHex("#f4c36a").ToSKColor(); break;
+                        case 66076:
+                            col = Color.FromHex("#fff").ToSKColor();            // 小碧潭线（2004年）line label
+                            backcol = Color.FromHex("#f4c36a").ToSKColor(); break;
+                        case 66070:
+                            col = Color.FromHex("#fff").ToSKColor();            // 猫空缆车 line label
+                            backcol = Color.FromHex("#d7a49d").ToSKColor(); break;
+
+                            //上海
+                        case 65948:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65949:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#bcca6b").ToSKColor(); break;
+                        case 65950:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#bcca6b").ToSKColor(); break; 
+                        case 65951:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#f4c36a").ToSKColor(); break;
+                        case 65952:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#997e9e").ToSKColor(); break;
+                        case 65953:
+                            col = Color.FromHex("#fff").ToSKColor();            // 5 line label
+                            backcol = Color.FromHex("#a193bb").ToSKColor(); break;
+                        case 65954:
+                            col = Color.FromHex("#fff").ToSKColor();            // 6 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65955:
+                            col = Color.FromHex("#fff").ToSKColor();            // 7 line label
+                            backcol = Color.FromHex("#ea9378").ToSKColor(); break;
+                        case 65956:
+                            col = Color.FromHex("#fff").ToSKColor();            // 8 line label
+                            backcol = Color.FromHex("#77c1f6").ToSKColor(); break;
+                        case 65957:
+                            col = Color.FromHex("#fff").ToSKColor();            // 9 line label
+                            backcol = Color.FromHex("#8dc4de").ToSKColor(); break;
+                        case 65941:
+                            col = Color.FromHex("#fff").ToSKColor();            // 10 line label
+                            backcol = Color.FromHex("#d7a49d").ToSKColor(); break;
+                        case 65942:
+                            col = Color.FromHex("#fff").ToSKColor();            // 10 line label
+                            backcol = Color.FromHex("#d7a49d").ToSKColor(); break;
+                        case 65944:
+                            col = Color.FromHex("#fff").ToSKColor();            // 11 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65943:
+                            col = Color.FromHex("#fff").ToSKColor();            // 11 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65945:
+                            col = Color.FromHex("#fff").ToSKColor();            // 12 line label
+                            backcol = Color.FromHex("#76bb72").ToSKColor(); break;
+                        case 65946:
+                            col = Color.FromHex("#fff").ToSKColor();            // 13 line label
+                            backcol = Color.FromHex("#f4b1d2").ToSKColor(); break;
+                        case 65947:
+                            col = Color.FromHex("#fff").ToSKColor();            // 16 line label
+                            backcol = Color.FromHex("#a0d7c5").ToSKColor(); break;
+                        case 66086:
+                            col = Color.FromHex("#fff").ToSKColor();            // 17 line label
+                            backcol = Color.FromHex("#e8855a").ToSKColor(); break;
+                        case 66106:
+                            col = Color.FromHex("#fff").ToSKColor();            // 浦江线 line label
+                            backcol = Color.FromHex("#74998e").ToSKColor(); break;
+                        case 65940:
+                            col = Color.FromHex("#fff").ToSKColor();            // 磁悬浮 line label
+                            backcol = Color.FromHex("#77c1f6").ToSKColor(); break;
+                    
+                            //广州
+                        case 65923:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#f4c36a").ToSKColor(); break;
+                        case 65924:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#6fa3d7").ToSKColor(); break;
+                        case 65925:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#f1aa7f").ToSKColor(); break;
+                        case 65926:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#f1aa7f").ToSKColor(); break;
+                        case 65927:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#76bb72").ToSKColor(); break;
+                        case 65928:
+                            col = Color.FromHex("#fff").ToSKColor();            // 5 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65929:
+                            col = Color.FromHex("#fff").ToSKColor();            // 6 line label
+                            backcol = Color.FromHex("#997e9e").ToSKColor(); break;
+                        case 66027:
+                            col = Color.FromHex("#fff").ToSKColor();            // 7 line label
+                            backcol = Color.FromHex("#bcca6b").ToSKColor(); break;
+                        case 65930:
+                            col = Color.FromHex("#fff").ToSKColor();            // 8 line label
+                            backcol = Color.FromHex("#77d0ce").ToSKColor(); break;
+                        case 66087:
+                            col = Color.FromHex("#fff").ToSKColor();            // 9 line label
+                            backcol = Color.FromHex("#31c3c2").ToSKColor(); break;
+                        case 66089:
+                            col = Color.FromHex("#fff").ToSKColor();            // 13 line label
+                            backcol = Color.FromHex("#a4be2c").ToSKColor(); break;
+                        case 66088:
+                            col = Color.FromHex("#fff").ToSKColor();            // 14 line label
+                            backcol = Color.FromHex("#e66b72").ToSKColor(); break;
+                        case 65922:
+                            col = Color.FromHex("#fff").ToSKColor();            // APM线 line label
+                            backcol = Color.FromHex("#79c2f6").ToSKColor(); break;
+                        case 65931:
+                            col = Color.FromHex("#fff").ToSKColor();            // 广佛线 line label
+                            backcol = Color.FromHex("#bfcb73").ToSKColor(); break;
+                        case 65921:
+                            col = Color.FromHex("#fff").ToSKColor();            // 广佛线 line label
+                            backcol = Color.FromHex("#bfcb73").ToSKColor(); break;
 
 
+                            //武汉
+                        case 65973:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#6fa3d7").ToSKColor(); break;
+                        case 65971:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#f4b1d2").ToSKColor(); break;
+                        case 66013:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#bda280").ToSKColor(); break;
+                        case 65972:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#bcca6b").ToSKColor(); break;
+                        case 66030:
+                            col = Color.FromHex("#fff").ToSKColor();            // 6 line label
+                            backcol = Color.FromHex("#a0d7c5").ToSKColor(); break;
+                        case 66091:
+                            col = Color.FromHex("#fff").ToSKColor();            // 8 line label
+                            backcol = Color.FromHex("#a6d5ee").ToSKColor(); break;
+                        case 66090:
+                            col = Color.FromHex("#fff").ToSKColor();            // 21 line label
+                            backcol = Color.FromHex("#cc4f9d").ToSKColor(); break;
+
+                            //深圳
+                        case 65961:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#76bb72").ToSKColor(); break;
+                        case 65962:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#ea9378").ToSKColor(); break;
+                        case 65959:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#77c1f6").ToSKColor(); break;
+                        case 65960:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65958:
+                            col = Color.FromHex("#fff").ToSKColor();            // 5 line label
+                            backcol = Color.FromHex("#a193bb").ToSKColor(); break;
+                        case 66025:
+                            col = Color.FromHex("#fff").ToSKColor();            // 7 line label
+                            backcol = Color.FromHex("#6fa3d7").ToSKColor(); break;
+                        case 66026:
+                            col = Color.FromHex("#fff").ToSKColor();            // 9 line label
+                            backcol = Color.FromHex("#d7a49d").ToSKColor(); break;
+                        case 66016:
+                            col = Color.FromHex("#fff").ToSKColor();            // 11 line label
+                            backcol = Color.FromHex("#997e9e").ToSKColor(); break;
+                
+                            //南京
+                        case 65938:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#77c1f6").ToSKColor(); break;
+                        case 65939:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 66006:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#76bb72").ToSKColor(); break;
+                        case 66029:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#dd91bf").ToSKColor(); break;
+                        case 66000:
+                            col = Color.FromHex("#fff").ToSKColor();            // 10 line label
+                            backcol = Color.FromHex("#f3a779").ToSKColor(); break;
+                        case 66001:
+                            col = Color.FromHex("#fff").ToSKColor();            // s1 line label
+                            backcol = Color.FromHex("#77d0ce").ToSKColor(); break;
+                        case 66083:
+                            col = Color.FromHex("#fff").ToSKColor();            // s3 line label
+                            backcol = Color.FromHex("#cc4f9d").ToSKColor(); break;
+                        case 66002:
+                            col = Color.FromHex("#fff").ToSKColor();            // s8 line label
+                            backcol = Color.FromHex("#ea9378").ToSKColor(); break;
+                        case 66097:
+                            col = Color.FromHex("#fff").ToSKColor();            // s9 line label
+                            backcol = Color.FromHex("#f2be47").ToSKColor(); break;
+
+                            //高雄
+                        case 66067:
+                            col = Color.FromHex("#fff").ToSKColor();            //红线（2008年）line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 66068:
+                            col = Color.FromHex("#fff").ToSKColor();            // 环状轻轨 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 66069:
+                            col = Color.FromHex("#fff").ToSKColor();            // 橙线（2015年） line label
+                            backcol = Color.FromHex("#f4c36a").ToSKColor(); break;
+
+                            //成都
+                        case 66116:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#997e9e").ToSKColor(); break;
+                        case 65916:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#997e9e").ToSKColor(); break;
+                        case 66022:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 66014:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#86bf80").ToSKColor(); break;
+                        case 66084:
+                            col = Color.FromHex("#fff").ToSKColor();            //7 line label
+                            backcol = Color.FromHex("#a6d5ee").ToSKColor(); break;
+                        case 66063:
+                            col = Color.FromHex("#fff").ToSKColor();            // 10 line label
+                            backcol = Color.FromHex("#4a8ed2").ToSKColor(); break;
+                    
+                            //沈阳
+                        case 65963:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65964:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#f3a779").ToSKColor(); break;
+
+                            //重庆
+                        case 65991:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65992:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#76bb72").ToSKColor(); break;
+                        case 65993:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#6fa3d7").ToSKColor(); break;
+                        case 66032:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#6fa3d7").ToSKColor(); break;
+                        case 66098:
+                            col = Color.FromHex("#fff").ToSKColor();            // 5 line label
+                            backcol = Color.FromHex("#55b4fa").ToSKColor(); break;
+                        case 65994:
+                            col = Color.FromHex("#fff").ToSKColor();            // 6 line label
+                            backcol = Color.FromHex("#dd91bf").ToSKColor(); break;
+                        case 65995:
+                            col = Color.FromHex("#fff").ToSKColor();            // 国博 line label
+                            backcol = Color.FromHex("#dd91bf").ToSKColor(); break;
+                        case 66099:
+                            col = Color.FromHex("#fff").ToSKColor();            // 10 line label
+                            backcol = Color.FromHex("#7e478f").ToSKColor(); break;
+
+                            //西安
+                        case 65975:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#de8287").ToSKColor(); break;
+                        case 65974:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#77c1f6").ToSKColor(); break;
+                        case 66024:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#997e9e").ToSKColor(); break;
+
+                            //苏州
+                        case 65965:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#bcca6b").ToSKColor(); break;
+                        case 65966:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 66036:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#55b4fa").ToSKColor(); break;
+                        case 66037:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#55b4fa").ToSKColor(); break;
+
+                            //昆明
+                        case 65935:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 66033:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65997:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#6fa3d7").ToSKColor(); break;
+                        case 66062:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#8b7aae").ToSKColor(); break;
+                        case 65936:
+                            col = Color.FromHex("#fff").ToSKColor();            // 6 line label
+                            backcol = Color.FromHex("#77c1f6").ToSKColor(); break;
+
+                            //杭州
+                        case 65934:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 65933:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 66003:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#f4aa7c").ToSKColor(); break;
+                        case 66005:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#76bb72").ToSKColor(); break;
+
+                            //哈尔滨
+                        case 65932:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7b80").ToSKColor(); break;
+                        case 66028:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#f4c36a").ToSKColor(); break;
+
+                            //  青岛
+                        case 66011:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#77d0ce").ToSKColor(); break;
+                        case 66085:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#e66b72").ToSKColor(); break;
+                        case 66117:
+                            col = Color.FromHex("#fff").ToSKColor();            // 11 line label
+                            backcol = Color.FromHex("#4a8ed2").ToSKColor(); break;
+
+                            //郑州
+                        case 65990:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de797f").ToSKColor(); break;
+                        case 66023:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#f3c56a").ToSKColor(); break;
+                        case 66034:
+                            col = Color.FromHex("#fff").ToSKColor();            // 城郊 line label
+                            backcol = Color.FromHex("#cd469d").ToSKColor(); break;
+
+                            //长沙
+                        case 65996:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#7bc1f6").ToSKColor(); break;
+                        case 66019:
+                            col = Color.FromHex("#fff").ToSKColor();            // 磁悬浮 line label
+                            backcol = Color.FromHex("#f5aed2").ToSKColor(); break;
+                        case 66021:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de797f").ToSKColor(); break;
+
+                            //无锡
+                        case 65999:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de797f").ToSKColor(); break;
+                        case 66004:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#73be71").ToSKColor(); break;
+
+                            //大连
+                        case 65919:
+                            col = Color.FromHex("#fff").ToSKColor();            // 九里 line label
+                            backcol = Color.FromHex("#de797f").ToSKColor(); break;
+                        case 66010:
+                            col = Color.FromHex("#fff").ToSKColor();            // 12 line label
+                            backcol = Color.FromHex("#73a3d7").ToSKColor(); break;
+                        case 66007:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#73a3d7").ToSKColor(); break;
+                        case 66009:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#bccd6b").ToSKColor(); break;
+                        case 65918:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#de797f").ToSKColor(); break;
+                        case 65920:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#de797f").ToSKColor(); break;
+                        case 65917:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#de797f").ToSKColor(); break;
+
+                            //长春
+                        case 65988:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#d7a59e").ToSKColor(); break;
+                        case 65989:
+                            col = Color.FromHex("#fff").ToSKColor();            // 4 line label
+                            backcol = Color.FromHex("#74bf72").ToSKColor(); break;
+                        case 66049:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#e66973").ToSKColor(); break;
+
+                            //南昌
+                        case 66012:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7a80").ToSKColor(); break;
+                        case 66061:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#f1c146").ToSKColor(); break;
+
+                            //福州
+                        case 66018:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7a80").ToSKColor(); break;
+
+                            //东莞
+                        case 66015:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#de797f").ToSKColor(); break;
+                            //南宁
+                        case 66017:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#74bf72").ToSKColor(); break;
+                        case 66092:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#f55f64").ToSKColor(); break;
+
+                            //合肥
+                        case 66031:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#de7a80").ToSKColor(); break;
+                        case 66082:
+                            col = Color.FromHex("#fff").ToSKColor();            // 2 line label
+                            backcol = Color.FromHex("#518dd3").ToSKColor(); break;
+
+                            //石家庄
+                        case 66042:
+                            col = Color.FromHex("#fff").ToSKColor();            // 1 line label
+                            backcol = Color.FromHex("#e7855c").ToSKColor(); break;
+                        case 66043:
+                            col = Color.FromHex("#fff").ToSKColor();            // 3 line label
+                            backcol = Color.FromHex("#5cb3fb").ToSKColor(); break;
 
 
+                            //贵阳铁路线lab颜色
+                        case 66048:
+                            col = Color.FromHex("#fff").ToSKColor();            // subway line label
+                            backcol = Color.FromHex("#a3c12a").ToSKColor(); break;
+
+                        //厦门铁路线lab颜色
+                        case 66105:
+                            col = Color.FromHex("#fff").ToSKColor();            // subway line label
+                            backcol = Color.FromHex("#e7855c").ToSKColor(); break;
 
                         case 22179:  col = Color.FromHex("#5a5a5a").ToSKColor(); break;    // road name in strange key range
+                        case 262162: col = Color.FromHex("#595957").ToSKColor(); textsize = 8; break;
                         case 262163: col = Color.FromHex("#fff").ToSKColor();           // highway number, G
                             backcol = Color.FromHex("#50bb25").ToSKColor(); break;
                         case 262164: col = Color.FromHex("#fff").ToSKColor();           // highway number, G
                             backcol = Color.FromHex("#50bb25").ToSKColor(); break;
                         case 262165: col = Color.FromHex("#fff").ToSKColor();           // highway number, S
+                            backcol = Color.FromHex("#50bb25").ToSKColor(); break;
+                        case 262168:
+                            col = Color.FromHex("#fff").ToSKColor();           // highway number, G
                             backcol = Color.FromHex("#50bb25").ToSKColor(); break;
                         case 262169: col = Color.FromHex("#fff").ToSKColor();           // highway number, G
                             backcol = Color.FromHex("#50bb25").ToSKColor(); break;
@@ -1035,24 +2008,51 @@ namespace AepApp.View
                         case 262167: col = Color.FromHex("#000").ToSKColor();
                             backcol = Color.FromHex("#f8c144").ToSKColor(); break;
                         case 262173: col = Color.FromHex("#704d10").ToSKColor(); break;
+                        case 262176: col = Color.FromHex("#ffffff").ToSKColor(); break;
                         case 262178: col = Color.FromHex("#927745").ToSKColor(); break;
                         case 262179: col = Color.FromHex("#393939").ToSKColor(); break;
                         case 262180: col = Color.FromHex("#777776").ToSKColor(); break;
                         case 262181: col = Color.FromHex("#797979").ToSKColor(); break;
                         case 262182: col = Color.FromHex("#858483").ToSKColor(); break;
+                        case 262185: col = Color.FromHex("#858483").ToSKColor(); break;
+                        case 262186: col = Color.FromHex("#858483").ToSKColor(); break;
+                        case 262187: col = Color.FromHex("#858483").ToSKColor(); break;
+                        case 262188: col = Color.FromHex("#ffffff").ToSKColor(); break;
+                        case 262189: col = Color.FromHex("#000000").ToSKColor(); textsize = 10; break;
+
+                        case 262412: col = Color.FromHex("#000000").ToSKColor(); textsize = 8; break;
+                        case 262413: col = Color.FromHex("#595957").ToSKColor(); textsize = 8; break;
+                        case 262414: col = Color.FromHex("#595957").ToSKColor(); textsize = 8; break;
                         case 262415: col = Color.FromHex("#595957").ToSKColor(); textsize = 8; break;
+                        case 262416: col = Color.FromHex("#595957").ToSKColor(); textsize = 8; break;
                         case 262417: col = Color.FromHex("#77561a").ToSKColor(); textsize = 8; break;
                         case 262418: col = Color.FromHex("#77561a").ToSKColor(); textsize = 8; break;
                         case 262419: col = Color.FromHex("#605f5d").ToSKColor(); textsize = 8; break;
                         case 262420: col = Color.FromHex("#4f4f4e").ToSKColor(); break;
                         case 262421: col = Color.FromHex("#4a4a49").ToSKColor(); break;
+                        case 262422: col = Color.FromHex("#595957").ToSKColor(); textsize = 8; break;
+                        case 262423: col = Color.FromHex("#595957").ToSKColor(); textsize = 10; break;
                         case 262424: col = Color.FromHex("#f88").ToSKColor(); textsize = 20; break;
                         case 262425: col = Color.FromHex("#a77137").ToSKColor(); break;
                         case 262705: col = Color.FromHex("#8ebfe4").ToSKColor(); break;
+                        case 262714: col = Color.FromHex("#595957").ToSKColor(); break;
+                        case 262715: col = Color.FromHex("#595957").ToSKColor(); break;
+                        case 262782: col = Color.FromHex("#a34b15").ToSKColor(); textsize = 10;break;
+                        case 262789: col = Color.FromHex("#a34b15").ToSKColor(); textsize = 10; break;
+                        case 262797: col = Color.FromHex("#8ebfe4").ToSKColor(); textsize = 8; break;
+
+                            
                         default: col = Color.Magenta.ToSKColor(); suf = " " + t.key.ToString();
                             Console.WriteLine("%%%%%%% " + t.key);
                             break;
                     }
+
+                    List<int> subwayexitids = new List<int>(){
+                        65836,
+                        65851,                         65864,                         65853,                         65857,                         66104,                         66047,                         66040,
+                        65893,                         65862,                         65861,                         65863,                         65860,                         65842,                         65844,                         65858,                         65856,                         65854,                         65859,
+                        65855,                         65848,                         65847,                         65850,                         65845,                         65852,                         65843,                         65846,                         65837,                         65838,                         65841,                         65839,                         65840,                         65849,
+                    };
 
                     if (icon==-1 && t.key < 200000 && t.key >65535 && !backcol.Equals(SKColors.Transparent) && textsize<=10)
                         suf = " " + t.key.ToString();
@@ -1106,6 +2106,20 @@ namespace AepApp.View
                                 bp.IsAntialias = true;
                                 SKBitmap bm = iconcache[icon];
                                 can.DrawBitmap(bm, new SKRect(- 9, - 9, 9, 9), bp);
+                                
+                            //设置出站口文字
+                            if(subwayexitids.Contains(t.key)){
+                                for (int i = 0; i < t.strings.Count; i++)
+                                {
+                                    float tw = textpaint.MeasureText(t.strings[i]);
+                                    textpaint.Style = SKPaintStyle.Stroke;
+                                    textpaint.StrokeWidth = 1.0f;
+                                    can.DrawText(t.strings[i] + suf, -tw / 2, textpaint.TextSize / 2-1, textpaint);
+                                }
+                               
+
+
+                            }
                             //}
                         }
                         else
@@ -1213,8 +2227,6 @@ namespace AepApp.View
                         case 131377: col = Color.FromHex("#879b2e").ToSKColor(); width = 2.0f; break;
 
 
-                        case 131329: col = Color.FromHex("#f8e08b").ToSKColor(); width = 4.0f; break;
-                        case 131366: col = Color.FromHex("#0f0").ToSKColor(); width = 2.0f; break;
                         case 131397: col = Color.FromHex("#f8e08b").ToSKColor(); width = 2.0f; break;
 
 
@@ -1222,7 +2234,237 @@ namespace AepApp.View
                         case 131217: col = Color.FromHex("#0c4e95").ToSKColor(); width = 2.0f; break;
                         case 131327: col = Color.FromHex("#970810").ToSKColor(); width = 2.0f; break;
 
+                 
+                            //北京
+                        case 131129: col = Color.FromHex("#aa7791").ToSKColor(); width = 2.0f; break;//昌平
+                        case 131368: col = Color.FromHex("#909f42").ToSKColor(); width = 2.0f; break;//16
+                        case 131119: col = Color.FromHex("#d7a49d").ToSKColor(); width = 2.0f; break;//14
+                        case 131413: col = Color.FromHex("#bb953d").ToSKColor(); width = 2.0f; break;//s1
+                        case 131121: col = Color.FromHex("#ad454b").ToSKColor(); width = 2.0f; break;//1
+                        case 131414: col = Color.FromHex("#941018").ToSKColor(); width = 2.0f; break;//西郊
+                        case 131126: col = Color.FromHex("#1e6d1a").ToSKColor(); width = 2.0f; break;//8
+                        case 131118: col = Color.FromHex("#bb953d").ToSKColor(); width = 2.0f; break;//13
+                        case 131124: col = Color.FromHex("#782057").ToSKColor(); width = 2.0f; break;//5
+                        case 131120: col = Color.FromHex("#42234c").ToSKColor(); width = 2.0f; break;//15
+                        case 131132: col = Color.FromHex("#7a6e94").ToSKColor(); width = 2.0f; break;//机场
+                        case 131125: col = Color.FromHex("#ba6f39").ToSKColor(); width = 2.0f; break;//6
+                        case 131128: col = Color.FromHex("#ad454b").ToSKColor(); width = 2.0f; break;//1
+                        case 131322: col = Color.FromHex("#ba6f39").ToSKColor(); width = 2.0f; break;//7
+                        case 131131: col = Color.FromHex("#8d1860").ToSKColor(); width = 2.0f; break;//亦庄
+                        case 131123: col = Color.FromHex("#2a9695").ToSKColor(); width = 2.0f; break;//4
+                        case 131130: col = Color.FromHex("#ae5733").ToSKColor(); width = 2.0f; break;//房山
+                        case 131117: col = Color.FromHex("#1c75b8").ToSKColor(); width = 2.0f; break;//10
+                        case 131122: col = Color.FromHex("#105193").ToSKColor(); width = 2.0f; break;//2
+                        case 131127: col = Color.FromHex("#8b9a3a").ToSKColor(); width = 2.0f; break;//9
+                        case 131404: col = Color.FromHex("#a74822").ToSKColor(); width = 2.0f; break;//燕房
+                            //天津
+                        case 131187: col = Color.FromHex("#96141b").ToSKColor(); width = 2.0f; break;//1
+                        case 131185: col = Color.FromHex("#8f9e40").ToSKColor(); width = 2.0f; break;//2
+                        case 131186: col = Color.FromHex("#2a9695").ToSKColor(); width = 2.0f; break;//3
+                        case 131361: col = Color.FromHex("#71164f").ToSKColor(); width = 2.0f; break;//6
+                        case 131188: col = Color.FromHex("#105193").ToSKColor(); width = 2.0f; break;//9
 
+                            //台北
+                        case 131293: col = Color.FromHex("#2e81be").ToSKColor(); width = 2.0f; break;//板南线
+                        case 131302: col = Color.FromHex("#2e81be").ToSKColor(); width = 2.0f; break;//板南线
+                        case 131303: col = Color.FromHex("#2e81be").ToSKColor(); width = 2.0f; break;//板南线
+                        case 131300: col = Color.FromHex("#d7aa8a").ToSKColor(); width = 2.0f; break;//中和新芦线（2002年）
+                        case 131301: col = Color.FromHex("#d7aa8a").ToSKColor(); width = 2.0f; break;//中和新芦线（2002年）
+                        case 131299: col = Color.FromHex("#ba6f39").ToSKColor(); width = 2.0f; break;//新北投线（2010年）
+                        case 131294: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//淡水信义线（1997年）
+                        case 131297: col = Color.FromHex("#9a6b67").ToSKColor(); width = 2.0f; break;//文湖线
+                        case 131298: col = Color.FromHex("#c2a04f").ToSKColor(); width = 2.0f; break;//小碧潭线（2004年）
+                        case 131292: col = Color.FromHex("#9a6b67").ToSKColor(); width = 2.0f; break;//猫空缆车
+                        case 131295: col = Color.FromHex("#22701d").ToSKColor(); width = 2.0f; break;//松山新店线（2000年）
+                        case 131296: col = Color.FromHex("#22701d").ToSKColor(); width = 2.0f; break;//松山新店线（2000年）
+
+                            //上海
+                        case 131174: col = Color.FromHex("#1c75b9").ToSKColor(); width = 2.0f; break;//8
+                        case 131165: col = Color.FromHex("#74998e").ToSKColor(); width = 2.0f; break;//16
+                        case 131161: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//11
+                        case 131162: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//11
+                        case 131158: col = Color.FromHex("#257bbc").ToSKColor(); width = 2.0f; break;//磁悬浮
+                        case 131168: col = Color.FromHex("#82932d").ToSKColor(); width = 2.0f; break;//2
+                        case 131167: col = Color.FromHex("#82932d").ToSKColor(); width = 2.0f; break;//2
+                        case 131175: col = Color.FromHex("#749eb3").ToSKColor(); width = 2.0f; break;//9
+                        case 131163: col = Color.FromHex("#3a8137").ToSKColor(); width = 2.0f; break;//12
+                        case 131172: col = Color.FromHex("#9e242b").ToSKColor(); width = 2.0f; break;//6
+                        case 131159: col = Color.FromHex("#ab8480").ToSKColor(); width = 2.0f; break;//10
+                        case 131160: col = Color.FromHex("#ab8480").ToSKColor(); width = 2.0f; break;//10
+                        case 131169: col = Color.FromHex("#bb953d").ToSKColor(); width = 2.0f; break;//3
+                        case 131166: col = Color.FromHex("#98181f").ToSKColor(); width = 2.0f; break;//1
+                        case 131173: col = Color.FromHex("#a74821").ToSKColor(); width = 2.0f; break;//7
+                        case 131164: col = Color.FromHex("#c9a8b9").ToSKColor(); width = 2.0f; break;//13
+                        case 131171: col = Color.FromHex("#584979").ToSKColor(); width = 2.0f; break;//5
+                        case 131170: col = Color.FromHex("#4c2f56").ToSKColor(); width = 2.0f; break;//4
+                        case 131391: col = Color.FromHex("#aa4e28").ToSKColor(); width = 2.0f; break;//17
+                        case 131420: col = Color.FromHex("#74998e").ToSKColor(); width = 2.0f; break;//浦江线
+
+                            //广州
+                        case 131392: col = Color.FromHex("#2a9695").ToSKColor(); width = 2.0f; break;//9
+                        case 131144: col = Color.FromHex("#be7743").ToSKColor(); width = 2.0f; break;//3
+                        case 131143: col = Color.FromHex("#be7743").ToSKColor(); width = 2.0f; break;//3
+                        case 131147: col = Color.FromHex("#573c60").ToSKColor(); width = 2.0f; break;//6
+                        case 131142: col = Color.FromHex("#195797").ToSKColor(); width = 2.0f; break;//2
+                        case 131146: col = Color.FromHex("#96141c").ToSKColor(); width = 2.0f; break;//5
+                        case 131141: col = Color.FromHex("#bb953d").ToSKColor(); width = 2.0f; break;//1
+                        case 131139: col = Color.FromHex("#82932d").ToSKColor(); width = 2.0f; break;//广佛
+                        case 131149: col = Color.FromHex("#82932d").ToSKColor(); width = 2.0f; break;//广佛
+                        case 131148: col = Color.FromHex("#2a9695").ToSKColor(); width = 2.0f; break;//8
+                        case 131369: col = Color.FromHex("#82932d").ToSKColor(); width = 2.0f; break;//7
+                        case 131145: col = Color.FromHex("#1e6d1a").ToSKColor(); width = 2.0f; break;//4
+                        case 131394: col = Color.FromHex("#82932d").ToSKColor(); width = 2.0f; break;//13
+                        case 131393: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//14
+                        case 131140: col = Color.FromHex("#1c75b8").ToSKColor(); width = 2.0f; break;//APM线
+
+                            //武汉
+                        case 131191: col = Color.FromHex("#3e73a8").ToSKColor(); width = 2.0f; break;//1
+                        case 131189: col = Color.FromHex("#ad7d95").ToSKColor(); width = 2.0f; break;//2
+                        case 131351: col = Color.FromHex("#704f28").ToSKColor(); width = 2.0f; break;//3
+                        case 131190: col = Color.FromHex("#82932d").ToSKColor(); width = 2.0f; break;//4
+                        case 131372: col = Color.FromHex("#74998e").ToSKColor(); width = 2.0f; break;//6
+                        case 131402: col = Color.FromHex("#6795ac").ToSKColor(); width = 2.0f; break;//8
+                        case 131395: col = Color.FromHex("#982c70").ToSKColor(); width = 2.0f; break;//21
+                            //深圳
+                        case 131179: col = Color.FromHex("#1e6d1a").ToSKColor(); width = 2.0f; break;//1
+                        case 131180: col = Color.FromHex("#b86a49").ToSKColor(); width = 2.0f; break;//2
+                        case 131177: col = Color.FromHex("#247bbb").ToSKColor(); width = 2.0f; break;//3
+                        case 131178: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//4
+                        case 131176: col = Color.FromHex("#4f3f71").ToSKColor(); width = 2.0f; break;//5
+                        case 131366: col = Color.FromHex("#28629e").ToSKColor(); width = 2.0f; break;//7
+                        case 131367: col = Color.FromHex("#a77f7b").ToSKColor(); width = 2.0f; break;//9
+                        case 131357: col = Color.FromHex("#42234c").ToSKColor(); width = 2.0f; break;//11
+                            //南京
+                        case 131155: col = Color.FromHex("#4e95c9").ToSKColor(); width = 2.0f; break;//1
+                        case 131156: col = Color.FromHex("#4e95c9").ToSKColor(); width = 2.0f; break;//1
+                        case 131157: col = Color.FromHex("#b86065").ToSKColor(); width = 2.0f; break;//2
+                        case 131325: col = Color.FromHex("#639d62").ToSKColor(); width = 2.0f; break;//3
+                        case 131371: col = Color.FromHex("#972a6e").ToSKColor(); width = 2.0f; break;//4
+                        case 131219: col = Color.FromHex("#ba6f39").ToSKColor(); width = 2.0f; break;//10
+                        case 131220: col = Color.FromHex("#389f9e").ToSKColor(); width = 2.0f; break;//s1
+                        case 131388: col = Color.FromHex("#932268").ToSKColor(); width = 2.0f; break;//s3
+                        case 131221: col = Color.FromHex("#a74821").ToSKColor(); width = 2.0f; break;//s8
+                        case 131415: col = Color.FromHex("#bb953d").ToSKColor(); width = 2.0f; break;//s9
+
+                            //高雄
+                        case 131289: col = Color.FromHex("#a6383e").ToSKColor(); width = 2.0f; break;//红线
+                        case 131291: col = Color.FromHex("#ba6f39").ToSKColor(); width = 2.0f; break;//橙线（2015年）
+                        case 131290: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//环状轻轨
+
+                            //成都
+                        case 131421: col = Color.FromHex("#5e4467").ToSKColor(); width = 2.0f; break;//1
+                        case 131133: col = Color.FromHex("#5e4467").ToSKColor(); width = 2.0f; break;//1
+                        case 131386: col = Color.FromHex("#115193").ToSKColor(); width = 2.0f; break;//10
+                        case 131389: col = Color.FromHex("#7ca4b7").ToSKColor(); width = 2.0f; break;//7
+                        case 131350: col = Color.FromHex("#1e6d1a").ToSKColor(); width = 2.0f; break;//4
+                        case 131134: col = Color.FromHex("#aa4f29").ToSKColor(); width = 2.0f; break;//2
+                        case 131363: col = Color.FromHex("#98161e").ToSKColor(); width = 2.0f; break;//3
+                           
+                            //沈阳
+                        case 131181: col = Color.FromHex("#a43138").ToSKColor(); width = 2.0f; break;//1
+                        case 131182: col = Color.FromHex("#bd7541").ToSKColor(); width = 2.0f; break;//2
+
+                            //重庆
+                        case 131210: col = Color.FromHex("#a83a41").ToSKColor(); width = 2.0f; break;//1
+                        case 131211: col = Color.FromHex("#1e6d1a").ToSKColor(); width = 2.0f; break;//2
+                        case 131212: col = Color.FromHex("#195797").ToSKColor(); width = 2.0f; break;//3
+                        case 131374: col = Color.FromHex("#195797").ToSKColor(); width = 2.0f; break;//3
+                        case 131416: col = Color.FromHex("#3082bf").ToSKColor(); width = 2.0f; break;//5
+                        case 131213: col = Color.FromHex("#8d185f").ToSKColor(); width = 2.0f; break;//6
+                        case 131214: col = Color.FromHex("#8d185f").ToSKColor(); width = 2.0f; break;//国博线
+                        case 131417: col = Color.FromHex("#42234c").ToSKColor(); width = 2.0f; break;//10
+
+                            //西安
+                        case 131192: col = Color.FromHex("#2078ba").ToSKColor(); width = 2.0f; break;//1
+                        case 131193: col = Color.FromHex("#96131b").ToSKColor(); width = 2.0f; break;//2
+                        case 131365: col = Color.FromHex("#42234c").ToSKColor(); width = 2.0f; break;//3
+
+                            //苏州
+                        case 131183: col = Color.FromHex("#84942f").ToSKColor(); width = 2.0f; break;//1
+                        case 131184: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//2
+                        case 131378: col = Color.FromHex("#1c75b8").ToSKColor(); width = 2.0f; break;//4
+                        case 131379: col = Color.FromHex("#1c75b8").ToSKColor(); width = 2.0f; break;//4
+                            
+                            //昆明
+                        case 131153: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//1
+                        case 131375: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//1
+                        case 131216: col = Color.FromHex("#105193").ToSKColor(); width = 2.0f; break;//2
+                        case 131385: col = Color.FromHex("#84799c").ToSKColor(); width = 2.0f; break;//3
+                        case 131154: col = Color.FromHex("#1c75b8").ToSKColor(); width = 2.0f; break;//6
+
+                            //杭州
+                        case 131152: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//1
+                        case 131151: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//1
+                        case 131321: col = Color.FromHex("#bf7744").ToSKColor(); width = 2.0f; break;//2
+                        case 131324: col = Color.FromHex("#277423").ToSKColor(); width = 2.0f; break;//4
+
+                            //哈尔滨
+                        case 131150: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//1
+                        case 131370: col = Color.FromHex("#bb953d").ToSKColor(); width = 2.0f; break;//3
+
+                            //青岛
+                        case 131348: col = Color.FromHex("#2a9695").ToSKColor(); width = 2.0f; break;//3
+                        case 131390: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//2
+                        case 131422: col = Color.FromHex("#105193").ToSKColor(); width = 2.0f; break;//11
+
+                            //郑州
+                        case 131209: col = Color.FromHex("#af4a50").ToSKColor(); width = 2.0f; break;//1
+                        case 131364: col = Color.FromHex("#bb953d").ToSKColor(); width = 2.0f; break;//2
+                        case 131376: col = Color.FromHex("#8d185f").ToSKColor(); width = 2.0f; break;//城郊
+
+                            //长沙
+                        case 131215: col = Color.FromHex("#1f77ba").ToSKColor(); width = 2.0f; break;//2
+                        case 131360: col = Color.FromHex("#a8738e").ToSKColor(); width = 2.0f; break;//磁悬浮
+                        case 131362: col = Color.FromHex("#9d222a").ToSKColor(); width = 2.0f; break;//1
+
+                            //无锡
+                        case 131218: col = Color.FromHex("#981820").ToSKColor(); width = 2.0f; break;//1
+                        case 131323: col = Color.FromHex("#267322").ToSKColor(); width = 2.0f; break;//1
+
+                            //大连
+                        case 131347: col = Color.FromHex("#115193").ToSKColor(); width = 2.0f; break;//12
+                        case 131326: col = Color.FromHex("#115193").ToSKColor(); width = 2.0f; break;//2
+                        case 131346: col = Color.FromHex("#82932d").ToSKColor(); width = 2.0f; break;//1
+                        case 131135: col = Color.FromHex("#9c1e26").ToSKColor(); width = 2.0f; break;//3
+                        case 131136: col = Color.FromHex("#9c1e26").ToSKColor(); width = 2.0f; break;//3
+                        case 131137: col = Color.FromHex("#9c1e26").ToSKColor(); width = 2.0f; break;//3
+                        case 131138: col = Color.FromHex("#9c1e26").ToSKColor(); width = 2.0f; break;//3
+
+                            //长春
+                        case 131206: col = Color.FromHex("#1e6d1a").ToSKColor(); width = 2.0f; break;//3
+                        case 131207: col = Color.FromHex("#9b6c68").ToSKColor(); width = 2.0f; break;//4
+                        case 131383: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;//1
+
+                            //南昌
+                        case 131384: col = Color.FromHex("#bb953d").ToSKColor(); width = 2.0f; break;//2
+                        case 131349: col = Color.FromHex("#97141c").ToSKColor(); width = 2.0f; break;//1
+
+                            // 贵阳 subway lines
+                        case 131382: col = Color.FromHex("#82932d").ToSKColor(); width = 2.0f; break;
+
+                        //厦门  subway lines 
+                        case 131419: col = Color.FromHex("#a74821").ToSKColor(); width = 2.0f; break;
+
+                        // 石家庄  subway lines 
+                        case 131381: col = Color.FromHex("#1d75b8").ToSKColor(); width = 2.0f; break;
+                        case 131380: col = Color.FromHex("#a74821").ToSKColor(); width = 2.0f; break;
+
+                        // 合肥  subway lines 
+                        case 131387: col = Color.FromHex("#1e5b99").ToSKColor(); width = 2.0f; break;
+                        case 131373: col = Color.FromHex("#9b1d25").ToSKColor(); width = 2.0f; break;
+
+                        // 南宁  subway lines 
+                        case 131403: col = Color.FromHex("#930d15").ToSKColor(); width = 2.0f; break;
+                        case 131358: col = Color.FromHex("#1e6d1a").ToSKColor(); width = 2.0f; break;
+
+                        // 东莞  subway lines 
+                        case 131356: col = Color.FromHex("#95121a").ToSKColor(); width = 2.0f; break;
+                        // 福州  subway lines 
+                        case 131359: col = Color.FromHex("#940f17").ToSKColor(); width = 2.0f; break;
+
+
+                        case 131329: col = Color.FromHex("#f8e08b").ToSKColor(); width = 4.0f; break;
+                        case 131330: col = Color.FromHex("#ffffff").ToSKColor(); break;
                         case 131331: col = Color.FromHex("#0ff").ToSKColor(); break;
                         case 131332: col = Color.FromHex("#ffffff").ToSKColor(); break;
                         case 131333: col = Color.FromHex("#ffffff").ToSKColor(); break;
@@ -1239,6 +2481,7 @@ namespace AepApp.View
                         case 131345:
                             col = Color.FromHex("#d9d3c3").ToSKColor(); width = 1.0f;
                             effect = SKPathEffect.CreateDash(new float[] { 2, 2 }, 4); break;
+
                         case 131352: col = Color.FromHex("#f8e08b").ToSKColor(); width = 5.0f; break;
 
                         case 131353: col = Color.FromHex("#d4cfc6").ToSKColor(); width = 5.0f; break;
@@ -1257,6 +2500,7 @@ namespace AepApp.View
                             col = Color.FromHex("#d9d3c3").ToSKColor(); width = 1.0f;
                             effect = SKPathEffect.CreateDash(new float[] { 2, 2 }, 4); break;
                         case 131407: col = Color.FromHex("#0f0").ToSKColor(); break;
+                        case 131406: col = Color.FromHex("#0f0").ToSKColor(); break;
                         case 131408:
                             col = Color.FromHex("#d9d3c3").ToSKColor(); width = 1.0f;
                             effect = SKPathEffect.CreateDash(new float[] { 2, 2 }, 4); break;
@@ -1267,6 +2511,10 @@ namespace AepApp.View
                             col = Color.FromHex("#d9d3c3").ToSKColor(); width = 1.0f;
                             effect = SKPathEffect.CreateDash(new float[] { 2, 2 }, 4); break;
                         case 131411:
+                            col = Color.FromHex("#d9d3c3").ToSKColor(); width = 1.0f;
+                            effect = SKPathEffect.CreateDash(new float[] { 2, 2 }, 4); break;
+
+                        case 131412:
                             col = Color.FromHex("#d9d3c3").ToSKColor(); width = 1.0f;
                             effect = SKPathEffect.CreateDash(new float[] { 2, 2 }, 4); break;
 

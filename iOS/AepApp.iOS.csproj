@@ -204,7 +204,6 @@
     </None>
     <EmbeddedResource Include="msyh.ttc" />
     <None Include="packages.config" />
-    <None Include=".DS_Store" />
     <None Include="thirdlibs\libcrypto.a" />
     <None Include="thirdlibs\libssl.a" />
   </ItemGroup>

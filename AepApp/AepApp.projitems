@@ -246,13 +246,13 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\AzMapView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\TestMapPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
