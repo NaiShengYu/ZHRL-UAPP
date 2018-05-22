@@ -40,12 +40,19 @@ namespace AepApp.View
                     double lng = double.Parse(enter.lng);
                     double lat = double.Parse(enter.lat);
 
-                    AzmLabelView lv = new AzmLabelView(enter.name, new AzmCoord(lng, lat))
-                    {
-                        BackgroundColor = Color.FromHex("#4169E1")
-                    };
+                    AzmLabelView lv = new AzmLabelView(enter.name, new AzmCoord(lng, lat));
                     lv.BindingContext = enter;
                     lv.OnTapped += Enterprise_OnTapped;
+
+                    if (enter.count > 0)
+                    {
+                        lv.BackgroundColor = Color.Red;
+                    }
+                    else
+                    {
+                        lv.BackgroundColor = Color.FromHex("#4169E1");
+                    }
+
                     map.Overlays.Add(lv);
 
 

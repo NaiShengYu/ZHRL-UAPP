@@ -9,6 +9,7 @@ using Foundation;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using CoreGraphics;
 
 [assembly: ExportRenderer(typeof(CurvedCornersLabel), typeof(CurvedCornersLabelRenderer))]
 namespace AepApp.iOS
@@ -28,6 +29,10 @@ namespace AepApp.iOS
 
         private void Paint(CurvedCornersLabel view)
         {
+
+            //this.Layer.Bounds = new CGRect(0,0,40, 40);
+            //this.Layer.CornerRadius = 20;
+
             this.Layer.CornerRadius = (float)view.CurvedCornerRadius;
             this.Layer.BackgroundColor = view.CurvedBackgroundColor.ToCGColor();
         }

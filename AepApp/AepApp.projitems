@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\AQIMapPageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MonitorModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CalculateData.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />

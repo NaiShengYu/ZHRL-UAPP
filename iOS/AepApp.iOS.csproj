@@ -186,6 +186,7 @@
     <BundleResource Include="Resources\pin.png" />
     <BundleResource Include="Resources\map%403x.png" />
     <BundleResource Include="Resources\map%402x.png" />
+    <BundleResource Include="Resources\tree.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -239,9 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\voc.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\tree.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\right.png" />

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:s="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
@@ -55,7 +55,7 @@
                 </Image.GestureRecognizers>
             </Image>
 
-            <Image Opacity="1.0" WidthRequest="50" HeightRequest="50" Source="type_normal.png" VerticalOptions="End" HorizontalOptions="Start" Margin="10,0,0,10">
+          <!--  <Image Opacity="1.0" WidthRequest="50" HeightRequest="50" Source="type_normal.png" VerticalOptions="End" HorizontalOptions="Start" Margin="10,0,0,10">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="normal_Clicked" />
                 </Image.GestureRecognizers>
@@ -69,7 +69,7 @@
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="hybrid_Clicked" />
                 </Image.GestureRecognizers>
-            </Image>
+            </Image>-->
 
         </Grid>
     </ContentView.Content>

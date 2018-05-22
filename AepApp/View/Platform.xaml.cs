@@ -21,41 +21,41 @@ namespace AepApp.View
             //grid.MinimumHeightRequest = grid.Width / 2.0 * 2.0;    
         }
 
-        private void VOC_CLK(object sender, EventArgs e)
-        {
+        //private void VOC_CLK(object sender, EventArgs e)
+        //{
            
-        }
+        //}
 
         private void AIR_CLK(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AirPage());
         }
 
-        private void WATER_CLK(object sender, EventArgs e)
-        {
+        //private void WATER_CLK(object sender, EventArgs e)
+        //{
           
-        }
+        //}
 
-        private void NOISE_CLK(object sender, EventArgs e)
-        {
+        //private void NOISE_CLK(object sender, EventArgs e)
+        //{
            
-        }
-        private void SOIL_CLK(object sender, EventArgs e)
-        {
+        //}
+        //private void SOIL_CLK(object sender, EventArgs e)
+        //{
            
-        }
-        private void RADIATION_CLK(object sender, EventArgs e)
-        {
+        //}
+        //private void RADIATION_CLK(object sender, EventArgs e)
+        //{
            
-        }
-        private void DUST_CLK(object sender, EventArgs e)
-        {
+        //}
+        //private void DUST_CLK(object sender, EventArgs e)
+        //{
             
-        }
-        private void HAZARD_CLK(object sender, EventArgs e)
-        {
+        //}
+        //private void HAZARD_CLK(object sender, EventArgs e)
+        //{
             
-        }
+        //}
         private void EMERG_CLK(object sender, EventArgs e)
         {
             

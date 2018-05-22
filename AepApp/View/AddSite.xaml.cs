@@ -50,15 +50,21 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-               // Console.WriteLine("添加站点");                               
-                string uri = "https://"+this.siteAddr.Text+"/api/login/getstationName?stationurl="+this.siteAddr.Text;               
+                // Console.WriteLine("添加站点");                
+                string[] s = this.siteAddr.Text.Split(new char[] { ':' });
+                string uri = "https://"+this.siteAddr.Text+"/api/login/getstationName?stationurl="+s[0];               
                 result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri); 
 
             };
             wrk.RunWorkerCompleted +=(sender1, e1) =>
             {
                 bool isContainSite = false;
-                AddSitePageModel model = JsonConvert.DeserializeObject<AddSitePageModel>(result);
+                try{
+                    AddSitePageModel model = JsonConvert.DeserializeObject<AddSitePageModel>(result);
+
+                
+                if(model !=null){
+
                 TodoItem todoItem = new TodoItem();
                 todoItem.SiteId = model.id;
                 todoItem.Name = model.name;
@@ -88,7 +94,15 @@ namespace AepApp.View
                 }
                 //Console.WriteLine("ex:" + model);
                 //添加站点
-                
+                }else{
+                    CrossHud.Current.Dismiss();
+                    }
+                }
+                catch(Exception ex){
+                    Console.WriteLine(ex);
+                    CrossHud.Current.Dismiss();
+
+                }
             };
             wrk.RunWorkerAsync();
         }  

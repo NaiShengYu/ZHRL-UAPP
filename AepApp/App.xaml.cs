@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Newtonsoft.Json;
 
 using AepApp.View.Monitor;
+using System.Collections.ObjectModel;
 
 namespace AepApp
 {
@@ -22,6 +23,7 @@ namespace AepApp
         public static string SiteData = "site";
 
         public static List<TodoItem> todoItemList = new List<TodoItem> ();
+
         static TodoItemDatabase database;
 
         public App()
@@ -39,8 +41,8 @@ namespace AepApp
             //else
             //    MainPage = new NavigationPage(new MainPage());
 
-            //MainPage = new NavigationPage(new LoginPage());
-            MainPage = new NavigationPage(new TestMapPage());
+            MainPage = new NavigationPage(new LoginPage());
+            //MainPage = new NavigationPage(new TestMapPage());
 
             //MainPage = new NavigationPage(new MonitorPage());
 

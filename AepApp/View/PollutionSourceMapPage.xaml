@@ -5,7 +5,7 @@
              x:Class="AepApp.View.PollutionSourceMapPage">
     <ContentPage.Content>
         <Grid>
-            <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" />
+            <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
