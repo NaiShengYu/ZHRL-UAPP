@@ -14,7 +14,7 @@
                             <Grid HorizontalOptions="Fill" VerticalOptions="Center">
                                 <Label Margin="20,0,0,0" FontSize="17" TextColor="Black" Text="{Binding name}" VerticalOptions="Center"/>
                                 <local:CurvedCornersLabel Text="{Binding count}" Margin="0,0,20,0" HorizontalOptions="End"
-                                                          CurvedBackgroundColor="#c00000" TextColor="White" MinimumWidthRequest="26" HeightRequest="26" CurvedCornerRadius="13"
+                                                          CurvedBackgroundColor="#c00000" TextColor="White" WidthRequest="50" HeightRequest="30" CurvedCornerRadius="15"
                                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Font="17" IsVisible="true" VerticalOptions="Center">
                                     <Label.Triggers>
                                           <DataTrigger TargetType="Label"
