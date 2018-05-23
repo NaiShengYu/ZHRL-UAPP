@@ -4,7 +4,7 @@
         <ScrollView>
             <StackLayout HorizontalOptions="Fill" Spacing="0">
                 <Label Text="环境质量综合分析预警平台" Margin="5,10,0,0" />
-                <Grid ColumnSpacing="0" RowSpacing="0" HeightRequest="{Binding Source={Reference c1}, Path=Height}" Margin="5,10,5,0" BackgroundColor="#8ab9e1">
+                <Grid ColumnSpacing="0" RowSpacing="0" Margin="5,10,5,0" BackgroundColor="#8ab9e1">
                      <Grid.ColumnDefinitions >
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*"/>

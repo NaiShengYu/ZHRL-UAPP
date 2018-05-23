@@ -107,7 +107,7 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                factor.FacValueDetails = details[0];
+                //factor.FacValueDetails = details[0];
                 if (details != null)
                 {
                     factor.FacValueDetails = details[0];

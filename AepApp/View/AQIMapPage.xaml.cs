@@ -66,15 +66,16 @@ namespace AepApp.View
             foreach (var s in sites)
             {
                 double value = 0.0;
+                double finalValue = 0.0;
                 string unit = " μg/m³";
 
                 switch (valuename)
                 {
-                    case "AQI": value = s.values.AQIValue; unit = ""; break;
-                    case "PM25": value = s.values.PM25Value; break;
-                    case "PM10": value = s.values.PM10Value; break;
-                    case "O3": value = s.values.O3Value; break;
-                    case "CO": value = s.values.COValue; break;
+                    case "AQI": value = s.values.AQIValue; unit = ""; finalValue = value; break;
+                    case "PM25": value = s.values.PM25Value; finalValue = CalculatePM25(s.values.AQIValue, value); break;
+                    case "PM10": value = s.values.PM10Value; finalValue = CalculatePM10(s.values.AQIValue, value); break;
+                    case "O3": value = s.values.O3Value; finalValue = CalculateO3(s.values.AQIValue, value); break;
+                    case "CO": value = s.values.COValue; finalValue = CalculateCO(s.values.AQIValue, value); break;
                     default: break;
                 }
 
@@ -82,6 +83,30 @@ namespace AepApp.View
                 {
                     BackgroundColor = Color.FromHex("#4169E1")
                 };
+                if (finalValue <= 50)
+                {
+                    lv.BackgroundColor = Color.FromHex("#37b83b");
+                }
+                else if (finalValue <= 100)
+                {
+                    lv.BackgroundColor = Color.FromHex("#d8d646");
+                }
+                else if (finalValue <= 150)
+                {
+                    lv.BackgroundColor = Color.FromHex("#d4831b");
+                }
+                else if (finalValue <= 200)
+                {
+                    lv.BackgroundColor = Color.FromHex("#b8373a");
+                }
+                else if (finalValue <= 300)
+                {
+                    lv.BackgroundColor = Color.FromHex("#b8377f");
+                }
+                else
+                {
+                    lv.BackgroundColor = Color.FromHex("#79191d");
+                }
                 map.Overlays.Add(lv);
                 labels.Add(lv);
 
@@ -100,7 +125,22 @@ namespace AepApp.View
                 firsttime = false;
             }
         }
-
+        private double CalculatePM25(double aqiValue, double value)
+        {
+            return new CalculateData().CalculatePM25(aqiValue, value);
+        }
+        private double CalculatePM10(double aqiValue, double value)
+        {
+            return new CalculateData().CalculatePM10(aqiValue, value);
+        }
+        private double CalculateO3(double aqiValue, double value)
+        {
+            return new CalculateData().CalculateO3(aqiValue, value);
+        }
+        private double CalculateCO(double aqiValue, double value)
+        {
+            return new CalculateData().CalculateCO(aqiValue, value);
+        }
         private void ButtonClicked(object sender, EventArgs e)
         {
             Button b = sender as Button;
