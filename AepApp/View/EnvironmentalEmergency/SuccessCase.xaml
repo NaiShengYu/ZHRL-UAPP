@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.EnvironmentalEmergency.SuccessCase"
+             Title="成功案例">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
+            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach"></SearchBar>
+            <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
+            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                    <Grid VerticalOptions="Center">
+                        <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding imgSourse}" Margin="10,10,0,0"/>
+                        <Label Margin="60,8,10,8" Text="{Binding info}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
+                    </Grid>
+                </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

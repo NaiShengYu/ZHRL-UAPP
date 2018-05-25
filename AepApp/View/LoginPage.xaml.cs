@@ -116,7 +116,11 @@ namespace AepApp.View
                     {
                         App.token = haveToken.token;
                         CrossHud.Current.Dismiss();
-                        Navigation.PushAsync(new Platform());
+
+
+                        //MasterAndDetailPage MainPage = new MasterAndDetailPage();
+                        Navigation.PushModalAsync(new MasterAndDetailPage());
+
                         //Navigation.PushAsync(new AirPage());
                         //Navigation.PushAsync(new TestOxyPage());
                     }
@@ -169,6 +173,7 @@ namespace AepApp.View
             }
             //获取存储文件下的内容
             var acc = AccountStore.Create().FindAccountsForService(App.appName).LastOrDefault();
+
             var siteData = AccountStore.Create().FindAccountsForService(App.SiteData).LastOrDefault();
             if (isFirstAppear)
             {

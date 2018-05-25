@@ -129,6 +129,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\AQIMapPageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MonitorModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\CalculateData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterPage.xaml.cs">
+      <DependentUpon>MasterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterAndDetailPage.xaml.cs">
+      <DependentUpon>MasterAndDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\EmergencyAccidentPage.xaml.cs">
+      <DependentUpon>EmergencyAccidentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\EmergencyPlan.xaml.cs">
+      <DependentUpon>EmergencyPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\SuccessCase.xaml.cs">
+      <DependentUpon>SuccessCase.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -196,6 +211,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterAndDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\EmergencyAccidentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\EmergencyPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\SuccessCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\LoginPage.xaml">
@@ -255,5 +290,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\" />
   </ItemGroup>
 </Project>
