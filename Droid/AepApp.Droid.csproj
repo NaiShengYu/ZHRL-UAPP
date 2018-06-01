@@ -20,7 +20,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>D:\AepVersion\Aep9\Droid\azura.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>C:\Users\bchan.AZURA\Source\Repos\AepApp.Xamarin.Forms.New.Platform\Droid\azura.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>123456</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>azura</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>123456</AndroidSigningKeyPass>
@@ -199,6 +199,7 @@
     <Compile Include="CurvedCornersLabelRenderer.cs" />
     <Compile Include="ExtendedViewCellRenderer.cs" />
     <Compile Include="FileHelper.cs" />
+    <Compile Include="MasterAndDetailPageRenderer.cs" />
     <Compile Include="OxyExData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
