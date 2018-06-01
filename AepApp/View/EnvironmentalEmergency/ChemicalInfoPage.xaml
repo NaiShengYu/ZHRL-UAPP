@@ -1,5 +1,72 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.EnvironmentalEmergency.ChemicalInfoPage">
     <ContentPage.Content>
+            <StackLayout Spacing="1">
+            <ScrollView>
+                <StackLayout Spacing="0" BackgroundColor="White">
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="GB码" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="VOCEM1" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="CAS编码" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="PGM-7240" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="中文名称" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="钴" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="英文名称" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="Cobalt" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="常用地点" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="监测车1" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout x:Name="call" Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="类别" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="张三" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="化学式" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="Co" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="分子量" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label  TextColor="Gray" Text="58.93" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+
+                       <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="密度" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label  TextColor="Gray" Text="1.03 g/ml @ 25℃" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+
+                       <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="沸点" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label  TextColor="Gray" Text="2900 ℃(lit)" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+
+                        <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="熔点" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label  TextColor="Gray" Text="1495 ℃" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+
+
+
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

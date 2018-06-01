@@ -12,7 +12,7 @@
                     <DataTemplate>
                         <ViewCell>
                     <Grid VerticalOptions="Center">
-                        <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding imgSourse}" Margin="10,10,0,0"/>
+                        <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding imgSourse}" Margin="10,10,0,10"/>
                         <Label Margin="60,8,10,8" Text="{Binding info}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
                     </Grid>
                 </ViewCell>

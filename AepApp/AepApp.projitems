@@ -12,11 +12,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)AuxiliaryExtension\AddSiteUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IFileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IToast.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddSitePageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirDetailModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirPageModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DetailUrl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DifferentPlantFormUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LoginPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OxyDataPageModle.cs" />
@@ -53,6 +56,10 @@
       <DependentUpon>PollutionSourcePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\SecondaryFunction\QRCodeScanner.xaml.cs">
+      <DependentUpon>QRCodeScanner.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\SelectSitePage.xaml.cs">
       <DependentUpon>SelectSitePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -65,6 +72,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectApproval.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProjectFileData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\SplashPage.xaml.cs">
+      <DependentUpon>SplashPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\TestMapPage.xaml.cs">
       <DependentUpon>TestMapPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -143,6 +154,36 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\SuccessCase.xaml.cs">
       <DependentUpon>SuccessCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\SensitiveSourcePage.xaml.cs">
+      <DependentUpon>SensitiveSourcePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\RescueSitePage.xaml.cs">
+      <DependentUpon>RescueSitePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\RescueMaterialsPage.xaml.cs">
+      <DependentUpon>RescueMaterialsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ExpertLibraryPage.xaml.cs">
+      <DependentUpon>ExpertLibraryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\EquipmentPage.xaml.cs">
+      <DependentUpon>EquipmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\EquipmentInfoPage.xaml.cs">
+      <DependentUpon>EquipmentInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\WatchListPage.xaml.cs">
+      <DependentUpon>WatchListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\WatchListInfoPage.xaml.cs">
+      <DependentUpon>WatchListInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ChemicalPage.xaml.cs">
+      <DependentUpon>ChemicalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ChemicalInfoPage.xaml.cs">
+      <DependentUpon>ChemicalInfoPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +272,46 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\SensitiveSourcePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\RescueSitePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\RescueMaterialsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ExpertLibraryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\EquipmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\EquipmentInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\WatchListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\WatchListInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ChemicalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ChemicalInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\LoginPage.xaml">
@@ -293,5 +374,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\SecondaryFunction\QRCodeScanner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\SplashPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

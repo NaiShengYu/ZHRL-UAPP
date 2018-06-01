@@ -1,15 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class SensitiveSourcePage : ContentPage
     {
+        void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            //seach.Text = e.NewTextValue;
+
+        }
+
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as item;
+            if (item == null)
+                return;
+
+            listView.SelectedItem = null;
+
+        }
+
+        ObservableCollection<item> dataList = new ObservableCollection<item>();
+
         public SensitiveSourcePage()
         {
             InitializeComponent();
+
+            ToolbarItems.Add(new ToolbarItem("", "map", () =>
+            {
+                //Navigation.PushAsync(new PollutionSourceMapPage(dataList));
+
+            }));
+
+
+            var item1 = new item
+            {
+                name = "第一小学",
+                address = "浙江省宁波市鄞州区中兴路360号",
+                type = "学校",
+            };
+
+            dataList.Add(item1);
+
+            var item2 = new item
+            {
+                name = "中环瑞蓝",
+                address = "浙江省宁波市鄞州区江南路1958号宁波检测认证园分园5楼",
+                type = "企业",
+            };
+
+            dataList.Add(item2);
+
+            var item3 = new item
+            {
+                name = "宁波大学",
+                address = "浙江省宁波市江北区风华路818号",
+                type = "大学",
+            };
+
+            dataList.Add(item3);
+
+            listView.ItemsSource = dataList;
         }
+
+        internal class item
+        {
+            public string name { get; set; }
+            public string address { set; get; }
+            public string type { get; set; }
+
+        }
+
     }
 }

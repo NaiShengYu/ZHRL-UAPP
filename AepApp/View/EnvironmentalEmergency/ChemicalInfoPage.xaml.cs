@@ -10,6 +10,8 @@ namespace AepApp.View.EnvironmentalEmergency
         public ChemicalInfoPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
+
         }
     }
 }

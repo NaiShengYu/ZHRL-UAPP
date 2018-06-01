@@ -1,5 +1,53 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.EnvironmentalEmergency.EquipmentInfoPage">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.EnvironmentalEmergency.EquipmentInfoPage">
     <ContentPage.Content>
+        <StackLayout Spacing="1">
+            <ScrollView>
+                <StackLayout Spacing="0" BackgroundColor="White">
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="设备编号" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="VOCEM1" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="设备品牌/型号" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="美国华籍 PGM-7240" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="设备类型" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="便携式" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="设备类别" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="应急监测" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="设备位置" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="监测车1" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout x:Name="call" Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="负责人员" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="张三" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="上次校准日期" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="2018-01-29 16:33" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="上次充电日期" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label  TextColor="Gray" Text="2018-01-29 16:33" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

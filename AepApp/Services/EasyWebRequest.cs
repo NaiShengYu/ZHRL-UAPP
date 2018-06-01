@@ -47,6 +47,32 @@ namespace CloudWTO.Services
 
             return result;
         }
+        public static string sendGetHttpWebRequestWithToken(string url,string token)
+        {
+
+            ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            //req.Host = "example.com";
+            req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);//给请求添加权限
+            req.ContentType = "application/json";
+            req.Method = "GET";
+            HttpWebResponse res;
+            try
+            {
+                res = (HttpWebResponse)req.GetResponse();
+
+            }
+            catch (WebException ex)
+            {
+                res = (HttpWebResponse)ex.Response;
+
+            }
+            StreamReader sr = new StreamReader(res.GetResponseStream());
+            string result = sr.ReadToEnd();
+            Console.WriteLine("ex:" + result);
+
+            return result;
+        }
 
         public static string sendGetHttpWebRequestWithNoToken(string url)
         {
@@ -64,7 +90,7 @@ namespace CloudWTO.Services
             }
             catch (WebException ex)
             {
-                Console.WriteLine("ex:"+ex.Message);
+                Console.WriteLine("ex:" + ex.Message);
 
                 res = (HttpWebResponse)ex.Response;
                 Console.WriteLine("ex:555555555");
@@ -73,7 +99,7 @@ namespace CloudWTO.Services
             Console.WriteLine("ex:1111111");
 
             StreamReader sr = new StreamReader(res.GetResponseStream());
-            Console.WriteLine("ex:22222222" );
+            Console.WriteLine("ex:22222222");
 
             string result = sr.ReadToEnd();
             Console.WriteLine("ex:333333333");
@@ -83,18 +109,22 @@ namespace CloudWTO.Services
             return result;
         }
 
-            public static string sendPOSTHttpWebRequest(string url, string param)
+        public static string sendPOSTHttpWebRequest(string url, string param, bool isNeedUrlencoded)
         {
-           
-
             try
-            {            
+            {
                 ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
                 byte[] bs = Encoding.GetEncoding("UTF-8").GetBytes(param);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-                req.Method = "POST";
-                //req.ContentType = "application/x-www-form-urlencoded";
-                req.ContentType = "application/json";
+                req.Method = "POST";               
+                if (isNeedUrlencoded)
+                {
+                    req.ContentType = "application/x-www-form-urlencoded";
+                }
+                else
+                {
+                    req.ContentType = "application/json";
+                }
                 //req.Headers.Add(HttpRequestHeader.Authorization,@"string");//给请求添加权限
                 req.ContentLength = bs.Length;
                 Stream requestStream = req.GetRequestStream();
@@ -111,13 +141,11 @@ namespace CloudWTO.Services
             {
                 Console.WriteLine("ex:" + ex.Message);
                 return ex.Message;
-                
-            }         
+
+            }
         }
         public static string sendPOSTHttpWebWithTokenRequest(string url, string param)
         {
-
-
             try
             {
                 ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
@@ -125,6 +153,35 @@ namespace CloudWTO.Services
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
                 req.ContentType = "application/json";
                 req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + App.token);//给请求添加权限
+                req.ContentLength = bs.Length;
+                req.Method = "POST";
+                //req.ContentType = "application/x-www-form-urlencoded";               
+                Stream requestStream = req.GetRequestStream();
+                requestStream.Write(bs, 0, bs.Length);
+                requestStream.Close();
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                StreamReader sr = new StreamReader(res.GetResponseStream());
+                string result = sr.ReadToEnd();
+
+                sr.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ex:" + ex.Message);
+                return ex.Message;
+
+            }
+        }
+        public static string sendPOSTHttpWebWithTokenRequest(string url, string param,string token)
+        {
+            try
+            {
+                ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
+                byte[] bs = Encoding.GetEncoding("UTF-8").GetBytes(param);
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                req.ContentType = "application/json";
+                req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);//给请求添加权限
                 req.ContentLength = bs.Length;
                 req.Method = "POST";
                 //req.ContentType = "application/x-www-form-urlencoded";               
@@ -179,6 +236,6 @@ namespace CloudWTO.Services
             return true;
         }
 
-   
+
     }
 }

@@ -4,16 +4,18 @@
              x:Class="AepApp.View.MasterPage"
              Title="菜单"
              Icon="tab_feed.png">
-     <ContentPage.Content>
-    <StackLayout Spacing="1">
-        <StackLayout HeightRequest="150" BackgroundColor="rgb(48, 116, 163)">
-                            
-         </StackLayout>
-         <StackLayout HeightRequest="70" BackgroundColor="White" Spacing="0">
-            <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+    <ContentPage.Content>
+        <StackLayout Spacing="1">
+            <StackLayout HeightRequest="150" BackgroundColor="rgb(48, 116, 163)">
 
-             <Label HeightRequest="35" TextColor="Black" Text="        采样任务" FontSize="19" x:Name="lab1" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
             </StackLayout>
+            <StackLayout HeightRequest="70" BackgroundColor="White" Spacing="0">
+                <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                <Label HeightRequest="35" TextColor="Black" Text="        采样任务" FontSize="19" x:Name="lab1" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+            </StackLayout>
+
+            <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
 
             <ScrollView BackgroundColor="White">
                 <StackLayout Spacing="0">
@@ -35,18 +37,20 @@
                     <Label HeightRequest=" 55" TextColor="Black" Text="        化学品" FontSize="19" x:Name="lab14" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
                     <Label Text="企业/污染源" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     <Label HeightRequest=" 55" TextColor="Black" Text="        污染源" FontSize="19" x:Name="lab15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                     <Label Text="采样系统" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                     <Label HeightRequest=" 55" TextColor="Black" Text="        采样方案" FontSize="19" x:Name="lab16" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+                    <Label Text="采样系统" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label HeightRequest=" 55" TextColor="Black" Text="        采样方案" FontSize="19" x:Name="lab16" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
 
                 </StackLayout>
 
             </ScrollView>
-            
+
+            <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+
             <StackLayout BackgroundColor="White" Spacing="0" HeightRequest="110">
-             <Label HeightRequest="50" TextColor="Black" Text="        扫码登录" FontSize="19" x:Name="lab17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-             <Label HeightRequest="55" TextColor="Black" Text="        设置" FontSize="19" x:Name="lab18" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+                <Label HeightRequest="50" TextColor="Black" Text="        扫码登录" FontSize="19" x:Name="lab17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+                <Label HeightRequest="55" TextColor="Black" Text="        设置" FontSize="19" x:Name="lab18" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
             </StackLayout>
-             
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

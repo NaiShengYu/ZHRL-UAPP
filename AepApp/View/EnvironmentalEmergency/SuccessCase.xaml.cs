@@ -29,6 +29,16 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             InitializeComponent();
 
+            var tap = new TapGestureRecognizer();
+            tap.Tapped +=(s,e) =>{
+
+
+
+            };
+
+
+
+
             var item1 = new item
             {
                 imgSourse = "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=729412813,2297218092&fm=27&gp=0.jpg",

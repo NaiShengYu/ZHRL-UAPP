@@ -4,7 +4,11 @@
              xmlns:local="clr-namespace:AepApp.View"
              x:Class="AepApp.View.SelectSitePage">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="55"/>
+            </Grid.RowDefinitions>
             <ListView  x:Name="HeaderList" HorizontalOptions="Fill" HasUnevenRows="True" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -17,29 +21,60 @@
 
                                 <Image Source="tick_blue.png" HeightRequest="26" WidthRequest="26" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0">
                                     <Image.Triggers>
-                                     <DataTrigger TargetType="Image"
+                                        <DataTrigger TargetType="Image"
                                               Binding="{Binding isCurrent}"
                                               Value="false">
-                                              <Setter Property="IsVisible" Value="false" />
-                                          </DataTrigger>                                        
+                                            <Setter Property="IsVisible" Value="false" />
+                                        </DataTrigger>
                                     </Image.Triggers>
 
-                                    
+
                                 </Image>
                             </Grid>
                         </local:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                <ListView.Footer HorizontalOptions="Fill">
-                        <Grid BackgroundColor="#EFEFF4" HeightRequest="45" HorizontalOptions="Fill" RowSpacing="0" ColumnSpacing="0">
-                            <Label x:Name="select_site" TextColor="Black" Text="添加站点" FontSize="15" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"></Label>
-                            <Image HeightRequest="18" WidthRequest="15" Source="right" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"/>
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Select_site"/>
-                            </Grid.GestureRecognizers>
-                        </Grid>
-                </ListView.Footer>
             </ListView>
-        </StackLayout>
-    </ContentPage.Content>
+            <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="240" x:Name="sl_add_site" IsVisible="False" BackgroundColor="White">
+                <Grid BackgroundColor="#e6e6e6" HeightRequest="30">
+                    <Label Text="添加新站点" Margin="30,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                </Grid>
+                <StackLayout Orientation="Horizontal"  Margin="0,20,0,0" HeightRequest="40" HorizontalOptions="Center">
+                    <Label Text="名称" HeightRequest="40" VerticalOptions="Center" FontSize="18" Margin="0,6,0,0"/>
+                    <Entry x:Name="site_name" Placeholder="请输入站点名称" HeightRequest="40" WidthRequest="200" HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="0,10,0,0" HeightRequest="40" HorizontalOptions="Center" >
+                    <Label Text="网址" HeightRequest="40" VerticalOptions="Center" FontSize="18" Margin="0,6,0,0" />
+                    <Entry x:Name="site_url" Placeholder="请输入网址" HeightRequest="40" WidthRequest="200" HorizontalOptions="Center" />
+                </StackLayout>
+                <Button Text="添加" Clicked="Add_Site" BackgroundColor="#2772a5" HorizontalOptions="Center" Margin="0,10,0,0" HeightRequest="40"/>
+            </StackLayout>
+            <StackLayout VerticalOptions="End" Grid.Row="1" Orientation="Horizontal" BackgroundColor="#e6e6e6" >
+                <StackLayout Orientation="Horizontal" >
+                    <Image Source="add.png" HeightRequest="40" WidthRequest="40" Margin="10,0,0,10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Show_Add_Site"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="minus.png" HeightRequest="40" WidthRequest="40" Margin="5,0,0,10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Hide_Add_Site"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                    <Image Source="delpasswd.png" HeightRequest="40" WidthRequest="40" Margin="0,0,30,10" x:Name="delete_info">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Delete_Info"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="logout.png" HeightRequest="40" WidthRequest="40" Margin="0,0,10,10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Logout"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+          </StackLayout>
+        </Grid>
+</ContentPage.Content>
 </ContentPage>
