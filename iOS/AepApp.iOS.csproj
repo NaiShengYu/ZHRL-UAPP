@@ -210,6 +210,8 @@
     <Compile Include="CurvedCornersLabelRenderer.cs" />
     <Compile Include="ExtendedViewCellRenderer.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MasterAndDetailPageRenderer.cs" />
+    <Compile Include="MyPhoneMasterDetailRenderer.cs" />
     <Compile Include="TextMeter.cs" />
     <Compile Include="Toast_Ios.cs" />
     <Compile Include="FileHelper.cs" />

@@ -4,25 +4,39 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 
 using AepApp.View.EnvironmentalEmergency;
-using Xamarin.Forms.PlatformConfiguration;
-
 namespace AepApp.View
 {
     public partial class MasterAndDetailPage : MasterDetailPage
     {
+        public readonly static BindableProperty WidthRatioProperty =
+            BindableProperty.Create("WidthRatio",
+            typeof(float),
+            typeof(MasterAndDetailPage),
+            (float)0.6);
+
+        public float WidthRatio
+        {
+            get
+            {
+                return (float)GetValue(WidthRatioProperty);
+            }
+            set
+            {
+                SetValue(WidthRatioProperty, value);
+            }
+        }
+
+
+
         public MasterAndDetailPage()
         {
             InitializeComponent();
             Master = new MasterPage(this);
+            Master.WidthRequest = 100;
             //Detail = new NavigationPage(new AirPage());
+
             Detail = new NavigationPage(new EmergencyAccidentPage());
 
-        }
-        protected override bool OnBackButtonPressed()
-        {
-            //return base.OnBackButtonPressed();
-            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-            return true;
         }
     }
 }
