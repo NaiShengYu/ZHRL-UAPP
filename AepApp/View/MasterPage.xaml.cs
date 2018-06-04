@@ -32,7 +32,7 @@ namespace AepApp.View
             //值班表
             var nav13 = new NavigationPage((Page)Activator.CreateInstance(typeof(WatchListPage)));
             //化学品
-            var nav14 = new NavigationPage((Page)Activator.CreateInstance(typeof(ChemicalPage)));
+            var nav14 = new NavigationPage(new ChemicalPage(1));
             //二维码
             var nav17 = new NavigationPage((Page)Activator.CreateInstance(typeof(QRCodeScanner)));
             //设置

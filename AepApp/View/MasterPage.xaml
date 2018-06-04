@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.MasterPage"
              Title="菜单"
-             Icon="tab_feed.png">
+             Icon="hamburger">
     <ContentPage.Content>
         <StackLayout Spacing="1">
             <StackLayout HeightRequest="150" BackgroundColor="rgb(48, 116, 163)">

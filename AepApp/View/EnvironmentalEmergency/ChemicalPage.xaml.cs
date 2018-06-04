@@ -2,33 +2,45 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using AepApp.Models;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class ChemicalPage : ContentPage
     {
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            var ChemicalModel = e.SelectedItem as ChemicalModel;
+            if (ChemicalModel == null)
+                return;
+            if (_type == 1)
+                Navigation.PushAsync(new ChemicalInfoPage());
+
+            if (_type == 2)
+            {
+                MessagingCenter.Send<ContentPage, ChemicalModel>(this, "Value", ChemicalModel);
+                Navigation.PopAsync();
+
+            }
+
+            listView.SelectedItem = null; 
+        }
+
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             //seach.Text = e.NewTextValue;
 
         }
 
-        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
-        {
-            var item = e.SelectedItem as item;
-            if (item == null)
-                return;
-            Navigation.PushAsync(new ChemicalInfoPage());
-            listView.SelectedItem = null;
-        }
 
-        ObservableCollection<item> dataList = new ObservableCollection<item>();
-
-        public ChemicalPage()
+        ObservableCollection<ChemicalModel> dataList = new ObservableCollection<ChemicalModel>();
+        int _type = 0;
+        public ChemicalPage(int type)
         {
             InitializeComponent();
+            _type = type;
 
-            var item1 = new item
+            var ChemicalModel1 = new ChemicalModel
             {
                 name = "铁",
                 Yname = "Fe",
@@ -37,9 +49,9 @@ namespace AepApp.View.EnvironmentalEmergency
 
             };
 
-            dataList.Add(item1);
+            dataList.Add(ChemicalModel1);
 
-            var item2 = new item
+            var ChemicalModel2 = new ChemicalModel
             {
                 name = "钙",
                 Yname = "Ca",
@@ -48,9 +60,9 @@ namespace AepApp.View.EnvironmentalEmergency
 
             };
 
-            dataList.Add(item2);
+            dataList.Add(ChemicalModel2);
 
-            var item3 = new item
+            var ChemicalModel3 = new ChemicalModel
             {
                 name = "钠",
                 Yname = "Na",
@@ -59,18 +71,12 @@ namespace AepApp.View.EnvironmentalEmergency
 
             };
 
-            dataList.Add(item3);
+            dataList.Add(ChemicalModel3);
 
             listView.ItemsSource = dataList;
         }
 
-        internal class item
-        {
-            public string name { get; set; }
-            public string Yname { set; get; }
-            public string type { set; get; }
-            public string TypeNum { set; get; }
-        }
+      
 
     }
 }

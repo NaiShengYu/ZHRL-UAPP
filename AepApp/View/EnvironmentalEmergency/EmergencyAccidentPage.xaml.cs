@@ -18,7 +18,7 @@ namespace AepApp.View.EnvironmentalEmergency
             var item = e.SelectedItem as item;
             if (item == null)
                 return;
-           
+            Navigation.PushAsync(new EmergencyAccidentInfoPage(item.title));
             listView.SelectedItem = null;
 
         }
