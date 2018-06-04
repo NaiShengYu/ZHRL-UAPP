@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddSitePageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirDetailModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirPageModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ChemicalModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DetailUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DifferentPlantFormUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
@@ -204,7 +205,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\addDataPage.xaml.cs">
       <DependentUpon>addDataPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ChemicalModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
