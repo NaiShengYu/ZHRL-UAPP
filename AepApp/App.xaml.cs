@@ -28,12 +28,13 @@ namespace AepApp
         }
         public static bool UseMockDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
-        public static string NEWTOKENURL = "http://gx.azuratech.com:30000/token";
+        public static string NEWTOKENURL = "http://gx.azuratech.com:30000/token";    
         //public static double pid = 3.14;
         public static string BaseUrl = "";
         //新应急接口baseURL
         public static string BaseUrlForYINGJI = "http://192.168.1.128:5000/";
         public static string token = "";
+        public static string convertToken = "";
         public static string appName = "Aep";
         public static string appAccident = "Accident";
         public static string SiteData = "site";
@@ -84,7 +85,7 @@ namespace AepApp
                 await getSqlDataAsync();
                 //AutoLogin(acc);//自动登陆
                 //新接口
-                GetNewToken(NEWTOKENURL,acc);
+                GetNewToken(NEWTOKENURL, acc);
             }
             else
             {
@@ -92,21 +93,22 @@ namespace AepApp
             }
         }
 
-        private void GetNewToken(string url,Account account)
+        private void GetNewToken(string url, Account account)
         {
             string password = account.Properties["pwd"];
             string userName = account.Username;
-            SendNewHttpLogin(url, "username="+ userName + "&password="+ password + "&grant_type=password");
+            SendNewHttpLogin(url, "username=" + userName + "&password=" + password + "&grant_type=password");
         }
 
-        private void SendNewHttpLogin(string url,string param)
+        private void SendNewHttpLogin(string url, string param)
         {
-            result = EasyWebRequest.sendPOSTHttpWebRequest(url, param,true);
+            result = EasyWebRequest.sendPOSTHttpWebRequest(url, param, true);
             if (result.Contains("error"))
             {
                 MainPage = new NavigationPage(new LoginPage());
             }
-            else {
+            else
+            {
 
             }
             Console.WriteLine(result);
@@ -177,7 +179,7 @@ namespace AepApp
             // BackgroundWorker wrk = new BackgroundWorker();
             // wrk.DoWork += (sender1, e1) =>
             //{
-            result = EasyWebRequest.sendPOSTHttpWebRequest(uri, p,false);
+            result = EasyWebRequest.sendPOSTHttpWebRequest(uri, p, false);
             //};
             // wrk.RunWorkerCompleted += (sender1, e1) =>
             // {

@@ -251,7 +251,11 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                Console.WriteLine(result);
+                LoginPageModels.convertToken convertToken = new LoginPageModels.convertToken();
+                convertToken = JsonConvert.DeserializeObject<LoginPageModels.convertToken>(result);
+                App.convertToken = convertToken.accessToken;
+                CrossHud.Current.Dismiss();
+               Navigation.PushModalAsync(new MasterAndDetailPage());
             };
             wrk.RunWorkerAsync();
         }

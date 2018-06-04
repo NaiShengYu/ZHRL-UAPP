@@ -23,6 +23,16 @@ namespace AepApp.Models
             public string refresh_token { get; set; }
             public string userName { get; set; }
         }
+        internal class convertTokenResult {
+
+        }
+        internal class convertToken
+        {
+            public string accessToken { get; set; }
+            public string encryptedAccessToken { get; set; }
+            public string expireInSeconds { get; set; }
+            public string waitingForActivation { get; set; }
+        }
         internal class loginParameter
         {
             public string Password { get; set; }

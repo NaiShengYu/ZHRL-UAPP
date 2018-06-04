@@ -11,5 +11,7 @@ namespace AepApp.Models
 	{
         //应急token转换
         public static string ConvertToken = "api/TokenAuth/ExternalAuthenticate";
+        //获取应急事故
+        public static string GetEmergencyAccidentList = "api/services/app/Incident/GetPagedIncidents";
 	}
 }

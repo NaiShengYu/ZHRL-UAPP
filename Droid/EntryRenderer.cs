@@ -19,9 +19,12 @@ namespace AepApp.Droid
             if ((Control != null) && (e.NewElement != null))
             {
                 var entryExt = (e.NewElement as EntryExt);
-                Control.ImeOptions = entryExt.ReturnKeyType.GetValueFromDescription();
-                // This is hackie ;-) / A Android-only bindable property should be added to the EntryExt class 
-                Control.SetImeActionLabel(entryExt.ReturnKeyType.ToString(), Control.ImeOptions);
+                if (entryExt != null)
+                {
+                    Control.ImeOptions = entryExt.ReturnKeyType.GetValueFromDescription();
+                    // This is hackie ;-) / A Android-only bindable property should be added to the EntryExt class 
+                    Control.SetImeActionLabel(entryExt.ReturnKeyType.ToString(), Control.ImeOptions);
+                }           
             }
         }
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -61,3 +64,4 @@ namespace AepApp.Droid
             throw new NotSupportedException($"Not supported on Android: {value}");
         }
     }
+}

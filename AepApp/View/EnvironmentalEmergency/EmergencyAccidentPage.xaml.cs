@@ -1,16 +1,20 @@
-﻿using System;
+﻿using AepApp.Models;
+using CloudWTO.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class EmergencyAccidentPage : ContentPage
     {
+        private int start = 0;
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             //seach.Text = e.NewTextValue;
-        
+
         }
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
@@ -24,11 +28,12 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 
         ObservableCollection<item> dataList = new ObservableCollection<item>();
+        private object result;
 
         public EmergencyAccidentPage()
         {
             InitializeComponent();
-           
+            reqEmergencyAccidentInfo(start);
             var item1 = new item
             {
                 title = "长江路事故",
@@ -64,17 +69,33 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
-        internal class item{
+        private void reqEmergencyAccidentInfo(int start)
+        {
+            BackgroundWorker wrk = new BackgroundWorker();
+            wrk.DoWork += (sender1, e1) =>
+            {
+                result = EasyWebRequest.sendGetHttpWebRequestWithToken(App.BaseUrlForYINGJI + DetailUrl.GetEmergencyAccidentList
+                    + "?MaxResultCount=" + (start + 10) + "&SkipCount=" + start + "&Filter=" + "" + "&Sorting=" + "", App.convertToken );
+            };
+            wrk.RunWorkerCompleted += (sender1, e1) =>
+            {
+                start = start + 10;
+                Console.WriteLine(result);
+            };
+            wrk.RunWorkerAsync();
+        }
+
+        internal class item
+        {
             public string title { get; set; }
             public string time { set; get; }
             public string type { set; get; }
             public string state { set; get; }
-
-
-
-
         }
 
-
+        private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            reqEmergencyAccidentInfo(start);
+        }
     }
 }
