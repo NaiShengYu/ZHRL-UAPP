@@ -240,6 +240,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="TextMeter.cs" />
     <Compile Include="Toast_Android.cs" />
+    <Compile Include="EntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -250,6 +251,52 @@
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bottletick.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bottle.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\whitetarget.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\orangetarget.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bluetarget.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\graymicroscrope.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bluemicroscope.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\graytruck.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bluetruck.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\trashcan.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\camera.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\truck.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\upload2.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\qrcode.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scan.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\doctick.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\doc.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\docexclam.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tick.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pause.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\text2.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\phone.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\greentick.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\word.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pdf.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\markerred.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\play.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\grayclock.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bluetick.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\stopwatch.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\markerwhite.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\orangedots.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\orange.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\loc2.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\user.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\sampleplan.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\upload.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\data.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\report.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\text.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\image.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\video.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\loc1.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\chem.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\winddir.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\elements.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\water.png" />

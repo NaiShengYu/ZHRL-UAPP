@@ -18,8 +18,14 @@ using System.Threading.Tasks;
 
 namespace AepApp
 {
-    public partial class App : Application
+    public partial class App : Application, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged(string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public static bool UseMockDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
         public static string NEWTOKENURL = "http://gx.azuratech.com:30000/token";
@@ -38,6 +44,23 @@ namespace AepApp
         public static List<TodoItem> todoItemList = new List<TodoItem>();
 
         static TodoItemDatabase database;
+
+        private bool _isMasterDetailPageGestureEnabled = true;
+        public bool IsMasterDetailPageGestureEnabled
+        {
+            get
+            {
+                return _isMasterDetailPageGestureEnabled;
+            }
+            set
+            {
+                _isMasterDetailPageGestureEnabled = value;
+
+                NotifyPropertyChanged("IsMasterDetailPageGestureEnabled");
+            }
+        }
+
+
         private string result;
         private TodoItem item;
         private Account acc;
@@ -45,6 +68,9 @@ namespace AepApp
         public App()
         {
             InitializeComponent();
+            //页面启动必须要有一个mainPage
+            MainPage = new NavigationPage(new LoginPage());
+
         }
 
 
