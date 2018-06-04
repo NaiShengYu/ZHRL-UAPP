@@ -51,7 +51,7 @@
                 <Frame HorizontalOptions="FillAndExpand" Padding="0" HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e8e8e8">
                     <StackLayout BackgroundColor="#f2f2f2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                         <Button Margin="10,5,0,5" WidthRequest="45" HeightRequest="45" Image="voice" />
-                        <local:EntryExt ReturnKeyType="Send" x:Name="ENT" Focused="Handle_Focused" Unfocused="Handle_Unfocused" BackgroundColor="White" Margin="0,5,10,5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="45"/>
+                        <local:EntryExt x:Name="ENT" Focused="Handle_Focused" Unfocused="Handle_Unfocused" BackgroundColor="White" Margin="0,5,10,5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="45"/>
                     </StackLayout>
                 </Frame>
             </StackLayout>
