@@ -56,9 +56,9 @@ namespace AepApp
             if (acc != null)
             {
                 await getSqlDataAsync();
-                AutoLogin(acc);//自动登陆
+                //AutoLogin(acc);//自动登陆
                 //新接口
-                //GetNewToken(NEWTOKENURL,acc);
+                GetNewToken(NEWTOKENURL,acc);
             }
             else
             {

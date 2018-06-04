@@ -24,7 +24,7 @@ namespace AepApp.Droid
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             //百度地图配置
             //Xamarin.FormsBaiduMaps.Init(null);
-
+            StatusBar.Activity = this;//获取状态栏高度
             LoadApplication(new App());
         }
 

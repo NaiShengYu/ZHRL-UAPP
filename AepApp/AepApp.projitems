@@ -14,6 +14,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)AuxiliaryExtension\AddSiteUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IFileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interface\IStatusBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interface\IToast.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddSitePageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirDetailModels.cs" />
@@ -60,6 +61,7 @@
       <DependentUpon>QRCodeScanner.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\SecondaryFunction\ZXingOverLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\SelectSitePage.xaml.cs">
       <DependentUpon>SelectSitePage.xaml</DependentUpon>
       <SubType>Code</SubType>

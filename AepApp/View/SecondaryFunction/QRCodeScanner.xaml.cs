@@ -15,17 +15,45 @@ namespace AepApp.View.SecondaryFunction
     {
         ZXingScannerView zxing;
         ZXingDefaultOverlay overlay;
+        ZXingOverLayout overLayout;
         public QRCodeScanner() : base()
         {
             //InitializeComponent();
+            int height = App.ScreenHeight / 2;
             this.Title = "二维码扫描";
+            initZxing(height);
+            initOverLayout();
+            //DefaultSet();
+
+            var grid = new Grid
+            {
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+            };
+            grid.Children.Add(zxing);
+            grid.Children.Add(overLayout);
+            //grid.Children.Add(overlay);      
+            // The root page of your application
+            Content = grid;
+
+        }
+
+
+
+        private void initOverLayout()
+        {
+            overLayout = new ZXingOverLayout();
+        }
+
+        private void initZxing(int height)
+        {
             zxing = new ZXingScannerView
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 AutomationId = "zxingScannerView",
             };
-            zxing.Margin = new Thickness(0, 120, 0, 120);
+            zxing.Margin = new Thickness(0, -height + 10, 0, height - 10);
             zxing.OnScanResult += (result) =>
                Device.BeginInvokeOnMainThread(async () =>
                {
@@ -36,60 +64,13 @@ namespace AepApp.View.SecondaryFunction
                    // Show an alert
                    //await DisplayAlert("Scanned Barcode", result.Text, "OK");
                    overlay.TopText = result.Text;
+                   //DependencyService.Get<Sample.IToast>().ShortAlert(result.Text);
+                   overLayout.setMessage(result.Text);
                    // Navigate away
                    await Navigation.PopAsync();
                });
-            overlay = new ZXingDefaultOverlay
-            {
-                TopText = "Hold your phone up to the barcode",
-                //BottomText = "Scanning will happen automatically",
-                BottomText = "",
-                //ShowFlashButton = zxing.HasTorch,
-                ShowFlashButton = false,
-                AutomationId = "zxingDefaultOverlay",
-            };
-            //添加刷新按钮
-            Button bt = new Button
-            {
-                Text = "刷新",
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.End,
-                Margin = new Thickness(0, 0, 0, 50),
-                HeightRequest = 50
-            };
-            bt.Clicked += (sender, e) =>
-            {
-                zxing.IsTorchOn = !zxing.IsTorchOn;
-                zxing.IsAnalyzing = true;
-            };
-            //BoxView boxViewBottom = new BoxView
-            //{
-            //    BackgroundColor = Color.White,
-            //    HorizontalOptions = LayoutOptions.FillAndExpand,
-            //    VerticalOptions = LayoutOptions.FillAndExpand
-            //};   
-            //overlay.Children.Add(boxViewBottom);          
-            overlay.Children.Add(bt);        
-           // Grid.SetRow(boxViewBottom, 2);          
-            Grid.SetRow(bt,2);        
-            //overlay.FlashButtonClicked += (sender, e) =>
-            //{
-            //    zxing.IsTorchOn = !zxing.IsTorchOn;
-            //    zxing.IsAnalyzing = true;
-            //};
-            var grid = new Grid
-            {
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-            };
-            grid.Children.Add(zxing);
-            grid.Children.Add(overlay);
-           
-            
-            // The root page of your application
-            Content = grid;
-
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -140,6 +121,48 @@ namespace AepApp.View.SecondaryFunction
 
             //    throw;
             //}
+        }
+        private void DefaultSet()
+        {
+            overlay = new ZXingDefaultOverlay
+            {
+                TopText = "Hold your phone up to the barcode",
+                //BottomText = "Scanning will happen automatically",
+                BottomText = "",
+                //ShowFlashButton = zxing.HasTorch,
+                ShowFlashButton = false,
+                AutomationId = "zxingDefaultOverlay",
+            };
+            overLayout = new ZXingOverLayout();
+            //添加刷新按钮
+            Button bt = new Button
+            {
+                Text = "刷新",
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.End,
+                Margin = new Thickness(0, 0, 0, 50),
+                HeightRequest = 50
+            };
+            bt.Clicked += (sender, e) =>
+            {
+                zxing.IsTorchOn = !zxing.IsTorchOn;
+                zxing.IsAnalyzing = true;
+            };
+            //BoxView boxViewBottom = new BoxView
+            //{
+            //    BackgroundColor = Color.White,
+            //    HorizontalOptions = LayoutOptions.FillAndExpand,
+            //    VerticalOptions = LayoutOptions.FillAndExpand
+            //};   
+            //overlay.Children.Add(boxViewBottom);          
+            overlay.Children.Add(bt);
+            // Grid.SetRow(boxViewBottom, 2);          
+            Grid.SetRow(bt, 2);
+            //overlay.FlashButtonClicked += (sender, e) =>
+            //{
+            //    zxing.IsTorchOn = !zxing.IsTorchOn;
+            //    zxing.IsAnalyzing = true;
+            //};
         }
     }
 }
