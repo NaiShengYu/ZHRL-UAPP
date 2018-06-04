@@ -89,7 +89,9 @@ namespace AepApp
             }
             else
             {
-                MainPage = new NavigationPage(new LoginPage());
+                MainPage = new NavigationPage(new MasterAndDetailPage());
+
+                //MainPage = new NavigationPage(new LoginPage());
             }
         }
 
@@ -105,7 +107,9 @@ namespace AepApp
             result = EasyWebRequest.sendPOSTHttpWebRequest(url, param, true);
             if (result.Contains("error"))
             {
-                MainPage = new NavigationPage(new LoginPage());
+                //MainPage = new NavigationPage(new LoginPage());
+                MainPage = new NavigationPage(new MasterAndDetailPage());
+
             }
             else
             {
@@ -187,7 +191,9 @@ namespace AepApp
             haveToken = JsonConvert.DeserializeObject<LoginPageModels.haveToken>(result);
             if (haveToken.success.Equals("false"))
             {
-                MainPage = new NavigationPage(new LoginPage());
+                //MainPage = new NavigationPage(new LoginPage());
+                MainPage = new NavigationPage(new MasterAndDetailPage());
+
             }
             else
             {

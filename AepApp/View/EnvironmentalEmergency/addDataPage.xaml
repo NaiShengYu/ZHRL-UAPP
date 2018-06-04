@@ -7,8 +7,8 @@
         <StackLayout>
            <ScrollView >
             <StackLayout Spacing="1" BackgroundColor="#e1e1e1">
-                    <StackLayout BackgroundColor="#dbdbdb" HeightRequest="40">
-                        <Label Text="关键污染物" Margin="15,5,15,5" VerticalTextAlignment="Center"/>
+                    <StackLayout BackgroundColor="#dbdbdb" HeightRequest="40" VerticalOptions="CenterAndExpand">
+                        <Label VerticalOptions="CenterAndExpand" Text="关键污染物" Margin="15,5,15,5" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout x:Name="wrw" Spacing="1"/>
                     <StackLayout Orientation="Horizontal" HeightRequest="60">
@@ -17,13 +17,13 @@
                     </StackLayout>
 
                     
-                      <StackLayout BackgroundColor="#dbdbdb" HeightRequest="40">
-                        <Label Text="关键理化性质" Margin="15,5,15,5" VerticalTextAlignment="Center"/>
+                      <StackLayout BackgroundColor="#dbdbdb" HeightRequest="40" VerticalOptions="CenterAndExpand">
+                        <Label VerticalOptions="CenterAndExpand" Text="关键理化性质" Margin="15,5,15,5" VerticalTextAlignment="Center"/>
                     </StackLayout>
-                    <StackLayout x:Name="lhxz" Spacing="1"/>
+                    <StackLayout x:Name="lhxz" Spacing="1" VerticalOptions="Center"/>
                     <StackLayout Orientation="Horizontal" HeightRequest="60" HorizontalOptions="FillAndExpand">
                         <Label Text="添加关键理化性质" Margin="15,5,15,5" VerticalTextAlignment="Center" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
-                        <Button Image="add" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,15,0" WidthRequest="45" HeightRequest="45"/>
+                        <Button Clicked="addLHXZ" Image="add" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,15,0" WidthRequest="45" HeightRequest="45"/>
                     </StackLayout>
 
                 </StackLayout>

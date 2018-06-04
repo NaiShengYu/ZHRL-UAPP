@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.EnvironmentalEmergency.AddDataForLHXZPage">
+    <ContentPage.Content>
+           <StackLayout>
+           <ScrollView >
+            <StackLayout Spacing="1" BackgroundColor="#e1e1e1">
+                    <StackLayout BackgroundColor="#dbdbdb" HeightRequest="40" VerticalOptions="CenterAndExpand">
+                        <Label VerticalOptions="CenterAndExpand" Text="大气指标" Margin="15,5,15,5" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout x:Name="DQ" Spacing="1"/>
+                                    
+                      <StackLayout BackgroundColor="#dbdbdb" HeightRequest="40" VerticalOptions="CenterAndExpand">
+                        <Label VerticalOptions="CenterAndExpand" Text="水质指标" Margin="15,5,15,5" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout x:Name="SZ" Spacing="1"/>
+                  
+                   <StackLayout BackgroundColor="#dbdbdb" HeightRequest="40" VerticalOptions="CenterAndExpand">
+                        <Label VerticalOptions="CenterAndExpand" Text="土壤指标" Margin="15,5,15,5" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout x:Name="TR" Spacing="1"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

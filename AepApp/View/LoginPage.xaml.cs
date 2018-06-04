@@ -212,9 +212,16 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                LoginPageModels.newToken newToken = new LoginPageModels.newToken();
-                newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(result);
-                GetDiffPlatformUrl(newToken.access_token);
+                try{
+                    LoginPageModels.newToken newToken = new LoginPageModels.newToken();
+                    newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(result);
+                    GetDiffPlatformUrl(newToken.access_token);   
+                }
+                catch (Exception ex)
+                {
+                    CrossHud.Current.ShowError(ex.Message, timeout: new TimeSpan(0, 0, 3));
+                }
+               
             };
             wrk.RunWorkerAsync();
         }
