@@ -85,19 +85,20 @@ namespace AepApp
                 await getSqlDataAsync();
                 //AutoLogin(acc);//自动登陆
                 //新接口
-                HTTPResponse hTTPResponse = await GetNewToken(NEWTOKENURL, acc);
-                if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
-                {
-                    LoginPageModels.newToken newToken = new LoginPageModels.newToken();
-                    newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(hTTPResponse.Results);
-                    //MainPage = new NavigationPage(new LoginPage());
-                    GetDiffPlatformUrl(newToken.access_token);
-                }
-                else
-                {
-                    Console.WriteLine(hTTPResponse.StatusCode);
-                    MainPage = new NavigationPage(new LoginPage());
-                }
+                MainPage = new NavigationPage(new LoginPage());
+                //HTTPResponse hTTPResponse = await GetNewToken(NEWTOKENURL, acc);
+                //if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
+                //{
+                //    LoginPageModels.newToken newToken = new LoginPageModels.newToken();
+                //    newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(hTTPResponse.Results);
+                //    //MainPage = new NavigationPage(new LoginPage());
+                //    GetDiffPlatformUrl(newToken.access_token);
+                //}
+                //else
+                //{
+                //    Console.WriteLine(hTTPResponse.StatusCode);
+                //    MainPage = new NavigationPage(new LoginPage());
+                //}
             }
             else
             {
