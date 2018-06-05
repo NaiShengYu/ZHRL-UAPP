@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using Plugin.Media;
 #if __IOS__
 using Foundation;
 using UIKit;
@@ -170,14 +171,41 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             Navigation.PushAsync(new ChemicalPage(1));
         }
+        //点击了拍照
+        async void paiZhao(object sender, System.EventArgs e)
+        {
 
+            await CrossMedia.Current.Initialize();
+    
+             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+             {
+                  DisplayAlert("No Camera", ":( No camera available.", "OK");
+                    return;
+                }
+             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+              {
+                 Directory = "Sample",
+                  Name = "test.jpg"
+              });
 
+            if (file == null)
+               return;
+
+             await DisplayAlert("File Location", file.Path, "OK");
+
+         //    image.Source = ImageSource.FromStream(() =>
+         //{
+              //  var stream = file.GetStream();
+              //   return stream;
+              //}); 
+        }
 
 
         ObservableCollection<item> dataList = new ObservableCollection<item>();
         public AddEmergencyAccidentInfoPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
 
 #if __IOS__
             var not = NSNotificationCenter.DefaultCenter;

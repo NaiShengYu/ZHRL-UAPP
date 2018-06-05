@@ -23,6 +23,10 @@ namespace AepApp.View.EnvironmentalEmergency
                 {
                        
                     map.SetCenter(16, new AzmCoord(location.Longitude,location.Latitude));
+                    var img = ImageSource.FromFile("markerred.png");
+                    var aaa = new AzmMarkerView(img, new Size(30, 30),new AzmCoord(location.Longitude, location.Latitude));
+                    map.Overlays.Add(aaa);
+
 
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}");
                 }
@@ -105,8 +109,7 @@ namespace AepApp.View.EnvironmentalEmergency
             HandleEventHandler();
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
-         
-
+           
 
         }
     }

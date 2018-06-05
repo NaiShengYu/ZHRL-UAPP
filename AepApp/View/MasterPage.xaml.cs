@@ -42,8 +42,12 @@ namespace AepApp.View
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) =>
             {
-
                 lastLab.BackgroundColor = Color.White;
+
+
+                var aaa = GC.GetTotalMemory(true);
+                Console.WriteLine("运行内存：" + aaa.ToString());
+
 
                 var sender = s as Label;
                 sender.BackgroundColor = Color.Gray;
@@ -51,6 +55,7 @@ namespace AepApp.View
                 if (s == lab1)
                 {
                     Console.WriteLine("采样任务");
+
                     //aaaa.Detail = nav1;
 
                 }
@@ -81,12 +86,15 @@ namespace AepApp.View
                 if (s == lab6)
                 {
                     Console.WriteLine("应急事故");
+                    //var nav6 = new NavigationPage((Page)Activator.CreateInstance(typeof(EmergencyAccidentPage)));
+
                     aaaa.Detail = nav6;
                 }
 
                 if (s == lab7)
                 {
                     Console.WriteLine("成功案例");
+                    //var nav7 = new NavigationPage((Page)Activator.CreateInstance(typeof(SuccessCase)));
                     aaaa.Detail = nav7;
                 }
                 if (s == lab8)
@@ -143,7 +151,7 @@ namespace AepApp.View
                     aaaa.Detail = nav18;
                 }
 
-                aaaa.IsPresented = false;
+                //aaaa.IsPresented = false;
 
             };
             lab1.GestureRecognizers.Add(tapGestureRecognizer);

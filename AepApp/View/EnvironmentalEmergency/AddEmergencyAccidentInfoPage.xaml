@@ -100,7 +100,7 @@
                         <Image WidthRequest="45" HeightRequest="45" Source="image" />
                         <Label Text="照片" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
                     </StackLayout>
-                    <Button Margin="10,0,10,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                    <Button Clicked="paiZhao" Margin="10,0,10,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                     <StackLayout Spacing="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image WidthRequest="45" HeightRequest="45" Source="video" />
                         <Label Text="视频" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
