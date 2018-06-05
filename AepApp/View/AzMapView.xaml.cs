@@ -16,14 +16,19 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace AepApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AzMapView : ContentView
     {
+        public delegate void CenterCoordChangedEventHandler(object sender, CenterCoordChangedEventArg e);
+        public event CenterCoordChangedEventHandler CenterCoordChanged;
+
         public static AzMapView ActiveMap { get; set; }
-        
+
+        public static AzmCoord Beijing = new AzmCoord(116.4074, 39.9042);
 
         // Just some random initial level and center position
         int level = 17;
@@ -77,8 +82,9 @@ namespace AepApp.View
         public AzMapView()
         {
             InitializeComponent();
+
             Overlays = new ObservableCollection<AzmOverlayView>();
-            UpdateRanges();
+            //UpdateRanges();
             this.SizeChanged += AzMapView_SizeChanged;
             ActiveMap = this;
             TappedMarker = null;
@@ -86,8 +92,46 @@ namespace AepApp.View
 
             MapType = AzmMapType.Normal;
 
-            SetCenter(8, new AzmCoord(120.0, 29.9));
+            SetCenter(8, new AzmCoord(116.4074, 39.9042));  // beijing
+
+            this.BindingContext = this;
+
         }
+
+        private bool _iszoombuttonvisible = true;
+
+        public bool IsZoomButtonVisible
+        {
+            get { return _iszoombuttonvisible; }
+            set { _iszoombuttonvisible = value; OnPropertyChanged("IsZoomButtonVisible"); }
+        }
+
+        private bool _ismaptypebuttonvisible = false;
+
+        public bool IsMapTypeButtonVisible
+        {
+            get { return _ismaptypebuttonvisible; }
+            set { _ismaptypebuttonvisible = value; OnPropertyChanged("IsMapTypeButtonVisible"); }
+        }
+
+        private bool _isdebuglabelvisible = false;
+
+        public bool IsDebugLabelVisible
+        {
+            get { return _isdebuglabelvisible; }
+            set { _isdebuglabelvisible = value; OnPropertyChanged("IsDebugLabelVisible"); }
+        }
+
+        private AzmCoord _centercoord = new AzmCoord(116.4074, 39.9042);    // bejing
+
+        public AzmCoord CenterCoord
+        {
+            get { return _centercoord; }
+            set { _centercoord = value; OnPropertyChanged("CenterCoord");
+                CenterCoordChanged?.Invoke(this, new CenterCoordChangedEventArg(_centercoord));
+            }
+        }
+
 
         private void UpdateRanges()
         {
@@ -150,8 +194,17 @@ namespace AepApp.View
 
         public void SetCenter(int _level, AzmCoord _center)
         {
+            if (_level < 4) { SetCenter(11, Beijing); return; }
+            if (_level > 18) { SetCenter(11, Beijing); return; }
+            if (double.IsNaN(_center.lng)) { SetCenter(11, Beijing); return; }
+            if (double.IsNaN(_center.lat)) { SetCenter(11, Beijing); return; }
+            if (_center.lng < -180.0) { SetCenter(11, Beijing); return; }
+            if (_center.lng > 180.0) { SetCenter(11, Beijing); return; }
+            if (_center.lat < -85.051128779806592377796715521925) { SetCenter(11, Beijing); return; }
+            if (_center.lat > 85.051128779806592377796715521925) { SetCenter(11, Beijing); return; }
             level = _level;
             center = GetXYFromCoord(level, _center);
+            CenterCoord = _center;
             UpdateRanges();
             backupx = center.X;
             backupy = center.Y;
@@ -426,6 +479,8 @@ namespace AepApp.View
 
                 xrange = new Tuple<int, int>(sx, ex);
                 yrange = new Tuple<int, int>(sy, ey);
+
+                CenterCoord = GetCoordFromXY(level, center);
 
                 if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
                 {
@@ -732,6 +787,16 @@ namespace AepApp.View
             //    }
             //}
 
+        }
+    }
+
+    public class CenterCoordChangedEventArg : EventArgs
+    {
+        public AzmCoord Center { get; set; }
+
+        public CenterCoordChangedEventArg(AzmCoord _center)
+        {
+            Center = _center;
         }
     }
 
@@ -2049,9 +2114,38 @@ namespace AepApp.View
 
                     List<int> subwayexitids = new List<int>(){
                         65836,
-                        65851,                         65864,                         65853,                         65857,                         66104,                         66047,                         66040,
-                        65893,                         65862,                         65861,                         65863,                         65860,                         65842,                         65844,                         65858,                         65856,                         65854,                         65859,
-                        65855,                         65848,                         65847,                         65850,                         65845,                         65852,                         65843,                         65846,                         65837,                         65838,                         65841,                         65839,                         65840,                         65849,
+                        65851,
+                        65864,
+                        65853,
+                        65857,
+                        66104,
+                        66047,
+                        66040,
+                        65893,
+                        65862,
+                        65861,
+                        65863,
+                        65860,
+                        65842,
+                        65844,
+                        65858,
+                        65856,
+                        65854,
+                        65859,
+                        65855,
+                        65848,
+                        65847,
+                        65850,
+                        65845,
+                        65852,
+                        65843,
+                        65846,
+                        65837,
+                        65838,
+                        65841,
+                        65839,
+                        65840,
+                        65849,
                     };
 
                     if (icon==-1 && t.key < 200000 && t.key >65535 && !backcol.Equals(SKColors.Transparent) && textsize<=10)
@@ -2558,6 +2652,7 @@ namespace AepApp.View
 
     public class AzmCoord
     {
+
         public AzmCoord(double _lng, double _lat)
         {
             lng = _lng;
@@ -2565,6 +2660,12 @@ namespace AepApp.View
         }
         public double lng { get; set; }
         public double lat { get; set; }
+
+        public override string ToString()
+        {
+            string ret= lng.ToString("0.0#####") + (lng != 0.0 ? (lng > 0.0 ? " E" : " W") : "") + ", " + lat.ToString("0.0#####") + (lat != 0.0 ? (lat > 0.0 ? " N" : " S") : "");
+            return ret;
+        }
     }
 
     public class AzmOverlayView : Xamarin.Forms.TemplatedView

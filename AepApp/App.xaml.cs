@@ -71,7 +71,6 @@ namespace AepApp
             InitializeComponent();
             //页面启动必须要有一个mainPage
             MainPage = new NavigationPage(new LoginPage());
-
         }
 
 

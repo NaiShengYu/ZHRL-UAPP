@@ -49,6 +49,7 @@ namespace AepApp.View
                 }
             }
             AddLabels("AQI");
+            return;
         }
 
         private bool firsttime = true;
@@ -119,9 +120,12 @@ namespace AepApp.View
             }
             if (firsttime)
             {
-                x /= cnt;
-                y /= cnt;
-                map.SetCenter(11, new AzmCoord(x, y));
+                if (cnt > 0)
+                {
+                    x /= cnt;
+                    y /= cnt;
+                    map.SetCenter(11, new AzmCoord(x, y));
+                }
                 firsttime = false;
             }
         }
@@ -258,5 +262,9 @@ namespace AepApp.View
             };
             wrk.RunWorkerAsync();
         }
+
+
+
     }
+
 }

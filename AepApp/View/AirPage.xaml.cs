@@ -36,7 +36,8 @@ namespace AepApp.View
                 Navigation.PushAsync(new AQIMapPage(sendPages));
                 //Navigation.PushAsync(new MapPage2(sendPages));
             }));
-            //请求网络数据
+
+                //请求网络数据
             CrossHud.Current.Show("加载中...");
             ReqAirSiteData();       
         }
