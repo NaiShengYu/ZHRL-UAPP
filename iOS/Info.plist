@@ -52,10 +52,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>是否允许获取您的当前位置信息</string>
-  <key>NSAppTransportSecurity</key>
-  <dict>
-    <key>NSAllowsArbitraryLoads</key>
-    <true />
-  </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

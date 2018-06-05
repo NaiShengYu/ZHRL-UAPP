@@ -11,8 +11,28 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AddEmergencyAccidentInfoPage : ContentPage
     {
+
+        void cellRightBut(object sender, System.EventArgs e)
+        {
+            if (isfunctionBarIsShow == true)
+            {
+                canceshiguxingzhi();
+                return;
+            }
+
+        }
+
+
+
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
+
+            if(isfunctionBarIsShow ==true){
+                canceshiguxingzhi();
+                listView.SelectedItem = null;
+                return;
+            }
+
             var item = e.SelectedItem as item;
             if (item == null)
                 return;
@@ -23,7 +43,6 @@ namespace AepApp.View.EnvironmentalEmergency
 #if __IOS__
         void HandleAction(NSNotification obj)
         {
-
             var dic = obj.UserInfo as NSMutableDictionary;
             var rc = dic.ValueForKey((Foundation.NSString)"UIKeyboardFrameEndUserInfoKey");
             CGRect r = (rc as NSValue).CGRectValue;
@@ -62,13 +81,96 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
-        //点击了数据按钮
 
+#pragma mark --点击事故性质按钮一系列操作开始
+        //点击了事故性质按钮
+        bool isfunctionBarIsShow = false;
+        void showshiguxingzhi(object sender, System.EventArgs e)
+        {
+            entryStack.TranslateTo(0, 260);
+            b2.TranslateTo(0, 260);
+            aaaa.Height = 0;
+            bbbb.Height = 75;
+            functionBar.TranslateTo(0, -130);
+            isfunctionBarIsShow = true;
+        }
+
+        //选中了大气
+        bool isSelectDQ = false;
+        bool isSelectSZ = false;
+        bool isSelectTR = false;
+        void selectDQ(object sender, System.EventArgs e){
+            isSelectDQ = !isSelectDQ;
+            var but = sender as Button;
+            if (isSelectDQ == true)
+                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            else
+                but.BackgroundColor = Color.Transparent;
+        }
+        void selectSZ(object sender, System.EventArgs e)
+        {
+            isSelectSZ = !isSelectSZ;
+            var but = sender as Button;
+            if (isSelectSZ == true)
+                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            else
+                but.BackgroundColor = Color.Transparent;
+        }
+        void selectTR(object sender, System.EventArgs e)
+        {
+            isSelectTR = !isSelectTR;
+            var but = sender as Button;
+            if (isSelectTR == true)
+                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            else
+                but.BackgroundColor = Color.Transparent;
+        }
+
+        //点击了数据按钮
         void addShuju(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new addDataPage());
 
         }
+        //完成选择事故性质
+        void finishishiguxingzhi(object sender, System.EventArgs e)
+        {
+            entryStack.TranslateTo(0, 0);
+            b2.TranslateTo(0, 0);
+            aaaa.Height = 55;
+            bbbb.Height = 150;
+            functionBar.TranslateTo(0, 0);
+            isfunctionBarIsShow = false;
+        }
+
+        void canceshiguxingzhi(){
+            entryStack.TranslateTo(0, 0);
+            b2.TranslateTo(0, 0);
+            aaaa.Height = 55;
+            bbbb.Height = 150;
+            functionBar.TranslateTo(0, 0);
+            isSelectDQ = false;
+            dqBut.BackgroundColor = Color.Transparent;
+            isSelectSZ = false;
+            szBut.BackgroundColor = Color.Transparent;
+            isSelectTR = false;
+            trBut.BackgroundColor = Color.Transparent;
+            isfunctionBarIsShow = false;
+        }
+
+#pragma mark --点击事故性质按钮一系列操作结束
+
+        //点击了风速风向按钮
+        void fengSuFengXiang(object sender, System.EventArgs e)
+        {
+            
+        }
+        //点击了污染物按钮
+        void wuRanWu(object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new ChemicalPage(1));
+        }
+
 
 
 
@@ -152,5 +254,25 @@ namespace AepApp.View.EnvironmentalEmergency
 
             public DateTime time { get; set; }
         }
+
+
+
+        void addbar(){
+            var G = new Grid();
+            G.ColumnDefinitions.Add(new ColumnDefinition
+            {
+               
+            });
+
+
+
+
+
+
+
+
+        }
+
+
     }
 }

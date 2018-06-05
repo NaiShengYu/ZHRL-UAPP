@@ -4,16 +4,49 @@ using System.Collections.Generic;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
-
+using Xamarin.Essentials;
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AccidentPositionPage : ContentPage
     {
 
 
+        async void HandleEventHandler()
+        {
+
+            try
+            {
+                Location location = await Geolocation.GetLastKnownLocationAsync();
+
+
+                if (location != null)
+                {
+                       
+                    map.SetCenter(16, new AzmCoord(location.Longitude,location.Latitude));
+
+                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}");
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
+        }
+
+
         //保存此位置
         void savePosition(object sender, System.EventArgs e)
         {
+            Console.WriteLine(centercoorLab.Text);
+
 
         }
 
@@ -21,9 +54,9 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_Clicked(object sender, System.EventArgs e)
         {
 
-            var aaa = sender as Entry;
 
-            map.SetCenter(16, new AzmCoord(110, 100));
+            HandleEventHandler();
+
         }
 
         void Handle_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
@@ -64,12 +97,15 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
+
         public AccidentPositionPage()
         {
             InitializeComponent();
+
+            HandleEventHandler();
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
-
+         
 
 
         }

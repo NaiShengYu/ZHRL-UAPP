@@ -40,14 +40,14 @@
                             <Label Margin="15,0,0,0" VerticalOptions="CenterAndExpand" Text="样本类型" />
                             <Button TextColor="Silver" Text="大气" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
                         </StackLayout>
-                        <BoxView HorizontalOptions="StartAndExpand" HeightRequest="1" BackgroundColor="#dbdbdb" />
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#dbdbdb" />
                         <StackLayout HeightRequest="55" BackgroundColor="White" Orientation="Horizontal">
                             <Label Margin="15,0,0,0" VerticalOptions="CenterAndExpand" Text="监测值" />
                             <Button TextColor="Silver" Text="监测值" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
                         </StackLayout>
-                        <BoxView HorizontalOptions="StartAndExpand" HeightRequest="1" BackgroundColor="#dbdbdb" />
-                        <StackLayout HeightRequest="100" BackgroundColor="White" Orientation="Horizontal">
-                            <Button Clicked="Handle_Clicked" Image="greentick" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="80" WidthRequest="80" />
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#dbdbdb" />
+                        <StackLayout BackgroundColor="White" Orientation="Horizontal">
+                            <Button Clicked="Handle_Clicked" Image="greentick" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="80" WidthRequest="80" Margin="0,20,0,0"/>
                         </StackLayout>
                     </StackLayout>
                 </ListView.Footer>
