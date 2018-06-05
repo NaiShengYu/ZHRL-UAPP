@@ -23,6 +23,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\DetailUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DifferentPlantFormUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZAddressMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LoginPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OxyDataPageModle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItem.cs" />
@@ -205,14 +207,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\addDataPage.xaml.cs">
       <DependentUpon>addDataPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\AddDataForLHXZPage.xaml.cs">
       <DependentUpon>AddDataForLHXZPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\LHXZInfoPage.xaml.cs">
       <DependentUpon>LHXZInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZAddressMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
