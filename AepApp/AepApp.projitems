@@ -27,7 +27,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ExpertLibraryModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZAddressMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\LoginPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OxyDataPageModle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItemDatabase.cs" />

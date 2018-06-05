@@ -48,10 +48,10 @@
                 </ScrollView>
             </Grid>
             <StackLayout Grid.Row="2" BackgroundColor="#e8e8e8" Orientation="Horizontal" Spacing="20">
-                <Button Image="text"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0" />
-                <Button Image="image" VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" />
-                <Button Image="data"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" />
-                <Button Image="report"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" />
+                <Button Clicked="addSouce" Image="text"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0" />
+                <Button Clicked="addSouce" Image="image" VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" />
+                <Button Clicked="addSouce" Image="data"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" />
+                <Button Clicked="addSouce" Image="report"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" />
                 <Button Image="add"  VerticalOptions="Center"  BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" WidthRequest="45" HeightRequest="45" Margin="0,0,10,0" Clicked="addSouce"/>
             </StackLayout>
         </Grid>

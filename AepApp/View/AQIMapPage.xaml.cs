@@ -49,6 +49,7 @@ namespace AepApp.View
                 }
             }
             AddLabels("AQI");
+            return;
         }
 
         private bool firsttime = true;
@@ -117,13 +118,16 @@ namespace AepApp.View
                     cnt++;
                 }
             }
-            //if (firsttime)
-            //{
-            //    x /= cnt;
-            //    y /= cnt;
-            //    map.SetCenter(11, new AzmCoord(x, y));
-            //    firsttime = false;
-            //}
+            if (firsttime)
+            {
+                if (cnt > 0)
+                {
+                    x /= cnt;
+                    y /= cnt;
+                    map.SetCenter(11, new AzmCoord(x, y));
+                }
+                firsttime = false;
+            }
         }
         private double CalculatePM25(double aqiValue, double value)
         {
@@ -258,5 +262,9 @@ namespace AepApp.View
             };
             wrk.RunWorkerAsync();
         }
+
+
+
     }
+
 }

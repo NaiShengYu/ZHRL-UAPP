@@ -9,6 +9,7 @@ using Xamarin.Forms;
 namespace AepApp.Models
 {
     public class LHXZAddressMode : INotifyPropertyChanged
+
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

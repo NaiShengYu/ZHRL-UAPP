@@ -33,64 +33,6 @@ namespace AepApp.View
             NavigationPage.SetBackButtonTitle(this, "");
         }
 
-        //private void Login(object sender, EventArgs e)
-        //{
-        //    Login();
-        //}
-
-        //private void ReqLoginHttp()
-        //{
-        //    if (App.BaseUrl.Equals(""))
-        //    {
-        //        DisplayAlert("提示", "请先添加站点", "确定");
-        //    }
-        //    else
-        //    {
-        //        CrossHud.Current.Show("登陆中...");
-        //        BackgroundWorker wrk = new BackgroundWorker();
-        //        wrk.DoWork += (sender1, e1) =>
-        //        {
-        //            string uri = App.BaseUrl + "/api/login/Login";
-        //            LoginPageModels.loginParameter parameter = new LoginPageModels.loginParameter();
-        //            parameter.Password = pwd;
-        //            parameter.UserName = acc;
-        //            parameter.rememberStatus = true;
-        //            parameter.sid = item.SiteId;
-        //            parameter.sname = item.Name;
-        //            parameter.userdel = 1;
-        //            string param = JsonConvert.SerializeObject(parameter);
-        //            result = EasyWebRequest.sendPOSTHttpWebRequest(uri, param, false);
-        //        };
-        //        wrk.RunWorkerCompleted += (sender1, e1) =>
-        //        {
-        //            LoginPageModels.haveToken haveToken = new LoginPageModels.haveToken();
-        //            haveToken = JsonConvert.DeserializeObject<LoginPageModels.haveToken>(result);
-        //            if (haveToken.success.Equals("false"))
-        //            {
-        //                CrossHud.Current.Dismiss();
-        //                DisplayAlert("提示", "登录失败", "确定");
-        //            }
-        //            else
-        //            {
-        //                App.token = haveToken.token;
-        //                CrossHud.Current.Dismiss();
-        //                App.isAutoLogin = false;
-
-        //                //MasterAndDetailPage MainPage = new MasterAndDetailPage();
-        //                //GoAAAAAA();
-        //                //Navigation.PopAsync();                                            
-
-        //                Navigation.PushModalAsync(new MasterAndDetailPage());
-
-        //                //var nav6 = new NavigationPage((Page)Activator.CreateInstance(typeof(MasterAndDetailPage)));                    
-        //                //Navigation.PushAsync(new AirPage());
-        //                //Navigation.PushAsync(new TestOxyPage());
-        //            }
-
-        //        };
-        //        wrk.RunWorkerAsync();
-        //    }
-        //}
         private void Select_site(object sender, EventArgs e)
         {
             //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
@@ -156,7 +98,7 @@ namespace AepApp.View
             }
         }
 
-        private void Login()
+        private async void Login()
         {
             //Navigation.PushAsync(new MapPage());
             acc = account.Text;
@@ -180,92 +122,34 @@ namespace AepApp.View
             }
             else
             {
-                //循环删除所存的数据
-                IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.appName);
-                for (int i = 0; i < outs.Count(); i++)
+                bool loggedin = await (App.Current as App).LoginAsync(acc, pwd);
+
+                if (loggedin)
                 {
-                    AccountStore.Create().Delete(outs.ElementAt(i), App.appName);
-                }
-                if (remember_pwd.IsToggled)
-                {
-                    Account count = new Account
+                    App.Current.MainPage = new NavigationPage(new MasterAndDetailPage());
+
+                    // save the credential only after successful login
+
+                    //循环删除所存的数据
+                    IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.appName);
+                    for (int i = 0; i < outs.Count(); i++)
                     {
-                        Username = acc
-                    };
-                    count.Properties.Add("pwd", pwd);
-                    AccountStore.Create().Save(count, App.appName);
+                        AccountStore.Create().Delete(outs.ElementAt(i), App.appName);
+                    }
+                    if (remember_pwd.IsToggled)
+                    {
+                        Account count = new Account
+                        {
+                            Username = acc
+                        };
+                        count.Properties.Add("pwd", pwd);
+                        AccountStore.Create().Save(count, App.appName);
+                    }
+                } else
+                {
+                    DisplayAlert("提示", "登入失败", "确定");
                 }
-                //请求登陆
-                //ReqLoginHttp();
-                //新接口
-                ReqNewLoginToken(acc, pwd);
             }
-        }
-
-        private void ReqNewLoginToken(string userName, string password)
-        {
-            CrossHud.Current.Show("登陆中...");
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.DoWork += (sender1, e1) =>
-            {
-                result = EasyWebRequest.sendPOSTHttpWebRequest(App.NEWTOKENURL, "username=" + userName + "&password=" + password + "&grant_type=password", true);
-            };
-            wrk.RunWorkerCompleted += (sender1, e1) =>
-            {
-                try
-                {
-                    LoginPageModels.newToken newToken = new LoginPageModels.newToken();
-                    newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(result);
-                    GetDiffPlatformUrl(newToken.access_token);
-                }
-                catch {
-                    DisplayAlert("提示", "登陆失败", "确定");
-                    CrossHud.Current.Dismiss();
-                }               
-            };
-            wrk.RunWorkerAsync();
-        }
-
-        private void GetDiffPlatformUrl(string newToken)
-        {
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.DoWork += (sender1, e1) =>
-            {
-                result = EasyWebRequest.sendGetHttpWebRequestWithToken("http://192.168.1.128:30000/api/fw/getmodsList", newToken);
-            };
-            wrk.RunWorkerCompleted += (sender1, e1) =>
-            {
-                //获取各个模块的url，具体怎么用还不清楚~~~
-                List<DifferentPlantFormUrl.DiffPlantFormUrlModle> plantFormUrlModle = new List<DifferentPlantFormUrl.DiffPlantFormUrlModle>();
-                plantFormUrlModle = JsonConvert.DeserializeObject<List<DifferentPlantFormUrl.DiffPlantFormUrlModle>>(result);
-                GetConvertToken(newToken);
-            };
-            wrk.RunWorkerAsync();
-        }
-
-        private void GetConvertToken(string newToken)
-        {
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.DoWork += (sender1, e1) =>
-            {
-                LoginPageModels.newConvertTokenParameter parameter = new LoginPageModels.newConvertTokenParameter
-                {
-                    authProvider = "AzuraAuth",
-                    providerAccessCode = newToken
-                };
-                string param = JsonConvert.SerializeObject(parameter);
-                result = EasyWebRequest.sendPOSTHttpWebRequest(App.BaseUrlForYINGJI + DetailUrl.ConvertToken, param, false);
-                //result = EasyWebRequest.sendPOSTHttpWebRequest(App.BaseUrlForYINGJI + DetailUrl.ConvertToken, "authProvider=AzuraAuth&providerAccessCode="+ newToken, false);
-            };
-            wrk.RunWorkerCompleted += (sender1, e1) =>
-            {
-                LoginPageModels.convertTokenResult convertToken = new LoginPageModels.convertTokenResult();
-                convertToken = JsonConvert.DeserializeObject<LoginPageModels.convertTokenResult>(result);
-                App.convertToken = convertToken.result.accessToken;
-                CrossHud.Current.Dismiss();
-               Navigation.PushModalAsync(new MasterAndDetailPage());
-            };
-            wrk.RunWorkerAsync();
         }
     }
 }

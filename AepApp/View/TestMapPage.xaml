@@ -4,6 +4,8 @@
               xmlns:m="clr-namespace:AepApp.View" Title = "AQI分布情况"
              x:Class="AepApp.View.TestMapPage">
     <ContentPage.Content>
-        <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" />
+        <m:AzMapView x:Name="map"
+                     IsMapTypeButtonVisible="True" IsDebugLabelVisible="True"
+                     HorizontalOptions="Fill" VerticalOptions="Fill" />
     </ContentPage.Content>
 </ContentPage>

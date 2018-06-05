@@ -181,6 +181,9 @@
     <Reference Include="ZXingNetMobile, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ZXing.Net.Mobile.2.4.1\lib\Xamarin.iOS10\ZXingNetMobile.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\packages\Xamarin.Essentials.0.6.0-preview\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -255,6 +258,8 @@
     <BundleResource Include="Resources\voice.png" />
     <BundleResource Include="Resources\loc3.png" />
     <BundleResource Include="Resources\hamburger.png" />
+    <BundleResource Include="Resources\hamburger%403x.png" />
+    <BundleResource Include="Resources\hamburger%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

@@ -8,12 +8,59 @@ namespace AepApp.View.EnvironmentalEmergency
     public partial class EmergencyAccidentInfoPage : ContentPage
     {
 
+        bool isSelectText = false;
+        bool isSelectImage = false;
+        bool isSelectData = false;
+        bool isSelectReport = false;
+        //选中文字图标
+        void selectText(object sender, System.EventArgs e){
+            isSelectText = !isSelectText;
+            var but = sender as Button;
+            if (isSelectText == true)
+                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            else
+                but.BackgroundColor = Color.Transparent;
+        }
+        //选中图片图标
+        void selectImage(object sender, System.EventArgs e)
+        {
+            isSelectImage = !isSelectImage;
+            var but = sender as Button;
+            if (isSelectImage == true)
+                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            else
+                but.BackgroundColor = Color.Transparent;
+        }
+        //选中数据图标
+        void selectData(object sender, System.EventArgs e)
+        {
+            isSelectData = !isSelectData;
+            var but = sender as Button;
+            if (isSelectData == true)
+                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            else
+                but.BackgroundColor = Color.Transparent;
+        }
+        //选中报告图标
+        void selectReport(object sender, System.EventArgs e)
+        {
+            isSelectReport = !isSelectReport;
+            var but = sender as Button;
+            if (isSelectReport == true)
+                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            else
+                but.BackgroundColor = Color.Transparent;
+        }
 
+        //添加事故
         void addSouce(object sender, System.EventArgs e)
         {
-
             Navigation.PushAsync(new AddEmergencyAccidentInfoPage());
         }
+
+
+
+
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
