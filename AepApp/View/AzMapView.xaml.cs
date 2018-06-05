@@ -95,7 +95,6 @@ namespace AepApp.View
             SetCenter(8, new AzmCoord(116.4074, 39.9042));  // beijing
 
             this.BindingContext = this;
-
         }
 
         private bool _iszoombuttonvisible = true;

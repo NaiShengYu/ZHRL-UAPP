@@ -82,7 +82,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             string url = App.BaseUrlForYINGJI + DetailUrl.GetEmergencyAccidentList
                      + "?MaxResultCount=" + (start + 10) + "&SkipCount=" + start + "&Filter=" + "" + "&Sorting=" + "";
-            HTTPResponse response = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.convertToken);
+            HTTPResponse response = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             return response;
 
             //BackgroundWorker wrk = new BackgroundWorker();
