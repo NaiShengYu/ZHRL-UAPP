@@ -17,6 +17,12 @@ using Newtonsoft.Json;
 
 namespace CloudWTO.Services
 {
+    public class HTTPResponse
+    {
+        public string Results { get; set; }
+        public HttpStatusCode StatusCode { get; set; }
+    }
+
     public class EasyWebRequest
     {
         delegate void ErrCall(Exception ex);
@@ -47,7 +53,57 @@ namespace CloudWTO.Services
 
             return result;
         }
-        public static string sendGetHttpWebRequestWithToken(string url,string token)
+
+
+
+        public static async Task<HTTPResponse> SendHTTPRequestAsync(string url, string param, string method = "GET", string token = null)
+        {
+
+            ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            if (token != null)
+            {
+                req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);//给请求添加权限
+            }
+            req.ContentType = "application/json";
+            if (method.Equals("GET"))
+            {
+                req.Method = "GET";
+            }
+            else
+            {
+                byte[] bs = Encoding.GetEncoding("UTF-8").GetBytes(param);
+                req.Method = "POST";
+
+                req.ContentLength = bs.Length;
+                Stream requestStream = req.GetRequestStream();
+                await requestStream.WriteAsync(bs, 0, bs.Length);
+                //requestStream.Write(bs, 0, bs.Length);
+                requestStream.Close();
+            }
+            HttpWebResponse res = null;
+            string result = null;
+            try
+            {
+                WebResponse wr = await req.GetResponseAsync();
+                res = wr as HttpWebResponse;
+                StreamReader sr = new StreamReader(res.GetResponseStream());
+                result = await sr.ReadToEndAsync();
+                sr.Close();
+            }
+            catch (WebException ex)
+            {
+                result = ex.Message;
+                return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
+            }
+            Console.WriteLine("ex:" + result);
+
+            return new HTTPResponse { Results = result, StatusCode = res.StatusCode };
+        }
+
+
+
+        public static string sendGetHttpWebRequestWithToken(string url, string token)
         {
 
             ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
@@ -116,7 +172,7 @@ namespace CloudWTO.Services
                 ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
                 byte[] bs = Encoding.GetEncoding("UTF-8").GetBytes(param);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-                req.Method = "POST";               
+                req.Method = "POST";
                 if (isNeedUrlencoded)
                 {
                     req.ContentType = "application/x-www-form-urlencoded";
@@ -173,7 +229,7 @@ namespace CloudWTO.Services
 
             }
         }
-        public static string sendPOSTHttpWebWithTokenRequest(string url, string param,string token)
+        public static string sendPOSTHttpWebWithTokenRequest(string url, string param, string token)
         {
             try
             {

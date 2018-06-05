@@ -33,64 +33,64 @@ namespace AepApp.View
             NavigationPage.SetBackButtonTitle(this, "");
         }
 
-        private void Login(object sender, EventArgs e)
-        {
-            Login();
-        }
+        //private void Login(object sender, EventArgs e)
+        //{
+        //    Login();
+        //}
 
-        private void ReqLoginHttp()
-        {
-            if (App.BaseUrl.Equals(""))
-            {
-                DisplayAlert("提示", "请先添加站点", "确定");
-            }
-            else
-            {
-                CrossHud.Current.Show("登陆中...");
-                BackgroundWorker wrk = new BackgroundWorker();
-                wrk.DoWork += (sender1, e1) =>
-                {
-                    string uri = App.BaseUrl + "/api/login/Login";
-                    LoginPageModels.loginParameter parameter = new LoginPageModels.loginParameter();
-                    parameter.Password = pwd;
-                    parameter.UserName = acc;
-                    parameter.rememberStatus = true;
-                    parameter.sid = item.SiteId;
-                    parameter.sname = item.Name;
-                    parameter.userdel = 1;
-                    string param = JsonConvert.SerializeObject(parameter);
-                    result = EasyWebRequest.sendPOSTHttpWebRequest(uri, param, false);
-                };
-                wrk.RunWorkerCompleted += (sender1, e1) =>
-                {
-                    LoginPageModels.haveToken haveToken = new LoginPageModels.haveToken();
-                    haveToken = JsonConvert.DeserializeObject<LoginPageModels.haveToken>(result);
-                    if (haveToken.success.Equals("false"))
-                    {
-                        CrossHud.Current.Dismiss();
-                        DisplayAlert("提示", "登录失败", "确定");
-                    }
-                    else
-                    {
-                        App.token = haveToken.token;
-                        CrossHud.Current.Dismiss();
-                        App.isAutoLogin = false;
+        //private void ReqLoginHttp()
+        //{
+        //    if (App.BaseUrl.Equals(""))
+        //    {
+        //        DisplayAlert("提示", "请先添加站点", "确定");
+        //    }
+        //    else
+        //    {
+        //        CrossHud.Current.Show("登陆中...");
+        //        BackgroundWorker wrk = new BackgroundWorker();
+        //        wrk.DoWork += (sender1, e1) =>
+        //        {
+        //            string uri = App.BaseUrl + "/api/login/Login";
+        //            LoginPageModels.loginParameter parameter = new LoginPageModels.loginParameter();
+        //            parameter.Password = pwd;
+        //            parameter.UserName = acc;
+        //            parameter.rememberStatus = true;
+        //            parameter.sid = item.SiteId;
+        //            parameter.sname = item.Name;
+        //            parameter.userdel = 1;
+        //            string param = JsonConvert.SerializeObject(parameter);
+        //            result = EasyWebRequest.sendPOSTHttpWebRequest(uri, param, false);
+        //        };
+        //        wrk.RunWorkerCompleted += (sender1, e1) =>
+        //        {
+        //            LoginPageModels.haveToken haveToken = new LoginPageModels.haveToken();
+        //            haveToken = JsonConvert.DeserializeObject<LoginPageModels.haveToken>(result);
+        //            if (haveToken.success.Equals("false"))
+        //            {
+        //                CrossHud.Current.Dismiss();
+        //                DisplayAlert("提示", "登录失败", "确定");
+        //            }
+        //            else
+        //            {
+        //                App.token = haveToken.token;
+        //                CrossHud.Current.Dismiss();
+        //                App.isAutoLogin = false;
 
-                        //MasterAndDetailPage MainPage = new MasterAndDetailPage();
-                        //GoAAAAAA();
-                        //Navigation.PopAsync();                                            
+        //                //MasterAndDetailPage MainPage = new MasterAndDetailPage();
+        //                //GoAAAAAA();
+        //                //Navigation.PopAsync();                                            
 
-                        Navigation.PushModalAsync(new MasterAndDetailPage());
+        //                Navigation.PushModalAsync(new MasterAndDetailPage());
 
-                        //var nav6 = new NavigationPage((Page)Activator.CreateInstance(typeof(MasterAndDetailPage)));                    
-                        //Navigation.PushAsync(new AirPage());
-                        //Navigation.PushAsync(new TestOxyPage());
-                    }
+        //                //var nav6 = new NavigationPage((Page)Activator.CreateInstance(typeof(MasterAndDetailPage)));                    
+        //                //Navigation.PushAsync(new AirPage());
+        //                //Navigation.PushAsync(new TestOxyPage());
+        //            }
 
-                };
-                wrk.RunWorkerAsync();
-            }
-        }
+        //        };
+        //        wrk.RunWorkerAsync();
+        //    }
+        //}
         private void Select_site(object sender, EventArgs e)
         {
             //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
@@ -212,9 +212,16 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                LoginPageModels.newToken newToken = new LoginPageModels.newToken();
-                newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(result);
-                GetDiffPlatformUrl(newToken.access_token);
+                try
+                {
+                    LoginPageModels.newToken newToken = new LoginPageModels.newToken();
+                    newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(result);
+                    GetDiffPlatformUrl(newToken.access_token);
+                }
+                catch {
+                    DisplayAlert("提示", "登陆失败", "确定");
+                    CrossHud.Current.Dismiss();
+                }               
             };
             wrk.RunWorkerAsync();
         }
@@ -251,9 +258,9 @@ namespace AepApp.View
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                LoginPageModels.convertToken convertToken = new LoginPageModels.convertToken();
-                convertToken = JsonConvert.DeserializeObject<LoginPageModels.convertToken>(result);
-                App.convertToken = convertToken.accessToken;
+                LoginPageModels.convertTokenResult convertToken = new LoginPageModels.convertTokenResult();
+                convertToken = JsonConvert.DeserializeObject<LoginPageModels.convertTokenResult>(result);
+                App.convertToken = convertToken.result.accessToken;
                 CrossHud.Current.Dismiss();
                Navigation.PushModalAsync(new MasterAndDetailPage());
             };

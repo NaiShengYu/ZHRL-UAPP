@@ -17,7 +17,14 @@ namespace AepApp.iOS
         {
             base.OnElementChanged(e);
             if ((Control != null) && (e.NewElement != null))
-                Control.ReturnKeyType = (e.NewElement as EntryExt).ReturnKeyType.GetValueFromDescription();
+                try
+                {
+                    Control.ReturnKeyType = (e.NewElement as EntryExt).ReturnKeyType.GetValueFromDescription();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("ex:" + ex);
+                }       
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -25,7 +32,15 @@ namespace AepApp.iOS
             base.OnElementPropertyChanged(sender, e);
             if (e.PropertyName == EntryExt.ReturnKeyPropertyName)
             {
-                Control.ReturnKeyType = (sender as EntryExt).ReturnKeyType.GetValueFromDescription();
+                try
+                {
+                    Console.WriteLine($"....{(sender as EntryExt).ReturnKeyType.ToString()}");
+                    Control.ReturnKeyType = (sender as EntryExt).ReturnKeyType.GetValueFromDescription();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("ex:" + ex);
+                }     
             }
         }
     }
