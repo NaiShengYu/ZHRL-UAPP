@@ -22,7 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ChemicalModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DetailUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DifferentPlantFormUrl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyAccidentPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ExpertLibraryModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZAddressMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LoginPageModels.cs" />

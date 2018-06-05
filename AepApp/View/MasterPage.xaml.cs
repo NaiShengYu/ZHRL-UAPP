@@ -10,8 +10,10 @@ namespace AepApp.View
 {
     public partial class MasterPage : ContentPage
     {
+        private Page nav11;
         public MasterPage(MasterAndDetailPage aaaa)
         {
+           
             InitializeComponent();
             Label lastLab = lab6;
             lastLab.BackgroundColor = Color.White;
@@ -25,8 +27,7 @@ namespace AepApp.View
             var nav9 = new NavigationPage((Page)Activator.CreateInstance(typeof(SensitiveSourcePage)));
             //救援地点
             var nav10 = new NavigationPage((Page)Activator.CreateInstance(typeof(RescueSitePage)));
-            //专家车
-            var nav11 = new NavigationPage((Page)Activator.CreateInstance(typeof(ExpertLibraryPage)));
+           
             //设备
             var nav12 = new NavigationPage((Page)Activator.CreateInstance(typeof(EquipmentPage)));
             //值班表
@@ -107,6 +108,10 @@ namespace AepApp.View
                 if (s == lab11)
                 {
                     Console.WriteLine("专家库");
+                    //专家车                   
+                    if (nav11 == null) {
+                        nav11 = new NavigationPage((Page)Activator.CreateInstance(typeof(ExpertLibraryPage)));
+                    }
                     aaaa.Detail = nav11;
                 }
 

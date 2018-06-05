@@ -255,6 +255,7 @@ namespace AepApp.View
                 };
                 string param = JsonConvert.SerializeObject(parameter);
                 result = EasyWebRequest.sendPOSTHttpWebRequest(App.BaseUrlForYINGJI + DetailUrl.ConvertToken, param, false);
+                //result = EasyWebRequest.sendPOSTHttpWebRequest(App.BaseUrlForYINGJI + DetailUrl.ConvertToken, "authProvider=AzuraAuth&providerAccessCode="+ newToken, false);
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {

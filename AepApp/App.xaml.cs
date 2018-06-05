@@ -71,39 +71,39 @@ namespace AepApp
         {
             InitializeComponent();
             //页面启动必须要有一个mainPage
-            //MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new LoginPage());
         }
 
 
-        protected async override void OnStart()
+        protected override void OnStart()
         {
             base.OnStart();
             //获取存储的账号密码
-            acc = AccountStore.Create().FindAccountsForService(App.appName).LastOrDefault();
-            if (acc != null)
-            {
-                await getSqlDataAsync();
-                //AutoLogin(acc);//自动登陆
-                //新接口
-                MainPage = new NavigationPage(new LoginPage());
-                //HTTPResponse hTTPResponse = await GetNewToken(NEWTOKENURL, acc);
-                //if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
-                //{
-                //    LoginPageModels.newToken newToken = new LoginPageModels.newToken();
-                //    newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(hTTPResponse.Results);
-                //    //MainPage = new NavigationPage(new LoginPage());
-                //    GetDiffPlatformUrl(newToken.access_token);
-                //}
-                //else
-                //{
-                //    Console.WriteLine(hTTPResponse.StatusCode);
-                //    MainPage = new NavigationPage(new LoginPage());
-                //}
-            }
-            else
-            {
-                MainPage = new NavigationPage(new LoginPage());
-            }
+            //acc = AccountStore.Create().FindAccountsForService(App.appName).LastOrDefault();
+            //if (acc != null)
+            //{
+            //    await getSqlDataAsync();
+            //    //AutoLogin(acc);//自动登陆
+            //    //新接口
+            //    MainPage = new NavigationPage(new LoginPage());
+            //    //HTTPResponse hTTPResponse = await GetNewToken(NEWTOKENURL, acc);
+            //    //if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
+            //    //{
+            //    //    LoginPageModels.newToken newToken = new LoginPageModels.newToken();
+            //    //    newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(hTTPResponse.Results);
+            //    //    //MainPage = new NavigationPage(new LoginPage());
+            //    //    GetDiffPlatformUrl(newToken.access_token);
+            //    //}
+            //    //else
+            //    //{
+            //    //    Console.WriteLine(hTTPResponse.StatusCode);
+            //    //    MainPage = new NavigationPage(new LoginPage());
+            //    //}
+            //}
+            //else
+            //{
+            //    MainPage = new NavigationPage(new LoginPage());
+            //}
         }
 
         private async Task<HTTPResponse> GetNewToken(string url, Account account)

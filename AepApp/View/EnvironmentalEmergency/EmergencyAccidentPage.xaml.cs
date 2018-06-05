@@ -33,48 +33,50 @@ namespace AepApp.View.EnvironmentalEmergency
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            //HTTPResponse response =  await ReqEmergencyAccidentInfo(start);
-            //if (response.StatusCode != HttpStatusCode.ExpectationFailed) {
-            //    Console.WriteLine(response.Results);
-            //}
+            HTTPResponse response = await ReqEmergencyAccidentInfo(start);
+            if (response.StatusCode != HttpStatusCode.ExpectationFailed)
+            {
+                Console.WriteLine(response.Results);
+            }
+
         }
         public EmergencyAccidentPage()
         {
             InitializeComponent();
 
 
-            var item1 = new item
-            {
-                title = "长江路事故",
-                time = "2018-05-25 11:13",
-                type = "1",
-                state = "1",
+            //var item1 = new item
+            //{
+            //    title = "长江路事故",
+            //    time = "2018-05-25 11:13",
+            //    type = "1",
+            //    state = "1",
 
-            };
+            //};
 
-            dataList.Add(item1);
+            //dataList.Add(item1);
 
-            var item2 = new item
-            {
-                title = "氨气污染事故",
-                time = "2018-05-25 11:13",
-                type = "2",
-                state = "1",
-            };
+            //var item2 = new item
+            //{
+            //    title = "氨气污染事故",
+            //    time = "2018-05-25 11:13",
+            //    type = "2",
+            //    state = "1",
+            //};
 
-            dataList.Add(item2);
+            //dataList.Add(item2);
 
-            var item3 = new item
-            {
-                title = "郊区土地污染事故",
-                time = "2018-05-25 11:13",
-                type = "3",
-                state = "1",
-            };
+            //var item3 = new item
+            //{
+            //    title = "郊区土地污染事故",
+            //    time = "2018-05-25 11:13",
+            //    type = "3",
+            //    state = "1",
+            //};
 
-            dataList.Add(item3);
+            //dataList.Add(item3);
 
-            listView.ItemsSource = dataList;
+            //listView.ItemsSource = dataList;
 
         }
 
