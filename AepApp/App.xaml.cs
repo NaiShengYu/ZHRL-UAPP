@@ -15,6 +15,7 @@ using System.ComponentModel;
 using AepApp.Models;
 using CloudWTO.Services;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace AepApp
 {
@@ -28,7 +29,7 @@ namespace AepApp
         }
         public static bool UseMockDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
-        public static string NEWTOKENURL = "http://gx.azuratech.com:30000/token";    
+        public static string NEWTOKENURL = "http://gx.azuratech.com:30000/token";
         //public static double pid = 3.14;
         public static string BaseUrl = "";
         //新应急接口baseURL
@@ -70,8 +71,7 @@ namespace AepApp
         {
             InitializeComponent();
             //页面启动必须要有一个mainPage
-            MainPage = new NavigationPage(new LoginPage());
-
+            //MainPage = new NavigationPage(new LoginPage());
         }
 
 
@@ -85,7 +85,19 @@ namespace AepApp
                 await getSqlDataAsync();
                 //AutoLogin(acc);//自动登陆
                 //新接口
-                GetNewToken(NEWTOKENURL, acc);
+                HTTPResponse hTTPResponse = await GetNewToken(NEWTOKENURL, acc);
+                if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
+                {
+                    LoginPageModels.newToken newToken = new LoginPageModels.newToken();
+                    newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(hTTPResponse.Results);
+                    //MainPage = new NavigationPage(new LoginPage());
+                    GetDiffPlatformUrl(newToken.access_token);
+                }
+                else
+                {
+                    Console.WriteLine(hTTPResponse.StatusCode);
+                    MainPage = new NavigationPage(new LoginPage());
+                }
             }
             else
             {
@@ -93,25 +105,88 @@ namespace AepApp
             }
         }
 
-        private void GetNewToken(string url, Account account)
+        private async Task<HTTPResponse> GetNewToken(string url, Account account)
         {
             string password = account.Properties["pwd"];
             string userName = account.Username;
-            SendNewHttpLogin(url, "username=" + userName + "&password=" + password + "&grant_type=password");
+            //await SendNewHttpLogin(url, "username=" + userName + "&password=" + password + "&grant_type=password");
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "username=" + userName + "&password=" + password + "&grant_type=password", "POST", null);
+            return hTTPResponse;            
         }
 
-        private void SendNewHttpLogin(string url, string param)
+        private async void SendNewHttpLogin(string url, string param)
         {
-            result = EasyWebRequest.sendPOSTHttpWebRequest(url, param, true);
-            if (result.Contains("error"))
+            HTTPResponse hTTPResponse =  await EasyWebRequest.SendHTTPRequestAsync(url,param,"POST",null);
+            if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
             {
-                MainPage = new NavigationPage(new LoginPage());
+                LoginPageModels.newToken newToken = new LoginPageModels.newToken();
+                newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(hTTPResponse.Results);
+                GetDiffPlatformUrl(newToken.access_token);
             }
-            else
-            {
+            else {
+                Console.WriteLine(hTTPResponse.StatusCode);
+            }
+            //BackgroundWorker wrk = new BackgroundWorker();
+            //wrk.DoWork += (sender1, e1) =>
+            //{
+            //    result = EasyWebRequest.sendPOSTHttpWebRequest(url, param, true);
+            //};
+            //wrk.RunWorkerCompleted += (sender1, e1) =>
+            //{
+            //    if (result.Contains("error"))
+            //    {
+            //        MainPage = new NavigationPage(new LoginPage());
+            //    }
+            //    else
+            //    {
+            //        LoginPageModels.newToken newToken = new LoginPageModels.newToken();
+            //        newToken = JsonConvert.DeserializeObject<LoginPageModels.newToken>(result);
+            //        GetDiffPlatformUrl(newToken.access_token);
+            //    }
+            //};
+            //wrk.RunWorkerAsync();          
+        }
 
-            }
-            Console.WriteLine(result);
+        private async void GetDiffPlatformUrl(string access_token)
+        {
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync("http://192.168.1.128:30000/api/fw/getmodsList", "");
+            Console.WriteLine(hTTPResponse.StatusCode);
+            //BackgroundWorker wrk = new BackgroundWorker();
+            //wrk.DoWork += (sender1, e1) =>
+            //{
+            //    result = EasyWebRequest.sendGetHttpWebRequestWithToken("http://192.168.1.128:30000/api/fw/getmodsList", access_token);
+            //};
+            //wrk.RunWorkerCompleted += (sender1, e1) =>
+            //{
+            //    //获取各个模块的url，具体怎么用还不清楚~~~
+            //    List<DifferentPlantFormUrl.DiffPlantFormUrlModle> plantFormUrlModle = new List<DifferentPlantFormUrl.DiffPlantFormUrlModle>();
+            //    plantFormUrlModle = JsonConvert.DeserializeObject<List<DifferentPlantFormUrl.DiffPlantFormUrlModle>>(result);
+            //    GetConvertToken(access_token);
+            //};
+            //wrk.RunWorkerAsync();
+        }
+
+        private void GetConvertToken(string newToken)
+        {
+            BackgroundWorker wrk = new BackgroundWorker();
+            wrk.DoWork += (sender1, e1) =>
+            {
+                LoginPageModels.newConvertTokenParameter parameter = new LoginPageModels.newConvertTokenParameter
+                {
+                    authProvider = "AzuraAuth",
+                    providerAccessCode = newToken
+                };
+                string param = JsonConvert.SerializeObject(parameter);
+                result = EasyWebRequest.sendPOSTHttpWebRequest(App.BaseUrlForYINGJI + DetailUrl.ConvertToken, param, false);
+            };
+            wrk.RunWorkerCompleted += (sender1, e1) =>
+            {
+                LoginPageModels.convertTokenResult convertToken = new LoginPageModels.convertTokenResult();
+                convertToken = JsonConvert.DeserializeObject<LoginPageModels.convertTokenResult>(result);
+                App.convertToken = convertToken.result.accessToken;
+                MainPage = new NavigationPage(new MasterAndDetailPage());
+            };
+            wrk.RunWorkerAsync();
         }
 
         private async System.Threading.Tasks.Task getSqlDataAsync()

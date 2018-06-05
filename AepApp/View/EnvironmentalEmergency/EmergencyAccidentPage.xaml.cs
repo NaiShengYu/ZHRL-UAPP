@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
@@ -28,12 +30,19 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 
         ObservableCollection<item> dataList = new ObservableCollection<item>();
-        private object result;
-
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            //HTTPResponse response =  await ReqEmergencyAccidentInfo(start);
+            //if (response.StatusCode != HttpStatusCode.ExpectationFailed) {
+            //    Console.WriteLine(response.Results);
+            //}
+        }
         public EmergencyAccidentPage()
         {
             InitializeComponent();
-            reqEmergencyAccidentInfo(start);
+
+
             var item1 = new item
             {
                 title = "长江路事故",
@@ -69,20 +78,25 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
-        private void reqEmergencyAccidentInfo(int start)
+        private async Task<HTTPResponse> ReqEmergencyAccidentInfo(int start)
         {
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.DoWork += (sender1, e1) =>
-            {
-                result = EasyWebRequest.sendGetHttpWebRequestWithToken(App.BaseUrlForYINGJI + DetailUrl.GetEmergencyAccidentList
-                    + "?MaxResultCount=" + (start + 10) + "&SkipCount=" + start + "&Filter=" + "" + "&Sorting=" + "", App.convertToken );
-            };
-            wrk.RunWorkerCompleted += (sender1, e1) =>
-            {
-                start = start + 10;
-                Console.WriteLine(result);
-            };
-            wrk.RunWorkerAsync();
+            string url = App.BaseUrlForYINGJI + DetailUrl.GetEmergencyAccidentList
+                     + "?MaxResultCount=" + (start + 10) + "&SkipCount=" + start + "&Filter=" + "" + "&Sorting=" + "";
+            HTTPResponse response = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.convertToken);
+            return response;
+
+            //BackgroundWorker wrk = new BackgroundWorker();
+            //wrk.DoWork += (sender1, e1) =>
+            //{
+            //    result = EasyWebRequest.sendGetHttpWebRequestWithToken(App.BaseUrlForYINGJI + DetailUrl.GetEmergencyAccidentList
+            //        + "?MaxResultCount=" + (start + 10) + "&SkipCount=" + start + "&Filter=" + "" + "&Sorting=" + "", App.convertToken);
+            //};
+            //wrk.RunWorkerCompleted += (sender1, e1) =>
+            //{
+            //    start = start + 10;
+            //    Console.WriteLine(result);
+            //};
+            //wrk.RunWorkerAsync();
         }
 
         internal class item
@@ -93,9 +107,9 @@ namespace AepApp.View.EnvironmentalEmergency
             public string state { set; get; }
         }
 
-        private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        private async void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
-            reqEmergencyAccidentInfo(start);
+            HTTPResponse response = await ReqEmergencyAccidentInfo(start);
         }
     }
 }

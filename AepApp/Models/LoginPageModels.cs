@@ -24,7 +24,7 @@ namespace AepApp.Models
             public string userName { get; set; }
         }
         internal class convertTokenResult {
-
+            public convertToken result;
         }
         internal class convertToken
         {
