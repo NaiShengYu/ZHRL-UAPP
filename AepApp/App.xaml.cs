@@ -71,13 +71,16 @@ namespace AepApp
         {
             InitializeComponent();
             //页面启动必须要有一个mainPage
-            MainPage = new NavigationPage(new LoginPage());
+            //MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new MasterAndDetailPage());
+
         }
 
 
         protected async override void OnStart()
         {
             base.OnStart();
+            return;
             //获取存储的账号密码
             acc = AccountStore.Create().FindAccountsForService(App.appName).LastOrDefault();
             if (acc != null)
@@ -96,12 +99,16 @@ namespace AepApp
                 else
                 {
                     Console.WriteLine(hTTPResponse.StatusCode);
-                    MainPage = new NavigationPage(new LoginPage());
+                    //MainPage = new NavigationPage(new LoginPage());
+                    MainPage = new NavigationPage(new MasterAndDetailPage());
+
                 }
             }
             else
             {
-                MainPage = new NavigationPage(new LoginPage());
+                //MainPage = new NavigationPage(new LoginPage());
+                MainPage = new NavigationPage(new MasterAndDetailPage());
+
             }
         }
 
@@ -262,7 +269,9 @@ namespace AepApp
             haveToken = JsonConvert.DeserializeObject<LoginPageModels.haveToken>(result);
             if (haveToken.success.Equals("false"))
             {
-                MainPage = new NavigationPage(new LoginPage());
+                //MainPage = new NavigationPage(new LoginPage());
+                MainPage = new NavigationPage(new MasterAndDetailPage());
+
             }
             else
             {

@@ -11,7 +11,7 @@
             <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White"/>
             <s:SKCanvasView x:Name="can" PaintSurface="Handle_PaintSurface" IsEnabled="false"/>
            <Frame HasShadow="false" Padding="0" CornerRadius="0"  HeightRequest="50" VerticalOptions="Start" HorizontalOptions="Fill" Margin="20,20,20,0" OutlineColor="#b8b8b8" BackgroundColor="#fafafa">
-                <Label FontSize="22" BackgroundColor="#fafafa" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="121.12345 E, 29.12345 N"/>
+                <Label x:Name="centercoorLab" FontSize="22" BackgroundColor="#fafafa" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Source={Reference map}, Path=CenterCoord, StringFormat='{0}'}"/>
             </Frame>
             <Button Clicked="Handle_Clicked" HorizontalOptions="Start" VerticalOptions="End" Margin="10,0,0,40" WidthRequest="55" HeightRequest="55" Image="loc2"/>
             <Button Clicked="savePosition" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,30" WidthRequest="80" HeightRequest="80" Image="greentick"/>
