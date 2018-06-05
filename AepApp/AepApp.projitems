@@ -205,6 +205,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\addDataPage.xaml.cs">
       <DependentUpon>addDataPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\AddDataForLHXZPage.xaml.cs">
+      <DependentUpon>AddDataForLHXZPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\LHXZInfoPage.xaml.cs">
+      <DependentUpon>LHXZInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZAddressMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -349,6 +357,14 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\addDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\AddDataForLHXZPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\LHXZInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

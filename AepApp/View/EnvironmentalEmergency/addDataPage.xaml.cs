@@ -8,19 +8,63 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class addDataPage : ContentPage
     {
+
+
+        void addLHXZ(object sender, System.EventArgs e)
+        {
+
+            Navigation.PushAsync(new AddDataForLHXZPage());
+            MessagingCenter.Subscribe<ContentPage, LHXZModel>(this, "addLHXZ", (arg1, arg2) =>
+            {
+                var aaa = arg2 as LHXZModel;
+                bool ishad = false;
+                foreach (LHXZModel model in dataList2)
+                {
+                    if (model.name == aaa.name)
+                    {
+                        ishad = true;
+                        break;
+                    }
+                }
+                if (ishad == false)
+                {
+                    dataList2.Add(arg2);
+                    creatLHXZView();
+                }
+                MessagingCenter.Unsubscribe<ContentPage, LHXZModel>(this, "addLHXZ");
+            });
+
+
+        }
+
         //添加关键污染物
         void Handle_Clicked(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new ChemicalPage(2));
             MessagingCenter.Subscribe<ContentPage, ChemicalModel>(this, "Value", (arg1, arg2) =>
             {
-                dataList1.Add(arg2);
-                creatWRWView();
+                var aaa = arg2 as ChemicalModel;
+                bool ishad = false;
+                foreach (ChemicalModel model in dataList1)
+                {
+                    if (model.name == aaa.name)
+                    {
+                        ishad = true;
+                        break;
+                    }
+                }
+                if (ishad == false)
+                {
+                    dataList1.Add(arg2);
+                    creatWRWView();
+                }
+
+                MessagingCenter.Unsubscribe<ContentPage, ChemicalModel>(this, "Value");
             });
 
         }
         ObservableCollection<ChemicalModel> dataList1 = new ObservableCollection<ChemicalModel>();
-        ObservableCollection<ChemicalModel> dataList2 = new ObservableCollection<ChemicalModel>();
+        ObservableCollection<LHXZModel> dataList2 = new ObservableCollection<LHXZModel>();
 
         public addDataPage()
         {
@@ -41,14 +85,13 @@ namespace AepApp.View.EnvironmentalEmergency
             };
             dataList1.Add(ChemicalModel1);
             dataList1.Add(ChemicalModel2);
-          
-            var ChemicalModel12 = new ChemicalModel
+
+            var ChemicalModel12 = new LHXZModel
             {
                 name = "化学需氧量",
-               
             };
 
-            var ChemicalModel22 = new ChemicalModel
+            var ChemicalModel22 = new LHXZModel
             {
                 name = "氨氮",
             };
@@ -58,12 +101,13 @@ namespace AepApp.View.EnvironmentalEmergency
 
             creatWRWView();
             creatLHXZView();
-           
+
 
 
         }
 
-        void creatWRWView(){
+        void creatWRWView()
+        {
             wrw.Children.Clear();
             for (int i = 0; i < dataList1.Count; i++)
             {
@@ -95,26 +139,35 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
-        void creatLHXZView(){
-
+        void creatLHXZView()
+        {
             lhxz.Children.Clear();
             for (int i = 0; i < dataList2.Count; i++)
             {
                 var it = dataList2[i];
+
+                var sk = new StackLayout
+                {
+                    Spacing = 1,
+                    BackgroundColor = Color.White,
+                    HeightRequest = 50,
+                    VerticalOptions = LayoutOptions.CenterAndExpand,
+                };
+
                 var lab1 = new Label
                 {
                     Margin = new Thickness(15, 5, 15, 5),
                     Text = it.name,
                     VerticalTextAlignment = TextAlignment.Center,
-
                 };
-                lab1.VerticalOptions = LayoutOptions.Center;
+                lab1.VerticalOptions = LayoutOptions.CenterAndExpand;
                 lab1.HorizontalOptions = LayoutOptions.Start;
-                lhxz.Children.Add(lab1);
+                sk.Children.Add(lab1);
+                lhxz.Children.Add(sk);
             }
 
         }
-      
+
 
     }
 }
