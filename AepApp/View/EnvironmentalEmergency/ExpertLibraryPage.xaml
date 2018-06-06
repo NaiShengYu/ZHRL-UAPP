@@ -19,8 +19,8 @@
                                     <ColumnDefinition Width="110" />
                                 </Grid.ColumnDefinitions>
                                 <StackLayout Spacing="1">
-                                    <Label Text="{Binding ExpertLibraryModels.ItemsBean.name}" Margin="10,8,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
-                                    <Label FontSize="15" TextColor="Gray" Text="{Binding ExpertLibraryModels.ItemsBean.professionalField}" Margin="10,0,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
+                                    <Label FontSize="17" Text="{Binding name}" Margin="10,8,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
+                                    <Label FontSize="15" TextColor="Gray" Text="{Binding professionalField}" Margin="10,0,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Grid.Column="1">
                                     <Button WidthRequest="40" HeightRequest="40" BackgroundColor="Olive" Margin="10,7.5,0,7.5" VerticalOptions="Center" HorizontalOptions="Center" />

@@ -10,7 +10,10 @@ namespace AepApp.View
 {
     public partial class MasterPage : ContentPage
     {
-        private Page nav11;
+        private Page nav11; //专家库
+        private Page nav9; //敏感源
+        private Page nav7; //成功案例
+        private Page nav8; //应急预案
         public MasterPage(MasterAndDetailPage aaaa)
         {
            
@@ -19,12 +22,9 @@ namespace AepApp.View
             lastLab.BackgroundColor = Color.White;
             //应急事故
             var nav6 = new NavigationPage((Page)Activator.CreateInstance(typeof(EmergencyAccidentPage)));
-            //成功案例
-            var nav7 = new NavigationPage((Page)Activator.CreateInstance(typeof(SuccessCase)));
-            //应急预案
-            var nav8 = new NavigationPage((Page)Activator.CreateInstance(typeof(EmergencyPlan)));
-            //敏感源
-            var nav9 = new NavigationPage((Page)Activator.CreateInstance(typeof(SensitiveSourcePage)));
+           
+            
+          
             //救援地点
             var nav10 = new NavigationPage((Page)Activator.CreateInstance(typeof(RescueSitePage)));
            
@@ -87,16 +87,22 @@ namespace AepApp.View
                 if (s == lab7)
                 {
                     Console.WriteLine("成功案例");
+                    //成功案例
+                    nav7 = new NavigationPage((Page)Activator.CreateInstance(typeof(SuccessCase)));
                     aaaa.Detail = nav7;
                 }
                 if (s == lab8)
                 {
                     Console.WriteLine("应急预案");
+                    //应急预案
+                    nav8 = new NavigationPage((Page)Activator.CreateInstance(typeof(EmergencyPlan)));
                     aaaa.Detail = nav8;
                 }
                 if (s == lab9)
                 {
                     Console.WriteLine("敏感源");
+                    //敏感源
+                    nav9 = new NavigationPage((Page)Activator.CreateInstance(typeof(SensitiveSourcePage)));
                     aaaa.Detail = nav9;
                 }
                 if (s == lab10)

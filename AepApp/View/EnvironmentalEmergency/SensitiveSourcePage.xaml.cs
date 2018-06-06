@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -7,6 +10,9 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class SensitiveSourcePage : ContentPage
     {
+        private int start = 0;
+        private int totalNum = 0;
+        private ObservableCollection<SensitiveModels.ItemsBean> dataList = new ObservableCollection<SensitiveModels.ItemsBean>();
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             //seach.Text = e.NewTextValue;
@@ -23,47 +29,36 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
-        ObservableCollection<item> dataList = new ObservableCollection<item>();
+       
 
         public SensitiveSourcePage()
         {
             InitializeComponent();
-
+            ReqSensitiveSource("", "", start, 10);
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
                 //Navigation.PushAsync(new PollutionSourceMapPage(dataList));
-
             }));
+        }
 
-
-            var item1 = new item
-            {
-                name = "第一小学",
-                address = "浙江省宁波市鄞州区中兴路360号",
-                type = "学校",
-            };
-
-            dataList.Add(item1);
-
-            var item2 = new item
-            {
-                name = "中环瑞蓝",
-                address = "浙江省宁波市鄞州区江南路1958号宁波检测认证园分园5楼",
-                type = "企业",
-            };
-
-            dataList.Add(item2);
-
-            var item3 = new item
-            {
-                name = "宁波大学",
-                address = "浙江省宁波市江北区风华路818号",
-                type = "大学",
-            };
-
-            dataList.Add(item3);
-
-            listView.ItemsSource = dataList;
+        private async void ReqSensitiveSource(String Filter, String Sorting, int SkipCount, int MaxResultCount)
+        {
+            string url = App.BaseUrlForYINGJI + DetailUrl.Sensitive + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK) {
+                Console.WriteLine(hTTPResponse.Results);
+                start += 10;
+                SensitiveModels.SensitiveBean sensitiveBean = new SensitiveModels.SensitiveBean();
+                sensitiveBean = JsonConvert.DeserializeObject<SensitiveModels.SensitiveBean>(hTTPResponse.Results);
+                totalNum = sensitiveBean.result.sensitiveUnits.totalCount;
+                List<SensitiveModels.ItemsBean> list = sensitiveBean.result.sensitiveUnits.items;
+                int count = list.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    dataList.Add(list[i]);
+                }
+                listView.ItemsSource = dataList;
+            }
         }
 
         internal class item
@@ -74,5 +69,16 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
+        private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            SensitiveModels.ItemsBean item = e.Item as SensitiveModels.ItemsBean;
+            if (item == dataList[dataList.Count - 1] && item != null)
+            {
+                if (start <= totalNum)
+                {
+                    ReqSensitiveSource("", "", start, 10); //网络请求敏感源，10条每次
+                }
+            }
+        }
     }
 }

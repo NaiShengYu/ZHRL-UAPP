@@ -2,18 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.SuccessCase"
+             xmlns:model="clr-namespace:AepApp.Models;assembly=AepApp.Droid"
              Title="成功案例">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <model:FileFormatStringToIconImageConverter x:Key="fic" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
             <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach"></SearchBar>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
-            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
+            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                     <Grid VerticalOptions="Center">
-                        <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding imgSourse}" Margin="10,10,0,10"/>
-                        <Label Margin="60,8,10,8" Text="{Binding info}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
+                                <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding files[0].format, Converter={StaticResource fic}}" Margin="10,10,0,10"/>
+                        <Label Margin="60,8,10,8" Text="{Binding name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
                     </Grid>
                 </ViewCell>
                     </DataTemplate>

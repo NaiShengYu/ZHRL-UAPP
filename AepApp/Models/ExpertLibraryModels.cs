@@ -24,17 +24,17 @@ namespace AepApp.Models
         }
         public class ItemsBean {
 
-            public string name;
-            public string mobilePhone;
-            public string telephone;
-            public string email;
-            public string qq;
-            public string address;
-            public string organization;
-            public string title;
-            public string professionalField;
-            public string creatorUserName;
-            public string id;
+            public string name { get; set; }
+            public string mobilePhone { get; set; }
+            public string telephone { get; set; }
+            public string email { get; set; }
+            public string qq { get; set; }
+            public string address { get; set; }
+            public string organization { get; set; }
+            public string title { get; set; }
+            public string professionalField { get; set; }
+            public string creatorUserName { get; set; }
+            public string id { get; set; }
         }
     }
 }

@@ -30,26 +30,22 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 
         private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
-        {
-            Console.WriteLine(sender + "------" + e);
-            //hit bottom!
-            //if (e.Item.ToString() == Items[Items.Count - 1])
-
-            //{
-            //    ReqExpertLibrary("", "", start, 10); //网络请求专家库，10条每次
-
-            //}
-            //if (start <= totalNum)
-            //{
-            //    ReqExpertLibrary("", "", start, 10); //网络请求专家库，10条每次
-            //}
+        {          
+            ExpertLibraryModels.ItemsBean item = e.Item as ExpertLibraryModels.ItemsBean;
+            if (item == dataList[dataList.Count - 1] && item != null)
+            {
+                if (start <= totalNum)
+                {
+                    ReqExpertLibrary("", "", start, 10); //网络请求专家库，10条每次
+                }
+            }
         }
-        
+
         private async void ReqExpertLibrary(String Filter, String Sorting, int SkipCount, int MaxResultCount)
         {
             string url = App.BaseUrlForYINGJI + DetailUrl.ExpertLibraryUrl + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.convertToken);
-            if (hTTPResponse.StatusCode != System.Net.HttpStatusCode.ExpectationFailed)
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 start += 10;
                 ExpertLibraryModels.SpecialBean specialBean = new ExpertLibraryModels.SpecialBean();
@@ -68,33 +64,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public ExpertLibraryPage()
         {
             InitializeComponent();
-            ReqExpertLibrary("", "", start, 10); //网络请求专家库，10条每次
-            
-            //var item1 = new item
-            //{
-            //    name = "袁晓东",
-            //    message = "10年Android攻城狮\n10年Android攻城狮",
-            //};
-
-            //dataList.Add(item1);
-
-            //var item2 = new item
-            //{
-            //    name = "陈老师",
-            //    message = "香港大学博士",
-            //};
-
-            //dataList.Add(item2);
-
-            //var item3 = new item
-            //{
-            //    name = "俞乃胜",
-            //    message = "IT界的小学生",
-            //};
-
-            //dataList.Add(item3);
-
-            //listView.ItemsSource = dataList;
+            ReqExpertLibrary("", "", start, 10); //网络请求专家库，10条每次       
         }
 
         internal class item
@@ -103,7 +73,5 @@ namespace AepApp.View.EnvironmentalEmergency
             public string message { set; get; }
 
         }
-
-
     }
 }

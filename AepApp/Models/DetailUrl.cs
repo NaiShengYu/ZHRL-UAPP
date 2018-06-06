@@ -15,5 +15,11 @@ namespace AepApp.Models
         public static string GetEmergencyAccidentList = "api/services/app/Incident/GetPagedIncidents";
         //专家库
         public static string ExpertLibraryUrl = "api/services/app/professional/GetPagedprofessionals";
+        //敏感源
+        public static string Sensitive = "Api/Services/App/SensitiveUnit/GetPagedSensitiveUnits";
+        //成功案例
+        public static string SuccessCase = "api/services/app/Case/GetPagedCases";
+        //应急预案
+        public static string EmergencyPlan = "api/services/app/preplan/getpagedpreplans";
     }
 }
