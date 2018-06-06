@@ -15,6 +15,8 @@ namespace AepApp.View
 		public TestMapPage ()
 		{
 			InitializeComponent ();
+
+            
 		}
 	}
 }

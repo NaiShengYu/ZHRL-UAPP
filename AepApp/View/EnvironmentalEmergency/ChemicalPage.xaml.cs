@@ -78,7 +78,9 @@ namespace AepApp.View.EnvironmentalEmergency
             listView.ItemsSource = dataList;
         }
 
-      
+        public ChemicalPage() : this(1)
+        {
 
+        }
     }
 }

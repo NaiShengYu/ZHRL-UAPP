@@ -20,7 +20,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>D:\ProtectionPlatform\git2\AepApp.Xamarin.Forms.git\Droid\azura.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>C:\Users\bchan.AZURA\Source\Repos\AepApp.Xamarin.Forms.New.Platform\Droid\azura.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>123456</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>azura</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>123456</AndroidSigningKeyPass>
@@ -482,9 +482,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\winddir.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\xml\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\AepApp\AepApp.projitems" Label="Shared" Condition="Exists('..\AepApp\AepApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
