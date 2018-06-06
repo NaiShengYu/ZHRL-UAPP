@@ -2,13 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.SuccessCase"
-             xmlns:model="clr-namespace:AepApp.Models;assembly=AepApp.Droid"
+             xmlns:model="clr-namespace:AepApp.Models"
              Title="成功案例">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <model:FileFormatStringToIconImageConverter x:Key="fic" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
             <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach"></SearchBar>
@@ -17,11 +12,11 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                    <Grid VerticalOptions="Center">
-                                <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding firstfile.format, Converter={StaticResource fic}}" Margin="10,10,0,10"/>
-                        <Label Margin="60,8,10,8" Text="{Binding name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
-                    </Grid>
-                </ViewCell>
+                            <Grid VerticalOptions="Center">
+                                <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding firstfile.format, Converter={x:Static model:FileFormatStringToIconImageConverter.Instance}}" Margin="10,10,0,10"/>
+                                <Label Margin="60,8,10,8" Text="{Binding name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+                            </Grid>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

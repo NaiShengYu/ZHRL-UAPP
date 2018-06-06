@@ -72,7 +72,7 @@ namespace AepApp.Models
 
     public class FileFormatStringToIconImageConverter : IValueConverter
     {
-        private static FileFormatStringToIconImageConverter instance;
+        private static FileFormatStringToIconImageConverter instance = new FileFormatStringToIconImageConverter();
         public static FileFormatStringToIconImageConverter Instance { get { return instance; } }
 
         public static ImageSource DOCIcon = null;
