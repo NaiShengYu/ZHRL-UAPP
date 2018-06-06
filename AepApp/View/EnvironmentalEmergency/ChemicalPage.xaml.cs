@@ -39,6 +39,8 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             InitializeComponent();
             _type = type;
+            NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
+
 
             var ChemicalModel1 = new ChemicalModel
             {

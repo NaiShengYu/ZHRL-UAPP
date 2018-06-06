@@ -26,6 +26,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public AddDataForLHXZPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
             var itme1 = new LHXZModel
             {

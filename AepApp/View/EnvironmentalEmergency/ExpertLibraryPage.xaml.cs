@@ -1,4 +1,4 @@
-﻿using AepApp.Models;
+using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -13,9 +13,29 @@ namespace AepApp.View.EnvironmentalEmergency
         private int start = 0;
         private int totalNum = 0;
         private ObservableCollection<ExpertLibraryModels.ItemsBean> dataList = new ObservableCollection<ExpertLibraryModels.ItemsBean>();
+        //打电话
+        void Handle_Clicked_1(object sender, System.EventArgs e)
+        {
+
+            var but = sender as Button;
+            var item = but.BindingContext as item;
+
+            Device.OpenUri(new Uri("tel:" + item.tel));
+
+        }
+        //发信息
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            Console.WriteLine("发信息");
+            var but = sender as Button;
+            var item = but.BindingContext as item;
+            Device.OpenUri(new Uri("sms:" + item.tel));
+        }
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             //seach.Text = e.NewTextValue;
+            Console.WriteLine("点击了item");
+
 
         }
 
@@ -61,6 +81,9 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
+        Dictionary<Button, Tuple<item>> _butData = new Dictionary<Button, Tuple<item>>();
+
+
         public ExpertLibraryPage()
         {
             InitializeComponent();
@@ -71,7 +94,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             public string name { get; set; }
             public string message { set; get; }
-
+            public string tel { get; set; }
         }
     }
 }
