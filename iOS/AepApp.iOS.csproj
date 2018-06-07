@@ -103,9 +103,6 @@
     <Reference Include="OxyPlot.Xamarin.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Xamarin.iOS.1.0.0\lib\Xamarin.iOS10\OxyPlot.Xamarin.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="SkiaSharp, Version=1.60.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\SkiaSharp.1.60.0\lib\XamariniOS\SkiaSharp.dll</HintPath>
-    </Reference>
     <Reference Include="SkiaSharp.Views.Forms, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SkiaSharp.Views.Forms.1.60.0\lib\XamariniOS\SkiaSharp.Views.Forms.dll</HintPath>
     </Reference>
@@ -190,6 +187,9 @@
     <Reference Include="Plugin.Media">
       <HintPath>..\packages\Xam.Plugin.Media.4.0.0.9\lib\xamarinios10\Plugin.Media.dll</HintPath>
     </Reference>
+    <Reference Include="SkiaSharp">
+      <HintPath>..\packages\SkiaSharp.1.60.1\lib\Xamarin.iOS\SkiaSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -266,6 +266,8 @@
     <BundleResource Include="Resources\hamburger.png" />
     <BundleResource Include="Resources\hamburger%403x.png" />
     <BundleResource Include="Resources\hamburger%402x.png" />
+    <BundleResource Include="Resources\dirface.png" />
+    <BundleResource Include="Resources\dirarrow.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -279,6 +281,8 @@
     <Compile Include="Toast_Ios.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="EntryRenderer.cs" />
+    <Compile Include="TouchEffect.cs" />
+    <Compile Include="TouchRecognizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

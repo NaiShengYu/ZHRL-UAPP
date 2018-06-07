@@ -19,16 +19,22 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddSitePageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirDetailModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AirPageModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ChemicalInfoPageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ChemicalModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DetailUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DifferentPlantFormUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyAccidentPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyPlanModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\EquipmentInfoPageModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\EquipmentPageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ExpertLibraryModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZAddressMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LHXZModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OxyDataPageModle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ReqChemicalPageModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RescueMaterialsModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RescueSiteModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SensitiveModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SuccessCaseModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItem.cs" />
@@ -217,6 +223,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\LHXZInfoPage.xaml.cs">
       <DependentUpon>LHXZInfoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\WindSpeedAndDirectionPage.xaml.cs">
+      <DependentUpon>WindSpeedAndDirectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\TouchActionEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\TouchActionEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\TouchActionType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\TouchEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\TouchPoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\RescueSiteMapPage.xaml.cs">
+      <DependentUpon>RescueSiteMapPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -369,6 +386,14 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\LHXZInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\WindSpeedAndDirectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\RescueSiteMapPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

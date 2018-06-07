@@ -61,7 +61,6 @@ namespace AepApp.View.EnvironmentalEmergency
         //编辑开始
         void Handle_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
-
             //ENT.TranslateTo(0, 100);
 
             var entr = sender as Entry;
@@ -159,12 +158,12 @@ namespace AepApp.View.EnvironmentalEmergency
             isfunctionBarIsShow = false;
         }
 
-#pragma mark --点击事故性质按钮一系列操作结束
+#pragma 点击事故性质按钮一系列操作结束
 
         //点击了风速风向按钮
         void fengSuFengXiang(object sender, System.EventArgs e)
         {
-            
+            Navigation.PushAsync(new WindSpeedAndDirectionPage());
         }
         //点击了污染物按钮
         void wuRanWu(object sender, System.EventArgs e)

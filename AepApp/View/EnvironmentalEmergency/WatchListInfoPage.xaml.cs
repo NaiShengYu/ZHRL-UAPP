@@ -12,7 +12,7 @@ namespace AepApp.View.EnvironmentalEmergency
             var item = e.SelectedItem as item;
             if (item == null)
                 return;
-            Navigation.PushAsync(new RescueMaterialsPage());
+            //Navigation.PushAsync(new RescueMaterialsPage());
 
             listView.SelectedItem = null;
 

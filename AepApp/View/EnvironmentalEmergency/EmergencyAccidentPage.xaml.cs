@@ -1,5 +1,6 @@
 ﻿using AepApp.Models;
 using CloudWTO.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,92 +14,48 @@ namespace AepApp.View.EnvironmentalEmergency
     public partial class EmergencyAccidentPage : ContentPage
     {
         private int start = 0;
+        private int totalNum = 0;
+        private ObservableCollection<EmergencyAccidentPageModels.ItemsBean> dataList = new ObservableCollection<EmergencyAccidentPageModels.ItemsBean>();
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             //seach.Text = e.NewTextValue;
-
         }
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as item;
+            EmergencyAccidentPageModels.ItemsBean item = e.SelectedItem as EmergencyAccidentPageModels.ItemsBean;
             if (item == null)
                 return;
-            Navigation.PushAsync(new EmergencyAccidentInfoPage(item.title));
+            Navigation.PushAsync(new EmergencyAccidentInfoPage(item.name,item.id));
             listView.SelectedItem = null;
-
         }
-
-        ObservableCollection<item> dataList = new ObservableCollection<item>();
-        protected async override void OnAppearing()
-        {
-            base.OnAppearing();
-            HTTPResponse response = await ReqEmergencyAccidentInfo(start);
-            if (response.StatusCode != HttpStatusCode.ExpectationFailed)
-            {
-                Console.WriteLine(response.Results);
-            }
-
-        }
+   
         public EmergencyAccidentPage()
         {
             InitializeComponent();
-
-
-            //var item1 = new item
-            //{
-            //    title = "长江路事故",
-            //    time = "2018-05-25 11:13",
-            //    type = "1",
-            //    state = "1",
-
-            //};
-
-            //dataList.Add(item1);
-
-            //var item2 = new item
-            //{
-            //    title = "氨气污染事故",
-            //    time = "2018-05-25 11:13",
-            //    type = "2",
-            //    state = "1",
-            //};
-
-            //dataList.Add(item2);
-
-            //var item3 = new item
-            //{
-            //    title = "郊区土地污染事故",
-            //    time = "2018-05-25 11:13",
-            //    type = "3",
-            //    state = "1",
-            //};
-
-            //dataList.Add(item3);
-
-            //listView.ItemsSource = dataList;
-
+            ReqEmergencyAccidentInfo("", "", start, 10);
         }
 
-        private async Task<HTTPResponse> ReqEmergencyAccidentInfo(int start)
+        private async void ReqEmergencyAccidentInfo(String Filter, String Sorting, int SkipCount, int MaxResultCount)
         {
-            string url = App.BaseUrlForYINGJI + DetailUrl.GetEmergencyAccidentList
-                     + "?MaxResultCount=" + (start + 10) + "&SkipCount=" + start + "&Filter=" + "" + "&Sorting=" + "";
-            HTTPResponse response = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
-            return response;
-
-            //BackgroundWorker wrk = new BackgroundWorker();
-            //wrk.DoWork += (sender1, e1) =>
-            //{
-            //    result = EasyWebRequest.sendGetHttpWebRequestWithToken(App.BaseUrlForYINGJI + DetailUrl.GetEmergencyAccidentList
-            //        + "?MaxResultCount=" + (start + 10) + "&SkipCount=" + start + "&Filter=" + "" + "&Sorting=" + "", App.convertToken);
-            //};
-            //wrk.RunWorkerCompleted += (sender1, e1) =>
-            //{
-            //    start = start + 10;
-            //    Console.WriteLine(result);
-            //};
-            //wrk.RunWorkerAsync();
+            string url = App.BaseUrlForYINGJI + DetailUrl.GetEmergencyAccidentList +
+                    "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount; ;
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
+            if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
+            {
+                Console.WriteLine(hTTPResponse.Results);
+                start += 10;
+                EmergencyAccidentPageModels.EmergencyAccidentBean accidentPageModels = new EmergencyAccidentPageModels.EmergencyAccidentBean();
+                accidentPageModels = JsonConvert.DeserializeObject<EmergencyAccidentPageModels.EmergencyAccidentBean>(hTTPResponse.Results);
+                totalNum = accidentPageModels.result.incidents.totalCount;
+                List<EmergencyAccidentPageModels.ItemsBean> list = accidentPageModels.result.incidents.items;
+                int count = list.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    dataList.Add(list[i]);
+                }
+                listView.ItemsSource = dataList;
+            }
         }
 
         internal class item
@@ -109,9 +66,16 @@ namespace AepApp.View.EnvironmentalEmergency
             public string state { set; get; }
         }
 
-        private async void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        private  void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
-            HTTPResponse response = await ReqEmergencyAccidentInfo(start);
+            EmergencyAccidentPageModels.ItemsBean item = e.Item as EmergencyAccidentPageModels.ItemsBean;
+            if (item == dataList[dataList.Count - 1] && item != null)
+            {
+                if (start <= totalNum)
+                {
+                    ReqEmergencyAccidentInfo("", "", start, 10); //网络请求救援地点，10条每次
+                }
+            }
         }
     }
 }

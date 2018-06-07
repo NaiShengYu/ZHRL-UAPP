@@ -1,6 +1,9 @@
-﻿using System;
+﻿using AepApp.Models;
+using CloudWTO.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
@@ -139,127 +142,127 @@ namespace AepApp.View.EnvironmentalEmergency
 
         ObservableCollection<item> dataList = new ObservableCollection<item>();
         List<item> appearList = new List<item>();
-        public EmergencyAccidentInfoPage(string name)
+        public EmergencyAccidentInfoPage(string name,string id)
         {
             InitializeComponent();
             this.Title = name;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
+            ReqEmergencyAccidentDetail(id);
 
 
+            //var item1 = new item
+            //{
+            //    timeAndName = "2018/05/28 11:16/张三",
+            //    imgSourse = "",
+            //    info = "先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。然侍卫之臣不懈于内，忠志之士忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气，不宜妄自菲薄，引喻失义，以塞忠谏之路也。",
+            //    address = "121.123455,29.222222",
+            //    isShowAddress = true,
 
-            var item1 = new item
-            {
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "",
-                info = "先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。然侍卫之臣不懈于内，忠志之士忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气，不宜妄自菲薄，引喻失义，以塞忠谏之路也。",
-                address = "121.123455,29.222222",
-                isShowAddress = true,
+            //    time = Convert.ToDateTime("2018-03-16 16:51:46.310"),
 
-                time = Convert.ToDateTime("2018-03-16 16:51:46.310"),
+            //};
 
-            };
+            //dataList.Add(item1);
 
-            dataList.Add(item1);
+            //var item2 = new item
+            //{
+            //    address = "",
+            //    timeAndName = "2018/05/28 11:16/张三",
+            //    imgSourse = "",
+            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
+            //    isShowAddress = false,
+            //    time = Convert.ToDateTime("2018-03-19 16:51:46.310"),
 
-            var item2 = new item
-            {
-                address = "",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "",
-                info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-                isShowAddress = false,
-                time = Convert.ToDateTime("2018-03-19 16:51:46.310"),
+            //};
 
-            };
+            //dataList.Add(item2);
 
-            dataList.Add(item2);
+            //var item3 = new item
+            //{
+            //    address = "121.123455,29.222222",
+            //    timeAndName = "2018/05/28 11:16/张三",
+            //    imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
+            //    info = "",
+            //    isShowAddress = true,
+            //    time = Convert.ToDateTime("2018-03-19 17:51:46.310"),
+            //};
 
-            var item3 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
-                info = "",
-                isShowAddress = true,
-                time = Convert.ToDateTime("2018-03-19 17:51:46.310"),
-            };
-
-            dataList.Add(item3);
+            //dataList.Add(item3);
 
 
-            var item4 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "",
-                info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-                isShowAddress = false,
-                time = Convert.ToDateTime("2018-03-19 18:06:46.310"),
-            };
+            //var item4 = new item
+            //{
+            //    address = "121.123455,29.222222",
+            //    timeAndName = "2018/05/28 11:16/张三",
+            //    imgSourse = "",
+            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
+            //    isShowAddress = false,
+            //    time = Convert.ToDateTime("2018-03-19 18:06:46.310"),
+            //};
 
-            dataList.Add(item4);
+            //dataList.Add(item4);
 
-            var item5 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
-                info = "",
-                isShowAddress = true,
-                time = Convert.ToDateTime("2018-03-20 17:51:46.310"),
-            };
+            //var item5 = new item
+            //{
+            //    address = "121.123455,29.222222",
+            //    timeAndName = "2018/05/28 11:16/张三",
+            //    imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
+            //    info = "",
+            //    isShowAddress = true,
+            //    time = Convert.ToDateTime("2018-03-20 17:51:46.310"),
+            //};
 
-            dataList.Add(item5);
+            //dataList.Add(item5);
 
-            var item7 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "",
-                info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-                isShowAddress = false,
-                time = Convert.ToDateTime("2018-04-9 17:51:46.310"),
-            };
+            //var item7 = new item
+            //{
+            //    address = "121.123455,29.222222",
+            //    timeAndName = "2018/05/28 11:16/张三",
+            //    imgSourse = "",
+            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
+            //    isShowAddress = false,
+            //    time = Convert.ToDateTime("2018-04-9 17:51:46.310"),
+            //};
 
-            dataList.Add(item7);
+            //dataList.Add(item7);
 
-            var item8 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
-                info = "",
-                isShowAddress = true,
-                time = Convert.ToDateTime("2018-05-19 17:51:46.310"),
-            };
+            //var item8 = new item
+            //{
+            //    address = "121.123455,29.222222",
+            //    timeAndName = "2018/05/28 11:16/张三",
+            //    imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
+            //    info = "",
+            //    isShowAddress = true,
+            //    time = Convert.ToDateTime("2018-05-19 17:51:46.310"),
+            //};
 
-            dataList.Add(item8);
+            //dataList.Add(item8);
 
-            var item9 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "",
-                info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-                isShowAddress = false,
-                time = Convert.ToDateTime("2018-05-19 22:51:46.310"),
-            };
+            //var item9 = new item
+            //{
+            //    address = "121.123455,29.222222",
+            //    timeAndName = "2018/05/28 11:16/张三",
+            //    imgSourse = "",
+            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
+            //    isShowAddress = false,
+            //    time = Convert.ToDateTime("2018-05-19 22:51:46.310"),
+            //};
 
-            dataList.Add(item9);
+            //dataList.Add(item9);
 
-            var item10 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "",
-                info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-                isShowAddress = false,
-                time = Convert.ToDateTime("2018-05-19 22:55:46.310"),
-            };
+            //var item10 = new item
+            //{
+            //    address = "121.123455,29.222222",
+            //    timeAndName = "2018/05/28 11:16/张三",
+            //    imgSourse = "",
+            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
+            //    isShowAddress = false,
+            //    time = Convert.ToDateTime("2018-05-19 22:55:46.310"),
+            //};
 
-            dataList.Add(item10);
+            //dataList.Add(item10);
 
-            listView.ItemsSource = dataList;
+            //listView.ItemsSource = dataList;
 
             //listView滑动到第七个item
             //listView.ScrollTo(item7,ScrollToPosition.Start,true);
@@ -268,6 +271,27 @@ namespace AepApp.View.EnvironmentalEmergency
             creatScrollerView();
         }
 
+        private async void ReqEmergencyAccidentDetail(string id)
+        {
+            string url = App.BaseUrlForYINGJI + DetailUrl.GetEmergencyDetail +
+                   "?Id=" + id;
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
+            if (hTTPResponse.StatusCode == HttpStatusCode.OK)
+            {
+                Console.WriteLine(hTTPResponse.Results);
+                //start += 10;
+                //EmergencyAccidentPageModels.EmergencyAccidentBean accidentPageModels = new EmergencyAccidentPageModels.EmergencyAccidentBean();
+                //accidentPageModels = JsonConvert.DeserializeObject<EmergencyAccidentPageModels.EmergencyAccidentBean>(hTTPResponse.Results);
+                //totalNum = accidentPageModels.result.incidents.totalCount;
+                //List<EmergencyAccidentPageModels.ItemsBean> list = accidentPageModels.result.incidents.items;
+                //int count = list.Count;
+                //for (int i = 0; i < count; i++)
+                //{
+                //    dataList.Add(list[i]);
+                //}
+                //listView.ItemsSource = dataList;
+            }
+        }
 
         protected override void OnAppearing()
         {

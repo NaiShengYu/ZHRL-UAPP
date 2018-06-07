@@ -13,7 +13,7 @@
                     <DataTemplate>
                         <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
                             <Grid VerticalOptions="Center">
-                                <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding imgSourse}" Margin="10,10,0,10"/>
+                                <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding files[0].imgSourse}" Margin="10,10,0,10"/>
                                 <Label Margin="60,8,10,8" Text="{Binding name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
                             </Grid>
                         </local:ExtendedViewCell>

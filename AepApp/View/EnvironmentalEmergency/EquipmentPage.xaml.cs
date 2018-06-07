@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -6,7 +9,11 @@ using Xamarin.Forms;
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class EquipmentPage : ContentPage
-    {
+    {    
+        private int Index;
+        private int total;
+        private int sum;
+        private ObservableCollection<EquipmentPageModel.ItemsBean> dataList = new ObservableCollection<EquipmentPageModel.ItemsBean>();
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             //seach.Text = e.NewTextValue;
@@ -15,46 +22,51 @@ namespace AepApp.View.EnvironmentalEmergency
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as item;
+            EquipmentPageModel.ItemsBean item = e.SelectedItem as EquipmentPageModel.ItemsBean;
             if (item == null)
                 return;
-            Navigation.PushAsync(new EquipmentInfoPage(item.name));
+            Navigation.PushAsync(new EquipmentInfoPage(item.name,item.id));
 
             listView.SelectedItem = null;
 
         }
 
-        ObservableCollection<item> dataList = new ObservableCollection<item>();
+       
 
         public EquipmentPage()
         {
             InitializeComponent();
+            ReqEquipmentList("", Index, 10);         
+        }
 
-            var item1 = new item
+        private async void ReqEquipmentList(string keyword, int pagrIndex, int pageSize)
+        {
+            string url = App.BasicDataModule.url + DetailUrl.EquipmentList;
+            ChemicalStruct parameter = new ChemicalStruct
             {
-                name = "VOC气体检测仪",
-                message = "品牌/类型",
+                keyword = "",
+                pageIndex = Index + "",
+                pagesize = 10 + ""
             };
-
-            dataList.Add(item1);
-
-            var item2 = new item
+            string param = JsonConvert.SerializeObject(parameter);
+            //string param = "keyword=" + "" + "&pageIndex=" + pagrIndex + "&pageSize=" + pageSize;
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.frameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                name = "光谱显示仪",
-                message = "品牌/类型",
-            };
-
-            dataList.Add(item2);
-
-            var item3 = new item
-            {
-                name = "磁共振设备",
-                message = "品牌/类型",
-            };
-
-            dataList.Add(item3);
-
-            listView.ItemsSource = dataList;
+                Console.WriteLine(hTTPResponse.Results);
+                Index += 1;
+                sum += 10;
+                EquipmentPageModel.EquipmentPageModelBean equipmentPageModel = new EquipmentPageModel.EquipmentPageModelBean();
+                equipmentPageModel = JsonConvert.DeserializeObject<EquipmentPageModel.EquipmentPageModelBean>(hTTPResponse.Results);
+                total = equipmentPageModel.count;
+                List<EquipmentPageModel.ItemsBean> list = equipmentPageModel.items;
+                int count = list.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    dataList.Add(list[i]);
+                }
+                listView.ItemsSource = dataList;
+            }
         }
 
         internal class item
@@ -62,6 +74,18 @@ namespace AepApp.View.EnvironmentalEmergency
             public string name { get; set; }
             public string message { set; get; }
 
+        }
+
+        private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            EquipmentPageModel.ItemsBean item = e.Item as EquipmentPageModel.ItemsBean;
+            if (item == dataList[dataList.Count - 1] && item != null)
+            {
+                if (sum < total)
+                {
+                    ReqEquipmentList("", Index, 10);
+                }
+            }
         }
     }
 }
