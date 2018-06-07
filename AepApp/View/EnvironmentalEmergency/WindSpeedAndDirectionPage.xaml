@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.EnvironmentalEmergency.WindSpeedAndDirectionPage"
+             xmlns:tt="clr-namespace:TouchTracking">
+
+    <ContentPage.Content>
+          <ScrollView BackgroundColor="#f2f2f2">
+            <StackLayout>
+                <StackLayout Margin="30,30,20,0" Orientation="Horizontal" HeightRequest="60">
+                    <Label Text="风速" FontSize="23" VerticalOptions="CenterAndExpand"/>
+                    <Entry FontSize="23" HeightRequest="55" WidthRequest="120" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="m/s" FontSize="23" HorizontalOptions="End" Margin="0,0,20,0" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <StackLayout Margin="30,0,20,0" Orientation="Horizontal" HeightRequest="60">
+                    <Label Text="风向" FontSize="23" VerticalOptions="CenterAndExpand"/>
+                    <Entry Keyboard="Telephone" x:Name="directionLab" FontSize="23" HeightRequest="55" WidthRequest="120" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="° 北风" FontSize="23" HorizontalOptions="End" Margin="0,0,0,0" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <Grid x:Name="imgG">
+                    <Grid.Effects>
+                     <tt:TouchEffect Capture="true" TouchAction="Handle_TouchAction"/>
+                     </Grid.Effects>
+                    <Image AnchorX="0.5" AnchorY="0.5" x:Name="zhizhen" Source="dirarrow.png" VerticalOptions="Center" HorizontalOptions="Center" Margin="125"/> 
+                   <Image Margin="40,40,40,40" Source="dirface" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" /> 
+                   <Label VerticalOptions="Start" HorizontalOptions="Center" Margin="0,10,0,0" Text="北"/>
+                   <Label VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" Text="东"/>
+                   <Label VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10" Text="南"/>
+                   <Label VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" Text="西"/>
+                </Grid>
+
+                <Button Margin="0,20,0,0" HorizontalOptions="Center" Image="greentick" HeightRequest="70" WidthRequest="70"/>
+            </StackLayout>
+
+
+
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
