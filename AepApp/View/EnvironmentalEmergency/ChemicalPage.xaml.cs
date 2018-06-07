@@ -43,9 +43,13 @@ namespace AepApp.View.EnvironmentalEmergency
         public ChemicalPage(int type)
         {
             InitializeComponent();
-            _type = type;
-            NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
-            ReqChemicalList("", Index, 10);         
+            //_type = type;
+            //NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
+            //ReqChemicalList("", Index, 10);         
+        }
+
+        public ChemicalPage():this(1){
+            
         }
 
         private async void ReqChemicalList(string keyword, int pageIndex, int pageSize)
