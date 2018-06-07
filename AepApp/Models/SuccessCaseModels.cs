@@ -30,6 +30,16 @@ namespace AepApp.Models
             public string notes { get; set; }
             public string id { get; set; }
             public List<FilesBean> files;
+
+            public FilesBean firstfile
+            {
+                get
+                {
+                    if (files == null) return null;
+                    if (files.Count == 0) return null;
+                    return files[0];
+                }
+            }
         }
         public class FilesBean
         {
@@ -62,22 +72,27 @@ namespace AepApp.Models
 
     public class FileFormatStringToIconImageConverter : IValueConverter
     {
-        private static FileFormatStringToIconImageConverter instance;
+        private static FileFormatStringToIconImageConverter instance = new FileFormatStringToIconImageConverter();
         public static FileFormatStringToIconImageConverter Instance { get { return instance; } }
+
+        public static ImageSource DOCIcon = null;
+        public static ImageSource PDFIcon = null;
+
+        static FileFormatStringToIconImageConverter()
+        {
+            // load the images here... to prevent repeated loading of resources
+        }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string format = value as string;
 
-            string resstring = "";
             switch (format)
             {
-                case "pdf": resstring = ""; break;
-                case "doc": resstring = ""; break;
+                case "pdf": return PDFIcon;
+                case "doc": return DOCIcon;
             }
-            ImageSource img = ImageSource.FromResource("");
-
-            return img;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

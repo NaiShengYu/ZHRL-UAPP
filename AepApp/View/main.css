@@ -1,0 +1,12 @@
+﻿.menuitem {
+    height:35;
+    /*background-color: red;*/
+}
+
+    .menuitem label {
+        margin-top: 5;
+        margin-left: 35;
+        font-size: 19;
+        color: black;
+        text-align: left;
+    }

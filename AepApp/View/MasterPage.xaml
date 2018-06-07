@@ -2,43 +2,99 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.MasterPage"
+             xmlns:local="clr-namespace:StylingWithCSS"
              Title="菜单"
              Icon="hamburger">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Spacing="1">
             <StackLayout HeightRequest="150" BackgroundColor="rgb(48, 116, 163)">
 
             </StackLayout>
-            <StackLayout HeightRequest="70" BackgroundColor="White" Spacing="0">
+            
+            <StackLayout HeightRequest="100" BackgroundColor="White" Spacing="0" x:Name="menu1">
                 <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
-                <Label HeightRequest="35" TextColor="Black" Text="        采样任务" FontSize="19" x:Name="lab1" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+                <Grid StyleClass="menuitem" >
+                    <Label Text="采样任务"/>
+                </Grid>
             </StackLayout>
 
             <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
 
             <ScrollView BackgroundColor="White">
-                <StackLayout Spacing="0">
+                <StackLayout Spacing="0" x:Name="menu2">
                     <Label Text="环境质量" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        空气质量" FontSize="19" x:Name="lab2" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        水环境质量" FontSize="19" x:Name="lab3" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        VOCs环境质量" FontSize="19" x:Name="lab4" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        环境质量标准" FontSize="19" x:Name="lab5" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="空气质量" />
+                    </Grid>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="水环境质量" />
+                    </Grid>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="VOCs环境质量" />
+                    </Grid>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="环境质量标准" />
+                    </Grid>
 
                     <Label Text="环境应急" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        应急事故" FontSize="19" x:Name="lab6" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        成功案例" FontSize="19" x:Name="lab7" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        应急预案" FontSize="19" x:Name="lab8" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        敏感源" FontSize="19" x:Name="lab9" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        救援地点" FontSize="19" x:Name="lab10" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        专家库" FontSize="19" x:Name="lab11" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        设备" FontSize="19" x:Name="lab12" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        值班表" FontSize="19" x:Name="lab13" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        化学品" FontSize="19" x:Name="lab14" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+                    
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="应急事故" BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" />
+                    </Grid>
+                    
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="成功案例" BindingContext="AepApp.View.EnvironmentalEmergency.SuccessCase" />
+                    </Grid>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="应急预案" BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyPlan" />
+                    </Grid>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="敏感源" BindingContext="AepApp.View.EnvironmentalEmergency.SensitiveSourcePage"  />
+                    </Grid>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="救援地点" BindingContext="AepApp.View.EnvironmentalEmergency.RescueSitePage"  />
+                    </Grid>
+                    
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="专家库" BindingContext="AepApp.View.EnvironmentalEmergency.ExpertLibraryPage" />
+                    </Grid>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="设备" BindingContext="AepApp.View.EnvironmentalEmergency.EquipmentPage" />
+                    </Grid>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="值班表" BindingContext="AepApp.View.EnvironmentalEmergency.WatchListPage" />
+                    </Grid>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="化学品" BindingContext="AepApp.View.EnvironmentalEmergency.ChemicalPage"/>
+                    </Grid>
+
                     <Label Text="企业/污染源" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        污染源" FontSize="19" x:Name="lab15" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="污染源" />
+                    </Grid>
+
                     <Label Text="采样系统" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Label HeightRequest=" 55" TextColor="Black" Text="        采样方案" FontSize="19" x:Name="lab16" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+                    
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="采样方案" />
+                    </Grid>
 
                 </StackLayout>
 
@@ -46,9 +102,14 @@
 
             <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
 
-            <StackLayout BackgroundColor="White" Spacing="0" HeightRequest="110">
-                <Label HeightRequest="50" TextColor="Black" Text="        扫码登录" FontSize="19" x:Name="lab17" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
-                <Label HeightRequest="55" TextColor="Black" Text="        设置" FontSize="19" x:Name="lab18" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Fill" HorizontalOptions="Fill"  />
+            <StackLayout BackgroundColor="White" Spacing="0" HeightRequest="130" x:Name="menu3">
+                <Grid StyleClass="menuitem" >
+                    <Label Text="扫码登录" BindingContext="AepApp.View.SecondaryFunction.QRCodeScanner" />
+                </Grid>
+
+                <Grid StyleClass="menuitem" >
+                    <Label Text="设置" BindingContext="AepApp.View.SelectSitePage" />
+                </Grid>
             </StackLayout>
 
         </StackLayout>
