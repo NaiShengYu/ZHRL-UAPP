@@ -41,7 +41,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private async void ReqEquipmentList(string keyword, int pagrIndex, int pageSize)
         {
-            string url = App.BasicDataModule + DetailUrl.EquipmentList;
+            string url = App.BasicDataModule.url + DetailUrl.EquipmentList;
             ChemicalStruct parameter = new ChemicalStruct
             {
                 keyword = "",

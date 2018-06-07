@@ -20,7 +20,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private async void ReqChemicalDetail(string id)
         {
-            string url = App.BasicDataModule + DetailUrl.ChemicalInfo;
+            string url = App.BasicDataModule.url + DetailUrl.ChemicalInfo;
             ChemicalInfoStruct parameter = new ChemicalInfoStruct
             {
                 chemid = id

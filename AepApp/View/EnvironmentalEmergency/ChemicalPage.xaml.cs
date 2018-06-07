@@ -50,7 +50,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private async void ReqChemicalList(string keyword, int pageIndex, int pageSize)
         {
-            string url = App.BasicDataModule + DetailUrl.ChemicalList;
+            string url = App.BasicDataModule.url + DetailUrl.ChemicalList;
             ChemicalStruct parameter = new ChemicalStruct
             {
                 keyword = "",

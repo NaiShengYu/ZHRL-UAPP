@@ -17,9 +17,9 @@
                             <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <StackLayout>
-                                    <Label Margin="10,10,10,0" Text="{Binding title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
+                                    <Label Margin="10,10,10,0" Text="{Binding name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
 
-                                    <Label Margin="10,0,10,10" Text="{Binding time}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
+                                    <Label Margin="10,0,10,10" Text="{Binding startDate}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
                                                                        
                                 </StackLayout>
 
@@ -27,7 +27,7 @@
 
                                     <Label FontSize="15" TextColor="White" Margin="20,10,20,0" Text="进行中" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" WidthRequest="60" BackgroundColor="Maroon">
                                     <Label.Triggers>
-                                             <DataTrigger TargetType="Label" Binding="{Binding type}" Value="1">
+                                            <DataTrigger TargetType="Label" Binding="{Binding isArchived}" Value="false">
                                                 <Setter Property="BackgroundColor" Value="#EDEDED" />
                                             </DataTrigger>
                                         </Label.Triggers>
@@ -35,22 +35,22 @@
                                   <StackLayout Orientation="Horizontal" >
 
                                         <Label FontSize="15" TextColor="White" BackgroundColor="#EDEDED" Text="气" Margin="20,0,0,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
-                                             <Label.Triggers>                                                                                                                                                                                                                                                                                                                                                                     
-                                             <DataTrigger TargetType="Label" Binding="{Binding type}" Value="1">
+                                             <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding hasAirNature}" Value="true">
                                                 <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
                                             </DataTrigger>
                                         </Label.Triggers>
                                         </Label>
                                         <Label FontSize="15" TextColor="White" BackgroundColor="#EDEDED" Text="水" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
                                              <Label.Triggers>
-                                             <DataTrigger TargetType="Label" Binding="{Binding type}" Value="2">
+                                                <DataTrigger TargetType="Label" Binding="{Binding hasWaterNature}" Value="true">
                                                 <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
                                             </DataTrigger>
                                         </Label.Triggers>
                                         </Label>
                                         <Label FontSize="15" TextColor="White" BackgroundColor="#EDEDED" Text="土" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
                                              <Label.Triggers>
-                                             <DataTrigger TargetType="Label" Binding="{Binding type}" Value="3">
+                                                <DataTrigger TargetType="Label" Binding="{Binding hasSoilNature}" Value="true">
                                                 <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
                                             </DataTrigger>
                                         </Label.Triggers>

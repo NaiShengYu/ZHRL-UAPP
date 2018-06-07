@@ -20,7 +20,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private async void ReqEquipmentInfo(string id)
         {
-            string url = App.BasicDataModule + DetailUrl.EquipmentInfo;
+            string url = App.BasicDataModule.url + DetailUrl.EquipmentInfo;
             EquipmenInfoStruct parameter = new EquipmenInfoStruct
             {
                 equipmentid = id

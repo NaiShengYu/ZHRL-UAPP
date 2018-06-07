@@ -34,13 +34,14 @@ namespace AepApp
         public string FrameworkURL = "http://gx.azuratech.com:30000";
         public List<ModuleInfo> Modules = null;
         public ModuleInfo EmergencyModule = null;
+        public static ModuleInfo BasicDataModule = null;
 
 
 
         public static bool UseMockDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
         public static string NEWTOKENURL = "http://gx.azuratech.com:30000/token";
-        public static string BasicDataModule = "";//基础数据模块url
+        //public static string BasicDataModule = "";//基础数据模块url
         //public static double pid = 3.14;
         public static string BaseUrl = "";
         //新应急接口baseURL
@@ -161,7 +162,7 @@ namespace AepApp
                     //    continue;
                     //}
                     if (mi.id == BasicDataModuleID) {
-                        BasicDataModule = mi.url;
+                        BasicDataModule = mi;
                         continue;
                     }
                 }
