@@ -4,6 +4,8 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using OxyPlot;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace AepApp.Droid
 {
@@ -27,10 +29,30 @@ namespace AepApp.Droid
             StatusBar.Activity = this;//获取状态栏高度
             LoadApplication(new App());
         }
+        // Field, property, and method for Picture Picker
+        public static readonly int PickImageId = 1000;
 
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        public TaskCompletionSource<Stream> PickImageTaskCompletionSource { set; get; }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent intent)
         {
-            base.OnActivityResult(requestCode, resultCode, data);
+            base.OnActivityResult(requestCode, resultCode, intent);
+
+            if (requestCode == PickImageId)
+            {
+                if ((resultCode == Result.Ok) && (intent != null))
+                {
+                    Android.Net.Uri uri = intent.Data;
+                    Stream stream = ContentResolver.OpenInputStream(uri);
+
+                    // Set the Stream as the completion of the Task
+                    PickImageTaskCompletionSource.SetResult(stream);
+                }
+                else
+                {
+                    PickImageTaskCompletionSource.SetResult(null);
+                }
+            }
         }
     }
 }

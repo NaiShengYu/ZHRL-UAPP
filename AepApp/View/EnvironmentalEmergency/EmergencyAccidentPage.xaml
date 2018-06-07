@@ -3,70 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage"
              Title="应急事故">
+
     <ContentPage.Content>
-            <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
+        <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
             <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach"></SearchBar>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
             <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                    <Grid VerticalOptions="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="100"/>
+                            <Grid VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <StackLayout>
                                     <Label Margin="10,10,10,0" Text="{Binding name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
 
-                                    <Label Margin="10,0,10,10" Text="{Binding startDate}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
-                                                                       
+                                    <Label Margin="10,0,10,10" Text="{Binding startDate}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+
                                 </StackLayout>
 
                                 <StackLayout Grid.Column="1" >
 
                                     <Label FontSize="15" TextColor="White" Margin="20,10,20,0" Text="进行中" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" WidthRequest="60" BackgroundColor="Maroon">
-                                    <Label.Triggers>
+                                        <Label.Triggers>
                                             <DataTrigger TargetType="Label" Binding="{Binding isArchived}" Value="false">
                                                 <Setter Property="BackgroundColor" Value="#EDEDED" />
                                             </DataTrigger>
                                         </Label.Triggers>
-                                    </Label>      
-                                  <StackLayout Orientation="Horizontal" >
+                                    </Label>
+                                    <StackLayout Orientation="Horizontal" >
 
                                         <Label FontSize="15" TextColor="White" BackgroundColor="#EDEDED" Text="气" Margin="20,0,0,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
-                                             <Label.Triggers>
+                                            <Label.Triggers>
                                                 <DataTrigger TargetType="Label" Binding="{Binding hasAirNature}" Value="true">
-                                                <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
-                                            </DataTrigger>
-                                        </Label.Triggers>
+                                                    <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
                                         </Label>
                                         <Label FontSize="15" TextColor="White" BackgroundColor="#EDEDED" Text="水" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
-                                             <Label.Triggers>
+                                            <Label.Triggers>
                                                 <DataTrigger TargetType="Label" Binding="{Binding hasWaterNature}" Value="true">
-                                                <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
-                                            </DataTrigger>
-                                        </Label.Triggers>
+                                                    <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
                                         </Label>
                                         <Label FontSize="15" TextColor="White" BackgroundColor="#EDEDED" Text="土" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
-                                             <Label.Triggers>
+                                            <Label.Triggers>
                                                 <DataTrigger TargetType="Label" Binding="{Binding hasSoilNature}" Value="true">
-                                                <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
-                                            </DataTrigger>
-                                        </Label.Triggers>
+                                                    <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
                                         </Label>
-                                            
-                                       
-                                        
+
+
+
                                     </StackLayout>
 
-                                    
+
                                 </StackLayout>
-                                
-                        <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding imgSourse}" Margin="10,10,0,10"/>
-                        <Label Margin="60,8,10,8" Text="{Binding info}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>        
-                    </Grid>
-                </ViewCell>
+
+                                <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding imgSourse}" Margin="10,10,0,10"/>
+                                <Label Margin="60,8,10,8" Text="{Binding info}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+                            </Grid>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

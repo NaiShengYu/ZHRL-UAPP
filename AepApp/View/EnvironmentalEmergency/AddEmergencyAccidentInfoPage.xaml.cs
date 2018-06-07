@@ -223,7 +223,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             };
 
-            dataList.Add(item1);
+            //dataList.Add(item1);
 
             var item2 = new item
             {
@@ -236,7 +236,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             };
 
-            dataList.Add(item2);
+            //dataList.Add(item2);
 
             var item3 = new item
             {
@@ -248,7 +248,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 time = Convert.ToDateTime("2018-03-19 17:51:46.310"),
             };
 
-            dataList.Add(item3);
+            //dataList.Add(item3);
 
 
             var item4 = new item
@@ -261,10 +261,10 @@ namespace AepApp.View.EnvironmentalEmergency
                 time = Convert.ToDateTime("2018-03-19 18:06:46.310"),
             };
 
-            dataList.Add(item4);
+            //dataList.Add(item4);
 
 
-            listView.ItemsSource = dataList;
+            //listView.ItemsSource = dataList;
 
 
 
