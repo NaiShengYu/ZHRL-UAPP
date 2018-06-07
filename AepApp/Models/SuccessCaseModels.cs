@@ -54,9 +54,13 @@ namespace AepApp.Models
             {
                 get
                 {
+                    if (format.Equals("docx"))
+                    {
+                        return "word.png";
+                    }
                     if (format.Equals("doc"))
                     {
-                        return "doc.png";
+                        return "word.png";
                     }
                     else if (format.Equals("pdf"))
                     {
@@ -81,16 +85,21 @@ namespace AepApp.Models
         static FileFormatStringToIconImageConverter()
         {
             // load the images here... to prevent repeated loading of resources
+            DOCIcon = ImageSource.FromFile("word");
+            PDFIcon = ImageSource.FromFile("pdf");
+
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string format = value as string;
 
-            switch (format)
+            switch (format.ToLower())
             {
+                
                 case "pdf": return PDFIcon;
                 case "doc": return DOCIcon;
+                case "docx": return DOCIcon;
             }
             return null;
         }

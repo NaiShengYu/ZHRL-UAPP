@@ -40,6 +40,29 @@ namespace AepApp.Models
             public int sort { get; set; }
             public Object creatorUserName { get; set; }
             public string id { get; set; }
+
+            public string imgSourse
+            {
+                get
+                {
+                    if (format.Equals("doc"))
+                    {
+                        return "word";
+                    }
+                    if (format.Equals("docx"))
+                    {
+                        return "word";
+                    }
+                    else if (format.Equals("pdf"))
+                    {
+                        return "pdf";
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+            }
         }
 
     }

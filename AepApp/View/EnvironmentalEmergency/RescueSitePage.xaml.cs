@@ -33,7 +33,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
-                //Navigation.PushAsync(new PollutionSourceMapPage(dataList));
+                Navigation.PushAsync(new RescueSiteMapPage());
 
             }));
 
