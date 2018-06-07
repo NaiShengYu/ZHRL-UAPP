@@ -94,8 +94,6 @@ namespace AepApp.View
                 if (s == lab7)
                 {
                     Console.WriteLine("成功案例");
-                    //成功案例
-                    nav7 = new NavigationPage((Page)Activator.CreateInstance(typeof(SuccessCase)));
                     aaaa.Detail = nav7;
                 }
                 if (s == lab8)
