@@ -142,25 +142,26 @@ namespace AepApp
                 //}
 
 
-                //return true;
+                return false;
             }
             else {
-                string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
-                ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
-                {
-                    userNameOrEmailAddress = "admin",
-                    password = "123qwe",
-                    rememberClient = "true"
-                };
-                string param2 = JsonConvert.SerializeObject(parameter2);
-                HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
-                if (res2.StatusCode == HttpStatusCode.OK)
-                {
-                    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
-                    EmergencyToken = tokenstr.result.accessToken;
-                }
+                //string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
+                //ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
+                //{
+                //    userNameOrEmailAddress = "admin",
+                //    password = "123qwe",
+                //    rememberClient = "true"
+                //};
+                //string param2 = JsonConvert.SerializeObject(parameter2);
+                //HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
+                //if (res2.StatusCode == HttpStatusCode.OK)
+                //{
+                //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
+                //    EmergencyToken = tokenstr.result.accessToken;
+                //}
+                frameworkToken = fwtoken.access_token;  
                 return true;
-                frameworkToken = fwtoken.access_token;             
+
             }      
 
             Modules = await GetModuleInfoAsync(fwtoken.access_token);
