@@ -367,14 +367,6 @@ namespace AepApp
         public string waitingForActivation { get; set; }
     }
 
-    internal class ConvertedTokenReqStruct2
-    {
-        public string userNameOrEmailAddress { get; set; }
-        public string password { get; set; }
-        public string rememberClient { get; set; }
-
-    }
-
     internal class ConvertedTokenResult
     {
         public ConvertedToken result;
