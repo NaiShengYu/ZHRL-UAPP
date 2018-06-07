@@ -23,7 +23,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ChemicalModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DetailUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DifferentPlantFormUrl.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyAccidentDetailModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyAccidentPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyPlanModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
