@@ -18,9 +18,9 @@ namespace AepApp.View.EnvironmentalEmergency
         {
 
             var but = sender as Button;
-            var item = but.BindingContext as item;
+            ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
 
-            Device.OpenUri(new Uri("tel:" + item.tel));
+            Device.OpenUri(new Uri("tel:" + item.mobilePhone));
 
         }
         //发信息
@@ -28,8 +28,8 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             Console.WriteLine("发信息");
             var but = sender as Button;
-            var item = but.BindingContext as item;
-            Device.OpenUri(new Uri("sms:" + item.tel));
+            ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
+            Device.OpenUri(new Uri("sms:" + item.mobilePhone));
         }
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
@@ -41,7 +41,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as item;
+            ExpertLibraryModels.ItemsBean item = e.SelectedItem as ExpertLibraryModels.ItemsBean;
             if (item == null)
                 return;
 
@@ -81,7 +81,7 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
-        Dictionary<Button, Tuple<item>> _butData = new Dictionary<Button, Tuple<item>>();
+        //Dictionary<Button, Tuple<item>> _butData = new Dictionary<Button, Tuple<item>>();
 
 
         public ExpertLibraryPage()
@@ -90,11 +90,11 @@ namespace AepApp.View.EnvironmentalEmergency
             ReqExpertLibrary("", "", start, 10); //网络请求专家库，10条每次       
         }
 
-        internal class item
-        {
-            public string name { get; set; }
-            public string message { set; get; }
-            public string tel { get; set; }
-        }
+        //internal class item
+        //{
+        //    public string name { get; set; }
+        //    public string message { set; get; }
+        //    public string tel { get; set; }
+        //}
     }
 }

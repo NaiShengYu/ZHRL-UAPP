@@ -3,24 +3,29 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class ChemicalPage : ContentPage
     {
+        private int Index;
+        private int total;
+        private int sum;
+        private ObservableCollection<ReqChemicalPageModel.ItemsBean> dataList = new ObservableCollection<ReqChemicalPageModel.ItemsBean>();
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            var ChemicalModel = e.SelectedItem as ChemicalModel;
+            ReqChemicalPageModel.ItemsBean ChemicalModel = e.SelectedItem as ReqChemicalPageModel.ItemsBean;
             if (ChemicalModel == null)
                 return;
             if (_type == 1)
-                Navigation.PushAsync(new ChemicalInfoPage());
+                Navigation.PushAsync(new ChemicalInfoPage(ChemicalModel.id, ChemicalModel.chinesename));
 
             if (_type == 2)
             {
-                MessagingCenter.Send<ContentPage, ChemicalModel>(this, "Value", ChemicalModel);
+                MessagingCenter.Send<ContentPage, ReqChemicalPageModel.ItemsBean>(this, "Value", ChemicalModel);
                 Navigation.PopAsync();
-
             }
 
             listView.SelectedItem = null; 
@@ -33,52 +38,64 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 
 
-        ObservableCollection<ChemicalModel> dataList = new ObservableCollection<ChemicalModel>();
+       
         int _type = 0;
         public ChemicalPage(int type)
         {
             InitializeComponent();
             _type = type;
             NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
-
-
-            var ChemicalModel1 = new ChemicalModel
-            {
-                name = "铁",
-                Yname = "Fe",
-                type = "CAS编号",
-                TypeNum = "2321",
-
-            };
-
-            dataList.Add(ChemicalModel1);
-
-            var ChemicalModel2 = new ChemicalModel
-            {
-                name = "钙",
-                Yname = "Ca",
-                type = "CAS编号",
-                TypeNum = "2321",
-
-            };
-
-            dataList.Add(ChemicalModel2);
-
-            var ChemicalModel3 = new ChemicalModel
-            {
-                name = "钠",
-                Yname = "Na",
-                type = "CAS编号",
-                TypeNum = "2321",
-
-            };
-
-            dataList.Add(ChemicalModel3);
-
-            listView.ItemsSource = dataList;
+            ReqChemicalList("", Index, 10);         
         }
 
-      
+        private async void ReqChemicalList(string keyword, int pageIndex, int pageSize)
+        {
+            string url = App.BasicDataModule + DetailUrl.ChemicalList;
+            ChemicalStruct parameter = new ChemicalStruct
+            {
+                keyword = "",
+                pageIndex = Index +"",
+                pagesize = 10 + ""
+            };
+            string param = JsonConvert.SerializeObject(parameter);
+            //string param = "keyword=" + "" + "&pageIndex=" + pagrIndex + "&pageSize=" + pageSize;
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.frameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                Console.WriteLine(hTTPResponse.Results);
+                Index += 1;
+                sum += 10;
+                ReqChemicalPageModel.ReqChemicalBean reqChemicalBean = new ReqChemicalPageModel.ReqChemicalBean();
+                reqChemicalBean = JsonConvert.DeserializeObject<ReqChemicalPageModel.ReqChemicalBean>(hTTPResponse.Results);
+                total = reqChemicalBean.count;
+                List<ReqChemicalPageModel.ItemsBean> list = reqChemicalBean.items;
+                int count = list.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    dataList.Add(list[i]);
+                }
+                listView.ItemsSource = dataList;
+            }
+        }
 
+        private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            ReqChemicalPageModel.ItemsBean item = e.Item as ReqChemicalPageModel.ItemsBean;
+            if (item == dataList[dataList.Count - 1] && item != null)
+            {
+                if (sum < total)
+                {
+                    ReqChemicalList("", Index, 10);
+                }
+            }
+           
+        }
+    }
+
+    internal class ChemicalStruct
+    {
+        public string keyword { get; set; }
+        public string pageIndex { get; set; }
+        public string pagesize { get; set; }
     }
 }

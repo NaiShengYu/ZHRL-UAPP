@@ -29,6 +29,7 @@ namespace AepApp
         }
 
         private const string EmergencyModuleID = "D53E7751-26A7-4B6C-B8E1-E243621A84CF";
+        private const string BasicDataModuleID = "D53E7751-26A7-4B6C-B8E1-E243621A84CF"; //基础数据模块id
 
         public string FrameworkURL = "http://gx.azuratech.com:30000";
         public List<ModuleInfo> Modules = null;
@@ -39,12 +40,14 @@ namespace AepApp
         public static bool UseMockDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
         public static string NEWTOKENURL = "http://gx.azuratech.com:30000/token";
+        public static string BasicDataModule = "";//基础数据模块url
         //public static double pid = 3.14;
         public static string BaseUrl = "";
         //新应急接口baseURL
         public static string BaseUrlForYINGJI = "http://192.168.1.128:5000/";
         public static string token = "";
         public static string EmergencyToken = "";
+        public static string frameworkToken = "";
         public static string appName = "Aep";
         public static string appAccident = "Accident";
         public static string SiteData = "site";
@@ -121,8 +124,27 @@ namespace AepApp
             {
                 return false;
             }
+            else {
+                string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
+                ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
+                {
+                    userNameOrEmailAddress = "admin",
+                    password = "123qwe",
+                    rememberClient = "true"
+                };
+                string param2 = JsonConvert.SerializeObject(parameter2);
+                HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
+                if (res2.StatusCode == HttpStatusCode.OK)
+                {
+                    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
+                    EmergencyToken = tokenstr.result.accessToken;
+                }
+                return true;
+                frameworkToken = fwtoken.access_token;             
+            }      
 
             Modules = await GetModuleInfoAsync(fwtoken.access_token);
+            //D53E7751-26A7-4B6C-B8E1-E243621A84CF
 
             // if there is no module defined for the site, disable auto login and goto login page
             if (Modules == null)
@@ -133,17 +155,23 @@ namespace AepApp
             {
                 foreach (ModuleInfo mi in Modules)
                 {
-                    if (mi.id == EmergencyModuleID)
-                    {
-                        EmergencyModule = mi;
+                    //if (mi.id == EmergencyModuleID)
+                    //{
+                    //    EmergencyModule = mi;
+                    //    continue;
+                    //}
+                    if (mi.id == BasicDataModuleID) {
+                        BasicDataModule = mi.url;
+                        continue;
                     }
                 }
+                return false;
             }
 
-            if (EmergencyModule != null)
-            {
+            //if (EmergencyModule != null)
+            //{
                 EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
-            }
+            //}
 
             if (EmergencyToken != null)
             {
@@ -152,7 +180,7 @@ namespace AepApp
 
             return false;
         }
-        
+
         /// <summary>
         /// Get an access token from the framework server with the provided credential
         /// </summary>
@@ -215,6 +243,7 @@ namespace AepApp
             {
                 string url = EmergencyModule.url + "/api/TokenAuth/ExternalAuthenticate";
                 url = "http://192.168.1.128:5000//api/TokenAuth/ExternalAuthenticate";
+
                 ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
                 {
                     authProvider = "AzuraAuth",
@@ -228,8 +257,7 @@ namespace AepApp
                 {
                     var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res.Results);
                     token = tokenstr.result.accessToken;
-                }
-
+                }               
                 return token;
             }
             catch
@@ -301,6 +329,13 @@ namespace AepApp
     {
         public string authProvider { get; set; }
         public string providerAccessCode { get; set; }
+
+    }
+    internal class ConvertedTokenReqStruct2
+    {
+        public string userNameOrEmailAddress { get; set; }
+        public string password { get; set; }
+        public string rememberClient { get; set; }
 
     }
 

@@ -14,6 +14,9 @@ namespace AepApp.View
         private Page nav9; //敏感源
         private Page nav7; //成功案例
         private Page nav8; //应急预案
+        private Page nav10; //救援地点
+        private Page nav12; //设备
+        private Page nav14; //化学品
         public MasterPage(MasterAndDetailPage aaaa)
         {
            
@@ -24,16 +27,12 @@ namespace AepApp.View
             var nav6 = new NavigationPage((Page)Activator.CreateInstance(typeof(EmergencyAccidentPage)));
            
             
-          
-            //救援地点
-            var nav10 = new NavigationPage((Page)Activator.CreateInstance(typeof(RescueSitePage)));
+        
            
-            //设备
-            var nav12 = new NavigationPage((Page)Activator.CreateInstance(typeof(EquipmentPage)));
+          
             //值班表
             var nav13 = new NavigationPage((Page)Activator.CreateInstance(typeof(WatchListPage)));
-            //化学品
-            var nav14 = new NavigationPage(new ChemicalPage(1));
+           
             //二维码
             var nav17 = new NavigationPage((Page)Activator.CreateInstance(typeof(QRCodeScanner)));
             //设置
@@ -113,6 +112,9 @@ namespace AepApp.View
                 if (s == lab10)
                 {
                     Console.WriteLine("救援地点");
+
+                    //救援地点
+                    nav10 = new NavigationPage((Page)Activator.CreateInstance(typeof(RescueSitePage)));
                     aaaa.Detail = nav10;
                 }
 
@@ -129,6 +131,8 @@ namespace AepApp.View
                 if (s == lab12)
                 {
                     Console.WriteLine("设备");
+                    //设备
+                    nav12 = new NavigationPage((Page)Activator.CreateInstance(typeof(EquipmentPage)));
                     aaaa.Detail = nav12;
                 }
 
@@ -141,6 +145,8 @@ namespace AepApp.View
                 if (s == lab14)
                 {
                     Console.WriteLine("化学品");
+                    //化学品
+                    nav14 = new NavigationPage(new ChemicalPage(1));
                     aaaa.Detail = nav14;
                 }
                 if (s == lab17)
@@ -154,7 +160,7 @@ namespace AepApp.View
                     aaaa.Detail = nav18;
                 }
 
-                //aaaa.IsPresented = false;
+                aaaa.IsPresented = false;
 
             };
             lab1.GestureRecognizers.Add(tapGestureRecognizer);
