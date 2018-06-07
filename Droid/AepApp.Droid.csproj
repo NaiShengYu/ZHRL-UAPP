@@ -72,9 +72,6 @@
     <Reference Include="OxyPlot.Xamarin.Forms.Platform.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Xamarin.Forms.1.0.0\lib\MonoAndroid10\OxyPlot.Xamarin.Forms.Platform.Android.dll</HintPath>
     </Reference>
-    <Reference Include="SkiaSharp, Version=1.60.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\SkiaSharp.1.60.0\lib\MonoAndroid\SkiaSharp.dll</HintPath>
-    </Reference>
     <Reference Include="SkiaSharp.Views.Android, Version=1.60.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\SkiaSharp.Views.1.60.0\lib\MonoAndroid\SkiaSharp.Views.Android.dll</HintPath>
     </Reference>
@@ -232,6 +229,9 @@
     <Reference Include="Plugin.Media">
       <HintPath>..\packages\Xam.Plugin.Media.4.0.0.9\lib\monoandroid71\Plugin.Media.dll</HintPath>
     </Reference>
+    <Reference Include="SkiaSharp">
+      <HintPath>..\packages\SkiaSharp.1.60.1\lib\MonoAndroid\SkiaSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -257,6 +257,8 @@
     <Compile Include="TextMeter.cs" />
     <Compile Include="Toast_Android.cs" />
     <Compile Include="EntryRenderer.cs" />
+    <Compile Include="TouchEffect.cs" />
+    <Compile Include="PicturePickerImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />

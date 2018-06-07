@@ -16,7 +16,7 @@ using AepApp.Models;
 using CloudWTO.Services;
 using System.Threading.Tasks;
 using System.Net;
-
+using AepApp.View.EnvironmentalEmergency;
 namespace AepApp
 {
     public partial class App : Application, INotifyPropertyChanged
@@ -83,14 +83,16 @@ namespace AepApp
         public App()
         {
             InitializeComponent();
-            MainPage = new SplashPage();
+            MainPage = new NavigationPage(new LoginPage());
+
+            //MainPage = new WindSpeedAndDirectionPage();
         }
 
 
         protected async override void OnStart()
         {
             base.OnStart();
-
+            //return;
             //获取存储的账号密码
             acc = (await AccountStore.Create().FindAccountsForServiceAsync(App.appName)).LastOrDefault();
 
@@ -123,7 +125,24 @@ namespace AepApp
 
             if (fwtoken == null)
             {
-                return false;
+
+                //string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
+                //ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
+                //{
+                //    userNameOrEmailAddress = "admin",
+                //    password = "123qwe",
+                //    rememberClient = "true"
+                //};
+                //string param2 = JsonConvert.SerializeObject(parameter2);
+                //HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
+                //if (res2.StatusCode == HttpStatusCode.OK)
+                //{
+                //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
+                //    EmergencyToken = tokenstr.result.accessToken;
+                //}
+
+
+                //return true;
             }
             else {
                 string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
@@ -348,6 +367,13 @@ namespace AepApp
         public string waitingForActivation { get; set; }
     }
 
+    internal class ConvertedTokenReqStruct2
+    {
+        public string userNameOrEmailAddress { get; set; }
+        public string password { get; set; }
+        public string rememberClient { get; set; }
+
+    }
 
     internal class ConvertedTokenResult
     {
