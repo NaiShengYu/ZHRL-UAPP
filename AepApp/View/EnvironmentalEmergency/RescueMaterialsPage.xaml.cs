@@ -33,7 +33,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private async void ReqRescueMaterials(string id)
         {
-            string url = App.BaseUrlForYINGJI + DetailUrl.RescueMaterials + "?Id=" + id;
+            string url = App.EmergencyModule.url + DetailUrl.RescueMaterials + "?Id=" + id;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {

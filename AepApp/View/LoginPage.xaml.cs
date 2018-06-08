@@ -76,7 +76,7 @@ namespace AepApp.View
                 }
             }
             //获取存储文件下的内容
-            var acc = AccountStore.Create().FindAccountsForService(App.appName).LastOrDefault();
+            var acc = AccountStore.Create().FindAccountsForService(App.AppName).LastOrDefault();
 
             var siteData = AccountStore.Create().FindAccountsForService(App.SiteData).LastOrDefault();
             if (isFirstAppear)
@@ -130,11 +130,13 @@ namespace AepApp.View
 
                     // save the credential only after successful login
 
+#if !(DEBUG && __IOS__)
+
                     //循环删除所存的数据
-                    IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.appName);
+                    IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.AppName);
                     for (int i = 0; i < outs.Count(); i++)
                     {
-                        AccountStore.Create().Delete(outs.ElementAt(i), App.appName);
+                        AccountStore.Create().Delete(outs.ElementAt(i), App.AppName);
                     }
                     if (remember_pwd.IsToggled)
                     {
@@ -143,9 +145,11 @@ namespace AepApp.View
                             Username = acc
                         };
                         count.Properties.Add("pwd", pwd);
-                        AccountStore.Create().Save(count, App.appName);
+                        AccountStore.Create().Save(count, App.AppName);
                     }
-                } else
+#endif
+                }
+                else
                 {
                     DisplayAlert("提示", "登入失败", "确定");
                 }

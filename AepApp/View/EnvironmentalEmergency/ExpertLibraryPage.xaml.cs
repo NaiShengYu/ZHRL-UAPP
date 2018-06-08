@@ -63,7 +63,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private async void ReqExpertLibrary(String Filter, String Sorting, int SkipCount, int MaxResultCount)
         {
-            string url = App.BaseUrlForYINGJI + DetailUrl.ExpertLibraryUrl + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
+            string url = App.EmergencyModule.url + DetailUrl.ExpertLibraryUrl + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {

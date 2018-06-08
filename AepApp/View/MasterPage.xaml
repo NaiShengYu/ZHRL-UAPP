@@ -15,7 +15,7 @@
             <Grid HeightRequest="350" BackgroundColor="rgb(48, 116, 163)">
                 <Image Source="tree" HeightRequest="130" WidthRequest="130" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,0"/>
 
-                <Label Text="瑞蓝智慧环保系统" FontSize="20" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,10,10,0" />
+                <Label Text="瑞蓝智慧环保系统" FontSize="20" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,12,10,0" />
                 <Label Text="Azura Environmental" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,35,10,0"  />
                 <Label Text="Protection System" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,50,10,0"  />
 

@@ -28,33 +28,34 @@ namespace AepApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private const string EmergencyModuleID = "D53E7751-26A7-4B6C-B8E1-E243621A84CF";
-        private const string BasicDataModuleID = "D53E7751-26A7-4B6C-B8E1-E243621A84CF"; //基础数据模块id
+        private const string EmergencyModuleID  = "99A2844E-DF79-41D1-8CC4-CE98074CF31A";
+        private const string BasicDataModuleID  = "D53E7751-26A7-4B6C-B8E1-E243621A84CF"; //基础数据模块id
+        private const string EP360ModuleID      = "C105368C-7AF6-49C8-AED3-6A0C7A9E3F7B";
+        private const string SamplingModuleID   = "65B3E603-4493-44CA-953A-685513B01298";
+        private const string SimVisModuleID     = "4C534464-AD7D-42FF-80AF-0049CDC6A9F6";
 
         public string FrameworkURL = "http://gx.azuratech.com:30000";
         public List<ModuleInfo> Modules = null;
-        public ModuleInfo EmergencyModule = null;
+        public static ModuleInfo EmergencyModule = null;
         public static ModuleInfo BasicDataModule = null;
+        public static ModuleInfo EP360Module = null;
+        public static ModuleInfo SamplingModule = null;
+        public static ModuleInfo SimVisModule = null;
 
+        public static string FrameworkToken = "";       // Returned by the framework server. To be used as the ONLY access token throughout the APP
+        public static string EmergencyToken = "";       // used temporarily for the emergency module
 
-
-        public static bool UseMockDataStore = true;
-        public static string BackendUrl = "https://localhost:5000";
-        public static string NEWTOKENURL = "http://gx.azuratech.com:30000/token";
-        //public static string BasicDataModule = "";//基础数据模块url
-        //public static double pid = 3.14;
-        public static string BaseUrl = "";
-        //新应急接口baseURL
-        public static string BaseUrlForYINGJI = "http://192.168.1.128:5000/";
-        public static string token = "";
-        public static string EmergencyToken = "";
-        public static string frameworkToken = "";
-        public static string appName = "Aep";
-        public static string appAccident = "Accident";
+        // needed in AccountStore for credential storing
+        public static string AppName = "Aep";
         public static string SiteData = "site";
+
+        ///////////////////////////
+        public static string BaseUrl = "";  // old app url
+        public static string token = "";    // old app token
         public static bool isDeleteInfo = false;
         public static bool isAutoLogin = false;
         public static bool isSetToLogin = false;
+        ///////////////////////////
 
         public static List<TodoItem> todoItemList = new List<TodoItem>();
 
@@ -76,7 +77,6 @@ namespace AepApp
         }
 
 
-        private string result;
         private TodoItem item;
         private Account acc;
 
@@ -94,7 +94,7 @@ namespace AepApp
             base.OnStart();
             //return;
             //获取存储的账号密码
-            acc = (await AccountStore.Create().FindAccountsForServiceAsync(App.appName)).LastOrDefault();
+            acc = (await AccountStore.Create().FindAccountsForServiceAsync(App.AppName)).LastOrDefault();
 
             if (acc == null)
             {
@@ -159,8 +159,8 @@ namespace AepApp
                 //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
                 //    EmergencyToken = tokenstr.result.accessToken;
                 //}
-                frameworkToken = fwtoken.access_token;  
-                return true;
+                FrameworkToken = fwtoken.access_token;  
+//                return true;
 
             }      
 
@@ -176,23 +176,25 @@ namespace AepApp
             {
                 foreach (ModuleInfo mi in Modules)
                 {
-                    //if (mi.id == EmergencyModuleID)
-                    //{
-                    //    EmergencyModule = mi;
-                    //    continue;
-                    //}
-                    if (mi.id == BasicDataModuleID) {
-                        BasicDataModule = mi;
-                        continue;
+                    switch (mi.id.ToUpper())
+                    {
+                        case EmergencyModuleID: EmergencyModule = mi; break;
+                        case BasicDataModuleID: BasicDataModule = mi; break;
+                        case EP360ModuleID: EP360Module = mi; break;
+                        case SamplingModuleID: SamplingModule = mi; break;
+                        case SimVisModuleID: SimVisModule = mi; break;
                     }
                 }
-                return false;
+           }
+
+
+            if (EmergencyModule != null)
+            {
+                EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
             }
 
-            //if (EmergencyModule != null)
-            //{
-                EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
-            //}
+            // for debug only
+            EmergencyModule.url = "http://192.168.1.128:5000/";
 
             if (EmergencyToken != null)
             {

@@ -55,7 +55,7 @@ namespace AepApp.View.EnvironmentalEmergency
         }
         private async void ReqRescueSite(String Filter, String Sorting, int SkipCount, int MaxResultCount)
         {
-            string url = App.BaseUrlForYINGJI + DetailUrl.RescueSite + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
+            string url = App.EmergencyModule.url + DetailUrl.RescueSite + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {

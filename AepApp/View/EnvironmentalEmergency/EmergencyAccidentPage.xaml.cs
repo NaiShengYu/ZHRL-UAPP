@@ -38,7 +38,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private async void ReqEmergencyAccidentInfo(String Filter, String Sorting, int SkipCount, int MaxResultCount)
         {
-            string url = App.BaseUrlForYINGJI + DetailUrl.GetEmergencyAccidentList +
+            string url = App.EmergencyModule.url + DetailUrl.GetEmergencyAccidentList +
                     "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount; ;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)

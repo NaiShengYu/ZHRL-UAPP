@@ -134,10 +134,10 @@ namespace AepApp.View
             if (answer)
             {
                 //循环删除所存的数据
-                IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.appName);
+                IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.AppName);
                 for (int i = 0; i < outs.Count(); i++)
                 {
-                    AccountStore.Create().Delete(outs.ElementAt(i), App.appName);
+                    AccountStore.Create().Delete(outs.ElementAt(i), App.AppName);
                 }
                 App.isDeleteInfo = true;
             }

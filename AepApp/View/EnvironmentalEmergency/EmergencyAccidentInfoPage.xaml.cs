@@ -273,7 +273,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private async void ReqEmergencyAccidentDetail(string id)
         {
-            string url = App.BaseUrlForYINGJI + DetailUrl.GetEmergencyDetail +
+            string url = App.EmergencyModule.url + DetailUrl.GetEmergencyDetail +
                    "?Id=" + id;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == HttpStatusCode.OK)
