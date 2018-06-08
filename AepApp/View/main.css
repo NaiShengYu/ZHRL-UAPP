@@ -11,14 +11,24 @@
         text-align: left;
     }
 
-.itemtitle{
-    font-size:17;
-    color:black;
+.itemtitle {
+    font-size: 17;
+    color: black;
 }
 
-.itemsubtitle{
-    font-size:15;
-    color:gray;
+.itemtitlesmall {
+    font-size: 15;
+    color: black;
+}
+
+.itemsubtitle {
+    font-size: 15;
+    color: gray;
+}
+
+.itemsubtitlesmall {
+    font-size: 12;
+    color: gray;
 }
 
 .sbar{
@@ -30,6 +40,37 @@
     background-color:#fafafa;
 }
 
-.item{
-    height:55;
+.item {
+    height: 55;
 }
+
+.sep {
+    background-color: #D6D6D6;
+    height:0.5;
+}
+
+
+.valueitem {
+    height: 55;
+    border-bottom-color: gray;
+    border-bottom-style: solid;
+    border-bottom-width: 1;
+}
+
+.itemlabel {
+    font-size: 17;
+    color: black;
+    margin-left:20;
+   
+}
+
+.itemvalue {
+    font-size: 15;
+    margin-right: 20;
+}
+.itemvaluesmall {
+    font-size: 12;
+    margin-right: 20;
+    margin-left: 80;
+}
+

@@ -3,26 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.ChemicalPage" 
              Title="化学品">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
           <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" SearchButtonPressed="Handle_SearchButtonPressed">
-            </SearchBar>
-            <BoxView BackgroundColor="#CDC9C9" HeightRequest="1">
-            </BoxView>
-            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
+            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" SearchButtonPressed="Handle_SearchButtonPressed" StyleClass="sbar" />
+            <ListView x:Name="listView" HasUnevenRows="true" StyleClass="mainlist" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout>
-                                    <Label Text="{Binding chinesename}" Margin="10,10,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
-                                    <Label FontSize="15" TextColor="Gray" Text="{Binding elname}" Margin="10,0,0,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
+                            <Grid VerticalOptions="Center" StyleClass="item">
+                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="0">
+                                    <Label StyleClass="itemtitle" Text="{Binding chinesename}" />
+                                    <Label StyleClass="itemsubtitlesmall" Text="{Binding elname}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding elname}" Value="" >
+                                                <Setter Property="IsVisible" Value="false" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
                                 </StackLayout>
-                                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
-                                    <Label Text="CAS 编号" Margin="0,10,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="Start" />
-                                    <Label FontSize="15" TextColor="Gray" Text="{Binding cas}" Margin="0,0,10,10" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                                </StackLayout>
-                            </StackLayout>
+                                <Grid VerticalOptions="Center" HorizontalOptions="End" WidthRequest="70" Margin="0,0,10,0" BackgroundColor="rgb(48, 116, 163)">
+                                    <StackLayout VerticalOptions="Center" Spacing="0">
+                                        <Label StyleClass="itemsubtitlesmall" TextColor="White" Text="CAS 编号" HorizontalOptions="Center" />
+                                        <Label StyleClass="itemsubtitlesmall" TextColor="White" Text="{Binding cas}" HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

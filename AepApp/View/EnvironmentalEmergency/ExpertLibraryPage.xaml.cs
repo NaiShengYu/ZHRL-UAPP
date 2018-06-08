@@ -13,19 +13,18 @@ namespace AepApp.View.EnvironmentalEmergency
         private int totalNum = 0;
         private ObservableCollection<ExpertLibraryModels.ItemsBean> dataList = new ObservableCollection<ExpertLibraryModels.ItemsBean>();
         //打电话
-        void Handle_Clicked_1(object sender, System.EventArgs e)
+        void phone_Tapped(object sender, System.EventArgs e)
         {
-            var but = sender as Button;
+            var but = sender as Image;
             ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
 
             Device.OpenUri(new Uri("tel:" + item.mobilePhone));
 
         }
         //发信息
-        void Handle_Clicked(object sender, System.EventArgs e)
+        void sms_Tapped(object sender, System.EventArgs e)
         {
-            Console.WriteLine("发信息");
-            var but = sender as Button;
+            var but = sender as Image;
             ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
             Device.OpenUri(new Uri("sms:" + item.mobilePhone));
         }
@@ -97,12 +96,5 @@ namespace AepApp.View.EnvironmentalEmergency
             InitializeComponent();
             ReqExpertLibrary(searchKey, "", 0, 10); //网络请求专家库，10条每次       
         }
-
-        //internal class item
-        //{
-        //    public string name { get; set; }
-        //    public string message { set; get; }
-        //    public string tel { get; set; }
-        //}
     }
 }

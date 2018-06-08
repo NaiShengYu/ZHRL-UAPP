@@ -19,12 +19,18 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
+        void Handle_SearchButtonPressed(object sender, System.EventArgs e)
+        {
+        }
+
+
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as item;
+            var item = e.SelectedItem as SuccessCaseModels.ItemsBean;
             if (item == null)
+            {
                 return;
-
+            }
             listView.SelectedItem = null;
 
         }

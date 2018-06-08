@@ -21,7 +21,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as item;
+            var item = e.SelectedItem as SensitiveModels.ItemsBean;
             if (item == null)
                 return;
 
@@ -59,14 +59,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 listView.ItemsSource = dataList;
             }
-        }
-
-        internal class item
-        {
-            public string name { get; set; }
-            public string address { set; get; }
-            public string type { get; set; }
-
         }
 
         private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)

@@ -79,13 +79,6 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
-        internal class item
-        {
-            public string name { get; set; }
-            public string message { set; get; }
-
-        }
-
         private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             EquipmentPageModel.ItemsBean item = e.Item as EquipmentPageModel.ItemsBean;

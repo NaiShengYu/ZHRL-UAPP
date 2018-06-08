@@ -34,6 +34,16 @@ namespace AepApp.Models
             }
             public string env_impact { get; set; }
             public string field_test { get; set; }
+
+            public string field_testA
+            {
+                get
+                {
+                    return Shorttext(field_test);
+                }
+                set { }
+            }
+
             public string flash_point { get; set; }
             public string gb { get; set; }
             public string chemid { get; set; }
@@ -58,10 +68,7 @@ namespace AepApp.Models
 
             public string elnameA {
                 get{
-                    if(string.IsNullOrWhiteSpace(elname))return "";
-
-                    
-                    return HtmlRemoval.StripTagsRegex(elname);
+                    return Shorttext(elname);
                 }
                 set{}
             }
@@ -70,9 +77,7 @@ namespace AepApp.Models
             {
                 get
                 {
-                    if (string.IsNullOrWhiteSpace(response))return "";
-
-                    return HtmlRemoval.StripTagsRegex(response);
+                    return Shorttext(response);
                 }
                 set { }
             }
@@ -81,8 +86,7 @@ namespace AepApp.Models
             {
                 get
                 {
-                    if (string.IsNullOrWhiteSpace(env_impact))return "";
-                    return HtmlRemoval.StripTagsRegex(env_impact);
+                    return Shorttext(env_impact);
                 }
                 set { }
             }
@@ -91,13 +95,28 @@ namespace AepApp.Models
             {
                 get
                 {
-                    if (string.IsNullOrWhiteSpace(application)) return "";
-                    return HtmlRemoval.StripTagsRegex(application);
+                    return Shorttext(application);
                 }
                 set { }
+            }
+
+            private string Shorttext(string input)
+            {
+                if (string.IsNullOrWhiteSpace(input)) return "";
+                string a = HtmlRemoval.StripTagsRegex(input);
+                string[] strs = a.Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                if (strs.Length == 0) return null;
+                if (strs[0].Length > 16 || strs.Length > 1)
+                {
+                    if (strs[0].Length > 16) return strs[0].Substring(0, 16) + "...";
+                    return strs[0] + "...";
+                }
+                return strs[0];
             }
 
         }
 
     }
+
+    
 }

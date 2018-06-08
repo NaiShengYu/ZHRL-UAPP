@@ -28,6 +28,16 @@ namespace AepApp.Models
             public int type { get; set; }
             public string updatedate { get; set; }
 
+            public string BrandAndModel
+            {
+                get
+                {
+                    string ret = (brand + " " + model).Trim();
+                    if (string.IsNullOrWhiteSpace(ret)) return null;
+                    return ret;
+                }
+            }
+
         }
     }
 }

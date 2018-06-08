@@ -11,7 +11,7 @@
     
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" StyleClass="sbar"></SearchBar>
+            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" StyleClass="sbar" />
             <ListView x:Name="listView" HasUnevenRows="true" StyleClass="mainlist" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -23,7 +23,7 @@
                                 </StackLayout>
 
                                 <Grid HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,20,0">
-                                    <Grid BackgroundColor="Maroon" WidthRequest="64" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Start">
+                                    <Grid BackgroundColor="#800000" WidthRequest="64" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Start">
                                         <Grid.Triggers>
                                             <DataTrigger TargetType="Grid" Binding="{Binding isArchived}" Value="false" >
                                                 <Setter Property="BackgroundColor" Value="#EDEDED" />
@@ -37,7 +37,7 @@
                                           WidthRequest="20" HeightRequest="20" BackgroundColor="#EDEDED" >
                                         <Grid.Triggers>
                                             <DataTrigger TargetType="Grid" Binding="{Binding hasAirNature}" Value="true">
-                                                <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
+                                                <Setter Property="BackgroundColor" Value="#92A6B0" />
                                             </DataTrigger>
                                         </Grid.Triggers>
                                         <Label FontSize="15" TextColor="White" Text="气" HorizontalOptions="Center">
@@ -49,7 +49,7 @@
                                           WidthRequest="20" HeightRequest="20" BackgroundColor="#EDEDED" >
                                         <Grid.Triggers>
                                             <DataTrigger TargetType="Grid" Binding="{Binding hasWaterNature}" Value="true">
-                                                <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
+                                                <Setter Property="BackgroundColor" Value="#2772A5" />
                                             </DataTrigger>
                                         </Grid.Triggers>
                                         <Label FontSize="15" TextColor="White" Text="水" HorizontalOptions="Center">
@@ -61,7 +61,7 @@
                                             WidthRequest="20" HeightRequest="20" BackgroundColor="#EDEDED" >
                                         <Grid.Triggers>
                                             <DataTrigger TargetType="Grid" Binding="{Binding hasSoilNature}" Value="true">
-                                                <Setter Property="BackgroundColor" Value="rgb(48, 116, 163)" />
+                                                <Setter Property="BackgroundColor" Value="#A56827" />
                                             </DataTrigger>
                                         </Grid.Triggers>
                                         <Label FontSize="15" TextColor="White" Text="土" HorizontalOptions="Center">

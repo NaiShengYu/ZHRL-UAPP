@@ -3,23 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.SensitiveSourcePage" 
              Title="敏感源">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach">
-            </SearchBar>
-            <BoxView BackgroundColor="#CDC9C9" HeightRequest="1">
-            </BoxView>
-            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
+            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" StyleClass="sbar" />
+            <ListView x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label FontSize="17" Text="{Binding name}" Margin="10,8,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                                    <Label FontSize="15" Text="{Binding type}" Margin="10,8,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" TextColor="White" WidthRequest="70" BackgroundColor="rgb(48, 116, 163)" />
+                            <Grid VerticalOptions="Center" StyleClass="item">
+                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="0">
+                                    <Label StyleClass="itemtitle" Text="{Binding name}" />
+                                    <Label StyleClass="itemsubtitle" Text="{Binding address}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding address}" Value="" >
+                                                <Setter Property="IsVisible" Value="false" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
                                 </StackLayout>
-                                <Label TextColor="Gray" FontSize="15" Text="{Binding address}" Margin="10,0,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
-                            </StackLayout>
+                                <Label Text="{Binding type}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,20,0" TextColor="White" WidthRequest="70" BackgroundColor="rgb(48, 116, 163)" />
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

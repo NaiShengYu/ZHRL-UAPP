@@ -11,8 +11,8 @@ namespace AepApp.View.EnvironmentalEmergency
     public partial class RescueMaterialsPage : ContentPage
     {
         private int start = 0;
-        private int totalNum = 0;
         private ObservableCollection<RescueMaterialsModel.ReliefSuppliesBean> dataList = new ObservableCollection<RescueMaterialsModel.ReliefSuppliesBean>();
+
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             RescueMaterialsModel.ReliefSuppliesBean item = e.SelectedItem as RescueMaterialsModel.ReliefSuppliesBean;
@@ -20,7 +20,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 return;
 
             listView.SelectedItem = null;
-
         }
 
         public RescueMaterialsPage(RescueSiteModel.ItemsBean itemsBean)
@@ -50,12 +49,5 @@ namespace AepApp.View.EnvironmentalEmergency
                 listView.ItemsSource = dataList;
             }
         }
-
-        //internal class item
-        //{
-        //    public string name { get; set; }
-        //    public string num { set; get; }
-
-        //}
     }
 }

@@ -2,55 +2,64 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.EquipmentInfoPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout Spacing="1">
-            <ScrollView>
-                <StackLayout Spacing="0" BackgroundColor="White">
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="设备编号" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label TextColor="Gray" Text="{Binding code}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="设备品牌/型号" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label TextColor="Gray" Text="{Binding model}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="设备类型" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label TextColor="Gray" Text="{Binding type}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="设备类别" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label TextColor="Gray" Text="应急监测" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="设备位置" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label TextColor="Gray" Text="监测车1" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout x:Name="call" Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="负责人员" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label TextColor="Gray" Text="张三" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="上次校准日期" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label TextColor="Gray" Text="2018-01-29 16:33" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="上次更新时间" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label  TextColor="Gray" Text="{Binding updatedate}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="更换周期" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label  TextColor="Gray" Text="{Binding charging_period}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+            <ScrollView StyleClass="mainlist">
+                <StackLayout Spacing="0">
+                    <Grid StyleClass="valueitem" >
+                        <Label StyleClass="itemlabel" Text="设备编号" VerticalOptions="Center" HorizontalOptions="Start" />
+                        <Label StyleClass="itemvalue" Text="{Binding code}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView StyleClass="sep" />
+
+                    <Grid StyleClass="valueitem" >
+                        <Label StyleClass="itemlabel" Text="设备品牌/型号" VerticalOptions="Center" HorizontalOptions="Start" />
+                        <Label StyleClass="itemvalue" Text="{Binding model}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView StyleClass="sep" />
+
+                    <Grid StyleClass="valueitem" >
+                        <Label StyleClass="itemlabel" Text="设备类型" VerticalOptions="Center" HorizontalOptions="Start" />
+                        <Label StyleClass="itemvalue" Text="{Binding type}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                    </Grid>
+
+                    <BoxView StyleClass="sep" />
+                    <Grid StyleClass="valueitem" >
+                        <Label StyleClass="itemlabel" Text="设备类别" VerticalOptions="Center" HorizontalOptions="Start" />
+                        <Label StyleClass="itemvalue" Text="应急监测" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView StyleClass="sep" />
+                    <Grid StyleClass="valueitem" >
+                        <Label StyleClass="itemlabel" Text="设备位置" VerticalOptions="Center" HorizontalOptions="Start" />
+                        <Label StyleClass="itemvalue" Text="监测车1" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView StyleClass="sep" />
+                    <Grid StyleClass="valueitem" >
+                        <Label StyleClass="itemlabel" Text="负责人员" VerticalOptions="Center" HorizontalOptions="Start" />
+                        <Label StyleClass="itemvalue" Text="张三" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView StyleClass="sep" />
+                    <Grid StyleClass="valueitem" >
+                        <Label StyleClass="itemlabel" Text="上次校准日期" VerticalOptions="Center" HorizontalOptions="Start" />
+                        <Label StyleClass="itemvalue" Text="2018-01-29 16:33" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView StyleClass="sep" />
+                    <Grid StyleClass="valueitem" >
+                        <Label StyleClass="itemlabel" Text="上次更新日期" VerticalOptions="Center" HorizontalOptions="Start" />
+                        <Label StyleClass="itemvalue" Text="{Binding updatedate, StringFormat='{0:yyyy-MM-dd}'}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView StyleClass="sep" />
+                    <Grid StyleClass="valueitem" >
+                        <Label StyleClass="itemlabel" Text="更换周期" VerticalOptions="Center" HorizontalOptions="Start" />
+                        <Label StyleClass="itemvalue" Text="{Binding charging_period}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView StyleClass="sep" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>
