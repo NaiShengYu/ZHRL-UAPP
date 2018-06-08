@@ -1,10 +1,12 @@
 ﻿using AepApp.Models;
 using CloudWTO.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using Xamarin.Forms;
+using static AepApp.Models.EmergencyAccidentInfoDetail;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
@@ -79,11 +81,11 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
         {
 
-            var item = e.Item as item;
+            var item = e.Item as IncidentLoggingEventsBean;
 
             try
             {
-                TimeSpan time1 = appearList[appearList.Count - 1].time.Subtract(item.time).Duration();
+                TimeSpan time1 = appearList[appearList.Count - 1].creationTime.Subtract(item.creationTime).Duration();
                 var timelong = time1.Seconds;
 
                 int a = dataList.IndexOf(item);
@@ -112,7 +114,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         void Handle_ItemDisappearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
         {
-            var item = e.Item as item;
+            var item = e.Item as IncidentLoggingEventsBean;
             appearList.Remove(item);
             showCurrentItems();
         }
@@ -140,133 +142,27 @@ namespace AepApp.View.EnvironmentalEmergency
             listView.SelectedItem = null;
         }
 
-        ObservableCollection<item> dataList = new ObservableCollection<item>();
-        List<item> appearList = new List<item>();
+        private EventDataTemplateSelector _dts;
+
+        public EventDataTemplateSelector DTS
+        {
+            get { return _dts; }
+            set { _dts = value; }
+        }
+
+
+        ObservableCollection<IncidentLoggingEventsBean> dataList = new ObservableCollection<IncidentLoggingEventsBean>();
+        List<IncidentLoggingEventsBean> appearList = new List<IncidentLoggingEventsBean>();
         public EmergencyAccidentInfoPage(string name,string id)
         {
             InitializeComponent();
+            DTS = new EventDataTemplateSelector(this);
+
             this.Title = name;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             ReqEmergencyAccidentDetail(id);
 
-
-            //var item1 = new item
-            //{
-            //    timeAndName = "2018/05/28 11:16/张三",
-            //    imgSourse = "",
-            //    info = "先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。然侍卫之臣不懈于内，忠志之士忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气，不宜妄自菲薄，引喻失义，以塞忠谏之路也。",
-            //    address = "121.123455,29.222222",
-            //    isShowAddress = true,
-
-            //    time = Convert.ToDateTime("2018-03-16 16:51:46.310"),
-
-            //};
-
-            //dataList.Add(item1);
-
-            //var item2 = new item
-            //{
-            //    address = "",
-            //    timeAndName = "2018/05/28 11:16/张三",
-            //    imgSourse = "",
-            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-            //    isShowAddress = false,
-            //    time = Convert.ToDateTime("2018-03-19 16:51:46.310"),
-
-            //};
-
-            //dataList.Add(item2);
-
-            //var item3 = new item
-            //{
-            //    address = "121.123455,29.222222",
-            //    timeAndName = "2018/05/28 11:16/张三",
-            //    imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
-            //    info = "",
-            //    isShowAddress = true,
-            //    time = Convert.ToDateTime("2018-03-19 17:51:46.310"),
-            //};
-
-            //dataList.Add(item3);
-
-
-            //var item4 = new item
-            //{
-            //    address = "121.123455,29.222222",
-            //    timeAndName = "2018/05/28 11:16/张三",
-            //    imgSourse = "",
-            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-            //    isShowAddress = false,
-            //    time = Convert.ToDateTime("2018-03-19 18:06:46.310"),
-            //};
-
-            //dataList.Add(item4);
-
-            //var item5 = new item
-            //{
-            //    address = "121.123455,29.222222",
-            //    timeAndName = "2018/05/28 11:16/张三",
-            //    imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
-            //    info = "",
-            //    isShowAddress = true,
-            //    time = Convert.ToDateTime("2018-03-20 17:51:46.310"),
-            //};
-
-            //dataList.Add(item5);
-
-            //var item7 = new item
-            //{
-            //    address = "121.123455,29.222222",
-            //    timeAndName = "2018/05/28 11:16/张三",
-            //    imgSourse = "",
-            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-            //    isShowAddress = false,
-            //    time = Convert.ToDateTime("2018-04-9 17:51:46.310"),
-            //};
-
-            //dataList.Add(item7);
-
-            //var item8 = new item
-            //{
-            //    address = "121.123455,29.222222",
-            //    timeAndName = "2018/05/28 11:16/张三",
-            //    imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
-            //    info = "",
-            //    isShowAddress = true,
-            //    time = Convert.ToDateTime("2018-05-19 17:51:46.310"),
-            //};
-
-            //dataList.Add(item8);
-
-            //var item9 = new item
-            //{
-            //    address = "121.123455,29.222222",
-            //    timeAndName = "2018/05/28 11:16/张三",
-            //    imgSourse = "",
-            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-            //    isShowAddress = false,
-            //    time = Convert.ToDateTime("2018-05-19 22:51:46.310"),
-            //};
-
-            //dataList.Add(item9);
-
-            //var item10 = new item
-            //{
-            //    address = "121.123455,29.222222",
-            //    timeAndName = "2018/05/28 11:16/张三",
-            //    imgSourse = "",
-            //    info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-            //    isShowAddress = false,
-            //    time = Convert.ToDateTime("2018-05-19 22:55:46.310"),
-            //};
-
-            //dataList.Add(item10);
-
-            //listView.ItemsSource = dataList;
-
-            //listView滑动到第七个item
-            //listView.ScrollTo(item7,ScrollToPosition.Start,true);
-            //scroll.scr
+            BindingContext = this;
 
             creatScrollerView();
         }
@@ -280,16 +176,16 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 //start += 10;
-                //EmergencyAccidentPageModels.EmergencyAccidentBean accidentPageModels = new EmergencyAccidentPageModels.EmergencyAccidentBean();
-                //accidentPageModels = JsonConvert.DeserializeObject<EmergencyAccidentPageModels.EmergencyAccidentBean>(hTTPResponse.Results);
+                EmergencyAccidentInfoDetail.EmergencyAccidentBean emergencyAccidentBean = new EmergencyAccidentInfoDetail.EmergencyAccidentBean();
+                emergencyAccidentBean = JsonConvert.DeserializeObject<EmergencyAccidentInfoDetail.EmergencyAccidentBean>(hTTPResponse.Results);
                 //totalNum = accidentPageModels.result.incidents.totalCount;
-                //List<EmergencyAccidentPageModels.ItemsBean> list = accidentPageModels.result.incidents.items;
-                //int count = list.Count;
-                //for (int i = 0; i < count; i++)
-                //{
-                //    dataList.Add(list[i]);
-                //}
-                //listView.ItemsSource = dataList;
+                List<EmergencyAccidentInfoDetail.IncidentLoggingEventsBean> list = emergencyAccidentBean.result.incidentLoggingEvents;
+                int count = list.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    dataList.Add(list[i]);
+                }
+                listView.ItemsSource = dataList;
             }
         }
 
@@ -308,10 +204,10 @@ namespace AepApp.View.EnvironmentalEmergency
                 var item = dataList[i];
                 if (i == 0)
                 {
-                    lastTime = item.time;
+                    lastTime = item.creationTime;
                 }
 
-                TimeSpan time1 = item.time.Subtract(lastTime).Duration();
+                TimeSpan time1 = item.creationTime.Subtract(lastTime).Duration();
                 double timeLong = time1.TotalHours;
 
                 BoxView box = new BoxView
@@ -330,7 +226,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 scrollLayout.Children.Add(box);
                 scrollLayout.Children.Add(box1);
-                lastTime = item.time;
+                lastTime = item.creationTime;
             }
 
         }
@@ -341,7 +237,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 var firstItem = appearList[0];
                 var lastItem = appearList[appearList.Count - 1];
-                TimeSpan time1 = firstItem.time.Subtract(lastItem.time).Duration();
+                TimeSpan time1 = firstItem.creationTime.Subtract(lastItem.creationTime).Duration();
                 double timeLong = time1.TotalHours;
                 positionView.HeightRequest = 10 * appearList.Count + timeLong - 2;
 
@@ -350,7 +246,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 int a = dataList.IndexOf(firstItem);
 
                 //postiongView 开始位置
-                TimeSpan time2 = firstItem.time.Subtract(item.time).Duration();
+                TimeSpan time2 = firstItem.creationTime.Subtract(item.creationTime).Duration();
                 double timeLong1 = time2.TotalHours;
                 positionView.Margin = new Thickness(0, 10 * a + timeLong1 + 1, 0, 0);
 
@@ -370,6 +266,46 @@ namespace AepApp.View.EnvironmentalEmergency
             public bool isShowAddress { set; get; }
 
             public DateTime time { get; set; }
+        }
+
+
+        public class EventDataTemplateSelector : DataTemplateSelector
+        {
+            DataTemplate natureDT = null;
+            DataTemplate centerLocDT = null;
+            DataTemplate FactorIdentificationDT = null;
+            DataTemplate FactorMeasurementDT = null;
+            DataTemplate MessageSendingDT = null;
+            DataTemplate PictureSendingDT = null;
+            DataTemplate PlanGenerationDT = null;
+
+            public EventDataTemplateSelector(EmergencyAccidentInfoPage page)
+            {
+                natureDT = page.Resources["natureDT"] as DataTemplate;
+                centerLocDT = page.Resources["centerLocDT"] as DataTemplate;
+                FactorIdentificationDT = page.Resources["FactorIdentificationDT"] as DataTemplate;
+                FactorMeasurementDT = page.Resources["FactorMeasurementDT"] as DataTemplate;
+                MessageSendingDT = page.Resources["MessageSendingDT"] as DataTemplate;
+                //PictureSendingDT = page.Resources["PictureSendingDT"] as DataTemplate;
+                //PlanGenerationDT = page.Resources["PlanGenerationDT"] as DataTemplate;
+            }
+
+            protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+            {
+                IncidentLoggingEventsBean i = item as IncidentLoggingEventsBean;
+
+                switch (i.category)
+                {
+                    case "IncidentNatureIdentificationEvent": return natureDT; 
+                    case "IncidentLocationSendingEvent": return centerLocDT;
+                    case "IncidentFactorIdentificationEvent": return FactorIdentificationDT;
+                    case "IncidentFactorMeasurementEvent": return FactorMeasurementDT;
+                    case "IncidentMessageSendingEvent": return MessageSendingDT;
+                        //case "IncidentPictureSendingEvent": return PictureSendingDT;
+                        //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                }
+                return natureDT;
+            }
         }
     }
 }

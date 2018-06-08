@@ -141,28 +141,8 @@ namespace AepApp
                 //    EmergencyToken = tokenstr.result.accessToken;
                 //}
 
-
                 return false;
-            }
-            else {
-                //string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
-                //ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
-                //{
-                //    userNameOrEmailAddress = "admin",
-                //    password = "123qwe",
-                //    rememberClient = "true"
-                //};
-                //string param2 = JsonConvert.SerializeObject(parameter2);
-                //HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
-                //if (res2.StatusCode == HttpStatusCode.OK)
-                //{
-                //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
-                //    EmergencyToken = tokenstr.result.accessToken;
-                //}
-                FrameworkToken = fwtoken.access_token;  
-//                return true;
-
-            }      
+            }       
 
             Modules = await GetModuleInfoAsync(fwtoken.access_token);
             //D53E7751-26A7-4B6C-B8E1-E243621A84CF
@@ -184,17 +164,34 @@ namespace AepApp
                         case SamplingModuleID: SamplingModule = mi; break;
                         case SimVisModuleID: SimVisModule = mi; break;
                     }
-                }
-           }
-
-
-            if (EmergencyModule != null)
-            {
-                EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
+                }               
             }
 
-            // for debug only
-            EmergencyModule.url = "http://192.168.1.128:5000/";
+            //正式环境去掉下面部分
+            string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
+            ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
+            {
+                userNameOrEmailAddress = "admin",
+                password = "123qwe",
+                rememberClient = "true"
+            };
+            string param2 = JsonConvert.SerializeObject(parameter2);
+            HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
+            if (res2.StatusCode == HttpStatusCode.OK)
+            {
+                var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
+                EmergencyToken = tokenstr.result.accessToken;
+            }
+            frameworkToken = fwtoken.access_token;
+            return true;
+
+
+
+
+            //if (EmergencyModule != null)
+            //{
+            EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
+            //}
 
             if (EmergencyToken != null)
             {

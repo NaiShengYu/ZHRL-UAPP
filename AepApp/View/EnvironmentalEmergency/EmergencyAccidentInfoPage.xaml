@@ -1,8 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:AepApp.View"
              x:Class="AepApp.View.EnvironmentalEmergency.EmergencyAccidentInfoPage">
-     <ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="natureDT">
+                <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="Gray">
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+                            <Label Text="{Binding natureString}" Margin="10,30,55,8" />
+                        </Grid>
+                    </Grid>
+                </local:ExtendedViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="centerLocDT">
+                <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="Gray">
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding centerLocString}" Margin="10,30,55,8" />
+                            
+                        </Grid>
+                    </Grid>
+                </local:ExtendedViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="FactorIdentificationDT">
+                <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="Gray">
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding factor}" Margin="10,30,55,8" />
+                            
+                        </Grid>
+                    </Grid>
+                </local:ExtendedViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="FactorMeasurementDT">
+                <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="Gray">
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding measurement}" Margin="10,30,55,8" />
+                            
+                        </Grid>
+                    </Grid>
+                </local:ExtendedViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="MessageSendingDT">
+                <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="Gray">
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding messageSending}" Margin="10,30,55,8" />
+                            
+                        </Grid>
+                    </Grid>
+                </local:ExtendedViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="">
+                <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="Gray">
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Image Source="{Binding StorePath}" ></Image>
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding messageSending}" Margin="10,30,55,8" />
+                            
+                        </Grid>
+                    </Grid>
+                </local:ExtendedViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
         <Grid RowSpacing="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="55" />
@@ -15,8 +135,10 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
-                <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" ItemSelected="Handle_ItemSelected" ItemDisappearing="Handle_ItemDisappearing" ItemAppearing="Handle_ItemAppearing">
-                    <ListView.ItemTemplate>
+                <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" 
+                          ItemTemplate="{Binding DTS}" BackgroundColor="#fafafa"
+                          ItemSelected="Handle_ItemSelected" ItemDisappearing="Handle_ItemDisappearing" ItemAppearing="Handle_ItemAppearing">
+                    <!--<ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Frame Margin="10,5,10,0" Padding="0" HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e5e5e5">
@@ -37,7 +159,7 @@
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
+                    </ListView.ItemTemplate>-->
                 </ListView>
                 <ScrollView x:Name="scroll" Grid.Column="1" BackgroundColor="#fafafa" VerticalOptions="Fill" HorizontalOptions="Fill">
                     <Grid>
