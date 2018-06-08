@@ -258,7 +258,6 @@
     <Compile Include="Toast_Android.cs" />
     <Compile Include="EntryRenderer.cs" />
     <Compile Include="TouchEffect.cs" />
-    <Compile Include="PicturePickerImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
