@@ -11,14 +11,9 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class RescueSitePage : ContentPage
     {
-        private int start = 0;
         private int totalNum = 0;
         private ObservableCollection<RescueSiteModel.ItemsBean> dataList = new ObservableCollection<RescueSiteModel.ItemsBean>();
-        void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
-        {
-            //seach.Text = e.NewTextValue;
-
-        }
+       
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -31,25 +26,42 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
+        void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            searchKey = e.NewTextValue;
+            if (string.IsNullOrWhiteSpace(searchKey))
+            {
+                dataList.Clear();
+                ReqRescueSite(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            }
+        }
+        void Handle_SearchButtonPressed(object sender, System.EventArgs e)
+        {
+            dataList.Clear();
+            ReqRescueSite(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+        }
+
+        string searchKey = "";
+
         public RescueSitePage()
         {
             InitializeComponent();
 
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
-                Navigation.PushAsync(new RescueSiteMapPage());
-
+                if(dataList.Count !=0)
+                    Navigation.PushAsync(new RescueSiteMapPage(dataList));
             }));
-            ReqRescueSite("", "", start, 10);
+            ReqRescueSite(searchKey, "", 0, 10); //网络请求专家库，10条每次       
         }
         private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             RescueSiteModel.ItemsBean item = e.Item as RescueSiteModel.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (start <= totalNum)
+                if (dataList.Count <= totalNum)
                 {
-                    ReqRescueSite("", "", start, 10); //网络请求救援地点，10条每次
+                    ReqRescueSite("", "", dataList.Count, 10); //网络请求救援地点，10条每次
                 }
             }
         }
@@ -60,7 +72,6 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);
-                start += 10;
                 RescueSiteModel.RescueSiteModelBean rescueSiteModel = new RescueSiteModel.RescueSiteModelBean();
                 rescueSiteModel = JsonConvert.DeserializeObject<RescueSiteModel.RescueSiteModelBean>(hTTPResponse.Results);
                 totalNum = rescueSiteModel.result.rescuePoints.totalCount;
@@ -81,7 +92,5 @@ namespace AepApp.View.EnvironmentalEmergency
             public string address { set; get; }
 
         }
-
-        
     }
 }

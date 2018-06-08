@@ -204,7 +204,6 @@ namespace AepApp.View.EnvironmentalEmergency
             dataList.Add(item3);
 
             EasyWebRequest.UploadImage(file.Path);
-
         }
 
 

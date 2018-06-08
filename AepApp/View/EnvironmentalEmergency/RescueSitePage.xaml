@@ -5,7 +5,7 @@
              Title="救援地点">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach">
+            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" SearchButtonPressed="Handle_SearchButtonPressed">
             </SearchBar>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1">
             </BoxView>
