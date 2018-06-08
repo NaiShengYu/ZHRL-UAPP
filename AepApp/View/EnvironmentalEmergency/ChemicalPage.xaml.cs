@@ -36,7 +36,6 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             searchKey = e.NewTextValue;
-            Console.WriteLine("====="+searchKey+"++++");
             if (string.IsNullOrWhiteSpace(searchKey))
             {
                 dataList.Clear();

@@ -12,13 +12,8 @@ namespace AepApp.View.EnvironmentalEmergency
     {    
         private int Index;
         private int total;
-        private int sum;
         private ObservableCollection<EquipmentPageModel.ItemsBean> dataList = new ObservableCollection<EquipmentPageModel.ItemsBean>();
-        void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
-        {
-            //seach.Text = e.NewTextValue;
-
-        }
+      
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -28,10 +23,26 @@ namespace AepApp.View.EnvironmentalEmergency
             Navigation.PushAsync(new EquipmentInfoPage(item.name,item.id));
 
             listView.SelectedItem = null;
-
+        }
+       
+        void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            searchKey = e.NewTextValue;
+            if (string.IsNullOrWhiteSpace(searchKey))
+            {
+                dataList.Clear();
+                Index = 0;
+                ReqEquipmentList("", Index, 10);
+            }
+        }
+        void Handle_SearchButtonPressed(object sender, System.EventArgs e)
+        {
+            dataList.Clear();
+            Index = 0;
+            ReqEquipmentList("", Index, 10);
         }
 
-       
+        string searchKey = "";
 
         public EquipmentPage()
         {
@@ -44,7 +55,7 @@ namespace AepApp.View.EnvironmentalEmergency
             string url = App.BasicDataModule.url + DetailUrl.EquipmentList;
             ChemicalStruct parameter = new ChemicalStruct
             {
-                keyword = "",
+                keyword = searchKey,
                 pageIndex = Index + "",
                 pagesize = 10 + ""
             };
@@ -55,7 +66,6 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 Index += 1;
-                sum += 10;
                 EquipmentPageModel.EquipmentPageModelBean equipmentPageModel = new EquipmentPageModel.EquipmentPageModelBean();
                 equipmentPageModel = JsonConvert.DeserializeObject<EquipmentPageModel.EquipmentPageModelBean>(hTTPResponse.Results);
                 total = equipmentPageModel.count;
@@ -81,7 +91,7 @@ namespace AepApp.View.EnvironmentalEmergency
             EquipmentPageModel.ItemsBean item = e.Item as EquipmentPageModel.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (sum < total)
+                if (dataList.Count < total)
                 {
                     ReqEquipmentList("", Index, 10);
                 }
