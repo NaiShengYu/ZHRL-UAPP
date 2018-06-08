@@ -20,9 +20,9 @@
                             <local:ExtendedViewCell.ContextActions>
                                 <MenuItem Clicked="Handle_Clicked" CommandParameter="{Binding .}" Text="delete" IsDestructive="True" />
                             </local:ExtendedViewCell.ContextActions>
-                            <Frame Margin="10,5,10,0" Padding="0" HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e5e5e5">
+                            <Frame Margin="10,5,10,0" Padding="0"  HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e5e5e5">
                                 <Grid VerticalOptions="Center" Margin="0" Padding="0">
-                                    <Image HorizontalOptions="Fill" VerticalOptions="Fill" Source="{Binding imgSourse}" />
+                                    <Image HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="400" Source="{Binding imgSourse}" Aspect="AspectFill"/>
 
                                     <StackLayout Spacing="3" VerticalOptions="Start" HorizontalOptions="Start" Orientation="Horizontal" HeightRequest="25">
                                         <Grid BackgroundColor="Gray" VerticalOptions="Start" HorizontalOptions="Start">

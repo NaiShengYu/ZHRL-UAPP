@@ -5,14 +5,16 @@ using Xamarin.Forms;
 using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class ChemicalPage : ContentPage
     {
+       
+
         private int Index;
         private int total;
-        private int sum;
         private ObservableCollection<ReqChemicalPageModel.ItemsBean> dataList = new ObservableCollection<ReqChemicalPageModel.ItemsBean>();
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -33,12 +35,23 @@ namespace AepApp.View.EnvironmentalEmergency
 
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            //seach.Text = e.NewTextValue;
-
+            searchKey = e.NewTextValue;
+            Console.WriteLine("====="+searchKey+"++++");
+            if (string.IsNullOrWhiteSpace(searchKey))
+            {
+                dataList.Clear();
+                Index = 0;
+                ReqChemicalList("", Index, 10);
+            }
+        }
+        void Handle_SearchButtonPressed(object sender, System.EventArgs e)
+        {
+            dataList.Clear();
+            Index = 0;
+            ReqChemicalList("", Index, 10);         
         }
 
-
-       
+        string searchKey = "";
         int _type = 0;
         public ChemicalPage(int type)
         {
@@ -48,12 +61,18 @@ namespace AepApp.View.EnvironmentalEmergency
             ReqChemicalList("", Index, 10);         
         }
 
+        public ChemicalPage():this(1){
+            
+        }
+
         private async void ReqChemicalList(string keyword, int pageIndex, int pageSize)
         {
             string url = App.BasicDataModule.url + DetailUrl.ChemicalList;
+            Console.WriteLine(url);
+           
             ChemicalStruct parameter = new ChemicalStruct
             {
-                keyword = "",
+                keyword = searchKey,
                 pageIndex = Index +"",
                 pagesize = 10 + ""
             };
@@ -64,7 +83,6 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 Index += 1;
-                sum += 10;
                 ReqChemicalPageModel.ReqChemicalBean reqChemicalBean = new ReqChemicalPageModel.ReqChemicalBean();
                 reqChemicalBean = JsonConvert.DeserializeObject<ReqChemicalPageModel.ReqChemicalBean>(hTTPResponse.Results);
                 total = reqChemicalBean.count;
@@ -83,7 +101,7 @@ namespace AepApp.View.EnvironmentalEmergency
             ReqChemicalPageModel.ItemsBean item = e.Item as ReqChemicalPageModel.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (sum < total)
+                if (dataList.Count < total)
                 {
                     ReqChemicalList("", Index, 10);
                 }

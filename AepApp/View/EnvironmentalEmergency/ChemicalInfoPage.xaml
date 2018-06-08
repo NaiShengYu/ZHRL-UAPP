@@ -1,69 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.EnvironmentalEmergency.ChemicalInfoPage">
     <ContentPage.Content>
-            <StackLayout Spacing="1">
+        <StackLayout Spacing="1">
             <ScrollView>
                 <StackLayout Spacing="0" BackgroundColor="White">
                     <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="GB码" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label FontSize="18" Text="GB码" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
                         <Label TextColor="Gray" Text="{Binding gb}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
                     <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="CAS编码" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label FontSize="18" Text="CAS编码" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
                         <Label TextColor="Gray" Text="{Binding cas}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
                     <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label  FontSize="18" Text="中文名称" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label FontSize="18" Text="中文名称" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
                         <Label TextColor="Gray" Text="{Binding chinesename}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="英文名称" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label TextColor="Gray" Text="{Binding elname}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>
-                    <!--<BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="常用地点" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label TextColor="Gray" Text="监测车1" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
-                    </StackLayout>-->
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <Grid>
+                        <Label FontSize="18" Text="英文名称" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                        <Label HeightRequest="44" Margin="80,8,35,8" TextColor="Gray" Text="{Binding elnameA}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Fill" />
+                        <Image Source="right" Margin="0,25,15,25" HorizontalOptions="End" />
+                        <Button BindingContext="{Binding elname}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
                     <StackLayout x:Name="call" Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="类别" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label FontSize="18" Text="类别" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
                         <Label TextColor="Gray" Text="{Binding category}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
                     <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="化学式" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label FontSize="18" Text="化学式" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
                         <Label TextColor="Gray" Text="{Binding molecular_str}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
                     <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="分子量" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label  TextColor="Gray" Text="{Binding molecular_mass}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                        <Label FontSize="18" Text="分子量" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding molecular_mass}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
                     <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="密度" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label  TextColor="Gray" Text="{Binding density}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                        <Label FontSize="18" Text="密度" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding density}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
                     <!--<BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-
                        <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="沸点" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label FontSize="18" Text="沸点" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
                         <Label  TextColor="Gray" Text="{Binding meltingPoint}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
                     </StackLayout>-->
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-
-                        <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
-                        <Label FontSize="18" Text="熔点" Margin="10,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
-                        <Label  TextColor="Gray" Text="{Binding meltingPoint}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <Grid>
+                        <Label FontSize="18" Text="应用范围" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                        <Label HeightRequest="44" Margin="80,8,35,8" TextColor="Gray" Text="{Binding applicationA}" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Fill" />
+                        <Image Source="right" Margin="0,25,15,25" HorizontalOptions="End" />
+                        <Button BindingContext="{Binding application}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="沸点" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding boiling_point}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
-                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
-
-
-
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="类别" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding category}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="特性" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding characteristics}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="危险标识" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding danger_mark}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="溶解性" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding dissolvability}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <Grid>
+                        <Label FontSize="18" Text="环境影响" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                        <Label HeightRequest="44" TextColor="Gray" Text="{Binding env_impactA}" Margin="80,8,35,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                        <Image Source="right" Margin="0,25,15,25" HorizontalOptions="End" />
+                        <Button BindingContext="{Binding env_impact}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="现场测试方法" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding field_test}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="燃点" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding flash_point}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="优先级" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding priority}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <Grid>
+                        <Label FontSize="18" Text="应变方法" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                        <Label HeightRequest="44" TextColor="Gray" Text="{Binding responseA}" Margin="80,8,35,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                        <Image Source="right" Margin="0,25,15,25" HorizontalOptions="End" />
+                        <Button BindingContext="{Binding response}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="稳定性" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding stability}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,7,0,7">
+                        <Label FontSize="18" Text="蒸汽压力" Margin="10,8,0,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
+                        <Label TextColor="Gray" Text="{Binding vapour_pressure}" Margin="0,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>
