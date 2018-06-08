@@ -169,7 +169,7 @@ namespace AepApp
             }
 
             //正式环境去掉下面部分
-            string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
+            string url = "http://192.168.1.128:5000/api/TokenAuth/Authenticate"; //无法转换token 先用这个
             ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
             {
                 userNameOrEmailAddress = "admin",
