@@ -87,10 +87,17 @@ namespace CloudWTO.Services
                     }
 
                     req.ContentLength = bs.Length;
+                    try
+                    {
                         Stream requestStream = await req.GetRequestStreamAsync();
                         await requestStream.WriteAsync(bs, 0, bs.Length);
                         //requestStream.Write(bs, 0, bs.Length);
                         requestStream.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        int a = 0;
+                    }
                 }
                 WebResponse wr = await req.GetResponseAsync();
                 res = wr as HttpWebResponse;
