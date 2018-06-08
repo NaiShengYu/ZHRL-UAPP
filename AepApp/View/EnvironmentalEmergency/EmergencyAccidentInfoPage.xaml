@@ -101,6 +101,24 @@
                     </Grid>
                 </local:ExtendedViewCell>
             </DataTemplate>
+            <DataTemplate x:Key="">
+                <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="Gray">
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Image Source="{Binding StorePath}" ></Image>
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding messageSending}" Margin="10,30,55,8" />
+                            
+                        </Grid>
+                    </Grid>
+                </local:ExtendedViewCell>
+            </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
 
