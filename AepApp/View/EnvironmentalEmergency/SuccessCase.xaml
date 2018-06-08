@@ -4,21 +4,24 @@
              x:Class="AepApp.View.EnvironmentalEmergency.SuccessCase"
              xmlns:model="clr-namespace:AepApp.Models"
              Title="成功案例">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach"></SearchBar>
-            <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
-            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
+            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" StyleClass="sbar"></SearchBar>
+            <ListView x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-
-                            <Grid VerticalOptions="Center">
-                                <Image HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="40" HeightRequest="40" Source="{Binding firstfile.format, Converter={x:Static model:FileFormatStringToIconImageConverter.Instance}}" Margin="10,10,0,10"/>
-                                <Label Margin="60,8,10,8" Text="{Binding name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+                            <Grid VerticalOptions="Center" StyleClass="item">
+                                <Image HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="40" HeightRequest="40" Source="{Binding firstfile.format, Converter={x:Static model:FileFormatStringToIconImageConverter.Instance}}" Margin="10,0,0,0"/>
+                                <Label StyleClass="itemtitle" Margin="60,0,20,0" Text="{Binding name}" VerticalOptions="Center"/>
                             </Grid>
                         </ViewCell>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

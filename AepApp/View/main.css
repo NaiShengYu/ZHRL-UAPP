@@ -10,3 +10,26 @@
         color: black;
         text-align: left;
     }
+
+.itemtitle{
+    font-size:17;
+    color:black;
+}
+
+.itemsubtitle{
+    font-size:15;
+    color:gray;
+}
+
+.sbar{
+    height:50;
+    background-color:white;
+}
+
+.mainlist{
+    background-color:#fafafa;
+}
+
+.item{
+    height:55;
+}

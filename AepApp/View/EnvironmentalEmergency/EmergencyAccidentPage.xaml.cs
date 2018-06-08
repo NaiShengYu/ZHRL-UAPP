@@ -58,13 +58,13 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
-        internal class item
-        {
-            public string title { get; set; }
-            public string time { set; get; }
-            public string type { set; get; }
-            public string state { set; get; }
-        }
+        //internal class item
+        //{
+        //    public string title { get; set; }
+        //    public string time { set; get; }
+        //    public string type { set; get; }
+        //    public string state { set; get; }
+        //}
 
         private  void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
