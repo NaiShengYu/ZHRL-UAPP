@@ -83,7 +83,7 @@ namespace AepApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new SplashPage());
 
             //MainPage = new WindSpeedAndDirectionPage();
         }
@@ -152,24 +152,24 @@ namespace AepApp
                 // for emergency module temorarily
                 //正式环境去掉下面部分
 
-                string url = EmergencyModule.url + "/api/TokenAuth/Authenticate"; //无法转换token 先用这个
-                ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
-                {
-                    userNameOrEmailAddress = "admin",
-                    password = "123qwe",
-                    rememberClient = "true"
-                };
-                string param2 = JsonConvert.SerializeObject(parameter2);
-                HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
-                if (res2.StatusCode == HttpStatusCode.OK)
-                {
-                    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
-                    EmergencyToken = tokenstr.result.accessToken;
-                }
+                //string url = EmergencyModule.url + "/api/TokenAuth/Authenticate"; //无法转换token 先用这个
+                //ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
+                //{
+                //    userNameOrEmailAddress = "admin",
+                //    password = "123qwe",
+                //    rememberClient = "true"
+                //};
+                //string param2 = JsonConvert.SerializeObject(parameter2);
+                //HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
+                //if (res2.StatusCode == HttpStatusCode.OK)
+                //{
+                //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
+                //    EmergencyToken = tokenstr.result.accessToken;
+                //}
 
                 //EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
 
-                //EmergencyToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IjE4MmVjZTI2LTBjNGItYTg0Ny0wYmJiLTM5ZTY2ZjAzN2M3YiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiaHR0cDovL3d3dy5hc3BuZXRib2lsZXJwbGF0ZS5jb20vaWRlbnRpdHkvY2xhaW1zL3RlbmFudElkIjoiMSIsInN1YiI6IjciLCJqdGkiOiJhNmIyYmJlZi03ZTQ3LTQ1M2QtYWRlYi01ZmI5OTQ4OGNmMWMiLCJpYXQiOjE1Mjg0Mjg4MDgsIm5iZiI6MTUyODQyODgwOCwiZXhwIjoxNTI4NTE1MjA4LCJpc3MiOiJFbWVyZ2VuY3kiLCJhdWQiOiJFbWVyZ2VuY3kifQ.vPWJxjqy1YikbbcKlx_90nf7QoLZGf53PgNFY4NQn3Q";
+                EmergencyToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IjE4MmVjZTI2LTBjNGItYTg0Ny0wYmJiLTM5ZTY2ZjAzN2M3YiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiaHR0cDovL3d3dy5hc3BuZXRib2lsZXJwbGF0ZS5jb20vaWRlbnRpdHkvY2xhaW1zL3RlbmFudElkIjoiMSIsInN1YiI6IjciLCJqdGkiOiJhNmIyYmJlZi03ZTQ3LTQ1M2QtYWRlYi01ZmI5OTQ4OGNmMWMiLCJpYXQiOjE1Mjg0Mjg4MDgsIm5iZiI6MTUyODQyODgwOCwiZXhwIjoxNTI4NTE1MjA4LCJpc3MiOiJFbWVyZ2VuY3kiLCJhdWQiOiJFbWVyZ2VuY3kifQ.vPWJxjqy1YikbbcKlx_90nf7QoLZGf53PgNFY4NQn3Q";
 
                 if (EmergencyToken != null)
                 {
