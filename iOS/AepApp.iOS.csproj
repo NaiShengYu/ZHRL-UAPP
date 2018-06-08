@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Xamarin.Forms.3.0.0.482510\build\netstandard2.0\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.3.0.0.482510\build\netstandard2.0\Xamarin.Forms.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,8 +9,7 @@
     <RootNamespace>AepApp.iOS</RootNamespace>
     <AssemblyName>AepApp.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,8 +78,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>
-    </CodesignProvision>
+    <CodesignProvision></CodesignProvision>
     <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -framework MapKit -framework CoreMotion -framework CoreGraphics
     -framework QuartzCore -framework CoreText -framework CoreLocation -framework SystemConfiguration  
     -framework CoreTelephony -framework OpenGLES -framework Foundation -framework Security  
@@ -263,11 +260,11 @@
     <BundleResource Include="Resources\stopwatch%402x.png" />
     <BundleResource Include="Resources\voice.png" />
     <BundleResource Include="Resources\loc3.png" />
-    <BundleResource Include="Resources\hamburger.png" />
-    <BundleResource Include="Resources\hamburger%403x.png" />
-    <BundleResource Include="Resources\hamburger%402x.png" />
     <BundleResource Include="Resources\dirface.png" />
     <BundleResource Include="Resources\dirarrow.png" />
+    <BundleResource Include="Resources\hamburger%403x.png" />
+    <BundleResource Include="Resources\hamburger%402x.png" />
+    <BundleResource Include="Resources\hamburger.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

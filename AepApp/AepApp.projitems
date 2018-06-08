@@ -236,6 +236,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\RescueSiteMapPage.xaml.cs">
       <DependentUpon>RescueSiteMapPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ChemicalInfoWebPage.xaml.cs">
+      <DependentUpon>ChemicalInfoWebPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -396,6 +399,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\RescueSiteMapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ChemicalInfoWebPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

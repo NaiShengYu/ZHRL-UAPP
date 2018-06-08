@@ -25,6 +25,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
             else
                 but.BackgroundColor = Color.Transparent;
+            dataList.Clear();
+            listView.ItemsSource = dataList;
         }
         //选中图片图标
         void selectImage(object sender, System.EventArgs e)
@@ -183,6 +185,10 @@ namespace AepApp.View.EnvironmentalEmergency
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
                 {
+                    string cagy = list[i].category;
+                    if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent") {
+
+                    }
                     dataList.Add(list[i]);
                 }
                 listView.ItemsSource = dataList;
@@ -277,7 +283,8 @@ namespace AepApp.View.EnvironmentalEmergency
             DataTemplate FactorMeasurementDT = null;
             DataTemplate MessageSendingDT = null;
             DataTemplate PictureSendingDT = null;
-            DataTemplate PlanGenerationDT = null;
+            DataTemplate PlanGenerationDT = null;          
+            DataTemplate ReportGenerationDT = null;          
 
             public EventDataTemplateSelector(EmergencyAccidentInfoPage page)
             {
@@ -286,7 +293,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 FactorIdentificationDT = page.Resources["FactorIdentificationDT"] as DataTemplate;
                 FactorMeasurementDT = page.Resources["FactorMeasurementDT"] as DataTemplate;
                 MessageSendingDT = page.Resources["MessageSendingDT"] as DataTemplate;
-                //PictureSendingDT = page.Resources["PictureSendingDT"] as DataTemplate;
+                PictureSendingDT = page.Resources["PictureSendingDT"] as DataTemplate;
+                ReportGenerationDT = page.Resources["ReportGenerationDT"] as DataTemplate;              
                 //PlanGenerationDT = page.Resources["PlanGenerationDT"] as DataTemplate;
             }
 
@@ -301,7 +309,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentFactorIdentificationEvent": return FactorIdentificationDT;
                     case "IncidentFactorMeasurementEvent": return FactorMeasurementDT;
                     case "IncidentMessageSendingEvent": return MessageSendingDT;
-                        //case "IncidentPictureSendingEvent": return PictureSendingDT;
+                    case "IncidentPictureSendingEvent": return PictureSendingDT;
+                    case "IncidentReportGenerationEvent": return ReportGenerationDT;
                         //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
                 }
                 return natureDT;

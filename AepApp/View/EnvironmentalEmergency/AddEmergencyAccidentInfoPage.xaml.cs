@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Plugin.Media;
+using CloudWTO.Services;
+
 #if __IOS__
 using Foundation;
 using UIKit;
@@ -78,8 +80,8 @@ namespace AepApp.View.EnvironmentalEmergency
             var item = menu.BindingContext as item;
 
             dataList.Remove(item);
-
         }
+
 
 
 #pragma mark --点击事故性质按钮一系列操作开始
@@ -190,14 +192,21 @@ namespace AepApp.View.EnvironmentalEmergency
             if (file == null)
                return;
 
-             await DisplayAlert("File Location", file.Path, "OK");
+            var item3 = new item
+            {
+                address = "121.123455,29.222222",
+                timeAndName = "2018/05/28 11:16/俞乃胜",
+                imgSourse = file.Path,
+                info = "",
+                isShowAddress = true,
+                time = Convert.ToDateTime("2018-03-19 17:51:46.310"),
+            };
+            dataList.Add(item3);
 
-         //    image.Source = ImageSource.FromStream(() =>
-         //{
-              //  var stream = file.GetStream();
-              //   return stream;
-              //}); 
+            EasyWebRequest.UploadImage(file.Path);
+
         }
+
 
 
         ObservableCollection<item> dataList = new ObservableCollection<item>();
@@ -206,10 +215,9 @@ namespace AepApp.View.EnvironmentalEmergency
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
 
-#if __IOS__
+#if __IOS__//监听键盘的高度
             var not = NSNotificationCenter.DefaultCenter;
             not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
-
 #endif
             var item1 = new item
             {

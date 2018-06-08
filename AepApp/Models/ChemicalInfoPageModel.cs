@@ -56,6 +56,47 @@ namespace AepApp.Models
             public string stability { get; set; }
             public string vapour_pressure { get; set; }
 
+            public string elnameA {
+                get{
+                    if(string.IsNullOrWhiteSpace(elname))return "";
+
+                    
+                    return HtmlRemoval.StripTagsRegex(elname);
+                }
+                set{}
+            }
+
+            public string responseA
+            {
+                get
+                {
+                    if (string.IsNullOrWhiteSpace(response))return "";
+
+                    return HtmlRemoval.StripTagsRegex(response);
+                }
+                set { }
+            }
+
+            public string env_impactA
+            {
+                get
+                {
+                    if (string.IsNullOrWhiteSpace(env_impact))return "";
+                    return HtmlRemoval.StripTagsRegex(env_impact);
+                }
+                set { }
+            }
+
+            public string applicationA
+            {
+                get
+                {
+                    if (string.IsNullOrWhiteSpace(application)) return "";
+                    return HtmlRemoval.StripTagsRegex(application);
+                }
+                set { }
+            }
+
         }
 
     }
