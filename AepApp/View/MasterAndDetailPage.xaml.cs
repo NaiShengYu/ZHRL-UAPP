@@ -33,9 +33,8 @@ namespace AepApp.View
             InitializeComponent();
             Master = new MasterPage(this);
             Master.WidthRequest = 100;
-            //Detail = new NavigationPage(new AirPage());
 
-            Detail = new NavigationPage(new EmergencyAccidentPage());
+            Detail = new NavigationPage(new AddEmergencyAccidentInfoPage());
 
         }
     }

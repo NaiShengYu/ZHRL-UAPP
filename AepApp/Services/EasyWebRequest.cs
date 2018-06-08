@@ -74,12 +74,13 @@ namespace CloudWTO.Services
                 }
                 else
                 {
-                    byte[] bs = Encoding.GetEncoding("UTF-8").GetBytes(param);
+                    byte[] bs = Encoding.UTF8.GetBytes(param);
+
                     req.Method = "POST";
 
                     if (contenttype=="json")
                     {
-                        req.ContentType = "application/json";
+                        req.ContentType = "application/json;charset=gp232";
                     }
                     else
                     {
@@ -107,6 +108,57 @@ namespace CloudWTO.Services
 
             return new HTTPResponse { Results = result, StatusCode = res.StatusCode };
         }
+
+
+
+        public static async void UploadImage(string path)
+        {
+            //variable
+            var url = "http://hallpassapi.jamsocialapps.com/api/profile/UpdateProfilePicture/";
+            var file = path;
+
+            try
+            {
+                ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
+                //read file into upfilebytes array
+                var upfilebytes = File.ReadAllBytes(file);
+
+                //create new HttpClient and MultipartFormDataContent and add our file, and StudentId
+                HttpClient client = new HttpClient();
+                MultipartFormDataContent content = new MultipartFormDataContent();
+                ByteArrayContent baContent = new ByteArrayContent(upfilebytes);
+                StringContent studentIdContent = new StringContent("2123");
+                content.Add(baContent, "File", "filename.ext");
+                content.Add(studentIdContent, "StudentId");
+
+
+                //upload MultipartFormDataContent content async and store response in response var
+                var response =
+                  await client.PostAsync(url, content);
+
+                //read response result as a string async into json var
+                var responsestr = response.Content.ReadAsStringAsync().Result;
+
+                //debug
+                Console.WriteLine(responsestr);
+
+            }
+            catch (Exception e)
+            {
+                //debug
+                Console.WriteLine("Exception Caught: " + e.ToString());
+
+                return;
+            }
+        }
+
+
+
+
+
+
+
+
 
         public static string sendGetHttpWebRequestWithNoToken(string url)
         {
