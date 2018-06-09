@@ -60,7 +60,6 @@ namespace CloudWTO.Services
             string result = null;
             try
             {
-
                 ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
                 if (token != null)
@@ -117,7 +116,50 @@ namespace CloudWTO.Services
         }
 
 
+        public static async Task<HTTPResponse> HTTPRequestDownloadAsync(string url,string fileN,string token = null){
 
+            HttpWebResponse res = null;
+            string result = null;
+            try
+            {
+                ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                if (token != null)
+                {
+                    req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);//给请求添加权限
+                }
+                req.ContentType = "application/json";
+                req.Method = "GET";
+                WebResponse wr = await req.GetResponseAsync();
+                res = wr as HttpWebResponse;
+                //存储路径
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                //存储文件名
+                string filename = Path.Combine(path, fileN);
+                //创建一个文件流，路径为flieName
+                FileStream fileStream = new FileStream(filename,FileMode.Create, FileAccess.Write);
+                //获取到数据库的数据流
+                Stream stream = res.GetResponseStream();
+                //将数据库的数据流拷贝到本地文件流中
+                stream.CopyTo(fileStream);
+                fileStream.Close();
+                //查看文件流内容长度
+                FileInfo file = new FileInfo(filename);
+                Console.WriteLine("fileLength===" + file.Length);
+
+            }
+            catch (WebException ex)
+            {
+                result = ex.Message;
+                return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
+            }
+            Console.WriteLine("ex:" + result);
+
+            return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
+  
+
+        }
+       
         public static async void UploadImage(string path)
         {
             //variable

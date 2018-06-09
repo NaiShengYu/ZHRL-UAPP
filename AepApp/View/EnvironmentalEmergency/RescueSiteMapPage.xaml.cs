@@ -22,13 +22,13 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 if (location != null)
                 {
-                    map.SetCenter(16, new AzmCoord(location.Longitude, location.Latitude));
+                    map.SetCenter(13, new AzmCoord(location.Longitude, location.Latitude));
                     if (i > 0)
                     {
                         return;
-                    }
+                    } 
                     var img = ImageSource.FromFile("bluetarget.png");
-                    var aaa = new AzmMarkerView(img, new Size(30, 30), new AzmCoord(location.Longitude, location.Latitude));
+                    var aaa = new AzmMarkerView(img, new Size(15, 15), new AzmCoord(location.Longitude, location.Latitude));
                     map.Overlays.Add(aaa);
                     i += 1;
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}");
@@ -45,12 +45,10 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
-
             HandleEventHandler();
         }
 
         public RescueSiteMapPage(ObservableCollection<RescueSiteModel.ItemsBean> dataList):this(){
-
             //// Marker usage sample
 
             foreach(RescueSiteModel.ItemsBean item in dataList){
@@ -63,10 +61,22 @@ namespace AepApp.View.EnvironmentalEmergency
 
             }
 
+        }
 
-           
+        public RescueSiteMapPage(ObservableCollection<SensitiveModels.ItemsBean> dataList) : this()
+        {
+            //// Marker usage sample
 
+            foreach (SensitiveModels.ItemsBean item in dataList)
+            {
 
+                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), new AzmCoord(item.lng, item.lat))
+                {
+                    Text = item.name
+                };
+                map.Overlays.Add(mv);
+
+            }
 
         }
 

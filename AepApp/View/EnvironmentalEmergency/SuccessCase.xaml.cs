@@ -10,19 +10,23 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class SuccessCase : ContentPage
     {
-        private int start = 0;
         private int totalNum = 0;
         private ObservableCollection<SuccessCaseModels.ItemsBean> dataList = new ObservableCollection<SuccessCaseModels.ItemsBean>();
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            //seach.Text = e.NewTextValue;
-
+            searchKey = e.NewTextValue;
+            if (string.IsNullOrWhiteSpace(searchKey))
+            {
+                dataList.Clear();
+                ReqSuccessCase(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            }
         }
-
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
+            dataList.Clear();
+            ReqSuccessCase(searchKey, "", 0, 10); //网络请求专家库，10条每次       
         }
-
+        string searchKey = "";
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -31,6 +35,10 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 return;
             }
+
+            List<SuccessCaseModels.FilesBean> file = item.files;
+            string fileName = file[0].id + "." + file[0].format;
+            downloadPlan(item.files[0].storeUrl, fileName);
             listView.SelectedItem = null;
 
         }
@@ -45,37 +53,23 @@ namespace AepApp.View.EnvironmentalEmergency
 
             };
 
-            ReqSuccessCase("", "", start, 10);
+            ReqSuccessCase(searchKey, "", 0, 10);
 
-
-
-            //var item1 = new item
-            //{
-            //    imgSourse = "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=729412813,2297218092&fm=27&gp=0.jpg",
-            //    info = "丙烯氰污染事故及处理案例",
-            //};
-
-            //dataList.Add(item1);
-
-            //var item2 = new item
-            //{
-            //    imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=331890373,3824021971&fm=27&gp=0.jpg",
-            //    info = "六百余桶危险废物偷弃菜州",
-            //};
-
-            //dataList.Add(item2);
-
-            //var item3 = new item
-            //{
-            //    imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
-            //    info = "厉害了，sdfa",
-            //};
-
-            //dataList.Add(item3);
-
-            //listView.ItemsSource = dataList;
 
         }
+
+
+        private async void downloadPlan(String filePath, string fileFormat)
+        {
+            string url = App.EmergencyModule.url + filePath;
+
+            HTTPResponse hTTPResponse = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileFormat, App.EmergencyToken);
+            await Navigation.PushAsync(new ShowFilePage(fileFormat));
+
+        }
+
+
+
 
         private async void ReqSuccessCase(String Filter, String Sorting, int SkipCount, int MaxResultCount)
         {
@@ -84,7 +78,6 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);
-                start += 10;
                 SuccessCaseModels.SuccessCaseBean successCaseBean = new SuccessCaseModels.SuccessCaseBean();
                 successCaseBean = JsonConvert.DeserializeObject<SuccessCaseModels.SuccessCaseBean>(hTTPResponse.Results);
                 totalNum = successCaseBean.result.cases.totalCount;
@@ -98,21 +91,15 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
-        internal class item
-        {
-            public string imgSourse { get; set; }
-            public string info { set; get; }
-
-        }
 
         private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             SuccessCaseModels.ItemsBean item = e.Item as SuccessCaseModels.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (start <= totalNum)
+                if (dataList.Count <= totalNum)
                 {
-                    ReqSuccessCase("", "", start, 10); //网络请求敏感源，10条每次
+                    ReqSuccessCase(searchKey, "", dataList.Count, 10); //网络请求敏感源，10条每次
                 }
             }
         }

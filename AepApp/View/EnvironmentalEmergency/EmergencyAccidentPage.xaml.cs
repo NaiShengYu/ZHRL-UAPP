@@ -13,13 +13,25 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class EmergencyAccidentPage : ContentPage
     {
-        private int start = 0;
-        private int totalNum = 0;
-        private ObservableCollection<EmergencyAccidentPageModels.ItemsBean> dataList = new ObservableCollection<EmergencyAccidentPageModels.ItemsBean>();
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            //seach.Text = e.NewTextValue;
+            searchKey = e.NewTextValue;
+            if (string.IsNullOrWhiteSpace(searchKey))
+            {
+                dataList.Clear();
+                ReqEmergencyAccidentInfo(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            }
         }
+        void Handle_SearchButtonPressed(object sender, System.EventArgs e)
+        {
+            dataList.Clear();
+            ReqEmergencyAccidentInfo(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+        }
+        string searchKey = "";
+
+        private int totalNum = 0;
+        private ObservableCollection<EmergencyAccidentPageModels.ItemsBean> dataList = new ObservableCollection<EmergencyAccidentPageModels.ItemsBean>();
+      
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -33,7 +45,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public EmergencyAccidentPage()
         {
             InitializeComponent();
-            ReqEmergencyAccidentInfo("", "", start, 10);
+            ReqEmergencyAccidentInfo(searchKey, "", 0, 10);
         }
 
         private async void ReqEmergencyAccidentInfo(String Filter, String Sorting, int SkipCount, int MaxResultCount)
@@ -58,22 +70,22 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
-        //internal class item
-        //{
-        //    public string title { get; set; }
-        //    public string time { set; get; }
-        //    public string type { set; get; }
-        //    public string state { set; get; }
-        //}
+        internal class item
+        {
+            public string title { get; set; }
+            public string time { set; get; }
+            public string type { set; get; }
+            public string state { set; get; }
+        }
 
         private  void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             EmergencyAccidentPageModels.ItemsBean item = e.Item as EmergencyAccidentPageModels.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (start <= totalNum)
+                if (dataList.Count <= totalNum)
                 {
-                    ReqEmergencyAccidentInfo("", "", start, 10); //网络请求救援地点，10条每次
+                    ReqEmergencyAccidentInfo(searchKey, "", 0, 10); //网络请求救援地点，10条每次
                 }
             }
         }
