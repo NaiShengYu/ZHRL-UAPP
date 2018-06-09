@@ -42,6 +42,12 @@ namespace AepApp.View.EnvironmentalEmergency
         void savePosition(object sender, System.EventArgs e)
         {
             Console.WriteLine(centercoorLab.Text);
+
+            MessagingCenter.Send<ContentPage, string>(this,"savePosition", centercoorLab.Text);
+
+
+
+
         }
 
         //回到当前位置

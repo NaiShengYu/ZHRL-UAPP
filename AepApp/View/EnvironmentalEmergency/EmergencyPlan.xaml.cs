@@ -53,7 +53,7 @@ namespace AepApp.View.EnvironmentalEmergency
             EmergencyPlanModels.ItemsBean item = e.Item as EmergencyPlanModels.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (dataList.Count <= totalNum)
+                if (dataList.Count < totalNum)
                 {
                     ReqEmergencyPlan(searchKey, "", dataList.Count, 10); //网络请求敏感源，10条每次
                 }

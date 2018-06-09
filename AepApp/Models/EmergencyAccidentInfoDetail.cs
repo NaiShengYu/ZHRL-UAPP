@@ -78,7 +78,7 @@ namespace AepApp.Models
             public string creatorUserName { get; set; }
             public string category { get; set; }
             public string id { get; set; }
-
+            public Thickness marge { get; set; }
             public string NatureName
             {
                 get

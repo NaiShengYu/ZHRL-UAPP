@@ -43,7 +43,7 @@ namespace AepApp.View.EnvironmentalEmergency
             ExpertLibraryModels.ItemsBean item = e.Item as ExpertLibraryModels.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (dataList.Count <= totalNum)
+                if (dataList.Count < totalNum)
                 {
                     ReqExpertLibrary(searchKey,"",  dataList.Count, 10); //网络请求专家库，10条每次
                 }

@@ -68,9 +68,15 @@ namespace AepApp.View.EnvironmentalEmergency
             var entr = sender as Entry;
         }
 
+        //点击了位置按钮
         void AccidentPosition(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new AccidentPositionPage());
+            MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", (arg1, arg2) =>
+            {
+                var aaa = arg2 as string;
+                MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
+            });
 
         }
         //左滑删除
