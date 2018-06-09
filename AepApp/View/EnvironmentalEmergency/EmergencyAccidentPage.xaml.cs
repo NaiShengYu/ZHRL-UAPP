@@ -56,7 +56,6 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
             {
                 Console.WriteLine(hTTPResponse.Results);
-                start += 10;
                 EmergencyAccidentPageModels.EmergencyAccidentBean accidentPageModels = new EmergencyAccidentPageModels.EmergencyAccidentBean();
                 accidentPageModels = JsonConvert.DeserializeObject<EmergencyAccidentPageModels.EmergencyAccidentBean>(hTTPResponse.Results);
                 totalNum = accidentPageModels.result.incidents.totalCount;
@@ -83,7 +82,7 @@ namespace AepApp.View.EnvironmentalEmergency
             EmergencyAccidentPageModels.ItemsBean item = e.Item as EmergencyAccidentPageModels.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (dataList.Count <= totalNum)
+                if (dataList.Count < totalNum)
                 {
                     ReqEmergencyAccidentInfo(searchKey, "", 0, 10); //网络请求救援地点，10条每次
                 }
