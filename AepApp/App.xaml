@@ -13,7 +13,142 @@
                 <Setter Property="BarBackgroundColor" Value="rgb(45,126, 251)" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
-            
+            <DataTemplate x:Key="natureDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#a6a6a6">
+                                <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#a6a6a6">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+                            <Label Text="{Binding natureString}" Margin="10,30,55,8" />
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="centerLocDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#a6a6a6">
+                                <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#a6a6a6">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding centerLocString}" Margin="10,30,55,8" />
+
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="FactorIdentificationDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#a6a6a6">
+                                <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#a6a6a6">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding factor}" Margin="10,30,55,8" />
+
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="FactorMeasurementDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#da4c3c">
+                                <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#da4c3c">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding measurement}" Margin="10,30,55,8" />
+
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="MessageSendingDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#a6a6a6">
+                                <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#a6a6a6">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding messageSending}" Margin="10,30,55,8" />
+
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="ReportGenerationDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#3781c3">
+                                <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#3781c3">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="pdf.png" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding ReportName}" Margin="10,30,55,8" />
+
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="PictureSendingDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#c9b750">
+                                <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#c9b750">
+                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                    <Label TextColor="White" Text=" / " />
+                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                </StackLayout>
+                            </Frame>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Image Source="{Binding StorePath}"/>
+
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

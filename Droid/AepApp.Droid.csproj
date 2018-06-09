@@ -483,7 +483,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\winddir.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\voice.png" />
+  </ItemGroup>
   <Import Project="..\AepApp\AepApp.projitems" Label="Shared" Condition="Exists('..\AepApp\AepApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

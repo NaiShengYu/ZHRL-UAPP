@@ -4,6 +4,10 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Plugin.Media;
 using CloudWTO.Services;
+using static AepApp.Models.EmergencyAccidentInfoDetail;
+using AepApp.Models;
+using System.Threading.Tasks;
+using Todo;
 
 #if __IOS__
 using Foundation;
@@ -67,11 +71,10 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var entr = sender as Entry;
         }
-
+        //事故位置按钮
         void AccidentPosition(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new AccidentPositionPage());
-
         }
         //左滑删除
         void Handle_Clicked(object sender, System.EventArgs e)
@@ -89,7 +92,7 @@ namespace AepApp.View.EnvironmentalEmergency
         bool isfunctionBarIsShow = false;
         void showshiguxingzhi(object sender, System.EventArgs e)
         {
-            entryStack.TranslateTo(0, 260);
+            //entryStack.TranslateTo(0, 260);
             b2.TranslateTo(0, 260);
             aaaa.Height = 0;
             bbbb.Height = 75;
@@ -137,7 +140,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //完成选择事故性质
         void finishishiguxingzhi(object sender, System.EventArgs e)
         {
-            entryStack.TranslateTo(0, 0);
+            //entryStack.TranslateTo(0, 0);
             b2.TranslateTo(0, 0);
             aaaa.Height = 55;
             bbbb.Height = 150;
@@ -146,7 +149,7 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 
         void canceshiguxingzhi(){
-            entryStack.TranslateTo(0, 0);
+            //entryStack.TranslateTo(0, 0);
             b2.TranslateTo(0, 0);
             aaaa.Height = 55;
             bbbb.Height = 150;
@@ -210,7 +213,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
         ObservableCollection<item> dataList = new ObservableCollection<item>();
-        public AddEmergencyAccidentInfoPage()
+        public AddEmergencyAccidentInfoPage(ObservableCollection<IncidentLoggingEventsBean> dataList)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
@@ -219,64 +222,35 @@ namespace AepApp.View.EnvironmentalEmergency
             var not = NSNotificationCenter.DefaultCenter;
             not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
 #endif
-            var item1 = new item
-            {
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "",
-                info = "先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。然侍卫之臣不懈于内，忠志之士忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气，不宜妄自菲薄，引喻失义，以塞忠谏之路也。",
-                address = "121.123455,29.222222",
-                isShowAddress = true,
-
-                time = Convert.ToDateTime("2018-03-16 16:51:46.310"),
-
-            };
-
-            //dataList.Add(item1);
-
-            var item2 = new item
-            {
-                address = "",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "",
-                info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-                isShowAddress = false,
-                time = Convert.ToDateTime("2018-03-19 16:51:46.310"),
-
-            };
-
-            //dataList.Add(item2);
-
-            var item3 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg",
-                info = "",
-                isShowAddress = true,
-                time = Convert.ToDateTime("2018-03-19 17:51:46.310"),
-            };
-
-            //dataList.Add(item3);
-
-
-            var item4 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/张三",
-                imgSourse = "",
-                info = "宫中府中，俱为一体，陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。",
-                isShowAddress = false,
-                time = Convert.ToDateTime("2018-03-19 18:06:46.310"),
-            };
-
+           
             //dataList.Add(item4);
 
-
+            //dataList.RemoveAt(1);
+            //dataList.RemoveAt(3);
+            //dataList.RemoveAt(5);
             //listView.ItemsSource = dataList;
 
 
 
 
+        }
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            //TodoItemDatabase todoItemDatabase =   App.Database2;
+            //请求数据库数据
+          // App.Database.CreatEmergencyTable();
+            List<UploadEmergencyModel> item = await App.Database.GetEmergencyAsync();
+            Console.WriteLine(item);
+            //List<UploadEmergencyModel>  item = await App.Database.GetEmergencyAsync();
+            //
+            // GetLocalDataFromDB();
+        }
+        private  void GetLocalDataFromDB()
+        {
+            //((App)App.Current).ResumeAtTodoId = -1;
+            
+           //Console.WriteLine(incidentLoggingEvents);
         }
 
         internal class item

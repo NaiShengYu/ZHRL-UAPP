@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -21,7 +22,7 @@ namespace AepApp.Models
             public String id { get; set; }
             public List<IncidentLoggingEventsBean> incidentLoggingEvents { get; set; }
         }
-        public class IncidentLoggingEventsBean
+        public class IncidentLoggingEventsBean 
         {
             public string factorId { get; set; }/// 因子编号
             public string factorName { get; set; } /// 因子名称

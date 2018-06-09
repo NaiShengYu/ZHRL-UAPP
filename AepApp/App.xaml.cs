@@ -59,6 +59,8 @@ namespace AepApp
         public static List<TodoItem> todoItemList = new List<TodoItem>();
 
         static TodoItemDatabase database;
+        static TodoItemDatabase database2;
+        static EmergencyAccidentLocalDB emergencyAccidentDB;
 
         private bool _isMasterDetailPageGestureEnabled = true;
         public bool IsMasterDetailPageGestureEnabled
@@ -142,27 +144,27 @@ namespace AepApp
                 //}
 
                 return false;
-            }       
-//            }
-//            else {
-//                //string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
-//                //ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
-//                //{
-//                //    userNameOrEmailAddress = "admin",
-//                //    password = "123qwe",
-//                //    rememberClient = "true"
-//                //};
-//                //string param2 = JsonConvert.SerializeObject(parameter2);
-//                //HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
-//                //if (res2.StatusCode == HttpStatusCode.OK)
-//                //{
-//                //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
-//                //    EmergencyToken = tokenstr.result.accessToken;
-//                //}
-//                frameworkToken = fwtoken.access_token;  
-//                //return true;
+            }
+            //            }
+            //            else {
+            //                //string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
+            //                //ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
+            //                //{
+            //                //    userNameOrEmailAddress = "admin",
+            //                //    password = "123qwe",
+            //                //    rememberClient = "true"
+            //                //};
+            //                //string param2 = JsonConvert.SerializeObject(parameter2);
+            //                //HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
+            //                //if (res2.StatusCode == HttpStatusCode.OK)
+            //                //{
+            //                //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
+            //                //    EmergencyToken = tokenstr.result.accessToken;
+            //                //}
+            //                frameworkToken = fwtoken.access_token;  
+            //                //return true;
 
-//            }      
+            //            }      
 
             Modules = await GetModuleInfoAsync(fwtoken.access_token);
             //D53E7751-26A7-4B6C-B8E1-E243621A84CF
@@ -181,15 +183,16 @@ namespace AepApp
                     //    EmergencyModule = mi;
                     //    continue;
                     //}
-                    if (mi.id == BasicDataModuleID) {
+                    if (mi.id == BasicDataModuleID)
+                    {
                         BasicDataModule = mi;
                         continue;
                     }
-                }               
+                }
             }
 
             //正式环境去掉下面部分
-            string url = "http://192.168.1.128:5000/api/TokenAuth/Authenticate"; //无法转换token 先用这个
+            string url = "http://gx.azuratech.com:30021/api/TokenAuth/Authenticate"; //无法转换token 先用这个
             ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
             {
                 userNameOrEmailAddress = "admin",
@@ -299,7 +302,7 @@ namespace AepApp
                 {
                     var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res.Results);
                     token = tokenstr.result.accessToken;
-                }               
+                }
                 return token;
             }
             catch
@@ -311,7 +314,7 @@ namespace AepApp
         private async Task GetSqlDataAsync()
         {
             //获取数据库的数据
-            ((App)App.Current).ResumeAtTodoId = -1;
+            //((App)App.Current).ResumeAtTodoId = -1;
             List<TodoItem> todoItems = await Database.GetItemsAsync();
 
             if (todoItems != null && todoItems.Count != 0)
@@ -338,6 +341,21 @@ namespace AepApp
                     database = new TodoItemDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
                 }
                 return database;
+            }
+        }
+    
+        public static EmergencyAccidentLocalDB UploadEmergencyDB
+        {
+            get
+            {
+                if (emergencyAccidentDB == null)
+                {
+                    //var a = DependencyService.Get<IFileHelper>();
+                    //var b = a.GetLocalFilePath("TodoSQLite.uploadEmergency");
+                    //var c = new EmergencyAccidentLocalDB(b);
+                    //emergencyAccidentDB = new EmergencyAccidentLocalDB(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.uploadEmergency"));
+                }
+                return emergencyAccidentDB;
             }
         }
         public int ResumeAtTodoId { get; set; }

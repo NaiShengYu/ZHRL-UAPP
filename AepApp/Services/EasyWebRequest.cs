@@ -80,7 +80,7 @@ namespace CloudWTO.Services
 
                     if (contenttype=="json")
                     {
-                        req.ContentType = "application/json;charset=gp232";
+                        req.ContentType = "application/json";
                     }
                     else
                     {

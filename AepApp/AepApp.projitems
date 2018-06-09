@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\DetailUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DifferentPlantFormUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyAccidentInfoDetail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyAccidentLocalDB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyAccidentPageModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EmergencyPlanModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EnterpriseModel.cs" />
@@ -41,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\SuccessCaseModels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItemDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UploadEmergencyModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\EasyWebRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AddSite.xaml.cs">
       <DependentUpon>AddSite.xaml</DependentUpon>

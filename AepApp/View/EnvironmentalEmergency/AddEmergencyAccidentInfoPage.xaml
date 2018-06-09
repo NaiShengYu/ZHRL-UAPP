@@ -2,133 +2,147 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.AddEmergencyAccidentInfoPage" 
+              xmlns:eme="clr-namespace:AepApp.View.EnvironmentalEmergency"
              xmlns:local="clr-namespace:AepApp.View" 
              Title="上传">
     <ContentPage.Content>
         <Grid x:Name="backGrid">
-        <Grid RowSpacing="0" BackgroundColor="#e8e8e8">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition x:Name="aaaa" Height="55" />
-                <RowDefinition x:Name="bbbb" Height="150" />
-                <RowDefinition x:Name="cccc" Height="55" />
-            </Grid.RowDefinitions>
-            <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" ItemSelected="Handle_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <local:ExtendedViewCell SelectedBackgroundColor="Blue">
-                            <local:ExtendedViewCell.ContextActions>
-                                <MenuItem Clicked="Handle_Clicked" CommandParameter="{Binding .}" Text="delete" IsDestructive="True" />
-                            </local:ExtendedViewCell.ContextActions>
-                            <Frame Margin="10,5,10,0" Padding="0"  HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e5e5e5">
-                                <Grid VerticalOptions="Center" Margin="0" Padding="0">
-                                    <Image HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="400" Source="{Binding imgSourse}" Aspect="AspectFill"/>
-
-                                    <StackLayout Spacing="3" VerticalOptions="Start" HorizontalOptions="Start" Orientation="Horizontal" HeightRequest="25">
-                                        <Grid BackgroundColor="Gray" VerticalOptions="Start" HorizontalOptions="Start">
-                                        <Label FontSize="15" Margin="4,4,4,4" VerticalOptions="Start" HorizontalOptions="Start" Text="{Binding timeAndName}" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" BackgroundColor="Transparent" TextColor="White" />
-                                    </Grid>
-                                        <Image Source="greentick" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
-                                    </StackLayout>
-                                    
-                                    <Label Margin="10,35,55,8" Text="{Binding info}" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" />
-                                    <Button Clicked="cellRightBut" Image="loc2" HorizontalOptions="End" VerticalOptions="Start" WidthRequest="45" HeightRequest="45" Margin="0,5,5,5">
-                                        <Button.Triggers>
-                                            <DataTrigger TargetType="Button" Binding="{Binding address}" Value="false">
-                                                <Setter Property="IsVisible" Value="false" />
-                                            </DataTrigger>
-                                        </Button.Triggers>
-                                    </Button>
-                                </Grid>
-                            </Frame>
-                        </local:ExtendedViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-               <ListView.Footer>
-                    <StackLayout BackgroundColor="White" HeightRequest="10"></StackLayout>
-               </ListView.Footer>
-            </ListView>
-            <StackLayout Grid.Row="1" x:Name="entryStack" BackgroundColor="#f2f2f2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                <Frame HorizontalOptions="FillAndExpand" Padding="0" HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e8e8e8">
-                    <StackLayout BackgroundColor="#f2f2f2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                        <Button Margin="10,5,0,5" WidthRequest="45" HeightRequest="45" Image="voice" />
-                        <local:EntryExt x:Name="ENT" Focused="Handle_Focused" Unfocused="Handle_Unfocused" BackgroundColor="White" Margin="0,5,10,5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="45"/>
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
-            <Grid x:Name="b2" Grid.Row="2" BackgroundColor="#f2f2f2">
+            <Grid RowSpacing="0" BackgroundColor="#e8e8e8">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition x:Name="aaaa" Height="55" />
+                    <RowDefinition x:Name="bbbb" Height="150" />
+                    <RowDefinition x:Name="cccc" Height="55" />
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Spacing="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image WidthRequest="45" HeightRequest="45" Source="loc1" />
-                        <Label Text="事故地点" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
-                    </StackLayout>
-                    <Button Clicked="AccidentPosition" Margin="10,0,10,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                    <StackLayout Spacing="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image WidthRequest="45" HeightRequest="45" Source="elements" />
-                        <Label Text="事故性质" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
-                    </StackLayout>
-                    <Button Clicked="showshiguxingzhi" Margin="10,0,10,0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                    <StackLayout Spacing="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image WidthRequest="45" HeightRequest="45" Source="winddir" />
-                        <Label Text="风速风向" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
-                    </StackLayout>
-                    <Button Clicked="fengSuFengXiang" Margin="10,0,10,0" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                    <StackLayout Spacing="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image WidthRequest="45" HeightRequest="45" Source="chem" />
-                        <Label Text="污染物" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
-                    </StackLayout>
-                    <Button Clicked="wuRanWu" Margin="10,0,10,0" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Spacing="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image WidthRequest="45" HeightRequest="45" Source="image" />
-                        <Label Text="照片" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
-                    </StackLayout>
-                    <Button Clicked="paiZhao" Margin="10,0,10,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                    <StackLayout Spacing="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image WidthRequest="45" HeightRequest="45" Source="video" />
-                        <Label Text="视频" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
-                    </StackLayout>
-                    <Button Margin="10,0,10,0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                    <StackLayout Spacing="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image WidthRequest="45" HeightRequest="45" Source="data" />
-                        <Label Text="数据" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
-                    </StackLayout>
-                    <Button Clicked="addShuju" Margin="10,0,10,0" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                </Grid>
-            </Grid>
-            <Button x:Name="c3" Grid.Row="3" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="#e8e8e8" Image="upload" BorderRadius="0" />
-        </Grid>
+                <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" ItemSelected="Handle_ItemSelected"
+                           ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}">
+                    <!--<ListView.ItemTemplate>
+                        <DataTemplate>
+                            <local:ExtendedViewCell SelectedBackgroundColor="Blue">
+                                <local:ExtendedViewCell.ContextActions>
+                                    <MenuItem Clicked="Handle_Clicked" CommandParameter="{Binding .}" Text="delete" IsDestructive="True" />
+                                </local:ExtendedViewCell.ContextActions>
+                                <Frame Margin="10,5,10,0" Padding="0"  HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e5e5e5">
+                                    <Grid VerticalOptions="Center" Margin="0" Padding="0">
+                                        <Image HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="400" Source="{Binding imgSourse}" Aspect="AspectFill"/>
 
-                <Grid VerticalOptions="EndAndExpand" Margin="0,0,0,-75" x:Name="functionBar" BackgroundColor="#f2f2f2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Spacing="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"><Image WidthRequest="45" HeightRequest="45" Source="air"   Margin="0,10,0,0"/><Label Margin="0,-4,0,10" Text="大气" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" /> </StackLayout><Button x:Name="dqBut" Clicked="selectDQ" Margin="10,10,10,10" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                    <StackLayout Spacing="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"><Image WidthRequest="45" HeightRequest="45" Source="water" Margin="0,10,0,0"/><Label Margin="0,-4,0,10" Text="水质" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" /> </StackLayout> <Button x:Name="szBut" Clicked="selectSZ" Margin="10,10,10,10" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                    <StackLayout Spacing="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center"><Image WidthRequest="45" HeightRequest="45" Source="soil"  Margin="0,10,0,0"/><Label Margin="0,-4,0,10" Text="土壤" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" /> </StackLayout> <Button x:Name="trBut" Clicked="selectTR" Margin="10,10,10,10" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                    <Button WidthRequest="55" HeightRequest="55" Clicked="finishishiguxingzhi" Image="greentick" Margin="10,10,10,10" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                        <StackLayout Spacing="3" VerticalOptions="Start" HorizontalOptions="Start" Orientation="Horizontal" HeightRequest="25">
+                                            <Grid BackgroundColor="Gray" VerticalOptions="Start" HorizontalOptions="Start">
+                                                <Label FontSize="15" Margin="4,4,4,4" VerticalOptions="Start" HorizontalOptions="Start" Text="{Binding timeAndName}" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" BackgroundColor="Transparent" TextColor="White" />
+                                            </Grid>
+                                            <Image Source="greentick" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
+                                        </StackLayout>
+
+                                        <Label Margin="10,35,55,8" Text="{Binding info}" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" />
+                                        <Button Clicked="cellRightBut" Image="loc2" HorizontalOptions="End" VerticalOptions="Start" WidthRequest="45" HeightRequest="45" Margin="0,5,5,5">
+                                            <Button.Triggers>
+                                                <DataTrigger TargetType="Button" Binding="{Binding address}" Value="false">
+                                                    <Setter Property="IsVisible" Value="false" />
+                                                </DataTrigger>
+                                            </Button.Triggers>
+                                        </Button>
+                                    </Grid>
+                                </Frame>
+                            </local:ExtendedViewCell>
+                        </DataTemplate>-->
+                    <!--</ListView.ItemTemplate>-->
+                    <ListView.Footer>
+                        <StackLayout BackgroundColor="White" HeightRequest="10"></StackLayout>
+                    </ListView.Footer>
+                </ListView>
+                <StackLayout Grid.Row="1" x:Name="entryStack" BackgroundColor="#f2f2f2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                    <Frame HorizontalOptions="FillAndExpand" Padding="0" HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e8e8e8">
+                        <StackLayout BackgroundColor="#f2f2f2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Button Margin="10,5,0,5" WidthRequest="45" HeightRequest="45" Image="voice" />
+                            <local:EntryExt x:Name="ENT" Focused="Handle_Focused" Unfocused="Handle_Unfocused" BackgroundColor="White" Margin="0,5,10,5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="45"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <Grid x:Name="b2" Grid.Row="2" BackgroundColor="#f2f2f2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Spacing="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image WidthRequest="45" HeightRequest="45" Source="loc1" />
+                            <Label Text="事故地点" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                        </StackLayout>
+                        <Button Clicked="AccidentPosition" Margin="10,0,10,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
+                        <StackLayout Spacing="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image WidthRequest="45" HeightRequest="45" Source="elements" />
+                            <Label Text="事故性质" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                        </StackLayout>
+                        <Button Clicked="showshiguxingzhi" Margin="10,0,10,0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                        <StackLayout Spacing="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image WidthRequest="45" HeightRequest="45" Source="winddir" />
+                            <Label Text="风速风向" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                        </StackLayout>
+                        <Button Clicked="fengSuFengXiang" Margin="10,0,10,0" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
+                        <StackLayout Spacing="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image WidthRequest="45" HeightRequest="45" Source="chem" />
+                            <Label Text="污染物" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                        </StackLayout>
+                        <Button Clicked="wuRanWu" Margin="10,0,10,0" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Spacing="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image WidthRequest="45" HeightRequest="45" Source="image" />
+                            <Label Text="照片" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                        </StackLayout>
+                        <Button Clicked="paiZhao" Margin="10,0,10,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
+                        <StackLayout Spacing="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image WidthRequest="45" HeightRequest="45" Source="video" />
+                            <Label Text="视频" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                        </StackLayout>
+                        <Button Margin="10,0,10,0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                        <StackLayout Spacing="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image WidthRequest="45" HeightRequest="45" Source="data" />
+                            <Label Text="数据" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                        </StackLayout>
+                        <Button Clicked="addShuju" Margin="10,0,10,0" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
+                    </Grid>
                 </Grid>
-            
+                <Button x:Name="c3" Grid.Row="3" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="#e8e8e8" Image="upload" BorderRadius="0" />
             </Grid>
+
+            <Grid VerticalOptions="EndAndExpand" Margin="0,0,0,-75" x:Name="functionBar" BackgroundColor="#f2f2f2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Spacing="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image WidthRequest="45" HeightRequest="45" Source="air"   Margin="0,10,0,0"/>
+                    <Label Margin="0,-4,0,10" Text="大气" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                </StackLayout>
+                <Button x:Name="dqBut" Clicked="selectDQ" Margin="10,10,10,10" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                <StackLayout Spacing="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image WidthRequest="45" HeightRequest="45" Source="water" Margin="0,10,0,0"/>
+                    <Label Margin="0,-4,0,10" Text="水质" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                </StackLayout>
+                <Button x:Name="szBut" Clicked="selectSZ" Margin="10,10,10,10" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                <StackLayout Spacing="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image WidthRequest="45" HeightRequest="45" Source="soil"  Margin="0,10,0,0"/>
+                    <Label Margin="0,-4,0,10" Text="土壤" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
+                </StackLayout>
+                <Button x:Name="trBut" Clicked="selectTR" Margin="10,10,10,10" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                <Button WidthRequest="55" HeightRequest="55" Clicked="finishishiguxingzhi" Image="greentick" Margin="10,10,10,10" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            </Grid>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
