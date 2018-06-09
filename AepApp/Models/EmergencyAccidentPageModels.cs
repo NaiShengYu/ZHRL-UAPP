@@ -25,7 +25,7 @@ namespace AepApp.Models
         public class ItemsBean
         {
            public String name { get; set; }
-           public String startDate { get; set; }
+           public DateTime startDate { get; set; }
            public string endDate { get; set; }
            public string isArchived { get; set; }
            public int incidentGrade { get; set; }

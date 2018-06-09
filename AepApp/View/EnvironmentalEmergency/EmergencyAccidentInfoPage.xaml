@@ -9,15 +9,14 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
-
     <ContentPage.Content>
         <Grid RowSpacing="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="55" />
+                <RowDefinition Height="0" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
-            <Button  Image="stopwatch" Text="05/28 08:26:48" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="#e1a541" TextColor="White" FontSize="20" BorderRadius="0" />
+            <!--            <Button  Image="stopwatch" Text="05/28 08:26:48" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="#e1a541" TextColor="White" FontSize="20" BorderRadius="0" />-->
             <Grid Grid.Row="1" ColumnSpacing="1" BackgroundColor="#e5e5e5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -27,13 +26,6 @@
                           ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}" BackgroundColor="#fafafa"
                           ItemSelected="Handle_ItemSelected" ItemDisappearing="Handle_ItemDisappearing" ItemAppearing="Handle_ItemAppearing">
                 </ListView>
-                <ScrollView x:Name="scroll" Grid.Column="1" BackgroundColor="#fafafa" VerticalOptions="Fill" HorizontalOptions="Fill">
-                    <Grid>
-                        <StackLayout x:Name="scrollLayout" Spacing="1">
-                        </StackLayout>
-                        <BoxView VerticalOptions="Start" HorizontalOptions="Start" x:Name="positionView" WidthRequest="10" BackgroundColor="rgba(207,51,53,0.9)" HeightRequest="50" />
-                    </Grid>
-                </ScrollView>
             </Grid>
             <StackLayout BackgroundColor="#e8e8e8" Orientation="Horizontal" Spacing="0" Grid.Row="2">
                 <Button x:Name="select_Text" Clicked="selectText" Image="text"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>

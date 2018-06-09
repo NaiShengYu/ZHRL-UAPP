@@ -12,13 +12,8 @@ namespace AepApp.View.EnvironmentalEmergency
     {    
         private int Index;
         private int total;
-        private int sum;
         private ObservableCollection<EquipmentPageModel.ItemsBean> dataList = new ObservableCollection<EquipmentPageModel.ItemsBean>();
-        void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
-        {
-            //seach.Text = e.NewTextValue;
-
-        }
+      
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -28,10 +23,26 @@ namespace AepApp.View.EnvironmentalEmergency
             Navigation.PushAsync(new EquipmentInfoPage(item.name,item.id));
 
             listView.SelectedItem = null;
-
+        }
+       
+        void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            searchKey = e.NewTextValue;
+            if (string.IsNullOrWhiteSpace(searchKey))
+            {
+                dataList.Clear();
+                Index = 0;
+                ReqEquipmentList("", Index, 10);
+            }
+        }
+        void Handle_SearchButtonPressed(object sender, System.EventArgs e)
+        {
+            dataList.Clear();
+            Index = 0;
+            ReqEquipmentList("", Index, 10);
         }
 
-       
+        string searchKey = "";
 
         public EquipmentPage()
         {
@@ -44,18 +55,17 @@ namespace AepApp.View.EnvironmentalEmergency
             string url = App.BasicDataModule.url + DetailUrl.EquipmentList;
             ChemicalStruct parameter = new ChemicalStruct
             {
-                keyword = "",
+                keyword = searchKey,
                 pageIndex = Index + "",
                 pagesize = 10 + ""
             };
             string param = JsonConvert.SerializeObject(parameter);
             //string param = "keyword=" + "" + "&pageIndex=" + pagrIndex + "&pageSize=" + pageSize;
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.frameworkToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);
                 Index += 1;
-                sum += 10;
                 EquipmentPageModel.EquipmentPageModelBean equipmentPageModel = new EquipmentPageModel.EquipmentPageModelBean();
                 equipmentPageModel = JsonConvert.DeserializeObject<EquipmentPageModel.EquipmentPageModelBean>(hTTPResponse.Results);
                 total = equipmentPageModel.count;
@@ -69,19 +79,12 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
-        internal class item
-        {
-            public string name { get; set; }
-            public string message { set; get; }
-
-        }
-
         private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             EquipmentPageModel.ItemsBean item = e.Item as EquipmentPageModel.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (sum < total)
+                if (dataList.Count < total)
                 {
                     ReqEquipmentList("", Index, 10);
                 }

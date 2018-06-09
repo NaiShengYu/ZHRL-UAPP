@@ -21,7 +21,7 @@ namespace AepApp.Models
             public string replace_period { get; set; }
             public int status { get; set; }
             public string type { get; set; }
-            public String updatedate { get; set; }
+            public DateTime updatedate { get; set; }
 
         }
     }

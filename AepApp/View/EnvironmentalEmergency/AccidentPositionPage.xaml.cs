@@ -9,7 +9,7 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AccidentPositionPage : ContentPage
     {
-
+        static int i = 0;
 
         async void HandleEventHandler()
         {
@@ -18,24 +18,19 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Location location = await Geolocation.GetLastKnownLocationAsync();
 
-
                 if (location != null)
                 {
-                    map.SetCenter(16, new AzmCoord(location.Longitude,location.Latitude));
+                    if (i >0){
+                        map.SetCenter(16, new AzmCoord(location.Longitude, location.Latitude));
+                    }
                     var img = ImageSource.FromFile("markerred.png");
                     var aaa = new AzmMarkerView(img, new Size(30, 30),new AzmCoord(location.Longitude, location.Latitude));
                     map.Overlays.Add(aaa);
+                    i += 1;
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}");
                 }
             }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-            }
+          
             catch (Exception ex)
             {
                 // Unable to get location
@@ -47,6 +42,12 @@ namespace AepApp.View.EnvironmentalEmergency
         void savePosition(object sender, System.EventArgs e)
         {
             Console.WriteLine(centercoorLab.Text);
+
+            MessagingCenter.Send<ContentPage, string>(this,"savePosition", centercoorLab.Text);
+
+
+
+
         }
 
         //回到当前位置

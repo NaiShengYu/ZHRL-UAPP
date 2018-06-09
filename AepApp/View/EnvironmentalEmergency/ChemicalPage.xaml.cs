@@ -36,7 +36,6 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             searchKey = e.NewTextValue;
-            Console.WriteLine("====="+searchKey+"++++");
             if (string.IsNullOrWhiteSpace(searchKey))
             {
                 dataList.Clear();
@@ -78,7 +77,7 @@ namespace AepApp.View.EnvironmentalEmergency
             };
             string param = JsonConvert.SerializeObject(parameter);
             //string param = "keyword=" + "" + "&pageIndex=" + pagrIndex + "&pageSize=" + pageSize;
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.frameworkToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);

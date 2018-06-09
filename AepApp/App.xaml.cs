@@ -28,33 +28,34 @@ namespace AepApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private const string EmergencyModuleID = "D53E7751-26A7-4B6C-B8E1-E243621A84CF";
-        private const string BasicDataModuleID = "D53E7751-26A7-4B6C-B8E1-E243621A84CF"; //基础数据模块id
+        private const string EmergencyModuleID  = "99A2844E-DF79-41D1-8CC4-CE98074CF31A";
+        private const string BasicDataModuleID  = "D53E7751-26A7-4B6C-B8E1-E243621A84CF"; //基础数据模块id
+        private const string EP360ModuleID      = "C105368C-7AF6-49C8-AED3-6A0C7A9E3F7B";
+        private const string SamplingModuleID   = "65B3E603-4493-44CA-953A-685513B01298";
+        private const string SimVisModuleID     = "4C534464-AD7D-42FF-80AF-0049CDC6A9F6";
 
         public string FrameworkURL = "http://gx.azuratech.com:30000";
         public List<ModuleInfo> Modules = null;
-        public ModuleInfo EmergencyModule = null;
+        public static ModuleInfo EmergencyModule = null;
         public static ModuleInfo BasicDataModule = null;
+        public static ModuleInfo EP360Module = null;
+        public static ModuleInfo SamplingModule = null;
+        public static ModuleInfo SimVisModule = null;
 
+        public static string FrameworkToken = "";       // Returned by the framework server. To be used as the ONLY access token throughout the APP
+        public static string EmergencyToken = "";       // used temporarily for the emergency module
 
-
-        public static bool UseMockDataStore = true;
-        public static string BackendUrl = "https://localhost:5000";
-        public static string NEWTOKENURL = "http://gx.azuratech.com:30000/token";
-        //public static string BasicDataModule = "";//基础数据模块url
-        //public static double pid = 3.14;
-        public static string BaseUrl = "";
-        //新应急接口baseURL
-        public static string BaseUrlForYINGJI = "http://192.168.1.128:5000/";
-        public static string token = "";
-        public static string EmergencyToken = "";
-        public static string frameworkToken = "";
-        public static string appName = "Aep";
-        public static string appAccident = "Accident";
+        // needed in AccountStore for credential storing
+        public static string AppName = "Aep";
         public static string SiteData = "site";
+
+        ///////////////////////////
+        public static string BaseUrl = "";  // old app url
+        public static string token = "";    // old app token
         public static bool isDeleteInfo = false;
         public static bool isAutoLogin = false;
         public static bool isSetToLogin = false;
+        ///////////////////////////
 
         public static List<TodoItem> todoItemList = new List<TodoItem>();
 
@@ -78,14 +79,13 @@ namespace AepApp
         }
 
 
-        private string result;
         private TodoItem item;
         private Account acc;
 
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new SplashPage());
 
             //MainPage = new WindSpeedAndDirectionPage();
         }
@@ -96,7 +96,7 @@ namespace AepApp
             base.OnStart();
             //return;
             //获取存储的账号密码
-            acc = (await AccountStore.Create().FindAccountsForServiceAsync(App.appName)).LastOrDefault();
+            acc = (await AccountStore.Create().FindAccountsForServiceAsync(App.AppName)).LastOrDefault();
 
             if (acc == null)
             {
@@ -124,50 +124,10 @@ namespace AepApp
         public async Task<bool> LoginAsync(string username, string password)
         {
             FrameworkToken fwtoken = await GetFrameworkTokenAsync(username, password);
-
-            if (fwtoken == null)
-            {
-
-                //string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
-                //ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
-                //{
-                //    userNameOrEmailAddress = "admin",
-                //    password = "123qwe",
-                //    rememberClient = "true"
-                //};
-                //string param2 = JsonConvert.SerializeObject(parameter2);
-                //HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
-                //if (res2.StatusCode == HttpStatusCode.OK)
-                //{
-                //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
-                //    EmergencyToken = tokenstr.result.accessToken;
-                //}
-
-                return false;
-            }
-            //            }
-            //            else {
-            //                //string url = "http://192.168.1.128:5000//api/TokenAuth/Authenticate"; //无法转换token 先用这个
-            //                //ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
-            //                //{
-            //                //    userNameOrEmailAddress = "admin",
-            //                //    password = "123qwe",
-            //                //    rememberClient = "true"
-            //                //};
-            //                //string param2 = JsonConvert.SerializeObject(parameter2);
-            //                //HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
-            //                //if (res2.StatusCode == HttpStatusCode.OK)
-            //                //{
-            //                //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
-            //                //    EmergencyToken = tokenstr.result.accessToken;
-            //                //}
-            //                frameworkToken = fwtoken.access_token;  
-            //                //return true;
-
-            //            }      
+            if (fwtoken == null) return false;
+            FrameworkToken = fwtoken.access_token;
 
             Modules = await GetModuleInfoAsync(fwtoken.access_token);
-            //D53E7751-26A7-4B6C-B8E1-E243621A84CF
 
             // if there is no module defined for the site, disable auto login and goto login page
             if (Modules == null)
@@ -178,49 +138,45 @@ namespace AepApp
             {
                 foreach (ModuleInfo mi in Modules)
                 {
-                    //if (mi.id == EmergencyModuleID)
-                    //{
-                    //    EmergencyModule = mi;
-                    //    continue;
-                    //}
-                    if (mi.id == BasicDataModuleID)
+                    switch (mi.id.ToUpper())
                     {
-                        BasicDataModule = mi;
-                        continue;
+                        case EmergencyModuleID: EmergencyModule = mi; break;
+                        case BasicDataModuleID: BasicDataModule = mi; break;
+                        case EP360ModuleID: EP360Module = mi; break;
+                        case SamplingModuleID: SamplingModule = mi; break;
+                        case SimVisModuleID: SimVisModule = mi; break;
                     }
                 }
             }
 
-            //正式环境去掉下面部分
-            string url = "http://gx.azuratech.com:30021/api/TokenAuth/Authenticate"; //无法转换token 先用这个
-            ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
+            if (EmergencyModule != null)
             {
-                userNameOrEmailAddress = "admin",
-                password = "123qwe",
-                rememberClient = "true"
-            };
-            string param2 = JsonConvert.SerializeObject(parameter2);
-            HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
-            if (res2.StatusCode == HttpStatusCode.OK)
-            {
-                var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
-                EmergencyToken = tokenstr.result.accessToken;
+                // for emergency module temorarily
+                //正式环境去掉下面部分
 
-            }
-            frameworkToken = fwtoken.access_token;
-            return true;
+                string url = EmergencyModule.url + "/api/TokenAuth/Authenticate"; //无法转换token 先用这个
+                ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
+                {
+                    userNameOrEmailAddress = "admin",
+                    password = "123qwe",
+                    rememberClient = "true"
+                };
+                string param2 = JsonConvert.SerializeObject(parameter2);
+                HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
+                if (res2.StatusCode == HttpStatusCode.OK)
+                {
+                    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
+                    EmergencyToken = tokenstr.result.accessToken;
+                }
 
+                //EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
 
+                //EmergencyToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IjE4MmVjZTI2LTBjNGItYTg0Ny0wYmJiLTM5ZTY2ZjAzN2M3YiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiaHR0cDovL3d3dy5hc3BuZXRib2lsZXJwbGF0ZS5jb20vaWRlbnRpdHkvY2xhaW1zL3RlbmFudElkIjoiMSIsInN1YiI6IjciLCJqdGkiOiJhNmIyYmJlZi03ZTQ3LTQ1M2QtYWRlYi01ZmI5OTQ4OGNmMWMiLCJpYXQiOjE1Mjg0Mjg4MDgsIm5iZiI6MTUyODQyODgwOCwiZXhwIjoxNTI4NTE1MjA4LCJpc3MiOiJFbWVyZ2VuY3kiLCJhdWQiOiJFbWVyZ2VuY3kifQ.vPWJxjqy1YikbbcKlx_90nf7QoLZGf53PgNFY4NQn3Q";
 
-
-            //if (EmergencyModule != null)
-            //{
-            EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
-            //}
-
-            if (EmergencyToken != null)
-            {
-                return true;
+                if (EmergencyToken != null)
+                {
+                    return true;
+                }
             }
 
             return false;
@@ -287,7 +243,7 @@ namespace AepApp
             try
             {
                 string url = EmergencyModule.url + "/api/TokenAuth/ExternalAuthenticate";
-                url = "http://192.168.1.128:5000//api/TokenAuth/ExternalAuthenticate";
+                url = "http://192.168.1.128:5000/api/TokenAuth/ExternalAuthenticate";
 
                 ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
                 {

@@ -71,10 +71,17 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var entr = sender as Entry;
         }
-        //事故位置按钮
+
+        //点击了位置按钮
         void AccidentPosition(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new AccidentPositionPage());
+            MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", (arg1, arg2) =>
+            {
+                var aaa = arg2 as string;
+                MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
+            });
+
         }
         //左滑删除
         void Handle_Clicked(object sender, System.EventArgs e)
@@ -207,7 +214,6 @@ namespace AepApp.View.EnvironmentalEmergency
             dataList.Add(item3);
 
             EasyWebRequest.UploadImage(file.Path);
-
         }
 
 

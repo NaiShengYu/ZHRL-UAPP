@@ -78,6 +78,28 @@ namespace AepApp.View.Monitor
             return ret;
         }
 
+        public static string ReplaceSubscript(Match match)
+        {
+            string input = match.Value;
+            string ret = "";
+            char[] sups = "₀₁₂₃₄₅₆₇₈₉".ToCharArray();
+            foreach (char c in input.ToCharArray())
+            {
+                int d = c - '0';
+                if (d < 0 || d > 9) continue;
+                ret += sups[c - '0'];
+            }
+            return ret;
+        }
+
+        private string ReplaceSubs(string input)
+        {
+            if (input == null) return "";
+            MatchEvaluator evaluator = new MatchEvaluator(ReplaceSubscript);
+            string ret = Regex.Replace(input, @"<sub>\d*</sub>", evaluator);
+            return ret;
+        }
+
         void makeData()
         {
             try

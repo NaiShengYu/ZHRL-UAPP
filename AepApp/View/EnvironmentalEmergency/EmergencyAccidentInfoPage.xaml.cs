@@ -12,13 +12,25 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class EmergencyAccidentInfoPage : ContentPage
     {
+        void Handle_ItemAppearing_1(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
+        {
 
-        //bool isSelectText = false;
-        //bool isSelectImage = false;
-        //bool isSelectData = false;
-        //bool isSelectReport = false;
-        private ObservableCollection<IncidentLoggingEventsBean> dataList = new ObservableCollection<IncidentLoggingEventsBean>();
-        private List<IncidentLoggingEventsBean> appearList = new List<IncidentLoggingEventsBean>();
+
+
+            var item = e.Item as IncidentLoggingEventsBean;
+
+
+
+            //如果最后一个参数是 false 无法调用该函数
+            listView.ScrollTo(item, ScrollToPosition.Start, true);
+        
+        
+        }
+
+        bool isSelectText = false;
+        bool isSelectImage = false;
+        bool isSelectData = false;
+        bool isSelectReport = false;
         //选中文字图标
         void selectText(object sender, System.EventArgs e)
         {
@@ -164,32 +176,15 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var item = e.Item as IncidentLoggingEventsBean;
 
-            try
-            {
-                TimeSpan time1 = appearList[appearList.Count - 1].creationTime.Subtract(item.creationTime).Duration();
-                var timelong = time1.Seconds;
 
-                int a = dataList.IndexOf(item);
-                int b = dataList.IndexOf(appearList[appearList.Count - 1]);
+                //appearList.Add(item);
+                //showCurrentItems();
 
-                if (a < b)
-                {
-                    appearList.Insert(0, item);
+            //如果最后一个参数是 false 无法调用该函数
+            rightListV.ScrollTo(item, ScrollToPosition.Start, true);
 
-                }
-                else
-                {
-                    appearList.Add(item);
-                }
-                showCurrentItems();
 
-            }
-            catch (Exception ex)
-            {
-                appearList.Add(item);
-                showCurrentItems();
 
-            }
 
         }
 
@@ -198,6 +193,10 @@ namespace AepApp.View.EnvironmentalEmergency
             var item = e.Item as IncidentLoggingEventsBean;
             appearList.Remove(item);
             showCurrentItems();
+
+
+
+
         }
 
 
@@ -205,21 +204,20 @@ namespace AepApp.View.EnvironmentalEmergency
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as item;
+            var item = e.SelectedItem as IncidentLoggingEventsBean;
             if (item == null)
                 return;
 
-            if (item.imgSourse.Length > 0 && item.imgSourse != null)
-            {
-                List<string> imgs = new List<string>();
-                imgs.Add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg");
-                imgs.Add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2738969446,4147851924&fm=27&gp=0.jpg");
-                imgs.Add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg");
+            //if (item.imgSourse.Length > 0 && item.imgSourse != null)
+            //{
+            //    List<string> imgs = new List<string>();
+            //    imgs.Add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg");
+            //    imgs.Add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2738969446,4147851924&fm=27&gp=0.jpg");
+            //    imgs.Add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg");
 
-                Navigation.PushAsync(new BrowseImagesPage(imgs));
-            }
-
-
+            //    Navigation.PushAsync(new BrowseImagesPage(imgs));
+            //}
+            //listView.
             listView.SelectedItem = null;
         }
 
@@ -235,13 +233,12 @@ namespace AepApp.View.EnvironmentalEmergency
             ReqEmergencyAccidentDetail(id);
 
             BindingContext = this;
-            //select_All.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
-            creatScrollerView();
+
         }
 
         private async void ReqEmergencyAccidentDetail(string id)
         {
-            string url = App.BaseUrlForYINGJI + DetailUrl.GetEmergencyDetail +
+            string url = App.EmergencyModule.url + DetailUrl.GetEmergencyDetail +
                    "?Id=" + id;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == HttpStatusCode.OK)
@@ -262,50 +259,37 @@ namespace AepApp.View.EnvironmentalEmergency
                         dataList.Add(list[i]);
                     }
                 }
+                creatScrollerView();
                 listView.ItemsSource = dataList;
+                rightListV.ItemsSource = dataList;
+                //if(dataList.Count>0)rightListV.ScrollTo(dataList[0], ScrollToPosition.Start, false);
             }
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
+        void creatScrollerView(){
 
-        }
-
-
-        void creatScrollerView()
-        {
-
-            DateTime lastTime = new DateTime();
             for (int i = 0; i < dataList.Count; i++)
             {
                 var item = dataList[i];
                 if (i == 0)
                 {
-                    lastTime = item.creationTime;
+                    item.marge = new Thickness(5, 0, 5, 0);
+                }else{
+                    var item1 = dataList[i - 1];
+                    TimeSpan time1 = item.creationTime.Subtract(item1.creationTime).Duration();
+                    double timeLong = time1.TotalHours;
+                    item.marge = new Thickness(5, timeLong, 5, 0);
                 }
 
-                TimeSpan time1 = item.creationTime.Subtract(lastTime).Duration();
-                double timeLong = time1.TotalHours;
+               
 
-                BoxView box = new BoxView
-                {
-                    HeightRequest = timeLong,
-                };
-
-                BoxView box1 = new BoxView
-                {
-                    BackgroundColor = Color.Gray,
-                    Margin = new Thickness(5, 0, 5, 0),
-                    HeightRequest = 8,
-                    WidthRequest = 30,
-                };
-                box1.BindingContext = item;
-
-                scrollLayout.Children.Add(box);
-                scrollLayout.Children.Add(box1);
-                lastTime = item.creationTime;
+               
             }
+
+
+
+
+
 
         }
 
@@ -317,7 +301,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 var lastItem = appearList[appearList.Count - 1];
                 TimeSpan time1 = firstItem.creationTime.Subtract(lastItem.creationTime).Duration();
                 double timeLong = time1.TotalHours;
-                positionView.HeightRequest = 10 * appearList.Count + timeLong - 2;
+                //positionView.HeightRequest = 10 * appearList.Count + timeLong - 2;
 
                 //循环出当前第一个item在原数组排第几位
                 var item = dataList[0];
@@ -326,9 +310,9 @@ namespace AepApp.View.EnvironmentalEmergency
                 //postiongView 开始位置
                 TimeSpan time2 = firstItem.creationTime.Subtract(item.creationTime).Duration();
                 double timeLong1 = time2.TotalHours;
-                positionView.Margin = new Thickness(0, 10 * a + timeLong1 + 1, 0, 0);
+                //positionView.TranslationY = 10 * a + timeLong1 + 1;
 
-                scroll.ScrollToAsync(0, 10 * a + timeLong1 + 1, true);
+                //scroll.ScrollToAsync(0, 10 * a + timeLong1 + 1, true);
 
             }
         }

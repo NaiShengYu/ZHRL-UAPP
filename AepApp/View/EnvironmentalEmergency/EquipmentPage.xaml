@@ -3,20 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.EquipmentPage"
              Title="设备">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach">
-            </SearchBar>
-            <BoxView BackgroundColor="#CDC9C9" HeightRequest="1">
-            </BoxView>
-            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
+            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" SearchButtonPressed="Handle_SearchButtonPressed" StyleClass="sbar" />
+            <ListView x:Name="listView" HasUnevenRows="true" StyleClass="mainlist" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Spacing="1">
-                                <Label Text="{Binding name}" Margin="10,8,10,0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
-                                <Label FontSize="15" TextColor="Gray" Text="{Binding model}" Margin="10,0,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
-                            </StackLayout>
+                            <Grid VerticalOptions="Center" StyleClass="item">
+                                <StackLayout VerticalOptions="Center" Margin="20,0,20,0" Spacing="0">
+                                    <Label StyleClass="itemtitle" Text="{Binding name}" />
+                                    <Label StyleClass="itemsubtitle"  Text="{Binding BrandAndModel}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding BrandAndModel}" Value="" >
+                                                <Setter Property="IsVisible" Value="false" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -12,9 +12,19 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Spacing="1">
-            <StackLayout HeightRequest="150" BackgroundColor="rgb(48, 116, 163)">
+            <Grid HeightRequest="350" BackgroundColor="rgb(48, 116, 163)">
+                <Image Source="tree" HeightRequest="130" WidthRequest="130" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,0"/>
 
-            </StackLayout>
+                <Label Text="瑞蓝智慧环保系统" FontSize="20" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,12,10,0" />
+                <Label Text="Azura Environmental" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,35,10,0"  />
+                <Label Text="Protection System" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,50,10,0"  />
+
+                <Image Source="user" HeightRequest="60" WidthRequest="60" HorizontalOptions="Center" VerticalOptions="End" Margin="60,0,-60,30"/>
+                
+                <Frame HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="rgb(54, 144, 207)" Margin="60,0,-60,8" Padding="10,2,10,2" BorderColor="Transparent" HasShadow="False" CornerRadius="10">
+                    <Label Text="测试用户5" TextColor="White" FontSize="12" />
+                </Frame>
+            </Grid>
             
             <StackLayout HeightRequest="100" BackgroundColor="White" Spacing="0" x:Name="menu1">
                 <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -31,7 +41,7 @@
                     <Label Text="环境质量" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
                     <Grid StyleClass="menuitem" >
-                        <Label Text="空气质量" />
+                        <Label Text="空气质量" BindingContext="AepApp.View.AirPage" />
                     </Grid>
 
                     <Grid StyleClass="menuitem" >
@@ -86,7 +96,7 @@
 
                     <Label Text="企业/污染源" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
-                    <Grid StyleClass="menuitem" >
+                    <Grid StyleClass="menuitem" BindingContext="AepApp.View.PollutionSourcePage">
                         <Label Text="污染源" />
                     </Grid>
 

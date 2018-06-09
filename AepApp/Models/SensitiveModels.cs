@@ -34,6 +34,9 @@ namespace AepApp.Models
             public Object creatorUserName { get; set; }
             public String notes { get; set; }
             public String id{ get; set; }
+
+            public String type { get { return "敏感源类型"; } }
+
         }
     }
 }
