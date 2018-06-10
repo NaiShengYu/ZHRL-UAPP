@@ -271,6 +271,7 @@
     <AndroidResource Include="Resources\xml\file_paths.xml" />
     <AndroidResource Include="Resources\drawable-xhdpi\dirface.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\dirarrow.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\reddot.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\water.png" />
