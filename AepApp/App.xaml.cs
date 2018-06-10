@@ -60,8 +60,6 @@ namespace AepApp
         public static List<TodoItem> todoItemList = new List<TodoItem>();
 
         static TodoItemDatabase database;
-        static TodoItemDatabase database2;
-        static EmergencyAccidentLocalDB emergencyAccidentDB;
 
         private bool _isMasterDetailPageGestureEnabled = true;
         public bool IsMasterDetailPageGestureEnabled
@@ -300,20 +298,7 @@ namespace AepApp
             }
         }
     
-        public static EmergencyAccidentLocalDB UploadEmergencyDB
-        {
-            get
-            {
-                if (emergencyAccidentDB == null)
-                {
-                    //var a = DependencyService.Get<IFileHelper>();
-                    //var b = a.GetLocalFilePath("TodoSQLite.uploadEmergency");
-                    //var c = new EmergencyAccidentLocalDB(b);
-                    //emergencyAccidentDB = new EmergencyAccidentLocalDB(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.uploadEmergency"));
-                }
-                return emergencyAccidentDB;
-            }
-        }
+    
         public int ResumeAtTodoId { get; set; }
 
 

@@ -10,23 +10,17 @@ using static AepApp.Models.EmergencyAccidentInfoDetail;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
+   
     public partial class EmergencyAccidentInfoPage : ContentPage
     {
+        private ObservableCollection<IncidentLoggingEventsBean> dataList = new ObservableCollection<IncidentLoggingEventsBean>();
+        private ObservableCollection<IncidentLoggingEventsBean> appearList = new ObservableCollection<IncidentLoggingEventsBean>();
         void Handle_ItemAppearing_1(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
         {
-
-
-
             var item = e.Item as IncidentLoggingEventsBean;
-
-
-
             //如果最后一个参数是 false 无法调用该函数
             listView.ScrollTo(item, ScrollToPosition.Start, true);
-        
-        
         }
-
         bool isSelectText = false;
         bool isSelectImage = false;
         bool isSelectData = false;
@@ -181,7 +175,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 //showCurrentItems();
 
             //如果最后一个参数是 false 无法调用该函数
-            rightListV.ScrollTo(item, ScrollToPosition.Start, true);
+            //rightListV.ScrollTo(item, ScrollToPosition.Start, true);
 
 
 

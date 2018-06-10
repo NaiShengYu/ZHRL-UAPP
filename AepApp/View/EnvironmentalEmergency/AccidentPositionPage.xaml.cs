@@ -45,7 +45,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             MessagingCenter.Send<ContentPage, string>(this,"savePosition", centercoorLab.Text);
 
-
+            Navigation.PopAsync();
 
 
         }

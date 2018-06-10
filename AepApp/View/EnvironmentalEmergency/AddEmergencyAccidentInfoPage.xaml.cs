@@ -18,7 +18,7 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AddEmergencyAccidentInfoPage : ContentPage
     {
-
+        private ObservableCollection<UploadEmergencyModel> dataList = new ObservableCollection<UploadEmergencyModel>();
         void cellRightBut(object sender, System.EventArgs e)
         {
             if (isfunctionBarIsShow == true)
@@ -80,6 +80,13 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 var aaa = arg2 as string;
                 MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
+                UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+                {
+                    //TargetLat = 0.5514516,
+                    //TargetLng = 1.051516,
+                    //category = "IncidentLocationSendingEvent"
+                };
+                App.Database.SaveEmergencyAsync(emergencyModel);
             });
 
         }
@@ -87,7 +94,7 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_Clicked(object sender, System.EventArgs e)
         {
             var menu = sender as MenuItem;
-            var item = menu.BindingContext as item;
+            var item = menu.BindingContext as UploadEmergencyModel;
 
             dataList.Remove(item);
         }
@@ -202,23 +209,23 @@ namespace AepApp.View.EnvironmentalEmergency
             if (file == null)
                return;
 
-            var item3 = new item
-            {
-                address = "121.123455,29.222222",
-                timeAndName = "2018/05/28 11:16/俞乃胜",
-                imgSourse = file.Path,
-                info = "",
-                isShowAddress = true,
-                time = Convert.ToDateTime("2018-03-19 17:51:46.310"),
-            };
-            dataList.Add(item3);
+            //var item3 = new item
+            //{
+            //    address = "121.123455,29.222222",
+            //    timeAndName = "2018/05/28 11:16/俞乃胜",
+            //    imgSourse = file.Path,
+            //    info = "",
+            //    isShowAddress = true,
+            //    time = Convert.ToDateTime("2018-03-19 17:51:46.310"),
+            //};
+            //dataList.Add(item3);
 
             EasyWebRequest.UploadImage(file.Path);
         }
 
 
 
-        ObservableCollection<item> dataList = new ObservableCollection<item>();
+        
         public AddEmergencyAccidentInfoPage(ObservableCollection<IncidentLoggingEventsBean> dataList)
         {
             InitializeComponent();
@@ -245,9 +252,14 @@ namespace AepApp.View.EnvironmentalEmergency
             base.OnAppearing();
             //TodoItemDatabase todoItemDatabase =   App.Database2;
             //请求数据库数据
-          // App.Database.CreatEmergencyTable();
-            List<UploadEmergencyModel> item = await App.Database.GetEmergencyAsync();
-            Console.WriteLine(item);
+            // App.Database.CreatEmergencyTable();
+            List<UploadEmergencyModel>  dataList2 = await App.Database.GetEmergencyAsync();
+            int count = dataList2.Count;
+            for (int i = 0;i < count;i++) {
+                dataList.Add(dataList2[i]);
+            }
+            listView.ItemsSource = dataList;
+            //Console.WriteLine(item);
             //List<UploadEmergencyModel>  item = await App.Database.GetEmergencyAsync();
             //
             // GetLocalDataFromDB();

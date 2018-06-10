@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using System.Threading.Tasks;
 using AepApp.Models;
@@ -26,6 +27,7 @@ namespace Todo
 
             database.CreateTableAsync<TodoItem>().Wait();
             database.CreateTableAsync<UploadEmergencyModel>().Wait();
+            Console.WriteLine("表创建成功");
         }
 
         public void CreatEmergencyTable()
