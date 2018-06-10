@@ -1,4 +1,4 @@
-﻿using AepApp.Models;
+using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -15,12 +15,7 @@ namespace AepApp.View.EnvironmentalEmergency
     {
         private ObservableCollection<IncidentLoggingEventsBean> dataList = new ObservableCollection<IncidentLoggingEventsBean>();
         private ObservableCollection<IncidentLoggingEventsBean> appearList = new ObservableCollection<IncidentLoggingEventsBean>();
-        void Handle_ItemAppearing_1(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
-        {
-            var item = e.Item as IncidentLoggingEventsBean;
-            //如果最后一个参数是 false 无法调用该函数
-            listView.ScrollTo(item, ScrollToPosition.Start, true);
-        }
+      
         bool isSelectText = false;
         bool isSelectImage = false;
         bool isSelectData = false;
@@ -170,10 +165,6 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var item = e.Item as IncidentLoggingEventsBean;
 
-
-                //appearList.Add(item);
-                //showCurrentItems();
-
             //如果最后一个参数是 false 无法调用该函数
             //rightListV.ScrollTo(item, ScrollToPosition.Start, true);
 
@@ -182,16 +173,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
-        void Handle_ItemDisappearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
-        {
-            var item = e.Item as IncidentLoggingEventsBean;
-            appearList.Remove(item);
-            showCurrentItems();
-
-
-
-
-        }
+     
 
 
 
@@ -202,22 +184,10 @@ namespace AepApp.View.EnvironmentalEmergency
             if (item == null)
                 return;
 
-            //if (item.imgSourse.Length > 0 && item.imgSourse != null)
-            //{
-            //    List<string> imgs = new List<string>();
-            //    imgs.Add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg");
-            //    imgs.Add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2738969446,4147851924&fm=27&gp=0.jpg");
-            //    imgs.Add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg");
-
-            //    Navigation.PushAsync(new BrowseImagesPage(imgs));
-            //}
-            //listView.
             listView.SelectedItem = null;
         }
 
-
-
-        public EmergencyAccidentInfoPage(string name, string id)
+      public EmergencyAccidentInfoPage(string name,string id)
         {
             InitializeComponent();
             //DTS = new EventDataTemplateSelector(this);
@@ -227,7 +197,6 @@ namespace AepApp.View.EnvironmentalEmergency
             ReqEmergencyAccidentDetail(id);
 
             BindingContext = this;
-
         }
 
         private async void ReqEmergencyAccidentDetail(string id)
@@ -254,14 +223,21 @@ namespace AepApp.View.EnvironmentalEmergency
                     }
                 }
                 creatScrollerView();
-                listView.ItemsSource = dataList;
                 rightListV.ItemsSource = dataList;
-                //if(dataList.Count>0)rightListV.ScrollTo(dataList[0], ScrollToPosition.Start, false);
+                listView.ItemsSource = dataList;
             }
         }
 
-        void creatScrollerView(){
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            //为了进入界面item在顶部
+            if (dataList.Count > 0) listView.ScrollTo(dataList[0], ScrollToPosition.Start, true);
+            if (dataList.Count > 0) rightListV.ScrollTo(dataList[0], ScrollToPosition.Start, true);
+        }
+
+        void creatScrollerView(){
             for (int i = 0; i < dataList.Count; i++)
             {
                 var item = dataList[i];
@@ -272,42 +248,15 @@ namespace AepApp.View.EnvironmentalEmergency
                     var item1 = dataList[i - 1];
                     TimeSpan time1 = item.creationTime.Subtract(item1.creationTime).Duration();
                     double timeLong = time1.TotalHours;
+
+                    //定义最高高度
+                    double maxH = 100;
+                    //定义没五分钟一个像素
+                    double minPixel = 5.0 / 60;
+                    double K = -(1 / minPixel) * Math.Log(1.0 - 1.0 / maxH);
+                    timeLong =  maxH* (1 - Math.Exp(-timeLong * K));
                     item.marge = new Thickness(5, timeLong, 5, 0);
                 }
-
-               
-
-               
-            }
-
-
-
-
-
-
-        }
-
-        void showCurrentItems()
-        {
-            if (appearList.Count > 0)
-            {
-                var firstItem = appearList[0];
-                var lastItem = appearList[appearList.Count - 1];
-                TimeSpan time1 = firstItem.creationTime.Subtract(lastItem.creationTime).Duration();
-                double timeLong = time1.TotalHours;
-                //positionView.HeightRequest = 10 * appearList.Count + timeLong - 2;
-
-                //循环出当前第一个item在原数组排第几位
-                var item = dataList[0];
-                int a = dataList.IndexOf(firstItem);
-
-                //postiongView 开始位置
-                TimeSpan time2 = firstItem.creationTime.Subtract(item.creationTime).Duration();
-                double timeLong1 = time2.TotalHours;
-                //positionView.TranslationY = 10 * a + timeLong1 + 1;
-
-                //scroll.ScrollToAsync(0, 10 * a + timeLong1 + 1, true);
-
             }
         }
 

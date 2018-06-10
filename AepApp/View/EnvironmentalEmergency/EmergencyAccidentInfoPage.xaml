@@ -22,16 +22,17 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
+
                 <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" 
                           ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}" BackgroundColor="#fafafa"
-                          ItemSelected="Handle_ItemSelected" ItemDisappearing="Handle_ItemDisappearing" ItemAppearing="Handle_ItemAppearing">
-                </ListView>
-                <ListView x:Name="rightListV" HasUnevenRows="true" Grid.Column="1" BackgroundColor="#fafafa" SeparatorColor="Transparent" IsPullToRefreshEnabled="false" ItemAppearing="Handle_ItemAppearing_1">
+                          ItemSelected="Handle_ItemSelected" ItemAppearing="Handle_ItemAppearing">
+               </ListView>
+                <ListView x:Name="rightListV" HasUnevenRows="true" Grid.Column="1" BackgroundColor="#fafafa" SeparatorColor="Transparent" IsPullToRefreshEnabled="false" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
                                 <Grid VerticalOptions="Fill" Margin="0" Padding="0">
-                                    <BoxView Margin="{Binding marge}" BackgroundColor="Teal" VerticalOptions="End" HorizontalOptions="Center" HeightRequest="8">
+                                    <BoxView Margin="{Binding marge}" BackgroundColor="#a6a6a6" VerticalOptions="End" HorizontalOptions="Center" HeightRequest="8">
                                         <BoxView.Triggers>
                                             <DataTrigger TargetType="BoxView" Binding="{Binding category}" Value="IncidentNatureIdentificationEvent">
                                                 <Setter Property="BackgroundColor" Value="#a6a6a6" />
@@ -60,8 +61,9 @@
                             </local:ExtendedViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
 
+                </ListView>
+             
             </Grid>
             <StackLayout BackgroundColor="#e8e8e8" Orientation="Horizontal" Spacing="0" Grid.Row="2">
                 <Button x:Name="select_Text" Clicked="selectText" Image="text"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>

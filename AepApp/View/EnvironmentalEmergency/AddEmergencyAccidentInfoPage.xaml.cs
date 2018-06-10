@@ -79,6 +79,15 @@ namespace AepApp.View.EnvironmentalEmergency
             MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", (arg1, arg2) =>
             {
                 var aaa = arg2 as string;
+                aaa = aaa.Replace("E", "");
+                aaa = aaa.Replace("N", "");
+                aaa = aaa.Replace("W", "");
+                aaa = aaa.Replace("S", "");
+                aaa = aaa.Replace(" ", "");
+                string[] bbb = aaa.Split(",".ToCharArray());
+                double lat = System.Convert.ToDouble(bbb[0]);
+                double lon = System.Convert.ToDouble(bbb[1]);
+
                 MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
@@ -98,8 +107,6 @@ namespace AepApp.View.EnvironmentalEmergency
 
             dataList.Remove(item);
         }
-
-
 
 #pragma mark --点击事故性质按钮一系列操作开始
         //点击了事故性质按钮

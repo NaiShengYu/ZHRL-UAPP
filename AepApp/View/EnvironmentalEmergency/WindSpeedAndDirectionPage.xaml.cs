@@ -33,8 +33,20 @@ namespace AepApp.View.EnvironmentalEmergency
             if (x1 < 0) tand = 360 - tand;
             directionLab.Text = Math.Round(tand,2).ToString();
             zhizhen.RotateTo(tand, 0);
+        }
 
 
+        //#pragma mark --取消masterDeftail的返回手势
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            (App.Current as App).IsMasterDetailPageGestureEnabled = false;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            (App.Current as App).IsMasterDetailPageGestureEnabled = true;
         }
 
     }

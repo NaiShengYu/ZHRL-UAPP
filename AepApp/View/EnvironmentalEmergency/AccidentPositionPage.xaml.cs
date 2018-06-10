@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using SkiaSharp;
@@ -47,7 +47,6 @@ namespace AepApp.View.EnvironmentalEmergency
 
             Navigation.PopAsync();
 
-
         }
 
         //回到当前位置
@@ -89,9 +88,6 @@ namespace AepApp.View.EnvironmentalEmergency
             path1.MoveTo(0, 0.5f * info.Height);
             path1.LineTo(info.Width, 0.5f * info.Height);
             canvas.DrawPath(path1, paint);
-
-
-
         }
 
 
@@ -101,9 +97,6 @@ namespace AepApp.View.EnvironmentalEmergency
 
             HandleEventHandler();
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
-
-           
-
         }
     }
 }
