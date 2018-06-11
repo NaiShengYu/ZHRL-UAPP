@@ -16,12 +16,24 @@
             <DataTemplate x:Key="natureDT">
                 <ViewCell >
                     <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
-                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1" >
                             <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#a6a6a6">
-                                <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#a6a6a6">
-                                    <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
-                                    <Label TextColor="White" Text=" / " />
-                                    <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#a6a6a6">
+                                        <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                        <Label TextColor="White" Text=" / " />
+                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                    </StackLayout>
+                                    <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                        <Image.Triggers >
+                                            <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                                <Setter Property="Source" Value="graytick"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                                <Setter Property="Source" Value="orangedots"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
                                 </StackLayout>
                             </Frame>
                             <Label Text="{Binding natureString}" Margin="10,30,55,8" />
@@ -38,7 +50,18 @@
                                     <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                     <Label TextColor="White" Text=" / " />
                                     <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                    <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                        <Image.Triggers >
+                                            <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                                <Setter Property="Source" Value="graytick"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                                <Setter Property="Source" Value="orangedots"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
                                 </StackLayout>
+
                             </Frame>
 
                             <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
@@ -59,6 +82,16 @@
                                     <Label TextColor="White" Text=" / " />
                                     <Label TextColor="White" Text="{Binding creatorUserName}"  />
                                 </StackLayout>
+                                <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                    <Image.Triggers >
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                            <Setter Property="Source" Value="graytick"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                            <Setter Property="Source" Value="orangedots"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
                             </Frame>
 
                             <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
@@ -79,6 +112,16 @@
                                     <Label TextColor="White" Text=" / " />
                                     <Label TextColor="White" Text="{Binding creatorUserName}"  />
                                 </StackLayout>
+                                <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                    <Image.Triggers >
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                            <Setter Property="Source" Value="graytick"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                            <Setter Property="Source" Value="orangedots"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
                             </Frame>
 
                             <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
@@ -99,6 +142,16 @@
                                     <Label TextColor="White" Text=" / " />
                                     <Label TextColor="White" Text="{Binding creatorUserName}"  />
                                 </StackLayout>
+                                <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                    <Image.Triggers >
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                            <Setter Property="Source" Value="graytick"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                            <Setter Property="Source" Value="orangedots"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
                             </Frame>
 
                             <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
@@ -119,6 +172,16 @@
                                     <Label TextColor="White" Text=" / " />
                                     <Label TextColor="White" Text="{Binding creatorUserName}"  />
                                 </StackLayout>
+                                <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                    <Image.Triggers >
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                            <Setter Property="Source" Value="graytick"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                            <Setter Property="Source" Value="orangedots"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
                             </Frame>
 
                             <Image Source="pdf.png" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
@@ -132,18 +195,31 @@
             <DataTemplate x:Key="PictureSendingDT">
                 <ViewCell >
                     <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
-                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
-                            <Frame Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#c9b750">
+                        <Grid x:Name="pic" VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Image HeightRequest="300" WidthRequest="{Binding Width,Source={x:Reference pic}}" Source="{Binding StorePath}" Aspect="AspectFill"/>
+
+
+                            <Frame x:Name="fr" Padding="2" Margin="-1,-1,0,0" CornerRadius="0" HorizontalOptions="Start" VerticalOptions="Start" HasShadow="False" BorderColor="Transparent" BackgroundColor="#c9b750">
                                 <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#c9b750">
                                     <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                     <Label TextColor="White" Text=" / " />
                                     <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                    <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                        <Image.Triggers >
+                                            <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                                <Setter Property="Source" Value="graytick"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                                <Setter Property="Source" Value="orangedots"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
                                 </StackLayout>
+
                             </Frame>
 
-                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
-
-                            <Image Source="{Binding StorePath}"/>
 
                         </Grid>
                     </Grid>

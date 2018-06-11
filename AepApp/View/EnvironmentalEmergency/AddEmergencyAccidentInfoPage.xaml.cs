@@ -8,6 +8,7 @@ using static AepApp.Models.EmergencyAccidentInfoDetail;
 using AepApp.Models;
 using System.Threading.Tasks;
 using Todo;
+using Newtonsoft.Json;
 
 #if __IOS__
 using Foundation;
@@ -19,6 +20,8 @@ namespace AepApp.View.EnvironmentalEmergency
     public partial class AddEmergencyAccidentInfoPage : ContentPage
     {
         private ObservableCollection<UploadEmergencyModel> dataList = new ObservableCollection<UploadEmergencyModel>();
+        private bool isFirstAppear = true;
+        private string emergencyId;
         void cellRightBut(object sender, System.EventArgs e)
         {
             if (isfunctionBarIsShow == true)
@@ -34,7 +37,8 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
 
-            if(isfunctionBarIsShow ==true){
+            if (isfunctionBarIsShow == true)
+            {
                 canceshiguxingzhi();
                 listView.SelectedItem = null;
                 return;
@@ -88,14 +92,17 @@ namespace AepApp.View.EnvironmentalEmergency
                 double lat = System.Convert.ToDouble(bbb[0]);
                 double lon = System.Convert.ToDouble(bbb[1]);
 
-                MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
+                //MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
-                    //TargetLat = 0.5514516,
-                    //TargetLng = 1.051516,
-                    //category = "IncidentLocationSendingEvent"
+                    creationTime = System.DateTime.Now,
+                    TargetLat = lat,
+                    TargetLng = lon,
+                    emergencyid = emergencyId,
+                    category = "IncidentLocationSendingEvent"
                 };
                 App.Database.SaveEmergencyAsync(emergencyModel);
+                dataList.Add(emergencyModel);
             });
 
         }
@@ -104,7 +111,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             var menu = sender as MenuItem;
             var item = menu.BindingContext as UploadEmergencyModel;
-
+            App.Database.DeleteEmergencyAsync(item);
             dataList.Remove(item);
         }
 
@@ -125,7 +132,8 @@ namespace AepApp.View.EnvironmentalEmergency
         bool isSelectDQ = false;
         bool isSelectSZ = false;
         bool isSelectTR = false;
-        void selectDQ(object sender, System.EventArgs e){
+        void selectDQ(object sender, System.EventArgs e)
+        {
             isSelectDQ = !isSelectDQ;
             var but = sender as Button;
             if (isSelectDQ == true)
@@ -152,12 +160,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 but.BackgroundColor = Color.Transparent;
         }
 
-        //点击了数据按钮
-        void addShuju(object sender, System.EventArgs e)
-        {
-            Navigation.PushAsync(new addDataPage());
-
-        }
         //完成选择事故性质
         void finishishiguxingzhi(object sender, System.EventArgs e)
         {
@@ -166,10 +168,55 @@ namespace AepApp.View.EnvironmentalEmergency
             aaaa.Height = 55;
             bbbb.Height = 150;
             functionBar.TranslateTo(0, 0);
-            isfunctionBarIsShow = false;
+            isfunctionBarIsShow = false;           
+            string a = "";
+            if (isSelectDQ)
+            {
+                a += "1";
+            }
+            else
+            {
+                a += "0";
+            }
+            if (isSelectSZ)
+            {
+                a += "1";
+            }
+            else
+            {
+                a += "0";
+            }
+            if (isSelectTR)
+            {
+                a += "1";
+            }
+            else
+            {
+                a += "0";
+            }
+            isSelectDQ = false;
+            isSelectSZ = false;
+            isSelectTR = false;
+            UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+            {
+                creationTime = System.DateTime.Now,
+                NatureString = a,
+                emergencyid = emergencyId,
+                category = "IncidentNatureIdentificationEvent"
+            };
+            App.Database.SaveEmergencyAsync(emergencyModel);
+            dataList.Add(emergencyModel);
+        }
+        //点击了数据按钮
+        void addShuju(object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new addDataPage());
+
         }
 
-        void canceshiguxingzhi(){
+
+        void canceshiguxingzhi()
+        {
             //entryStack.TranslateTo(0, 0);
             b2.TranslateTo(0, 0);
             aaaa.Height = 55;
@@ -201,20 +248,34 @@ namespace AepApp.View.EnvironmentalEmergency
         {
 
             await CrossMedia.Current.Initialize();
-    
-             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-             {
-                  DisplayAlert("No Camera", ":( No camera available.", "OK");
-                    return;
-                }
-             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-              {
-                 Directory = "Sample",
-                  Name = "test.jpg"
-              });
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = System.DateTime.Now+ ".jpg"
+            });
 
             if (file == null)
-               return;
+            {
+                return;
+            }
+            else {
+                UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+                {
+                    creationTime = System.DateTime.Now,
+                    StorePath = file.Path,
+                    emergencyid = emergencyId,
+                    category = "IncidentPictureSendingEvent"
+                };
+                await App.Database.SaveEmergencyAsync(emergencyModel);
+                dataList.Add(emergencyModel);
+            }
+                
 
             //var item3 = new item
             //{
@@ -232,17 +293,17 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
 
-        
-        public AddEmergencyAccidentInfoPage(ObservableCollection<IncidentLoggingEventsBean> dataList)
+
+        public AddEmergencyAccidentInfoPage(string id)
         {
             InitializeComponent();
-            NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
+            NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
 #if __IOS__//监听键盘的高度
             var not = NSNotificationCenter.DefaultCenter;
             not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
 #endif
-           
+            emergencyId = id;
             //dataList.Add(item4);
 
             //dataList.RemoveAt(1);
@@ -260,22 +321,27 @@ namespace AepApp.View.EnvironmentalEmergency
             //TodoItemDatabase todoItemDatabase =   App.Database2;
             //请求数据库数据
             // App.Database.CreatEmergencyTable();
-            List<UploadEmergencyModel>  dataList2 = await App.Database.GetEmergencyAsync();
-            int count = dataList2.Count;
-            for (int i = 0;i < count;i++) {
-                dataList.Add(dataList2[i]);
+            if (isFirstAppear)
+            {
+                List<UploadEmergencyModel> dataList2 = await App.Database.GetEmergencyAsync();
+                int count = dataList2.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    dataList.Add(dataList2[i]);
+                }
+                listView.ItemsSource = dataList;
+                isFirstAppear = false;
             }
-            listView.ItemsSource = dataList;
             //Console.WriteLine(item);
             //List<UploadEmergencyModel>  item = await App.Database.GetEmergencyAsync();
             //
             // GetLocalDataFromDB();
         }
-        private  void GetLocalDataFromDB()
+        private void GetLocalDataFromDB()
         {
             //((App)App.Current).ResumeAtTodoId = -1;
-            
-           //Console.WriteLine(incidentLoggingEvents);
+
+            //Console.WriteLine(incidentLoggingEvents);
         }
 
         internal class item
@@ -291,22 +357,62 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
 
-        void addbar(){
+        void addbar()
+        {
             var G = new Grid();
             G.ColumnDefinitions.Add(new ColumnDefinition
             {
-               
+
             });
-
-
-
-
-
-
-
-
         }
 
+        private void uploadData(object sender, EventArgs e)
+        {
+            int count = dataList.Count;
+            for (int i = 0; i <  count; i++) {
+                UploadEmergencyModel model = dataList[i];
+                switch (model.category) {
+                    case "IncidentLocationSendingEvent":
+                        PostLocationSending(model);                   
+                        break;
+                }
+            }
+        }
 
+        private async void PostLocationSending(UploadEmergencyModel model)
+        {
+            LocationSending parameter = new LocationSending
+            {
+                targetLat = model.TargetLat,
+                targetLng = model.TargetLng,
+                targetAddress = "",
+                lat = 0,
+                lng = 0,
+                index = 0,
+                incidentId = emergencyId
+            };
+            string param = JsonConvert.SerializeObject(parameter);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/IncidentLoggingEvent/AppendIncidentLocationSendingEvent",param,"POST",App.EmergencyToken);
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                await App.Database.DeleteEmergencyAsync(model);
+                dataList.Remove(model);
+            }
+            else {
+                Console.WriteLine(hTTPResponse);
+            }
+        }
+    }
+
+    internal class LocationSending
+    {
+        public double? targetLat { get; set; }
+        public double? targetLng { get; set; }
+        public string targetAddress { get; set; }
+        public double lat { get; set; }
+        public double lng { get; set; }
+        public int index { get; set; }
+        public string incidentId { get; set; }
     }
 }

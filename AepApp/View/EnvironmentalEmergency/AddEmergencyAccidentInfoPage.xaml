@@ -18,11 +18,11 @@
                            ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}">
                     <!--<ListView.ItemTemplate>
                         <DataTemplate>
-                            <local:ExtendedViewCell SelectedBackgroundColor="Blue">
-                                <local:ExtendedViewCell.ContextActions>
+                            <local:ExtendedViewCell SelectedBackgroundColor="Blue">-->
+                                <!--<local:ExtendedViewCell.ContextActions>
                                     <MenuItem Clicked="Handle_Clicked" CommandParameter="{Binding .}" Text="delete" IsDestructive="True" />
-                                </local:ExtendedViewCell.ContextActions>
-                                <Frame Margin="10,5,10,0" Padding="0"  HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e5e5e5">
+                                </local:ExtendedViewCell.ContextActions>-->
+                                <!--<Frame Margin="10,5,10,0" Padding="0"  HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e5e5e5">
                                     <Grid VerticalOptions="Center" Margin="0" Padding="0">
                                         <Image HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="400" Source="{Binding imgSourse}" Aspect="AspectFill"/>
 
@@ -115,7 +115,7 @@
                         <Button Clicked="addShuju" Margin="10,0,10,0" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
                     </Grid>
                 </Grid>
-                <Button x:Name="c3" Grid.Row="3" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="#e8e8e8" Image="upload" BorderRadius="0" />
+                <Button x:Name="c3" Clicked="uploadData" Grid.Row="3" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="#e8e8e8" Image="upload" BorderRadius="0" />
             </Grid>
 
             <Grid VerticalOptions="EndAndExpand" Margin="0,0,0,-75" x:Name="functionBar" BackgroundColor="#f2f2f2">
@@ -129,18 +129,18 @@
                     <Image WidthRequest="45" HeightRequest="45" Source="air"   Margin="0,10,0,0"/>
                     <Label Margin="0,-4,0,10" Text="大气" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
                 </StackLayout>
-                <Button x:Name="dqBut" Clicked="selectDQ" Margin="10,10,10,10" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                <Button x:Name="dqBut" Clicked="selectDQ" Margin="10,10,10,10" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
                 <StackLayout Spacing="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                     <Image WidthRequest="45" HeightRequest="45" Source="water" Margin="0,10,0,0"/>
                     <Label Margin="0,-4,0,10" Text="水质" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
                 </StackLayout>
-                <Button x:Name="szBut" Clicked="selectSZ" Margin="10,10,10,10" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                <Button x:Name="szBut" Clicked="selectSZ" Margin="10,10,10,10" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
                 <StackLayout Spacing="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
                     <Image WidthRequest="45" HeightRequest="45" Source="soil"  Margin="0,10,0,0"/>
                     <Label Margin="0,-4,0,10" Text="土壤" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
                 </StackLayout>
-                <Button x:Name="trBut" Clicked="selectTR" Margin="10,10,10,10" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-                <Button WidthRequest="55" HeightRequest="55" Clicked="finishishiguxingzhi" Image="greentick" Margin="10,10,10,10" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                <Button x:Name="trBut" Clicked="selectTR" Margin="10,10,10,10" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
+                <Button WidthRequest="55" HeightRequest="55" Clicked="finishishiguxingzhi" Image="greentick" Margin="10,10,10,10" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
             </Grid>
 
         </Grid>

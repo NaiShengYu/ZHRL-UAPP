@@ -15,7 +15,7 @@ namespace AepApp.View.EnvironmentalEmergency
     {
         private ObservableCollection<IncidentLoggingEventsBean> dataList = new ObservableCollection<IncidentLoggingEventsBean>();
         private ObservableCollection<IncidentLoggingEventsBean> appearList = new ObservableCollection<IncidentLoggingEventsBean>();
-      
+        private string emergencyId;
         bool isSelectText = false;
         bool isSelectImage = false;
         bool isSelectData = false;
@@ -131,7 +131,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //添加事故
         void addSouce(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new AddEmergencyAccidentInfoPage(dataList));
+            Navigation.PushAsync(new AddEmergencyAccidentInfoPage(emergencyId));
         }
 
         void selectAll(object sender, System.EventArgs e)
@@ -195,7 +195,7 @@ namespace AepApp.View.EnvironmentalEmergency
             this.Title = name;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             ReqEmergencyAccidentDetail(id);
-
+            emergencyId = id;
             BindingContext = this;
         }
 
@@ -322,19 +322,36 @@ namespace AepApp.View.EnvironmentalEmergency
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             IncidentLoggingEventsBean i = item as IncidentLoggingEventsBean;
-
-            switch (i.category)
+            if (i == null)
             {
-                case "IncidentNatureIdentificationEvent": return natureDT;
-                case "IncidentLocationSendingEvent": return centerLocDT;
-                case "IncidentFactorIdentificationEvent": return FactorIdentificationDT;
-                case "IncidentFactorMeasurementEvent": return FactorMeasurementDT;
-                case "IncidentMessageSendingEvent": return MessageSendingDT;
-                case "IncidentPictureSendingEvent": return PictureSendingDT;
-                case "IncidentReportGenerationEvent": return ReportGenerationDT;
-                    //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                UploadEmergencyModel j = item as UploadEmergencyModel;
+                switch (j.category)
+                {
+                    case "IncidentNatureIdentificationEvent": return natureDT;
+                    case "IncidentLocationSendingEvent": return centerLocDT;
+                    case "IncidentFactorIdentificationEvent": return FactorIdentificationDT;
+                    case "IncidentFactorMeasurementEvent": return FactorMeasurementDT;
+                    case "IncidentMessageSendingEvent": return MessageSendingDT;
+                    case "IncidentPictureSendingEvent": return PictureSendingDT;
+                    case "IncidentReportGenerationEvent": return ReportGenerationDT;
+                        //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                }
+                return natureDT;
             }
-            return natureDT;
+            else {
+                switch (i.category)
+                {
+                    case "IncidentNatureIdentificationEvent": return natureDT;
+                    case "IncidentLocationSendingEvent": return centerLocDT;
+                    case "IncidentFactorIdentificationEvent": return FactorIdentificationDT;
+                    case "IncidentFactorMeasurementEvent": return FactorMeasurementDT;
+                    case "IncidentMessageSendingEvent": return MessageSendingDT;
+                    case "IncidentPictureSendingEvent": return PictureSendingDT;
+                    case "IncidentReportGenerationEvent": return ReportGenerationDT;
+                        //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                }
+                return natureDT;
+            }                    
         }
     }
 
