@@ -343,44 +343,24 @@ namespace AepApp.View.EnvironmentalEmergency
             not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
 #endif
             emergencyId = id;
-            //dataList.Add(item4);
-
-            //dataList.RemoveAt(1);
-            //dataList.RemoveAt(3);
-            //dataList.RemoveAt(5);
-            //listView.ItemsSource = dataList;
-
         }
         protected async override void OnAppearing()
         {
-            base.OnAppearing();
-            //TodoItemDatabase todoItemDatabase =   App.Database2;
+            base.OnAppearing();            
             //请求数据库数据
             // App.Database.CreatEmergencyTable();
             if (isFirstAppear)
             {
                 List<UploadEmergencyModel> dataList2 = await App.Database.GetEmergencyAsync();
                 int count = dataList2.Count;
-                for (int i = 0; i < count; i++)
+                foreach (UploadEmergencyModel model in dataList2)
                 {
-                    dataList.Add(dataList2[i]);
+                    if (!string.IsNullOrWhiteSpace(model.category)) dataList.Add(model);
+
                 }
                 listView.ItemsSource = dataList;
                 isFirstAppear = false;
-            }
-            List<UploadEmergencyModel>  dataList2 = await App.Database.GetEmergencyAsync();
-            int count = dataList2.Count;
-
-            foreach(UploadEmergencyModel model in dataList2){
-                if(!string.IsNullOrWhiteSpace(model.category)) dataList.Add(model);
-           
-            }
-
-            listView.ItemsSource = dataList;
-            //Console.WriteLine(item);
-            //List<UploadEmergencyModel>  item = await App.Database.GetEmergencyAsync();
-            //
-            // GetLocalDataFromDB();
+            }       
         }
         private void GetLocalDataFromDB()
         {
