@@ -54,5 +54,20 @@ namespace AepApp.Droid
                 }
             }
         }
+
+
+        public void StartTimer(TimeSpan interval, Func<bool> callback)
+        {
+            var handler = new Handler(Looper.MainLooper);
+            handler.PostDelayed(() =>
+            {
+                if (callback())
+                    StartTimer(interval, callback);
+
+                handler.Dispose();
+                handler = null;
+            }, (long)interval.TotalMilliseconds);
+        }
+
     }
 }

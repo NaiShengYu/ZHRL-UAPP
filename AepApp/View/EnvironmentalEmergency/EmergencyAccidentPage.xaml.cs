@@ -38,7 +38,8 @@ namespace AepApp.View.EnvironmentalEmergency
             EmergencyAccidentPageModels.ItemsBean item = e.SelectedItem as EmergencyAccidentPageModels.ItemsBean;
             if (item == null)
                 return;
-            Navigation.PushAsync(new EmergencyAccidentInfoPage(item.name,item.id));
+            
+            Navigation.PushAsync(new EmergencyAccidentInfoPage(item.name,item.id,item.isArchived));
             listView.SelectedItem = null;
         }
    
@@ -46,6 +47,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             InitializeComponent();
             ReqEmergencyAccidentInfo(searchKey, "", 0, 10);
+
         }
 
         private async void ReqEmergencyAccidentInfo(String Filter, String Sorting, int SkipCount, int MaxResultCount)

@@ -7,6 +7,8 @@ using CloudWTO.Services;
 using static AepApp.Models.EmergencyAccidentInfoDetail;
 using AepApp.Models;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+
 using Todo;
 using Newtonsoft.Json;
 
@@ -19,6 +21,24 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AddEmergencyAccidentInfoPage : ContentPage
     {
+        //当前位置名称
+        Location _location = null;
+        //获取当前位置
+        async void HandleEventHandler()
+        {
+            try
+            {
+                _location = await Geolocation.GetLastKnownLocationAsync();
+                if (_location != null)
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+
         private ObservableCollection<UploadEmergencyModel> dataList = new ObservableCollection<UploadEmergencyModel>();
         private bool isFirstAppear = true;
         private string emergencyId;
@@ -31,8 +51,6 @@ namespace AepApp.View.EnvironmentalEmergency
             }
 
         }
-
-
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -58,7 +76,6 @@ namespace AepApp.View.EnvironmentalEmergency
             var rc = dic.ValueForKey((Foundation.NSString)"UIKeyboardFrameEndUserInfoKey");
             CGRect r = (rc as NSValue).CGRectValue;
             entryStack.TranslateTo(0, 206 - r.Size.Height);
-
         }
 #endif
         //编辑结束
@@ -237,6 +254,26 @@ namespace AepApp.View.EnvironmentalEmergency
         void fengSuFengXiang(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new WindSpeedAndDirectionPage());
+            MessagingCenter.Subscribe<ContentPage, string[]>(this, "saveWindSpeedAndDirection", (arg1, arg2) =>
+            {
+                MessagingCenter.Unsubscribe<ContentPage, string[]>(this, "saveWindSpeedAndDirection");
+
+                string speed = arg2[0];
+                string direction = arg2[1];
+
+                decimal aa = Convert.ToDecimal(speed);
+                decimal bb = Convert.ToDecimal(direction);
+
+
+                UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+                {
+
+
+                };
+                App.Database.SaveEmergencyAsync(emergencyModel);
+            });
+
+
         }
         //点击了污染物按钮
         void wuRanWu(object sender, System.EventArgs e)
@@ -299,6 +336,8 @@ namespace AepApp.View.EnvironmentalEmergency
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
+            HandleEventHandler();
+
 #if __IOS__//监听键盘的高度
             var not = NSNotificationCenter.DefaultCenter;
             not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
@@ -310,9 +349,6 @@ namespace AepApp.View.EnvironmentalEmergency
             //dataList.RemoveAt(3);
             //dataList.RemoveAt(5);
             //listView.ItemsSource = dataList;
-
-
-
 
         }
         protected async override void OnAppearing()
@@ -332,6 +368,15 @@ namespace AepApp.View.EnvironmentalEmergency
                 listView.ItemsSource = dataList;
                 isFirstAppear = false;
             }
+            List<UploadEmergencyModel>  dataList2 = await App.Database.GetEmergencyAsync();
+            int count = dataList2.Count;
+
+            foreach(UploadEmergencyModel model in dataList2){
+                if(!string.IsNullOrWhiteSpace(model.category)) dataList.Add(model);
+           
+            }
+
+            listView.ItemsSource = dataList;
             //Console.WriteLine(item);
             //List<UploadEmergencyModel>  item = await App.Database.GetEmergencyAsync();
             //

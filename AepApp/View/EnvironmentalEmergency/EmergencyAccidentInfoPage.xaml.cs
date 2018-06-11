@@ -168,15 +168,7 @@ namespace AepApp.View.EnvironmentalEmergency
             //如果最后一个参数是 false 无法调用该函数
             //rightListV.ScrollTo(item, ScrollToPosition.Start, true);
 
-
-
-
         }
-
-     
-
-
-
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -187,16 +179,25 @@ namespace AepApp.View.EnvironmentalEmergency
             listView.SelectedItem = null;
         }
 
-      public EmergencyAccidentInfoPage(string name,string id)
+        public EmergencyAccidentInfoPage(string name, string id, string isArchived)
         {
             InitializeComponent();
             //DTS = new EventDataTemplateSelector(this);
-
+            _isArchived = isArchived;
             this.Title = name;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             ReqEmergencyAccidentDetail(id);
             emergencyId = id;
             BindingContext = this;
+
+           
+            ToolbarItems.Add(new ToolbarItem("", "map", () =>
+            {
+                if (dataList.Count != 0)
+                    Navigation.PushAsync(new RescueSiteMapPage(dataList));
+            }));
+
+         
         }
 
         private async void ReqEmergencyAccidentDetail(string id)
@@ -228,13 +229,41 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
-
+        bool isStart = true;
+        string _isArchived = "";
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            isStart = true;
             //为了进入界面item在顶部
             if (dataList.Count > 0) listView.ScrollTo(dataList[0], ScrollToPosition.Start, true);
             if (dataList.Count > 0) rightListV.ScrollTo(dataList[0], ScrollToPosition.Start, true);
+
+            //定时器
+            if (_isArchived == "true")
+            {
+            rowOne.Height = 55;
+            timeBut.IsVisible = true;
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                if (isStart == false) return false;
+
+                var nowTime = DateTime.Now;
+                var lastTime = new DateTime(2018, 6, 12, 11, 32, 12);
+                TimeSpan time1 = lastTime.Subtract(nowTime).Duration();
+                //注意：需要用小写字母来显示时时间
+                timeBut.Text = time1.ToString("d'天 'h'小时 'm'分 's'秒'");
+                return true;
+            });
+            }else{
+                rowOne.Height = 0;
+                timeBut.IsVisible = false;
+            }
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            isStart = false;
         }
 
         void creatScrollerView(){
