@@ -244,6 +244,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ShowFilePage.xaml.cs">
       <DependentUpon>ShowFilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\DetectionValueUnitPage.xaml.cs">
+      <DependentUpon>DetectionValueUnitPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\SampleTypePage.xaml.cs">
+      <DependentUpon>SampleTypePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SampleTypeModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AddDataIncidentFactorModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AddDataForChemicolOrLHXZModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -412,6 +421,14 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ShowFilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\DetectionValueUnitPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\SampleTypePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

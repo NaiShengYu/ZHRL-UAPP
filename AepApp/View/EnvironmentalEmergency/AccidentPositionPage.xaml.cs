@@ -17,7 +17,7 @@ namespace AepApp.View.EnvironmentalEmergency
             try
             {
                 Location location = await Geolocation.GetLastKnownLocationAsync();
-
+                App.currentLocation = location;
                 if (location != null)
                 {
                     if (i >0){
@@ -94,8 +94,11 @@ namespace AepApp.View.EnvironmentalEmergency
         public AccidentPositionPage()
         {
             InitializeComponent();
-
             HandleEventHandler();
+            if (App.currentLocation != null)
+            {
+                map.SetCenter(16, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude));
+            }
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
         }
     }

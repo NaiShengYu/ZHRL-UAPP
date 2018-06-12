@@ -17,6 +17,8 @@ using CloudWTO.Services;
 using System.Threading.Tasks;
 using System.Net;
 using AepApp.View.EnvironmentalEmergency;
+using Xamarin.Essentials;
+
 namespace AepApp
 {
     public partial class App : Application, INotifyPropertyChanged
@@ -28,6 +30,8 @@ namespace AepApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
+        public static Location currentLocation =null;
         private const string EmergencyModuleID  = "99A2844E-DF79-41D1-8CC4-CE98074CF31A";
         private const string BasicDataModuleID  = "D53E7751-26A7-4B6C-B8E1-E243621A84CF"; //基础数据模块id
         private const string EP360ModuleID      = "C105368C-7AF6-49C8-AED3-6A0C7A9E3F7B";
@@ -42,8 +46,16 @@ namespace AepApp
         public static ModuleInfo SamplingModule = null;
         public static ModuleInfo SimVisModule = null;
 
+        //样本类型数组
+        public static List<SampleTypeModel> sampleTypeList = null;
+
+        //"上传数据"关键污染物列表数组
+        public static List<AddDataIncidentFactorModel.ItemsBean> contaminantsList = null;
+        public static List<AddDataIncidentFactorModel.ItemsBean> AppLHXZList = null;
+
         public static string FrameworkToken = "";       // Returned by the framework server. To be used as the ONLY access token throughout the APP
-        public static string EmergencyToken = "";       // used temporarily for the emergency module
+        public static string EmergencyToken = "";        // used temporarily for the emergency module
+        public static string EmergencyAccidentID = "";      
 
         // needed in AccountStore for credential storing
         public static string AppName = "Aep";
@@ -84,14 +96,35 @@ namespace AepApp
         {
             InitializeComponent();
             MainPage = new NavigationPage(new SplashPage());
-
+            HandleEventHandler();
             //MainPage = new WindSpeedAndDirectionPage();
         }
+        async void HandleEventHandler()
+        {
 
+            try
+            {
+                currentLocation = await Geolocation.GetLastKnownLocationAsync();
+            }
 
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
+        }
         protected async override void OnStart()
         {
             base.OnStart();
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                bool al = await LoginAsync("admin", "123456");
+                if (al) MainPage = new NavigationPage(new MasterAndDetailPage());
+                else MainPage = new NavigationPage(new LoginPage());
+
+                return;
+            }
+
             //return;
             //获取存储的账号密码
             acc = (await AccountStore.Create().FindAccountsForServiceAsync(App.AppName)).LastOrDefault();

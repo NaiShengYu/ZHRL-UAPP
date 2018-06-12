@@ -43,8 +43,8 @@ namespace AepApp.Models
                 return factorName + testMethodName + "的化验结果为" + factorValue + unitName;
             }
         }
-        public string lat { get; set; }   /// 纬度
-        public string lng { get; set; } /// 经度
+        public double? lat { get; set; }   /// 纬度
+        public double? lng { get; set; } /// 经度
         public string index { get; set; } /// 排序索引
         public double? TargetLat { get; set; }   /// 目标点位纬度
         public double? TargetLng { get; set; }  /// 目标点位经度

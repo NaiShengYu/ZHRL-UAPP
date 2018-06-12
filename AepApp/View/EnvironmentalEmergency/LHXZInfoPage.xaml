@@ -34,17 +34,19 @@
                 <ListView.Footer>
                     <StackLayout>
                         <StackLayout HeightRequest="35" BackgroundColor="#dbdbdb">
-                            <Label Margin="15,0,0,0" VerticalOptions="CenterAndExpand" Text="样本位置" />
+                            <Label Margin="15,0,0,0" VerticalOptions="CenterAndExpand" Text="数值" />
                         </StackLayout>
                         <StackLayout HeightRequest="55" BackgroundColor="White" Orientation="Horizontal">
                             <Label Margin="15,0,0,0" VerticalOptions="CenterAndExpand" Text="样本类型" />
-                            <Button TextColor="Silver" Text="大气" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
+                            <Button x:Name="sampleBut" Clicked="SampleType" TextColor="Silver" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
                         </StackLayout>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#dbdbdb" />
-                        <StackLayout HeightRequest="55" BackgroundColor="White" Orientation="Horizontal">
+                        <Grid HeightRequest="55" BackgroundColor="White" >
                             <Label Margin="15,0,0,0" VerticalOptions="CenterAndExpand" Text="监测值" />
-                            <Button TextColor="Silver" Text="监测值" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
-                        </StackLayout>
+                            <Entry Margin="10,5,100,5" Text="0.00" Keyboard="Numeric" x:Name="numLab" FontSize="23" HeightRequest="55" WidthRequest="120" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Button x:Name="jianCeUnit" Clicked="getUnit" TextColor="Silver" Text="mg/m3" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" WidthRequest="80"/>
+                        </Grid>
+                       
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#dbdbdb" />
                         <StackLayout BackgroundColor="White" Orientation="Horizontal">
                             <Button Clicked="Handle_Clicked" Image="greentick" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="80" WidthRequest="80" Margin="0,20,0,0"/>
