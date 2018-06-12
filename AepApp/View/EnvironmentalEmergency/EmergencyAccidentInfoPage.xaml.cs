@@ -222,7 +222,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent"
                         && cagy != "IncidentPlanGenerationEvent")
                     {
-                        //list[i].creatorUserName = "俞乃胜";
+                        list[i].creatorUserName = "俞乃胜";
 
                         dataList.Add(list[i]);
                     }
