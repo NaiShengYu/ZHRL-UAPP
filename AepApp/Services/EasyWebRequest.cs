@@ -10,6 +10,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using AepApp;
+using Plugin.Media.Abstractions;
 
 #if __MOBILE__
 using Newtonsoft.Json;
@@ -160,11 +161,11 @@ namespace CloudWTO.Services
 
         }
        
-        public static async void UploadImage(string path)
+        public static async void UploadImage(MediaFile mediaFile)
         {
             //variable
-            var url = "http://hallpassapi.jamsocialapps.com/api/profile/UpdateProfilePicture/";
-            var file = path;
+            var url = App.EmergencyModule.url + "/api/File/Upload";
+            var file = mediaFile.Path;
 
             try
             {
@@ -183,7 +184,7 @@ namespace CloudWTO.Services
 
                 //upload MultipartFormDataContent content async and store response in response var
                 var response =
-                  await client.PostAsync(url, content);
+                  await client.PostAsync(url, content).;
 
                 //read response result as a string async into json var
                 var responsestr = response.Content.ReadAsStringAsync().Result;
@@ -282,7 +283,6 @@ namespace CloudWTO.Services
             // Ignore errors
             return true;
         }
-
-
+     
     }
 }

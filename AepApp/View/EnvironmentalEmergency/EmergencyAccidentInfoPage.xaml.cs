@@ -338,6 +338,7 @@ namespace AepApp.View.EnvironmentalEmergency
         DataTemplate MessageSendingDT = null;
         DataTemplate PictureSendingDT = null;
         DataTemplate ReportGenerationDT = null;
+        DataTemplate WindDataDT = null;
 
         public EventDataTemplateSelector()
         {
@@ -349,6 +350,7 @@ namespace AepApp.View.EnvironmentalEmergency
             MessageSendingDT = a.Resources["MessageSendingDT"] as DataTemplate;
             PictureSendingDT = a.Resources["PictureSendingDT"] as DataTemplate;
             ReportGenerationDT = a.Resources["ReportGenerationDT"] as DataTemplate;
+            WindDataDT = a.Resources["WindDataDT"] as DataTemplate;
             //PlanGenerationDT = page.Resources["PlanGenerationDT"] as DataTemplate;
         }
 
@@ -367,6 +369,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentMessageSendingEvent": return MessageSendingDT;
                     case "IncidentPictureSendingEvent": return PictureSendingDT;
                     case "IncidentReportGenerationEvent": return ReportGenerationDT;
+                    case "IncidentWindDataSendingEvent": return WindDataDT;
                         //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
                 }
                 return natureDT;
@@ -381,6 +384,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentMessageSendingEvent": return MessageSendingDT;
                     case "IncidentPictureSendingEvent": return PictureSendingDT;
                     case "IncidentReportGenerationEvent": return ReportGenerationDT;
+                    case "IncidentWindDataSendingEvent": return WindDataDT;
                         //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
                 }
                 return natureDT;
