@@ -30,7 +30,7 @@ namespace AepApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
+        public static MasterDetailPage appHunbegerPage = null;
         public static Location currentLocation =null;
         private const string EmergencyModuleID  = "99A2844E-DF79-41D1-8CC4-CE98074CF31A";
         private const string BasicDataModuleID  = "D53E7751-26A7-4B6C-B8E1-E243621A84CF"; //基础数据模块id
@@ -98,7 +98,20 @@ namespace AepApp
             MainPage = new NavigationPage(new SplashPage());
             HandleEventHandler();
             //MainPage = new WindSpeedAndDirectionPage();
+
+            aaaa();
         }
+
+        //使用后删除错误数据
+        async void aaaa(){
+            List<UploadEmergencyModel> dataList2 = await App.Database.GetEmergencyAsync();
+            foreach (UploadEmergencyModel model in dataList2)
+            {
+                await App.Database.DeleteEmergencyAsync(model);
+            } 
+        }
+
+
         async void HandleEventHandler()
         {
 
@@ -115,7 +128,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-
+           
             if (Device.RuntimePlatform == Device.iOS)
             {
                 bool al = await LoginAsync("admin", "123456");

@@ -26,7 +26,13 @@ namespace AepApp.View.EnvironmentalEmergency
 
             if (_type == 2)
             {
-                MessagingCenter.Send<ContentPage, ReqChemicalPageModel.ItemsBean>(this, "Value", ChemicalModel);
+                AddDataIncidentFactorModel.ItemsBean factor = new AddDataIncidentFactorModel.ItemsBean
+                {
+                    factorId = ChemicalModel.id,
+                    factorName = ChemicalModel.chinesename,
+                };
+                App.contaminantsList.Add(factor);
+                MessagingCenter.Send<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew", factor);
                 Navigation.PopAsync();
             }
             if (_type ==3){
@@ -35,6 +41,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 {
                     factorId = ChemicalModel.id,
                     factorName = ChemicalModel.chinesename,
+
                 };
                 Navigation.PushAsync(new LHXZInfoPage(model,0));
 

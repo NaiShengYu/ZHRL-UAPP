@@ -216,13 +216,13 @@ namespace AepApp.View.EnvironmentalEmergency
                 //totalNum = accidentPageModels.result.incidents.totalCount;
                 List<EmergencyAccidentInfoDetail.IncidentLoggingEventsBean> list = emergencyAccidentBean.result.incidentLoggingEvents;
                 int count = list.Count;
+                dataList.Clear();
                 for (int i = 0; i < count; i++)
                 {
                     string cagy = list[i].category;
                     if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent"
                         && cagy != "IncidentPlanGenerationEvent")
                     {
-                        list[i].creatorUserName = "俞乃胜";
 
                         dataList.Add(list[i]);
                     }
@@ -238,6 +238,8 @@ namespace AepApp.View.EnvironmentalEmergency
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            ReqEmergencyAccidentDetail(emergencyId);
+
             isStart = true;
             //为了进入界面item在顶部
             if (dataList.Count > 0) listView.ScrollTo(dataList[0], ScrollToPosition.Start, true);

@@ -30,17 +30,55 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 factorName = "PM2.5（大气）",
                 factorId = "2692FAD2-589B-457B-BFF0-0B1723A52391",
-                dataType ="1",
+                dataType = "1",
+                unit = "μg/m³",
             };
+            dataList1.Add(itme1);
+
             var itme2 = new AddDataIncidentFactorModel.ItemsBean
             {
                 factorName = "PM10（大气）",
                 factorId = "C6C1933C-468B-4517-B852-F0722C3F8CBC",
                 dataType = "1",
-
+                unit = "μg/m³",
             };
-            dataList1.Add(itme1);
             dataList1.Add(itme2);
+
+            var itme004 = new AddDataIncidentFactorModel.ItemsBean
+            {
+                factorName = "臭氧 O₃（大气）",
+                factorId = "11047A01-D083-4DE1-B252-35FE62D845CE",
+                dataType = "1",
+                unit = "μg/m³",
+            };
+            dataList1.Add(itme004);
+            var itme003 = new AddDataIncidentFactorModel.ItemsBean
+            {
+                factorName = "一氧化碳 CO（大气）",
+                factorId = "ED83D8E0-C732-440A-BF78-BDDB4AFB9386",
+                dataType = "1",
+                unit = "μg/m³",
+            };
+            dataList1.Add(itme003);
+
+            var itme002 = new AddDataIncidentFactorModel.ItemsBean
+            {
+                factorName = "二氧化氮 NO₂（大气）",
+                factorId = "38693B8C-FEA5-440F-B675-20D52B22D13A",
+                dataType ="1",
+                unit = "μg/m³",
+            };
+            dataList1.Add(itme002);
+
+            var itme001 = new AddDataIncidentFactorModel.ItemsBean
+            {
+                factorName = "二氧化硫 SO₂（大气）",
+                factorId = "23D34C02-446A-4413-80CD-9EE0D7BE9308",
+                dataType = "1",
+                unit = "μg/m³",
+            };
+            dataList1.Add(itme001);
+
 
 
             var itme3 = new AddDataIncidentFactorModel.ItemsBean
@@ -48,7 +86,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 factorName = "水温",
                 factorId = "463D677E-4287-4B6E-B7B6-7A9399420AD8",
                 dataType = "2",
-
+                unit ="°C",
             };
             dataList2.Add(itme3);
 
@@ -57,6 +95,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 factorName = "pH（水质）",
                 factorId = "7735D12D-F11E-4D74-9864-0A3275144C99",
                 dataType = "2",
+                unit = "无量纲",
             };
             dataList2.Add(itme4);
 
@@ -65,6 +104,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 factorName = "溶解氧（水质）",
                 factorId = "399A6708-C6E1-4591-8C25-493AE05F7EED",
                 dataType = "2",
+                unit = "mg/L",
             };
             dataList2.Add(itme5);
 
@@ -73,6 +113,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 factorName = "高锰酸钾指数（水质）",
                 factorId = "67F3B264-2E32-48D9-9F56-C4E554B0B9E3",
                 dataType = "2",
+                unit = "mg/L",
             };
             dataList2.Add(itme6);
 
@@ -81,6 +122,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 factorName = "化学需氧量 COD（水质）",
                 factorId = "3362D199-8EEE-4DA2-80E3-C1334F016E24",
                 dataType = "2",
+                unit = "mg/L",
             };
             dataList2.Add(itme50);
 
@@ -89,11 +131,13 @@ namespace AepApp.View.EnvironmentalEmergency
                 factorName = "五日生化需氧量 BOD₅（水质）",
                 factorId = "018170F5-D189-4F8F-B0B5-56BBE371C6E4",
                 dataType = "2",
+                unit = "mg/L",
             };
             dataList2.Add(itme7);
 
             var itme51 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "氨氮 NH₃-N（水质）",
                 factorId = "4A742D72-3ABB-45B0-A38D-CD0E00BC1B3E"
@@ -102,6 +146,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme8 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "总磷（水质）",
                 factorId = "544BB0E2-4CE2-4824-B8C0-99D52BF70DEC"
@@ -110,6 +155,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme9 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "总氮（水质）",
                 factorId = "8C4DE8C9-862D-4A80-BA1D-DFD619E93BBB"
@@ -118,6 +164,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme10 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "铜（水质）",
                 factorId = "D3DA2844-6644-4A91-8AFF-93094B089041"
@@ -126,6 +173,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme11 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "锌（水质）",
                 factorId = "9B2252F2-5402-4D17-AA6D-3010CFA816D9"
@@ -134,6 +182,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme12 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "氟化物（水质）",
                 factorId = "69616E47-3728-4929-A938-45BE41286770"
@@ -142,6 +191,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme13 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "硒（水质）",
                 factorId = "CBD265B7-6C9F-4609-AA0F-07BC86801C39"
@@ -150,6 +200,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme14 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "砷（水质）",
                 factorId = "96609051-A9AB-4772-80A4-547544608F8F"
@@ -158,6 +209,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme15 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "汞（水质）",
                 factorId = "492CDEBD-113F-43E1-9007-C02453B47B73"
@@ -166,6 +218,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme16 = new AddDataIncidentFactorModel.ItemsBean
               {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "镉（水质）",
                 factorId = "568E8B6C-36B5-4C28-B4F6-5FBCE79F864B"
@@ -174,6 +227,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme17 = new AddDataIncidentFactorModel.ItemsBean
              {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "铬（水质）",
                 factorId = "5C3B9285-8D97-4682-85B5-D5E34ACBBF20"
@@ -182,6 +236,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme18 = new AddDataIncidentFactorModel.ItemsBean
              {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "铅（水质）",
                 factorId = "1D7F8202-0464-4AA7-8067-2A3224E24CB1"
@@ -190,6 +245,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme19 = new AddDataIncidentFactorModel.ItemsBean
              {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "氰化物（水质）",
                 factorId = "B1D230B8-D196-455A-9BEF-E2B205D171C6"
@@ -198,6 +254,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme20 = new AddDataIncidentFactorModel.ItemsBean
              {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "挥发酚（水质）",
                 factorId = "25D7009A-CFE4-46F8-A01B-3C54AAFE6C43"
@@ -206,6 +263,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme21 = new AddDataIncidentFactorModel.ItemsBean
              {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "石油类（水质）",
                 factorId = "3F536B06-6087-4AB7-8BF7-069563B0BDD2"
@@ -214,6 +272,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme22 = new AddDataIncidentFactorModel.ItemsBean
              {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "阴离子表面活性剂（水质）",
                 factorId = "8F5FE1FD-D8F1-42E4-878C-02606808A7F7"
@@ -222,6 +281,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme23 = new AddDataIncidentFactorModel.ItemsBean
              {
+                unit = "mg/L",
                 dataType = "2",
                 factorName = "硫化物（水质）",
                 factorId = "0EA13028-6796-43F1-806D-8801FA185799"
@@ -230,6 +290,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var itme24 = new AddDataIncidentFactorModel.ItemsBean
              {
+                unit = "个/L",
                 dataType = "2",
                 factorName = "粪大肠菌群（水质）",
                 factorId = "5B2DCFE2-8E89-4689-813C-A84B537DB9CE"

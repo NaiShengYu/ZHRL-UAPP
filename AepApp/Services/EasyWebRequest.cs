@@ -106,7 +106,7 @@ namespace CloudWTO.Services
                 result = await sr.ReadToEndAsync();
                 sr.Close();
             }
-            catch (WebException ex)
+            catch (Exception ex)
             {
                 result = ex.Message;
                 return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
@@ -184,7 +184,7 @@ namespace CloudWTO.Services
 
                 //upload MultipartFormDataContent content async and store response in response var
                 var response =
-                  await client.PostAsync(url, content).;
+                  await client.PostAsync(url, content);
 
                 //read response result as a string async into json var
                 var responsestr = response.Content.ReadAsStringAsync().Result;
