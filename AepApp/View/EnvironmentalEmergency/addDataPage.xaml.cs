@@ -1,154 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net;
 using AepApp.Models;
+using CloudWTO.Services;
 using Xamarin.Forms;
+using AepApp.Models;
+using Newtonsoft.Json;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class addDataPage : ContentPage
     {
+      
+        //点击某一个污染源或理化性质，添加数值
+        void HandleEventHandler(object sender, EventArgs e)
+        {
+            var but = sender as Button;
+            AddDataIncidentFactorModel.ItemsBean item = but.BindingContext as AddDataIncidentFactorModel.ItemsBean;
+            ////如果id为空，无法请求到数据，就直接return，不用返回到上一级
+            if (string.IsNullOrWhiteSpace(item.factorId)) return;
+            Navigation.PushAsync(new LHXZInfoPage(item, 0));
 
+        }
 
         void addLHXZ(object sender, System.EventArgs e)
         {
-
             Navigation.PushAsync(new AddDataForLHXZPage());
-            MessagingCenter.Subscribe<ContentPage, LHXZModel>(this, "addLHXZ", (arg1, arg2) =>
-            {
-                var aaa = arg2 as LHXZModel;
-                bool ishad = false;
-                foreach (LHXZModel model in dataList2)
-                {
-                    if (model.name == aaa.name)
-                    {
-                        ishad = true;
-                        break;
-                    }
-                }
-                if (ishad == false)
-                {
-                    dataList2.Add(arg2);
-                    creatLHXZView();
-                }
-                MessagingCenter.Unsubscribe<ContentPage, LHXZModel>(this, "addLHXZ");
-            });
-
+           
 
         }
 
         //添加关键污染物
         void Handle_Clicked(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new ChemicalPage(2));
-            MessagingCenter.Subscribe<ContentPage, ChemicalModel>(this, "Value", (arg1, arg2) =>
-            {
-                var aaa = arg2 as ChemicalModel;
-                bool ishad = false;
-                foreach (ChemicalModel model in dataList1)
-                {
-                    if (model.name == aaa.name)
-                    {
-                        ishad = true;
-                        break;
-                    }
-                }
-                if (ishad == false)
-                {
-                    dataList1.Add(arg2);
-                    creatWRWView();
-                }
-
-                MessagingCenter.Unsubscribe<ContentPage, ChemicalModel>(this, "Value");
-            });
+            Navigation.PushAsync(new ChemicalPage(3));
+           
 
         }
-        ObservableCollection<ChemicalModel> dataList1 = new ObservableCollection<ChemicalModel>();
-        ObservableCollection<LHXZModel> dataList2 = new ObservableCollection<LHXZModel>();
 
         public addDataPage()
         {
             InitializeComponent();
-
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
-            var ChemicalModel1 = new ChemicalModel
-            {
-                name = "苯",
-                Yname = "BenZene",
-            };
 
-            var ChemicalModel2 = new ChemicalModel
-            {
-                name = "二甲苯",
-                Yname = "BenZene",
-            };
-            dataList1.Add(ChemicalModel1);
-            dataList1.Add(ChemicalModel2);
-
-            var ChemicalModel12 = new LHXZModel
-            {
-                name = "化学需氧量",
-            };
-
-            var ChemicalModel22 = new LHXZModel
-            {
-                name = "氨氮",
-            };
-            dataList2.Add(ChemicalModel12);
-            dataList2.Add(ChemicalModel22);
-
-
-            creatWRWView();
-            creatLHXZView();
-
-
+            creatView(wrw, App.contaminantsList);
+            creatView(lhxz, App.AppLHXZList);
 
         }
 
-        void creatWRWView()
-        {
-            wrw.Children.Clear();
-            for (int i = 0; i < dataList1.Count; i++)
+
+
+        void creatView(StackLayout la,List<AddDataIncidentFactorModel.ItemsBean> list){
+            la.Children.Clear();
+            for (int i = 0; i < list.Count; i++)
             {
+                var it = list[i];
 
-                var it = dataList1[i];
-                var sk = new StackLayout
+                var sk = new Grid
                 {
-                    Spacing = 1,
-                    BackgroundColor = Color.White,
-                };
-                var lab1 = new Label
-                {
-                    Margin = new Thickness(15, 5, 15, 0),
-                    Text = it.name,
-
-                };
-                var lab2 = new Label
-                {
-                    Margin = new Thickness(15, 0, 15, 5),
-                    Text = it.Yname,
-                    TextColor = Color.Gray,
-                    FontSize = 15,
-
-                };
-                sk.Children.Add(lab1);
-                sk.Children.Add(lab2);
-                wrw.Children.Add(sk);
-            }
-
-        }
-
-        void creatLHXZView()
-        {
-            lhxz.Children.Clear();
-            for (int i = 0; i < dataList2.Count; i++)
-            {
-                var it = dataList2[i];
-
-                var sk = new StackLayout
-                {
-                    Spacing = 1,
                     BackgroundColor = Color.White,
                     HeightRequest = 50,
                     VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -157,16 +68,32 @@ namespace AepApp.View.EnvironmentalEmergency
                 var lab1 = new Label
                 {
                     Margin = new Thickness(15, 5, 15, 5),
-                    Text = it.name,
+                    Text = it.factorName,
                     VerticalTextAlignment = TextAlignment.Center,
                 };
                 lab1.VerticalOptions = LayoutOptions.CenterAndExpand;
                 lab1.HorizontalOptions = LayoutOptions.Start;
                 sk.Children.Add(lab1);
-                lhxz.Children.Add(sk);
+
+                var but1 = new Button
+                {
+                    BindingContext = it,
+                    BackgroundColor = Color.Transparent,
+                    VerticalOptions = LayoutOptions.Fill,
+                    HorizontalOptions = LayoutOptions.Fill,
+                };
+                but1.Clicked += HandleEventHandler;
+                sk.Children.Add(but1);
+                la.Children.Add(sk);
             }
 
         }
+
+
+     
+       
+
+
 
 
     }

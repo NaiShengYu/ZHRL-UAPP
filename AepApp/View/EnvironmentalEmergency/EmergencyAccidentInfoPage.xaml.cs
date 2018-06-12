@@ -1,4 +1,4 @@
-﻿using AepApp.Models;
+using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -10,62 +10,142 @@ using static AepApp.Models.EmergencyAccidentInfoDetail;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
+   
     public partial class EmergencyAccidentInfoPage : ContentPage
     {
-
+        private ObservableCollection<IncidentLoggingEventsBean> dataList = new ObservableCollection<IncidentLoggingEventsBean>();
+        private ObservableCollection<IncidentLoggingEventsBean> appearList = new ObservableCollection<IncidentLoggingEventsBean>();
+        private string emergencyId;
         bool isSelectText = false;
         bool isSelectImage = false;
         bool isSelectData = false;
         bool isSelectReport = false;
         //选中文字图标
-        void selectText(object sender, System.EventArgs e){
-            isSelectText = !isSelectText;
-            var but = sender as Button;
-            if (isSelectText == true)
-                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
-            else
-                but.BackgroundColor = Color.Transparent;
-            dataList.Clear();
-            listView.ItemsSource = dataList;
+        void selectText(object sender, System.EventArgs e)
+        {
+            //ChangeBtBackgroundColor(true, false, false, false, false);
+            //isSelectText = !isSelectText;
+            //var but = sender as Button;
+            //if (isSelectText == true)
+            //    but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            //else
+            //    but.BackgroundColor = Color.Transparent;
+            appearList.Clear();
+            int count = dataList.Count;
+            for (int i = 0; i < count; i++)
+            {
+                string ca = dataList[i].category;
+                switch (ca)
+                {
+                    case "IncidentFactorIdentificationEvent":
+                    case "IncidentLocationSendingEvent":
+                    case "IncidentNatureIdentificationEvent":
+                    case "IncidentWindDataSendingEvent":
+                    case "IncidentMessageSendingEvent":
+                        appearList.Add(dataList[i]);
+                        break;
+                }
+
+            }
+            listView.ItemsSource = null;
+            listView.ItemsSource = appearList;
         }
+
         //选中图片图标
         void selectImage(object sender, System.EventArgs e)
         {
-            isSelectImage = !isSelectImage;
-            var but = sender as Button;
-            if (isSelectImage == true)
-                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
-            else
-                but.BackgroundColor = Color.Transparent;
+            //ChangeBtBackgroundColor(false, true, false, false, false);
+            //isSelectImage = !isSelectImage;
+            //var but = sender as Button;
+            //if (isSelectImage == true)
+            //    but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            //else
+            //    but.BackgroundColor = Color.Transparent;
+            appearList.Clear();
+            int count = dataList.Count;
+            for (int i = 0; i < count; i++)
+            {
+                string ca = dataList[i].category;
+                switch (ca)
+                {
+                    case "IncidentPictureSendingEvent":
+                        appearList.Add(dataList[i]);
+                        break;
+                }
+            }
+            listView.ItemsSource = null;
+            listView.ItemsSource = appearList;
         }
         //选中数据图标
         void selectData(object sender, System.EventArgs e)
         {
-            isSelectData = !isSelectData;
-            var but = sender as Button;
-            if (isSelectData == true)
-                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
-            else
-                but.BackgroundColor = Color.Transparent;
+            //ChangeBtBackgroundColor(false, false, true, false, false);
+            //isSelectData = !isSelectData;
+            //var but = sender as Button;
+            //if (isSelectData == true)
+            //    but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            //else
+            //    but.BackgroundColor = Color.Transparent;
+            appearList.Clear();
+            int count = dataList.Count;
+            for (int i = 0; i < count; i++)
+            {
+                string ca = dataList[i].category;
+                switch (ca)
+                {
+                    case "IncidentFactorMeasurementEvent":
+                        appearList.Add(dataList[i]);
+                        break;
+                }
+            }
+            listView.ItemsSource = null;
+            listView.ItemsSource = appearList;
         }
         //选中报告图标
         void selectReport(object sender, System.EventArgs e)
         {
-            isSelectReport = !isSelectReport;
-            var but = sender as Button;
-            if (isSelectReport == true)
-                but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
-            else
-                but.BackgroundColor = Color.Transparent;
+            //ChangeBtBackgroundColor(false, false, false, true, false);
+            //isSelectReport = !isSelectReport;
+            //var but = sender as Button;
+            //if (isSelectReport == true)
+            //    but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            //else
+            //    but.BackgroundColor = Color.Transparent;
+            appearList.Clear();
+            int count = dataList.Count;
+            for (int i = 0; i < count; i++)
+            {
+                string ca = dataList[i].category;
+                switch (ca)
+                {
+                    case "IncidentPlanGenerationEvent":
+                    case "IncidentReportGenerationEvent":
+                        appearList.Add(dataList[i]);
+                        break;
+                }
+            }
+            listView.ItemsSource = null;
+            listView.ItemsSource = appearList;
         }
 
         //添加事故
         void addSouce(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new AddEmergencyAccidentInfoPage());
+            Navigation.PushAsync(new AddEmergencyAccidentInfoPage(emergencyId));
         }
 
-
+        void selectAll(object sender, System.EventArgs e)
+        {
+            //ChangeBtBackgroundColor(false, false, false, false, true);
+            //isSelectText = !isSelectText;
+            //var but = sender as Button;
+            //if (isSelectText == true)
+            //    but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            //else
+            //    but.BackgroundColor = Color.Transparent;
+            appearList.Clear();
+            listView.ItemsSource = dataList;
+        }
 
 
 
@@ -85,88 +165,41 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var item = e.Item as IncidentLoggingEventsBean;
 
-            try
-            {
-                TimeSpan time1 = appearList[appearList.Count - 1].creationTime.Subtract(item.creationTime).Duration();
-                var timelong = time1.Seconds;
-
-                int a = dataList.IndexOf(item);
-                int b = dataList.IndexOf(appearList[appearList.Count - 1]);
-
-                if (a < b)
-                {
-                    appearList.Insert(0, item);
-
-                }
-                else
-                {
-                    appearList.Add(item);
-                }
-                showCurrentItems();
-
-            }
-            catch (Exception ex)
-            {
-                appearList.Add(item);
-                showCurrentItems();
-
-            }
+            //如果最后一个参数是 false 无法调用该函数
+            //rightListV.ScrollTo(item, ScrollToPosition.Start, true);
 
         }
-
-        void Handle_ItemDisappearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
-        {
-            var item = e.Item as IncidentLoggingEventsBean;
-            appearList.Remove(item);
-            showCurrentItems();
-        }
-
-
-
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as item;
+            var item = e.SelectedItem as IncidentLoggingEventsBean;
             if (item == null)
                 return;
-
-            if (item.imgSourse.Length > 0 && item.imgSourse != null)
-            {
-                List<string> imgs = new List<string>();
-                imgs.Add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg");
-                imgs.Add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2738969446,4147851924&fm=27&gp=0.jpg");
-                imgs.Add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1851366601,1588844299&fm=27&gp=0.jpg");
-
-                Navigation.PushAsync(new BrowseImagesPage(imgs));
-            }
-
 
             listView.SelectedItem = null;
         }
 
-        private EventDataTemplateSelector _dts;
 
-        public EventDataTemplateSelector DTS
-        {
-            get { return _dts; }
-            set { _dts = value; }
-        }
-
-
-        ObservableCollection<IncidentLoggingEventsBean> dataList = new ObservableCollection<IncidentLoggingEventsBean>();
-        List<IncidentLoggingEventsBean> appearList = new List<IncidentLoggingEventsBean>();
-        public EmergencyAccidentInfoPage(string name,string id)
+        public EmergencyAccidentInfoPage(string name, string id, string isArchived)
         {
             InitializeComponent();
-            DTS = new EventDataTemplateSelector(this);
 
+            //DTS = new EventDataTemplateSelector(this);
+            _isArchived = isArchived;
             this.Title = name;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             ReqEmergencyAccidentDetail(id);
-
+            emergencyId = id;
             BindingContext = this;
 
-            creatScrollerView();
+           
+            ToolbarItems.Add(new ToolbarItem("", "map", () =>
+            {
+                if (dataList.Count != 0)
+                    Navigation.PushAsync(new RescueSiteMapPage(dataList));
+            }));
+
+         
         }
 
         private async void ReqEmergencyAccidentDetail(string id)
@@ -186,78 +219,77 @@ namespace AepApp.View.EnvironmentalEmergency
                 for (int i = 0; i < count; i++)
                 {
                     string cagy = list[i].category;
-                    if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent") {
+                    if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent"
+                        && cagy != "IncidentPlanGenerationEvent")
+                    {
+                        //list[i].creatorUserName = "俞乃胜";
 
+                        dataList.Add(list[i]);
                     }
-                    dataList.Add(list[i]);
                 }
+                creatScrollerView();
+                rightListV.ItemsSource = dataList;
                 listView.ItemsSource = dataList;
             }
         }
 
+        bool isStart = true;
+        string _isArchived = "";
         protected override void OnAppearing()
         {
             base.OnAppearing();
-           
+            isStart = true;
+            //为了进入界面item在顶部
+            if (dataList.Count > 0) listView.ScrollTo(dataList[0], ScrollToPosition.Start, true);
+            if (dataList.Count > 0) rightListV.ScrollTo(dataList[0], ScrollToPosition.Start, true);
+
+            //定时器
+            if (_isArchived == "true")
+            {
+            rowOne.Height = 55;
+            timeBut.IsVisible = true;
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                if (isStart == false) return false;
+
+                var nowTime = DateTime.Now;
+                var lastTime = new DateTime(2018, 6, 12, 11, 32, 12);
+                TimeSpan time1 = lastTime.Subtract(nowTime).Duration();
+                //注意：需要用小写字母来显示时时间
+                timeBut.Text = time1.ToString("d'天 'h'小时 'm'分 's'秒'");
+                return true;
+            });
+            }else{
+                rowOne.Height = 0;
+                timeBut.IsVisible = false;
+            }
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            isStart = false;
         }
 
-
         void creatScrollerView(){
-
-            DateTime lastTime = new DateTime();
             for (int i = 0; i < dataList.Count; i++)
             {
                 var item = dataList[i];
                 if (i == 0)
                 {
-                    lastTime = item.creationTime;
+                    item.marge = new Thickness(5, 0, 5, 0);
+                }else{
+                    var item1 = dataList[i - 1];
+                    TimeSpan time1 = item.creationTime.Subtract(item1.creationTime).Duration();
+                    double timeLong = time1.TotalHours;
+
+                    //定义最高高度
+                    double maxH = 100;
+                    //定义没五分钟一个像素
+                    double minPixel = 5.0 / 60;
+                    double K = -(1 / minPixel) * Math.Log(1.0 - 1.0 / maxH);
+                    timeLong =  maxH* (1 - Math.Exp(-timeLong * K));
+                    item.marge = new Thickness(5, timeLong, 5, 0);
                 }
-
-                TimeSpan time1 = item.creationTime.Subtract(lastTime).Duration();
-                double timeLong = time1.TotalHours;
-
-                BoxView box = new BoxView
-                {
-                    HeightRequest = timeLong,
-                };
-
-                BoxView box1 = new BoxView
-                {
-                    BackgroundColor = Color.Gray,
-                    Margin = new Thickness(5, 0, 5, 0),
-                    HeightRequest = 8,
-                    WidthRequest = 30,
-                };
-                box1.BindingContext = item;
-
-                scrollLayout.Children.Add(box);
-                scrollLayout.Children.Add(box1);
-                lastTime = item.creationTime;
-            }
-
-        }
-
-        void showCurrentItems()
-        {
-            if (appearList.Count > 0)
-            {
-                var firstItem = appearList[0];
-                var lastItem = appearList[appearList.Count - 1];
-                TimeSpan time1 = firstItem.creationTime.Subtract(lastItem.creationTime).Duration();
-                double timeLong = time1.TotalHours;
-                positionView.HeightRequest = 10 * appearList.Count + timeLong - 2;
-
-                //循环出当前第一个item在原数组排第几位
-                var item = dataList[0];
-                int a = dataList.IndexOf(firstItem);
-
-                //postiongView 开始位置
-                TimeSpan time2 = firstItem.creationTime.Subtract(item.creationTime).Duration();
-                double timeLong1 = time2.TotalHours;
-                positionView.Margin = new Thickness(0, 10 * a + timeLong1 + 1, 0, 0);
-
-                scroll.ScrollToAsync(0, 10 * a + timeLong1 + 1, true);
-
             }
         }
 
@@ -273,38 +305,62 @@ namespace AepApp.View.EnvironmentalEmergency
 
             public DateTime time { get; set; }
         }
-
-
-        public class EventDataTemplateSelector : DataTemplateSelector
+        private void ChangeBtBackgroundColor(bool isSelectText, bool isSelectImage, bool isSelectData, bool isSelectReport, bool selectAll)
         {
-            DataTemplate natureDT = null;
-            DataTemplate centerLocDT = null;
-            DataTemplate FactorIdentificationDT = null;
-            DataTemplate FactorMeasurementDT = null;
-            DataTemplate MessageSendingDT = null;
-            DataTemplate PictureSendingDT = null;
-            DataTemplate PlanGenerationDT = null;          
-            DataTemplate ReportGenerationDT = null;          
+            select_Text.BackgroundColor = Color.Transparent;
+            select_Image.BackgroundColor = Color.Transparent;
+            select_Data.BackgroundColor = Color.Transparent;
+            select_Report.BackgroundColor = Color.Transparent;
+            select_All.BackgroundColor = Color.Transparent;
+            if (isSelectText) select_Text.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            if (isSelectImage) select_Image.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            if (isSelectData) select_Data.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            if (isSelectReport) select_Report.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+            if (selectAll) select_All.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+        }
 
-            public EventDataTemplateSelector(EmergencyAccidentInfoPage page)
+
+    }
+
+    public class EventDataTemplateSelector : DataTemplateSelector
+    {
+        private static EventDataTemplateSelector _inst = new EventDataTemplateSelector();
+
+        public static EventDataTemplateSelector Instance
+        {
+            get { return _inst; }
+        }
+
+        DataTemplate natureDT = null;
+        DataTemplate centerLocDT = null;
+        DataTemplate FactorIdentificationDT = null;
+        DataTemplate FactorMeasurementDT = null;
+        DataTemplate MessageSendingDT = null;
+        DataTemplate PictureSendingDT = null;
+        DataTemplate ReportGenerationDT = null;
+
+        public EventDataTemplateSelector()
+        {
+            App a = App.Current as App;
+            natureDT = a.Resources["natureDT"] as DataTemplate;
+            centerLocDT = a.Resources["centerLocDT"] as DataTemplate;
+            FactorIdentificationDT = a.Resources["FactorIdentificationDT"] as DataTemplate;
+            FactorMeasurementDT = a.Resources["FactorMeasurementDT"] as DataTemplate;
+            MessageSendingDT = a.Resources["MessageSendingDT"] as DataTemplate;
+            PictureSendingDT = a.Resources["PictureSendingDT"] as DataTemplate;
+            ReportGenerationDT = a.Resources["ReportGenerationDT"] as DataTemplate;
+            //PlanGenerationDT = page.Resources["PlanGenerationDT"] as DataTemplate;
+        }
+
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+        {
+            IncidentLoggingEventsBean i = item as IncidentLoggingEventsBean;
+            if (i == null)
             {
-                natureDT = page.Resources["natureDT"] as DataTemplate;
-                centerLocDT = page.Resources["centerLocDT"] as DataTemplate;
-                FactorIdentificationDT = page.Resources["FactorIdentificationDT"] as DataTemplate;
-                FactorMeasurementDT = page.Resources["FactorMeasurementDT"] as DataTemplate;
-                MessageSendingDT = page.Resources["MessageSendingDT"] as DataTemplate;
-                PictureSendingDT = page.Resources["PictureSendingDT"] as DataTemplate;
-                ReportGenerationDT = page.Resources["ReportGenerationDT"] as DataTemplate;              
-                //PlanGenerationDT = page.Resources["PlanGenerationDT"] as DataTemplate;
-            }
-
-            protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
-            {
-                IncidentLoggingEventsBean i = item as IncidentLoggingEventsBean;
-
-                switch (i.category)
+                UploadEmergencyModel j = item as UploadEmergencyModel;
+                switch (j.category)
                 {
-                    case "IncidentNatureIdentificationEvent": return natureDT; 
+                    case "IncidentNatureIdentificationEvent": return natureDT;
                     case "IncidentLocationSendingEvent": return centerLocDT;
                     case "IncidentFactorIdentificationEvent": return FactorIdentificationDT;
                     case "IncidentFactorMeasurementEvent": return FactorMeasurementDT;
@@ -315,6 +371,21 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 return natureDT;
             }
+            else {
+                switch (i.category)
+                {
+                    case "IncidentNatureIdentificationEvent": return natureDT;
+                    case "IncidentLocationSendingEvent": return centerLocDT;
+                    case "IncidentFactorIdentificationEvent": return FactorIdentificationDT;
+                    case "IncidentFactorMeasurementEvent": return FactorMeasurementDT;
+                    case "IncidentMessageSendingEvent": return MessageSendingDT;
+                    case "IncidentPictureSendingEvent": return PictureSendingDT;
+                    case "IncidentReportGenerationEvent": return ReportGenerationDT;
+                        //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                }
+                return natureDT;
+            }                    
         }
     }
+
 }

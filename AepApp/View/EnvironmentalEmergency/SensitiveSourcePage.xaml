@@ -12,7 +12,7 @@
 
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" StyleClass="sbar" />
+            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" StyleClass="sbar" SearchButtonPressed="Handle_SearchButtonPressed" />
             <ListView x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -27,6 +27,7 @@
                                             </DataTrigger>
                                         </Label.Triggers>
                                     </Label>
+
                                 </StackLayout>
                                 <Label Text="{Binding type}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,20,0" TextColor="White" WidthRequest="70" BackgroundColor="rgb(48, 116, 163)" />
                             </Grid>

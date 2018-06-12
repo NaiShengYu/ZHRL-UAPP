@@ -59,9 +59,9 @@ namespace AepApp.View.EnvironmentalEmergency
             RescueSiteModel.ItemsBean item = e.Item as RescueSiteModel.ItemsBean;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (dataList.Count <= totalNum)
+                if (dataList.Count < totalNum)
                 {
-                    ReqRescueSite("", "", dataList.Count, 10); //网络请求救援地点，10条每次
+                    ReqRescueSite(searchKey, "", dataList.Count, 10); //网络请求救援地点，10条每次
                 }
             }
         }

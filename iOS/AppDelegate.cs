@@ -22,5 +22,16 @@ namespace AepApp.iOS
 
             return base.FinishedLaunching(app, options);
         }
+
+        public void StartTimer(TimeSpan interval, Func<bool> callback)
+        {
+            NSTimer timer = NSTimer.CreateRepeatingTimer(interval, t =>
+            {
+                if (!callback())
+                    t.Invalidate();
+            });
+            NSRunLoop.Main.AddTimer(timer, NSRunLoopMode.Common);
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -7,8 +8,8 @@ using Xamarin.Forms;
 
 namespace AepApp.Models
 {
-    public class EmergencyAccidentInfoDetail
-    {
+    public class EmergencyAccidentInfoDetail {
+
         public class EmergencyAccidentBean
         {
             public ResultBean result { get; set; }
@@ -21,8 +22,14 @@ namespace AepApp.Models
             public String id { get; set; }
             public List<IncidentLoggingEventsBean> incidentLoggingEvents { get; set; }
         }
-        public class IncidentLoggingEventsBean
+        public class IncidentLoggingEventsBean : INotifyPropertyChanged
         {
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected virtual void NotifyPropertyChanged(string propertyName = "")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
             public string factorId { get; set; }/// 因子编号
             public string factorName { get; set; } /// 因子名称
             public string factor
@@ -55,10 +62,28 @@ namespace AepApp.Models
             public string TargetAddress { get; set; } /// 目标点位地址
             public string Content { get; set; } /// 内容
             public string Title { get; set; }   /// 标题
-                public string messageSending {
-                get {
-                    return Title +": "+ Content;
+            public string messageSending
+            {
+                get
+                {
+                    return Title + ": " + Content;
                 }
+            }
+
+            private bool _isNew = false;
+
+            public bool isNew
+            {
+                get { return _isNew; }
+                set { _isNew = value; NotifyPropertyChanged("isNew"); }
+            }
+
+            private string _uploadStatus = "notUploaded";
+
+            public string uploadStatus
+            {
+                get { return _uploadStatus; }
+                set { _uploadStatus = value; NotifyPropertyChanged("uploadStatus"); }
             }
             public string Original { get; set; } /// 原始名称
             public string Current { get; set; } /// 当前名称
@@ -78,7 +103,7 @@ namespace AepApp.Models
             public string creatorUserName { get; set; }
             public string category { get; set; }
             public string id { get; set; }
-
+            public Thickness marge { get; set; }
             public string NatureName
             {
                 get
@@ -89,12 +114,12 @@ namespace AepApp.Models
                     if (NatureString[0] == '1') ret += "大气";
                     if (NatureString[1] == '1')
                     {
-                        if (ret != null) ret += "及";
+                        if (NatureString[0] == '1') ret += "及";
                         ret += "水";
                     }
                     if (NatureString[2] == '1')
                     {
-                        if (ret != null) ret += "及";
+                        if (NatureString[0] == '1' || NatureString[1] == '1') ret += "及";
                         ret += "土壤";
                     }
                     return ret;

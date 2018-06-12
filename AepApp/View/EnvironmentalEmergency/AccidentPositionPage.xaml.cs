@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using SkiaSharp;
@@ -17,7 +17,7 @@ namespace AepApp.View.EnvironmentalEmergency
             try
             {
                 Location location = await Geolocation.GetLastKnownLocationAsync();
-
+                App.currentLocation = location;
                 if (location != null)
                 {
                     if (i >0){
@@ -42,6 +42,11 @@ namespace AepApp.View.EnvironmentalEmergency
         void savePosition(object sender, System.EventArgs e)
         {
             Console.WriteLine(centercoorLab.Text);
+
+            MessagingCenter.Send<ContentPage, string>(this,"savePosition", centercoorLab.Text);
+
+            Navigation.PopAsync();
+
         }
 
         //回到当前位置
@@ -83,21 +88,18 @@ namespace AepApp.View.EnvironmentalEmergency
             path1.MoveTo(0, 0.5f * info.Height);
             path1.LineTo(info.Width, 0.5f * info.Height);
             canvas.DrawPath(path1, paint);
-
-
-
         }
 
 
         public AccidentPositionPage()
         {
             InitializeComponent();
-
             HandleEventHandler();
+            if (App.currentLocation != null)
+            {
+                map.SetCenter(16, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude));
+            }
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
-
-           
-
         }
     }
 }
