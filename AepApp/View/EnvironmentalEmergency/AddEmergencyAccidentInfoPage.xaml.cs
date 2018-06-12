@@ -82,11 +82,12 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
             var entr = sender as Entry;
-            var a = entr.Text;
+            string a = entr.Text;
             UploadEmergencyModel emergencyModel = new UploadEmergencyModel
             {
-                creationTime = System.DateTime.Now,
-               
+                Title = "",
+                Content = a,
+                creationTime = System.DateTime.Now,              
                 emergencyid = emergencyId,
                 category = "IncidentLocationSendingEvent"
             };
