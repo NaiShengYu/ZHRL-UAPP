@@ -179,9 +179,11 @@ namespace AepApp.View.EnvironmentalEmergency
             listView.SelectedItem = null;
         }
 
+
         public EmergencyAccidentInfoPage(string name, string id, string isArchived)
         {
             InitializeComponent();
+
             //DTS = new EventDataTemplateSelector(this);
             _isArchived = isArchived;
             this.Title = name;
@@ -220,6 +222,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent"
                         && cagy != "IncidentPlanGenerationEvent")
                     {
+                        //list[i].creatorUserName = "俞乃胜";
+
                         dataList.Add(list[i]);
                     }
                 }

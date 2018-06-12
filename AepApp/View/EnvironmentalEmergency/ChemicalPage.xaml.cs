@@ -29,6 +29,20 @@ namespace AepApp.View.EnvironmentalEmergency
                 MessagingCenter.Send<ContentPage, ReqChemicalPageModel.ItemsBean>(this, "Value", ChemicalModel);
                 Navigation.PopAsync();
             }
+            if (_type ==3){
+
+                AddDataIncidentFactorModel.ItemsBean model = new AddDataIncidentFactorModel.ItemsBean
+                {
+                    factorId = ChemicalModel.id,
+                    factorName = ChemicalModel.chinesename,
+                };
+                Navigation.PushAsync(new LHXZInfoPage(model,0));
+
+
+                //MessagingCenter.Send<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddDataIncidentFactor", model);
+                //Navigation.PopAsync();
+
+            }
 
             listView.SelectedItem = null; 
         }

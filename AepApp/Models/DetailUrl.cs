@@ -35,5 +35,8 @@ namespace AepApp.Models
         public static string EquipmentList = "/api/mod/GetEquipmentList";
         //获取设备详情
         public static string EquipmentInfo = "/api/mod/GetEquipmentByid";
+
+        //获取关键污染物
+        public static string GetIncidentFactors = "/api/services/app/IncidentFactor/GetIncidentFactorsByIncidentId";
     }
 }

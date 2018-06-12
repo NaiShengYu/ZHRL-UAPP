@@ -94,7 +94,7 @@ namespace CloudWTO.Services
                         //requestStream.Write(bs, 0, bs.Length);
                         requestStream.Close();
                     }
-                    catch (Exception ex)
+                    catch (WebException ex)
                     {
                         int a = 0;
                     }

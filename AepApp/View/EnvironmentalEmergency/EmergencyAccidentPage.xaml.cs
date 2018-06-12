@@ -38,7 +38,37 @@ namespace AepApp.View.EnvironmentalEmergency
             EmergencyAccidentPageModels.ItemsBean item = e.SelectedItem as EmergencyAccidentPageModels.ItemsBean;
             if (item == null)
                 return;
-            
+
+            List<SampleTypeModel> aaa = new List<SampleTypeModel>();
+            if(item.hasAirNature =="true"){
+                SampleTypeModel model = new SampleTypeModel
+                {
+                    name = "大气",
+                    isSelect = false,
+                };
+            aaa.Add(model);
+            }
+           
+            if (item.hasWaterNature == "true")
+            {
+                SampleTypeModel model = new SampleTypeModel
+                {
+                    name = "水质",
+                    isSelect = false,
+                };
+                aaa.Add(model);
+            }
+            if (item.hasSoilNature == "true")
+            {
+                SampleTypeModel model = new SampleTypeModel
+                {
+                    name = "土壤",
+                    isSelect = false,
+                };
+                aaa.Add(model);
+            }
+            App.sampleTypeList = aaa;
+            App.EmergencyAccidentID = item.id;
             Navigation.PushAsync(new EmergencyAccidentInfoPage(item.name,item.id,item.isArchived));
             listView.SelectedItem = null;
         }
