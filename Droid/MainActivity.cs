@@ -4,6 +4,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using OxyPlot;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 

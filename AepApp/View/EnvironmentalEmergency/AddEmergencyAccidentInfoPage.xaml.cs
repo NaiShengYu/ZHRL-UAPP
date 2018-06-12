@@ -81,8 +81,18 @@ namespace AepApp.View.EnvironmentalEmergency
         //编辑结束
         void Handle_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
+            var entr = sender as Entry;
+            var a = entr.Text;
+            UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+            {
+                creationTime = System.DateTime.Now,
+               
+                emergencyid = emergencyId,
+                category = "IncidentLocationSendingEvent"
+            };
+            App.Database.SaveEmergencyAsync(emergencyModel);
+            dataList.Add(emergencyModel);
             entryStack.TranslateTo(0, 0);
-
         }
 
         //编辑开始
@@ -267,7 +277,6 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
-
 
                 };
                 App.Database.SaveEmergencyAsync(emergencyModel);
