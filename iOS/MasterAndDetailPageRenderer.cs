@@ -19,7 +19,7 @@ namespace AepApp.iOS
         {
             base.OnElementChanged(e);
 
-            
+
         }
 
         public override void ViewDidLoad()
