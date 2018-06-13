@@ -461,19 +461,30 @@ namespace AepApp.View.EnvironmentalEmergency
             else
             {
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
-                {
-                    lat = App.currentLocation.Latitude,
-                    lng = App.currentLocation.Longitude,
+                {                   
                     creationTime = System.DateTime.Now,
                     StorePath = file.Path,
                     emergencyid = emergencyId,
                     category = "IncidentPictureSendingEvent"
                 };
+                try
+                {
+                    emergencyModel.lat = App.currentLocation.Latitude;
+                    emergencyModel.lng = App.currentLocation.Longitude;
+                }
+                catch (Exception)
+                {
+                    emergencyModel.lat = 0;
+                    emergencyModel.lng = 0;
+                }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                EasyWebRequest.upload(file);
+                await App.Database.DeleteEmergencyAsync(emergencyModel);
             }
 
-            EasyWebRequest.UploadImage(file);
+            //EasyWebRequest.UploadImage(file);
+           
         }
 
 
@@ -558,6 +569,9 @@ namespace AepApp.View.EnvironmentalEmergency
                         //添加化学因子检测值
                     case "IncidentFactorMeasurementEvent":
                         PostFactorMeasurmentSending(model);
+                        break;
+                    case "IncidentPictureSendingEvent":
+                        //EasyWebRequest.upload(new );
                         break;
 
                 }
