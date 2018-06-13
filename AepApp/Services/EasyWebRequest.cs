@@ -11,6 +11,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using AepApp;
 using Plugin.Media.Abstractions;
+using System.Threading;
 
 #if __MOBILE__
 using Newtonsoft.Json;
@@ -175,7 +176,7 @@ namespace CloudWTO.Services
 
                 //create new HttpClient and MultipartFormDataContent and add our file, and StudentId
                 HttpClient client = new HttpClient();
-                MultipartFormDataContent content = new MultipartFormDataContent();
+                MultipartFormDataContent content = new MultipartFormDataContent();         
                 ByteArrayContent baContent = new ByteArrayContent(upfilebytes);
                 StringContent studentIdContent = new StringContent("2123");
                 content.Add(baContent, "File", "filename.ext");
@@ -184,7 +185,7 @@ namespace CloudWTO.Services
 
                 //upload MultipartFormDataContent content async and store response in response var
                 var response =
-                  await client.PostAsync(url, content).;
+                  await client.PostAsync(url, content);
 
                 //read response result as a string async into json var
                 var responsestr = response.Content.ReadAsStringAsync().Result;
@@ -204,9 +205,44 @@ namespace CloudWTO.Services
 
 
 
+        public static void upload(MediaFile mediaFile)
+        {
+            try
+            {
+                byte[] data = ReadFully(mediaFile.GetStream());
+                var imageStream = new ByteArrayContent(data);
 
 
+                var multi = new MultipartContent();
+                multi.Add(imageStream);
+                var client = new System.Net.Http.HttpClient();
+                client.BaseAddress = new Uri(App.EmergencyModule.url);
+                //client.BaseAddress = new Uri("http://gx.azuratech.com:5000");
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer" , App.EmergencyToken);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                
+                var result = client.PostAsync("/api/File/Upload", multi).Result;
+                Console.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
+        public static byte[] ReadFully(Stream input)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
 
 
 
