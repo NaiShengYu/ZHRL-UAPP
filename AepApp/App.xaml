@@ -36,7 +36,7 @@
                                     </Image.Triggers>
                                 </Image>
                             </StackLayout>
-                            <Label Text="{Binding natureString}" Margin="10,30,55,8" />
+                            <Label Text="{Binding NatureString}" Margin="10,30,55,8" />
                         </Grid>
                     </Grid>
                 </ViewCell>
@@ -180,6 +180,38 @@
                                 <Image Source="text" VerticalOptions="Start" WidthRequest="30" HeightRequest="30" />
                                 <Label Text="{Binding Content}" VerticalOptions="Start" />
                             </StackLayout>
+
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="WindDataDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <StackLayout Orientation="Horizontal" Margin="-1,-1,0,0" HorizontalOptions="Start" VerticalOptions="Start" >
+                                <Frame Padding="4,1,4,1" CornerRadius="0" HasShadow="False" BorderColor="Transparent" BackgroundColor="#a6a6a6">
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                        <Label TextColor="White" Text=" / " />
+                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                    </StackLayout>
+                                </Frame>
+                                <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                    <Image.Triggers >
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                            <Setter Property="Source" Value="graytick"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                            <Setter Property="Source" Value="orangedots"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                            </StackLayout>
+
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+
+                            <Label Text="{Binding windDescribe}" Margin="10,30,55,8" />
 
                         </Grid>
                     </Grid>

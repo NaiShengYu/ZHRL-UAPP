@@ -70,13 +70,13 @@ namespace AepApp.View.EnvironmentalEmergency
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            (App.Current as App).IsMasterDetailPageGestureEnabled = false;
+            App.appHunbegerPage.IsGestureEnabled = false;
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            (App.Current as App).IsMasterDetailPageGestureEnabled = true;
+            App.appHunbegerPage.IsGestureEnabled = true;
         }
 
     }

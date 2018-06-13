@@ -16,36 +16,9 @@
                 </Grid.RowDefinitions>
                 <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" ItemSelected="Handle_ItemSelected"
                            ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}">
-                    <!--<ListView.ItemTemplate>
-                        <DataTemplate>
-                            <local:ExtendedViewCell SelectedBackgroundColor="Blue">-->
-                                <!--<local:ExtendedViewCell.ContextActions>
-                                    <MenuItem Clicked="Handle_Clicked" CommandParameter="{Binding .}" Text="delete" IsDestructive="True" />
-                                </local:ExtendedViewCell.ContextActions>-->
-                                <!--<Frame Margin="10,5,10,0" Padding="0"  HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e5e5e5">
-                                    <Grid VerticalOptions="Center" Margin="0" Padding="0">
-                                        <Image HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="400" Source="{Binding imgSourse}" Aspect="AspectFill"/>
-
-                                        <StackLayout Spacing="3" VerticalOptions="Start" HorizontalOptions="Start" Orientation="Horizontal" HeightRequest="25">
-                                            <Grid BackgroundColor="Gray" VerticalOptions="Start" HorizontalOptions="Start">
-                                                <Label FontSize="15" Margin="4,4,4,4" VerticalOptions="Start" HorizontalOptions="Start" Text="{Binding timeAndName}" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" BackgroundColor="Transparent" TextColor="White" />
-                                            </Grid>
-                                            <Image Source="greentick" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
-                                        </StackLayout>
-
-                                        <Label Margin="10,35,55,8" Text="{Binding info}" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" />
-                                        <Button Clicked="cellRightBut" Image="loc2" HorizontalOptions="End" VerticalOptions="Start" WidthRequest="45" HeightRequest="45" Margin="0,5,5,5">
-                                            <Button.Triggers>
-                                                <DataTrigger TargetType="Button" Binding="{Binding address}" Value="false">
-                                                    <Setter Property="IsVisible" Value="false" />
-                                                </DataTrigger>
-                                            </Button.Triggers>
-                                        </Button>
-                                    </Grid>
-                                </Frame>
-                            </local:ExtendedViewCell>
-                        </DataTemplate>-->
-                    <!--</ListView.ItemTemplate>-->
+                   <ListView.GestureRecognizers>
+                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
+                    </ListView.GestureRecognizers>
                     <ListView.Footer>
                         <StackLayout BackgroundColor="White" HeightRequest="10"></StackLayout>
                     </ListView.Footer>

@@ -55,12 +55,12 @@ namespace AepApp.Models
         {
             get
             {
-                return Title + ": " + Content;
+                return Content;
             }
         }
         public string Original { get; set; } /// 原始名称
         public string Current { get; set; } /// 当前名称
-        public string NatureString { get; set; } /// 事故性质字符串(000分别对应 气 水 土)
+        public string natureString { get; set; } /// 事故性质字符串(000分别对应 气 水 土)
         ////public DateTime Original { get; set; }/// 原始时间
         ////public DateTime Current { get; set; }/// 当前时间
         public string StorePath { get; set; }/// 存储路径(相对路径)
@@ -72,6 +72,13 @@ namespace AepApp.Models
         public string length { get; set; } /// 内容长度(单位秒)
         public string direction { get; set; } /// 风向(单位 度)
         public string speed { get; set; } /// 风速(单位 米/秒)
+        public string windDescribe
+        {
+            get
+            {
+                return "风速:" + speed + "m/s," + "风向" + direction + "度";
+            }
+        }
         public DateTime creationTime { get; set; }
         public string creatorusername { get; set; }
         public string category { get; set; }
@@ -99,18 +106,18 @@ namespace AepApp.Models
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(NatureString)) return null;
-                if (NatureString.Length != 3) return null;
+                if (string.IsNullOrWhiteSpace(natureString)) return null;
+                if (natureString.Length != 3) return null;
                 string ret = "";
-                if (NatureString[0] == '1') ret += "大气";
-                if (NatureString[1] == '1')
+                if (natureString[0] == '1') ret += "大气";
+                if (natureString[1] == '1')
                 {
-                    if (NatureString[0] == '1') ret += "及";
+                    if (natureString[0] == '1') ret += "及";
                     ret += "水";
                 }
-                if (NatureString[2] == '1')
+                if (natureString[2] == '1')
                 {
-                    if (NatureString[0] == '1' || NatureString[1] == '1') ret += "及";
+                    if (natureString[0] == '1' || natureString[1] == '1') ret += "及";
                     ret += "土壤";
                 }
                 return ret;
@@ -132,7 +139,7 @@ namespace AepApp.Models
                 return "事发地点定位" + locString + "。";
             }
         }
-        public string natureString
+        public string NatureString
         {
             get
             {

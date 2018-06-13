@@ -31,6 +31,7 @@ namespace AepApp.View
         public MasterAndDetailPage()
         {
             InitializeComponent();
+            App.appHunbegerPage = this;
             Master = new MasterPage(this);
             Master.WidthRequest = 100;
 
