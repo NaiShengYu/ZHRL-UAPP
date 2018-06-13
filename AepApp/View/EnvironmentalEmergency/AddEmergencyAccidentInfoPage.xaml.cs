@@ -64,7 +64,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 return;
             }
 
-            var item = e.SelectedItem as item;
+            var item = e.SelectedItem as UploadEmergencyModel;
             if (item == null)
                 return;
             listView.SelectedItem = null;
@@ -77,15 +77,20 @@ namespace AepApp.View.EnvironmentalEmergency
             var dic = obj.UserInfo as NSMutableDictionary;
             var rc = dic.ValueForKey((Foundation.NSString)"UIKeyboardFrameEndUserInfoKey");
             CGRect r = (rc as NSValue).CGRectValue;
-            entryStack.TranslateTo(0, 206 - r.Size.Height);
+
+            if(Convert.ToInt32(r.Y) != App.ScreenHeight)entryStack.TranslateTo(0, 206 - r.Size.Height);
+            else entryStack.TranslateTo(0,0);
         }
 #endif
         //编辑结束
-      async  void Handle_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
+ 
+        async void Handle_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
             var entr = sender as Entry;
-            string a = entr.Text;
-            UploadEmergencyModel emergencyModel = new UploadEmergencyModel()
+            var a = entr.Text;
+            //如果编辑为空，就不存储
+            if (string.IsNullOrWhiteSpace(a)) return;
+            UploadEmergencyModel emergencyModel = new UploadEmergencyModel
             {
                 Title = "",
                 Content = a,
@@ -106,6 +111,7 @@ namespace AepApp.View.EnvironmentalEmergency
             await App.Database.SaveEmergencyAsync(emergencyModel);
             dataList.Add(emergencyModel);
             await entryStack.TranslateTo(0, 0);
+            entr.Text = "";
         }
 
         //编辑开始
@@ -177,6 +183,14 @@ namespace AepApp.View.EnvironmentalEmergency
             functionBar.TranslateTo(0, -130);
             isfunctionBarIsShow = true;
         }
+        //退出事故性质编辑
+        void TapGestureRecognizer_Tapped(object sender, EventArgs e){
+            if (isfunctionBarIsShow == true)
+            {
+                canceshiguxingzhi();
+            }
+        }
+
 
         //选中了大气
         bool isSelectDQ = false;
@@ -229,7 +243,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     factorName = item.factorName,
                     unitName = item.unitName,
                     factorValue = item.jianCeZhi,
-
+                    //暂定0
+                    unitId = Guid.NewGuid().ToString(),
                 };
                 try
                 {
@@ -242,6 +257,12 @@ namespace AepApp.View.EnvironmentalEmergency
                     emergencyModel.lng = 0;
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
+                    if (item.yangBenLeiXing == "大气") emergencyModel.incidentNature = "4";
+                    else if (item.yangBenLeiXing == "水质") emergencyModel.incidentNature = "2";
+                    else if (item.yangBenLeiXing == "土壤") emergencyModel.incidentNature = "1";
+                    else  emergencyModel.incidentNature = "8";
+
+                App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
                 MessagingCenter.Unsubscribe<ContentPage, AddDataForChemicolOrLHXZModel.ItemsBean>(this, "AddLHXZ");
             });
@@ -269,7 +290,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
-                MessagingCenter.Unsubscribe<ContentPage, AddDataForChemicolOrLHXZModel.ItemsBean>(this, "AddFactorNew");
+                MessagingCenter.Unsubscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew");
             });
             Navigation.PushAsync(new addDataPage());
 
@@ -391,7 +412,30 @@ namespace AepApp.View.EnvironmentalEmergency
         //点击了污染物按钮
         void wuRanWu(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new ChemicalPage(1));
+
+            MessagingCenter.Subscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew", (arg1, arg2) =>
+            {
+                AddDataIncidentFactorModel.ItemsBean item = arg2 as AddDataIncidentFactorModel.ItemsBean;
+                UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+                {
+                    creationTime = System.DateTime.Now,
+                    lat = App.currentLocation.Latitude,
+                    lng = App.currentLocation.Longitude,
+                    emergencyid = emergencyId,
+                    category = "IncidentFactorIdentificationEvent",
+                    factorId = item.factorId,
+                    factorName = item.factorName,
+                };
+                App.Database.SaveEmergencyAsync(emergencyModel);
+                dataList.Add(emergencyModel);
+                MessagingCenter.Unsubscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew");
+            });
+
+            Navigation.PushAsync(new ChemicalPage(2));
+
+
+
+
         }
         //点击了拍照
         async void paiZhao(object sender, System.EventArgs e)
@@ -450,7 +494,6 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
-
             HandleEventHandler();
 
 #if __IOS__//监听键盘的高度
@@ -489,20 +532,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             //Console.WriteLine(incidentLoggingEvents);
         }
-
-        internal class item
-        {
-            public string imgSourse { get; set; }
-            public string timeAndName { set; get; }
-            public string info { set; get; }
-            public string address { set; get; }
-            public bool isShowAddress { set; get; }
-
-            public DateTime time { get; set; }
-        }
-
-
-
+    
         void addbar()
         {
             var G = new Grid();
@@ -523,7 +553,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentLocationSendingEvent":
                         PostLocationSending(model);
                         break;
-                    case "IncidentFactorMeasurementEvent":
+                        //化学因子名称
+                    case "IncidentFactorIdentificationEvent":
                         PostFactorIdentificationSending(model);
                         break;
                     case "IncidentMessageSendingEvent":
@@ -534,6 +565,10 @@ namespace AepApp.View.EnvironmentalEmergency
                         break;
                     case "IncidentNatureIdentificationEvent":
                         PostNatureIdentification(model);
+                        break;
+                        //添加化学因子检测值
+                    case "IncidentFactorMeasurementEvent":
+                        PostFactorMeasurmentSending(model);
                         break;
                     case "IncidentPictureSendingEvent":
                         //EasyWebRequest.upload(new );
@@ -678,7 +713,49 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
+        //上传化学因子检测值
+        private async void PostFactorMeasurmentSending(UploadEmergencyModel model)
+        {
+            FactorMeasurmentSending parameter = new FactorMeasurmentSending
+            {
+                index = 0,
+                incidentId = emergencyId,
+                factorId = model.factorId,
+                factorName = model.factorName,
+                testMethodId = "",
+                testMethodName = "",
+                unitId = model.unitId,
+                unitName = model.unitName,
+                equipmentId = "",
+                equipmentName = "",
+                factorValue = Convert.ToDouble(model.factorValue), 
+                incidentNature = 4,
 
+            };
+            try
+            {
+                parameter.lat = Convert.ToDouble(model.lat);
+                parameter.lng = Convert.ToDouble(model.lng);
+            }
+            catch
+            {
+                parameter.lat = 0;
+                parameter.lng = 0;
+            }
+
+            string param = JsonConvert.SerializeObject(parameter);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/IncidentLoggingEvent/AppendIncidentFactorMeasurementEvent", param, "POST", App.EmergencyToken);
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                await App.Database.DeleteEmergencyAsync(model);
+                dataList.Remove(model);
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
+        }
 
 
 
@@ -761,7 +838,24 @@ namespace AepApp.View.EnvironmentalEmergency
         public string incidentId { get; set; }
         public string factorId { get; set; }
         public string factorName { get; set; }
+    }
 
+    internal class FactorMeasurmentSending
+    {
+        public double lat { get; set; }
+        public double lng { get; set; }
+        public int index { get; set; }
+        public double factorValue { get; set; }
+        public int incidentNature { get; set; }
+        public string incidentId { get; set; }
+        public string factorId { get; set; }
+        public string factorName { get; set; }
+        public string testMethodId { get; set; }
+        public string testMethodName { get; set; }
+        public string unitId { get; set; }
+        public string unitName { get; set; }
+        public string equipmentId { get; set; }
+        public string equipmentName { get; set; }
     }
 
 

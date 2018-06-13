@@ -107,7 +107,7 @@ namespace CloudWTO.Services
                 result = await sr.ReadToEndAsync();
                 sr.Close();
             }
-            catch (WebException ex)
+            catch (Exception ex)
             {
                 result = ex.Message;
                 return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
