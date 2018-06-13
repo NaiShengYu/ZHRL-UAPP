@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AepApp.Models
@@ -148,6 +148,14 @@ namespace AepApp.Models
                     return "事故已被定性为" + NatureName + "。";
                 }
             }
+
+            // command that launchs the map view and put an marker on the location
+            public ICommand LocateOnMapCommand { get; set; }
+
+
+            // command that downloads a document and launch a viewer to read
+            public ICommand DocumentDownloadCommand { get; set; }
+
         }
     }
 }

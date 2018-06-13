@@ -226,6 +226,32 @@ namespace AepApp.View.EnvironmentalEmergency
 
                         dataList.Add(list[i]);
                     }
+
+                    if (cagy == "IncidentLocationSendingEvent")
+                    {
+                        AzmCoord center=new AzmCoord(list[i].TargetLng.Value, list[i].TargetLat.Value);
+                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("事故中心点", center)); });
+                    }
+                    else if (cagy == "IncidentFactorMeasurementEvent")
+                    {
+                        AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
+                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("数据位置", center)); });
+                    }
+                    else if (cagy == "IncidentMessageSendingEvent")
+                    {
+                        AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
+                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("文字信息发出位置", center)); });
+                    }
+                    else if (cagy == "IncidentReportGenerationEvent")
+                    {
+                        string fileurl = App.EmergencyModule.url + list[i].StoreUrl;
+                        string fileFormat = ""; // TODO: need to figure out how to pass url and fileformat
+                        list[i].DocumentDownloadCommand = new Command(async () => 
+                        {
+                            HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(fileurl, fileFormat, App.EmergencyToken);
+                            await Navigation.PushAsync(new ShowFilePage(fileFormat));
+                        });
+                    }
                 }
                 creatScrollerView();
                 rightListV.ItemsSource = dataList;

@@ -65,7 +65,11 @@
                                 </Image>
                             </StackLayout>
 
-                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LocateOnMapCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
                             <Label Text="{Binding centerLocString}" Margin="10,30,55,8" />
 
@@ -129,7 +133,11 @@
                                 </Image>
                             </StackLayout>
 
-                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LocateOnMapCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
                             <Label Text="{Binding measurement}" Margin="10,30,55,8" />
 
@@ -162,9 +170,16 @@
                                 </Image>
                             </StackLayout>
 
-                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LocateOnMapCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
-                            <Label Text="{Binding messageSending}" Margin="10,30,55,8" />
+                            <StackLayout Orientation="Horizontal" Margin="10,30,55,8" HorizontalOptions="Start" VerticalOptions="Start" Spacing="0">
+                                <Image Source="text" VerticalOptions="Start" WidthRequest="30" HeightRequest="30" />
+                                <Label Text="{Binding Content}" VerticalOptions="Start" />
+                            </StackLayout>
 
                         </Grid>
                     </Grid>
@@ -196,7 +211,11 @@
                                 </Image>
                             </StackLayout>
 
-                            <Image Source="pdf.png" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+                            <Image Source="pdf.png" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DocumentDownloadCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
                             <Label Text="{Binding ReportName}" Margin="10,30,55,8" />
 
