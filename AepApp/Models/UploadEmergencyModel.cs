@@ -64,6 +64,7 @@ namespace AepApp.Models
         ////public DateTime Original { get; set; }/// 原始时间
         ////public DateTime Current { get; set; }/// 当前时间
         public string StorePath { get; set; }/// 存储路径(相对路径)
+        public string imagePath { get; set; }/// 图片显示路径(相对路径)
         public string width { get; set; }  /// 宽度(单位px)
         public string height { get; set; } /// 高度(单位px)
         public string storeurl { get; set; } /// 方案存储地址

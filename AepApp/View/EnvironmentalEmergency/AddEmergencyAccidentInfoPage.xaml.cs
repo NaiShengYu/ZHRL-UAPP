@@ -112,6 +112,8 @@ namespace AepApp.View.EnvironmentalEmergency
             dataList.Add(emergencyModel);
             await entryStack.TranslateTo(0, 0);
             entr.Text = "";
+            listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
+
         }
 
         //编辑开始
@@ -159,6 +161,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
+
             });
 
         }
@@ -264,6 +268,8 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
+
                 MessagingCenter.Unsubscribe<ContentPage, AddDataForChemicolOrLHXZModel.ItemsBean>(this, "AddLHXZ");
             });
 
@@ -290,6 +296,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
+
                 MessagingCenter.Unsubscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew");
             });
             Navigation.PushAsync(new addDataPage());
@@ -351,6 +359,8 @@ namespace AepApp.View.EnvironmentalEmergency
             }
             await App.Database.SaveEmergencyAsync(emergencyModel);
             dataList.Add(emergencyModel);
+            listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
+
         }
 
         void canceshiguxingzhi()
@@ -405,6 +415,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
+
             });
 
 
@@ -428,6 +440,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 };
                 App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
+
                 MessagingCenter.Unsubscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew");
             });
 
@@ -461,9 +475,10 @@ namespace AepApp.View.EnvironmentalEmergency
             else
             {
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
-                {                   
+                {
                     creationTime = System.DateTime.Now,
                     StorePath = file.Path,
+                    imagePath = file.Path,
                     emergencyid = emergencyId,
                     category = "IncidentPictureSendingEvent"
                 };
@@ -479,11 +494,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
-                EasyWebRequest.upload(file);
-                await App.Database.DeleteEmergencyAsync(emergencyModel);
+                listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
             }
-
-            //EasyWebRequest.UploadImage(file);
            
         }
 
@@ -571,7 +583,7 @@ namespace AepApp.View.EnvironmentalEmergency
                         PostFactorMeasurmentSending(model);
                         break;
                     case "IncidentPictureSendingEvent":
-                        //EasyWebRequest.upload(new );
+                        PostupLoadImageSending(model);
                         break;
 
                 }
@@ -713,6 +725,60 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
+        //上传图片
+        private async void PostupLoadImageSending(UploadEmergencyModel model)
+        {
+
+            //HTTPResponse hTTPResponse = await EasyWebRequest.SendImageAsync(model.StorePath);
+
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.StorePath);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+
+                uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
+                if(resultData.result.Count>0){
+                    uploadImageResurtData imageResurtData = resultData.result[0];
+                    uploadImageModel parama = new uploadImageModel
+                    {
+                        index = 0,
+                        incidentId = emergencyId,
+                        width = (int)imageResurtData.width,
+                        height = (int)imageResurtData.height,
+                        storePath = imageResurtData.storeUrl,
+                    };
+                    try
+                    {
+                        parama.lat = Convert.ToDouble(model.lat);
+                        parama.lng = Convert.ToDouble(model.lng);
+                    }
+                    catch
+                    {
+                        parama.lat = 0;
+                        parama.lng = 0;
+                    }
+                    string param = JsonConvert.SerializeObject(parama);
+
+                    HTTPResponse hTTPResponse1 = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/IncidentLoggingEvent/AppendIncidentPictureSendingEvent", param, "POST", App.EmergencyToken);
+                    Console.WriteLine(hTTPResponse1);
+                    if (hTTPResponse1.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        await App.Database.DeleteEmergencyAsync(model);
+                        dataList.Remove(model);
+                    }
+                    else
+                    {
+                        Console.WriteLine(hTTPResponse);
+                    }
+
+                }
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
+
+        }
+
         //上传化学因子检测值
         private async void PostFactorMeasurmentSending(UploadEmergencyModel model)
         {
@@ -728,7 +794,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 unitName = model.unitName,
                 equipmentId = "",
                 equipmentName = "",
-                factorValue = Convert.ToDouble(model.factorValue), 
+                factorValue = Convert.ToDouble(model.factorValue),
                 incidentNature = 4,
 
             };
@@ -756,7 +822,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse);
             }
         }
-
 
 
 
@@ -789,6 +854,35 @@ namespace AepApp.View.EnvironmentalEmergency
 
     }
 
+
+
+
+
+    //上传图片返回结果
+    internal class uploadImageResurtData
+    {
+        public string storeUrl { get; set; }
+        public string format { get; set; }
+        public double size { get; set; }
+        public double width { get; set; }
+        public double height { get; set; }
+    }
+    internal class uploadImageResurt
+    {
+        public List<uploadImageResurtData> result { get; set; }
+    }
+
+    internal class uploadImageModel
+    {
+        public string storePath { get; set; }
+        public double lat { get; set; }
+        public double lng { get; set; }
+        public int index { get; set; }
+        public string incidentId { get; set; }
+        public int height { get; set; }
+        public int width { get; set; }
+    }
+
     internal class NatureIdentification
     {
         public string natureString { get; set; }
@@ -817,6 +911,13 @@ namespace AepApp.View.EnvironmentalEmergency
         public int index { get; set; }
         public string incidentId { get; set; }
     }
+
+    //internal class imageFile{
+
+    //    public 
+    //}
+
+
 
     internal class LocationSending
     {

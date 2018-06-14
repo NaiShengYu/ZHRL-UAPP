@@ -16,11 +16,15 @@ namespace AepApp.Models
         }
         public class ResultBean
         {
-            public String name { get; set; }
-            public String startDate { get; set; }
-            public bool natureDetermined { get; set; }
-            public String id { get; set; }
-            public List<IncidentLoggingEventsBean> incidentLoggingEvents { get; set; }
+
+            //
+            public List<IncidentLoggingEventsBean> items { get; set; }
+
+            //public String name { get; set; }
+            //public String startDate { get; set; }
+            //public bool natureDetermined { get; set; }
+            //public String id { get; set; }
+            //public List<IncidentLoggingEventsBean> incidentLoggingEvents { get; set; }
         }
         public class IncidentLoggingEventsBean : INotifyPropertyChanged
         {
@@ -91,6 +95,10 @@ namespace AepApp.Models
             //public DateTime Original { get; set; }/// 原始时间
             //public DateTime Current { get; set; }/// 当前时间
             public string StorePath { get; set; }/// 存储路径(相对路径)
+            public string imagePath {
+                get { return App.EmergencyModule.url + StorePath; }
+               
+            }
             public string Width { get; set; }  /// 宽度(单位px)
             public string Height { get; set; } /// 高度(单位px)
             public string StoreUrl { get; set; } /// 方案存储地址

@@ -14,7 +14,8 @@ namespace AepApp.Models
         //获取应急事故
         public static string GetEmergencyAccidentList = "/api/services/app/Incident/GetPagedIncidents";
         //获取应急事故详情
-        public static string GetEmergencyDetail = "/api/services/app/Incident/Get";
+        //public static string GetEmergencyDetail = "/api/services/app/Incident/Get";
+        public static string GetEmergencyDetail = "/api/services/app/IncidentLoggingEvent/GetIncidentLoggingEventsByIncidentId";
         //专家库
         public static string ExpertLibraryUrl = "/api/services/app/professional/GetPagedprofessionals";
         //敏感源

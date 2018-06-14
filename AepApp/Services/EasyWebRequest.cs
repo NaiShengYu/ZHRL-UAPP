@@ -157,91 +157,40 @@ namespace CloudWTO.Services
             }
             Console.WriteLine("ex:" + result);
 
-            return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
+            return new HTTPResponse { Results = result, StatusCode = res.StatusCode };
   
 
         }
        
-        public static async void UploadImage(MediaFile mediaFile)
+        public static async Task<HTTPResponse> upload(string filePath)
         {
-            //variable
-            var url = App.EmergencyModule.url + "/api/File/Upload";
-            var file = mediaFile.Path;
 
+            HttpWebResponse res = null;
+            string result = null;
             try
             {
-                ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
-                //read file into upfilebytes array
-                var upfilebytes = File.ReadAllBytes(file);
-
-                //create new HttpClient and MultipartFormDataContent and add our file, and StudentId
+                var upfilebytes = File.ReadAllBytes(filePath);
+                var imageStream = new ByteArrayContent(upfilebytes);
+                var multi = new MultipartFormDataContent();
+                //这句话很关键第一个“files”是接口参数，第二个文件后缀
+                multi.Add(imageStream,"files",".png");
                 HttpClient client = new HttpClient();
-                MultipartFormDataContent content = new MultipartFormDataContent();         
-                ByteArrayContent baContent = new ByteArrayContent(upfilebytes);
-                StringContent studentIdContent = new StringContent("2123");
-                content.Add(baContent, "File", "filename.ext");
-                content.Add(studentIdContent, "StudentId");
-
-
-                //upload MultipartFormDataContent content async and store response in response var
-                var response =
-                  await client.PostAsync(url, content);
-
-                //read response result as a string async into json var
-                var responsestr = response.Content.ReadAsStringAsync().Result;
-
-                //debug
-                Console.WriteLine(responsestr);
-
-            }
-            catch (Exception e)
-            {
-                //debug
-                Console.WriteLine("Exception Caught: " + e.ToString());
-
-                return;
-            }
-        }
-
-
-
-        public static void upload(MediaFile mediaFile)
-        {
-            try
-            {
-                byte[] data = ReadFully(mediaFile.GetStream());
-                var imageStream = new ByteArrayContent(data);
-
-
-                var multi = new MultipartContent();
-                multi.Add(imageStream);
-                var client = new System.Net.Http.HttpClient();
-                client.BaseAddress = new Uri(App.EmergencyModule.url);
-                //client.BaseAddress = new Uri("http://gx.azuratech.com:5000");
+                //client.BaseAddress = new Uri(App.EmergencyModule.url);
+                client.BaseAddress = new Uri("http://gx.azuratech.com:5000");
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer" , App.EmergencyToken);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                
-                var result = client.PostAsync("/api/File/Upload", multi).Result;
-                Console.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
 
-        public static byte[] ReadFully(Stream input)
-        {
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
+                HttpResponseMessage resurlt1 =await client.PostAsync("/api/File/Upload", multi) ;
+                result =await resurlt1.Content.ReadAsStringAsync();              
             }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+                return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
+            }
+            Console.WriteLine("ex:" + result);
+            return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.OK };
+
         }
 
 

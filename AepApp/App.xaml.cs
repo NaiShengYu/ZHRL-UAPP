@@ -96,10 +96,10 @@ namespace AepApp
         {
             InitializeComponent();
             MainPage = new NavigationPage(new SplashPage());
-            HandleEventHandler();
+
             //MainPage = new WindSpeedAndDirectionPage();
 
-            aaaa();
+            //aaaa();
         }
 
         //使用后删除错误数据
@@ -111,15 +111,14 @@ namespace AepApp
             } 
         }
 
-
+        //获取当前位置
         async void HandleEventHandler()
         {
-
             try
             {
                 currentLocation = await Geolocation.GetLastKnownLocationAsync();
+                if (currentLocation == null) HandleEventHandler();
             }
-
             catch (Exception ex)
             {
                 // Unable to get location
@@ -128,7 +127,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-           
+            HandleEventHandler();
             if (Device.RuntimePlatform == Device.iOS)
             {
                 bool al = await LoginAsync("admin", "123456");
