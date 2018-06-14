@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -65,7 +65,11 @@
                                 </Image>
                             </StackLayout>
 
-                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LocateOnMapCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
                             <Label Text="{Binding centerLocString}" Margin="10,30,55,8" />
 
@@ -129,7 +133,11 @@
                                 </Image>
                             </StackLayout>
 
-                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LocateOnMapCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
                             <Label Text="{Binding measurement}" Margin="10,30,55,8" />
 
@@ -162,9 +170,16 @@
                                 </Image>
                             </StackLayout>
 
-                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LocateOnMapCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
-                            <Label Text="{Binding messageSending}" Margin="10,30,55,8" />
+                            <StackLayout Orientation="Horizontal" Margin="10,30,55,8" HorizontalOptions="Start" VerticalOptions="Start" Spacing="0">
+                                <Image Source="text" VerticalOptions="Start" WidthRequest="30" HeightRequest="30" />
+                                <Label Text="{Binding Content}" VerticalOptions="Start" />
+                            </StackLayout>
 
                         </Grid>
                     </Grid>
@@ -228,7 +243,11 @@
                                 </Image>
                             </StackLayout>
 
-                            <Image Source="pdf.png" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
+                            <Image Source="pdf.png" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DocumentDownloadCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
                             <Label Text="{Binding ReportName}" Margin="10,30,55,8" />
 
@@ -243,10 +262,7 @@
                     <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
                         <Grid x:Name="pic" VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
                             <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
-
-                            <Image HeightRequest="300" WidthRequest="{Binding Width,Source={x:Reference pic}}" Source="{Binding StorePath}" Aspect="AspectFill"/>
-
-
+                            <Image HeightRequest="300" WidthRequest="{Binding Width,Source={x:Reference pic}}" Source="{Binding imagePath}" Aspect="AspectFill"/>
                             <StackLayout Orientation="Horizontal" Margin="-1,-1,0,0" HorizontalOptions="Start" VerticalOptions="Start" >
                                 <Frame Padding="4,1,4,1" CornerRadius="0" HasShadow="False" BorderColor="Transparent" BackgroundColor="#c9b750">
                                     <StackLayout Orientation="Horizontal" Spacing="0">

@@ -6,6 +6,7 @@ using System.Text;
 using AepApp.iOS;
 using AepApp.View;
 using Foundation;
+using CoreGraphics;
 using UIKit;
 
 [assembly: Xamarin.Forms.Dependency(typeof(TextMeterImplementation))]
@@ -17,7 +18,7 @@ namespace AepApp.iOS
         public double MeasureTextHeightGivenMaxWidth(string text, double width, double fontSize, string fontName = null)
         {
             var nsText = new NSString(text);
-            var boundSize = new SizeF((float)width, float.MaxValue);
+            var boundSize = new CGSize((float)width, float.MaxValue);
             var options = NSStringDrawingOptions.UsesFontLeading | NSStringDrawingOptions.UsesLineFragmentOrigin;
 
             if (fontName == null)
@@ -38,7 +39,7 @@ namespace AepApp.iOS
         public double MeasureTextWidthGivenExactHeight(string text, double height, double fontSize, string fontName = null)
         {
             var nsText = new NSString(text);
-            var boundSize = new SizeF(float.MaxValue, (float)height);
+            var boundSize = new CGSize(float.MaxValue, (float)height);
             var options = NSStringDrawingOptions.UsesFontLeading | NSStringDrawingOptions.UsesLineFragmentOrigin;
 
             if (fontName == null)

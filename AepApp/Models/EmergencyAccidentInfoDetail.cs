@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AepApp.Models
@@ -16,11 +16,15 @@ namespace AepApp.Models
         }
         public class ResultBean
         {
-            public String name { get; set; }
-            public String startDate { get; set; }
-            public bool natureDetermined { get; set; }
-            public String id { get; set; }
-            public List<IncidentLoggingEventsBean> incidentLoggingEvents { get; set; }
+
+            //
+            public List<IncidentLoggingEventsBean> items { get; set; }
+
+            //public String name { get; set; }
+            //public String startDate { get; set; }
+            //public bool natureDetermined { get; set; }
+            //public String id { get; set; }
+            //public List<IncidentLoggingEventsBean> incidentLoggingEvents { get; set; }
         }
         public class IncidentLoggingEventsBean : INotifyPropertyChanged
         {
@@ -91,6 +95,10 @@ namespace AepApp.Models
             //public DateTime Original { get; set; }/// 原始时间
             //public DateTime Current { get; set; }/// 当前时间
             public string StorePath { get; set; }/// 存储路径(相对路径)
+            public string imagePath {
+                get { return App.EmergencyModule.url + StorePath; }
+               
+            }
             public string Width { get; set; }  /// 宽度(单位px)
             public string Height { get; set; } /// 高度(单位px)
             public string StoreUrl { get; set; } /// 方案存储地址
@@ -155,6 +163,14 @@ namespace AepApp.Models
                     return "事故已被定性为" + NatureName + "。";
                 }
             }
+
+            // command that launchs the map view and put an marker on the location
+            public ICommand LocateOnMapCommand { get; set; }
+
+
+            // command that downloads a document and launch a viewer to read
+            public ICommand DocumentDownloadCommand { get; set; }
+
         }
     }
 }

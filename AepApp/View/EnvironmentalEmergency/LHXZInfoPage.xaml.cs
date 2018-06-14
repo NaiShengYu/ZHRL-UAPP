@@ -103,10 +103,11 @@ namespace AepApp.View.EnvironmentalEmergency
                 lat = Convert.ToString(App.currentLocation.Latitude),
                 yangBenLeiXing = sampleBut.Text,
                 unitName = jianCeUnit.Text,
-                jianCeZhi = numLab.Text,
                 factorId = _factorModel.factorId,
-
             };
+            if (string.IsNullOrWhiteSpace(numLab.Text)) item.jianCeZhi = numLab.Placeholder;
+            else item.jianCeZhi = numLab.Text;
+
 
             MessagingCenter.Send<ContentPage, AddDataForChemicolOrLHXZModel.ItemsBean>(this, "AddLHXZ", item);
 

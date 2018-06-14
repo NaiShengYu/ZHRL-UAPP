@@ -6,6 +6,7 @@ using Xamarin.Essentials;
 using System.Collections.ObjectModel;
 using AepApp.Models;
 using static AepApp.Models.EmergencyAccidentInfoDetail;
+using CloudWTO.Services;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
@@ -73,24 +74,20 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
         //从应急事故详情进入
-        public RescueSiteMapPage(ObservableCollection<IncidentLoggingEventsBean> dataList) : this()
+        public RescueSiteMapPage(ObservableCollection<IncidentLoggingEventsBean> dataList,string incidengtId) : this()
         {
             //// Marker usage sample
 
             AzmCoord coord = null; 
              foreach (IncidentLoggingEventsBean item in dataList)
             {
-
                 if(item.TargetLat !=null){
                     coord = new AzmCoord(item.TargetLng.Value, item.TargetLat.Value);
-
-
                 }
                 if (item.lat != null)
                 {
                     if (item.category == "IncidentFactorMeasurementEvent")
                     {
-
                         AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("reddot"), new Size(25, 25), new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat)))
                         {
 
@@ -98,7 +95,6 @@ namespace AepApp.View.EnvironmentalEmergency
                         map.Overlays.Add(mv);
                     }
                 }
-             
             }
 
             //设置target坐标
@@ -109,11 +105,28 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 };
                 map.Overlays.Add(mv);
+                map.SetCenter(13, coord);
             }
 
-
+            ReqPlanLis(incidengtId);
 
         }
+
+        private async void ReqPlanLis(string incidentId)
+        {
+            //string url = App.BasicDataModule.url + DetailUrl.ChemicalList;
+            string url = "http://192.168.1.128:8015/api/Sampleplan/GetPlanListByProid" + "?Proid=" + incidentId;
+            Console.WriteLine(url);
+          
+            //string param = "keyword=" + "" + "&pageIndex=" + pagrIndex + "&pageSize=" + pageSize;
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", "");
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                Console.WriteLine(hTTPResponse.Results);
+               
+            }
+        }
+
 
     }
 }

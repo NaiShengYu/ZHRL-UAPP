@@ -179,52 +179,87 @@ namespace AepApp.View.EnvironmentalEmergency
             listView.SelectedItem = null;
         }
 
-
+        DateTime lastTime = new DateTime();
         public EmergencyAccidentInfoPage(string name, string id, string isArchived)
         {
             InitializeComponent();
+            emergencyId = id;
 
-            //DTS = new EventDataTemplateSelector(this);
             _isArchived = isArchived;
             this.Title = name;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
-            ReqEmergencyAccidentDetail(id);
-            emergencyId = id;
             BindingContext = this;
 
            
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
                 if (dataList.Count != 0)
-                    Navigation.PushAsync(new RescueSiteMapPage(dataList));
+                    Navigation.PushAsync(new RescueSiteMapPage(dataList,id));
             }));
-
          
         }
 
         private async void ReqEmergencyAccidentDetail(string id)
         {
-            string url = App.EmergencyModule.url + DetailUrl.GetEmergencyDetail +
+            string url = "";
+            if(dataList.Count ==0)url= App.EmergencyModule.url + DetailUrl.GetEmergencyDetail +
                    "?Id=" + id;
+            else {
+                
+                string time = string.Format("{0:yyyy-MM-dd HH:mm:ss}", lastTime);
+                time = System.Net.WebUtility.UrlEncode(time); 
+                url = App.EmergencyModule.url + DetailUrl.GetEmergencyDetail +
+                         "?Id=" + id + "&After=" +time;
+            }
+            lastTime = DateTime.Now;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);
-                //start += 10;
                 EmergencyAccidentInfoDetail.EmergencyAccidentBean emergencyAccidentBean = new EmergencyAccidentInfoDetail.EmergencyAccidentBean();
                 emergencyAccidentBean = JsonConvert.DeserializeObject<EmergencyAccidentInfoDetail.EmergencyAccidentBean>(hTTPResponse.Results);
-                //totalNum = accidentPageModels.result.incidents.totalCount;
-                List<EmergencyAccidentInfoDetail.IncidentLoggingEventsBean> list = emergencyAccidentBean.result.incidentLoggingEvents;
+                List<EmergencyAccidentInfoDetail.IncidentLoggingEventsBean> list = emergencyAccidentBean.result.items;
                 int count = list.Count;
-                dataList.Clear();
-                for (int i = 0; i < count; i++)
+                rightListV.ItemsSource = null;
+                for (int i = count-1; i >=0; i--)
                 {
                     string cagy = list[i].category;
                     if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent"
                         && cagy != "IncidentPlanGenerationEvent")
                     {
 
-                        dataList.Add(list[i]);
+                        //dataList.Add(list[i]);
+                        dataList.Insert(0, list[i]);
+                    }
+
+                    if (cagy == "IncidentLocationSendingEvent")
+                    {
+                        AzmCoord center=new AzmCoord(list[i].TargetLng.Value, list[i].TargetLat.Value);
+                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("事故中心点", center)); });
+                    }
+                    else if (cagy == "IncidentFactorMeasurementEvent")
+                    {
+                        AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
+                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("数据位置", center)); });
+                    }
+                    else if (cagy == "IncidentMessageSendingEvent")
+                    {
+                        try{
+                            AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
+                            list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("文字信息发出位置", center)); });
+                        }catch(Exception ex){
+                            
+                        }
+                    }
+                    else if (cagy == "IncidentReportGenerationEvent")
+                    {
+                        string fileurl = App.EmergencyModule.url + list[i].StoreUrl;
+                        string fileFormat = ""; // TODO: need to figure out how to pass url and fileformat
+                        list[i].DocumentDownloadCommand = new Command(async () => 
+                        {
+                            HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(fileurl, fileFormat, App.EmergencyToken);
+                            await Navigation.PushAsync(new ShowFilePage(fileFormat));
+                        });
                     }
                 }
                 creatScrollerView();
@@ -233,11 +268,13 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
+
         bool isStart = true;
         string _isArchived = "";
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
             ReqEmergencyAccidentDetail(emergencyId);
 
             isStart = true;
@@ -286,7 +323,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
                     //定义最高高度
                     double maxH = 100;
-                    //定义没五分钟一个像素
+                    //定义每五分钟一个像素
                     double minPixel = 5.0 / 60;
                     double K = -(1 / minPixel) * Math.Log(1.0 - 1.0 / maxH);
                     timeLong =  maxH* (1 - Math.Exp(-timeLong * K));
