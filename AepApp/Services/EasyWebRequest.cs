@@ -205,7 +205,7 @@ namespace CloudWTO.Services
 
 
 
-        public static void upload(MediaFile mediaFile)
+        public async static void upload(MediaFile mediaFile)
         {
             try
             {
@@ -213,15 +213,22 @@ namespace CloudWTO.Services
                 var imageStream = new ByteArrayContent(data);
 
 
-                var multi = new MultipartContent();
-                multi.Add(imageStream);
+                //var multi = new MultipartContent();
+                var multi = new MultipartFormDataContent();
+                multi.Add(imageStream, "file", "files");
+               // multi.Add(imageStream);
                 var client = new System.Net.Http.HttpClient();
-                client.BaseAddress = new Uri(App.EmergencyModule.url);
-                //client.BaseAddress = new Uri("http://gx.azuratech.com:5000");
+                //client.BaseAddress = new Uri(App.EmergencyModule.url);
+                client.BaseAddress = new Uri("http://gx.azuratech.com:5000");
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer" , App.EmergencyToken);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 
-                var result = client.PostAsync("/api/File/Upload", multi).Result;
+                //var result = client.PostAsync("/api/File/Upload", multi).Result;
+                HttpResponseMessage result = await client.PostAsync("/api/File/Upload", multi);
+                result.EnsureSuccessStatusCode();
+
+                string content = await result.Content.ReadAsStringAsync();
+               
                 Console.WriteLine(result);
             }
             catch (Exception e)

@@ -42,6 +42,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
         private ObservableCollection<UploadEmergencyModel> dataList = new ObservableCollection<UploadEmergencyModel>();
+        private ObservableCollection<UploadEmergencyModel> dataListDelete = new ObservableCollection<UploadEmergencyModel>();
         private bool isFirstAppear = true;
         private string emergencyId;
         void cellRightBut(object sender, System.EventArgs e)
@@ -83,7 +84,7 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 #endif
         //编辑结束
- 
+
         async void Handle_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
             var entr = sender as Entry;
@@ -92,6 +93,7 @@ namespace AepApp.View.EnvironmentalEmergency
             if (string.IsNullOrWhiteSpace(a)) return;
             UploadEmergencyModel emergencyModel = new UploadEmergencyModel
             {
+                uploadStatus = "notUploaded",
                 Title = "",
                 Content = a,
                 creationTime = System.DateTime.Now,
@@ -110,6 +112,7 @@ namespace AepApp.View.EnvironmentalEmergency
             }
             await App.Database.SaveEmergencyAsync(emergencyModel);
             dataList.Add(emergencyModel);
+            dataListDelete.Add(emergencyModel);
             await entryStack.TranslateTo(0, 0);
             entr.Text = "";
         }
@@ -123,7 +126,7 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 
         //点击了位置按钮
-       async void AccidentPosition(object sender, System.EventArgs e)
+        async void AccidentPosition(object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new AccidentPositionPage());
             MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", async (arg1, arg2) =>
@@ -159,15 +162,16 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                dataListDelete.Add(emergencyModel);
             });
 
         }
         //左滑删除
-       async void Handle_Clicked(object sender, System.EventArgs e)
+        async void Handle_Clicked(object sender, System.EventArgs e)
         {
             var menu = sender as MenuItem;
             var item = menu.BindingContext as UploadEmergencyModel;
-           await App.Database.DeleteEmergencyAsync(item);
+            await App.Database.DeleteEmergencyAsync(item);
             dataList.Remove(item);
         }
 
@@ -184,7 +188,8 @@ namespace AepApp.View.EnvironmentalEmergency
             isfunctionBarIsShow = true;
         }
         //退出事故性质编辑
-        void TapGestureRecognizer_Tapped(object sender, EventArgs e){
+        void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
             if (isfunctionBarIsShow == true)
             {
                 canceshiguxingzhi();
@@ -257,13 +262,14 @@ namespace AepApp.View.EnvironmentalEmergency
                     emergencyModel.lng = 0;
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
-                    if (item.yangBenLeiXing == "大气") emergencyModel.incidentNature = "4";
-                    else if (item.yangBenLeiXing == "水质") emergencyModel.incidentNature = "2";
-                    else if (item.yangBenLeiXing == "土壤") emergencyModel.incidentNature = "1";
-                    else  emergencyModel.incidentNature = "8";
+                if (item.yangBenLeiXing == "大气") emergencyModel.incidentNature = "4";
+                else if (item.yangBenLeiXing == "水质") emergencyModel.incidentNature = "2";
+                else if (item.yangBenLeiXing == "土壤") emergencyModel.incidentNature = "1";
+                else emergencyModel.incidentNature = "8";
 
-                App.Database.SaveEmergencyAsync(emergencyModel);
+                await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                dataListDelete.Add(emergencyModel);
                 MessagingCenter.Unsubscribe<ContentPage, AddDataForChemicolOrLHXZModel.ItemsBean>(this, "AddLHXZ");
             });
 
@@ -290,13 +296,14 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                dataListDelete.Add(emergencyModel);
                 MessagingCenter.Unsubscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew");
             });
             Navigation.PushAsync(new addDataPage());
 
         }
         //完成选择事故性质
-       async void finishishiguxingzhi(object sender, System.EventArgs e)
+        async void finishishiguxingzhi(object sender, System.EventArgs e)
         {
             //entryStack.TranslateTo(0, 0);
             await b2.TranslateTo(0, 0);
@@ -351,6 +358,7 @@ namespace AepApp.View.EnvironmentalEmergency
             }
             await App.Database.SaveEmergencyAsync(emergencyModel);
             dataList.Add(emergencyModel);
+            dataListDelete.Add(emergencyModel);
         }
 
         void canceshiguxingzhi()
@@ -372,7 +380,7 @@ namespace AepApp.View.EnvironmentalEmergency
 #pragma 点击事故性质按钮一系列操作结束
 
         //点击了风速风向按钮
-       async void fengSuFengXiang(object sender, System.EventArgs e)
+        async void fengSuFengXiang(object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new WindSpeedAndDirectionPage());
             MessagingCenter.Subscribe<ContentPage, string[]>(this, "saveWindSpeedAndDirection", async (arg1, arg2) =>
@@ -405,6 +413,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                dataListDelete.Add(emergencyModel);
             });
 
 
@@ -428,6 +437,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 };
                 App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                dataListDelete.Add(emergencyModel);
                 MessagingCenter.Unsubscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew");
             });
 
@@ -461,7 +471,7 @@ namespace AepApp.View.EnvironmentalEmergency
             else
             {
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
-                {                   
+                {
                     creationTime = System.DateTime.Now,
                     StorePath = file.Path,
                     emergencyid = emergencyId,
@@ -479,12 +489,13 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
+                dataListDelete.Add(emergencyModel);
                 EasyWebRequest.upload(file);
                 await App.Database.DeleteEmergencyAsync(emergencyModel);
             }
 
             //EasyWebRequest.UploadImage(file);
-           
+
         }
 
 
@@ -519,10 +530,15 @@ namespace AepApp.View.EnvironmentalEmergency
                 int count = dataList2.Count;
                 foreach (UploadEmergencyModel model in dataList2)
                 {
-                    if (!string.IsNullOrWhiteSpace(model.category)) dataList.Add(model);
+                    if (!string.IsNullOrWhiteSpace(model.category))
+                    {
+                        dataList.Add(model);
+                        dataListDelete.Add(model);
+                    }
 
                 }
                 listView.ItemsSource = dataList;
+                //dataListDelete =  dataList;
                 isFirstAppear = false;
             }
         }
@@ -532,7 +548,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             //Console.WriteLine(incidentLoggingEvents);
         }
-    
+
         void addbar()
         {
             var G = new Grid();
@@ -548,16 +564,17 @@ namespace AepApp.View.EnvironmentalEmergency
             for (int i = 0; i < count; i++)
             {
                 UploadEmergencyModel model = dataList[i];
+                model.uploadStatus = "uploading";
                 switch (model.category)
                 {
-                    case "IncidentLocationSendingEvent":
+                    case "IncidentLocationSendingEvent":                       
                         PostLocationSending(model);
                         break;
-                        //化学因子名称
+                    //化学因子名称
                     case "IncidentFactorIdentificationEvent":
                         PostFactorIdentificationSending(model);
                         break;
-                    case "IncidentMessageSendingEvent":
+                    case "IncidentMessageSendingEvent":                     
                         PostMessageSending(model);
                         break;
                     case "IncidentWindDataSendingEvent":
@@ -566,7 +583,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentNatureIdentificationEvent":
                         PostNatureIdentification(model);
                         break;
-                        //添加化学因子检测值
+                    //添加化学因子检测值
                     case "IncidentFactorMeasurementEvent":
                         PostFactorMeasurmentSending(model);
                         break;
@@ -594,7 +611,8 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 await App.Database.DeleteEmergencyAsync(model);
-                dataList.Remove(model);
+                model.uploadStatus = "UploadedOver";
+                dataListDelete.Remove(model);
             }
             else
             {
@@ -619,7 +637,8 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 await App.Database.DeleteEmergencyAsync(model);
-                dataList.Remove(model);
+                model.uploadStatus = "UploadedOver";
+                dataListDelete.Remove(model);
             }
             else
             {
@@ -644,7 +663,8 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 await App.Database.DeleteEmergencyAsync(model);
-                dataList.Remove(model);
+                model.uploadStatus = "UploadedOver";
+                dataListDelete.Remove(model);
             }
             else
             {
@@ -671,7 +691,8 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 await App.Database.DeleteEmergencyAsync(model);
-                dataList.Remove(model);
+                model.uploadStatus = "UploadedOver";
+                dataListDelete.Remove(model);
             }
             else
             {
@@ -705,7 +726,8 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 await App.Database.DeleteEmergencyAsync(model);
-                dataList.Remove(model);
+                model.uploadStatus = "UploadedOver";
+                dataListDelete.Remove(model);
             }
             else
             {
@@ -728,7 +750,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 unitName = model.unitName,
                 equipmentId = "",
                 equipmentName = "",
-                factorValue = Convert.ToDouble(model.factorValue), 
+                factorValue = Convert.ToDouble(model.factorValue),
                 incidentNature = 4,
 
             };
@@ -749,7 +771,8 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 await App.Database.DeleteEmergencyAsync(model);
-                dataList.Remove(model);
+                model.uploadStatus = "UploadedOver";
+                dataListDelete.Remove(model);
             }
             else
             {
