@@ -194,6 +194,7 @@ namespace AepApp.View.EnvironmentalEmergency
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
                 if (dataList.Count != 0)
+                    
                     Navigation.PushAsync(new RescueSiteMapPage(dataList,id));
             }));
          

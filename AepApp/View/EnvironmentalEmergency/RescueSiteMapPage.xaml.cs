@@ -7,39 +7,26 @@ using System.Collections.ObjectModel;
 using AepApp.Models;
 using static AepApp.Models.EmergencyAccidentInfoDetail;
 using CloudWTO.Services;
+using Newtonsoft.Json;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class RescueSiteMapPage : ContentPage
     {
-
-
-        async void HandleEventHandler()
-        {
-            try
-            {
-                Location location = await Geolocation.GetLastKnownLocationAsync();
-
-                if (location != null)
-                {
-                    map.SetCenter(13, new AzmCoord(location.Longitude, location.Latitude));
-
-                    currentMarker.Coord = new AzmCoord(location.Longitude,location.Latitude);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Unable to get location
-            }
-        }
+        
         AzmMarkerView currentMarker;
         public RescueSiteMapPage()
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
-            currentMarker = new AzmMarkerView(ImageSource.FromFile("loc2.png"),new Size(30, 30) ,new AzmCoord(0.0,0.0));
-            map.Overlays.Add(currentMarker);
-            HandleEventHandler();
+
+            try{
+                currentMarker = new AzmMarkerView(ImageSource.FromFile("loc2.png"), new Size(30, 30), new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude));
+                map.Overlays.Add(currentMarker); 
+            }catch(Exception ex){
+                
+            }
+           
         }
         //从救援地点进入
         public RescueSiteMapPage(ObservableCollection<RescueSiteModel.ItemsBean> dataList):this(){
@@ -82,7 +69,7 @@ namespace AepApp.View.EnvironmentalEmergency
              foreach (IncidentLoggingEventsBean item in dataList)
             {
                 if(item.TargetLat !=null){
-                    coord = new AzmCoord(item.TargetLng.Value, item.TargetLat.Value);
+                    if(Convert.ToDouble(item.TargetLat)<=90.0)coord = new AzmCoord(Convert.ToDouble(item.TargetLng), Convert.ToDouble(item.TargetLat));
                 }
                 if (item.lat != null)
                 {
@@ -97,15 +84,22 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
             }
 
+            Console.WriteLine("lat==="+coord.lat+"lng=="+ coord.lng);
             //设置target坐标
             if (coord != null)
             {
-                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(35, 35), coord)
-                {
+                try{
+                    AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(35, 35), coord)
+                   {
+                        BackgroundColor =Color.Transparent,
+                   };
+                    map.Overlays.Add(mv);
+                    map.SetCenter(13, coord); 
+                }catch(Exception ex){
 
-                };
-                map.Overlays.Add(mv);
-                map.SetCenter(13, coord);
+
+                }
+
             }
 
             ReqPlanLis(incidengtId);
@@ -115,16 +109,30 @@ namespace AepApp.View.EnvironmentalEmergency
         private async void ReqPlanLis(string incidentId)
         {
             //string url = App.BasicDataModule.url + DetailUrl.ChemicalList;
-            string url = "http://192.168.1.128:8015/api/Sampleplan/GetPlanListByProid" + "?Proid=" + incidentId;
+            string url = "http://gx.azuratech.com:30011/api/Sampleplan/GetPlanListByProid" + "?Proid=" + incidentId;
             Console.WriteLine(url);
           
             //string param = "keyword=" + "" + "&pageIndex=" + pagrIndex + "&pageSize=" + pageSize;
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", "");
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, null, "GET",null);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);
-               
+                List<BuDianItem> list = JsonConvert.DeserializeObject<List<BuDianItem>>(hTTPResponse.Results);
+                foreach(BuDianItem item in list){
+                    AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("bluetarget"), new Size(30, 30), new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat)))
+                    {
+                        Text = item.address,
+                        };
+                        map.Overlays.Add(mv);
+                }
             }
+        }
+
+        internal class BuDianItem{
+            public string address { set; get; }
+            public string name { set; get; }
+            public double? lng { set; get; }
+            public double? lat { set; get; }
         }
 
 

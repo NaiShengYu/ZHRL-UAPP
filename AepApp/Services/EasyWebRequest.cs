@@ -117,7 +117,6 @@ namespace CloudWTO.Services
             return new HTTPResponse { Results = result, StatusCode = res.StatusCode };
         }
 
-
         public static async Task<HTTPResponse> HTTPRequestDownloadAsync(string url,string fileN,string token = null){
 
             HttpWebResponse res = null;

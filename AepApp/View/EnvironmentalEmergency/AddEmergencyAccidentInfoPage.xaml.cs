@@ -140,8 +140,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 aaa = aaa.Replace("S", "");
                 aaa = aaa.Replace(" ", "");
                 string[] bbb = aaa.Split(",".ToCharArray());
-                double lat = System.Convert.ToDouble(bbb[0]);
-                double lon = System.Convert.ToDouble(bbb[1]);
+                double lon = System.Convert.ToDouble(bbb[0]);
+                double lat = System.Convert.ToDouble(bbb[1]);
 
                 //MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel

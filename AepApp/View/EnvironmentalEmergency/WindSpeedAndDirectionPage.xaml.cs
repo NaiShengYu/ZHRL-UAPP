@@ -26,13 +26,10 @@ namespace AepApp.View.EnvironmentalEmergency
             InitializeComponent();
             imgG.HeightRequest = App.ScreenWidth;
             imgG.WidthRequest = App.ScreenWidth;
-
-        
         }
 
         void Handle_TouchAction(object sender, TouchTracking.TouchActionEventArgs args)
         {
-
             var x1 = args.Location.X -App.ScreenWidth / 2 ;
             var y1 =App.ScreenWidth / 2- args.Location.Y ;
 
@@ -47,23 +44,19 @@ namespace AepApp.View.EnvironmentalEmergency
             if (x1 < 0) tand = 360 - tand;
             directionLab.Text = Math.Round(tand,2).ToString();
             winLab.Text = WindDirectionWithfloat(Math.Round(tand, 2));
-           
             zhizhen.RotateTo(tand, 0);
         }
-
-
         string WindDirectionWithfloat(double tand)
         {
-
-            if (tand <= 22.5) return "° 北风";
-            else if (tand <= 67.5) return "° 东北风";
-            else if (tand <= 112.5) return "° 东风";
-            else if (tand <= 157.5) return "° 东南风";
-            else if (tand <= 202.5) return "° 南风";
-            else if (tand <= 247.5) return "° 西南风";
-            else if (tand <= 292.5) return "° 西风";
-            else if (tand <= 337.5) return "° 西北风";
-            else return "° 北风";
+            if (tand <= 22.5) return " 北风";
+            else if (tand <= 67.5)  return " 东北风";
+            else if (tand <= 112.5) return " 东风";
+            else if (tand <= 157.5) return " 东南风";
+            else if (tand <= 202.5) return " 南风";
+            else if (tand <= 247.5) return " 西南风";
+            else if (tand <= 292.5) return " 西风";
+            else if (tand <= 337.5) return " 西北风";
+            else return " 北风";
         }
 
         //#pragma mark --取消masterDeftail的返回手势
