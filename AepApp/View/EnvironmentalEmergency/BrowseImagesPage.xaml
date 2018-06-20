@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.EnvironmentalEmergency.BrowseImagesPage">
     <ContentPage.Content>
         <StackLayout Spacing="0">
-            <Label HorizontalOptions="FillAndExpand" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="#2c73a3" HeightRequest="45" Text="2017-12-12 13:58 /李四" />
+            <Label x:Name="titleLab" HorizontalOptions="FillAndExpand" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="#2c73a3" HeightRequest="45"/>
             <StackLayout Orientation="Horizontal" x:Name="stack" Spacing="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             </StackLayout>
         </StackLayout>

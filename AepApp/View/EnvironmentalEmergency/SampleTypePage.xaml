@@ -15,7 +15,7 @@
                                     <ColumnDefinition Width="60" />
                                 </Grid.ColumnDefinitions>
                                 <StackLayout Grid.Column="0">
-                                    <Label Text="{Binding name}" Margin="20,8,10,8" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" />
+                                    <Label Text="{Binding name}" Margin="20,8,10,8" VerticalOptions="Center" HorizontalOptions="Start" />
                                 </StackLayout>
                                 <Image Grid.Column="1" Source="bluetick" HeightRequest="26" WidthRequest="26" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0">
                                     <Image.Triggers>

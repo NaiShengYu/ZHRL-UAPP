@@ -131,6 +131,23 @@ namespace AepApp.View.EnvironmentalEmergency
         //添加事故
         void addSouce(object sender, System.EventArgs e)
         {
+
+            App.LastNatureAccidentModel = null;
+            foreach (IncidentLoggingEventsBean emergencyModel1 in dataList)
+            {
+                if (emergencyModel1.category == "IncidentNatureIdentificationEvent")
+                {
+                    UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+                    {
+                        creationTime = System.DateTime.Now,
+                        natureString = emergencyModel1.natureString,
+                        emergencyid = emergencyId,
+                        category = "IncidentNatureIdentificationEvent"
+                    };
+                    App.LastNatureAccidentModel = emergencyModel;
+                    break;
+                }
+            }
             Navigation.PushAsync(new AddEmergencyAccidentInfoPage(emergencyId));
         }
 
@@ -175,7 +192,18 @@ namespace AepApp.View.EnvironmentalEmergency
             var item = e.SelectedItem as IncidentLoggingEventsBean;
             if (item == null)
                 return;
+            List<string> imgs = new List<string>();
+            //imgs.Add("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=729412813,2297218092&fm=27&gp=0.jpg");
+            //imgs.Add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3595459302,598700159&fm=27&gp=0.jpg");
+            //imgs.Add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2738969446,4147851924&fm=27&gp=0.jpg");
 
+            //Navigation.PushAsync(new BrowseImagesPage(imgs));
+
+            if(item.category =="IncidentPictureSendingEvent"){
+                List<IncidentLoggingEventsBean> imgsSouce = new List<IncidentLoggingEventsBean>();
+                imgsSouce.Add(item);
+                Navigation.PushAsync(new BrowseImagesPage(imgsSouce));
+            }
             listView.SelectedItem = null;
         }
 

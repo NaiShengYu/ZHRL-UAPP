@@ -30,7 +30,9 @@ namespace AepApp.View.EnvironmentalEmergency
         void SampleType(object sender, System.EventArgs e)
         {
             if (App.sampleTypeList.Count ==0)return;
-
+            if (_factorModel.dataType == "1") return;
+            if (_factorModel.dataType == "2") return;
+            if (_factorModel.dataType == "3") return;
 
             Button but = sender as Button;
             Navigation.PushAsync(new SampleTypePage());

@@ -40,7 +40,6 @@ namespace AepApp.View.EnvironmentalEmergency
             string fileName = file[0].id + "." + file[0].format;
             downloadPlan(item.files[0].storeUrl, fileName);
             listView.SelectedItem = null;
-
         }
 
         public SuccessCase()
@@ -50,11 +49,10 @@ namespace AepApp.View.EnvironmentalEmergency
             var tap = new TapGestureRecognizer();
             tap.Tapped += (s, e) =>
             {
-
+          
             };
 
             ReqSuccessCase(searchKey, "", 0, 10);
-
 
         }
 

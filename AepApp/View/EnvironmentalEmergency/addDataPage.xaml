@@ -13,7 +13,7 @@
                     <StackLayout x:Name="wrw" Spacing="1"/>
                     <StackLayout Orientation="Horizontal" HeightRequest="60">
                         <Label Text="添加关键污染物" Margin="15,5,15,5" VerticalTextAlignment="Center" HorizontalOptions="Start" VerticalOptions="Center"/>
-                        <Button Clicked="Handle_Clicked" Image="add" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,15,0" WidthRequest="45" HeightRequest="45"/>
+                        <Button BackgroundColor="Transparent" Clicked="Handle_Clicked" Image="add" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,15,0" WidthRequest="45" HeightRequest="45"/>
                     </StackLayout>
 
                     
@@ -23,7 +23,7 @@
                     <StackLayout x:Name="lhxz" Spacing="1" VerticalOptions="Center"/>
                     <StackLayout Orientation="Horizontal" HeightRequest="60" HorizontalOptions="FillAndExpand">
                         <Label Text="添加关键理化性质" Margin="15,5,15,5" VerticalTextAlignment="Center" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
-                        <Button Clicked="addLHXZ" Image="add" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,15,0" WidthRequest="45" HeightRequest="45"/>
+                        <Button BackgroundColor="Transparent" Clicked="addLHXZ" Image="add" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,15,0" WidthRequest="45" HeightRequest="45"/>
                     </StackLayout>
 
                 </StackLayout>

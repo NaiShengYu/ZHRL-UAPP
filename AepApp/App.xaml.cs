@@ -30,6 +30,7 @@ namespace AepApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public static UploadEmergencyModel LastNatureAccidentModel = null;
         public static MasterDetailPage appHunbegerPage = null;
         public static Location currentLocation =null;
         private const string EmergencyModuleID  = "99A2844E-DF79-41D1-8CC4-CE98074CF31A";
@@ -95,7 +96,7 @@ namespace AepApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new SplashPage());
+            MainPage = new SplashPage();
 
             //MainPage = new WindSpeedAndDirectionPage();
 

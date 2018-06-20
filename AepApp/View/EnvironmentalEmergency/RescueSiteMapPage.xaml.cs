@@ -56,8 +56,12 @@ namespace AepApp.View.EnvironmentalEmergency
                     Text = item.name
                 };
                 map.Overlays.Add(mv);
-
             }
+
+            if(App.currentLocation !=null){
+                map.SetCenter(12, new AzmCoord(App.currentLocation.Longitude,App.currentLocation.Latitude));
+            }
+             
 
         }
         //从应急事故详情进入
@@ -96,7 +100,6 @@ namespace AepApp.View.EnvironmentalEmergency
                     map.Overlays.Add(mv);
                     map.SetCenter(13, coord); 
                 }catch(Exception ex){
-
 
                 }
 
