@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using static AepApp.Models.EmergencyAccidentInfoDetail;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
@@ -63,13 +64,14 @@ namespace AepApp.View.EnvironmentalEmergency
             //最后一张图
             if (stack.Margin.Left <= -stack.WidthRequest + App.ScreenWidth && e.TotalX < 0)
             {
+
                 stack.Margin = new Thickness(stack.Margin.Left, 0, 0, 0);
                 return;
             }
             stack.Margin = new Thickness(stackLastLeftMargin + e.TotalX, 0, 0, 0);
         }
 
-        public BrowseImagesPage(List<string> imgsSouce)
+        public BrowseImagesPage(List<IncidentLoggingEventsBean> imgsSouce):this()
         {
             InitializeComponent();
 
@@ -86,7 +88,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 ZoomImage img = new ZoomImage
                 {
-                    Source = imgsSouce[i],
+                    Source = imgsSouce[i].imagePath,
                     WidthRequest = App.ScreenWidth,
                     HorizontalOptions = LayoutOptions.FillAndExpand,
                     VerticalOptions = LayoutOptions.FillAndExpand,
@@ -97,21 +99,58 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 stack.Children.Add(img);
 
+
+                string time = string.Format("{0:yyyy-MM-dd HH:mm:ss}", imgsSouce[i].creationTime);
+
+                titleLab.Text = time + "/" + imgsSouce[i].creatorUserName;
+
             }
         }
+
+        public BrowseImagesPage(){
+        
+        
+        
+        
+        }
+
+
+        public BrowseImagesPage(List<string> imgsSouce):this()
+        {
+            InitializeComponent();
+            stack.WidthRequest = imgsSouce.Count * App.ScreenWidth;
+
+            for (int i = 0; i < imgsSouce.Count; i++)
+            {
+                ZoomImage img = new ZoomImage
+                {
+                    Source = imgsSouce[i],
+                    WidthRequest = App.ScreenWidth,
+                };
+                img.swipeRunning += Handle_swipeRunning;
+
+                img.swipeStop += Handle_swipeStop;
+
+                stack.Children.Add(img);
+
+            }
+        }
+
+
 
         //#pragma mark --取消masterDeftail的返回手势
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            (App.Current as App).IsMasterDetailPageGestureEnabled = false;
+            App.appHunbegerPage.IsGestureEnabled = false;
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            (App.Current as App).IsMasterDetailPageGestureEnabled = true;
+            App.appHunbegerPage.IsGestureEnabled = true;
         }
+
 
     }
 }

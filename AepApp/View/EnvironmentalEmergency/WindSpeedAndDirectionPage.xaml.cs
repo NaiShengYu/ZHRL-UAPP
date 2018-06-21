@@ -7,6 +7,16 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class WindSpeedAndDirectionPage : ContentPage
     {
+        void Handle_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(directionLab.Text)) directionLab.Text = "0";
+
+            var windAngle = Convert.ToDouble(directionLab.Text) % 360;
+            directionLab.Text = windAngle.ToString("f2");
+            zhizhen.RotateTo(windAngle, 0);
+
+        }
+
         void Handle_Clicked(object sender, System.EventArgs e)
         {
             

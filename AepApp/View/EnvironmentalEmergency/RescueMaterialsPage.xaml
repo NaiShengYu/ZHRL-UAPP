@@ -16,9 +16,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center" StyleClass="item">
-                                <StackLayout VerticalOptions="Center" Margin="20,0,20,0" Spacing="0">
+                                <StackLayout VerticalOptions="Center" Margin="20,0,20,0" Spacing="0" Orientation="Horizontal">
                                     <Label StyleClass="itemtitle" Text="{Binding name}" />
-                                    <Label StyleClass="itemsubtitle" Text="{Binding qtyunit}">
+                                    <Label StyleClass="itemsubtitle" Text="{Binding qtyunit}" HorizontalOptions="EndAndExpand"> 
                                         <Label.Triggers>
                                             <DataTrigger TargetType="Label" Binding="{Binding qtyunit}" Value="" >
                                                 <Setter Property="IsVisible" Value="false" />

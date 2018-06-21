@@ -21,7 +21,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 if (location != null)
                 {
                     if (i >0){
-                        map.SetCenter(16, new AzmCoord(location.Longitude, location.Latitude));
+                        map.SetCenter(12, new AzmCoord(location.Longitude, location.Latitude));
                     }
                     var img = ImageSource.FromFile("markerred.png");
                     var aaa = new AzmMarkerView(img, new Size(30, 30),new AzmCoord(location.Longitude, location.Latitude));
@@ -97,7 +97,7 @@ namespace AepApp.View.EnvironmentalEmergency
             HandleEventHandler();
             if (App.currentLocation != null)
             {
-                map.SetCenter(16, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude));
+                map.SetCenter(12, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude));
             }
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
         }

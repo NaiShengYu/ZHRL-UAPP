@@ -11,6 +11,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public ShowFilePage(string info)
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string filename = Path.Combine(path, info);

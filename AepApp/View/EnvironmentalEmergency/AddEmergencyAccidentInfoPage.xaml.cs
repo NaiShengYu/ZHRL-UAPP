@@ -22,6 +22,8 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AddEmergencyAccidentInfoPage : ContentPage
     {
+       
+
         //当前位置名称
         Location _location = null;
         //获取当前位置
@@ -79,17 +81,20 @@ namespace AepApp.View.EnvironmentalEmergency
             var rc = dic.ValueForKey((Foundation.NSString)"UIKeyboardFrameEndUserInfoKey");
             CGRect r = (rc as NSValue).CGRectValue;
 
-            if(Convert.ToInt32(r.Y) != App.ScreenHeight)entryStack.TranslateTo(0, 206 - r.Size.Height);
-            else entryStack.TranslateTo(0,0);
+            if(Convert.ToInt32(r.Y) != App.ScreenHeight){
+                //entryStack.TranslateTo(0, 206 - r.Size.Height);
+                cccc.Height = 55-Convert.ToDouble((206 - r.Size.Height));
+            }
+            else {
+                //entryStack.TranslateTo(0, 0);
+                cccc.Height = 55;
+            }
         }
 #endif
-        //编辑结束
-
-        async void Handle_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
+      //输入框点击了编辑按钮
+        async void clickedReturnKey(object sender, System.EventArgs e)
         {
-            var entr = sender as Entry;
-            var a = entr.Text;
-            //如果编辑为空，就不存储
+            var a = ENT.Text;
             if (string.IsNullOrWhiteSpace(a)) return;
             UploadEmergencyModel emergencyModel = new UploadEmergencyModel
             {
@@ -114,18 +119,10 @@ namespace AepApp.View.EnvironmentalEmergency
             dataList.Add(emergencyModel);
             dataListDelete.Add(emergencyModel);
             await entryStack.TranslateTo(0, 0);
-            entr.Text = "";
+            ENT.Text = "";
             listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
-
         }
-
-        //编辑开始
-        void Handle_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
-        {
-            //ENT.TranslateTo(0, 100);
-
-            var entr = sender as Entry;
-        }
+      
 
         //点击了位置按钮
         async void AccidentPosition(object sender, System.EventArgs e)
@@ -191,6 +188,49 @@ namespace AepApp.View.EnvironmentalEmergency
             bbbb.Height = 75;
             functionBar.TranslateTo(0, -130);
             isfunctionBarIsShow = true;
+            //记录上一次的选择
+            UploadEmergencyModel IdentificationModel = App.LastNatureAccidentModel;
+            foreach (UploadEmergencyModel emergencyModel1 in dataList)
+            {
+                if (emergencyModel1.category == "IncidentNatureIdentificationEvent" && emergencyModel1.emergencyid == emergencyId)
+                {
+                    IdentificationModel = emergencyModel1;
+                }
+            }
+            if(IdentificationModel !=null){
+                var dq = IdentificationModel.natureString.Substring(0,1);
+                var sz = IdentificationModel.natureString.Substring(1,1);
+                var tr = IdentificationModel.natureString.Substring(2,1);
+                if(dq =="0"){
+                    isSelectDQ = false;
+                    dqBut.BackgroundColor = Color.Transparent;
+                }
+                else {
+                    isSelectDQ = true; 
+                    dqBut.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+                }
+                if (sz == "0")
+                {
+                    isSelectSZ = false;
+                    szBut.BackgroundColor = Color.Transparent;
+                }
+                else
+                {
+                    isSelectSZ = true;
+                    szBut.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+                }
+                if (tr == "0")
+                {
+                    isSelectTR = false;
+                    trBut.BackgroundColor = Color.Transparent;
+                }
+                else
+                {
+                    isSelectTR = true;
+                    trBut.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
+                }
+            }
+
         }
         //退出事故性质编辑
         void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -200,8 +240,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 canceshiguxingzhi();
             }
         }
-
-
         //选中了大气
         bool isSelectDQ = false;
         bool isSelectSZ = false;
@@ -233,6 +271,89 @@ namespace AepApp.View.EnvironmentalEmergency
             else
                 but.BackgroundColor = Color.Transparent;
         }
+
+        //完成选择事故性质
+        async void finishishiguxingzhi(object sender, System.EventArgs e)
+        {
+            canceshiguxingzhi();
+            string a = "";
+            if (isSelectDQ)
+            {
+                a += "1";
+            }
+            else
+            {
+                a += "0";
+            }
+            if (isSelectSZ)
+            {
+                a += "1";
+            }
+            else
+            {
+                a += "0";
+            }
+            if (isSelectTR)
+            {
+                a += "1";
+            }
+            else
+            {
+                a += "0";
+            }
+          
+            //如果什么都不选
+            if (a == "000") return;
+            //如果和上次选的一样
+            UploadEmergencyModel IdentificationModel = null;
+            foreach(UploadEmergencyModel emergencyModel1 in dataList){
+                if(emergencyModel1.category == "IncidentNatureIdentificationEvent" && emergencyModel1.emergencyid ==emergencyId){
+                    IdentificationModel = emergencyModel1;
+                }
+            }
+            //如果原来有，并且和a新选的相同
+            if (IdentificationModel != null && IdentificationModel.natureString == a) return;
+
+
+            UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+            {
+                uploadStatus = "notUploaded",
+                creationTime = System.DateTime.Now,
+                natureString = a,
+                emergencyid = emergencyId,
+                category = "IncidentNatureIdentificationEvent"
+            };
+            try
+            {
+                emergencyModel.lat = App.currentLocation.Latitude;
+                emergencyModel.lng = App.currentLocation.Longitude;
+            }
+            catch (Exception)
+            {
+                emergencyModel.lat = 0;
+                emergencyModel.lng = 0;
+            }
+            await App.Database.SaveEmergencyAsync(emergencyModel);
+            dataList.Add(emergencyModel);
+            dataListDelete.Add(emergencyModel);
+            listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
+
+        }
+
+        void canceshiguxingzhi()
+        {
+            //entryStack.TranslateTo(0, 0);
+            b2.TranslateTo(0, 0);
+            aaaa.Height = 55;
+            bbbb.Height = 150;
+            functionBar.TranslateTo(0, 0);
+          
+            if (dataList.Count > 0) listView.ScrollTo(dataList[dataList.Count - 1], ScrollToPosition.End, true);
+
+        }
+
+#pragma 点击事故性质按钮一系列操作结束
+
 
         //点击了数据按钮
         void addShuju(object sender, System.EventArgs e)
@@ -390,8 +511,7 @@ namespace AepApp.View.EnvironmentalEmergency
             trBut.BackgroundColor = Color.Transparent;
             isfunctionBarIsShow = false;
         }
-
-#pragma 点击事故性质按钮一系列操作结束
+      
 
         //点击了风速风向按钮
         async void fengSuFengXiang(object sender, System.EventArgs e)
@@ -410,7 +530,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
                     uploadStatus = "notUploaded",
-
                     creationTime = System.DateTime.Now,
                     direction = direction,
                     speed = speed,
@@ -445,7 +564,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 AddDataIncidentFactorModel.ItemsBean item = arg2 as AddDataIncidentFactorModel.ItemsBean;
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
-                     uploadStatus = "notUploaded",
+                    uploadStatus = "notUploaded",
                     creationTime = System.DateTime.Now,
                     lat = App.currentLocation.Latitude,
                     lng = App.currentLocation.Longitude,
@@ -527,6 +646,7 @@ namespace AepApp.View.EnvironmentalEmergency
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             HandleEventHandler();
 
+         
 #if __IOS__//监听键盘的高度
             var not = NSNotificationCenter.DefaultCenter;
             not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
@@ -560,6 +680,9 @@ namespace AepApp.View.EnvironmentalEmergency
                 listView.ItemsSource = dataList;
                 //dataListDelete =  dataList;
                 isFirstAppear = false;
+                if (dataList.Count > 0) listView.ScrollTo(dataList[dataList.Count - 1], ScrollToPosition.End, true);
+
+
             }
         }
         private void GetLocalDataFromDB()
