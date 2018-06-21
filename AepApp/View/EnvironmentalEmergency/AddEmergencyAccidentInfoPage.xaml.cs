@@ -146,6 +146,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 //MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
+                    uploadStatus = "notUploaded",
                     creationTime = System.DateTime.Now,
                     TargetLat = lat,
                     TargetLng = lon,
@@ -245,6 +246,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 AddDataForChemicolOrLHXZModel.ItemsBean item = arg2 as AddDataForChemicolOrLHXZModel.ItemsBean;
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
+                    uploadStatus = "notUploaded",
                     creationTime = System.DateTime.Now,
                     emergencyid = emergencyId,
                     category = "IncidentFactorMeasurementEvent",
@@ -284,6 +286,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 AddDataIncidentFactorModel.ItemsBean item = arg2 as AddDataIncidentFactorModel.ItemsBean;
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
+                    uploadStatus = "notUploaded",
                     creationTime = System.DateTime.Now,
                     emergencyid = emergencyId,
                     category = "IncidentFactorIdentificationEvent",
@@ -349,6 +352,7 @@ namespace AepApp.View.EnvironmentalEmergency
             isSelectTR = false;
             UploadEmergencyModel emergencyModel = new UploadEmergencyModel
             {
+                uploadStatus = "notUploaded",
                 creationTime = System.DateTime.Now,
                 natureString = a,
                 emergencyid = emergencyId,
@@ -405,6 +409,8 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
+                    uploadStatus = "notUploaded",
+
                     creationTime = System.DateTime.Now,
                     direction = direction,
                     speed = speed,
@@ -439,6 +445,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 AddDataIncidentFactorModel.ItemsBean item = arg2 as AddDataIncidentFactorModel.ItemsBean;
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
+                     uploadStatus = "notUploaded",
                     creationTime = System.DateTime.Now,
                     lat = App.currentLocation.Latitude,
                     lng = App.currentLocation.Longitude,
@@ -486,6 +493,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
+                    uploadStatus = "notUploaded",
                     creationTime = System.DateTime.Now,
                     StorePath = file.Path,
                     imagePath = file.Path,
@@ -504,9 +512,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(emergencyModel);
-                dataListDelete.Add(emergencyModel);
-                EasyWebRequest.upload(file);
-                await App.Database.DeleteEmergencyAsync(emergencyModel);
+                dataListDelete.Add(emergencyModel);                       
                 listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
             }
            
@@ -604,7 +610,6 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentPictureSendingEvent":
                         PostupLoadImageSending(model);
                         break;
-
                 }
             }
         }
@@ -787,7 +792,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     if (hTTPResponse1.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         await App.Database.DeleteEmergencyAsync(model);
-                        dataList.Remove(model);
+                        model.uploadStatus = "UploadedOver";
+                        dataListDelete.Remove(model);
                     }
                     else
                     {
