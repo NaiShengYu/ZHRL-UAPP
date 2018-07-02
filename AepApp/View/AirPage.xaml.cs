@@ -38,7 +38,7 @@ namespace AepApp.View
             }));
 
                 //请求网络数据
-            CrossHud.Current.Show("加载中...");
+            //CrossHud.Current.Show("加载中...");
             ReqAirSiteData();       
         }
 

@@ -100,7 +100,7 @@ namespace AepApp
 
             //MainPage = new WindSpeedAndDirectionPage();
 
-            //aaaa();
+            aaaa();
         }
 
         //使用后删除错误数据
