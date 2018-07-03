@@ -56,7 +56,7 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                CrossHud.Current.Show("请求中...");
+                //CrossHud.Current.Show("请求中...");
                 string uri = App.BaseUrl + "/api/AppEnterprise/GetEnterpriseList?keys=";
                 result = EasyWebRequest.sendGetHttpWebRequest(uri);
                 res = JsonConvert.DeserializeObject<resutlDic>(result);

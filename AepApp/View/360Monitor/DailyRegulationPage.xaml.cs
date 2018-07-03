@@ -61,7 +61,7 @@ namespace AepApp.View.Monitor
 
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender, e) => {
-                CrossHud.Current.Show("请求中...");
+                ////CrossHud.Current.Show("请求中...");
                 makeData();
             };
             wrk.RunWorkerCompleted += (sender, e) => {

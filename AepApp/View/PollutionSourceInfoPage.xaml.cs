@@ -101,7 +101,7 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                CrossHud.Current.Show("请求中...");
+                //CrossHud.Current.Show("请求中...");
                 string uri = App.BaseUrl + "/api/AppEnterprise/GetPortOnlinelast?id=" + _enterprise.id;
                 var result = EasyWebRequest.sendGetHttpWebRequest(uri);
                 try
@@ -128,7 +128,7 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {           
-                CrossHud.Current.Show("请求中...");
+                //CrossHud.Current.Show("请求中...");
                 string uri = App.BaseUrl + "/api/AppEnterprise/GetPortFactorList?fid=" + _currentFactor.id + "&type="+_is30Select  + "&id=" + _currentPort.id;
                 var result = EasyWebRequest.sendGetHttpWebRequest(uri);
 

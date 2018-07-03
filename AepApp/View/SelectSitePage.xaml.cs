@@ -174,7 +174,7 @@ namespace AepApp.View
             }
             else
             {
-                CrossHud.Current.Show("加载中...");
+                //CrossHud.Current.Show("加载中...");
                 addSiteUtil.reqSiteInfo(siteName, siteUrl,dataList);
             }
             //网络请求站点
