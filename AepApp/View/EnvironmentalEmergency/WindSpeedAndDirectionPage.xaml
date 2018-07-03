@@ -11,7 +11,7 @@
             <RowDefinition Height="85"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="95"/>
             </Grid.RowDefinitions>
 
                 <Grid Margin="30,15 ,10,0" Grid.Row="0">
@@ -38,7 +38,7 @@
                    <Label VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" Text="西"/>
                 </Grid>
 
-                <Button BackgroundColor="Transparent" Grid.Row="3" Clicked="Handle_Clicked" Margin="0,5,0,10" HorizontalOptions="Center" Image="greentick" HeightRequest="70" WidthRequest="70"/>
+                <Button BackgroundColor="Transparent" Grid.Row="3" Clicked="Handle_Clicked" Margin="0,5,0,10" HorizontalOptions="Center" Image="greentick" HeightRequest="80" WidthRequest="80"/>
             
               </Grid>
     </ContentPage.Content>

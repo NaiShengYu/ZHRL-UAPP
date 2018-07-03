@@ -34,7 +34,7 @@ namespace AepApp.View
                 }
                 else
                 {
-                    CrossHud.Current.Show("加载中...");
+                    ////CrossHud.Current.Show("加载中...");
                     //请求该站点数据
                     reqSiteData();
                 }
@@ -86,21 +86,21 @@ namespace AepApp.View
                 if (!isContainSite)
                 {
                     saveData(todoItem);
-                    CrossHud.Current.Dismiss();
+                    //CrossHud.Current.Dismiss();
                 }
                 else {
-                    CrossHud.Current.Dismiss();
+                            //CrossHud.Current.Dismiss();
                     Navigation.PopAsync();
                 }
                 //Console.WriteLine("ex:" + model);
                 //添加站点
                 }else{
-                    CrossHud.Current.Dismiss();
+                    //CrossHud.Current.Dismiss();
                     }
                 }
                 catch(Exception ex){
                     Console.WriteLine(ex);
-                    CrossHud.Current.Dismiss();
+                    //CrossHud.Current.Dismiss();
 
                 }
             };
@@ -123,7 +123,7 @@ namespace AepApp.View
            
         private void cancel()
         {
-            CrossHud.Current.Dismiss();
+            //CrossHud.Current.Dismiss();
         }
         
         protected override bool OnBackButtonPressed()

@@ -4,6 +4,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using OxyPlot;
+using Plugin.CurrentActivity;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace AepApp.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            CrossCurrentActivity.Current.Init(this, bundle);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

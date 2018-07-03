@@ -42,7 +42,7 @@ namespace AepApp.View
             health.Text = airInfo.info.AQIInfo.Health;
             curRefId = airInfo.StationId;
             curFacId = airInfo.info.facId;
-            CrossHud.Current.Show("");
+            //CrossHud.Current.Show("");
             //initOxyPlotView();
             Appearing += AirDetailPage_Appearing;
         }

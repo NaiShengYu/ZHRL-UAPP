@@ -44,7 +44,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>Chinese</string>
 	<key>App Transport Security Settings</key>
 	<dict>
 		<key>Allow Arbitrary Loads</key>
