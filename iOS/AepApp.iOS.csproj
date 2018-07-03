@@ -183,14 +183,23 @@
     <Reference Include="Plugin.Permissions">
       <HintPath>..\packages\Plugin.Permissions.3.0.0.12\lib\xamarinios10\Plugin.Permissions.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Media">
-      <HintPath>..\packages\Xam.Plugin.Media.4.0.0.9\lib\xamarinios10\Plugin.Media.dll</HintPath>
-    </Reference>
     <Reference Include="SkiaSharp">
       <HintPath>..\packages\SkiaSharp.1.60.1\lib\Xamarin.iOS\SkiaSharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\..\Library\Frameworks\Mono.framework\External\xbuild-frameworks\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Rox.Xamarin.Video.Ios">
+      <HintPath>..\packages\Rox.Xamarin.Video.2.1.0\lib\Xamarin.iOS10\Rox.Xamarin.Video.Ios.dll</HintPath>
+    </Reference>
+    <Reference Include="Rox.Xamarin.Video.Portable">
+      <HintPath>..\packages\Rox.Xamarin.Video.2.1.0\lib\Xamarin.iOS10\Rox.Xamarin.Video.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media">
+      <HintPath>..\packages\Xam.Plugin.Media.4.0.1.1\lib\xamarinios10\Plugin.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.AudioRecorder">
+      <HintPath>..\packages\Plugin.AudioRecorder.1.0.1\lib\xamarinios10\Plugin.AudioRecorder.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ using Xamarin.Essentials;
 using Todo;
 using System.Net;
 using Newtonsoft.Json;
+using Plugin.AudioRecorder;
 
 #if __IOS__
 using Foundation;
@@ -47,6 +48,7 @@ namespace AepApp.View.EnvironmentalEmergency
         private ObservableCollection<UploadEmergencyModel> dataListDelete = new ObservableCollection<UploadEmergencyModel>();
         private bool isFirstAppear = true;
         private string emergencyId;
+        private AudioRecorderService recorder;
         void cellRightBut(object sender, System.EventArgs e)
         {
             if (isfunctionBarIsShow == true)
@@ -182,6 +184,23 @@ namespace AepApp.View.EnvironmentalEmergency
             await App.Database.DeleteEmergencyAsync(item);
             dataList.Remove(item);
         }
+
+
+        //点击了录音按钮
+        async void recordVoice(object sender, System.EventArgs e)
+        {
+            try{
+                if (!recorder.IsRecording) await recorder.StartRecording();
+                else await recorder.StopRecording();
+            }catch (Exception ex){
+                Console.WriteLine("errer：" + ex.Message);
+            }
+
+
+
+
+        }
+
 
 #pragma mark --点击事故性质按钮一系列操作开始
         //点击了事故性质按钮
@@ -567,13 +586,67 @@ namespace AepApp.View.EnvironmentalEmergency
             }
            
         }
+        //点击了录制视频
+        async void recordVideo(object sender, System.EventArgs e){
+            await CrossMedia.Current.Initialize();
 
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakeVideoSupported)
+            {
+                await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakeVideoAsync(new Plugin.Media.Abstractions.StoreVideoOptions
+            {
+                DesiredLength = new TimeSpan(0,0,10),
+                Directory = "Sample",
+                Name = System.DateTime.Now + ".mp4",
+
+            });
+
+            if (file == null) return;
+
+
+            UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+            {
+                uploadStatus = "notUploaded",
+                creationTime = System.DateTime.Now,
+                StorePath = file.Path,
+                imagePath = file.Path,
+                emergencyid = emergencyId,
+                category = "IncidentPictureSendingEvent"
+            };
+            try
+            {
+                emergencyModel.lat = App.currentLocation.Latitude;
+                emergencyModel.lng = App.currentLocation.Longitude;
+            }
+            catch (Exception)
+            {
+                emergencyModel.lat = 0;
+                emergencyModel.lng = 0;
+            }
+            await App.Database.SaveEmergencyAsync(emergencyModel);
+            dataList.Add(emergencyModel);
+            dataListDelete.Add(emergencyModel);
+            listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
+
+        }
 
 
 
         public AddEmergencyAccidentInfoPage(string id)
         {
             InitializeComponent();
+            recorder = new AudioRecorderService
+            {
+                StopRecordingOnSilence = true,//将在2秒后停止录制（默认）
+
+                StopRecordingAfterTimeout = true,   //在最大超时后停止录制（定义如下）
+
+                 TotalAudioTimeout = TimeSpan.FromSeconds(15)//音频将在15秒后停止录制 
+             };
+
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             HandleEventHandler();
 
