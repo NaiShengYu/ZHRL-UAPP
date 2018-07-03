@@ -59,7 +59,7 @@ namespace AepApp.View.SecondaryFunction
                {
 
                    // Stop analysis until we navigate away so we don't keep reading barcodes
-                   zxing.IsAnalyzing = false;
+                   zxing.IsAnalyzing = false; //若为true则为一直扫面
 
                    // Show an alert
                    //await DisplayAlert("Scanned Barcode", result.Text, "OK");
