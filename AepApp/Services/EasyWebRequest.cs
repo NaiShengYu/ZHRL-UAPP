@@ -170,6 +170,8 @@ namespace CloudWTO.Services
             {
                 var upfilebytes = File.ReadAllBytes(filePath);
                 var imageStream = new ByteArrayContent(upfilebytes);
+                Console.WriteLine("fileLength===" + upfilebytes.Length);
+
                 var multi = new MultipartFormDataContent();
                 //这句话很关键第一个“files”是接口参数，第二个文件后缀
                 multi.Add(imageStream,"files",".png");

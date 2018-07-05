@@ -13,6 +13,10 @@ using Todo;
 using System.Net;
 using Newtonsoft.Json;
 using Plugin.AudioRecorder;
+using System.IO;
+
+using SkiaSharp;
+using SimpleAudioForms;
 
 #if __IOS__
 using Foundation;
@@ -190,15 +194,30 @@ namespace AepApp.View.EnvironmentalEmergency
         async void recordVoice(object sender, System.EventArgs e)
         {
             try{
-                if (!recorder.IsRecording) await recorder.StartRecording();
-                else await recorder.StopRecording();
+                if (!recorder.IsRecording){
+                    //存储路径/private/var/mobile/Containers/Data/Application/4D043DD6-FC25-4008-AF9B-E8AFD856E6F2/tmp/ARS_recording.wav
+                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    var dir = path + "/Voice/";
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
+                    //存储文件名
+                    string name =  DateTime.Now.ToString("yyyyMMddHHmmss") + ".wav";
+                    string filename = Path.Combine(dir,name);
+                    recorder.FilePath = filename;
+                    await recorder.StartRecording();
+                    Console.WriteLine("filePath：" + recorder.FilePath);
+                } 
+                else {
+                    await recorder.StopRecording();
+                    DependencyService.Get<IAudio>().PlayWavFile(
+                        recorder.FilePath
+                                    );
+                }
             }catch (Exception ex){
                 Console.WriteLine("errer：" + ex.Message);
             }
-
-
-
-
         }
 
 
@@ -383,7 +402,6 @@ namespace AepApp.View.EnvironmentalEmergency
         //点击了数据按钮
         void addShuju(object sender, System.EventArgs e)
         {
-
             Button but = sender as Button;
             if (App.contaminantsList == null && App.AppLHXZList == null) return;
 
@@ -461,84 +479,7 @@ namespace AepApp.View.EnvironmentalEmergency
             Navigation.PushAsync(new addDataPage());
 
         }
-        //完成选择事故性质
-        async void finishishiguxingzhi(object sender, System.EventArgs e)
-        {
-            //entryStack.TranslateTo(0, 0);
-            await b2.TranslateTo(0, 0);
-            aaaa.Height = 55;
-            bbbb.Height = 150;
-            await functionBar.TranslateTo(0, 0);
-            isfunctionBarIsShow = false;
-            string a = "";
-            if (isSelectDQ)
-            {
-                a += "1";
-            }
-            else
-            {
-                a += "0";
-            }
-            if (isSelectSZ)
-            {
-                a += "1";
-            }
-            else
-            {
-                a += "0";
-            }
-            if (isSelectTR)
-            {
-                a += "1";
-            }
-            else
-            {
-                a += "0";
-            }
-            isSelectDQ = false;
-            isSelectSZ = false;
-            isSelectTR = false;
-            UploadEmergencyModel emergencyModel = new UploadEmergencyModel
-            {
-                uploadStatus = "notUploaded",
-                creationTime = System.DateTime.Now,
-                natureString = a,
-                emergencyid = emergencyId,
-                category = "IncidentNatureIdentificationEvent"
-            };
-            try
-            {
-                emergencyModel.lat = App.currentLocation.Latitude;
-                emergencyModel.lng = App.currentLocation.Longitude;
-            }
-            catch (Exception)
-            {
-                emergencyModel.lat = 0;
-                emergencyModel.lng = 0;
-            }
-            await App.Database.SaveEmergencyAsync(emergencyModel);
-            dataList.Add(emergencyModel);
-            dataListDelete.Add(emergencyModel);
-            listView.ScrollTo(emergencyModel, ScrollToPosition.End, true);
-
-        }
-
-        void canceshiguxingzhi()
-        {
-            //entryStack.TranslateTo(0, 0);
-            b2.TranslateTo(0, 0);
-            aaaa.Height = 55;
-            bbbb.Height = 150;
-            functionBar.TranslateTo(0, 0);
-            isSelectDQ = false;
-            dqBut.BackgroundColor = Color.Transparent;
-            isSelectSZ = false;
-            szBut.BackgroundColor = Color.Transparent;
-            isSelectTR = false;
-            trBut.BackgroundColor = Color.Transparent;
-            isfunctionBarIsShow = false;
-        }
-      
+  
 
         //点击了风速风向按钮
         async void fengSuFengXiang(object sender, System.EventArgs e)
@@ -627,16 +568,29 @@ namespace AepApp.View.EnvironmentalEmergency
             }
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.MaxWidthHeight,
+                MaxWidthHeight = 2000,
+                CompressionQuality = 50,
                 Directory = "Sample",
                 Name = System.DateTime.Now + ".jpg"
             });
 
             if (file == null)
             {
+               
                 return;
             }
+
+
+        
+
             else
             {
+
+                var bm = SKBitmap.Decode(file.Path);
+                var info = new FileInfo(file.Path); 
+
+
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
                     uploadStatus = "notUploaded",
@@ -717,7 +671,7 @@ namespace AepApp.View.EnvironmentalEmergency
             InitializeComponent();
             recorder = new AudioRecorderService
             {
-                StopRecordingOnSilence = true,//将在2秒后停止录制（默认）
+                StopRecordingOnSilence = false,//将在2秒后停止录制（默认）
 
                 StopRecordingAfterTimeout = true,   //在最大超时后停止录制（定义如下）
 

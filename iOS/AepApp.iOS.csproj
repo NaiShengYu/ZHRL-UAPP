@@ -309,6 +309,7 @@
     <Compile Include="EntryRenderer.cs" />
     <Compile Include="TouchEffect.cs" />
     <Compile Include="TouchRecognizer.cs" />
+    <Compile Include="Services\AudioService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
