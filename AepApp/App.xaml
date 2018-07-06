@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.App">
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.App"
+              xmlns:roxv="clr-namespace:Rox;assembly=Rox.Xamarin.Video.Portable">
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
@@ -282,12 +285,40 @@
                                     </Image.Triggers>
                                 </Image>
                             </StackLayout>
-
-
                         </Grid>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
+
+                <DataTemplate x:Key="VideoDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid x:Name="pic" VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <roxv:VideoView Source="{Binding VideoPath}" AutoPlay="false" LoopPlay="false" FullScreen="true" ShowController="true" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="300"/>
+                            <StackLayout Orientation="Horizontal" Margin="-1,-1,0,0" HorizontalOptions="Start" VerticalOptions="Start" >
+                                <Frame Padding="4,1,4,1" CornerRadius="0" HasShadow="False" BorderColor="Transparent" BackgroundColor="#c9b750">
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                        <Label TextColor="White" Text=" / " />
+                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                    </StackLayout>
+                                </Frame>
+                                <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                    <Image.Triggers >
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                            <Setter Property="Source" Value="graytick"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                            <Setter Property="Source" Value="orangedots"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

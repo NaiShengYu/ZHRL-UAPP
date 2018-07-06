@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace AepApp.Models
 {
-    public class UploadEmergencyModel : INotifyPropertyChanged
+    public class UploadEmergencyShowModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -151,12 +151,12 @@ namespace AepApp.Models
                 return "事故已被定性为" + NatureName + "。";
             }
         }
-    
-        //// command that launchs the map view and put an marker on the location
-        //public ICommand LocateOnMapCommand { get; set; }
 
-        //// command that downloads a document and launch a viewer to read
-        //public ICommand DocumentDownloadCommand { get; set; }
-      
+        // command that launchs the map view and put an marker on the location
+        public ICommand LocateOnMapCommand { get; set; }
+
+        // command that downloads a document and launch a viewer to read
+        public ICommand DocumentDownloadCommand { get; set; }
+
     }
 }

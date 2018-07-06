@@ -137,7 +137,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (emergencyModel1.category == "IncidentNatureIdentificationEvent")
                 {
-                    UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+                    UploadEmergencyShowModel emergencyModel = new UploadEmergencyShowModel
                     {
                         creationTime = System.DateTime.Now,
                         natureString = emergencyModel1.natureString,
@@ -277,9 +277,23 @@ namespace AepApp.View.EnvironmentalEmergency
                             AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
                             list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("文字信息发出位置", center)); });
                         }catch(Exception ex){
-                            
                         }
                     }
+                    else if (cagy == "IncidentWindDataSendingEvent")
+                    {
+                        try
+                        {
+                            AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
+                            list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("风速风向发出位置", center)); });
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+
+
                     else if (cagy == "IncidentReportGenerationEvent")
                     {
                         string fileurl = App.EmergencyModule.url + list[i].StoreUrl;
@@ -407,6 +421,7 @@ namespace AepApp.View.EnvironmentalEmergency
         DataTemplate PictureSendingDT = null;
         DataTemplate ReportGenerationDT = null;
         DataTemplate WindDataDT = null;
+        DataTemplate VideoDT = null;
 
         public EventDataTemplateSelector()
         {
@@ -420,6 +435,8 @@ namespace AepApp.View.EnvironmentalEmergency
             ReportGenerationDT = a.Resources["ReportGenerationDT"] as DataTemplate;
             WindDataDT = a.Resources["WindDataDT"] as DataTemplate;
             //PlanGenerationDT = page.Resources["PlanGenerationDT"] as DataTemplate;
+            VideoDT = a.Resources["VideoDT"] as DataTemplate;
+
         }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
@@ -427,7 +444,7 @@ namespace AepApp.View.EnvironmentalEmergency
             IncidentLoggingEventsBean i = item as IncidentLoggingEventsBean;
             if (i == null)
             {
-                UploadEmergencyModel j = item as UploadEmergencyModel;
+                UploadEmergencyShowModel j = item as UploadEmergencyShowModel;
                 switch (j.category)
                 {
                     case "IncidentNatureIdentificationEvent": return natureDT;
@@ -439,6 +456,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentReportGenerationEvent": return ReportGenerationDT;
                     case "IncidentWindDataSendingEvent": return WindDataDT;
                         //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                    case "IncidentVideoSendingEvent": return VideoDT;
                 }
                 return natureDT;
             }
@@ -454,6 +472,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentReportGenerationEvent": return ReportGenerationDT;
                     case "IncidentWindDataSendingEvent": return WindDataDT;
                         //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                    case "IncidentVideoSendingEvent": return VideoDT;
+
                 }
                 return natureDT;
             }                    

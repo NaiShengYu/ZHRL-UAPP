@@ -15,6 +15,7 @@ namespace AepApp.iOS
         {
             App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+            Rox.VideoIos.Init();
             global::Xamarin.Forms.Forms.Init();
            
             OxyPlot.Xamarin.Forms.Platform.iOS.PlotViewRenderer.Init();

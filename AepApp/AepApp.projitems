@@ -258,6 +258,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddDataIncidentFactorModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddDataForChemicolOrLHXZModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IAudio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UploadEmergencyShowModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
