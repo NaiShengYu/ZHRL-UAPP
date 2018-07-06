@@ -13,7 +13,22 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class RescueSiteMapPage : ContentPage
     {
-        
+
+
+        //地图放大
+        void zoomout(object sender, System.EventArgs e)
+        {
+            map.ZoomOut();
+
+
+        }
+        //地图缩小
+        void zoomin(object sender, System.EventArgs e)
+        {
+            map.ZoomIn();
+        }
+
+
         AzmMarkerView currentMarker;
         public RescueSiteMapPage()
         {
@@ -22,7 +37,8 @@ namespace AepApp.View.EnvironmentalEmergency
 
             try{
                 currentMarker = new AzmMarkerView(ImageSource.FromFile("loc2.png"), new Size(30, 30), new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude));
-                map.Overlays.Add(currentMarker); 
+                map.Overlays.Add(currentMarker);
+
             }catch(Exception ex){
                 
             }
@@ -30,13 +46,15 @@ namespace AepApp.View.EnvironmentalEmergency
         }
         //从救援地点进入
         public RescueSiteMapPage(ObservableCollection<RescueSiteModel.ItemsBean> dataList):this(){
+            InitializeComponent();
             //// Marker usage sample
             Title = "救援地点";
             foreach(RescueSiteModel.ItemsBean item in dataList){
 
                 AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), new AzmCoord(item.lng, item.lat))
                 {
-                    Text = item.name
+                    Text = item.name,
+                    AlwaysShowLabel = true
                 };
                 map.Overlays.Add(mv);
 
@@ -46,6 +64,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //从敏感源进入
         public RescueSiteMapPage(ObservableCollection<SensitiveModels.ItemsBean> dataList) : this()
         {
+            InitializeComponent();
             //// Marker usage sample
             ///
             Title = "敏感源";
@@ -53,7 +72,8 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), new AzmCoord(item.lng, item.lat))
                 {
-                    Text = item.name
+                    Text = item.name,
+                    AlwaysShowLabel = true
                 };
                 map.Overlays.Add(mv);
             }
@@ -67,6 +87,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //从应急事故详情进入
         public RescueSiteMapPage(ObservableCollection<IncidentLoggingEventsBean> dataList,string incidengtId) : this()
         {
+            InitializeComponent();
             //// Marker usage sample
 
             AzmCoord coord = null; 
@@ -92,14 +113,23 @@ namespace AepApp.View.EnvironmentalEmergency
             //设置target坐标
             if (coord != null)
             {
-                try{
+                try
+                {
                     AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(35, 35), coord)
-                   {
-                        BackgroundColor =Color.Transparent,
-                   };
+                    {
+                        BackgroundColor = Color.Transparent,
+                    };
                     map.Overlays.Add(mv);
-                    map.SetCenter(13, coord); 
-                }catch(Exception ex){
+
+                    var fivekmcir = new AzmEllipseView(coord, 5000.0);
+                    fivekmcir.StrokeThickness = 6;
+                    fivekmcir.DashArray = new float[2] { 10.0f, 10.0f };
+                    map.ShapeOverlays.Add(fivekmcir);
+
+                    map.SetCenter(13, coord);
+                }
+                catch (Exception ex)
+                {
 
                 }
 

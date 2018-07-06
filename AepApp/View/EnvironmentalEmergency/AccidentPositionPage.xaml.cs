@@ -36,7 +36,16 @@ namespace AepApp.View.EnvironmentalEmergency
                 // Unable to get location
             }
         }
+        //地图放大
+        void zoomout (object sender,System.EventArgs e){
+            map.ZoomOut();
 
+
+        }
+        //地图缩小
+        void zoomin (object sender ,System.EventArgs e){
+            map.ZoomIn();
+        }
 
         //保存此位置
         void savePosition(object sender, System.EventArgs e)
@@ -46,7 +55,7 @@ namespace AepApp.View.EnvironmentalEmergency
             MessagingCenter.Send<ContentPage, string>(this,"savePosition", centercoorLab.Text);
 
             Navigation.PopAsync();
-
+                
         }
 
         //回到当前位置
@@ -75,9 +84,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 StrokeWidth = 3,
                 //StrokeCap = (SKStrokeCap)Enum.Parse(typeof(SKStrokeCap),@"10"),
                 PathEffect = SKPathEffect.CreateDash(aa, 0),
-
             };
-
 
             SKPath path = new SKPath();
             path.MoveTo(0.5f * info.Width, 0);

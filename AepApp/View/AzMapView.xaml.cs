@@ -84,6 +84,7 @@ namespace AepApp.View
             InitializeComponent();
 
             Overlays = new ObservableCollection<AzmOverlayView>();
+            ShapeOverlays = new ObservableCollection<AzmOverlayView>();
             //UpdateRanges();
             this.SizeChanged += AzMapView_SizeChanged;
             ActiveMap = this;
@@ -127,7 +128,7 @@ namespace AepApp.View
         {
             get { return _centercoord; }
             set { _centercoord = value; OnPropertyChanged("CenterCoord");
-                CenterCoordChanged?.Invoke(this, new CenterCoordChangedEventArg(_centercoord));
+                //CenterCoordChanged?.Invoke(this, new CenterCoordChangedEventArg(_centercoord));
             }
         }
 
@@ -157,7 +158,9 @@ namespace AepApp.View
                 if (v is AzmOverlayView)
                 {
                     AzmOverlayView ov = v as AzmOverlayView;
-                    Point p = GetXYFromCoord(level, ov.Coord);
+                    Gps g = PositionUtil.gps84_To_Gcj02(ov.Coord.lat, ov.Coord.lng);
+                    Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                    //Point p = GetXYFromCoord(level, ov.Coord);
                     ov.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - ov.Anchor.X, (vpmaxy - p.Y) * tilesize - ov.Anchor.Y, ov.Size.Width, ov.Size.Height));
                 }
             }
@@ -191,8 +194,25 @@ namespace AepApp.View
             return new Point(x, y);
         }
 
+        private double GetUnitPerMeterFromCoord(int level, AzmCoord coord)
+        {
+            double n = Math.Pow(2.0, (double)level);
+            double ia = (coord.lat + 90.0) / 360.0 * Math.PI;
+            double udy = n / 720.0 / Math.Sin(ia) / Math.Cos(ia);
+            double lr = 6371000.0 * 2.0 * Math.PI / 360.0; // * Math.Cos(coord.lat / 180.0 * Math.PI);
+            return udy / lr;
+        }
+
         public void SetCenter(int _level, AzmCoord _center)
         {
+            
+
+            Gps g = PositionUtil.gps84_To_Gcj02(_center.lat,_center.lng);
+            try{
+                Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                _center = new AzmCoord(g.getWgLon(), g.getWgLat());
+            }catch(Exception ex){}
+
             if (_level < 4) { SetCenter(11, Beijing); return; }
             if (_level > 18) { SetCenter(11, Beijing); return; }
             if (double.IsNaN(_center.lng)) { SetCenter(11, Beijing); return; }
@@ -479,7 +499,7 @@ namespace AepApp.View
                 xrange = new Tuple<int, int>(sx, ex);
                 yrange = new Tuple<int, int>(sy, ey);
 
-                CenterCoord = GetCoordFromXY(level, center);
+                //CenterCoord = GetCoordFromXY(level, center);
 
                 if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
                 {
@@ -517,7 +537,9 @@ namespace AepApp.View
                     if (v is AzmOverlayView)
                     {
                         AzmOverlayView ov = v as AzmOverlayView;
-                        Point p = GetXYFromCoord(level, ov.Coord);
+                        Gps g = PositionUtil.gps84_To_Gcj02(ov.Coord.lat, ov.Coord.lng);
+                        Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                        //Point p = GetXYFromCoord(level, ov.Coord);
                         ov.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - ov.Anchor.X, (vpmaxy - p.Y) * tilesize - ov.Anchor.Y, ov.Size.Width, ov.Size.Height));
                     }
                 }
@@ -649,6 +671,16 @@ namespace AepApp.View
 
         }
 
+        public void ZoomIn()
+        {
+            zoomin_Clicked(null, null);
+        }
+
+        public void ZoomOut()
+        {
+            zoomout_Clicked(null, null);
+        }
+
         private void sat_Clicked(object sender, EventArgs e)
         {
             MapType = AzmMapType.Satellite;
@@ -685,14 +717,30 @@ namespace AepApp.View
             }
         }
 
+        private ObservableCollection<AzmOverlayView> shapeoverlays = null;
+
+        public ObservableCollection<AzmOverlayView> ShapeOverlays
+        {
+            get { return shapeoverlays; }
+            set {
+                shapeoverlays = value;
+            }
+        }
+
+
         private void Overlay_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
                 foreach (AzmOverlayView o in e.NewItems)
                 {
+                    o.Attached(this);
+
                     o.MapView = this;
-                    Point p = GetXYFromCoord(level, o.Coord);
+
+                    Gps g = PositionUtil.gps84_To_Gcj02(o.Coord.lat, o.Coord.lng);
+                    if (g == null) continue;
+                    Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
 
                     o.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - o.Anchor.X, (vpmaxy - p.Y) * tilesize - o.Anchor.Y, o.Size.Width, o.Size.Height));
                     o.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
@@ -703,7 +751,13 @@ namespace AepApp.View
             {
                 foreach (AzmOverlayView o in e.OldItems)
                 {
-                    overlayviews.Children.Remove(o);
+                    o.Detached();
+                    //if (o is AzmMarkerView)
+                    //{
+                    //    AzmMarkerView mv = o as AzmMarkerView;
+                    //    if (mv.Label != null) overlayviews.Children.Remove(mv.Label);
+                    //}
+                    //overlayviews.Children.Remove(o);
                 }
             }
         }
@@ -765,6 +819,47 @@ namespace AepApp.View
                 }
             }
 
+            //canvas.Clear(Color.Transparent.ToSKColor());
+            foreach(var so in ShapeOverlays)
+            {
+                Gps g = PositionUtil.gps84_To_Gcj02(so.Coord.lat, so.Coord.lng);
+                Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                //Point p = GetXYFromCoord(level, so.Coord);
+                double upm = GetUnitPerMeterFromCoord(level, so.Coord);
+                if (so is AzmEllipseView) {
+                    AzmEllipseView ell = so as AzmEllipseView;
+
+
+
+                    SKPaint fpaint = new SKPaint
+                    {
+                        Style = SKPaintStyle.Fill,
+                        Color = ell.BackgroundColor.ToSKColor(),
+                    };
+
+
+
+                    canvas.DrawCircle(new SKPoint((float)(p.X - vpminx) * tilesize * (float)xf, (float)(vpmaxy - p.Y) * tilesize * (float)yf), (float)(ell.Radius * upm * tilesize * xf), fpaint);
+
+                    SKPaint spaint = new SKPaint
+                    {
+                        Style = SKPaintStyle.Stroke,
+                        Color = ell.StrokeColor.ToSKColor(),
+                        StrokeWidth = (float)ell.StrokeThickness
+                    };
+
+                    if (ell.DashArray != null)
+                    {
+                        spaint.PathEffect = SKPathEffect.CreateDash(ell.DashArray, 0);
+                    }
+
+                    canvas.DrawCircle(new SKPoint((float)(p.X - vpminx) * tilesize * (float)xf  , (float)(vpmaxy - p.Y) * tilesize * (float)yf ), (float)(ell.Radius * upm * tilesize * xf), spaint);
+                    //canvas.DrawCircle(new SKPoint((float)(p.X - vpminx) * tilesize, (float)(vpmaxy - p.Y) * tilesize), 100, spaint);
+                }
+
+            }
+
+
             // for debug only
             //TileVector.textpaint.Color = SKColors.Black;
             //TileVector.textpaint.TextSize = 15.0f * (float)yf;
@@ -788,6 +883,211 @@ namespace AepApp.View
 
         }
     }
+
+    public class Gps
+    {
+        private double wgLat;
+        private double wgLon;
+
+        public Gps(double wgLat, double wgLon)
+        {
+            setWgLat(wgLat);
+            setWgLon(wgLon);
+        }
+
+        public double getWgLat()
+        {
+            return wgLat;
+        }
+
+        public void setWgLat(double wgLat)
+        {
+            this.wgLat = wgLat;
+        }
+
+        public double getWgLon()
+        {
+            return wgLon;
+        }
+
+        public void setWgLon(double wgLon)
+        {
+            this.wgLon = wgLon;
+        }
+
+        public override string ToString()
+        {
+            return wgLat + "," + wgLon;
+        }
+    }
+
+
+    /**
+ * 各地图API坐标系统比较与转换;
+ * WGS84坐标系：即地球坐标系，国际上通用的坐标系。设备一般包含GPS芯片或者北斗芯片获取的经纬度为WGS84地理坐标系,
+ * 谷歌地图采用的是WGS84地理坐标系（中国范围除外）;
+ * GCJ02坐标系：即火星坐标系，是由中国国家测绘局制订的地理信息系统的坐标系统。由WGS84坐标系经加密后的坐标系。
+ * 谷歌中国地图和搜搜中国地图采用的是GCJ02地理坐标系; BD09坐标系：即百度坐标系，GCJ02坐标系经加密后的坐标系;
+ * 搜狗坐标系、图吧坐标系等，估计也是在GCJ02基础上加密而成的。 chenhua
+ */
+    public class PositionUtil
+    {
+
+        public static string BAIDU_LBS_TYPE = "bd09ll";
+	
+	    public static double pi = 3.1415926535897932384626;
+        public static double a = 6378245.0;
+        public static double ee = 0.00669342162296594323;
+
+        /**
+         * 84 to 火星坐标系 (GCJ-02) World Geodetic System ==> Mars Geodetic System
+         * 
+         * @param lat
+         * @param lon
+         * @return
+         */
+        public static Gps gps84_To_Gcj02(double lat, double lon)
+        {
+            if (OutOfChina(lat, lon))
+            {
+                return null;
+            }
+            double dLat = transformLat(lon - 105.0, lat - 35.0);
+            double dLon = transformLon(lon - 105.0, lat - 35.0);
+            double radLat = lat / 180.0 * pi;
+            double magic = Math.Sin(radLat);
+            magic = 1 - ee * magic * magic;
+            double sqrtMagic = Math.Sqrt(magic);
+            dLat = (dLat * 180.0) / ((a * (1 - ee)) / (magic * sqrtMagic) * pi);
+            dLon = (dLon * 180.0) / (a / sqrtMagic * Math.Cos(radLat) * pi);
+            double mgLat = lat + dLat;
+            double mgLon = lon + dLon;
+            return new Gps(mgLat, mgLon);
+        }
+
+        /**
+         * * 火星坐标系 (GCJ-02) to 84 * * @param lon * @param lat * @return
+         * */
+        public static Gps gcj_To_Gps84(double lat, double lon)
+        {
+            Gps gps = transform(lat, lon);
+            double lontitude = lon * 2 - gps.getWgLon();
+            double latitude = lat * 2 - gps.getWgLat();
+            return new Gps(latitude, lontitude);
+        }
+
+        /**
+         * 火星坐标系 (GCJ-02) 与百度坐标系 (BD-09) 的转换算法 将 GCJ-02 坐标转换成 BD-09 坐标
+         * 
+         * @param gg_lat
+         * @param gg_lon
+         */
+        public static Gps gcj02_To_Bd09(double gg_lat, double gg_lon)
+        {
+            double x = gg_lon, y = gg_lat;
+            double z = Math.Sqrt(x * x + y * y) + 0.00002 * Math.Sin(y * pi);
+            double theta = Math.Atan2(y, x) + 0.000003 * Math.Cos(x * pi);
+            double bd_lon = z * Math.Cos(theta) + 0.0065;
+            double bd_lat = z * Math.Sin(theta) + 0.006;
+            return new Gps(bd_lat, bd_lon);
+        }
+
+        /**
+         * * 火星坐标系 (GCJ-02) 与百度坐标系 (BD-09) 的转换算法 * * 将 BD-09 坐标转换成GCJ-02 坐标 * * @param
+         * bd_lat * @param bd_lon * @return
+         */
+        public static Gps bd09_To_Gcj02(double bd_lat, double bd_lon)
+        {
+            double x = bd_lon - 0.0065, y = bd_lat - 0.006;
+            double z = Math.Sqrt(x * x + y * y) - 0.00002 * Math.Sin(y * pi);
+            double theta = Math.Atan2(y, x) - 0.000003 * Math.Cos(x * pi);
+            double gg_lon = z * Math.Cos(theta);
+            double gg_lat = z * Math.Sin(theta);
+            return new Gps(gg_lat, gg_lon);
+        }
+
+        /**
+         * (BD-09)-->84
+         * @param bd_lat
+         * @param bd_lon
+         * @return
+         */
+        public static Gps bd09_To_Gps84(double bd_lat, double bd_lon)
+        {
+
+            Gps gcj02 = PositionUtil.bd09_To_Gcj02(bd_lat, bd_lon);
+            Gps map84 = PositionUtil.gcj_To_Gps84(gcj02.getWgLat(),
+                    gcj02.getWgLon());
+            return map84;
+
+        }
+
+        public static bool OutOfChina(double lat, double lon)
+        {
+            if (lon < 72.004 || lon > 137.8347)
+                return true;
+            if (lat < 0.8293 || lat > 55.8271)
+                return true;
+            return false;
+        }
+
+        public static Gps transform(double lat, double lon)
+        {
+            if (OutOfChina(lat, lon))
+            {
+                return new Gps(lat, lon);
+            }
+            double dLat = transformLat(lon - 105.0, lat - 35.0);
+            double dLon = transformLon(lon - 105.0, lat - 35.0);
+            double radLat = lat / 180.0 * pi;
+            double magic = Math.Sin(radLat);
+            magic = 1 - ee * magic * magic;
+            double sqrtMagic = Math.Sqrt(magic);
+            dLat = (dLat * 180.0) / ((a * (1 - ee)) / (magic * sqrtMagic) * pi);
+            dLon = (dLon * 180.0) / (a / sqrtMagic * Math.Cos(radLat) * pi);
+            double mgLat = lat + dLat;
+            double mgLon = lon + dLon;
+            return new Gps(mgLat, mgLon);
+        }
+
+        public static double transformLat(double x, double y)
+        {
+            double ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * Math.Sqrt(Math.Abs(x));
+            ret += (20.0 * Math.Sin(6.0 * x * pi) + 20.0 * Math.Sin(2.0 * x * pi)) * 2.0 / 3.0;
+            ret += (20.0 * Math.Sin(y * pi) + 40.0 * Math.Sin(y / 3.0 * pi)) * 2.0 / 3.0;
+            ret += (160.0 * Math.Sin(y / 12.0 * pi) + 320 * Math.Sin(y * pi / 30.0)) * 2.0 / 3.0;
+            return ret;
+        }
+
+        public static double transformLon(double x, double y)
+        {
+            double ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * Math.Sqrt(Math.Abs(x));
+            ret += (20.0 * Math.Sin(6.0 * x * pi) + 20.0 * Math.Sin(2.0 * x * pi)) * 2.0 / 3.0;
+            ret += (20.0 * Math.Sin(x * pi) + 40.0 * Math.Sin(x / 3.0 * pi)) * 2.0 / 3.0;
+            ret += (150.0 * Math.Sin(x / 12.0 * pi) + 300.0 * Math.Sin(x / 30.0 * pi)) * 2.0 / 3.0;
+            return ret;
+        }
+
+        //public static void main(String[] args)
+        //{
+
+        //    // 北斗芯片获取的经纬度为WGS84地理坐标 31.426896,119.496145
+        //    Gps gps = new Gps(31.426896, 119.496145);
+        //    System.out.println("gps :" + gps);
+        //    Gps gcj = gps84_To_Gcj02(gps.getWgLat(), gps.getWgLon());
+        //    System.out.println("gcj :" + gcj);
+        //    Gps star = gcj_To_Gps84(gcj.getWgLat(), gcj.getWgLon());
+        //    System.out.println("star:" + star);
+        //    Gps bd = gcj02_To_Bd09(gcj.getWgLat(), gcj.getWgLon());
+        //    System.out.println("bd  :" + bd);
+        //    Gps gcj2 = bd09_To_Gcj02(bd.getWgLat(), bd.getWgLon());
+        //    System.out.println("gcj :" + gcj2);
+        //}
+    }
+
+
+
+
 
     public class CenterCoordChangedEventArg : EventArgs
     {
@@ -2678,7 +2978,105 @@ namespace AepApp.View
         {
 
         }
+
+        public virtual void Attached(AzMapView mapview)
+        {
+            MapView = mapview;
+        }
+
+        public virtual void Detached()
+        {
+            MapView = null;
+        }
     }
+
+    public class AzmEllipseView : AzmOverlayView
+    {
+        public delegate void OnTappedEventHandler(object sender, EventArgs e);
+        public event OnTappedEventHandler OnTapped;
+
+
+        public static readonly BindableProperty StrokeColorProperty = BindableProperty.Create(
+            propertyName: nameof(StrokeColor),
+            returnType: typeof(Color),
+            declaringType: typeof(AzmEllipseView),
+            defaultValue: Color.Black
+        );
+
+        public Color StrokeColor
+        {
+            get { return (Color)GetValue(StrokeColorProperty); }
+            set { SetValue(StrokeColorProperty, value); }
+        }
+
+        public static readonly BindableProperty StrokeThicknessProperty = BindableProperty.Create(
+            propertyName: nameof(StrokeThickness),
+            returnType: typeof(double),
+            declaringType: typeof(AzmEllipseView),
+            defaultValue: 1.0
+        );
+
+        public double StrokeThickness
+        {
+            get { return (double)GetValue(StrokeThicknessProperty); }
+            set { SetValue(StrokeThicknessProperty, value); }
+        }
+
+        public static readonly BindableProperty RadiusProperty = BindableProperty.Create(
+            propertyName: nameof(Radius),
+            returnType: typeof(double),
+            declaringType: typeof(AzmEllipseView),
+            defaultValue: 1000.0
+        );
+
+        public double Radius
+        {
+            get { return (double)GetValue(RadiusProperty); }
+            set { SetValue(RadiusProperty, value); }
+        }
+
+        public static readonly BindableProperty DashArrayProperty = BindableProperty.Create(
+            propertyName: nameof(DashArray),
+            returnType: typeof(float[]),
+            declaringType: typeof(AzmEllipseView),
+            defaultValue: null
+        );
+
+        public float[] DashArray
+        {
+            get { return (float[])GetValue(DashArrayProperty); }
+            set { SetValue(DashArrayProperty, value); }
+        }
+
+        public AzmEllipseView(AzmCoord coord = null, double radius=1000.0)
+        {
+            //BackgroundColor = Color.Transparent;
+            if (coord != null) Coord = new AzmCoord(coord.lng, coord.lat);
+            Radius = radius;
+
+            //ControlTemplate dt = AzMapView.ActiveMap.Resources["azmlabeltemp"] as ControlTemplate;
+            //ControlTemplate = dt;
+
+            //this.BindingContext = new { name = Text };
+            //double height = Math.Ceiling(DependencyService.Get<ITextMeter>().MeasureTextHeightGivenMaxWidth(Text, WidthRequest - 6, 14));
+            //double width = Math.Ceiling(DependencyService.Get<ITextMeter>().MeasureTextWidthGivenExactHeight(Text, height, 14));
+            //width = Math.Min(width, WidthRequest - 6);
+            //Size = new Size(width + 6, height + 6);
+            //Anchor = new Point((width + 6) / 2, height + 6 + 7);
+
+            //TapGestureRecognizer tap = new TapGestureRecognizer();
+            //tap.Tapped += Tap_Tapped;
+            //this.GestureRecognizers.Add(tap);
+        }
+
+        private void Tap_Tapped(object sender, EventArgs e)
+        {
+            if (OnTapped != null) OnTapped(this, e);
+        }
+    }
+
+
+
 
     public class AzmLabelView : AzmOverlayView
     {
@@ -2728,9 +3126,22 @@ namespace AepApp.View
             Size = new Size(width + 6, height + 6);
             Anchor = new Point((width + 6) / 2, height + 6 + 7);
 
+        }
+
+        public override void Attached(AzMapView mapview)
+        {
+            base.Attached(mapview);
+
             TapGestureRecognizer tap = new TapGestureRecognizer();
             tap.Tapped += Tap_Tapped;
             this.GestureRecognizers.Add(tap);
+
+        }
+
+        public override void Detached()
+        {
+            base.Detached();
+            this.GestureRecognizers.Clear();
         }
 
         private void Tap_Tapped(object sender, EventArgs e)
@@ -2783,6 +3194,29 @@ namespace AepApp.View
             set { SetValue(SourceProperty, value); }
         }
 
+
+        public bool AlwaysShowLabel
+        {
+            get { return (bool)GetValue(AlwaysShowLabelProperty); }
+            set { SetValue(AlwaysShowLabelProperty, value); }
+        }
+
+        public static readonly BindableProperty AlwaysShowLabelProperty = BindableProperty.Create(
+            propertyName: nameof(AlwaysShowLabel),
+            returnType: typeof(bool),
+            declaringType: typeof(AzmMarkerView),
+            defaultValue: false
+        );
+
+        private AzmLabelView _label = null;
+
+        public AzmLabelView Label
+        {
+            get { return _label; }
+            set { _label = value; }
+        }
+
+
         public AzmMarkerView(ImageSource source, Size size, AzmCoord coord = null, double popupmaxwidthrequest = 100.0)
         {
             Source = source;
@@ -2791,10 +3225,42 @@ namespace AepApp.View
             if (coord != null) Coord = new AzmCoord(coord.lng, coord.lat);
             ControlTemplate dt = AzMapView.ActiveMap.Resources["azmmarkertemp"] as ControlTemplate;
             ControlTemplate = dt;
+        }
 
-            TapGestureRecognizer tap = new TapGestureRecognizer();
-            tap.Tapped += Marker_Tapped;
-            this.GestureRecognizers.Add(tap);
+        public override void Attached(AzMapView mapview)
+        {
+            base.Attached(mapview);
+
+            if (!AlwaysShowLabel)
+            {
+                TapGestureRecognizer tap = new TapGestureRecognizer();
+                tap.Tapped += Marker_Tapped;
+                this.GestureRecognizers.Add(tap);
+            }
+            else
+            {
+                AzmLabelView lv = new AzmLabelView(Text, Coord)
+                {
+                    BackgroundColor = Color.FromHex("#ccc"),
+                    TextColor = Color.FromHex("#444"),
+                };
+                lv.Anchor = new Point(lv.Anchor.X, lv.Anchor.Y + Size.Height);
+                lv.OnTapped += Popup_OnTapped;
+                MapView.Overlays.Add(lv);
+                Label = lv;
+            }
+        }
+
+        public override void Detached()
+        {
+            base.Detached();
+            this.GestureRecognizers.Clear();
+
+            if (Label != null)
+            {
+                MapView.Overlays.Remove(Label);
+                Label = null;
+            }
         }
 
         private void Marker_Tapped(object sender, EventArgs e)
@@ -2803,6 +3269,7 @@ namespace AepApp.View
             {
                 MapView.Overlays.Remove(MapView.MarkerPopupLabel);
                 MapView.TappedMarker = null;
+                Label = null;
             }
 
             AzmLabelView lv = new AzmLabelView(Text, Coord)
@@ -2813,7 +3280,7 @@ namespace AepApp.View
             lv.Anchor = new Point(lv.Anchor.X, lv.Anchor.Y + Size.Height);
             lv.OnTapped += Popup_OnTapped;
             MapView.Overlays.Add(lv);
-
+            Label = lv;
             MapView.MarkerPopupLabel = lv;
             MapView.TappedMarker = this;
         }

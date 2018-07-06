@@ -32,6 +32,7 @@
             </AbsoluteLayout>
 
             <s:SKCanvasView x:Name="can" PaintSurface="SKCanvasView_PaintSurface" IsVisible="False" />
+            <s:SKCanvasView x:Name="shapecan" IsVisible="True" BackgroundColor="Transparent" />
 
             <AbsoluteLayout x:Name="overlayviews" BackgroundColor="Transparent">
                 <AbsoluteLayout.GestureRecognizers>

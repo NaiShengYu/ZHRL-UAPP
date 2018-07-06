@@ -479,7 +479,6 @@ namespace AepApp.View.EnvironmentalEmergency
             Navigation.PushAsync(new addDataPage());
 
         }
-  
 
         //点击了风速风向按钮
         async void fengSuFengXiang(object sender, System.EventArgs e)
