@@ -16,9 +16,9 @@
                 </Grid.RowDefinitions>
                 <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" ItemSelected="Handle_ItemSelected"
                            ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}">
-                   <ListView.GestureRecognizers>
+                   <!--<ListView.GestureRecognizers>
                          <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
-                    </ListView.GestureRecognizers>
+                    </ListView.GestureRecognizers>-->
                     <ListView.Footer>
                         <StackLayout BackgroundColor="White" HeightRequest="10"></StackLayout>
                     </ListView.Footer>
@@ -26,6 +26,11 @@
                 <StackLayout Grid.Row="1" x:Name="entryStack" BackgroundColor="#f2f2f2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                     <Frame HorizontalOptions="FillAndExpand" Padding="0" HasShadow="false" BackgroundColor="#f2f2f2" CornerRadius="0" OutlineColor="#e8e8e8">
                         <StackLayout BackgroundColor="#f2f2f2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                      <!--  <Image BackgroundColor="Transparent" Margin="10,5,0,5" WidthRequest="45" HeightRequest="45" Source="voice">
+                               <Image.GestureRecognizers>
+                                    <PanGestureRecognizer PanUpdated="Handle_PanUpdated" />
+                                </Image.GestureRecognizers> 
+                            </Image>-->
                             <Button Clicked="recordVoice" BackgroundColor="Transparent" Margin="10,5,0,5" WidthRequest="45" HeightRequest="45" Image="voice" />
                             <local:EntryExt x:Name="ENT" Completed="clickedReturnKey" BackgroundColor="White" Margin="0,5,10,5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="45"/>
                         </StackLayout>

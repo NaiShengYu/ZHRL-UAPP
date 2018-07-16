@@ -62,6 +62,9 @@ namespace CloudWTO.Services
             string result = null;
             try
             {
+                Console.WriteLine("请求URL：" + url);
+                Console.WriteLine("请求token：" + "Bearer " + token);
+                Console.WriteLine("请求参数：" + param);
                 ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
                 if (token != null)
@@ -93,7 +96,6 @@ namespace CloudWTO.Services
                     {
                         Stream requestStream = await req.GetRequestStreamAsync();
                         await requestStream.WriteAsync(bs, 0, bs.Length);
-                        //requestStream.Write(bs, 0, bs.Length);
                         requestStream.Close();
                     }
                     catch (WebException ex)
@@ -110,6 +112,7 @@ namespace CloudWTO.Services
             catch (Exception ex)
             {
                 result = ex.Message;
+                Console.WriteLine("错误信息：" + ex);
                 return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
             }
             Console.WriteLine("ex:" + result);
@@ -161,7 +164,7 @@ namespace CloudWTO.Services
 
         }
        
-        public static async Task<HTTPResponse> upload(string filePath)
+        public static async Task<HTTPResponse> upload(string filePath,string Suffix)
         {
 
             HttpWebResponse res = null;
@@ -169,12 +172,14 @@ namespace CloudWTO.Services
             try
             {
                 var upfilebytes = File.ReadAllBytes(filePath);
-                var imageStream = new ByteArrayContent(upfilebytes);
+                var imageStream = new MemoryStream(upfilebytes);
+                //var imageStream = new ByteArrayContent(upfilebytes);
                 Console.WriteLine("fileLength===" + upfilebytes.Length);
 
                 var multi = new MultipartFormDataContent();
-                //这句话很关键第一个“files”是接口参数，第二个文件后缀
-                multi.Add(imageStream,"files",".png");
+                //这句话很关键第一个“files”是接口参数名，第二个文件后缀名(.jpg,.png)
+                multi.Add(new StreamContent(imageStream),"files",Suffix);
+
                 HttpClient client = new HttpClient();
                 //client.BaseAddress = new Uri(App.EmergencyModule.url);
                 client.BaseAddress = new Uri("http://gx.azuratech.com:5000");
@@ -182,7 +187,7 @@ namespace CloudWTO.Services
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
                 HttpResponseMessage resurlt1 =await client.PostAsync("/api/File/Upload", multi) ;
-                result =await resurlt1.Content.ReadAsStringAsync();              
+                result =await resurlt1.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
             {

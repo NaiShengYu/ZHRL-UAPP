@@ -67,6 +67,14 @@ namespace AepApp.Models
         public string imagePath { get; set; }/// 图片显示路径(相对路径)
         public string VideoStorePath { get; set; }// 录像的存储位路径
         public string VideoPath { get; set; }// 录像的显示路径
+        public string VoiceStorePath { get; set; }// 录音的存储路径
+        public string VoicePath { get; set; }// 录音的显示路径
+        public string VoiceLenth
+        {
+            get { return "语音" + Length + "秒"; }
+        }// 录音的时长
+
+
 
 
         public string width { get; set; }  /// 宽度(单位px)
@@ -74,7 +82,7 @@ namespace AepApp.Models
         public string storeurl { get; set; } /// 方案存储地址
         public string reportid { get; set; } /// 报告编号
         public string reportname { get; set; } /// 报告名称  
-        public string length { get; set; } /// 内容长度(单位秒)
+        public string Length { get; set; } /// 内容长度(单位秒)
         public string direction { get; set; } /// 风向(单位 度)
         public string speed { get; set; } /// 风速(单位 米/秒)
         public string windDescribe
@@ -153,7 +161,10 @@ namespace AepApp.Models
         }
 
         // command that launchs the map view and put an marker on the location
+
         public ICommand LocateOnMapCommand { get; set; }
+
+        public ICommand PlayVoiceCommand { get; set; }
 
         // command that downloads a document and launch a viewer to read
         public ICommand DocumentDownloadCommand { get; set; }

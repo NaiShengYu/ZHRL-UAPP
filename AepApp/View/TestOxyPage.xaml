@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AepApp.View.TestOxyPage"
-             xmlns:roxv="clr-namespace:Rox;assembly=Rox.Xamarin.Video.Portable">
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.TestOxyPage" xmlns:forms="clr-namespace:InTheHand.Forms;assembly=InTheHand.Forms" xmlns:roxv="clr-namespace:Rox;assembly=Rox.Xamarin.Video.Portable">
     <ContentPage.Content>
         <StackLayout>
-       <Button BackgroundColor="Fuchsia" Clicked="Handle_Clicked" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100"/>
-       <roxv:VideoView AutoPlay="false" x:Name="MV" LoopPlay="false" FullScreen="true" ShowController="true" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="300"/>
-            
+            <Button Text="开始录音" BackgroundColor="Olive" Clicked="StartRecordVoice" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
+            <Button Text="停止录音" BackgroundColor="Maroon" Clicked="StopRecordVoice" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
+            <Button BackgroundColor="Fuchsia" Clicked="Handle_Clicked" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
+            <!--       <roxv:VideoView AutoPlay="false" x:Name="MV" LoopPlay="false" FullScreen="true" ShowController="true" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="300"/>-->
+            <forms:MediaElement HorizontalOptions="Fill" BackgroundColor="Green" VerticalOptions="Center" HeightRequest="180" x:Name="MV" IsLooping="false" AreTransportControlsEnabled="false" AutoPlay="false" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

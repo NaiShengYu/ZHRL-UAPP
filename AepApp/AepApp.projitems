@@ -259,6 +259,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddDataForChemicolOrLHXZModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IAudio.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UploadEmergencyShowModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ShowVideoPage.xaml.cs">
+      <DependentUpon>ShowVideoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Interface\IRecordVoice.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -435,6 +439,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\SampleTypePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ShowVideoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

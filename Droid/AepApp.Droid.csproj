@@ -241,6 +241,12 @@
     <Reference Include="Plugin.AudioRecorder">
       <HintPath>..\packages\Plugin.AudioRecorder.1.0.1\lib\monoandroid81\Plugin.AudioRecorder.dll</HintPath>
     </Reference>
+    <Reference Include="InTheHand.Forms">
+      <HintPath>..\packages\InTheHand.Forms.1.0.2018.423\lib\MonoAndroid10\InTheHand.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="InTheHand.Forms.Platform.Android">
+      <HintPath>..\packages\InTheHand.Forms.1.0.2018.423\lib\MonoAndroid10\InTheHand.Forms.Platform.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -282,6 +288,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\dirface.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\dirarrow.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\reddot.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\open.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\water.png" />

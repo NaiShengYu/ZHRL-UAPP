@@ -201,6 +201,12 @@
     <Reference Include="Plugin.AudioRecorder">
       <HintPath>..\packages\Plugin.AudioRecorder.1.0.1\lib\xamarinios10\Plugin.AudioRecorder.dll</HintPath>
     </Reference>
+    <Reference Include="InTheHand.Forms">
+      <HintPath>..\packages\InTheHand.Forms.1.0.2018.423\lib\Xamarin.iOS10\InTheHand.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="InTheHand.Forms.Platform.iOS">
+      <HintPath>..\packages\InTheHand.Forms.1.0.2018.423\lib\Xamarin.iOS10\InTheHand.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -322,6 +328,11 @@
     <BundleResource Include="Resources\hamburger%402x.png" />
     <BundleResource Include="Resources\hamburger.png" />
     <BundleResource Include="Resources\reddot.png" />
+    <BundleResource Include="Resources\open%403x.png" />
+    <BundleResource Include="Resources\open%402x.png" />
+    <BundleResource Include="Resources\open.png" />
+    <BundleResource Include="Resources\ppp.mp4" />
+    <BundleResource Include="Resources\app_icon_ios-2.doc" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -338,6 +349,7 @@
     <Compile Include="TouchEffect.cs" />
     <Compile Include="TouchRecognizer.cs" />
     <Compile Include="Services\AudioService.cs" />
+    <Compile Include="Services\RecordVoice.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

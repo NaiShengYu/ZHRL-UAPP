@@ -128,7 +128,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-
+            //return;
             HandleEventHandler();
             if (Device.RuntimePlatform == Device.iOS)
             {

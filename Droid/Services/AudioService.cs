@@ -15,7 +15,7 @@ namespace SimpleAudioForms.Droid
 
 		public bool PlayMp3File(string fileName)
 		{
-			_mediaPlayer = MediaPlayer.Create(global::Android.App.Application.Context, Resource.Raw.test);
+            _mediaPlayer = MediaPlayer.Create(global::Android.App.Application.Context, fileName);
 			_mediaPlayer.Start();
 
 			return true;
@@ -23,7 +23,7 @@ namespace SimpleAudioForms.Droid
 
 		public bool PlayWavFile(string fileName)
 		{
-			_mediaPlayer = MediaPlayer.Create(global::Android.App.Application.Context, Resource.Raw.ding_persevy);
+            _mediaPlayer = MediaPlayer.Create(global::Android.App.Application.Context,fileName);
 			_mediaPlayer.Start();
 
 			return true;

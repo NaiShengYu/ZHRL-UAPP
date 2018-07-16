@@ -8,9 +8,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center" StyleClass="item">
-                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="0">
-                                    <Label StyleClass="itemtitle" Text="{Binding name}" />
-                                    <Label StyleClass="itemsubtitle" Text="{Binding startDate, StringFormat='{0:yyyy-MM-dd HH:mm}'}" />
+                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
+                                    <Label StyleClass="itemtitle" Text="{Binding name}" Font="18"/>
+                                    <Label StyleClass="itemsubtitle" Text="{Binding startDate, StringFormat='{0:yyyy-MM-dd HH:mm}'}" Font="16" TextColor="Silver"/>
                                 </StackLayout>
 
                                 <Grid HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,20,0">
