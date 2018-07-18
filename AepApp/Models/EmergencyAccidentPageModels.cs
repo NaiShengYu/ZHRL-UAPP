@@ -39,6 +39,18 @@ namespace AepApp.Models
            public string hasSoilNature { get; set; }
            public bool natureDetermined { get; set; }
            public String id { get; set; }
+            public List<incidentFactors> incidentFactors { get; set; }
+        }
+
+        public class incidentFactors{
+            public String factorId { get; set; }
+            public String factorName { get; set; }
+            public String dataType { get; set; }
+            public String creatorUserName { get; set; }
+            public String id { get; set; }
+
+
+
         }
     }
 

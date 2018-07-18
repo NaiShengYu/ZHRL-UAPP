@@ -128,7 +128,7 @@ namespace AepApp.View
         {
             get { return _centercoord; }
             set { _centercoord = value; OnPropertyChanged("CenterCoord");
-                //CenterCoordChanged?.Invoke(this, new CenterCoordChangedEventArg(_centercoord));
+                CenterCoordChanged?.Invoke(this, new CenterCoordChangedEventArg(_centercoord));
             }
         }
 
@@ -499,7 +499,7 @@ namespace AepApp.View
                 xrange = new Tuple<int, int>(sx, ex);
                 yrange = new Tuple<int, int>(sy, ey);
 
-                //CenterCoord = GetCoordFromXY(level, center);
+                CenterCoord = GetCoordFromXY(level, center);
 
                 if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
                 {

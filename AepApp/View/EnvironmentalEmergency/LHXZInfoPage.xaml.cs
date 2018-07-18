@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
@@ -22,6 +24,7 @@ namespace AepApp.View.EnvironmentalEmergency
             }
 
             item.isCurrent = true;
+            lastItem = item;
             listView.SelectedItem = null;
         
         }
@@ -101,11 +104,12 @@ namespace AepApp.View.EnvironmentalEmergency
             AddDataForChemicolOrLHXZModel.ItemsBean item = new AddDataForChemicolOrLHXZModel.ItemsBean
             {
                 factorName = Title,
-                lng = Convert.ToString(App.currentLocation.Longitude),
-                lat = Convert.ToString(App.currentLocation.Latitude),
+                lng = lastItem.lng,
+                lat = lastItem.lat,
                 yangBenLeiXing = sampleBut.Text,
                 unitName = jianCeUnit.Text,
                 factorId = _factorModel.factorId,
+                datatype = _factorModel.dataType,
             };
             if (string.IsNullOrWhiteSpace(numLab.Text)) item.jianCeZhi = numLab.Placeholder;
             else item.jianCeZhi = numLab.Text;
@@ -124,28 +128,30 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 
         ObservableCollection<LHXZAddressMode> dataList1 = new ObservableCollection<LHXZAddressMode>();
-
+        LHXZAddressMode lastItem =null;
         public LHXZInfoPage()
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             var item1 = new LHXZAddressMode
             {
-                Name = "当前位置",
+                name = "当前位置",
                 isCurrent = true,
             };           
             if (App.currentLocation != null)
             {
-                item1.SiteAddr = Convert.ToString(Math.Round(App.currentLocation.Longitude,6)) + " E ," + Convert.ToString(Math.Round(App.currentLocation.Latitude,6)) + " N";
-                }
+                item1.lng = Convert.ToString(Math.Round(App.currentLocation.Longitude, 6));
+                item1.lat = Convert.ToString(Math.Round(App.currentLocation.Latitude, 6));
+            }
             dataList1.Add(item1);
-          
+            lastItem = item1;
             listView.ItemsSource = dataList1;
 
             //默认显示第一个
             if(App.sampleTypeList.Count >0){
                 sampleBut.Text = App.sampleTypeList[0].name;
             }
+            getAllAddress();
         }
         int _type = 10;
 
@@ -163,5 +169,29 @@ namespace AepApp.View.EnvironmentalEmergency
             if (model.dataType == "3") sampleBut.Text = "土壤";
         }
 
+
+
+        private async void getAllAddress()
+        {
+            string param = "";
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleWorkURL + "/api/Sampleplan/GetPlanListByProid" + "?Proid=" + App.EmergencyAccidentID, param, "GET", App.EmergencyToken);
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                List<LHXZAddressMode> dataList = JsonConvert.DeserializeObject<List<LHXZAddressMode>>(hTTPResponse.Results);
+
+                for (int i = 0; i < dataList.Count;i ++){
+                    dataList1.Add(dataList[i]);
+                }
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
+        }
+
+
+      
+       
     }
 }

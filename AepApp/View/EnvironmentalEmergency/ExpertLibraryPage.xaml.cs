@@ -34,7 +34,7 @@ namespace AepApp.View.EnvironmentalEmergency
             ExpertLibraryModels.ItemsBean item = e.SelectedItem as ExpertLibraryModels.ItemsBean;
             if (item == null)
                 return;
-
+            Navigation.PushAsync(new ExpertInfoPage(item));
             listView.SelectedItem = null;
 
         }

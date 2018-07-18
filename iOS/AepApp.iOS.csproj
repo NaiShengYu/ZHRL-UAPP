@@ -68,7 +68,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: tao Zeng (J7L5CVGTZX)</CodesignKey>
+    <CodesignKey>iPhone Developer: Peng Lin (SPJS63EGU6)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
@@ -79,8 +79,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>
-    </CodesignProvision>
+    <CodesignProvision>VS: com.companyname.AepApp Development</CodesignProvision>
     <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -framework MapKit -framework CoreMotion -framework CoreGraphics
     -framework QuartzCore -framework CoreText -framework CoreLocation -framework SystemConfiguration  
     -framework CoreTelephony -framework OpenGLES -framework Foundation -framework Security  
@@ -331,8 +330,17 @@
     <BundleResource Include="Resources\open%403x.png" />
     <BundleResource Include="Resources\open%402x.png" />
     <BundleResource Include="Resources\open.png" />
-    <BundleResource Include="Resources\ppp.mp4" />
-    <BundleResource Include="Resources\app_icon_ios-2.doc" />
+    <BundleResource Include="Resources\qrcode%403x.png" />
+    <BundleResource Include="Resources\qrcode%402x.png" />
+    <BundleResource Include="Resources\upload2%403x.png" />
+    <BundleResource Include="Resources\upload2%402x.png" />
+    <BundleResource Include="Resources\truck%403x.png" />
+    <BundleResource Include="Resources\truck%402x.png" />
+    <BundleResource Include="Resources\scan%403x.png" />
+    <BundleResource Include="Resources\scan%402x.png" />
+    <BundleResource Include="Resources\search-2.png" />
+    <BundleResource Include="Resources\search-2%403x.png" />
+    <BundleResource Include="Resources\search-2%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

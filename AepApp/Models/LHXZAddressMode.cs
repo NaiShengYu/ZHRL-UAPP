@@ -18,10 +18,16 @@ namespace AepApp.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string SiteId { get; set; }
-        public string SiteAddr { get; set; }
+        public string name { get; set; }
+        public string lng { get; set; }
+        public string lat { get; set; }
+        public string address { 
+            get
+            {
+                return lng + " E ," + lat + " N";
+            }
+            set { }
+        }
 
         private bool _isCurrent = false;
         public bool isCurrent
