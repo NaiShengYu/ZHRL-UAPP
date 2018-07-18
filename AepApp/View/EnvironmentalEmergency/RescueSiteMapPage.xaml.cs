@@ -8,6 +8,7 @@ using AepApp.Models;
 using static AepApp.Models.EmergencyAccidentInfoDetail;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using System.Windows.Input;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
@@ -112,9 +113,22 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 try
                 {
+                    ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+
+                    NavLabelView cv = new NavLabelView("事发地点", coord)
+                    {
+                        BackgroundColor = Color.FromHex("#f0f0f0"),
+                        Size = new Size(100, 25),
+                        Anchor = new Point(50, 25),
+                        ControlTemplate = cvt,
+                    };
+
+                    cv.BindingContext = cv;
+
                     AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(35, 35), coord)
                     {
                         BackgroundColor = Color.Transparent,
+                        CustomView = cv
                     };
                     map.Overlays.Add(mv);
 
@@ -167,4 +181,87 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
     }
+
+    public class NavLabelView : AzmOverlayView
+    {
+        public delegate void OnTappedEventHandler(object sender, EventArgs e);
+        public event OnTappedEventHandler OnTapped;
+
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(
+            propertyName: nameof(Text),
+            returnType: typeof(string),
+            declaringType: typeof(AzmLabelView),
+            defaultValue: default(string)
+        );
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
+            propertyName: nameof(TextColor),
+            returnType: typeof(Color),
+            declaringType: typeof(AzmLabelView),
+            defaultValue: Color.White
+        );
+
+
+        private ICommand _navcommand = null;
+
+        public ICommand NavCommand
+        {
+            get { return _navcommand; }
+            set { _navcommand = value; }
+        }
+
+        public Color TextColor
+        {
+            get { return (Color)GetValue(TextColorProperty); }
+            set { SetValue(TextColorProperty, value); }
+        }
+
+        public NavLabelView(string text, AzmCoord coord = null, double maxwidthrequest = 100.0)
+        {
+            if (text == null) text = "";
+            BackgroundColor = Color.FromHex("#002060");
+            Text = text.Trim();
+            WidthRequest = maxwidthrequest;
+            if (coord != null) Coord = new AzmCoord(coord.lng, coord.lat);
+
+            this.BindingContext = new { name = Text };
+            double height = Math.Ceiling(DependencyService.Get<ITextMeter>().MeasureTextHeightGivenMaxWidth(Text, WidthRequest - 6, 14));
+            double width = Math.Ceiling(DependencyService.Get<ITextMeter>().MeasureTextWidthGivenExactHeight(Text, height, 14));
+            width = Math.Min(width, WidthRequest - 6);
+            Size = new Size(width + 6, height + 6);
+            Anchor = new Point((width + 6) / 2, height + 6 + 7);
+
+            NavCommand = new Command(() => {
+                // navigation here
+            });
+        }
+
+        public override void Attached(AzMapView mapview)
+        {
+            base.Attached(mapview);
+
+            TapGestureRecognizer tap = new TapGestureRecognizer();
+            tap.Tapped += Tap_Tapped;
+            this.GestureRecognizers.Add(tap);
+
+        }
+
+        public override void Detached()
+        {
+            base.Detached();
+            this.GestureRecognizers.Clear();
+        }
+
+        private void Tap_Tapped(object sender, EventArgs e)
+        {
+            if (OnTapped != null) OnTapped(this, e);
+        }
+    }
+
 }
