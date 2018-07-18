@@ -14,7 +14,22 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class RescueSiteMapPage : ContentPage
     {
-        
+
+
+        //地图放大
+        void zoomout(object sender, System.EventArgs e)
+        {
+            map.ZoomOut();
+
+
+        }
+        //地图缩小
+        void zoomin(object sender, System.EventArgs e)
+        {
+            map.ZoomIn();
+        }
+
+
         AzmMarkerView currentMarker;
         public RescueSiteMapPage()
         {
@@ -32,7 +47,6 @@ namespace AepApp.View.EnvironmentalEmergency
         }
         //从救援地点进入
         public RescueSiteMapPage(ObservableCollection<RescueSiteModel.ItemsBean> dataList):this(){
-            InitializeComponent();
             //// Marker usage sample
             Title = "救援地点";
             foreach(RescueSiteModel.ItemsBean item in dataList){
@@ -50,7 +64,6 @@ namespace AepApp.View.EnvironmentalEmergency
         //从敏感源进入
         public RescueSiteMapPage(ObservableCollection<SensitiveModels.ItemsBean> dataList) : this()
         {
-            InitializeComponent();
             //// Marker usage sample
             ///
             Title = "敏感源";
@@ -73,13 +86,12 @@ namespace AepApp.View.EnvironmentalEmergency
         //从应急事故详情进入
         public RescueSiteMapPage(ObservableCollection<IncidentLoggingEventsBean> dataList,string incidengtId) : this()
         {
-            InitializeComponent();
             //// Marker usage sample
 
             AzmCoord coord = null; 
              foreach (IncidentLoggingEventsBean item in dataList)
             {
-                if(item.TargetLat !=null){
+                if(item.TargetLat !=null){//筛选最新的一次事故中心位置
                     if(Convert.ToDouble(item.TargetLat)<=90.0)coord = new AzmCoord(Convert.ToDouble(item.TargetLng), Convert.ToDouble(item.TargetLat));
                 }
                 if (item.lat != null)
@@ -96,7 +108,7 @@ namespace AepApp.View.EnvironmentalEmergency
             }
 
             Console.WriteLine("lat==="+coord.lat+"lng=="+ coord.lng);
-            //设置target坐标
+            //设置target坐标//事故中心位置
             if (coord != null)
             {
                 try

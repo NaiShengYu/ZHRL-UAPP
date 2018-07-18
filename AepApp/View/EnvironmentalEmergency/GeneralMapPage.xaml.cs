@@ -12,6 +12,20 @@ namespace AepApp.View.EnvironmentalEmergency
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GeneralMapPage : ContentPage
 	{
+
+        //地图放大
+        void zoomout(object sender, System.EventArgs e)
+        {
+            map.ZoomOut();
+
+
+        }
+        //地图缩小
+        void zoomin(object sender, System.EventArgs e)
+        {
+            map.ZoomIn();
+        }
+
         public GeneralMapPage()
         {
             InitializeComponent();
@@ -21,7 +35,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             InitializeComponent();
             Title = title;
-
+            Console.Write(map);
             AzmMarkerView m = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(30, 30), singlecoord);
             map.Overlays.Add(m);
             map.SetCenter(13, singlecoord);

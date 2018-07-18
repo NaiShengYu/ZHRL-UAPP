@@ -128,7 +128,7 @@ namespace AepApp.View
         {
             get { return _centercoord; }
             set { _centercoord = value; OnPropertyChanged("CenterCoord");
-                CenterCoordChanged?.Invoke(this, new CenterCoordChangedEventArg(_centercoord));
+                //CenterCoordChanged?.Invoke(this, new CenterCoordChangedEventArg(_centercoord));
             }
         }
 
@@ -205,6 +205,14 @@ namespace AepApp.View
 
         public void SetCenter(int _level, AzmCoord _center)
         {
+            
+
+            Gps g = PositionUtil.gps84_To_Gcj02(_center.lat,_center.lng);
+            try{
+                Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                _center = new AzmCoord(g.getWgLon(), g.getWgLat());
+            }catch(Exception ex){}
+
             if (_level < 4) { SetCenter(11, Beijing); return; }
             if (_level > 18) { SetCenter(11, Beijing); return; }
             if (double.IsNaN(_center.lng)) { SetCenter(11, Beijing); return; }
@@ -491,7 +499,7 @@ namespace AepApp.View
                 xrange = new Tuple<int, int>(sx, ex);
                 yrange = new Tuple<int, int>(sy, ey);
 
-                CenterCoord = GetCoordFromXY(level, center);
+                //CenterCoord = GetCoordFromXY(level, center);
 
                 if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
                 {
@@ -731,6 +739,7 @@ namespace AepApp.View
                     o.MapView = this;
 
                     Gps g = PositionUtil.gps84_To_Gcj02(o.Coord.lat, o.Coord.lng);
+                    if (g == null) continue;
                     Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
 
                     o.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - o.Anchor.X, (vpmaxy - p.Y) * tilesize - o.Anchor.Y, o.Size.Width, o.Size.Height));

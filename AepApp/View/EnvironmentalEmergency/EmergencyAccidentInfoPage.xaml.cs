@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using Xamarin.Forms;
+using SimpleAudioForms;
 using static AepApp.Models.EmergencyAccidentInfoDetail;
 
 namespace AepApp.View.EnvironmentalEmergency
@@ -137,7 +138,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (emergencyModel1.category == "IncidentNatureIdentificationEvent")
                 {
-                    UploadEmergencyModel emergencyModel = new UploadEmergencyModel
+                    UploadEmergencyShowModel emergencyModel = new UploadEmergencyShowModel
                     {
                         creationTime = System.DateTime.Now,
                         natureString = emergencyModel1.natureString,
@@ -193,17 +194,16 @@ namespace AepApp.View.EnvironmentalEmergency
             if (item == null)
                 return;
             List<string> imgs = new List<string>();
-            //imgs.Add("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=729412813,2297218092&fm=27&gp=0.jpg");
-            //imgs.Add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3595459302,598700159&fm=27&gp=0.jpg");
-            //imgs.Add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2738969446,4147851924&fm=27&gp=0.jpg");
-
-            //Navigation.PushAsync(new BrowseImagesPage(imgs));
-
             if(item.category =="IncidentPictureSendingEvent"){
                 List<IncidentLoggingEventsBean> imgsSouce = new List<IncidentLoggingEventsBean>();
                 imgsSouce.Add(item);
                 Navigation.PushAsync(new BrowseImagesPage(imgsSouce));
             }
+            //进入视频播放页
+            if (item.category == "IncidentVideoSendingEvent"){
+                Navigation.PushAsync(new ShowVideoPage(item));
+            } 
+           
             listView.SelectedItem = null;
         }
 
@@ -277,9 +277,34 @@ namespace AepApp.View.EnvironmentalEmergency
                             AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
                             list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("文字信息发出位置", center)); });
                         }catch(Exception ex){
-                            
                         }
                     }
+                    else if (cagy == "IncidentWindDataSendingEvent")
+                    {
+                        try
+                        {
+                            AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
+                            list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("风速风向发出位置", center)); });
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    else if (cagy == "IncidentVoiceSendingEvent")
+                    {
+                        try
+                        {
+                            EmergencyAccidentInfoDetail.IncidentLoggingEventsBean item = list[i];
+                            list[i].PlayVoiceCommand = new Command( () => {DependencyService.Get<IAudio>().PlayNetFile(item.VoicePath); });
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+
                     else if (cagy == "IncidentReportGenerationEvent")
                     {
                         string fileurl = App.EmergencyModule.url + list[i].StoreUrl;
@@ -336,6 +361,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             base.OnDisappearing();
             isStart = false;
+            DependencyService.Get<IAudio>().stopPlay();
         }
 
         void creatScrollerView(){
@@ -407,6 +433,8 @@ namespace AepApp.View.EnvironmentalEmergency
         DataTemplate PictureSendingDT = null;
         DataTemplate ReportGenerationDT = null;
         DataTemplate WindDataDT = null;
+        DataTemplate VideoDT = null;
+        DataTemplate VoiceDT = null;
 
         public EventDataTemplateSelector()
         {
@@ -420,6 +448,9 @@ namespace AepApp.View.EnvironmentalEmergency
             ReportGenerationDT = a.Resources["ReportGenerationDT"] as DataTemplate;
             WindDataDT = a.Resources["WindDataDT"] as DataTemplate;
             //PlanGenerationDT = page.Resources["PlanGenerationDT"] as DataTemplate;
+            VideoDT = a.Resources["VideoDT"] as DataTemplate;
+            VoiceDT = a.Resources["VoiceDT"] as DataTemplate;
+
         }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
@@ -427,7 +458,7 @@ namespace AepApp.View.EnvironmentalEmergency
             IncidentLoggingEventsBean i = item as IncidentLoggingEventsBean;
             if (i == null)
             {
-                UploadEmergencyModel j = item as UploadEmergencyModel;
+                UploadEmergencyShowModel j = item as UploadEmergencyShowModel;
                 switch (j.category)
                 {
                     case "IncidentNatureIdentificationEvent": return natureDT;
@@ -439,6 +470,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentReportGenerationEvent": return ReportGenerationDT;
                     case "IncidentWindDataSendingEvent": return WindDataDT;
                         //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                    case "IncidentVideoSendingEvent": return VideoDT;
+                    case "IncidentVoiceSendingEvent": return VoiceDT;
                 }
                 return natureDT;
             }
@@ -454,6 +487,9 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentReportGenerationEvent": return ReportGenerationDT;
                     case "IncidentWindDataSendingEvent": return WindDataDT;
                         //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                    case "IncidentVideoSendingEvent": return VideoDT;
+                    case "IncidentVoiceSendingEvent": return VoiceDT;
+
                 }
                 return natureDT;
             }                    

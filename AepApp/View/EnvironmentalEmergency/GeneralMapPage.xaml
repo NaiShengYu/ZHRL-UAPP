@@ -1,9 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:m="clr-namespace:AepApp.View"
             x:Class="AepApp.View.EnvironmentalEmergency.GeneralMapPage">
     <ContentPage.Content>
-        <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White"/>
+        <Grid>
+               
+        <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White" IsZoomButtonVisible="false"/>
+            <Button BackgroundColor="Transparent" Clicked="zoomin" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,105" WidthRequest="55" HeightRequest="55" Image="zoomin"/>
+            <Button BackgroundColor="Transparent" Clicked="zoomout" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,40" WidthRequest="55" HeightRequest="55" Image="zoomout"/>
+
+           
+       </Grid>  
     </ContentPage.Content>
 </ContentPage>

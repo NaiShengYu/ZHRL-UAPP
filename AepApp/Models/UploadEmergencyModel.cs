@@ -65,12 +65,25 @@ namespace AepApp.Models
         ////public DateTime Current { get; set; }/// 当前时间
         public string StorePath { get; set; }/// 存储路径(相对路径)
         public string imagePath { get; set; }/// 图片显示路径(相对路径)
+        public string VideoStorePath { get; set; }// 录像的存储位路径
+        public string VideoPath { get; set; }// 录像的显示路径
+        public string VoiceStorePath { get; set; }// 录音的显示路径
+        public string VoicePath { get; set; }// 录音的显示路径
+
+        public string VoiceLenth
+        {
+            get { return "语音" + Length + "秒"; }
+        }// 录音的时长
+
+
+
+
         public string width { get; set; }  /// 宽度(单位px)
         public string height { get; set; } /// 高度(单位px)
         public string storeurl { get; set; } /// 方案存储地址
         public string reportid { get; set; } /// 报告编号
         public string reportname { get; set; } /// 报告名称  
-        public string length { get; set; } /// 内容长度(单位秒)
+        public string Length { get; set; } /// 内容长度(单位秒)
         public string direction { get; set; } /// 风向(单位 度)
         public string speed { get; set; } /// 风速(单位 米/秒)
         public string windDescribe

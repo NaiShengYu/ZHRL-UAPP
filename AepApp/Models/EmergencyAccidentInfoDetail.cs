@@ -99,6 +99,16 @@ namespace AepApp.Models
                 get { return App.EmergencyModule.url + StorePath; }
                
             }
+            public string VideoPath { get { return App.EmergencyModule.url + StorePath; }}// 录像的显示路径
+            public string VoicePath {get { return App.EmergencyModule.url + StorePath; } }// 录音的显示路径
+            public string VoiceLenth { 
+                get { return "语音"+Length+"秒"; }
+            }// 录音的时长
+
+
+          
+
+
             public string Width { get; set; }  /// 宽度(单位px)
             public string Height { get; set; } /// 高度(单位px)
             public string StoreUrl { get; set; } /// 方案存储地址
@@ -167,6 +177,7 @@ namespace AepApp.Models
             // command that launchs the map view and put an marker on the location
             public ICommand LocateOnMapCommand { get; set; }
 
+            public ICommand PlayVoiceCommand { get; set; }
 
             // command that downloads a document and launch a viewer to read
             public ICommand DocumentDownloadCommand { get; set; }
