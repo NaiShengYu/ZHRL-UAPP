@@ -7,7 +7,6 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class ExpertInfoPage : ContentPage
     {
-
         //打电话
         void phone_Tapped(object sender, System.EventArgs e)
         {
@@ -15,7 +14,6 @@ namespace AepApp.View.EnvironmentalEmergency
             ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
 
             Device.OpenUri(new Uri("tel:" + item.mobilePhone));
-
         }
         //发信息
         void sms_Tapped(object sender, System.EventArgs e)
