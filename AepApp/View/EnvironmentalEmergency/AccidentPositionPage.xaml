@@ -8,18 +8,57 @@
              Title="事故位置">
     <ContentPage.Content>
          <Grid>
-            <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White" IsZoomButtonVisible="false"/>
+            <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White" IsZoomButtonVisible="false">
+                <m:AzMapView.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
+                </m:AzMapView.GestureRecognizers>
+            </m:AzMapView>
             <s:SKCanvasView x:Name="can" PaintSurface="Handle_PaintSurface" IsEnabled="false"/>
            <Frame HasShadow="false" Padding="0" CornerRadius="0"  HeightRequest="50" VerticalOptions="Start" HorizontalOptions="Fill" Margin="20,20,20,0" OutlineColor="#b8b8b8" BackgroundColor="#fafafa">
-                <Label x:Name="centercoorLab" FontSize="22" BackgroundColor="#fafafa" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Source={Reference map}, Path=CenterCoord, StringFormat='{0}'}"/>
+                <Label x:Name="centercoorLab" FontSize="22" BackgroundColor="#fafafa" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Source={Reference map}, Path=CenterCoord, StringFormat='{0}'}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </Frame>
-            <Button BackgroundColor="Transparent" Clicked="Handle_Clicked" HorizontalOptions="Start" VerticalOptions="End" Margin="20,0,0,40" WidthRequest="55" HeightRequest="55" Image="loc2"/>
+
+            <Button BackgroundColor="rgb(45,126, 251)" Clicked="SearchLoactionClick" HorizontalOptions="Start" VerticalOptions="End" Margin="30,0,0,150" WidthRequest="50" HeightRequest="50" Image="search-2" BorderRadius="25"/>
+
+            <Button BackgroundColor="Transparent" Clicked="Handle_Clicked" HorizontalOptions="Start" VerticalOptions="End" Margin="30,0,0,40" WidthRequest="55" HeightRequest="55" Image="loc2"/>
             <Button BackgroundColor="Transparent" Clicked="savePosition" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,30" WidthRequest="80" HeightRequest="80" Image="greentick"/>
 
-            <Button BackgroundColor="Transparent" Clicked="zoomin" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,105" WidthRequest="55" HeightRequest="55" Image="zoomin"/>
-            <Button BackgroundColor="Transparent" Clicked="zoomout" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,40" WidthRequest="55" HeightRequest="55" Image="zoomout"/>
+            <Button BackgroundColor="Transparent" Clicked="zoomin" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,105" WidthRequest="55" HeightRequest="55" Image="zoomin"/>
+            <Button BackgroundColor="Transparent" Clicked="zoomout" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,40" WidthRequest="55" HeightRequest="55" Image="zoomout"/>
 
-           
+               <Grid VerticalOptions="EndAndExpand" x:Name="searchBar" RowSpacing="0">
+               <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+             <SearchBar Grid.Row="0" Placeholder="搜索" x:Name="seach" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_SearchButtonPressed" StyleClass="sbar" BackgroundColor="White"/>
+            <ListView Grid.Row="1" x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" >
+                <ListView.GestureRecognizers>
+<!--                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>-->
+                 </ListView.GestureRecognizers>
+                    <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="Center" StyleClass="item">
+                                <StackLayout VerticalOptions="Center" Margin="20,5,20,5" Spacing="2">
+                                    <Label StyleClass="itemtitle" Text="{Binding name}" Font="17"/>
+                                    <Label StyleClass="itemsubtitle" Text="{Binding address}" TextColor="Silver" Font="15">                                     
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            </Grid>
+
+
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

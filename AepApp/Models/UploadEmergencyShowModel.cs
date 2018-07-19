@@ -21,6 +21,7 @@ namespace AepApp.Models
         public int ID { get; set; }
         public string factorId { get; set; }/// 因子编号
         public string factorName { get; set; } /// 因子名称
+        public int datatype { get; set; }//因子类型
         public string factor
         {
             get

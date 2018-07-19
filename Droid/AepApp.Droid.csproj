@@ -290,6 +290,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\dirarrow.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\reddot.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\open.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\search-2.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\water.png" />

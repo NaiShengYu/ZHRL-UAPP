@@ -26,11 +26,16 @@
                 </Frame>
             </Grid>
             
-            <StackLayout HeightRequest="100" BackgroundColor="White" Spacing="0" x:Name="menu1">
+            <StackLayout BackgroundColor="White" Spacing="0" x:Name="menu1" HeightRequest="195">
                 <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-
                 <Grid StyleClass="menuitem" >
-                    <Label Text="采样任务"/>
+                    <Label Text="送样记录" BindingContext="AepApp.View.Samples.CollectionSamplesPage" />
+                </Grid>
+                  <Grid StyleClass="menuitem" >
+                    <Label Text="接样记录" BindingContext="AepApp.View.Samples.TransportSamplesPage"/>
+                </Grid>
+                <Grid StyleClass="menuitem" >
+                    <Label Text="采样计划" BindingContext="AepApp.View.Samples.SamplePlanPage"/>
                 </Grid>
             </StackLayout>
 

@@ -80,7 +80,7 @@ namespace CloudWTO.Services
                 {
                     byte[] bs = Encoding.UTF8.GetBytes(param);
 
-                    req.Method = "POST";
+                    req.Method = method;
 
                     if (contenttype=="json")
                     {
@@ -126,6 +126,10 @@ namespace CloudWTO.Services
             string result = null;
             try
             {
+                Console.WriteLine("请求URL：" + url);
+                Console.WriteLine("请求token：" + "Bearer " + token);
+                Console.WriteLine("请求参数：" + fileN);
+
                 ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
                 if (token != null)

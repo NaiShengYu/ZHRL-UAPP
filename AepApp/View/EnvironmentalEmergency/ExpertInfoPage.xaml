@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.EnvironmentalEmergency.ExpertInfoPage">
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="White">
+            <StackLayout Spacing="1" BackgroundColor="#EAEAEA">
+                <StackLayout BackgroundColor="White" VerticalOptions="Center" Margin="0,0,0,0" Spacing="3" Orientation="Horizontal">
+                    <Label Text="专家姓名" Margin="10,12,10,12" Font="18" VerticalOptions="Center"/>
+                    <Label Margin="10,10,10,10" Text="{Binding name}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Font="15" TextColor="Silver">
+                    </Label>
+                </StackLayout>
+<!--                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Silver" />
+-->                <StackLayout BackgroundColor="White" VerticalOptions="Center" Margin="0,0,0,0" Spacing="3" Orientation="Horizontal">
+                    <Label Margin="10,12,10,12" Text="联系电话" Font="18" VerticalOptions="Center"/>
+                    <Label Margin="10,12,10,12" Text="{Binding mobilePhone}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Font="15" TextColor="Silver">
+                    </Label>
+                </StackLayout>
+<!--                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Silver" />
+-->                <StackLayout BackgroundColor="White" VerticalOptions="Center" Margin="0,0,0,0" Spacing="3" Orientation="Horizontal">
+                    <Label Margin="10,12,10,12" Text="职称" Font="18" VerticalOptions="Center"/>
+                    <Label Margin="10,12,10,12" Text="{Binding title}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Font="15" TextColor="Silver">
+                    </Label>
+                </StackLayout>
+<!--                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Silver" />
+-->                <StackLayout BackgroundColor="White" VerticalOptions="Center" Margin="0,0,0,0" Spacing="3" Orientation="Horizontal">
+                    <Label Margin="10,12,10,12" Text="专业" Font="18" VerticalOptions="Center"/>
+                    <Label Margin="10,12,10,12" Text="{Binding professionalField}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Font="15" TextColor="Silver">
+                    </Label>
+                </StackLayout>
+<!--                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Silver" />
+-->                <StackLayout BackgroundColor="White" VerticalOptions="Center" Margin="0,0,0,0" Spacing="3" Orientation="Horizontal">
+                    <Label Margin="10,12,10,12" Text="单位" Font="18" VerticalOptions="Center"/>
+                    <Label Margin="10,12,10,12" Text="{Binding organization}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Font="15" TextColor="Silver">
+                    </Label>
+                </StackLayout>
+<!--                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Silver" />
+-->                <StackLayout BackgroundColor="White" VerticalOptions="Center" Margin="0,0,0,0" Spacing="3" Orientation="Horizontal">
+                    <Label Margin="10,12,10,12" Text="电话" Font="18" VerticalOptions="Center"/>
+                    <Label Margin="10,12,10,12" Text="{Binding telephone}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Font="15" TextColor="Silver">
+                    </Label>
+                </StackLayout>
+<!--                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Silver" />
+-->                <StackLayout BackgroundColor="White" VerticalOptions="Center" Margin="0,0,0,0" Spacing="3" Orientation="Horizontal">
+                    <Label Margin="10,12,10,12" Text="地址" Font="18" VerticalOptions="Center"/>
+                    <Label Margin="10,12,10,12" Text="{Binding address}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Font="15" TextColor="Silver">
+                    </Label>
+                </StackLayout>
+<!--                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Silver" />
+-->                <StackLayout BackgroundColor="White" VerticalOptions="Center" Margin="0,0,0,0" Spacing="3" Orientation="Horizontal">
+                    <Label Margin="10,12,10,12" Text="QQ" Font="18" VerticalOptions="Center"/>
+                    <Label Margin="10,12,10,12" Text="{Binding qq}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Font="15" TextColor="Silver">
+                    </Label>
+                </StackLayout>
+<!--                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Silver" />
+-->
+                <Grid VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  Image="text2" Margin="0,5,0,5" Clicked="sms_Tapped"/>
+
+                    <Button Image="phone" Grid.Column="1" Margin="0,5,0,5" Clicked="phone_Tapped"/>
+
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.Samples.TransportSamplesPage" 
+             Title="我的送样记录">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
+            <SearchBar BackgroundColor="White" Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" StyleClass="sbar" SearchButtonPressed="Handle_SearchButtonPressed" />
+            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="删除" Clicked="Handle_Clicked" IsDestructive="true"/>
+                            </ViewCell.ContextActions>
+                            <Grid VerticalOptions="Center">
+                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
+                                    <Label Margin="0,8,0,0" StyleClass="itemsubtitle" Text="{Binding time }" Font="20" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemtitle" Text="{Binding num}" Font="15" TextColor="Silver" />
+                                </StackLayout>
+                                <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" Margin="0,0,10,0">
+                                    <Image.Triggers>
+                                        <DataTrigger TargetType="Image" Binding="{Binding type}" Value="start">
+                                            <Setter Property="Source" Value="grayclock" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image" Binding="{Binding type}" Value="finish">
+                                            <Setter Property="Source" Value="greentick" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

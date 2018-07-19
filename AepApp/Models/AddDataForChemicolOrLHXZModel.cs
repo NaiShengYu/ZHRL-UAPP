@@ -20,6 +20,7 @@ namespace AepApp.Models
             public string factorName { get; set; }
 
             public string factorId { get; set; }
+            public string datatype { get; set; }
 
         }
     }

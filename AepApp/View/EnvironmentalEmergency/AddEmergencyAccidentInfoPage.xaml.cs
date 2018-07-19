@@ -176,6 +176,8 @@ namespace AepApp.View.EnvironmentalEmergency
         async void AccidentPosition(object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new AccidentPositionPage());
+            MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
+
             MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", async (arg1, arg2) =>
             {
                 var aaa = arg2 as string;
@@ -188,7 +190,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 double lon = System.Convert.ToDouble(bbb[0]);
                 double lat = System.Convert.ToDouble(bbb[1]);
 
-                //MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
+                MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
                     uploadStatus = "notUploaded",
@@ -307,7 +309,6 @@ namespace AepApp.View.EnvironmentalEmergency
                     dataListDelete.Add(ShowModel);
                     saveList.Add(emergencyModel);
                     listView.ScrollTo(ShowModel, ScrollToPosition.End, true);
-
                 }
             }catch (Exception ex){
                 Console.WriteLine("errer：" + ex.Message);
@@ -511,6 +512,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             Button but = sender as Button;
             if (App.contaminantsList == null && App.AppLHXZList == null) return;
+            MessagingCenter.Unsubscribe<ContentPage, AddDataForChemicolOrLHXZModel.ItemsBean>(this, "AddLHXZ");
 
             MessagingCenter.Subscribe<ContentPage, AddDataForChemicolOrLHXZModel.ItemsBean>(this, "AddLHXZ", async (arg1, arg2) =>
             {
@@ -572,6 +574,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 MessagingCenter.Unsubscribe<ContentPage, AddDataForChemicolOrLHXZModel.ItemsBean>(this, "AddLHXZ");
             });
+            MessagingCenter.Unsubscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew");
 
             MessagingCenter.Subscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew", async (arg1, arg2) =>
             {
@@ -584,6 +587,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     category = "IncidentFactorIdentificationEvent",
                     factorId = item.factorId,
                     factorName = item.factorName,
+                    datatype = Convert.ToInt32(item.dataType),
+
                 };
                 try
                 {
@@ -606,6 +611,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     factorName = item.factorName,
                     lat = emergencyModel.lat,
                     lng = emergencyModel.lng,
+                    datatype = emergencyModel.datatype,
                 };
 
                 await App.Database.SaveEmergencyAsync(emergencyModel);
@@ -622,11 +628,11 @@ namespace AepApp.View.EnvironmentalEmergency
         //点击了风速风向按钮
         async void fengSuFengXiang(object sender, System.EventArgs e)
         {
+            MessagingCenter.Unsubscribe<ContentPage, string[]>(this, "saveWindSpeedAndDirection");
+
             await Navigation.PushAsync(new WindSpeedAndDirectionPage());
             MessagingCenter.Subscribe<ContentPage, string[]>(this, "saveWindSpeedAndDirection", async (arg1, arg2) =>
             {
-                MessagingCenter.Unsubscribe<ContentPage, string[]>(this, "saveWindSpeedAndDirection");
-
                 string speed = arg2[0];
                 string direction = arg2[1];
 
@@ -679,7 +685,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //点击了污染物按钮
         void wuRanWu(object sender, System.EventArgs e)
         {
-
+            MessagingCenter.Unsubscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew");
             MessagingCenter.Subscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew", (arg1, arg2) =>
             {
                 AddDataIncidentFactorModel.ItemsBean item = arg2 as AddDataIncidentFactorModel.ItemsBean;
@@ -691,6 +697,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     category = "IncidentFactorIdentificationEvent",
                     factorId = item.factorId,
                     factorName = item.factorName,
+                    datatype = Convert.ToInt32(item.dataType),
                 };
                 try
                 {
@@ -713,6 +720,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     factorName = item.factorName,
                     lat = emergencyModel.lat,
                     lng = emergencyModel.lng,
+                    datatype = Convert.ToInt32(item.dataType),
                 };
 
 
@@ -721,8 +729,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 dataListDelete.Add(ShowModel);
                 saveList.Add(emergencyModel);
                 listView.ScrollTo(ShowModel, ScrollToPosition.End, true);
-
-                MessagingCenter.Unsubscribe<ContentPage, AddDataIncidentFactorModel.ItemsBean>(this, "AddFactorNew");
             });
 
             Navigation.PushAsync(new ChemicalPage(2));
@@ -941,6 +947,8 @@ namespace AepApp.View.EnvironmentalEmergency
                             creationTime = model.creationTime,
                             creatorusername = model.creatorusername,
                             category = model.category,
+                            datatype = model.datatype,
+
                         };
 
                         dataList.Add(ShowModel);
@@ -1016,7 +1024,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 UploadEmergencyShowModel model = dataList[i];
 
-                if (model.uploadStatus == "UploadedOver") continue;
+                if (model.uploadStatus == "UploadedOver") continue;//如果已经上传的就跳过
                 model.uploadStatus = "uploading";
                 switch (model.category)
                 {
@@ -1025,7 +1033,7 @@ namespace AepApp.View.EnvironmentalEmergency
                         break;
                     //化学因子名称
                     case "IncidentFactorIdentificationEvent":
-                        PostFactorIdentificationSending(model);
+                        PostFactorIdentificationSendingSecond(model);
                         break;
                     case "IncidentMessageSendingEvent":                     
                         PostMessageSending(model);
@@ -1033,6 +1041,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentWindDataSendingEvent":
                         PostWindDataSending(model);
                         break;
+                        //事故性质
                     case "IncidentNatureIdentificationEvent":
                         PostNatureIdentification(model);
                         break;
@@ -1073,6 +1082,26 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
 
+                 PostNatureIdentificationSecond(model);
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
+        }
+
+        private async void PostNatureIdentificationSecond(UploadEmergencyShowModel model)
+        {
+
+            EmergencyAccidentPageModels.ItemsBean parameter = new EmergencyAccidentPageModels.ItemsBean();
+            parameter = App.EmergencyAccidengtModel;
+            parameter.natureString = model.natureString;
+
+            string param = JsonConvert.SerializeObject(parameter);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/Incident/Update", param, "PUT", App.EmergencyToken);
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
                 var i = dataListDelete.IndexOf(model);
                 await App.Database.DeleteEmergencyAsync(saveList[i]);
                 model.uploadStatus = "UploadedOver";
@@ -1083,6 +1112,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse);
             }
         }
+
 
         private async void PostWindDataSending(UploadEmergencyShowModel model)
         {
@@ -1185,7 +1215,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 lng = Convert.ToDouble(model.lng),
                 loggingTime = model.creationTime.ToString(),
             };
-           
 
             string param = JsonConvert.SerializeObject(parameter);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/IncidentLoggingEvent/AppendIncidentFactorIdentificationEvent", param, "POST", App.EmergencyToken);
@@ -1202,6 +1231,32 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse);
             }
         }
+        //上传新的化学因子
+        private async void PostFactorIdentificationSendingSecond(UploadEmergencyShowModel model)
+        {
+           
+            AppendFactor parameter = new AppendFactor
+            {
+                factorId = model.factorId,
+                factorName = model.factorName,
+                dataType = model.datatype,
+                incidentId = model.emergencyid,
+            };
+            string param = JsonConvert.SerializeObject(parameter);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/IncidentFactor/Append", param, "POST", App.EmergencyToken);
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                PostFactorIdentificationSending(model);
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
+        }
+
+
+
 
         //上传图片
         private async void PostupLoadImageSending(UploadEmergencyShowModel model)
@@ -1420,6 +1475,14 @@ namespace AepApp.View.EnvironmentalEmergency
     }
 
 
+
+    //追加因子
+    internal class AppendFactor{
+        public string factorId { get; set; }
+        public string factorName { get; set; }
+        public int dataType { get; set; }
+        public string incidentId { get; set; }
+    }
 
 
 

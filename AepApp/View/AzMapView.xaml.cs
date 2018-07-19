@@ -77,7 +77,7 @@ namespace AepApp.View
         //AzmCoord ne = new AzmCoord(0, 0);
 
         public AzmMarkerView TappedMarker { get; set; }
-        public AzmLabelView MarkerPopupLabel { get; set; }
+        public AzmOverlayView MarkerPopupView { get; set; }
 
         public AzMapView()
         {
@@ -89,7 +89,7 @@ namespace AepApp.View
             this.SizeChanged += AzMapView_SizeChanged;
             ActiveMap = this;
             TappedMarker = null;
-            MarkerPopupLabel = null;
+            MarkerPopupView = null;
 
             MapType = AzmMapType.Normal;
 
@@ -128,7 +128,7 @@ namespace AepApp.View
         {
             get { return _centercoord; }
             set { _centercoord = value; OnPropertyChanged("CenterCoord");
-                //CenterCoordChanged?.Invoke(this, new CenterCoordChangedEventArg(_centercoord));
+                CenterCoordChanged?.Invoke(this, new CenterCoordChangedEventArg(_centercoord));
             }
         }
 
@@ -499,7 +499,7 @@ namespace AepApp.View
                 xrange = new Tuple<int, int>(sx, ex);
                 yrange = new Tuple<int, int>(sy, ey);
 
-                //CenterCoord = GetCoordFromXY(level, center);
+                CenterCoord = GetCoordFromXY(level, center);
 
                 if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
                 {
@@ -3208,13 +3208,34 @@ namespace AepApp.View
             defaultValue: false
         );
 
-        private AzmLabelView _label = null;
+        private AzmOverlayView _label = null;
 
-        public AzmLabelView Label
+        public AzmOverlayView Label
         {
             get { return _label; }
             set { _label = value; }
         }
+
+        private Point _customviewanchor = new Point();
+
+        private AzmOverlayView _customview = null;
+
+        public AzmOverlayView CustomView
+        {
+            get { return _customview; }
+            set {
+                _customview = value;
+                _customviewanchor = new Point(_customview.Anchor.X, _customview.Anchor.Y);
+            }
+        }
+
+        //private ControlTemplate controlTemplate = null;
+
+        //public ControlTemplate CustomViewTemplate
+        //{
+        //    get { return controlTemplate; }
+        //    set { controlTemplate = value; }
+        //}
 
 
         public AzmMarkerView(ImageSource source, Size size, AzmCoord coord = null, double popupmaxwidthrequest = 100.0)
@@ -3239,15 +3260,25 @@ namespace AepApp.View
             }
             else
             {
-                AzmLabelView lv = new AzmLabelView(Text, Coord)
+                if (CustomView == null)
                 {
-                    BackgroundColor = Color.FromHex("#ccc"),
-                    TextColor = Color.FromHex("#444"),
-                };
-                lv.Anchor = new Point(lv.Anchor.X, lv.Anchor.Y + Size.Height);
-                lv.OnTapped += Popup_OnTapped;
-                MapView.Overlays.Add(lv);
-                Label = lv;
+                    if (string.IsNullOrWhiteSpace(Text)) return;
+                    AzmLabelView lv = new AzmLabelView(Text, Coord)
+                    {
+                        BackgroundColor = Color.FromHex("#ccc"),
+                        TextColor = Color.FromHex("#444"),
+                    };
+                    lv.Anchor = new Point(lv.Anchor.X, lv.Anchor.Y + Size.Height);
+                    lv.OnTapped += Popup_OnTapped;
+                    MapView.Overlays.Add(lv);
+                    Label = lv;
+                } else
+                {
+                    _customview.Anchor = new Point(_customviewanchor.X, _customviewanchor.Y + Size.Height);
+                    //_customview.OnTapped += Popup_OnTapped;
+                    MapView.Overlays.Add(_customview);
+                    Label = _customview;
+                }
             }
         }
 
@@ -3265,24 +3296,36 @@ namespace AepApp.View
 
         private void Marker_Tapped(object sender, EventArgs e)
         {
-            if (MapView.MarkerPopupLabel != null)
+            if (MapView.MarkerPopupView != null)
             {
-                MapView.Overlays.Remove(MapView.MarkerPopupLabel);
+                MapView.Overlays.Remove(MapView.MarkerPopupView);
                 MapView.TappedMarker = null;
                 Label = null;
             }
 
-            AzmLabelView lv = new AzmLabelView(Text, Coord)
+            if (CustomView == null)
             {
-                BackgroundColor = Color.FromHex("#ccc"),
-                TextColor = Color.FromHex("#444"),
-            };
-            lv.Anchor = new Point(lv.Anchor.X, lv.Anchor.Y + Size.Height);
-            lv.OnTapped += Popup_OnTapped;
-            MapView.Overlays.Add(lv);
-            Label = lv;
-            MapView.MarkerPopupLabel = lv;
-            MapView.TappedMarker = this;
+                if (string.IsNullOrWhiteSpace(Text)) return;
+                AzmLabelView lv = new AzmLabelView(Text, Coord)
+                {
+                    BackgroundColor = Color.FromHex("#ccc"),
+                    TextColor = Color.FromHex("#444"),
+                };
+                lv.Anchor = new Point(lv.Anchor.X, lv.Anchor.Y + Size.Height);
+                lv.OnTapped += Popup_OnTapped;
+                MapView.Overlays.Add(lv);
+                Label = lv;
+                MapView.MarkerPopupView = lv;
+                MapView.TappedMarker = this;
+            } else
+            {
+                _customview.Anchor = new Point(_customviewanchor.X, _customviewanchor.Y + Size.Height);
+                //_customview.OnTapped += Popup_OnTapped;
+                MapView.Overlays.Add(_customview);
+                Label = _customview;
+                MapView.MarkerPopupView = _customview;
+                MapView.TappedMarker = this;
+            }
         }
 
         private void Popup_OnTapped(object sender, EventArgs e)

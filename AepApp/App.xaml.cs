@@ -40,12 +40,16 @@ namespace AepApp
         private const string SimVisModuleID     = "4C534464-AD7D-42FF-80AF-0049CDC6A9F6";
 
         public string FrameworkURL = "http://gx.azuratech.com:30000";
+
+        public static string SampleWorkURL = "http://gx.azuratech.com:30011";
+
         public List<ModuleInfo> Modules = null;
         public static ModuleInfo EmergencyModule = null;
         public static ModuleInfo BasicDataModule = null;
         public static ModuleInfo EP360Module = null;
         public static ModuleInfo SamplingModule = null;
         public static ModuleInfo SimVisModule = null;
+        public static EmergencyAccidentPageModels.ItemsBean EmergencyAccidengtModel = null;
 
         //样本类型数组
         public static List<SampleTypeModel> sampleTypeList = null;

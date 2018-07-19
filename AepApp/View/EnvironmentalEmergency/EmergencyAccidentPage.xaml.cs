@@ -69,8 +69,10 @@ namespace AepApp.View.EnvironmentalEmergency
             }
             App.sampleTypeList = aaa;
             App.EmergencyAccidentID = item.id;
+            App.EmergencyAccidengtModel = item;
             Navigation.PushAsync(new EmergencyAccidentInfoPage(item.name,item.id,item.isArchived));
             listView.SelectedItem = null;
+
         }
    
         public EmergencyAccidentPage()
