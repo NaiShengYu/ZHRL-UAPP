@@ -31,7 +31,7 @@ namespace AepApp.Droid
             //Xamarin.FormsBaiduMaps.Init(null);
             StatusBar.Activity = this;//获取状态栏高度
             LoadApplication(new App());
-            Initializer.Initialize();
+            //Initializer.Initialize();
         }
         // Field, property, and method for Picture Picker
         public static readonly int PickImageId = 1000;

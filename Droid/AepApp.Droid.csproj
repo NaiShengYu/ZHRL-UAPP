@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>AepApp.Droid</RootNamespace>
     <AssemblyName>AepApp.Droid</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -20,7 +20,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>.\azura.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>C:\Users\fionaxu\source\repos\uapp\Droid\azura.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>123456</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>azura</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>123456</AndroidSigningKeyPass>
@@ -268,6 +268,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Services\RecordService.cs" />
     <Compile Include="StatusBar.cs" />
     <Compile Include="TextMeter.cs" />
     <Compile Include="Toast_Android.cs" />

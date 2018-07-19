@@ -130,7 +130,7 @@ namespace AepApp
             base.OnStart();
             //return;
             HandleEventHandler();
-            if (Device.RuntimePlatform == Device.iOS)
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
                 bool al = await LoginAsync("admin", "123456");
                 if (al) MainPage = new NavigationPage(new MasterAndDetailPage());
