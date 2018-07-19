@@ -16,23 +16,36 @@ namespace SimpleAudioForms.Droid
         {
         }
 
-
+        /// <summary>
+        /// 播放本地录音
+        /// </summary>
+        /// <param name="fileName"></param>
         public void PlayNetFile(string fileName)
         {
             Play(fileName);
         }
 
+        /// <summary>
+        /// 播放网络录音文件
+        /// </summary>
+        /// <param name="fileName"></param>
         public void PlayLocalFile(string fileName)
         {
             Play(fileName);
         }
 
+        /// <summary>
+        /// 停止播放
+        /// </summary>
         public void stopPlay()
         {
             Stop();
         }
 
-
+        /// <summary>
+        /// 开始播放
+        /// </summary>
+        /// <param name="fileName"></param>
         void Play(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
@@ -57,6 +70,9 @@ namespace SimpleAudioForms.Droid
             }
         }
 
+        /// <summary>
+        /// 停止播放
+        /// </summary>
         void Stop()
         {
             if (mediaPlayer == null)
