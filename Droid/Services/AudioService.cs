@@ -7,26 +7,80 @@ using Android.Media;
 
 namespace SimpleAudioForms.Droid
 {
-	public class AudioService : IAudio
-	{
-		public AudioService() {}
+    public class AudioService : IAudio
+    {
 
-		private MediaPlayer _mediaPlayer;
+        MediaPlayer mediaPlayer;
 
-		public bool PlayMp3File(string fileName)
-		{
-            _mediaPlayer = MediaPlayer.Create(global::Android.App.Application.Context, fileName);
-			_mediaPlayer.Start();
+        public AudioService()
+        {
+        }
 
-			return true;
-		}
+        /// <summary>
+        /// 播放本地录音
+        /// </summary>
+        /// <param name="fileName"></param>
+        public void PlayNetFile(string fileName)
+        {
+            Play(fileName);
+        }
 
-		public bool PlayWavFile(string fileName)
-		{
-            _mediaPlayer = MediaPlayer.Create(global::Android.App.Application.Context,fileName);
-			_mediaPlayer.Start();
+        /// <summary>
+        /// 播放网络录音文件
+        /// </summary>
+        /// <param name="fileName"></param>
+        public void PlayLocalFile(string fileName)
+        {
+            Play(fileName);
+        }
 
-			return true;
-		}
-	}
+        /// <summary>
+        /// 停止播放
+        /// </summary>
+        public void stopPlay()
+        {
+            Stop();
+        }
+
+        /// <summary>
+        /// 开始播放
+        /// </summary>
+        /// <param name="fileName"></param>
+        void Play(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                DependencyService.Get<Sample.IToast>().ShortAlert("录音文件不存在");
+                return;
+            }
+            if (mediaPlayer == null)
+            {
+                mediaPlayer = new MediaPlayer();
+            }
+            try
+            {
+                mediaPlayer.Reset();
+                mediaPlayer.SetDataSource(fileName);
+                mediaPlayer.Prepare();
+                mediaPlayer.Start();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("there was an error trying to start the MediaPlayer! cause:" + ex);
+            }
+        }
+
+        /// <summary>
+        /// 停止播放
+        /// </summary>
+        void Stop()
+        {
+            if (mediaPlayer == null)
+            {
+                return;
+            }
+            mediaPlayer.Release();
+            mediaPlayer = null;
+        }
+    }
 }

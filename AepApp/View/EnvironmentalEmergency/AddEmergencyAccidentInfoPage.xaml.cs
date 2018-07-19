@@ -251,7 +251,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             try{
                 if(isRecording ==false){
-                    isRecording = true; 
+                    isRecording = true;
                     string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                     var dir = path + "/Voice/";
                     if (!Directory.Exists(dir))
