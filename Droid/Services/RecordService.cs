@@ -55,7 +55,7 @@ namespace SimpleAudioForms.Droid
                     recorder = new MediaRecorder();
                     recorder.SetAudioSource(AudioSource.Mic);
                     recorder.SetOutputFormat(OutputFormat.Mpeg4);
-                    recorder.SetAudioEncoder(AudioEncoder.AmrNb);
+                    recorder.SetAudioEncoder(AudioEncoder.Aac);
                     recorder.SetOutputFile(recordPath);
                     recorder.Prepare();
                 }
