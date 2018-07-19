@@ -8262,26 +8262,26 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f020055
 			public const int avd_hide_password = 2130837589;
 			
-			// aapt resource value: 0x7f020160
-			public const int avd_hide_password_1 = 2130837856;
-			
 			// aapt resource value: 0x7f020161
-			public const int avd_hide_password_2 = 2130837857;
+			public const int avd_hide_password_1 = 2130837857;
 			
 			// aapt resource value: 0x7f020162
-			public const int avd_hide_password_3 = 2130837858;
+			public const int avd_hide_password_2 = 2130837858;
+			
+			// aapt resource value: 0x7f020163
+			public const int avd_hide_password_3 = 2130837859;
 			
 			// aapt resource value: 0x7f020056
 			public const int avd_show_password = 2130837590;
 			
-			// aapt resource value: 0x7f020163
-			public const int avd_show_password_1 = 2130837859;
-			
 			// aapt resource value: 0x7f020164
-			public const int avd_show_password_2 = 2130837860;
+			public const int avd_show_password_1 = 2130837860;
 			
 			// aapt resource value: 0x7f020165
-			public const int avd_show_password_3 = 2130837861;
+			public const int avd_show_password_2 = 2130837861;
+			
+			// aapt resource value: 0x7f020166
+			public const int avd_show_password_3 = 2130837862;
 			
 			// aapt resource value: 0x7f020057
 			public const int bluemicroscope = 2130837591;
@@ -8934,11 +8934,11 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f02012f
 			public const int notification_icon_background = 2130837807;
 			
-			// aapt resource value: 0x7f02015e
-			public const int notification_template_icon_bg = 2130837854;
-			
 			// aapt resource value: 0x7f02015f
-			public const int notification_template_icon_low_bg = 2130837855;
+			public const int notification_template_icon_bg = 2130837855;
+			
+			// aapt resource value: 0x7f020160
+			public const int notification_template_icon_low_bg = 2130837856;
 			
 			// aapt resource value: 0x7f020130
 			public const int notification_tile_bg = 2130837808;
@@ -9001,82 +9001,85 @@ namespace AepApp.Droid
 			public const int scan = 2130837827;
 			
 			// aapt resource value: 0x7f020144
-			public const int soil = 2130837828;
+			public const int search_2 = 2130837828;
 			
 			// aapt resource value: 0x7f020145
-			public const int stopwatch = 2130837829;
+			public const int soil = 2130837829;
 			
 			// aapt resource value: 0x7f020146
-			public const int text = 2130837830;
+			public const int stopwatch = 2130837830;
 			
 			// aapt resource value: 0x7f020147
-			public const int text2 = 2130837831;
+			public const int text = 2130837831;
 			
 			// aapt resource value: 0x7f020148
-			public const int tick = 2130837832;
+			public const int text2 = 2130837832;
 			
 			// aapt resource value: 0x7f020149
-			public const int tick_blue = 2130837833;
+			public const int tick = 2130837833;
 			
 			// aapt resource value: 0x7f02014a
-			public const int trashcan = 2130837834;
+			public const int tick_blue = 2130837834;
 			
 			// aapt resource value: 0x7f02014b
-			public const int tree = 2130837835;
+			public const int trashcan = 2130837835;
 			
 			// aapt resource value: 0x7f02014c
-			public const int tri_white = 2130837836;
+			public const int tree = 2130837836;
 			
 			// aapt resource value: 0x7f02014d
-			public const int truck = 2130837837;
+			public const int tri_white = 2130837837;
 			
 			// aapt resource value: 0x7f02014e
-			public const int type_hybrid = 2130837838;
+			public const int truck = 2130837838;
 			
 			// aapt resource value: 0x7f02014f
-			public const int type_normal = 2130837839;
+			public const int type_hybrid = 2130837839;
 			
 			// aapt resource value: 0x7f020150
-			public const int type_sat = 2130837840;
+			public const int type_normal = 2130837840;
 			
 			// aapt resource value: 0x7f020151
-			public const int upload = 2130837841;
+			public const int type_sat = 2130837841;
 			
 			// aapt resource value: 0x7f020152
-			public const int upload2 = 2130837842;
+			public const int upload = 2130837842;
 			
 			// aapt resource value: 0x7f020153
-			public const int user = 2130837843;
+			public const int upload2 = 2130837843;
 			
 			// aapt resource value: 0x7f020154
-			public const int video = 2130837844;
+			public const int user = 2130837844;
 			
 			// aapt resource value: 0x7f020155
-			public const int voc = 2130837845;
+			public const int video = 2130837845;
 			
 			// aapt resource value: 0x7f020156
-			public const int voice = 2130837846;
+			public const int voc = 2130837846;
 			
 			// aapt resource value: 0x7f020157
-			public const int water = 2130837847;
+			public const int voice = 2130837847;
 			
 			// aapt resource value: 0x7f020158
-			public const int whitetarget = 2130837848;
+			public const int water = 2130837848;
 			
 			// aapt resource value: 0x7f020159
-			public const int winddir = 2130837849;
+			public const int whitetarget = 2130837849;
 			
 			// aapt resource value: 0x7f02015a
-			public const int word = 2130837850;
+			public const int winddir = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int xamarin_logo = 2130837851;
+			public const int word = 2130837851;
 			
 			// aapt resource value: 0x7f02015c
-			public const int zoomin = 2130837852;
+			public const int xamarin_logo = 2130837852;
 			
 			// aapt resource value: 0x7f02015d
-			public const int zoomout = 2130837853;
+			public const int zoomin = 2130837853;
+			
+			// aapt resource value: 0x7f02015e
+			public const int zoomout = 2130837854;
 			
 			static Drawable()
 			{

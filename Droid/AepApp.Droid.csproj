@@ -20,7 +20,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\fionaxu\source\repos\uapp\Droid\azura.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>.\azura.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>123456</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>azura</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>123456</AndroidSigningKeyPass>
@@ -290,7 +290,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\dirarrow.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\reddot.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\open.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\search-2.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\search_2.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\water.png" />
