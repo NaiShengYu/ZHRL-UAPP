@@ -254,7 +254,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 {
                     string cagy = list[i].category;
                     if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent"
-                        && cagy != "IncidentPlanGenerationEvent")
+                        )
                     {
 
                         //dataList.Add(list[i]);
@@ -264,18 +264,18 @@ namespace AepApp.View.EnvironmentalEmergency
                     if (cagy == "IncidentLocationSendingEvent")
                     {
                         AzmCoord center=new AzmCoord(list[i].TargetLng.Value, list[i].TargetLat.Value);
-                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("事故中心点", center)); });
+                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("事故中心点", center)); });
                     }
                     else if (cagy == "IncidentFactorMeasurementEvent")
                     {
                         AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
-                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("数据位置", center)); });
+                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("数据位置", center)); });
                     }
                     else if (cagy == "IncidentMessageSendingEvent")
                     {
                         try{
                             AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
-                            list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("文字信息发出位置", center)); });
+                            list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("文字信息发出位置", center)); });
                         }catch(Exception ex){
                         }
                     }
@@ -284,7 +284,7 @@ namespace AepApp.View.EnvironmentalEmergency
                         try
                         {
                             AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
-                            list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("风速风向发出位置", center)); });
+                            list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("风速风向发出位置", center)); });
                         }
                         catch (Exception ex)
                         {
@@ -305,10 +305,10 @@ namespace AepApp.View.EnvironmentalEmergency
                     }
 
 
-                    else if (cagy == "IncidentReportGenerationEvent")
+                    else if (cagy == "IncidentReportGenerationEvent" || cagy == "IncidentPlanGenerationEvent")
                     {
-                        string fileurl = App.EmergencyModule.url + list[i].StoreUrl;
-                        string fileFormat = ""; // TODO: need to figure out how to pass url and fileformat
+                        string fileurl = App.EmergencyModule.url + list[i].StorePath;
+                        string fileFormat = list[i].id + ".docx"; // TODO: need to figure out how to pass url and fileformat
                         list[i].DocumentDownloadCommand = new Command(async () => 
                         {
                             HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(fileurl, fileFormat, App.EmergencyToken);
@@ -435,6 +435,7 @@ namespace AepApp.View.EnvironmentalEmergency
         DataTemplate WindDataDT = null;
         DataTemplate VideoDT = null;
         DataTemplate VoiceDT = null;
+        DataTemplate PlanGenerationDT = null;
 
         public EventDataTemplateSelector()
         {
@@ -447,7 +448,7 @@ namespace AepApp.View.EnvironmentalEmergency
             PictureSendingDT = a.Resources["PictureSendingDT"] as DataTemplate;
             ReportGenerationDT = a.Resources["ReportGenerationDT"] as DataTemplate;
             WindDataDT = a.Resources["WindDataDT"] as DataTemplate;
-            //PlanGenerationDT = page.Resources["PlanGenerationDT"] as DataTemplate;
+            PlanGenerationDT = a.Resources["PlanGenerationDT"] as DataTemplate;
             VideoDT = a.Resources["VideoDT"] as DataTemplate;
             VoiceDT = a.Resources["VoiceDT"] as DataTemplate;
 
@@ -469,7 +470,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentPictureSendingEvent": return PictureSendingDT;
                     case "IncidentReportGenerationEvent": return ReportGenerationDT;
                     case "IncidentWindDataSendingEvent": return WindDataDT;
-                        //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                        case "IncidentPlanGenerationEvent": return PlanGenerationDT;
                     case "IncidentVideoSendingEvent": return VideoDT;
                     case "IncidentVoiceSendingEvent": return VoiceDT;
                 }
@@ -486,7 +487,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentPictureSendingEvent": return PictureSendingDT;
                     case "IncidentReportGenerationEvent": return ReportGenerationDT;
                     case "IncidentWindDataSendingEvent": return WindDataDT;
-                        //case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                    case "IncidentPlanGenerationEvent": return PlanGenerationDT;
                     case "IncidentVideoSendingEvent": return VideoDT;
                     case "IncidentVoiceSendingEvent": return VoiceDT;
 

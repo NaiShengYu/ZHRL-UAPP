@@ -276,6 +276,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\EnvironmentalEmergency\ExpertInfoPage.xaml.cs">
       <DependentUpon>ExpertInfoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Interface\IOpenApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />

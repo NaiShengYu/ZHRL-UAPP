@@ -358,6 +358,7 @@
     <Compile Include="TouchRecognizer.cs" />
     <Compile Include="Services\AudioService.cs" />
     <Compile Include="Services\RecordVoice.cs" />
+    <Compile Include="Services\OpenApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

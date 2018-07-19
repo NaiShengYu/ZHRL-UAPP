@@ -262,6 +262,44 @@
                 </ViewCell>
             </DataTemplate>
 
+
+                <DataTemplate x:Key="PlanGenerationDT">
+                <ViewCell >
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
+                        <Grid VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
+                            <StackLayout Orientation="Horizontal" Margin="-1,-1,0,0" HorizontalOptions="Start" VerticalOptions="Start" >
+                                <Frame Padding="4,1,4,1" CornerRadius="0" HasShadow="False" BorderColor="Transparent" BackgroundColor="#3781c3">
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                        <Label TextColor="White" Text=" / " />
+                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                    </StackLayout>
+                                </Frame>
+                                <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
+                                    <Image.Triggers >
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image"  Value="notUploaded">
+                                            <Setter Property="Source" Value="graytick"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding uploadStatus}" TargetType="Image" Value="uploading">
+                                            <Setter Property="Source" Value="orangedots"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                            </StackLayout>
+
+                            <Image Source="pdf.png" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DocumentDownloadCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label Text="事故预案报告" Margin="10,30,55,8" />
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            
+
             
             <DataTemplate x:Key="PictureSendingDT">
                 <ViewCell >

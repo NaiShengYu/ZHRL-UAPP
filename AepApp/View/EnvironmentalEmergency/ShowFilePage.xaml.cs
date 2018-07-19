@@ -12,7 +12,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-
+            Title = "报告";
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string filename = Path.Combine(path, info);
             web.Source = filename;

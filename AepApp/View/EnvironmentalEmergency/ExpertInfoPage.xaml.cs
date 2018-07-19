@@ -10,6 +10,8 @@ namespace AepApp.View.EnvironmentalEmergency
         //打电话
         void phone_Tapped(object sender, System.EventArgs e)
         {
+
+
             var but = sender as Button;
             ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
 

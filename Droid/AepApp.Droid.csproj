@@ -274,6 +274,7 @@
     <Compile Include="EntryRenderer.cs" />
     <Compile Include="TouchEffect.cs" />
     <Compile Include="Services\AudioService.cs" />
+    <Compile Include="Services\OpenMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />

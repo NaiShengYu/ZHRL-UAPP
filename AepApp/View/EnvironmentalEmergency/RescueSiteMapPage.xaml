@@ -11,7 +11,7 @@
                 <Grid BackgroundColor="White" BindingContext="{TemplateBinding BindingContext}">
                     <Grid BackgroundColor="{TemplateBinding BackgroundColor}" Margin="1">
                         <Label TextColor="Black" FontSize="14" Text="{Binding Text}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
-                              LineBreakMode="CharacterWrap"  VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Margin="2" />
+                              LineBreakMode="CharacterWrap"  VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Margin="2,2,37,2" />
 
                         <Grid WidthRequest="35" HeightRequest="15" BackgroundColor="#2d7efb" HorizontalOptions="End" Margin="0,0,0,0">
                             <Button Text="导航" FontSize="14" BackgroundColor="Transparent" TextColor="White" Command="{Binding NavCommand}" />

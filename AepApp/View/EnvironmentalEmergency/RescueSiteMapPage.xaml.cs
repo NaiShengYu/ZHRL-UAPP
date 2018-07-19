@@ -9,12 +9,49 @@ using static AepApp.Models.EmergencyAccidentInfoDetail;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System.Windows.Input;
-
+using AepApp.Interface;
+using MapKit;//苹果地图用的
+using CoreFoundation;
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class RescueSiteMapPage : ContentPage
     {
+      
+        async void openMapNav(double lat, double lng,string destination){
+         
+            List<string> aaa = DependencyService.Get<IOpenApp>().JudgeCanOpenAPP();
+            string[] bbb= aaa.ToArray();
+            var action = await DisplayActionSheet("选择地图", "取消",null,bbb);
+            Console.Write(action);
+            switch(action){
+                case "高德地图":
+                    //Gps gps = PositionUtil.gcj_To_Gps84(lat, lng);
+                    //Device.OpenUri(new Uri("iosamap://navi?sourceApplication=" + "AEPAPP" + "&backScheme=applicationScheme&poiname=fangheng&poiid=BGVIS&lat=" + gps.getWgLat() + "&" + "lon=" + gps.getWgLon() + "&dev=0&style=2"));
+                    Device.OpenUri(new Uri("iosamap://navi?sourceApplication=" + "AEPAPP" + "&backScheme=applicationScheme&poiname=fangheng&poiid=BGVIS&lat=" + lat + "&" + "lon=" + lng + "&dev=0&style=2"));
+                    break;
+                case "百度地图":
+                    Device.OpenUri(new Uri("baidumap://map/direction?origin=latlng:"+App.currentLocation.Latitude+","+App.currentLocation.Longitude+"|name:我的位置&destination=latlng:"+lat+","+lng+"|name:"+destination+"&mode=transit"));
+                    break;
+                case "苹果地图":
+                    //Gps gps1 = PositionUtil.gcj_To_Gps84(lat, lng);
+                    MKMapItem currentlocation = new MKMapItem(new MKPlacemark(new CoreLocation.CLLocationCoordinate2D(App.currentLocation.Latitude, App.currentLocation.Longitude)));
+                    currentlocation.Name = "当前位置";
+                    MKPlacemark placemark = new MKPlacemark(new CoreLocation.CLLocationCoordinate2D(lat,lng));
+                    MKMapItem tolocation = new MKMapItem(placemark);
+                    tolocation.Name = destination;
+                    MKMapItem[] items = { currentlocation, tolocation };
+                    MKLaunchOptions mKLaunchOptions = new MKLaunchOptions
+                    {
+                        DirectionsMode = MKDirectionsMode.Driving,
+                        ShowTraffic = true,
+                    };
+                    MKMapItem.OpenMaps(items, mKLaunchOptions);
 
+                    break;
+                default: break;
+            }
+
+        }
 
         //地图放大
         void zoomout(object sender, System.EventArgs e)
@@ -37,8 +74,12 @@ namespace AepApp.View.EnvironmentalEmergency
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
             try{
-                currentMarker = new AzmMarkerView(ImageSource.FromFile("loc2.png"), new Size(30, 30), new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude));
+                //Gps gps = PositionUtil.gcj_To_Gps84(App.currentLocation.Latitude, App.currentLocation.Longitude);
+                var singlecoord = new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude);
+
+                currentMarker = new AzmMarkerView(ImageSource.FromFile("loc2.png"), new Size(30, 30), singlecoord);
                 map.Overlays.Add(currentMarker);
+                map.SetCenter(12, singlecoord);
 
             }catch(Exception ex){
                 
@@ -49,12 +90,27 @@ namespace AepApp.View.EnvironmentalEmergency
         public RescueSiteMapPage(ObservableCollection<RescueSiteModel.ItemsBean> dataList):this(){
             //// Marker usage sample
             Title = "救援地点";
-            foreach(RescueSiteModel.ItemsBean item in dataList){
 
-                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), new AzmCoord(item.lng, item.lat))
+            foreach(RescueSiteModel.ItemsBean item in dataList){
+                Gps gps = PositionUtil.gcj_To_Gps84(item.lat, item.lng);
+                var coord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+
+                ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+                NavLabelView cv = new NavLabelView(item.name, coord)
                 {
-                    Text = item.name,
-                    AlwaysShowLabel = true
+                    BackgroundColor = Color.FromHex("#f0f0f0"),
+                    Size = new Size(100, 25),
+                    Anchor = new Point(50, 25),
+                    ControlTemplate = cvt,
+                };
+
+                cv.BindingContext = cv;
+                cv.NavCommand = new Command(() => { openMapNav(coord.lat, coord.lng, item.name); });
+
+                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), coord)
+                {
+                    BackgroundColor = Color.Transparent,
+                    CustomView = cv
                 };
                 map.Overlays.Add(mv);
 
@@ -69,12 +125,28 @@ namespace AepApp.View.EnvironmentalEmergency
             Title = "敏感源";
             foreach (SensitiveModels.ItemsBean item in dataList)
             {
-                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), new AzmCoord(item.lng, item.lat))
+                Gps gps = PositionUtil.gcj_To_Gps84(item.lat, item.lng);
+                var coord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+                ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+
+                NavLabelView cv = new NavLabelView(item.name, coord)
                 {
-                    Text = item.name,
-                    AlwaysShowLabel = true
+                    BackgroundColor = Color.FromHex("#f0f0f0"),
+                    Size = new Size(100, 25),
+                    Anchor = new Point(50, 25),
+                    ControlTemplate = cvt,
+                };
+
+                cv.BindingContext = cv;
+                cv.NavCommand = new Command(() => { openMapNav(coord.lat, coord.lng, item.name); });
+
+                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), coord)
+                {
+                    BackgroundColor = Color.Transparent,
+                    CustomView = cv
                 };
                 map.Overlays.Add(mv);
+
             }
 
             if(App.currentLocation !=null){
@@ -96,11 +168,14 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 if (item.lat != null)
                 {
+                    //因子上传位置
                     if (item.category == "IncidentFactorMeasurementEvent")
                     {
-                        AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("reddot"), new Size(25, 25), new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat)))
-                        {
+                        //Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
+                        coord = new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat));
 
+                        AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("reddot"), new Size(25, 25), coord)
+                        {
                         };
                         map.Overlays.Add(mv);
                     }
@@ -113,6 +188,8 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 try
                 {
+                    Gps gps = PositionUtil.gcj_To_Gps84(coord.lat, coord.lng);
+                    coord = new AzmCoord(gps.getWgLon(),gps.getWgLat());
                     ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
 
                     NavLabelView cv = new NavLabelView("事发地点", coord)
@@ -124,6 +201,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     };
 
                     cv.BindingContext = cv;
+                    cv.NavCommand = new Command(() => { openMapNav(coord.lat,coord.lng,"事故地点"); });
 
                     AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(35, 35), coord)
                     {
@@ -150,6 +228,36 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
+        //事故详情列表进入
+        public RescueSiteMapPage(string title, AzmCoord singlecoord):this()
+        {
+            Title = title;
+            Gps gps = PositionUtil.gcj_To_Gps84(singlecoord.lat, singlecoord.lng);
+            singlecoord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+
+            ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+
+            NavLabelView cv = new NavLabelView(title, singlecoord)
+            {
+                BackgroundColor = Color.FromHex("#f0f0f0"),
+                Size = new Size(100, 25),
+                Anchor = new Point(50, 25),
+                ControlTemplate = cvt,
+            };
+
+            cv.BindingContext = cv;
+            cv.NavCommand = new Command(() => { openMapNav(singlecoord.lat, singlecoord.lng, title); });
+
+            AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(30, 30), singlecoord)
+            {
+                BackgroundColor = Color.Transparent,
+                CustomView = cv
+            };
+            map.Overlays.Add(mv);       
+            map.SetCenter(13, singlecoord);
+        }
+
+        //布点位置
         private async void ReqPlanLis(string incidentId)
         {
             //string url = App.BasicDataModule.url + DetailUrl.ChemicalList;
@@ -163,11 +271,38 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse.Results);
                 List<BuDianItem> list = JsonConvert.DeserializeObject<List<BuDianItem>>(hTTPResponse.Results);
                 foreach(BuDianItem item in list){
-                    AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("bluetarget"), new Size(30, 30), new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat)))
+                    Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
+
+                    AzmCoord singlecoord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+           ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+                    NavLabelView cv = new NavLabelView(item.address, singlecoord)
                     {
-                        Text = item.address,
-                        };
-                        map.Overlays.Add(mv);
+                        BackgroundColor = Color.FromHex("#f0f0f0"),
+                        //Size = new Size(100, 25),
+                        //Anchor = new Point(50, 25),
+                        ControlTemplate = cvt,
+                    };
+
+
+
+
+            cv.BindingContext = cv;
+                    var s = cv.Measure(100.0, 1000.0);
+
+
+                    cv.NavCommand = new Command(() => { openMapNav(singlecoord.lat, singlecoord.lng, item.address); });
+                    AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("bluetarget"), new Size(30, 30), singlecoord)
+            {
+                BackgroundColor = Color.Transparent,
+                CustomView = cv
+            };
+            map.Overlays.Add(mv);       
+
+                    //AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("bluetarget"), new Size(30, 30), new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat)))
+                    //{
+                        //Text = item.address,
+                        //};
+                        //map.Overlays.Add(mv);
                 }
             }
         }
@@ -181,6 +316,12 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
     }
+
+
+
+
+
+
 
     public class NavLabelView : AzmOverlayView
     {
@@ -222,7 +363,7 @@ namespace AepApp.View.EnvironmentalEmergency
             set { SetValue(TextColorProperty, value); }
         }
 
-        public NavLabelView(string text, AzmCoord coord = null, double maxwidthrequest = 100.0)
+        public NavLabelView(string text, AzmCoord coord = null, double maxwidthrequest = 120.0)
         {
             if (text == null) text = "";
             BackgroundColor = Color.FromHex("#002060");
@@ -231,11 +372,11 @@ namespace AepApp.View.EnvironmentalEmergency
             if (coord != null) Coord = new AzmCoord(coord.lng, coord.lat);
 
             this.BindingContext = new { name = Text };
-            double height = Math.Ceiling(DependencyService.Get<ITextMeter>().MeasureTextHeightGivenMaxWidth(Text, WidthRequest - 6, 14));
+            double height = Math.Ceiling(DependencyService.Get<ITextMeter>().MeasureTextHeightGivenMaxWidth(Text, WidthRequest - 40, 14));
             double width = Math.Ceiling(DependencyService.Get<ITextMeter>().MeasureTextWidthGivenExactHeight(Text, height, 14));
-            width = Math.Min(width, WidthRequest - 6);
-            Size = new Size(width + 6, height + 6);
-            Anchor = new Point((width + 6) / 2, height + 6 + 7);
+            width = Math.Min(width, WidthRequest - 40);
+            Size = new Size(width + 40, height + 6);
+            Anchor = new Point((width + 40) / 2, height + 6 + 7);
 
             NavCommand = new Command(() => {
                 // navigation here

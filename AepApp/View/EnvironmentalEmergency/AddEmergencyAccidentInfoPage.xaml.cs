@@ -161,7 +161,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 lng = emergencyModel.lng,
             };
             AzmCoord center = new AzmCoord(Convert.ToDouble(emergencyModel.lng), Convert.ToDouble(emergencyModel.lat));
-            showModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("文字信息发出位置", center)); });
+            showModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("文字信息发出位置", center)); });
 
             await App.Database.SaveEmergencyAsync(emergencyModel);
             dataList.Add(showModel);
@@ -224,7 +224,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 };
                 AzmCoord center = new AzmCoord(emergencyModel.TargetLng.Value, emergencyModel.TargetLat.Value);
-                showModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("事故中心点", center)); });
+                showModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("事故中心点", center)); });
               
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(showModel);
@@ -564,7 +564,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 };
 
                 AzmCoord center = new AzmCoord(Convert.ToDouble(emergencyModel.lng), Convert.ToDouble(emergencyModel.lat));
-                ShowModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("文字信息发出位置", center)); });
+                ShowModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("文字信息发出位置", center)); });
                          
                 await App.Database.SaveEmergencyAsync(emergencyModel);
                 dataList.Add(ShowModel);
@@ -669,7 +669,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 };
 
                 AzmCoord center = new AzmCoord(Convert.ToDouble(emergencyModel.lng), Convert.ToDouble(emergencyModel.lat));
-                ShowModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new GeneralMapPage("风速风向发出位置", center)); });
+                ShowModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("风速风向发出位置", center)); });
                        
 
                 await App.Database.SaveEmergencyAsync(emergencyModel);

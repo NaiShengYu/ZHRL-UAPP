@@ -44,8 +44,10 @@ namespace SimpleAudioForms.iOS
                 if(audioPlayer !=null){
                     if (audioPlayer.Playing == true)audioPlayer.Stop();
                 }
-                if (type == "Net") audioPlayer = new AVAudioPlayer(data, AVFileType.Wave, out error);
-                if (type == "local") audioPlayer = new AVAudioPlayer(new NSUrl(fileName), AVFileType.Wave, out error);
+                if (type == "Net") 
+                    audioPlayer = new AVAudioPlayer(data, AVFileType.Mpeg4, out error);
+                if (type == "local") 
+                    audioPlayer = new AVAudioPlayer(new NSUrl(fileName), AVFileType.Wave, out error);
                 Debug.WriteLine("时间长度：" + audioPlayer.Duration);
 
                 audioPlayer.Play();
@@ -57,7 +59,7 @@ namespace SimpleAudioForms.iOS
         #region IAudio
         public void PlayNetFile(string fileName)
         {
-            Debug.WriteLine($"PlayMp3File(string {fileName})");
+            Debug.WriteLine($"PlayNetFile(string {fileName})");
              Play(fileName, "Net");
         }
 

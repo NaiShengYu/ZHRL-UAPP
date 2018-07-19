@@ -31,24 +31,24 @@ namespace AepApp.View.EnvironmentalEmergency
             InitializeComponent();
         }
 
-        public GeneralMapPage(string title, AzmCoord singlecoord)
-        {
-            InitializeComponent();
-            Title = title;
-            Console.Write(map);
-            AzmMarkerView m = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(30, 30), singlecoord);
-            map.Overlays.Add(m);
-            map.SetCenter(13, singlecoord);
-        }
+        //public GeneralMapPage(string title, AzmCoord singlecoord)
+        //{
+        //    InitializeComponent();
+        //    Title = title;
+        //    Console.Write(map);
+        //    AzmMarkerView m = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(30, 30), singlecoord);
+        //    map.Overlays.Add(m);
+        //    map.SetCenter(13, singlecoord);
+        //}
 
-        public GeneralMapPage(string title, AzmMarkerView singlemarker)
-        {
-            InitializeComponent();
-            Title = title;
+        //public GeneralMapPage(string title, AzmMarkerView singlemarker)
+        //{
+        //    InitializeComponent();
+        //    Title = title;
 
-            map.Overlays.Add(singlemarker);
-            map.SetCenter(13, singlemarker.Coord);
-        }
+        //    map.Overlays.Add(singlemarker);
+        //    map.SetCenter(13, singlemarker.Coord);
+        //}
 
 
     }
