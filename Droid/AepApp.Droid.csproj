@@ -260,6 +260,7 @@
     <EmbeddedResource Include="pin.png" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppUtil.cs" />
     <Compile Include="CurvedCornersLabelRenderer.cs" />
     <Compile Include="ExtendedViewCellRenderer.cs" />
     <Compile Include="FileHelper.cs" />
