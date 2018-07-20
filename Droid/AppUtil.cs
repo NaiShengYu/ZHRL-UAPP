@@ -12,34 +12,26 @@ using Android.Widget;
 
 namespace Android.Content.PM
 {
-    /// <summary>
-    /// Android App属性工具包
-    /// </summary>
     class AppUtil
     {
-        /// <summary>
-        /// 检查某个应用是否安装
-        /// </summary>
-        /// <param name="Appname"></param>
-        /// <returns></returns>
         public static bool IsInstalled(string Appname)
         {
             bool IsInstallflag = false;
             var flag = PackageInfoFlags.Activities;
             var apps = Application.Context.PackageManager.GetInstalledApplications(flag);
-            if (string.IsNullOrEmpty(Appname))
-            {
-                return IsInstallflag;
-            }
             try
             {
                 foreach (var app in apps)
                 {
                     var appInfo = Application.Context.PackageManager.GetApplicationInfo(app.PackageName, 0);
                     var appLabel = Application.Context.PackageManager.GetApplicationLabel(appInfo);
-                    //var versionNumber = Application.Context.PackageManager.GetPackageInfo(app.PackageName, 0).VersionName;
+                    var versionNumber = Application.Context.PackageManager.GetPackageInfo(app.PackageName, 0).VersionName;
                     if (appLabel.ToLower().Contains(Appname.ToLower()))
                     {
+                        //var builder = new alertdialog.builder(this);
+                        //builder.settitle("found it!");
+                        //builder.setmessage(applabel + " installed at: " + app.sourcedir);
+                        //builder.show();
                         IsInstallflag = true;
                         break;
                     }
