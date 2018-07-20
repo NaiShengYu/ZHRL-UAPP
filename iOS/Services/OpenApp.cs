@@ -33,16 +33,23 @@ namespace AepApp.iOS.Services
             }
             try
             {
-                if (UIApplication.SharedApplication.CanOpenUrl(new NSUrl("iosamap://")) == true) aaa.Insert(0, "高德地图");
+                if (UIApplication.SharedApplication.CanOpenUrl(new NSUrl("iosamap://")) == true) 
+                    aaa.Insert(0, "高德地图");
 
             }
             catch (Exception ex)
             {
 
             }
-
+            try
+            {
+                if (UIApplication.SharedApplication.CanOpenUrl(new NSUrl("qqmap://")) == true) 
+                    aaa.Insert(0, "腾讯地图");
+            }
+            catch (Exception ex)
+            {
+            }
             aaa.Add("苹果地图");
-
             return aaa;
         }
     }

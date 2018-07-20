@@ -72,6 +72,7 @@
 		<string>comgooglemaps</string>
 		<string>iosamap</string>
 		<string>baidumap</string>
+		<string>qqmap</string>
 	</array>
 </dict>
 </plist>

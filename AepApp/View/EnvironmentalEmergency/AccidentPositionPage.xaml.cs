@@ -8,14 +8,33 @@ using Xamarin.Essentials;
 using CloudWTO.Services;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AccidentPositionPage : ContentPage
     {
+
+        /// <summary>
+        /// 点击了键盘的搜索按钮
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
-            getSearchAddress();
+            //getSearchAddress();
+
+            //string text = seach.Text;
+            //string pat = @"^[\-\+]?(0?\d{1,2}\.\d{1,5}|1[0-7]?\d{1}\.\d{1,5}|180\.0{1,5})$/0{1,5})$";
+            //// Compile the regular expression.
+            //Regex r = new Regex(pat, RegexOptions.IgnoreCase);
+            //// Match the regular expression pattern against a text string.
+            //Match m = r.Match(text);
+            //int matchCount = 0;
+            //while (m.Success)
+            //{
+            //}
+
         }
 
         //搜索框内容变化就调用搜索

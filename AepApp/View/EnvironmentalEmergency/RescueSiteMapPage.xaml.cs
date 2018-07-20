@@ -10,8 +10,13 @@ using CloudWTO.Services;
 using Newtonsoft.Json;
 using System.Windows.Input;
 using AepApp.Interface;
-using MapKit;//苹果地图用的
+
 using CoreFoundation;
+
+#if __IOS__
+using MapKit;//苹果地图用的
+#endif
+
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class RescueSiteMapPage : ContentPage
@@ -32,7 +37,11 @@ namespace AepApp.View.EnvironmentalEmergency
                 case "百度地图":
                     Device.OpenUri(new Uri("baidumap://map/direction?origin=latlng:"+App.currentLocation.Latitude+","+App.currentLocation.Longitude+"|name:我的位置&destination=latlng:"+lat+","+lng+"|name:"+destination+"&mode=transit"));
                     break;
+                case "腾讯地图":
+                    Device.OpenUri(new Uri("qqmap://map/routeplan?from=我的位置&type=drive&tocoord="+lat+","+lng+"&to="+destination+"&coord_type=1&policy=0"));
+                    break;
                 case "苹果地图":
+#if __IOS__    
                     //Gps gps1 = PositionUtil.gcj_To_Gps84(lat, lng);
                     MKMapItem currentlocation = new MKMapItem(new MKPlacemark(new CoreLocation.CLLocationCoordinate2D(App.currentLocation.Latitude, App.currentLocation.Longitude)));
                     currentlocation.Name = "当前位置";
@@ -46,7 +55,7 @@ namespace AepApp.View.EnvironmentalEmergency
                         ShowTraffic = true,
                     };
                     MKMapItem.OpenMaps(items, mKLaunchOptions);
-
+#endif
                     break;
                 default: break;
             }
@@ -232,8 +241,8 @@ namespace AepApp.View.EnvironmentalEmergency
         public RescueSiteMapPage(string title, AzmCoord singlecoord):this()
         {
             Title = title;
-            Gps gps = PositionUtil.gcj_To_Gps84(singlecoord.lat, singlecoord.lng);
-            singlecoord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+            //Gps gps = PositionUtil.gcj_To_Gps84(singlecoord.lat, singlecoord.lng);
+            //singlecoord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
 
             ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
 

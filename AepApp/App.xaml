@@ -215,8 +215,11 @@
                                 </Image>
                             </StackLayout>
 
-                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45" />
-
+                            <Image Source="markerred" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LocateOnMapCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
                             <Label Text="{Binding windDescribe}" Margin="10,30,55,8" />
 
                         </Grid>

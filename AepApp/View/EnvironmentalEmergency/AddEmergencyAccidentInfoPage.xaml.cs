@@ -669,7 +669,10 @@ namespace AepApp.View.EnvironmentalEmergency
                 };
 
                 AzmCoord center = new AzmCoord(Convert.ToDouble(emergencyModel.lng), Convert.ToDouble(emergencyModel.lat));
-                ShowModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("风速风向发出位置", center)); });
+                ShowModel.LocateOnMapCommand = new Command(async () => {
+                    
+                    await Navigation.PushAsync(new RescueSiteMapPage("风速风向发出位置", center)); 
+                });
                        
 
                 await App.Database.SaveEmergencyAsync(emergencyModel);

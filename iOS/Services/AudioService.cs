@@ -4,6 +4,7 @@ using System.IO;
 using AVFoundation;
 using Foundation;
 using SimpleAudioForms.iOS;
+
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AudioService))]
@@ -13,11 +14,15 @@ namespace SimpleAudioForms.iOS
     public class AudioService : IAudio
     {
         private AVAudioPlayer audioPlayer;
-
+        private string lastFileName;
         public AudioService() {
        
         }
-
+        /// <summary>
+        /// 播放录音
+        /// </summary>
+        /// <param name="fileName">录音的位置</param>
+        /// <param name="type">录音的方式，网络或者本地</param>
         private void Play(string fileName, string type)
         {
    
@@ -43,6 +48,7 @@ namespace SimpleAudioForms.iOS
                 NSError error;
                 if(audioPlayer !=null){
                     if (audioPlayer.Playing == true)audioPlayer.Stop();
+                    if (lastFileName == fileName) return;
                 }
                 if (type == "Net") 
                     audioPlayer = new AVAudioPlayer(data, AVFileType.Mpeg4, out error);
