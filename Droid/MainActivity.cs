@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using CN.Jpush.Android.Api;
 using OxyPlot;
 using Plugin.CurrentActivity;
 using System;
@@ -32,6 +33,7 @@ namespace AepApp.Droid
             StatusBar.Activity = this;//获取状态栏高度
             LoadApplication(new App());
             //Initializer.Initialize();
+            InitJPush();
         }
         // Field, property, and method for Picture Picker
         public static readonly int PickImageId = 1000;
@@ -73,5 +75,29 @@ namespace AepApp.Droid
             }, (long)interval.TotalMilliseconds);
         }
 
+        /// <summary>
+        /// init JPush
+        /// </summary>
+        private void InitJPush()
+        {
+            JPushInterface.SetDebugMode(true);
+            JPushInterface.Init(Application.Context);
+            //JPushInterface.SetAliasAndTags(Application.Context, "", null);
+        }
+
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            JPushInterface.OnResume(this);
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            JPushInterface.OnPause(this);
+        }
     }
 }

@@ -57,6 +57,10 @@
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.3.0.0.482510\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
+    <Reference Include="JPush.Binding.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JPush.Binding.Droid\bin\Debug\JPush.Binding.Droid.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -264,6 +268,13 @@
     <Compile Include="CurvedCornersLabelRenderer.cs" />
     <Compile Include="ExtendedViewCellRenderer.cs" />
     <Compile Include="FileHelper.cs" />
+    <Compile Include="JPush\BaseHandler.cs" />
+    <Compile Include="JPush\MessageHandler.cs" />
+    <Compile Include="JPush\NotificationOpenHandler.cs" />
+    <Compile Include="JPush\NotificationReceivedHandler.cs" />
+    <Compile Include="JPush\Receiver.cs" />
+    <Compile Include="JPush\ReceiverHandler.cs" />
+    <Compile Include="JPush\RegisrationHandler.cs" />
     <Compile Include="MasterAndDetailPageRenderer.cs" />
     <Compile Include="OxyExData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -524,6 +535,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\jpush_notification_icon.png" />
   </ItemGroup>
   <Import Project="..\AepApp\AepApp.projitems" Label="Shared" Condition="Exists('..\AepApp\AepApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
