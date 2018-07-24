@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
 
 namespace AepApp.View.SecondaryFunction
@@ -13,17 +14,19 @@ namespace AepApp.View.SecondaryFunction
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QRCodeScanner : ContentPage
     {
-        ZXingScannerView zxing;
-        ZXingDefaultOverlay overlay;
-        ZXingOverLayout overLayout;
+        ZXing.Net.Mobile.Forms.ZXingScannerView zxing;
+        ZXingDefaultOverlay defaultOverlay;
+        ZXingOverLayout customOverLayout;
+
+
         public QRCodeScanner() : base()
         {
             //InitializeComponent();
             int height = App.ScreenHeight / 2;
             this.Title = "二维码扫描";
-            initZxing(height);
-            initOverLayout();
-            //DefaultSet();
+            InitZxing(height);
+            //initCustomOverLayout();
+            DefaultSet();
 
             var grid = new Grid
             {
@@ -31,42 +34,41 @@ namespace AepApp.View.SecondaryFunction
                 HorizontalOptions = LayoutOptions.FillAndExpand,
             };
             grid.Children.Add(zxing);
-            grid.Children.Add(overLayout);
-            //grid.Children.Add(overlay);      
-            // The root page of your application
+            //grid.Children.Add(customOverLayout);
+            grid.Children.Add(defaultOverlay);
             Content = grid;
 
         }
 
-
-
-        private void initOverLayout()
+        private void initCustomOverLayout()
         {
-            overLayout = new ZXingOverLayout();
+            customOverLayout = new ZXingOverLayout();
         }
 
-        private void initZxing(int height)
+        private void InitZxing(int height)
         {
-            zxing = new ZXingScannerView
+            zxing = new ZXing.Net.Mobile.Forms.ZXingScannerView
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 AutomationId = "zxingScannerView",
+                IsScanning = true,
+                IsAnalyzing = true,
+                Options = new MobileBarcodeScanningOptions()
+                {
+                    TryHarder = true,//识别大的二维码
+                },
             };
-            zxing.Margin = new Thickness(0, -height + 10, 0, height - 10);
+            //zxing.Margin = new Thickness(0, -height + 10, 0, height - 10);
             zxing.OnScanResult += (result) =>
                Device.BeginInvokeOnMainThread(async () =>
                {
-
                    // Stop analysis until we navigate away so we don't keep reading barcodes
-                   zxing.IsAnalyzing = false; //若为true则为一直扫面
+                   zxing.IsAnalyzing = false;
+                   zxing.IsScanning = false;
 
-                   // Show an alert
-                   //await DisplayAlert("Scanned Barcode", result.Text, "OK");
-                   overlay.TopText = result.Text;
-                   //DependencyService.Get<Sample.IToast>().ShortAlert(result.Text);
-                   overLayout.setMessage(result.Text);
-                   // Navigate away
+                   DependencyService.Get<Sample.IToast>().ShortAlert(result.Text);
+                   //customOverLayout.setMessage(result.Text);
                    await Navigation.PopAsync();
                });
         }
@@ -84,10 +86,19 @@ namespace AepApp.View.SecondaryFunction
 
             base.OnDisappearing();
         }
+
         private async void btnScan_Clicked(object sender, EventArgs e)
         {
             ZXingScannerPage scanPage = new ZXingScannerPage();
-            //scanPage.Title = "扫描条形码";
+            //scanPage.Title = "扫描条形码";           
+
+            //add options and customize page
+            //scanPage = new ZXingScannerPage(options)
+            //{
+            //    DefaultOverlayTopText = "Align the barcode within the frame",
+            //    DefaultOverlayBottomText = string.Empty,
+            //    DefaultOverlayShowFlashButton = true
+            //};
 
             scanPage.OnScanResult += (result) =>
             {
@@ -95,13 +106,12 @@ namespace AepApp.View.SecondaryFunction
                 scanPage.IsScanning = false;
 
 
-
                 Device.BeginInvokeOnMainThread(() =>
                 {
 
                     Navigation.PopAsync();
                     txtBarcode.Text = result.Text;
-                    //DisplayAlert("Scanned Barcode", result.Text, "OK");
+                    DisplayAlert("Scanned Barcode", result.Text, "OK");
 
                 });
 
@@ -122,18 +132,16 @@ namespace AepApp.View.SecondaryFunction
             //    throw;
             //}
         }
+
         private void DefaultSet()
         {
-            overlay = new ZXingDefaultOverlay
+            defaultOverlay = new ZXingDefaultOverlay
             {
-                TopText = "Hold your phone up to the barcode",
-                //BottomText = "Scanning will happen automatically",
-                BottomText = "",
-                //ShowFlashButton = zxing.HasTorch,
+                TopText = "",
+                BottomText = "将条码/二维码放入框内即可自动扫描",
                 ShowFlashButton = false,
                 AutomationId = "zxingDefaultOverlay",
             };
-            overLayout = new ZXingOverLayout();
             //添加刷新按钮
             Button bt = new Button
             {
@@ -145,7 +153,7 @@ namespace AepApp.View.SecondaryFunction
             };
             bt.Clicked += (sender, e) =>
             {
-                zxing.IsTorchOn = !zxing.IsTorchOn;
+                //zxing.IsTorchOn = !zxing.IsTorchOn;
                 zxing.IsAnalyzing = true;
             };
             //BoxView boxViewBottom = new BoxView
@@ -155,9 +163,9 @@ namespace AepApp.View.SecondaryFunction
             //    VerticalOptions = LayoutOptions.FillAndExpand
             //};   
             //overlay.Children.Add(boxViewBottom);          
-            overlay.Children.Add(bt);
+            //defaultOverlay.Children.Add(bt);
             // Grid.SetRow(boxViewBottom, 2);          
-            Grid.SetRow(bt, 2);
+            //Grid.SetRow(bt, 2);
             //overlay.FlashButtonClicked += (sender, e) =>
             //{
             //    zxing.IsTorchOn = !zxing.IsTorchOn;

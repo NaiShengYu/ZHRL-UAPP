@@ -13,6 +13,9 @@ using CN.Jpush.Android.Api;
 
 namespace AepApp.Droid.JPush
 {
+    /// <summary>
+    /// open JPush Notification
+    /// </summary>
     public class NotificationOpenHandler : BaseHandler
     {
         public override string Action

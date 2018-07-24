@@ -7,9 +7,11 @@ using CN.Jpush.Android.Api;
 using OxyPlot;
 using Plugin.CurrentActivity;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
+[assembly: UsesPermission(Android.Manifest.Permission.Flashlight)]
 namespace AepApp.Droid
 {
     [Activity(Label = "AepApp.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -28,12 +30,13 @@ namespace AepApp.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
             //百度地图配置
             //Xamarin.FormsBaiduMaps.Init(null);
+            InitJPush();
             StatusBar.Activity = this;//获取状态栏高度
             LoadApplication(new App());
             //Initializer.Initialize();
-            InitJPush();
         }
         // Field, property, and method for Picture Picker
         public static readonly int PickImageId = 1000;
@@ -61,6 +64,10 @@ namespace AepApp.Droid
             }
         }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
 
         public void StartTimer(TimeSpan interval, Func<bool> callback)
         {
@@ -82,7 +89,11 @@ namespace AepApp.Droid
         {
             JPushInterface.SetDebugMode(true);
             JPushInterface.Init(Application.Context);
-            //JPushInterface.SetAliasAndTags(Application.Context, "", null);
+            JPushInterface.SetAlias(Application.Context, 0, "alias_test");
+
+            BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(this);
+            builder.StatusBarDrawable = Resource.Drawable.jpush_notification_icon;
+            JPushInterface.SetPushNotificationBuilder(new Java.Lang.Integer(1), builder);
         }
 
 
@@ -100,4 +111,5 @@ namespace AepApp.Droid
             JPushInterface.OnPause(this);
         }
     }
+
 }

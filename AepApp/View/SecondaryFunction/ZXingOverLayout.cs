@@ -59,7 +59,7 @@ namespace AepApp.View.SecondaryFunction
 
         internal void setMessage(string text)
         {
-            Console.WriteLine("二维码" + text);
+            Console.WriteLine("二维码: " + text);
         }
     }
 }
