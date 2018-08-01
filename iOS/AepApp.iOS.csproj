@@ -341,6 +341,13 @@
     <BundleResource Include="Resources\search-2.png" />
     <BundleResource Include="Resources\search-2%403x.png" />
     <BundleResource Include="Resources\search-2%402x.png" />
+    <BundleResource Include="Resources\magglass%403x.png" />
+    <BundleResource Include="Resources\magglass%402x.png" />
+    <BundleResource Include="Resources\magglass.png" />
+    <BundleResource Include="Resources\scan_1%402x.png" />
+    <BundleResource Include="Resources\scan_2%402x.png" />
+    <BundleResource Include="Resources\scan_3%402x.png" />
+    <BundleResource Include="Resources\scan_4%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

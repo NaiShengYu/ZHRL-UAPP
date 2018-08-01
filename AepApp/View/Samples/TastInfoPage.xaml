@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Samples.TastInfoPage">
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView Margin="0,0,0,50">
+                <StackLayout BackgroundColor="Silver" Spacing="1">
+                    <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Label Margin="10,12,0,12" Text="地表水" Font="17" VerticalOptions="Center" />
+                        <Label Margin="150,12,30,12" Text="重金属苯系物" HorizontalOptions="End" Font="16" TextColor="Gray" HeightRequest="30" VerticalTextAlignment="Center"/>
+                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <Grid BackgroundColor="Silver">
+                        <Label Margin="10,1,0,1" Text="样本" Font="15" VerticalOptions="Center" />
+                        <Button HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" BackgroundColor="Transparent" Image="bluetruck" />
+                        <Button HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" BackgroundColor="Transparent" Image="graymicroscrope" Margin="120,0,0,0" />
+                        <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2" TextColor="White" />
+                        </Frame>
+                    </Grid>
+                    <ScrollView x:Name="sac" HeightRequest="85" Orientation="Horizontal" BackgroundColor="#f5f6f7">
+                        <StackLayout x:Name="sampleBottleSK" Orientation="Horizontal" Spacing="10" Margin="10,5,10,5"/>
+                    </ScrollView>
+                    <Grid BackgroundColor="White">
+                        <Label Margin="10,12,0,12" Text="样本编号" Font="17" />
+                        <Label Margin="90,12,10,12" Text="s343242" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Label Margin="10,12,0,12" Text="采样时间" Font="17" />
+                        <Label Margin="90,12,10,12" Text="2017-10-19 18：00" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Label Margin="10,12,0,12" Text="样本外观" Font="17" VerticalOptions="Center" />
+                        <Label Margin="150,12,30,12" Text="呈红色液体，带漂浮物，漂浮物呈絮状物，会蠕动" HorizontalOptions="End" Font="16" TextColor="Gray" HeightRequest="30" />
+                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Label Margin="10,12,0,12" Text="采样坐标" Font="17" VerticalOptions="Center" />
+                        <Label Margin="150,12,30,12" Text="129.123495E,29.938492N" HorizontalOptions="End" Font="16" TextColor="Gray" />
+                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Label Margin="10,12,0,12" Text="采样瓶编号" Font="17" />
+                        <Label Margin="90,12,10,12" Text="X23u308" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                    </Grid>
+                    <Grid BackgroundColor="Silver">
+                        <Label Margin="10,1,0,1" Text="照片" Font="15" VerticalOptions="Center" />
+                        <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2" TextColor="White" />
+                        </Frame>
+                    </Grid>
+                    <ScrollView x:Name="pickSCR" Orientation="Horizontal" HeightRequest="110" BackgroundColor="White">
+                    <StackLayout x:Name="PickSK" Orientation="Horizontal">
+                            
+                        </StackLayout>
+                        
+                    </ScrollView>
+                    
+                </StackLayout>
+            </ScrollView>
+            <Grid VerticalOptions="End" HorizontalOptions="Fill" HeightRequest="50" BackgroundColor="#e8e8e8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="5" Image="add" />
+                <Button Grid.Column="1" Margin="5" Image="minus" />
+                <Button Grid.Column="2" Margin="5" Image="scan" Clicked="scanning"/>
+                <Button Grid.Column="3" Margin="5" Image="camera" Clicked="takePhoto"/>
+                <Button Grid.Column="4" Margin="5" Image="trashcan" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

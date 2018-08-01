@@ -23,7 +23,10 @@ namespace AepApp.View.Samples
         //选中了item
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-           
+            CollectionAndTransportSampleModel model = e.SelectedItem as CollectionAndTransportSampleModel;
+            if (model == null)return;
+            Navigation.PushAsync(new ScanSamplePage());
+            listView.SelectedItem = null;
         }
 
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
@@ -41,6 +44,7 @@ namespace AepApp.View.Samples
         public TransportSamplesPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");
 
             var model1 = new CollectionAndTransportSampleModel
             {

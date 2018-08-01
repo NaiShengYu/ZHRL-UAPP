@@ -293,6 +293,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\reddot.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\open.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\search_2.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\magglass.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scan_1%402x.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scan_2%402x.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scan_3%402x.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scan_4%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\water.png" />

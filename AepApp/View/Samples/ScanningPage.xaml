@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Samples.ScanningPage" xmlns:ZX="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+    <ContentPage.Content>
+        <Grid BackgroundColor="Black">
+            <Grid BackgroundColor="Black" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="250" Margin="30" TranslationY="-40">
+                <Image HorizontalOptions="Start" VerticalOptions="Start" Margin="27" Source="scan_1" WidthRequest="19" HeightRequest="19" />
+                <Image HorizontalOptions="End" VerticalOptions="Start" Margin="27" Source="scan_2" WidthRequest="19" HeightRequest="19" />
+                <Image HorizontalOptions="Start" VerticalOptions="End" Margin="27,0,0,25" Source="scan_3" WidthRequest="19" HeightRequest="19" />
+                <Image HorizontalOptions="End" VerticalOptions="End" Margin="0,0,27,25" Source="scan_4" WidthRequest="19" HeightRequest="19" />
+                <ZX:ZXingScannerView x:Name="ZXING" Margin="30" HeightRequest="300" WidthRequest="300" AutomationId="zxingScannerView" IsScanning="true" OnScanResult="Handle_OnScanResult"/>
+            </Grid>
+
+
+<!--            <Button BackgroundColor="Olive" HorizontalOptions="Center" VerticalOptions="Center" Clicked="Handle_Clicked" HeightRequest="100" WidthRequest="100"/>-->
+            <Label VerticalOptions="End" HorizontalOptions="Center" Text="129.12345E, 29.123432N" TextColor="White" Font="17" Margin="20,0,20,40" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

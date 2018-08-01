@@ -207,7 +207,6 @@ namespace AepApp.View.EnvironmentalEmergency
             listView.SelectedItem = null;
         }
 
-        DateTime lastTime = new DateTime();
         public EmergencyAccidentInfoPage(string name, string id, string isArchived)
         {
             InitializeComponent();
@@ -234,13 +233,12 @@ namespace AepApp.View.EnvironmentalEmergency
             if(dataList.Count ==0)url= App.EmergencyModule.url + DetailUrl.GetEmergencyDetail +
                    "?Id=" + id;
             else {
-                
-                string time = string.Format("{0:yyyy-MM-dd HH:mm:ss}", lastTime);
+                EmergencyAccidentInfoDetail.IncidentLoggingEventsBean item = dataList[0];
+                string time = string.Format("{0:yyyy-MM-dd HH:mm:ss}", item.creationTime.AddSeconds(2));
                 time = System.Net.WebUtility.UrlEncode(time); 
                 url = App.EmergencyModule.url + DetailUrl.GetEmergencyDetail +
                          "?Id=" + id + "&After=" +time;
             }
-            lastTime = DateTime.Now;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == HttpStatusCode.OK)
             {
@@ -303,7 +301,6 @@ namespace AepApp.View.EnvironmentalEmergency
 
                         }
                     }
-
 
                     else if (cagy == "IncidentReportGenerationEvent" || cagy == "IncidentPlanGenerationEvent")
                     {

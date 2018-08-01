@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.Samples.ScanSamplePage" 
+             xmlns:ZX="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+    <ContentPage.Content>
+        <Grid>
+            <Grid VerticalOptions="End" HeightRequest="55" BackgroundColor="Silver">
+                <Button BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="45" WidthRequest="100" Image="tick" />
+                <Button BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="End" HeightRequest="45" WidthRequest="69" Image="doc" Clicked="Handle_Clicked"/>
+            </Grid>
+            <Grid VerticalOptions="Fill" HorizontalOptions="Fill" Margin="0,0,0,56">
+                <ScrollView Scrolled="Handle_Scrolled">
+                    <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" x:Name="planST" Spacing="1" BackgroundColor="#e6e6e6">
+                        <Grid BackgroundColor="Black">
+                            <Image HorizontalOptions="Start" VerticalOptions="Start" Margin="27" Source="scan_1" WidthRequest="19" HeightRequest="19" />
+                            <Image HorizontalOptions="End" VerticalOptions="Start" Margin="27" Source="scan_2" WidthRequest="19" HeightRequest="19" />
+                            <Image HorizontalOptions="Start" VerticalOptions="End" Margin="27,0,0,25" Source="scan_3" WidthRequest="19" HeightRequest="19" />
+                            <Image HorizontalOptions="End" VerticalOptions="End" Margin="0,0,27,25" Source="scan_4" WidthRequest="19" HeightRequest="19" />
+                            <ZX:ZXingScannerView x:Name="ZXING" Margin="30" AutomationId="zxingScannerView" IsScanning="true" OnScanResult="Handle_OnScanResult" />
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

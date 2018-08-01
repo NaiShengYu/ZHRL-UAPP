@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Net;
 using AepApp.View.EnvironmentalEmergency;
 using Xamarin.Essentials;
+using AepApp.View.SecondaryFunction;
 
 namespace AepApp
 {
@@ -102,9 +103,9 @@ namespace AepApp
             InitializeComponent();
             MainPage = new SplashPage();
 
-            //MainPage = new TestOxyPage();
+            MainPage = new TestOxyPage();
 
-            aaaa();
+            //aaaa();
         }
 
         //使用后删除错误数据
@@ -132,7 +133,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-            //return;
+            return;
             HandleEventHandler();
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
@@ -292,7 +293,7 @@ namespace AepApp
             try
             {
                 string url = EmergencyModule.url + "/api/TokenAuth/ExternalAuthenticate";
-                url = "http://192.168.1.128:5000/api/TokenAuth/ExternalAuthenticate";
+                // url = "http://192.168.1.128:5000/api/TokenAuth/ExternalAuthenticate";
 
                 ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
                 {

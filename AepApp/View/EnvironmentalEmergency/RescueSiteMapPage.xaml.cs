@@ -138,6 +138,16 @@ namespace AepApp.View.EnvironmentalEmergency
             }
 
         }
+
+        public RescueSiteMapPage(string location):this(){
+            Title = "采样位置";
+
+
+
+        }
+
+
+
         //从敏感源进入
         public RescueSiteMapPage(ObservableCollection<SensitiveModels.ItemsBean> dataList) : this()
         {
@@ -302,8 +312,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     NavLabelView cv = new NavLabelView(item.address, singlecoord)
                     {
                         BackgroundColor = Color.FromHex("#f0f0f0"),
-                        //Size = new Size(100, 25),
-                        //Anchor = new Point(50, 25),
+         
                         ControlTemplate = cvt,
                     };
 

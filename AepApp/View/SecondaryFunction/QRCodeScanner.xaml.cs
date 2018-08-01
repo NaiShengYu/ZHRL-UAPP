@@ -13,28 +13,38 @@ namespace AepApp.View.SecondaryFunction
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QRCodeScanner : ContentPage
     {
+        void Handle_OnScanResult(ZXing.Result result)
+        {
+            Console.Write("扫描结果：" + result);
+
+            ZXING.IsAnalyzing = false;
+
+
+        }
+
         ZXingScannerView zxing;
         ZXingDefaultOverlay overlay;
         ZXingOverLayout overLayout;
-        public QRCodeScanner() : base()
+
+        public QRCodeScanner() 
         {
-            //InitializeComponent();
-            int height = App.ScreenHeight / 2;
-            this.Title = "二维码扫描";
-            initZxing(height);
-            initOverLayout();
+            InitializeComponent();
+            //int height = App.ScreenHeight / 2;
+            //this.Title = "二维码扫描";
+            //initZxing(height);
+            //initOverLayout();
             //DefaultSet();
 
-            var grid = new Grid
-            {
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-            };
-            grid.Children.Add(zxing);
-            grid.Children.Add(overLayout);
+            //var grid = new Grid
+            //{
+            //    VerticalOptions = LayoutOptions.FillAndExpand,
+            //    HorizontalOptions = LayoutOptions.FillAndExpand,
+            //};
+            //grid.Children.Add(zxing);
+            //grid.Children.Add(overLayout);
             //grid.Children.Add(overlay);      
-            // The root page of your application
-            Content = grid;
+            //// The root page of your application
+            //Content = grid;
 
         }
 
@@ -60,7 +70,7 @@ namespace AepApp.View.SecondaryFunction
 
                    // Stop analysis until we navigate away so we don't keep reading barcodes
                    zxing.IsAnalyzing = false; //若为true则为一直扫面
-
+                   
                    // Show an alert
                    //await DisplayAlert("Scanned Barcode", result.Text, "OK");
                    overlay.TopText = result.Text;
@@ -73,16 +83,16 @@ namespace AepApp.View.SecondaryFunction
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
+            //base.OnAppearing();
 
-            zxing.IsScanning = true;
+            //zxing.IsScanning = true;
         }
 
         protected override void OnDisappearing()
         {
-            zxing.IsScanning = false;
+            //zxing.IsScanning = false;
 
-            base.OnDisappearing();
+            //base.OnDisappearing();
         }
         private async void btnScan_Clicked(object sender, EventArgs e)
         {
@@ -100,7 +110,7 @@ namespace AepApp.View.SecondaryFunction
                 {
 
                     Navigation.PopAsync();
-                    txtBarcode.Text = result.Text;
+                    //txtBarcode.Text = result.Text;
                     //DisplayAlert("Scanned Barcode", result.Text, "OK");
 
                 });

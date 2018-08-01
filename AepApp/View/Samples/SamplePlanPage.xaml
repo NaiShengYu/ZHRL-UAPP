@@ -4,7 +4,7 @@
              x:Class="AepApp.View.Samples.SamplePlanPage"
              Title="采样计划">
     <ContentPage.Content>
-         <Grid RowSpacing="1">
+         <Grid RowSpacing="1" BackgroundColor="#f5f6f7">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
@@ -12,7 +12,7 @@
             </Grid.RowDefinitions>
             <Grid >
                  <Image Source="right" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"/>
-                 <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2018-07-16"/>
+                 <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2018-07-16" Font="18"/>
                 <Image Source="right" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0"/>
             </Grid>
             
@@ -22,14 +22,17 @@
                         <ViewCell>
 
                             <Grid VerticalOptions="Center">
-                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
-                                    <Label Margin="0,8,0,0" StyleClass="itemsubtitle" Text="{Binding time }" Font="20" />
+                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="2" >
+                                    <Label Margin="0,8,0,0" StyleClass="itemsubtitle" Text="{Binding time}" Font="20" />
                                     <Label Margin="0,0,0,8" StyleClass="itemtitle" Text="{Binding num}" Font="15" TextColor="Silver" />
                                 </StackLayout>
                                 <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" Margin="0,0,10,0">
                                     <Image.Triggers>
                                         <DataTrigger TargetType="Image" Binding="{Binding type}" Value="start">
                                             <Setter Property="Source" Value="grayclock" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image" Binding="{Binding type}" Value="wait">
+                                            <Setter Property="Source" Value="bluetick" />
                                         </DataTrigger>
                                         <DataTrigger TargetType="Image" Binding="{Binding type}" Value="finish">
                                             <Setter Property="Source" Value="greentick" />
