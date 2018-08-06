@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Samples.SamplePlanInfoPage">
     <ContentPage.Content>
         <Grid>
-        <ScrollView>
+        <ScrollView Margin="0,0,0,50">
             <StackLayout Spacing="1" BackgroundColor="#e6e6e6" x:Name="SD">
                 <Grid BackgroundColor="White">
                     <Label VerticalOptions="CenterAndExpand" Margin="10,10,0,10" Text="状态" />

@@ -64,5 +64,11 @@ namespace AepApp.View.Samples
             listView.ItemsSource = dataList;
 
         }
+
+
+        private void AddPlans()
+        {
+            //DatabaseContext dbContext = new Da
+        }
     }
 }
