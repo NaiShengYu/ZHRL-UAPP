@@ -1,16 +1,16 @@
 ﻿.menuitem {
-    height:35;
+    
     /*background-color: red;*/
 }
 
     .menuitem label {
-        margin-top: 5;
+        margin-top: 10;
         margin-left: 35;
         font-size: 19;
         color: black;
         text-align: left;
     }
-
+    
 .itemtitle {
     font-size: 17;
     color: black;

@@ -11,37 +11,45 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Spacing="1">
-            <Grid HeightRequest="350" BackgroundColor="rgb(48, 116, 163)">
-                <Image Source="tree" HeightRequest="130" WidthRequest="130" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,0"/>
+        <Grid RowSpacing="1">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!--<StackLayout Spacing="1">-->
+            <Grid BackgroundColor="rgb(48, 116, 163)" Grid.Row="0">
+                <Image Source="tree" HeightRequest="80" WidthRequest="80" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,0"/>
 
                 <Label Text="瑞蓝智慧环保系统" FontSize="20" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,12,10,0" />
                 <Label Text="Azura Environmental" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,35,10,0"  />
                 <Label Text="Protection System" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,50,10,0"  />
 
-                <Image Source="user" HeightRequest="60" WidthRequest="60" HorizontalOptions="Center" VerticalOptions="End" Margin="60,0,-60,30"/>
-                
-                <Frame HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="rgb(54, 144, 207)" Margin="60,0,-60,8" Padding="10,2,10,2" BorderColor="Transparent" HasShadow="False" CornerRadius="10">
+                <Image Source="user" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" VerticalOptions="End" Margin="0,80,20,30"/>
+
+                <Frame HorizontalOptions="End" VerticalOptions="End" BackgroundColor="rgb(54, 144, 207)" Margin="0,90,10,8" Padding="10,2,10,2" BorderColor="Transparent" HasShadow="False" CornerRadius="10">
                     <Label Text="测试用户5" TextColor="White" FontSize="12" />
                 </Frame>
             </Grid>
-            
-            <StackLayout BackgroundColor="White" Spacing="0" x:Name="menu1" HeightRequest="195">
+
+            <StackLayout  Grid.Row="1" BackgroundColor="White" Spacing="0" x:Name="menu1">
                 <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                <Grid StyleClass="menuitem" >
-                    <Label Text="送样记录" BindingContext="AepApp.View.Samples.CollectionSamplesPage" />
+                <Grid >
+                    <Label Text="送样记录" BindingContext="AepApp.View.Samples.CollectionSamplesPage" Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
-                  <Grid StyleClass="menuitem" >
-                    <Label Text="接样记录" BindingContext="AepApp.View.Samples.TransportSamplesPage"/>
+                <Grid >
+                    <Label Text="接样记录" BindingContext="AepApp.View.Samples.TransportSamplesPage"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
-                <Grid StyleClass="menuitem" >
-                    <Label Text="采样计划" BindingContext="AepApp.View.Samples.SamplePlanPage"/>
+                <Grid  >
+                    <Label Text="采样计划" BindingContext="AepApp.View.Samples.SamplePlanPage"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
             </StackLayout>
 
-            <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+            <!--<BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>-->
 
-            <ScrollView BackgroundColor="White">
+            <ScrollView  Grid.Row="2" BackgroundColor="White">
                 <StackLayout Spacing="0" x:Name="menu2">
                     <Label Text="环境质量" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
@@ -62,11 +70,11 @@
                     </Grid>
 
                     <Label Text="环境应急" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    
+
                     <Grid StyleClass="menuitem" >
                         <Label Text="应急事故" BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" />
                     </Grid>
-                    
+
                     <Grid StyleClass="menuitem" >
                         <Label Text="成功案例" BindingContext="AepApp.View.EnvironmentalEmergency.SuccessCase" />
                     </Grid>
@@ -82,7 +90,7 @@
                     <Grid StyleClass="menuitem" >
                         <Label Text="救援地点" BindingContext="AepApp.View.EnvironmentalEmergency.RescueSitePage"  />
                     </Grid>
-                    
+
                     <Grid StyleClass="menuitem" >
                         <Label Text="专家库" BindingContext="AepApp.View.EnvironmentalEmergency.ExpertLibraryPage" />
                     </Grid>
@@ -106,7 +114,7 @@
                     </Grid>
 
                     <Label Text="采样系统" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    
+
                     <Grid StyleClass="menuitem" >
                         <Label Text="采样方案" />
                     </Grid>
@@ -115,19 +123,21 @@
 
             </ScrollView>
 
-            <BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>
+            <!--<BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>-->
 
-            <StackLayout BackgroundColor="White" Spacing="0" HeightRequest="130" x:Name="menu3">
-                <Grid StyleClass="menuitem" >
-                    <Label Text="扫码登录" BindingContext="AepApp.View.SecondaryFunction.QRCodeScanner" />
+            <StackLayout  Grid.Row="3" BackgroundColor="White" Spacing="0" x:Name="menu3">
+                <Grid>
+                    <Label Text="扫码登录" BindingContext="AepApp.View.SecondaryFunction.QRCodeScanner"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
 
-                <Grid StyleClass="menuitem" >
-                    <Label Text="设置" BindingContext="AepApp.View.SelectSitePage" />
+                <Grid>
+                    <Label Text="设置" BindingContext="AepApp.View.SelectSitePage"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
             </StackLayout>
 
-        </StackLayout>
+            <!--</StackLayout>-->
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
 

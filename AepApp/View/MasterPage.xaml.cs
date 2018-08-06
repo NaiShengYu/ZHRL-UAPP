@@ -41,10 +41,10 @@ namespace AepApp.View
                 {
                     if (child is Grid)
                     {
-                        if (child.StyleClass.Contains("menuitem"))
-                        {
+                        //if (child.StyleClass != null && child.StyleClass.Contains("menuitem"))
+                        //{
                             child.GestureRecognizers.Add(tapGestureRecognizer);
-                        }
+                        //}
                     }
                 }
             }
