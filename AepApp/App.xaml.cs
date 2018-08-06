@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 using System.Net;
 using AepApp.View.EnvironmentalEmergency;
 using Xamarin.Essentials;
-using AepApp.View.SecondaryFunction;
+//using AepApp.View.SecondaryFunction;
 
 namespace AepApp
 {
@@ -103,7 +103,7 @@ namespace AepApp
             InitializeComponent();
             MainPage = new SplashPage();
 
-            MainPage = new TestOxyPage();
+            //MainPage = new TestOxyPage();
 
             //aaaa();
         }
@@ -133,7 +133,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-            return;
+            //return;
             HandleEventHandler();
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {

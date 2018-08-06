@@ -60,6 +60,7 @@ namespace AepApp.View.Samples
             dataList.Add(model2);
             dataList.Add(model3);
             dataList.Add(model4);
+
             listView.ItemsSource = dataList;
 
         }

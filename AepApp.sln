@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AepApp.iOS", "iOS\AepApp.iO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AepApp.Droid", "Droid\AepApp.Droid.csproj", "{D7C20BF8-55F3-4CF7-B5AF-28728A177708}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JPush.Binding.Droid", "JPush.Binding.Droid\JPush.Binding.Droid.csproj", "{83390823-B6C8-4089-B357-4B4760C19291}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		AepApp\AepApp.projitems*{6c2a0f40-8801-43ca-bedd-9730ee426213}*SharedItemsImports = 13
@@ -49,6 +51,18 @@ Global
 		{D7C20BF8-55F3-4CF7-B5AF-28728A177708}.Release|iPhone.Build.0 = Release|Any CPU
 		{D7C20BF8-55F3-4CF7-B5AF-28728A177708}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{D7C20BF8-55F3-4CF7-B5AF-28728A177708}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Release|iPhone.Build.0 = Release|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{83390823-B6C8-4089-B357-4B4760C19291}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

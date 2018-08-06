@@ -78,11 +78,6 @@
       <DependentUpon>PollutionSourcePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\SecondaryFunction\QRCodeScanner.xaml.cs">
-      <DependentUpon>QRCodeScanner.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\SecondaryFunction\ZXingOverLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\SelectSitePage.xaml.cs">
       <DependentUpon>SelectSitePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -569,12 +564,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\TestMapPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\SecondaryFunction\QRCodeScanner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

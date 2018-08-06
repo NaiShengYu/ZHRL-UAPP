@@ -22,6 +22,11 @@ namespace AepApp.Models
             set { Type = value; NotifyPropertyChanged("type"); }
         }
 
+
+
+
+
+
         public string state{ get; set; }
 
     }

@@ -94,6 +94,41 @@ namespace AepApp.View.Samples
                 factor = "重金属，苯系物",
             };
             dataList.Add(model1);
+
+            TaskModel model6 = new TaskModel
+            {
+                name = "任务五",
+                num = "0",
+                type = "地表水",
+                factor = "重金属，苯系物",
+            };
+            dataList.Add(model6);
+            TaskModel model8 = new TaskModel
+            {
+                name = "任务五",
+                num = "0",
+                type = "地表水",
+                factor = "重金属，苯系物",
+            };
+            dataList.Add(model8);
+            TaskModel model7 = new TaskModel
+            {
+                name = "任务五",
+                num = "0",
+                type = "地表水",
+                factor = "重金属，苯系物",
+            };
+            dataList.Add(model7);
+            TaskModel model9 = new TaskModel
+            {
+                name = "任务五",
+                num = "0",
+                type = "地表水",
+                factor = "重金属，苯系物",
+            };
+            dataList.Add(model9);
+
+            dataList.Add(model1);
             dataList.Add(model2);
             dataList.Add(model3);
             dataList.Add(model4);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using AepApp.View.EnvironmentalEmergency;
-using AepApp.View.SecondaryFunction;
+//using AepApp.View.SecondaryFunction;
 using Xamarin.Forms.PlatformConfiguration;
 
 namespace AepApp.View

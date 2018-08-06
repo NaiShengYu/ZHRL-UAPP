@@ -166,15 +166,16 @@ namespace AepApp.View
             set { _model = value; NotifyPropertyChanged("TestModel"); }
         }
 
-
         TestModel _model = null;
 		public TestOxyPage ()
 		{
 			InitializeComponent ();
 
+                               
             Binding binding = new Binding("TestModel");
             binding.Source = this;
             this.SetBinding(BindingContextProperty, binding);
+   
 
             TestModel = new TestModel
             {

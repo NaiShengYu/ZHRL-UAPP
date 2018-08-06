@@ -8824,16 +8824,20 @@ namespace AepApp.Droid
 			public const int image = 2130837770;
 			
 			// aapt resource value: 0x7f02010b
-			public const int loc1 = 2130837771;
+			public const int jpush_notification_icon = 2130837771;
 			
 			// aapt resource value: 0x7f02010c
-			public const int loc2 = 2130837772;
+			public const int loc1 = 2130837772;
 			
 			// aapt resource value: 0x7f02010d
-			public const int logout = 2130837773;
+			public const int loc2 = 2130837773;
 			
 			// aapt resource value: 0x7f02010e
+<<<<<<< HEAD
 			public const int magglass = 2130837774;
+=======
+			public const int logout = 2130837774;
+>>>>>>> 3778c8a3192a88d4ae44a2f7b8825906b6b5fc46
 			
 			// aapt resource value: 0x7f02010f
 			public const int map = 2130837775;
@@ -10679,6 +10683,9 @@ namespace AepApp.Droid
 			
 			// aapt resource value: 0x7f0c000e
 			public const int CardView_Light = 2131492878;
+			
+			// aapt resource value: 0x7f0c018c
+			public const int MyDialogStyle = 2131493260;
 			
 			// aapt resource value: 0x7f0c0189
 			public const int MyTheme = 2131493257;
