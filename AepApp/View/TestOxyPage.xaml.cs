@@ -81,7 +81,7 @@ namespace AepApp.View
 
             #if __ANDROID__
     // Initialize the scanner first so it can track the current context
-         MobileBarcodeScanner.Initialize (Application);
+         //MobileBarcodeScanner.Initialize (Application);
             #endif
 
             var scanner = new ZXing.Mobile.MobileBarcodeScanner();
