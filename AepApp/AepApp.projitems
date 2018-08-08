@@ -79,6 +79,10 @@
       <DependentUpon>PollutionSourcePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\ScanLoginPage.xaml.cs">
+      <DependentUpon>ScanLoginPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\SelectSitePage.xaml.cs">
       <DependentUpon>SelectSitePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -586,5 +590,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)View\Samples\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\ScanLoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
