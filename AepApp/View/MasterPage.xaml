@@ -128,7 +128,7 @@
 
             <StackLayout  Grid.Row="3" BackgroundColor="White" Spacing="0" x:Name="menu3">
                 <Grid>
-                    <Label Text="扫码登录" BindingContext="AepApp.View.SecondaryFunction.QRCodeScanner"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
+                    <Label Text="扫码登录" BindingContext="AepApp.View.ScanLoginPage"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
 
                 <Grid>

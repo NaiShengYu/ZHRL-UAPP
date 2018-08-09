@@ -17,7 +17,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid VerticalOptions="Center" StyleClass="item">
+                            <Grid VerticalOptions="Center">
                                 <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="0">
                                     <Label StyleClass="itemtitle" Text="{Binding name}" />
                                     <Label StyleClass="itemsubtitle" Text="{Binding address}">

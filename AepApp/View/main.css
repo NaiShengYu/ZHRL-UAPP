@@ -1,5 +1,5 @@
 ﻿.menuitem {
-    
+    height: 35;
     /*background-color: red;*/
 }
 
@@ -69,6 +69,7 @@
 .itemvalue {
     font-size: 15;
     margin-right: 20;
+    margin-left: 100;
 }
 .itemvaluesmall {
     font-size: 12;
