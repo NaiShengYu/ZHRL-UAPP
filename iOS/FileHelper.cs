@@ -12,20 +12,22 @@ using AepApp.Interface;
 namespace Todo.iOS
 
 {
-
     public class FileHelper : IFileHelper
-
     {
+
+        public FileHelper(){
+
+
+
+        }
+
 
         public string GetLocalFilePath(string filename)
 
         {
-
             string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
             string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
-
-
 
             if (!Directory.Exists(libFolder))
 
@@ -34,8 +36,6 @@ namespace Todo.iOS
                 Directory.CreateDirectory(libFolder);
 
             }
-
-
 
             return Path.Combine(libFolder, filename);
 

@@ -290,6 +290,12 @@
       <DependentUpon>SampleRemarkPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\TestModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MySamplePlan.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DatabaseContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\TestPersonViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Samples\ShowMessagePage.xaml.cs">
+      <DependentUpon>ShowMessagePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -509,6 +515,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Samples\ShowMessagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\LoginPage.xaml">
@@ -586,5 +596,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)View\Samples\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModel\" />
   </ItemGroup>
 </Project>

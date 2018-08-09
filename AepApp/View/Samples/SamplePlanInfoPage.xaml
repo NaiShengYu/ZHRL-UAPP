@@ -2,110 +2,109 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Samples.SamplePlanInfoPage">
     <ContentPage.Content>
         <Grid>
-        <ScrollView Margin="0,0,0,50">
-            <StackLayout Spacing="1" BackgroundColor="#e6e6e6" x:Name="SD">
-                <Grid BackgroundColor="White">
-                    <Label VerticalOptions="CenterAndExpand" Margin="10,10,0,10" Text="状态" />
-                    <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="30" HeightRequest="30" Margin="0,0,10,0">
-                        <Image.Triggers>
-                            <DataTrigger TargetType="Image" Binding="{Binding type}" Value="start">
-                                <Setter Property="Source" Value="grayclock" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding type}" Value="finish">
-                                <Setter Property="Source" Value="greentick" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding type}" Value="wait">
-                                <Setter Property="Source" Value="bluetick" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding state}" Value="A">
-                                <Setter Property="IsVisible" Value="false" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Image" Binding="{Binding state}" Value="B">
-                                <Setter Property="IsVisible" Value="true" />
-                            </DataTrigger>
-                        </Image.Triggers>
-                    </Image>
-                    <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,45,0" HeightRequest="25">
-                        <Grid.Triggers>
-                            <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="A">
-                                <Setter Property="Margin" Value="0,0,10,0" />
-                            </DataTrigger>
-                        </Grid.Triggers>
-                        <Frame CornerRadius="12.5" Padding="8,0,8,0" IsClippedToBounds="true">
-                            <Frame.Triggers>
-                                <DataTrigger TargetType="Frame" Binding="{Binding type}" Value="finish">
-                                    <Setter Property="BackgroundColor" Value="#36ac34" />
-                                </DataTrigger>
-                                <DataTrigger TargetType="Frame" Binding="{Binding type}" Value="start">
-                                    <Setter Property="BackgroundColor" Value="Gray" />
-                                </DataTrigger>
-                                <DataTrigger TargetType="Frame" Binding="{Binding type}" Value="wait">
-                                    <Setter Property="BackgroundColor" Value="#2c73a3" />
-                                </DataTrigger>
-                                <DataTrigger TargetType="Frame" Binding="{Binding state}" Value="A">
-                                    <Setter Property="BackgroundColor" Value="Gray" />
-                                </DataTrigger>
-                            </Frame.Triggers>
-                            <Label TextColor="White" Font="14" HorizontalTextAlignment="Center" VerticalOptions="Center">
-                                <Label.Triggers>
-                                    <DataTrigger TargetType="Label" Binding="{Binding type}" Value="finish">
-                                        <Setter Property="Text" Value="采样审批完成" />
-                                    </DataTrigger>
-                                    <DataTrigger TargetType="Label" Binding="{Binding type}" Value="start">
-                                        <Setter Property="Text" Value="未开始采样" />
-                                    </DataTrigger>
-                                    <DataTrigger TargetType="Label" Binding="{Binding type}" Value="wait">
-                                        <Setter Property="Text" Value="采样完成，等待审批" />
-                                    </DataTrigger>
-                                    <DataTrigger TargetType="Label" Binding="{Binding state}" Value="A">
-                                        <Setter Property="Text" Value="采样进行中，3/2" />
-                                    </DataTrigger>
-                                </Label.Triggers>
-                            </Label>
-                        </Frame>
-                    </Grid>
-                </Grid>
-                <Grid BackgroundColor="#e6e6e6">
-                    <Label VerticalOptions="CenterAndExpand" Margin="10,10,0,4" Text="关于计划" Font="17"/>
-                </Grid>
-
-                <Grid BackgroundColor="White">
-                        <Label Margin="10,12,0,12" Text="计划采样时间" Font="17"/>
-                        <Label Margin="90,12,10,12" Text="2017-10-19 18：00" HorizontalOptions="End" Font="17" TextColor="Gray"/>
-                    </Grid>
-
+            <ScrollView Margin="0,0,0,50">
+                <StackLayout Spacing="1" BackgroundColor="#e6e6e6" x:Name="SD">
                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"/>
-                        <Label Margin="10,12,0,12" Text="地址" Font="17" VerticalOptions="Center"/>
-                        <Label Margin="150,12,30,12" Text="宁波市鄞州区江南路1598号检测认证园五楼" HorizontalOptions="End" Font="16" TextColor="Gray"/>
-                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="GoPlanMap"/>
-                    </Grid> 
-
-                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"/>
-                        <Label Margin="10,12,0,12" Text="样品预处理" Font="17" VerticalOptions="Center"/>
-<!--                        <Label Margin="150,12,30,12" Text="宁波市鄞州区江南路1598号检测认证园五楼" HorizontalOptions="End" Font="16" TextColor="Gray"/>-->
-                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked"/>
-                    </Grid> 
-
-                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"/>
-                        <Label Margin="10,12,0,12" Text="样品方案" Font="17" VerticalOptions="Center"/>
-                        <Label Margin="150,12,30,12" Text="方案1" HorizontalOptions="End" Font="16" TextColor="Gray"/>
-                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked"/>
-                    </Grid> 
-
-                     <Grid BackgroundColor="#e6e6e6">
-                    <Label VerticalOptions="CenterAndExpand" Margin="10,15,0,6" Text="任务" Font="17"/>
-                    <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2" TextColor="White"/>
+                        <Label VerticalOptions="CenterAndExpand" Margin="10,10,0,10" Text="状态" />
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="30" HeightRequest="30" Margin="0,0,10,0">
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image" Binding="{Binding planStatus}" Value="3">
+                                    <Setter Property="Source" Value="greentick" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding planStatus}" Value="0">
+                                    <Setter Property="Source" Value="graytick" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding planStatus}" Value="2">
+                                    <Setter Property="Source" Value="bluetick" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding planStatus}" Value="1">
+                                    <Setter Property="IsVisible" Value="false" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,45,0" HeightRequest="25">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="A">
+                                    <Setter Property="Margin" Value="0,0,10,0" />
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Frame CornerRadius="12.5" Padding="8,0,8,0" IsClippedToBounds="true">
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding planStatus}" Value="3">
+                                        <Setter Property="BackgroundColor" Value="#36ac34" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding planStatus}" Value="0">
+                                        <Setter Property="BackgroundColor" Value="Gray" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding planStatus}" Value="2">
+                                        <Setter Property="BackgroundColor" Value="#2c73a3" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding planStatus}" Value="1">
+                                        <Setter Property="BackgroundColor" Value="Gray" />
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                                <Label TextColor="White" Font="14" HorizontalTextAlignment="Center" VerticalOptions="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding planStatus}" Value="3">
+                                            <Setter Property="Text" Value="采样审批完成" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding planStatus}" Value="0">
+                                            <Setter Property="Text" Value="未开始采样" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding planStatus}" Value="2">
+                                            <Setter Property="Text" Value="采样完成，等待审批" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding planStatus}" Value="1">
+                                            <Setter Property="Text" Value="{Binding completeRatioInfo}" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Frame>
+                        </Grid>
+                    </Grid>
+                    <Grid BackgroundColor="#e6e6e6">
+                        <Label VerticalOptions="CenterAndExpand" Margin="10,10,0,4" Text="关于计划" Font="17" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Label Margin="10,12,0,12" Text="计划采样时间" Font="17" />
+                        <Label Margin="90,12,10,12" Text="{Binding plantime, StringFormat='{0:yyyy-MM-dd HH:mm}'}" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Label Margin="10,12,0,12" Text="地址" Font="17" VerticalOptions="Center" />
+                        <Label Margin="150,12,30,12" Text="{Binding address}" HorizontalOptions="End" Font="16" TextColor="Gray" />
+                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="GoPlanMap" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Label Margin="10,12,0,12" Text="预处理信息" Font="17" VerticalOptions="Center" />
+                        <Button x:Name="dispose" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Label Margin="10,12,0,12" Text="安全说明" Font="17" VerticalOptions="Center" />
+                        <Button x:Name="security" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Label Margin="10,12,0,12" Text="备注信息" Font="17" VerticalOptions="Center" />
+                        <Button x:Name="remake" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Label Margin="10,12,0,12" Text="质控说明" Font="17" VerticalOptions="Center" />
+                        <Button x:Name="quality" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <Grid BackgroundColor="#e6e6e6">
+                        <Label VerticalOptions="CenterAndExpand" Margin="10,15,0,6" Text="任务" Font="17" />
+                        <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2" TextColor="White" />
                         </Frame>
-                </Grid>                    
-            </StackLayout>
-        </ScrollView>
-        <BoxView VerticalOptions="End" Margin="0,0,0,49" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-           <Button VerticalOptions="End" HeightRequest="49" BackgroundColor="#e6e6e6" Image="doctick" />
-            </Grid>
-
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <BoxView VerticalOptions="End" Margin="0,0,0,49" HeightRequest="1" BackgroundColor="#EDEDED" />
+            <Button VerticalOptions="End" HeightRequest="49" BackgroundColor="#EDEDED" Image="doctick" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -1,5 +1,6 @@
 ﻿using AepApp.Interface;
 using AepApp.Models;
+using AepApp.ViewModels;
 using CloudWTO.Services;
 using Plugin.Media;
 using SimpleAudioForms;
@@ -171,32 +172,23 @@ namespace AepApp.View
 		{
 			InitializeComponent ();
 
-                               
-            Binding binding = new Binding("TestModel");
-            binding.Source = this;
-            this.SetBinding(BindingContextProperty, binding);
-   
 
-            TestModel = new TestModel
+            List<TestPersonViewModel.Person> list = new List<TestPersonViewModel.Person>();
+            for (int i = 0; i < 4; i++)
             {
-                tsetModelTitle = "第一层",
-                secondModel = new secondTestModel
-                {
-                    secondTitle = "第二层",
-                    thirdModel = new thirdTestModel
-                    {
-                        thirdTitle = "第三层",
-                    }
-                }
+                TestPersonViewModel.Person p = new TestPersonViewModel.Person();
+                p.Name = "name" + i;
+                p.Age = (20 + i).ToString();
+                list.Add(p);
+            }
+            App.personViewModel.SavePersons(list);
 
-            };
-
-
-            //BindingContext = z;
-
-
+            BindingContext = App.personViewModel;
  
 
+       
+
+  
 
             //// Declare string for application temp path and tack on the file extension
          
@@ -212,6 +204,9 @@ namespace AepApp.View
             //var data = new OxyDataPageModle().AreaModel;
             //abc.Model = data;
         }
+
+
+
         private async void PostupLoadVideoSending(string path)
         {
             HTTPResponse hTTPResponse = await EasyWebRequest.upload(path, ".mp4");

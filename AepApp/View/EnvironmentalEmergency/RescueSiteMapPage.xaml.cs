@@ -260,6 +260,39 @@ namespace AepApp.View.EnvironmentalEmergency
             ReqPlanLis(incidengtId);
 
         }
+        //从采样计划进入
+        public RescueSiteMapPage(MySamplePlanItems sampleModel) : this()
+        {
+
+            foreach (MySamplePlanItems item in App.mySamplePlanResult.Items)
+            {
+                Gps gps = PositionUtil.gcj_To_Gps84(item.lat, item.lng);
+                var coord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+                ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+
+                NavLabelView cv = new NavLabelView(item.name, coord)
+                {
+                    BackgroundColor = Color.FromHex("#f0f0f0"),
+                    Size = new Size(100, 25),
+                    Anchor = new Point(50, 25),
+                    ControlTemplate = cvt,
+                };
+
+                cv.BindingContext = cv;
+                cv.NavCommand = new Command(() => { openMapNav(coord.lat, coord.lng, item.name); });
+
+                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("bluetarget"), new Size(24, 24), coord)
+                {
+                    BackgroundColor = Color.Transparent,
+                    CustomView = cv
+                };
+                if (item ==sampleModel){
+                    mv.Source = ImageSource.FromFile("orangetarget");
+                }
+                map.Overlays.Add(mv);
+
+            }
+        }
 
         //事故详情列表进入
         public RescueSiteMapPage(string title, AzmCoord singlecoord) : this()
@@ -289,6 +322,8 @@ namespace AepApp.View.EnvironmentalEmergency
             map.Overlays.Add(mv);
             map.SetCenter(13, singlecoord);
         }
+
+    
 
         //布点位置
         private async void ReqPlanLis(string incidentId)
@@ -339,6 +374,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
             }
         }
+
+
 
         internal class BuDianItem
         {

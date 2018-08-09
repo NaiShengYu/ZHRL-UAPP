@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Net;
 using AepApp.View.EnvironmentalEmergency;
 using Xamarin.Essentials;
+using AepApp.ViewModels;
 //using AepApp.View.SecondaryFunction;
 
 namespace AepApp
@@ -44,13 +45,19 @@ namespace AepApp
 
         public static string SampleWorkURL = "http://gx.azuratech.com:30011";
 
+        public static string SampleURL = "http://192.168.1.128:30011";
+
+
         public List<ModuleInfo> Modules = null;
         public static ModuleInfo EmergencyModule = null;
         public static ModuleInfo BasicDataModule = null;
         public static ModuleInfo EP360Module = null;
         public static ModuleInfo SamplingModule = null;
         public static ModuleInfo SimVisModule = null;
+        public static TestPersonViewModel personViewModel = null;
         public static EmergencyAccidentPageModels.ItemsBean EmergencyAccidengtModel = null;
+
+        public static MySamplePlanResult mySamplePlanResult = null;
 
         //样本类型数组
         public static List<SampleTypeModel> sampleTypeList = null;
@@ -102,7 +109,7 @@ namespace AepApp
         {
             InitializeComponent();
             MainPage = new SplashPage();
-
+            //personViewModel = new TestPersonViewModel();
             //MainPage = new TestOxyPage();
 
             //aaaa();

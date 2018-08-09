@@ -1,65 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="AepApp.View.Samples.SamplePlanPage"
-             Title="采样计划">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Samples.SamplePlanPage" Title="采样计划">
     <ContentPage.Content>
-         <Grid RowSpacing="1" BackgroundColor="#f5f6f7">
+        <Grid RowSpacing="1" BackgroundColor="#f5f6f7">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
-            <Grid >
-                 <Image Source="right" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"/>
-                 <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2018-07-16" Font="18"/>
-                <Image Source="right" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0"/>
+            <Grid>
+                <Image Source="left" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" />
+                <Button VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="Transparent" WidthRequest="80" Clicked="reduceADay" />
+                <Label x:Name="timeLab" VerticalOptions="Center" HorizontalOptions="Center" Font="18" />
+                <Image Source="right" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" />
+                <Button VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Transparent" WidthRequest="80" Clicked="addADay" />
             </Grid>
-            
-        <ListView Grid.Row="1" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
+            <ListView Grid.Row="1" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-
                             <Grid VerticalOptions="Center">
-                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="2" >
-                                    <Label Margin="0,8,0,0" StyleClass="itemsubtitle" Text="{Binding time}" Font="20" />
-                                    <Label Margin="0,0,0,8" StyleClass="itemtitle" Text="{Binding num}" Font="15" TextColor="Silver" />
+                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
+                                    <Label Margin="0,8,0,0" StyleClass="itemsubtitle" Text="{Binding name}" Font="20" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemtitle" Text="{Binding address}" Font="15" TextColor="Silver" />
                                 </StackLayout>
                                 <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" Margin="0,0,10,0">
                                     <Image.Triggers>
-                                        <DataTrigger TargetType="Image" Binding="{Binding type}" Value="start">
-                                            <Setter Property="Source" Value="grayclock" />
-                                        </DataTrigger>
-                                        <DataTrigger TargetType="Image" Binding="{Binding type}" Value="wait">
-                                            <Setter Property="Source" Value="bluetick" />
-                                        </DataTrigger>
-                                        <DataTrigger TargetType="Image" Binding="{Binding type}" Value="finish">
+                                        <DataTrigger TargetType="Image" Binding="{Binding planStatus}" Value="3">
                                             <Setter Property="Source" Value="greentick" />
                                         </DataTrigger>
-                                        <DataTrigger TargetType="Image" Binding="{Binding state}" Value="A">
-                                            <Setter Property="IsVisible" Value="false"/>
+                                        <DataTrigger TargetType="Image" Binding="{Binding planStatus}" Value="0">
+                                            <Setter Property="Source" Value="graytick" />
                                         </DataTrigger>
-                                        <DataTrigger TargetType="Image" Binding="{Binding state}" Value="B">
-                                            <Setter Property="IsVisible" Value="true"/>
+                                        <DataTrigger TargetType="Image" Binding="{Binding planStatus}" Value="2">
+                                            <Setter Property="Source" Value="bluetick" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image" Binding="{Binding planStatus}" Value="1">
+                                            <Setter Property="IsVisible" Value="false" />
                                         </DataTrigger>
                                     </Image.Triggers>
                                 </Image>
-
                                 <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="40" HeightRequest="20">
                                     <Frame CornerRadius="10" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="Gray">
-                                <Frame.Triggers>
-                                     <DataTrigger TargetType="Frame" Binding="{Binding state}" Value="B">
-                                            <Setter Property="IsVisible" Value="false"/>
-                                        </DataTrigger>
-                                        <DataTrigger TargetType="Frame" Binding="{Binding state}" Value="A">
-                                            <Setter Property="IsVisible" Value="true"/>
-                                        </DataTrigger>
-                                    </Frame.Triggers>
-                                    <Label TextColor="White" Font="15" Text="2/3" HorizontalTextAlignment="Center"/>
-                                </Frame>
+                                        <Frame.Triggers>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding planStatus}" Value="1">
+                                                <Setter Property="IsVisible" Value="true" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding planStatus}" Value="0">
+                                                <Setter Property="IsVisible" Value="false" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding planStatus}" Value="2">
+                                                <Setter Property="IsVisible" Value="false" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding planStatus}" Value="3">
+                                                <Setter Property="IsVisible" Value="false" />
+                                            </DataTrigger>
+                                        </Frame.Triggers>
+                                        <Label TextColor="White" Font="15" Text="{Binding completeRatio}" HorizontalTextAlignment="Center" />
+                                    </Frame>
                                 </Grid>
-                               
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -67,16 +65,16 @@
             </ListView>
             <Grid Grid.Row="2" BackgroundColor="#e6e6e6">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Image="qrcode" Grid.Column="0"/>
-                <Button Image="scan" Grid.Column="1"/>
-                <Button Image="truck" Grid.Column="2"/>
-                <Button Image="upload2" Grid.Column="3"/>
+                <Button Image="qrcode" Grid.Column="0" />
+                <Button Image="scan" Grid.Column="1" />
+                <Button Image="truck" Grid.Column="2" />
+                <Button Image="upload2" Grid.Column="3" />
             </Grid>
-            </Grid>    
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -320,6 +320,7 @@
     <Reference Include="InTheHand.Forms.Platform.Android">
       <HintPath>..\packages\InTheHand.Forms.1.0.2018.423\lib\MonoAndroid10\InTheHand.Forms.Platform.Android.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -372,6 +373,7 @@
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+    <AndroidResource Include="Resources\drawable\left.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="voc.png" />

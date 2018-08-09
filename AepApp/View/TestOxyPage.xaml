@@ -15,7 +15,7 @@
         -->
 
 
-        <StackLayout>
+     <!--   <StackLayout>
 
             <Label  Margin="30" Text="{Binding tsetModelTitle}" HorizontalTextAlignment="Center"/>
 
@@ -24,11 +24,38 @@
                         <Label Margin="30" Text="{Binding secondModel.thirdModel.thirdTitle}" HorizontalTextAlignment="Center"/>
 
             
-<!--            <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="scanZXing"/>-->
             <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel3"/>
             <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel2"/>
             <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel1"/>
-        </StackLayout>
+        </StackLayout>-->
+
+
+
+             <ListView ItemsSource="{Binding AllPersons}"
+                  
+                  HasUnevenRows="True"
+                  BackgroundColor="#f5f5f5">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+
+                        <StackLayout BackgroundColor="White" Orientation="Horizontal" VerticalOptions="Center">
+
+                            <Label 
+                                   Text="{Binding Name}"
+                                   FontSize="Medium"
+                                   Margin="4"
+                                   FontAttributes="Bold" />
+
+                            <Label Text="{Binding Age}"
+                                       FontSize="Small" />
+                        </StackLayout>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </ContentPage.Content>
 </ContentPage>

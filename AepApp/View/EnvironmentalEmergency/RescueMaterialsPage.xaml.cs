@@ -44,7 +44,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
                 {
-                    dataList.Add(list[i]);
+                    dataList.Add(list[i]); 
                 }
                 listView.ItemsSource = dataList;
             }

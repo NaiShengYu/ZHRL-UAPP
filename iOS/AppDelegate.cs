@@ -17,7 +17,10 @@ namespace AepApp.iOS
             App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
             //视频录制
             Rox.VideoIos.Init();
+            //数据库初始化
+            SQLitePCL.Batteries.Init();
             global::Xamarin.Forms.Forms.Init();
+
             InTheHand.Forms.Platform.iOS.InTheHandForms.Init();
             //图表
             OxyPlot.Xamarin.Forms.Platform.iOS.PlotViewRenderer.Init();
