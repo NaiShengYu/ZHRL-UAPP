@@ -2,20 +2,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AepApp", "AepApp\AepApp.shproj", "{6C2A0F40-8801-43CA-BEDD-9730EE426213}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AepApp.iOS", "iOS\AepApp.iOS.csproj", "{7F633CD2-4EA6-4EAF-88AF-9B5AECAE000F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AepApp.Droid", "Droid\AepApp.Droid.csproj", "{D7C20BF8-55F3-4CF7-B5AF-28728A177708}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JPush.Binding.Droid", "JPush.Binding.Droid\JPush.Binding.Droid.csproj", "{83390823-B6C8-4089-B357-4B4760C19291}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AepLib", "AepLib\AepLib.csproj", "{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		AepApp\AepApp.projitems*{6c2a0f40-8801-43ca-bedd-9730ee426213}*SharedItemsImports = 13
-		AepApp\AepApp.projitems*{7f633cd2-4ea6-4eaf-88af-9b5aecae000f}*SharedItemsImports = 4
-		AepApp\AepApp.projitems*{d7c20bf8-55f3-4cf7-b5af-28728a177708}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|iPhone = Debug|iPhone
@@ -63,6 +58,18 @@ Global
 		{83390823-B6C8-4089-B357-4B4760C19291}.Release|iPhone.Build.0 = Release|Any CPU
 		{83390823-B6C8-4089-B357-4B4760C19291}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{83390823-B6C8-4089-B357-4B4760C19291}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Release|iPhone.Build.0 = Release|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
