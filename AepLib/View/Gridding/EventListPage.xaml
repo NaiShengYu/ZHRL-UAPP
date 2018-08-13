@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.EventListPage" Title="事件列表">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.Gridding.EventListPage" 
+             Title="事件列表">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
+        <Grid RowSpacing="1" BackgroundColor="#fafafa">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search"/>
+            <ListView x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="Center">
+                                <StackLayout  VerticalOptions="Center" Margin="20,0,150,0" Spacing="2">
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding Name}" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding Time}"  />
+                                </StackLayout>
+                                <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="120" HeightRequest="30">
+                                    <Grid.Triggers>
+                                        <DataTrigger TargetType="Grid" Binding="{Binding EventStatus}" Value="0">
+                                            <Setter Property="BackgroundColor" Value="#859000"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Grid" Binding="{Binding EventStatus}" Value="1">
+                                            <Setter Property="BackgroundColor" Value="#27A53C"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Grid" Binding="{Binding EventStatus}" Value="2">
+                                            <Setter Property="BackgroundColor" Value="#CF9000"/>
+                                        </DataTrigger>
+                                    </Grid.Triggers>
+                                    <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding EventType}" Value="0">
+                                                <Setter Property="Text" Value="污水偷排事件"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" Binding="{Binding EventType}" Value="1">
+                                                <Setter Property="Text" Value="恶臭事件"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Grid>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="addButton" Grid.Row="2" BackgroundColor="#E8E8E8" Image="add" Clicked="AddButtonClicked"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

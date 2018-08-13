@@ -453,7 +453,6 @@
     <None Include="Info.plist">
       <SubType>Designer</SubType>
     </None>
-    <EmbeddedResource Include="msyh.ttc" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

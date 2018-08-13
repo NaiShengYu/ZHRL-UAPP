@@ -1144,16 +1144,8 @@ namespace AepApp.View
                     IsAntialias = true,
                     LcdRenderText = true
                 };
-                if (Device.RuntimePlatform == Device.iOS)
-                {
-                    var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("AepApp.iOS.msyh.ttc");
-                    textpaint.Typeface = SKTypeface.FromStream(stream);
-                }
-                else
-                {
-                    var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("AepApp.Droid.msyh.ttc");
-                    textpaint.Typeface = SKTypeface.FromStream(stream);
-                }
+                var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("AepApp.msyh.ttc");
+                textpaint.Typeface = SKTypeface.FromStream(stream);
             }
         }
 

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.Gridding.EventHandleProcessPage"
+             Title="事件处理流程">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid BackgroundColor="#fafafa">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout HorizontalOptions="Center" Spacing="0">
+                <Grid BackgroundColor="#2772A5" WidthRequest="130" HeightRequest="30" Margin="0, 10, 0, 0">
+                    <Label HorizontalOptions="Center"  VerticalOptions="Center" Text="登记事件" FontSize="18" TextColor="White"/>
+                </Grid>
+                <Label  HorizontalOptions="Center" StyleClass="itemsubtitle" Text="2018-08-13 09：10" Margin="0, 3, 0, 3"/>
+            </StackLayout>
+            <StackLayout x:Name="townLayout" Grid.Row="1" HorizontalOptions="Center" Spacing="0"  IsVisible="False">
+                <Image HorizontalOptions="Center" Source="tri_white"/>
+                <Grid BackgroundColor="#2772A5" WidthRequest="130" HeightRequest="30" Margin="0, 10, 0, 0">
+                    <Label  HorizontalOptions="Center" VerticalOptions="Center"  Text="乡级审批" FontSize="18" TextColor="White"/>
+                </Grid>
+                <Label  HorizontalOptions="Center" StyleClass="itemsubtitle" Text="2018-08-13 09：10" Margin="0, 3, 0, 3"/>
+            </StackLayout>
+            <StackLayout x:Name="countryLayout" Grid.Row="2" HorizontalOptions="Center"  Spacing="0" IsVisible="False">
+                <Image HorizontalOptions="Center" Source="tri_white"/>
+                <Grid BackgroundColor="#2772A5" WidthRequest="130" HeightRequest="30" Margin="0, 10, 0, 0">
+                    <Label  HorizontalOptions="Center"  VerticalOptions="Center" Text="县级调度" FontSize="18" TextColor="White"/>
+                </Grid>
+                <Label  HorizontalOptions="Center" StyleClass="itemsubtitle" Text="2018-08-13 09：10" Margin="0, 3, 0, 3"/>
+            </StackLayout>
+            <StackLayout x:Name="taskLayout" Grid.Row="3" HorizontalOptions="Center"  Spacing="0"  IsVisible="False">
+                <Image HorizontalOptions="Center" Source="tri_white"/>
+                <ListView x:Name="taskListView" BackgroundColor="#f0f0f0" Margin="20, 5, 20, 5" HasUnevenRows="True" SeparatorVisibility="None" ItemSelected="Handle_TaskItem">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Spacing="0">
+                                    <Grid Margin="15,15,15,5" Padding="10, 3, 10, 3">
+                                        <Grid.Triggers>
+                                            <DataTrigger TargetType="Grid" Binding="{Binding taskStatus}" Value="0">
+                                                <Setter Property="BackgroundColor" Value="#859000"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Grid" Binding="{Binding taskStatus}" Value="1">
+                                                <Setter Property="BackgroundColor" Value="#27A53C"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Grid" Binding="{Binding taskStatus}" Value="2">
+                                                <Setter Property="BackgroundColor" Value="#CF9000"/>
+                                            </DataTrigger>
+                                        </Grid.Triggers>
+                                        <Label HorizontalOptions="CenterAndExpand" Text="{Binding name}" FontSize="18" TextColor="White"/>
+                                    </Grid>
+                                    <Label  HorizontalOptions="Center" StyleClass="itemsubtitle" Text="{Binding addTime}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout x:Name="finishLayout" Grid.Row="4" HorizontalOptions="Center" Spacing="0" IsVisible="False">
+                <Image HorizontalOptions="Center" Source="tri_white"/>
+                <Grid BackgroundColor="#009e31" WidthRequest="130" HeightRequest="30" Margin="0, 10, 0, 0">
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="处理完毕" FontSize="18" TextColor="White"/>
+                </Grid>
+                <Label  HorizontalOptions="Center" StyleClass="itemsubtitle" Text="2018-08-13 09：10" Margin="0, 5, 0, 5"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
