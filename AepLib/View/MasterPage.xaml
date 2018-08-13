@@ -120,6 +120,17 @@
                         <Label Text="采样方案" />
                     </Grid>
 
+                     <Label Text="网格化管理" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="任务列表" BindingContext="AepApp.View.Gridding.TaskListPage" />
+                    </Grid>
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="事件列表" BindingContext="AepApp.View.Gridding.EventListPage" />
+                    </Grid>
+                    <Grid StyleClass="menuitem" >
+                        <Label Text="下级上报事件" BindingContext="AepApp.View.Gridding.ReportEventPage" />
+                    </Grid>
                 </StackLayout>
 
             </ScrollView>

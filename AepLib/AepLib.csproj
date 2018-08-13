@@ -60,4 +60,7 @@
   </ItemGroup>
 
   
+  <ItemGroup>
+    <Folder Include="View\Gridding\" />
+  </ItemGroup>
 </Project>
