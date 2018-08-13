@@ -5,6 +5,14 @@
     <RootNamespace>AepApp</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="msyh.ttc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="msyh.ttc" />
+  </ItemGroup>
+
   
   <ItemGroup>
     <Compile Update="Page1.xaml.cs">
