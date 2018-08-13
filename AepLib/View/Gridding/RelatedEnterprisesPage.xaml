@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.RelatedEnterprisesPage" Title="相关企业">
+ <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
+            <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" SearchButtonPressed="Handle_SearchButtonPressed" StyleClass="sbar" />
+            <ListView x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="0">
+                                    <Label Text="{Binding name}" Font="18" Margin="10,10,10,5"/>
+                                    <Label TextColor="Gray" Text="{Binding address}" Font="16" Margin="10,0,10,10"/>
+                                </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>        
+    </ContentPage.Content>
+</ContentPage>

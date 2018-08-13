@@ -20,6 +20,7 @@ using AepApp.View.EnvironmentalEmergency;
 using Xamarin.Essentials;
 using AepApp.ViewModels;
 using AepApp.ViewModel;
+using AepApp.View.Gridding;
 //using AepApp.View.SecondaryFunction;
 
 namespace AepApp
@@ -113,9 +114,9 @@ namespace AepApp
             InitializeComponent();
             vm = new VM();
             MainPage = new SplashPage();
-            //personViewModel = new TestPersonViewModel();
+            personViewModel = new TestPersonViewModel();
             //MainPage = new TestOxyPage();
-
+            MainPage = new NavigationPage(new DisposeEventPage());
             //aaaa();
         }
 
@@ -144,7 +145,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-            //return;
+            return;
             HandleEventHandler();
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {

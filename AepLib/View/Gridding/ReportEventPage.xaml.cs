@@ -10,6 +10,8 @@ namespace AepApp.View.Gridding
         public ReportEventPage()
         {
             InitializeComponent();
+
+            
         }
     }
 }

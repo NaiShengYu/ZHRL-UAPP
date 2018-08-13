@@ -70,7 +70,7 @@
                         <Label Text="环境质量标准" />
                     </Grid>
 
-                    <Label Text="环境应急" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Text="环境应急" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
                     <Grid StyleClass="menuitem" >
                         <Label Text="应急事故" BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" />
@@ -114,7 +114,7 @@
                         <Label Text="污染源" />
                     </Grid>
 
-                    <Label Text="采样系统" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Text="采样系统" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
                     <Grid StyleClass="menuitem" >
                         <Label Text="采样方案" />

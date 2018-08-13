@@ -169,6 +169,19 @@ namespace AepApp.View.EnvironmentalEmergency
             listView.ItemsSource = dataList;
         }
 
+
+        public AccidentPositionPage(string position) : this(){
+
+            Title = "事件位置";
+
+
+
+
+        }
+
+
+
+
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
