@@ -54,13 +54,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="View\Gridding\EventHandleProcessPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\ScanLoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <Folder Include="View\Gridding\" />
   </ItemGroup>
 </Project>
