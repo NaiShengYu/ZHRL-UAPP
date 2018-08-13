@@ -333,7 +333,6 @@
     <None Include="app.config" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="azura.keystore" />
-    <EmbeddedResource Include="msyh.ttc" />
     <None Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </None>
