@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using AepApp.Models;
 using Xamarin.Forms;
 
 namespace AepApp.View.Gridding
@@ -30,7 +31,7 @@ namespace AepApp.View.Gridding
         }
 
         void RegistrationEvent(object sender, System.EventArgs e){
-            Navigation.PushAsync(new RegistrationEventPage());
+            Navigation.PushAsync(new RegistrationEventPage(new GridEventModel()));
         }
         void Handle_Clicked(object sender, System.EventArgs e)
         {

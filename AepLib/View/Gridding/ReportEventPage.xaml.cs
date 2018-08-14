@@ -27,7 +27,8 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new DisposeEventTypeTowPage());
+
+            Navigation.PushAsync(new DisposeEventPage());
             listView.SelectedItem = null;
         }
 

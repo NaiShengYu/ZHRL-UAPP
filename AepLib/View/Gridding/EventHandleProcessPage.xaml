@@ -10,7 +10,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid BackgroundColor="#fafafa">
+        <Grid x:Name="gridRoot"  BackgroundColor="#fafafa">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -18,7 +18,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <StackLayout HorizontalOptions="Center" Spacing="0">
+            <StackLayout x:Name="registLayout" HorizontalOptions="Center" Spacing="0" IsVisible="True">
                 <Grid BackgroundColor="#2772A5" WidthRequest="130" HeightRequest="30" Margin="0, 10, 0, 0">
                     <Label HorizontalOptions="Center"  VerticalOptions="Center" Text="登记事件" FontSize="18" TextColor="White"/>
                 </Grid>

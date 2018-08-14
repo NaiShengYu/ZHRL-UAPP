@@ -11,15 +11,23 @@ using Xamarin.Forms.Xaml;
 
 namespace AepApp.View.Gridding
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EventHandleProcessPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class EventHandleProcessPage : ContentPage
+    {
         //private ObservableCollection<GridTaskModel> taskList = new ObservableCollection<GridTaskModel>();
-        private GridEventModel eventModel;
+        //private GridEventModel eventModel;
 
-        public EventHandleProcessPage (GridEventModel eventM)
-		{
-			InitializeComponent ();
+        public EventHandleProcessPage(GridEventModel eventM)
+        {
+            InitializeComponent();
+            if (eventM == null)
+            {
+                return;
+            }
+            if (!string.IsNullOrWhiteSpace(eventM.addTime))
+            {
+                registLayout.IsVisible = true;
+            }
             if (!string.IsNullOrWhiteSpace(eventM.townHandleTime))
             {
                 townLayout.IsVisible = true;
@@ -32,7 +40,13 @@ namespace AepApp.View.Gridding
             {
                 finishLayout.IsVisible = true;
             }
-            if (eventM.taskList != null && eventM.taskList.Count > 0)
+
+            if (eventM.taskList == null || eventM.taskList.Count == 0)
+            {
+                taskLayout.IsVisible = false;
+                gridRoot.RowDefinitions[3].Height = 0;
+            }
+            else
             {
                 taskLayout.IsVisible = true;
                 taskListView.ItemsSource = eventM.taskList;
@@ -43,7 +57,7 @@ namespace AepApp.View.Gridding
         public void Handle_TaskItem(Object sender, SelectedItemChangedEventArgs e)
         {
             GridTaskModel taskM = e.SelectedItem as GridTaskModel;
-            if(taskM == null)
+            if (taskM == null)
             {
                 return;
             }

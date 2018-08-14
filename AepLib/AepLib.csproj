@@ -65,6 +65,9 @@
     <EmbeddedResource Update="View\Gridding\EventHandleProcessPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\Gridding\SelectGridWorkerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\ScanLoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

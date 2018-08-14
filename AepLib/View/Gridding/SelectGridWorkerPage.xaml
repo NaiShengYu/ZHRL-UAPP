@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.Gridding.SelectGridWorkerPage"
+             Title="选择网格员">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="1" BackgroundColor="#fafafa">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search"/>
+            <ListView x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="Center">
+                                <StackLayout  VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="张三" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="李家村"  />
+                                </StackLayout>
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="End" WidthRequest="90" Orientation="Horizontal" Spacing="0">
+                                    <Button Image="text2" WidthRequest="40" Clicked="OnMessageClicked"/>
+                                    <Button Image="phone" WidthRequest="40" Clicked="OnPhoneClicked" Margin="0, 0, 10, 0"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

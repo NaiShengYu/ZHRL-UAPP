@@ -46,7 +46,7 @@
                                 <Frame Margin="10" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#2c73a3" Padding="2" CornerRadius="12.5" WidthRequest="20" HeightRequest="20" HasShadow="false">
                                     <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
                                 </Frame>
-                               <BoxView />
+                          
                                 <BoxView VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Silver" />
                             </Grid>
                         </ViewCell>

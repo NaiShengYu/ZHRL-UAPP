@@ -116,7 +116,8 @@ namespace AepApp
             MainPage = new SplashPage();
             personViewModel = new TestPersonViewModel();
             //MainPage = new TestOxyPage();
-            //MainPage = new NavigationPage(new DisposeEventTypeTowPage());
+
+            //MainPage = new NavigationPage(new DisposeEventPage());
             //aaaa();
         }
 
