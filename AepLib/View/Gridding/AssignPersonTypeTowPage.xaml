@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.AssignPersonTypeTowPage">
+    <ContentPage.Content>
+        <Grid BackgroundColor="Silver">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListView HasUnevenRows="true" x:Name="listV1" Grid.Column="0" ItemSelected="Handle_ItemSelected" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                             <Grid>
+                                <Label Margin="10,10,30,10" StyleClass="itemtitle" Text="{Binding name}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                <Frame Margin="10" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#2c73a3" Padding="2" CornerRadius="12.5" WidthRequest="20" HeightRequest="20" HasShadow="false">
+                                    <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Frame>
+                                <BoxView VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Silver" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView HasUnevenRows="true" x:Name="listV2" Grid.Column="1" ItemSelected="Handle_ItemSelected_1" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Label Margin="10,10,30,10" StyleClass="itemtitle" Text="{Binding name}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                <Frame Margin="10" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#2c73a3" Padding="2" CornerRadius="12.5" WidthRequest="20" HeightRequest="20" HasShadow="false">
+                                    <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Frame>
+                                <BoxView VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Silver" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView HasUnevenRows="true" x:Name="listV3" Grid.Column="2" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                              <Grid>
+                                <Label Margin="10,10,30,10" StyleClass="itemtitle" Text="{Binding name}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                <Frame Margin="10" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#2c73a3" Padding="2" CornerRadius="12.5" WidthRequest="20" HeightRequest="20" HasShadow="false">
+                                    <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Frame>
+                               <BoxView />
+                                <BoxView VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Silver" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -32,7 +32,7 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="备注" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label Text="已完美解决" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label Text="已完美解决嫁谁都一托污染警告卡是毛巾噢is腿哦是叫死而进入卡皮尔是马俄日巴麻美陪人" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                         <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked" />
                     </Grid>
@@ -64,7 +64,7 @@
                 </StackLayout>
             </ScrollView>
             <Grid Grid.Row="1" BackgroundColor="#e6e6e6">
-                <Button Image="greentick" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="Transparent" />
+                <Button Image="greentick" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="Transparent" Margin="10,5,10,5"/>
             </Grid>
         </Grid>
     </ContentPage.Content>
