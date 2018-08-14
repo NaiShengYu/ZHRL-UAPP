@@ -175,7 +175,9 @@ namespace AepApp.View.EnvironmentalEmergency
         //点击了位置按钮
         async void AccidentPosition(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new AccidentPositionPage());
+            AccidentPositionPage page = new AccidentPositionPage(null, null);
+            page.Title = "事故位置";
+            await Navigation.PushAsync(page);
             MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
 
             MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", async (arg1, arg2) =>

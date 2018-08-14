@@ -25,12 +25,9 @@
               <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
                 <Grid>
                     <Label Text="网络员" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label Text="张三" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,80,10" />
-
-                    <Button HorizontalOptions="End" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Image="phone" Margin="10"/>
-                    <Button HorizontalOptions="End" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Image="text2" Margin="10,10,45,10"/>
-
-                    
+                    <Label Text="张三" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
+                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0"/>
+                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0"/>
                 </Grid>
               <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
                 <Grid>
@@ -42,7 +39,7 @@
               <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
                  <Grid>
                     <Label Text="经纬度" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label Text="121.123421 E, 29.103941 N" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                    <Label x:Name="labelLngLat" Text="" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End"/>
                     <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="EventPositon"/>
                 </Grid>
@@ -70,7 +67,7 @@
                </Grid>
               <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
                 <Grid>
-                    <Label Text="时间已自行处理" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                    <Label Text="事件已自行处理" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                     <Switch IsToggled="true" HorizontalOptions="End" VerticalOptions="Center" Margin="10"/>
                 </Grid>
               <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>

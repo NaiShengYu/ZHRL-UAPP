@@ -10,9 +10,11 @@ namespace AepApp.Models
         private string name;
         private string time;
         private string address;
+        public string lng { get; set; }
+        public string lat { get; set; }
         private string eventType;//事件类型
         private string eventStatus;//事件状态
-        private string addTime { get; set; }
+        public string addTime { get; set; }
         public string townHandleTime { get; set; }
         public string countryHandleTime { get; set; }
         public ObservableCollection<GridTaskModel> taskList { get; set; }
@@ -44,6 +46,11 @@ namespace AepApp.Models
         {
             get { return eventStatus; }
             set { eventStatus = value; NotifyPropertyChanged(); }
+        }
+
+        public string lnglatString
+        {
+            get { return lng + " E, " + lat + " N"; }
         }
     }
 }

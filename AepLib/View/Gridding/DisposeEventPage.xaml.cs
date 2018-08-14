@@ -10,8 +10,7 @@ namespace AepApp.View.Gridding
     {
 
         void RegistrationEvent(object sender,System.EventArgs e){
-            Navigation.PushAsync(new RegistrationEventPage());
-
+            Navigation.PushAsync(new RegistrationEventPage(null));
         }
 
         void Handle_Clicked(object sender, System.EventArgs e)
@@ -21,6 +20,19 @@ namespace AepApp.View.Gridding
         public DisposeEventPage()
         {
             InitializeComponent();
+            gridWorker.GestureRecognizers.Add(new TapGestureRecognizer {
+                Command  = new Command(()=>OnWorkersTapped()),
+            });
+        }
+
+        private void OnWorkersTapped()
+        {
+            Navigation.PushAsync(new SelectGridWorkerPage());
+        }
+
+        public async void OnWorkerCall(Object sender, EventArgs e)
+        {
+            
         }
     }
 }

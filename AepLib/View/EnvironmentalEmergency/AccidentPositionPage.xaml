@@ -4,7 +4,6 @@
              x:Class="AepApp.View.EnvironmentalEmergency.AccidentPositionPage"
              xmlns:m="clr-namespace:AepApp.View"
              xmlns:s="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
-
              Title="事故位置">
     <ContentPage.Content>
          <Grid>

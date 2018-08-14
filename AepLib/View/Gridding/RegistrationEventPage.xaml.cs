@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using AepApp.Models;
 using AepApp.View.EnvironmentalEmergency;
 using Plugin.Media;
 using Xamarin.Forms;
@@ -9,16 +10,49 @@ namespace AepApp.View.Gridding
 {
     public partial class RegistrationEventPage : ContentPage
     {
-
+        private GridEventModel eventModel;
         private ObservableCollection<string> photoList = new ObservableCollection<string>();
 
-        void EventPositon(object sender, System.EventArgs e){
-            AccidentPositionPage page = new AccidentPositionPage();
+        /// <summary>
+        /// 经纬度
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void EventPositon(object sender, System.EventArgs e)
+        {
+            AccidentPositionPage page;
+            if (eventModel == null)
+            {
+                page = new AccidentPositionPage(null, null);
+            }
+            else
+            {
+                page = new AccidentPositionPage(eventModel.lng, eventModel.lat);
+            }
+            page.Title = "事件位置";
             Navigation.PushAsync(page);
+            MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
+            MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", (s, arg) =>
+            {
+                var pos = arg as string;
+                if (pos == null)
+                {
+                    return;
+                }
+                string[] p = pos.Replace("E", "").Replace("N", "").Replace("W", "").Replace("S", "").Split(",".ToCharArray());
+                if(eventModel == null)
+                {
+                    eventModel = new GridEventModel();
+                }
+                eventModel.lng = p[0];
+                eventModel.lat = p[1];
+                setPosition();
+            });
         }
 
         //相关企业
-        void RelatedEnterPrises(object sender, System.EventArgs e){
+        void RelatedEnterPrises(object sender, System.EventArgs e)
+        {
 
             Navigation.PushAsync(new RelatedEnterprisesPage());
         }
@@ -31,7 +65,7 @@ namespace AepApp.View.Gridding
 
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
-                DisplayAlert("No Camera", ":( No camera available.", "OK");
+                await DisplayAlert("No Camera", ":( No camera available.", "OK");
                 return;
             }
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
@@ -89,9 +123,9 @@ namespace AepApp.View.Gridding
 
                 if (100.0 * photoList.Count > App.ScreenWidth)
                     pickSCR.ScrollToAsync(100 * photoList.Count - (App.ScreenWidth), 0, true);
-                
 
-                
+
+
 
                 //Image = new Image
                 //{
@@ -113,25 +147,35 @@ namespace AepApp.View.Gridding
         void Handle_Clicked(object sender, System.EventArgs e)
         {
 
-        
+
         }
 
-        public RegistrationEventPage()
+        public RegistrationEventPage(GridEventModel eventM)
         {
             InitializeComponent();
-
+            eventModel = eventM;
             Title = "登记事件";
-            NavigationPage.SetBackButtonTitle(this,"");
+            setPosition();
+            NavigationPage.SetBackButtonTitle(this, "");
             ToolbarItems.Add(new ToolbarItem("", "qrcode", HandleAction));
             ST.BindingContext = photoList;
         }
 
         void HandleAction()
         {
-            Console.WriteLine("导航栏右按钮");
+            Navigation.PushAsync(new EventHandleProcessPage(eventModel));
         }
 
-       
+        private void setPosition()
+        {
+            labelLngLat.Text = eventModel == null ? "" : eventModel.lnglatString;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
+        }
 
     }
 }
