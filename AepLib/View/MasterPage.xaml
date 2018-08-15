@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.MasterPage"
-             xmlns:local="clr-namespace:StylingWithCSS"
              Title="菜单"
              Icon="hamburger">
     <ContentPage.Resources>
@@ -143,7 +142,7 @@
                 </Grid>
 
                 <Grid>
-                    <Label Text="设置" BindingContext="AepApp.View.SelectSitePage"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
+                    <Label Text="设置" BindingContext="AepApp.View.TestOxyPage"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
             </StackLayout>
 

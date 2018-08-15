@@ -77,10 +77,13 @@ namespace AepApp.ViewModel
             }
         }
 
-
-        private string CurrentDay2String()
+        private string Date2String(DateTime d)
         {
-            return CurrentDay.ToString(FORMAT_YMD);
+            if (d == null)
+            {
+                return null;
+            }
+            return d.ToString(FORMAT_YMD);
         }
 
 
@@ -102,25 +105,36 @@ namespace AepApp.ViewModel
             {
                 App.mySamplePlanResult = JsonConvert.DeserializeObject<MySamplePlanResult>(hTTPResponse.Results);
                 //Console.WriteLine("结果是：" + App.mySamplePlanResult);
-                if (PlanMap.ContainsKey(CurrentDay2String()))
+
+                //if (PlanMap.ContainsKey(CurrentDay2String()))
+                //{
+                //    PlanMap.Remove(CurrentDay2String());
+                //}
+                //PlanMap.Add(CurrentDay2String(), App.mySamplePlanResult.Items);
+                //Plans = PlanMap[CurrentDay2String()];
+
+                foreach (MySamplePlanItems p in App.mySamplePlanResult.Items)
                 {
-                    PlanMap.Remove(CurrentDay2String());
+                    var pInDb = _dbContext.Samples.FirstOrDefault(m => p.id.Equals(m.id));
+                    if (pInDb == null)
+                    {
+                        _dbContext.Samples.Add(p);
+                    }
+                    _dbContext.SaveChanges();
                 }
-                PlanMap.Add(CurrentDay2String(), App.mySamplePlanResult.Items);
-                Plans = PlanMap[CurrentDay2String()];
-
-
-                //_dbContext.Samples.AddRange(App.mySamplePlanResult.Items);
-                //_dbContext.SaveChanges();
             }
             else
             {
                 Console.WriteLine(hTTPResponse);
             }
-            //List<MySamplePlanItems> plist = _dbContext.Samples
-            //    .Where(b => b.plantime.ToString(FORMAT_YMD).Contains(CurrentDay.ToString()))
-            //    .ToList();
-            //Plans = new ObservableCollection<MySamplePlanItems>(plist);
+            if (_dbContext.Samples == null)
+            {
+                return;
+            }
+            List<MySamplePlanItems> plist = _dbContext.Samples
+                .Where(b => Date2String(b.plantime).Contains(Date2String(CurrentDay)))
+                .ToList();
+            Plans = new ObservableCollection<MySamplePlanItems>(plist);
 
         }
 

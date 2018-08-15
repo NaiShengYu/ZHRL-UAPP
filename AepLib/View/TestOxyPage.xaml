@@ -5,7 +5,7 @@
              xmlns:forms="clr-namespace:InTheHand.Forms;assembly=InTheHand.Forms" 
              xmlns:roxv="clr-namespace:Rox;assembly=Rox.Xamarin.Video.Portable">
     <ContentPage.Content>
-       <!-- <StackLayout>
+        <!-- <StackLayout>
             <Button Text="开始录音" BackgroundColor="Olive" Clicked="StartRecordVoice" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
             <Button Text="停止录音" BackgroundColor="Maroon" Clicked="StopRecordVoice" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
             <Button BackgroundColor="Fuchsia" Clicked="Handle_Clicked" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
@@ -15,7 +15,7 @@
         -->
 
 
-     <!--   <StackLayout>
+        <!--   <StackLayout>
 
             <Label  Margin="30" Text="{Binding tsetModelTitle}" HorizontalTextAlignment="Center"/>
 
@@ -28,34 +28,35 @@
             <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel2"/>
             <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel1"/>
         </StackLayout>-->
+        <StackLayout>
+            <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="Connect SignalR" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnConnectSignalR"/>
+            <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="Send SignalR Msg" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnSendSignalR"/>
 
-
-
-             <ListView ItemsSource="{Binding AllPersons}"
+            <ListView ItemsSource="{Binding AllPersons}"
                   
                   HasUnevenRows="True"
                   BackgroundColor="#f5f5f5">
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
 
-                        <StackLayout BackgroundColor="White" Orientation="Horizontal" VerticalOptions="Center">
+                            <StackLayout BackgroundColor="White" Orientation="Horizontal" VerticalOptions="Center">
 
-                            <Label 
+                                <Label 
                                    Text="{Binding Name}"
                                    FontSize="Medium"
                                    Margin="4"
                                    FontAttributes="Bold" />
 
-                            <Label Text="{Binding Age}"
+                                <Label Text="{Binding Age}"
                                        FontSize="Small" />
-                        </StackLayout>
+                            </StackLayout>
 
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
