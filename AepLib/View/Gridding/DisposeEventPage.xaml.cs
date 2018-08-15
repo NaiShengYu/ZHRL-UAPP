@@ -15,6 +15,7 @@ namespace AepApp.View.Gridding
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
+
         }
 
         public DisposeEventPage()
