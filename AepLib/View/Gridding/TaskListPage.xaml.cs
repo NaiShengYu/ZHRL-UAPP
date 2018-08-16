@@ -73,5 +73,15 @@ namespace AepApp.View.Gridding
                 }
             }
         }
+
+        /// <summary>
+        /// 筛选
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BarFilter_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TaskHandleResultPage());
+        }
     }
 }
