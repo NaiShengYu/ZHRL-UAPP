@@ -26,8 +26,6 @@ namespace AepApp.View.Gridding
         void AssignPerson(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new AssignPersonTypeTowPage());
-
-
         }
 
         void RegistrationEvent(object sender, System.EventArgs e){

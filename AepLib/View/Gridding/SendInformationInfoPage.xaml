@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.SendInformationInfoPage" Title="下发信息">
+    <ContentPage.Content>
+        <Grid>
+            <ListView HasUnevenRows="true" x:Name="listV" SeparatorVisibility="None" ItemSelected="Handle_ItemSelected">
+                <ListView.Header>
+                    <StackLayout Spacing="0">
+                        <Grid>
+                            <Label Text="类型" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
+                            <Label Text="政策法规" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,25,10" />
+                        </Grid>
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                        <Grid>
+                            <Label Text="日期" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="2018-08-12" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        </Grid>
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                        <Grid>
+                            <Label Text="下法人" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="王五" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" LineBreakMode="TailTruncation" />
+                        </Grid>
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                        <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,0,15" HorizontalOptions="Start" />
+                        <Editor HeightRequest="150" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10" />
+
+                        <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
+                            <Label Text="附件" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                            <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
+                                <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <StackLayout Margin="50,10,10,10" VerticalOptions="Center" HorizontalOptions="Start" Spacing="1">
+                                    <Label Text="{Binding name}" Font="18" />
+                                    <Label Text="{Binding lenth}" Font="16" TextColor="Gray" />
+                                </StackLayout>
+                                <BoxView BackgroundColor="Silver" HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="End" />
+                                <Image Source="pdf" HorizontalOptions="Start" VerticalOptions="Center" Margin="10" HeightRequest="30" WidthRequest="30"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

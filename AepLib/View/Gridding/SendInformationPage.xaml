@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.SendInformationPage" Title="上级下发信息">
+    <ContentPage.Content>
+         <Grid RowSpacing="1" BackgroundColor="#fafafa">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search" BackgroundColor="White"/>
+            <ListView BackgroundColor="White" x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="Center">
+                                <StackLayout VerticalOptions="Center" Margin="20,0,50,0" Spacing="2">
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding name}" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding eventName}" TextColor="Gray" Font="16"/>
+                                </StackLayout>
+                                    <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

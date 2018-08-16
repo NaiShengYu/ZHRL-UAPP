@@ -113,11 +113,11 @@ namespace AepApp
         {
             InitializeComponent();
             vm = new VM();
-            MainPage = new SplashPage();
+            //MainPage = new SplashPage();
             personViewModel = new TestPersonViewModel();
             //MainPage = new TestOxyPage();
 
-            //MainPage = new NavigationPage(new DisposeEventPage());
+            MainPage = new NavigationPage(new SendInformationPage());
             //aaaa();
         }
 
@@ -146,7 +146,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-            //return;
+            return;
             HandleEventHandler();
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {

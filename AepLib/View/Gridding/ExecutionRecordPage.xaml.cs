@@ -1,36 +1,33 @@
-﻿using AepApp.Models;
-using Sample;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using AepApp.Models;
 using Xamarin.Forms;
 
 namespace AepApp.View.Gridding
 {
-    public partial class TaskListPage : ContentPage
+    public partial class ExecutionRecordPage : ContentPage
     {
-        
         private int totalNum;
         private string mSearchKey;
         private ObservableCollection<GridTaskModel> dataList = new ObservableCollection<GridTaskModel>();
 
-        public TaskListPage()
+        public ExecutionRecordPage()
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
 
             SearchData();
-
         }
-        
+
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
             GridTaskModel taskM = e.SelectedItem as GridTaskModel;
-            if(taskM == null)
+            if (taskM == null)
             {
                 return;
             }
-            Navigation.PushAsync(new TaskInfoTypeTowPage());
+            Navigation.PushAsync(new TaskResultPage());
             listView.SelectedItem = null;
         }
 
@@ -45,6 +42,7 @@ namespace AepApp.View.Gridding
             SearchData();
         }
 
+
         private void SearchData()
         {
             dataList.Clear();
@@ -58,8 +56,8 @@ namespace AepApp.View.Gridding
                 GridTaskModel _event = new GridTaskModel();
                 _event.name = i + "在工厂周围检测水质";
                 _event.eventName = "化工偷排事件";
-                _event.addTime = "2018-8-13";
-                
+                _event.addTime = "高桥镇，韩佳差家偶尔";
+
                 dataList.Add(_event);
             }
             listView.ItemsSource = dataList;
@@ -75,16 +73,6 @@ namespace AepApp.View.Gridding
                     ReqGridTaskList();
                 }
             }
-        }
-
-        /// <summary>
-        /// 筛选
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BarFilter_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new TaskHandleResultPage());
         }
     }
 }

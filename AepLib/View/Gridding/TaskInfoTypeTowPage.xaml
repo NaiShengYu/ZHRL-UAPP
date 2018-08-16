@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.TaskInfoTypeTowPage" Title="任务">
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <ScrollView>
+                <StackLayout Spacing="0">
+                    <Grid>
+                        <Label Text="标题" Font="18" VerticalOptions="Center" Margin="10,25,10,15" HorizontalOptions="Start" />
+                        <Label Text="大一化工怀疑偷拍事件" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,25,10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="choiseNature" NumberOfTapsRequired="1" />
+                        </Grid.GestureRecognizers>
+                        <Label Text="任务性质" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="日常任务" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="网络/部门" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="县调度中心" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="2017-07-22 15:19" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="发出人" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="王五" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="choiseNature" NumberOfTapsRequired="1" />
+                        </Grid.GestureRecognizers>
+                        <Label Text="事件" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="大一化工怀疑偷拍事件" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="choiseNature" NumberOfTapsRequired="1" />
+                        </Grid.GestureRecognizers>
+                        <Label Text="模板类型" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="现场检查任务" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="choiseNature" NumberOfTapsRequired="1" />
+                        </Grid.GestureRecognizers>
+                        <Label Text="内容" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="需要监测站" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="choiseNature" NumberOfTapsRequired="1" />
+                        </Grid.GestureRecognizers>
+                        <Label Text="状态" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="处理中" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
+                        <Label Text="相关企业" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                        <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
+                            <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Frame>
+                    </Grid>
+                    <!--                相关企业列表-->
+                    <StackLayout x:Name="enterpriseSK" Spacing="0" />
+                    <Button Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,20" />
+                    <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
+                        <Label Text="相关位置" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                        <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
+                            <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Frame>
+                    </Grid>
+                    <!--                相关位置列表-->
+                    <StackLayout x:Name="positionSK" Spacing="0" />
+                    <Button Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,20" />
+                    <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
+                        <Label Text="指派" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                    </Grid>
+                    <Grid>
+                        <Label Text="任务执行期限" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="2017-07-22 15:19" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="任务周期" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="2017-07-22 15:19" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="多网络指派" Font="18" VerticalOptions="Center" Margin="10" HorizontalOptions="Start" />
+                        <Switch VerticalOptions="Center" HorizontalOptions="End" Margin="10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="choiseNature" NumberOfTapsRequired="1" />
+                        </Grid.GestureRecognizers>
+                        <Label Text="指派给" Font="18" VerticalOptions="Center" Margin="10" HorizontalOptions="Start" />
+                        <Label Text="2017-07-22 15:19" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
+                        <Label Text="指派" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                    </Grid>
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="taskResult" NumberOfTapsRequired="1" />
+                        </Grid.GestureRecognizers>
+                        <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="2017-07-22 15:19" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ExecutionRecord" NumberOfTapsRequired="1" />
+                        </Grid.GestureRecognizers>
+                        <Label Text="执行记录" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Frame Margin="0,5,30,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#2c73a3" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
+                            <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Frame>
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                </StackLayout>
+            </ScrollView>
+            <Grid Grid.Row="1" BackgroundColor="#e6e6e6">
+                <Button TextColor="#2c73a3" Text="确定" Font="18" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="Transparent" Margin="10,5,10,5" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
