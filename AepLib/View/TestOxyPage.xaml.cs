@@ -2,6 +2,7 @@
 using AepApp.Models;
 using AepApp.ViewModels;
 using CloudWTO.Services;
+using Microsoft.AspNetCore.SignalR.Client;
 using Plugin.Media;
 using SimpleAudioForms;
 using System;
@@ -28,7 +29,8 @@ namespace AepApp.View
         }
 
 
-        void changeModel3(object sender, System.EventArgs e){
+        void changeModel3(object sender, System.EventArgs e)
+        {
 
 
             TestModel.secondModel.thirdModel = new thirdTestModel
@@ -80,10 +82,10 @@ namespace AepApp.View
         async void scanZXing(object sender, System.EventArgs e)
         {
 
-            #if __ANDROID__
+#if __ANDROID__
     // Initialize the scanner first so it can track the current context
          //MobileBarcodeScanner.Initialize (Application);
-            #endif
+#endif
 
             var scanner = new ZXing.Mobile.MobileBarcodeScanner();
             scanner.CancelButtonText = "取消";
@@ -168,9 +170,9 @@ namespace AepApp.View
         }
 
         TestModel _model = null;
-		public TestOxyPage ()
-		{
-			InitializeComponent ();
+        public TestOxyPage()
+        {
+            InitializeComponent();
 
 
             List<TestPersonViewModel.Person> list = new List<TestPersonViewModel.Person>();
@@ -184,14 +186,14 @@ namespace AepApp.View
             App.personViewModel.SavePersons(list);
 
             BindingContext = App.personViewModel;
- 
 
-       
 
-  
+
+
+
 
             //// Declare string for application temp path and tack on the file extension
-         
+
 
             ////var source = new file("ppp.mp4");
             //var path = Path.Combine(Environment.CurrentDirectory, "app_icon_ios-2.doc");
@@ -205,12 +207,46 @@ namespace AepApp.View
             //abc.Model = data;
         }
 
+        HubConnection connection;
+        public async void OnConnectSignalR(object sender, EventArgs e)
+        {
+            connection = new HubConnectionBuilder()
+                .WithUrl("http://gx.azuratech.com:30021/signalr-loggingEventHub")
+                .Build();
+            connection.On<string, string>("ReceiveMessage", (user, message) =>
+            {
+                DisplayAlert("connect", message, "ok");
 
+            });
+            try
+            {
+                await connection.StartAsync();
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("error", ex.Message, "ok");
+            }
+        }
+
+        public async void OnSendSignalR(object sender, EventArgs e)
+        {
+            try
+            {
+                await connection.InvokeAsync("SendMessage", "hello ", "world");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("error", ex.Message, "ok");
+            }
+        }
 
         private async void PostupLoadVideoSending(string path)
         {
             HTTPResponse hTTPResponse = await EasyWebRequest.upload(path, ".mp4");
 
         }
-	}
+
+
+    }
 }

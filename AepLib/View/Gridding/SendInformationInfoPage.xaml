@@ -7,12 +7,12 @@
                     <StackLayout Spacing="0">
                         <Grid>
                             <Label Text="类型" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
-                            <Label Text="政策法规" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,10,10" />
+                            <Label Text="政策法规" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,25,10" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
                             <Label Text="日期" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                            <Label Text="2018-08-12" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
+                            <Label Text="2018-08-12" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
@@ -37,7 +37,7 @@
                             <Grid>
                                 <StackLayout Margin="50,10,10,10" VerticalOptions="Center" HorizontalOptions="Start" Spacing="1">
                                     <Label Text="{Binding name}" Font="18" />
-                                    <Label Text="{Binding address}" Font="16" TextColor="Gray" />
+                                    <Label Text="{Binding lenth}" Font="16" TextColor="Gray" />
                                 </StackLayout>
                                 <BoxView BackgroundColor="Silver" HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="End" />
                                 <Image Source="pdf" HorizontalOptions="Start" VerticalOptions="Center" Margin="10" HeightRequest="30" WidthRequest="30"/>

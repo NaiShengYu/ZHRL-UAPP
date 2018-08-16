@@ -18,7 +18,7 @@ namespace AepApp.View.Samples
 
             //requestSamplePlanList();
             App.vm.CurrentDay = App.vm.CurrentDay.AddDays(1);
-            App.vm.requestSamplePlanList();
+            //App.vm.requestSamplePlanList();
 
 
         }
@@ -29,7 +29,7 @@ namespace AepApp.View.Samples
             //timeLab.Text = currentDay.ToString("yyyy-MM-dd");
 
             App.vm.CurrentDay = App.vm.CurrentDay.AddDays(-1);
-            App.vm.requestSamplePlanList();
+            //App.vm.requestSamplePlanList();
         }
           
         /// <summary>

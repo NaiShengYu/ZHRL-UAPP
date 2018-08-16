@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:render ="clr-namespace:AepApp.View"
              x:Class="AepApp.View.Samples.SamplePlanPage" 
              Title="采样计划">
     <ContentPage.Resources>
@@ -20,7 +21,7 @@
             <Grid>
                 <Image Source="left" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" />
                 <Button VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="Transparent" WidthRequest="80" Clicked="reduceADay" />
-                <DatePicker x:Name="datePicker"  VerticalOptions="Center" HorizontalOptions="Center"  WidthRequest="200"
+                <render:BorderlessDatePicker x:Name="datePicker"  VerticalOptions="Center" HorizontalOptions="Center"  
                             Date="{Binding CurrentDay, StringFormat='{0:yyyy-MM-dd}'}" BackgroundColor="Transparent" 
                             DateSelected="SelectDay" FontSize="18"/>
 

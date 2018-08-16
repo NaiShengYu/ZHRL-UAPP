@@ -7,7 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace AepApp.Models
 {
 
-    public class MySamplePlanResult{
+    public class MySamplePlanResult
+    {
 
         public ObservableCollection<MySamplePlanItems> Items { get; set; }
 
@@ -53,28 +54,36 @@ namespace AepApp.Models
         //public int status { get { return 1; } set{} }
 
         public ObservableCollection<taskslist> tasklist { get; set; }
-        
+
         //未完成的数量
-        public int unCompleteNum {
+        public int unCompleteNum
+        {
             get
             {
                 int i = 0;
+                if (tasklist == null)
+                {
+                    return i;
+                }
                 foreach (taskslist task in tasklist)
                 {
                     if (task.taskstatus == 1) i += 1;
                 }
                 return i;
             }
-            set {}
-        } 
+            set { }
+        }
 
         //计划的状态 0 表示未开始采样 1表示采样进行中 2表示采样完成，等待审批 3表示采样完成
-        public int planStatus{
-            get {
+        public int planStatus
+        {
+            get
+            {
                 if (status == 1)
                     return 3;
-                else{
-                    if (tasklist.Count == 0) return 0;//如果任务个数为0 标记为未开始采样
+                else
+                {
+                    if (tasklist == null || tasklist.Count == 0) return 0;//如果任务个数为0 标记为未开始采样
                     else
                     {
                         if (unCompleteNum == 0) return 0;
@@ -89,12 +98,13 @@ namespace AepApp.Models
 
 
 
-        public string completeRatio{
+        public string completeRatio
+        {
             get
             {
-                return unCompleteNum + "/" + tasklist.Count;
+                return unCompleteNum + "/" + (tasklist == null ? 0 : tasklist.Count);
             }
-            set{}
+            set { }
 
         }
 
@@ -102,7 +112,7 @@ namespace AepApp.Models
         {
             get
             {
-                return "采样进行中，"+completeRatio;
+                return "采样进行中，" + completeRatio;
             }
             set { }
 
@@ -138,8 +148,10 @@ namespace AepApp.Models
         public ObservableCollection<tasksAnas> taskAnas { get; set; }
 
 
-        public string tasktypeName { 
-            get{
+        public string tasktypeName
+        {
+            get
+            {
                 if (tasktype == 0) return "地表水";
                 else if (tasktype == 1) return "废水";
                 else if (tasktype == 2) return "饮用水";
@@ -148,8 +160,8 @@ namespace AepApp.Models
                 else if (tasktype == 5) return "室内空气";
                 else if (tasktype == 6) return "农业用地";
                 else return "工业用地";
-            } 
-            set{}
+            }
+            set { }
         }
 
     }
