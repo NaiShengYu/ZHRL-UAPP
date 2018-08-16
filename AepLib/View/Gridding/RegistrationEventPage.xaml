@@ -1,105 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.RegistrationEventPage">
     <ContentPage.Content>
-       
-      <Grid RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="140"/>
-
-                    <RowDefinition Height="50"/>
-
-                </Grid.RowDefinitions>
-        
-        <ScrollView>           
-            <StackLayout>
-                <Grid>
-                    <Label Text="标题" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
-                    <Label Text="大一化工怀疑偷拍事件" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,10,10" />
-                </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-               <Grid>
-                    <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label Text="2018-08-12 11：23" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
-                </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-                <Grid>
-                    <Label Text="网络员" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label Text="张三" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
-                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0"/>
-                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0"/>
-                </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-                <Grid>
-                    <Label Text="地址" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label Text="宁波市鄞州区梅墟路1958号" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
-                    <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End"/>
-                    <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill"/>
-                </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-                 <Grid>
-                    <Label Text="经纬度" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label x:Name="labelLngLat" Text="" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
-                    <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End"/>
-                    <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="EventPositon"/>
-                </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-                      <Grid>
-                    <Label Text="相关企业" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label Text="大一石油化工有限公司" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
-                    <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End"/>
-                    <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="RelatedEnterPrises"/>
-                </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-
-                <Grid>
-                    <Label Text="事件类型" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label Text="污水偷拍事件" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
-                   <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End"/>
-                    <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked"/>
-               </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-               <Grid>
-                    <Label Text="详细描述" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label Text="描述问题" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
-                   <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End"/>
-                    <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked"/>
-               </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-                <Grid>
-                    <Label Text="事件已自行处理" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Switch IsToggled="true" HorizontalOptions="End" VerticalOptions="Center" Margin="10"/>
-                </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-                <Grid>
-                    <Label Text="处理结果" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                    <Label Text="已完美解决" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
-                   <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End"/>
-                    <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked"/>
-               </Grid>
-              <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6"/>
-            </StackLayout>
- 
-        </ScrollView>
-                
-                 <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">
-                    <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
-                        <Label Text="拍照" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
-                        <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
-                            <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
-                        </Frame>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="140" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <ScrollView>
+                <StackLayout>
+                    <Grid>
+                        <Label Text="标题" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
+                        <Label Text="大一化工怀疑偷拍事件" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,10,10" />
                     </Grid>
-                    <ScrollView x:Name="pickSCR" Orientation="Horizontal" HeightRequest="100" BackgroundColor="White">
-                    <StackLayout x:Name="PickSK" Orientation="Horizontal" Spacing="0">
-                            
-                        </StackLayout>
-                    </ScrollView>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="2018-08-12 11：23" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="网络员" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="张三" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
+                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0" />
+                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="地址" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="宁波市鄞州区梅墟路1958号" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="经纬度" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label x:Name="labelLngLat" Text="" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="EventPositon" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="相关企业" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="大一石油化工有限公司" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="RelatedEnterPrises" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="事件类型" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="污水偷拍事件" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="详细描述" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="描述问题" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="事件已自行处理" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Switch IsToggled="true" HorizontalOptions="End" VerticalOptions="Center" Margin="10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
+                        <Label Text="处理结果" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="已完美解决" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                 </StackLayout>
-
-                 <Grid Grid.Row="2" BackgroundColor="#e6e6e6">
-                    <Button Clicked="takePhoto" Image="image" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent"/>
-                    <Button Image="greentick" HorizontalOptions="End" VerticalOptions="Center" Margin="0,8,30,8" BackgroundColor="Transparent"/>
+            </ScrollView>
+            <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">
+                <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
+                    <Label Text="拍照" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                    <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
+                        <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Frame>
                 </Grid>
+                <ScrollView x:Name="pickSCR" Orientation="Horizontal" HeightRequest="100" BackgroundColor="White">
+                    <StackLayout x:Name="PickSK" Orientation="Horizontal" Spacing="0">
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <Grid Grid.Row="2" BackgroundColor="#e6e6e6">
+                <Button Clicked="takePhoto" Image="image" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" />
+                <Button Text="登记" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" Margin="0,8,10,8" BackgroundColor="Transparent" TextColor="#2c73a3"/>
             </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

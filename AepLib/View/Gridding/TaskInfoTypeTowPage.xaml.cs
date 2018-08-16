@@ -7,6 +7,27 @@ namespace AepApp.View.Gridding
 {
     public partial class TaskInfoTypeTowPage : ContentPage
     {
+
+
+        /// <summary>
+        /// 执行记录
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
+        void ExecutionRecord(object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new ExecutionRecordPage());
+        }
+
+        /// <summary>
+        /// 编辑任务结果
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
+        void taskResult(object sender,System.EventArgs e){
+            Navigation.PushAsync(new TaskResultPage());
+        }
+
         //选择任务性质
         void choiseNature(object sender, System.EventArgs e)
         {
@@ -18,6 +39,7 @@ namespace AepApp.View.Gridding
         public TaskInfoTypeTowPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");
 
             enterpriseList.Add(new position
             {

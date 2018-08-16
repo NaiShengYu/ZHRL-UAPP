@@ -131,6 +131,9 @@
                     <Grid StyleClass="menuitem" >
                         <Label Text="下级上报事件" BindingContext="AepApp.View.Gridding.ReportEventPage" />
                     </Grid>
+                     <Grid StyleClass="menuitem" >
+                        <Label Text="上级下发信息" BindingContext="AepApp.View.Gridding.SendInformationPage" />
+                    </Grid>
                 </StackLayout>
 
             </ScrollView>

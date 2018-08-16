@@ -117,7 +117,7 @@ namespace AepApp
             personViewModel = new TestPersonViewModel();
             //MainPage = new TestOxyPage();
 
-            MainPage = new NavigationPage(new TaskListPage());
+            MainPage = new NavigationPage(new SendInformationPage());
             //aaaa();
         }
 
