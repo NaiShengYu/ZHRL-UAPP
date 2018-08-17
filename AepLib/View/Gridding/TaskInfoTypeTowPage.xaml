@@ -48,7 +48,7 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="choiseNature" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="chooseTemplate" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="模板类型" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <Label Text="现场检查任务" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />

@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views ="clr-namespace:AepApp.MaterialForms"
-             x:Class="AepApp.View.Gridding.TaskHandleResultPage"
-             Title="任务处理结果">
+             x:Class="AepApp.View.Gridding.TaskFilterPage"
+             Title="任务筛选">
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="../main.css"/>
@@ -28,7 +28,6 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </views:BorderlessPicker>
-                <!--<Label StyleClass="itemsubtitle" Text="search key" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" />-->
                 <Switch  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="False" Toggled="Switch_Toggled_Status"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
@@ -42,7 +41,6 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </views:BorderlessPicker>
-                <!--<Label StyleClass="itemsubtitle" Text="search key" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" />-->
                 <Switch  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="False" Toggled="Switch_Toggled_Type"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />

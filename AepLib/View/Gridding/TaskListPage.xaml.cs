@@ -84,7 +84,7 @@ namespace AepApp.View.Gridding
         /// <param name="e"></param>
         private void BarFilter_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new TaskHandleResultPage());
+            Navigation.PushAsync(new TaskFilterPage());
         }
     }
 }

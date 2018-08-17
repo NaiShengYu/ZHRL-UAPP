@@ -145,7 +145,7 @@
                 </Grid>
 
                 <Grid>
-                    <Label Text="设置" BindingContext="AepApp.View.TestOxyPage"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
+                    <Label Text="设置" BindingContext="AepApp.View.Gridding.TaskTemplateInfoPage"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
             </StackLayout>
 
