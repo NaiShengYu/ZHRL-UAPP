@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 
 using AepApp.View.EnvironmentalEmergency;
+using CloudWTO.Services;
+using System.Net;
+using AepApp.Models;
+using Newtonsoft.Json;
+
 namespace AepApp.View
 {
     public partial class MasterAndDetailPage : MasterDetailPage
@@ -13,6 +18,12 @@ namespace AepApp.View
             typeof(float),
             typeof(MasterAndDetailPage),
             (float)0.6);
+
+        bool isfinishEmergency = false;
+        bool isfinishENVQ = false;
+        bool isfinishEP360 = false;
+        bool isfinishSampling = false;
+
 
         public float WidthRatio
         {
@@ -31,12 +42,20 @@ namespace AepApp.View
         public MasterAndDetailPage()
         {
             InitializeComponent();
+
+
             App.appHunbegerPage = this;
             Master = new MasterPage(this);
             Master.WidthRequest = 100;
 
             Detail = new NavigationPage(new EmergencyAccidentPage());
-
         }
+
+
+
+      
+
+
+
     }
 }

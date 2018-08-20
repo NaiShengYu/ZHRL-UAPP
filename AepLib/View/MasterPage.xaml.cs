@@ -16,6 +16,9 @@ namespace AepApp.View
         {
             InitializeComponent();
 
+            EmegencyLat.BindingContext = App.moduleConfigEmergency;
+            menu2.BindingContext = App.moduleConfigENVQ;
+
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) =>
             {
@@ -33,7 +36,7 @@ namespace AepApp.View
 
             };
 
-            StackLayout[] menus = new StackLayout[3] { menu1, menu2, menu3 };
+            StackLayout[] menus = new StackLayout[4] { menu1, menu2,EmegencyLat ,menu3 };
 
             foreach (var menu in menus)
             {

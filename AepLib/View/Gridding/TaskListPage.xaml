@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="AepApp.View.Gridding.TaskListPage" Title="任务列表">
-
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.TaskListPage" Title="任务列表">
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="../main.css" />
         </ResourceDictionary>
     </ContentPage.Resources>
-
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="filter" Icon="report" Clicked="BarFilter_Clicked"/>
+        <ToolbarItem Name="filter" Icon="report" Clicked="BarFilter_Clicked" />
     </ContentPage.ToolbarItems>
-    
     <ContentPage.Content>
         <Grid RowSpacing="1" BackgroundColor="#fafafa">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="50" />
                 <RowDefinition Height="*">
                 </RowDefinition>
             </Grid.RowDefinitions>
-
-            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search"/>
+            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search" />
             <ListView BackgroundColor="White" x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center">
-                                <StackLayout  VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
+                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
                                     <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding name}" />
-                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding eventName}"  />
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding eventName}" />
                                 </StackLayout>
                                 <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="90" HeightRequest="30" BackgroundColor="#2772A5">
-                                    <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation" Text="事件处理" TextColor="White"/>
+                                    <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation" Text="事件处理" TextColor="White" />
                                 </Grid>
                             </Grid>
                         </ViewCell>

@@ -42,6 +42,7 @@ namespace AepApp
         private const string EP360ModuleID      = "C105368C-7AF6-49C8-AED3-6A0C7A9E3F7B";
         private const string SamplingModuleID   = "65B3E603-4493-44CA-953A-685513B01298";
         private const string SimVisModuleID     = "4C534464-AD7D-42FF-80AF-0049CDC6A9F6";
+        private const string environmentalQualityID = "ED21BC68-236F-4B29-BE78-5F951AD4B054";//环保监测预警平台基础数据
 
         public string FrameworkURL = "http://gx.azuratech.com:30000";
 
@@ -49,6 +50,8 @@ namespace AepApp
 
         public static string SampleURL = "http://192.168.1.128:30011";
 
+        public static ModuleConfigEmergency moduleConfigEmergency = null;//应急模块需要展示的内容
+        public static ModuleConfigENVQ moduleConfigENVQ = null;//环境质量需要展示的内容
 
         public List<ModuleInfo> Modules = null;
         public static ModuleInfo EmergencyModule = null;
@@ -56,6 +59,8 @@ namespace AepApp
         public static ModuleInfo EP360Module = null;
         public static ModuleInfo SamplingModule = null;
         public static ModuleInfo SimVisModule = null;
+        public static ModuleInfo environmentalQualityModel = null;
+
         public static TestPersonViewModel personViewModel = null;
         public static EmergencyAccidentPageModels.ItemsBean EmergencyAccidengtModel = null;
 
@@ -113,11 +118,11 @@ namespace AepApp
         {
             InitializeComponent();
             vm = new VM();
-            //MainPage = new SplashPage();
-            personViewModel = new TestPersonViewModel();
+            MainPage = new SplashPage();
+            //personViewModel = new TestPersonViewModel();
             //MainPage = new TestOxyPage();
 
-            MainPage = new NavigationPage(new SendInformationPage());
+            //MainPage = new NavigationPage(new SendInformationPage());
             //aaaa();
         }
 
@@ -146,7 +151,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-            return;
+            //return;
             HandleEventHandler();
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
@@ -208,8 +213,14 @@ namespace AepApp
                         case EP360ModuleID: EP360Module = mi; break;
                         case SamplingModuleID: SamplingModule = mi; break;
                         case SimVisModuleID: SimVisModule = mi; break;
+                        case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
                 }
+
+
+                postEmergencyReq();
+                postEnvironmentalReq();
+
             }
 
             if (EmergencyModule != null)
@@ -217,22 +228,22 @@ namespace AepApp
                 // for emergency module temorarily
                 //正式环境去掉下面部分
 
-                string url = EmergencyModule.url + "/api/TokenAuth/Authenticate"; //无法转换token 先用这个
-                ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
-                {
-                    userNameOrEmailAddress = "admin",
-                    password = "123qwe",
-                    rememberClient = "true"
-                };
-                string param2 = JsonConvert.SerializeObject(parameter2);
-                HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
-                if (res2.StatusCode == HttpStatusCode.OK)
-                {
-                    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
-                    EmergencyToken = tokenstr.result.accessToken;
-                }
+                //string url = EmergencyModule.url + "/api/TokenAuth/Authenticate"; //无法转换token 先用这个
+                //ConvertedTokenReqStruct2 parameter2 = new ConvertedTokenReqStruct2
+                //{
+                //    userNameOrEmailAddress = "admin",
+                //    password = "123qwe",
+                //    rememberClient = "true"
+                //};
+                //string param2 = JsonConvert.SerializeObject(parameter2);
+                //HTTPResponse res2 = await EasyWebRequest.SendHTTPRequestAsync(url, param2, "POST");
+                //if (res2.StatusCode == HttpStatusCode.OK)
+                //{
+                //    var tokenstr = JsonConvert.DeserializeObject<ConvertedTokenResult>(res2.Results);
+                //    EmergencyToken = tokenstr.result.accessToken;
+                //}
 
-                //EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
+                EmergencyToken = await GetConvertTokenAsync(fwtoken.access_token);
 
                 //EmergencyToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IjE4MmVjZTI2LTBjNGItYTg0Ny0wYmJiLTM5ZTY2ZjAzN2M3YiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiaHR0cDovL3d3dy5hc3BuZXRib2lsZXJwbGF0ZS5jb20vaWRlbnRpdHkvY2xhaW1zL3RlbmFudElkIjoiMSIsInN1YiI6IjciLCJqdGkiOiJhNmIyYmJlZi03ZTQ3LTQ1M2QtYWRlYi01ZmI5OTQ4OGNmMWMiLCJpYXQiOjE1Mjg0Mjg4MDgsIm5iZiI6MTUyODQyODgwOCwiZXhwIjoxNTI4NTE1MjA4LCJpc3MiOiJFbWVyZ2VuY3kiLCJhdWQiOiJFbWVyZ2VuY3kifQ.vPWJxjqy1YikbbcKlx_90nf7QoLZGf53PgNFY4NQn3Q";
 
@@ -329,6 +340,49 @@ namespace AepApp
                 return null;
             }
         }
+
+        /// <summary>
+        /// 环境应急需要展示的窗口
+        /// </summary>
+        async void postEmergencyReq(){
+
+            string url = App.EmergencyModule.url+"/api/mod/custconfig";
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
+
+            if (hTTPResponse.StatusCode == HttpStatusCode.OK)
+            {
+                Console.WriteLine(hTTPResponse.Results);
+                var emergency = JsonConvert.DeserializeObject<ModuleConfigEmergency>(hTTPResponse.Results);
+                //emergency.showEmeSummary = false;
+                //emergency.menuPastIncident = false;
+                //emergency.menuDutyRoster = false;
+                App.moduleConfigEmergency = emergency;
+            }
+
+        } 
+
+        /// <summary>
+        /// 环境质量需要展示的窗口
+        /// </summary>
+        async void postEnvironmentalReq(){
+
+            string url = App.environmentalQualityModel.url+"/api/mod/custconfig";
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
+
+            if (hTTPResponse.StatusCode == HttpStatusCode.OK)
+            {
+                Console.WriteLine(hTTPResponse.Results);
+                var eNVQ = JsonConvert.DeserializeObject<ModuleConfigENVQ>(hTTPResponse.Results);
+                //emergency.showEmeSummary = false;
+                //eNVQ.menuPastIncident = false;
+                //eNVQ.menuDutyRoster = false;
+                App.moduleConfigENVQ = eNVQ;
+            }
+
+        } 
+
+
+
 
         private async Task GetSqlDataAsync()
         {
