@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.Gridding.TaskTemplateInfoPage"
+             Title="任务模板">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="#fafafa" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Spacing="0">
+                <Grid>
+                    <Label StyleClass="itemlabel" Text="名称" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 15, 0, 15"/>
+                    <Label StyleClass="itemvalue" Text="污染源例行检查" HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+                <BoxView StyleClass="sep" />
+            </StackLayout>
+            <StackLayout Spacing="0" Grid.Row="1">
+                <Grid>
+                    <Label StyleClass="itemlabel" Text="默认期限天数" HorizontalOptions="Start"  VerticalOptions="Center" Margin="20, 15, 0, 15"/>
+                    <Label StyleClass="itemvalue" Text="3天" HorizontalOptions="End"  VerticalOptions="Center"/>
+                </Grid>
+                <BoxView StyleClass="sep" />
+            </StackLayout>
+            <Grid Grid.Row="2" Padding="20, 10, 0, 10">
+                <Label StyleClass="itemtitle" Text="任务内容模板" HorizontalOptions="Start" />
+            </Grid>
+            <WebView x:Name="contentWebview" Grid.Row="3" />
+            <StackLayout Grid.Row="4" Spacing="0">
+                <BoxView StyleClass="sep" />
+                <Label x:Name="labelJs" StyleClass="itemtitle" Text="执行报告模板" HorizontalOptions="Start" Margin="20,10,0,10"/>
+            </StackLayout>
+            <WebView x:Name="reportWebview" Grid.Row="5" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

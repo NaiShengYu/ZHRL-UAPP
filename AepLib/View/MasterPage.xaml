@@ -242,6 +242,7 @@
                 </Grid>
                 <Grid>
                     <Label Text="设置" BindingContext="AepApp.View.SelectSitePage" Margin="35,10,0,0" FontSize="19" TextColor="Black" />
+
                 </Grid>
             </StackLayout>
             <!--</StackLayout>-->

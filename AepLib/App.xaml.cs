@@ -119,7 +119,8 @@ namespace AepApp
             InitializeComponent();
             vm = new VM();
             MainPage = new SplashPage();
-            //personViewModel = new TestPersonViewModel();
+
+            personViewModel = new TestPersonViewModel();
             //MainPage = new TestOxyPage();
 
             //MainPage = new NavigationPage(new SendInformationPage());

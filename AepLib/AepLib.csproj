@@ -70,7 +70,13 @@
     <EmbeddedResource Update="View\Gridding\SelectGridWorkerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Gridding\TaskHandleResultPage.xaml">
+    <EmbeddedResource Update="View\Gridding\TaskFilterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Gridding\TaskTemplateInfoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Gridding\TaskTemplatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\ScanLoginPage.xaml">

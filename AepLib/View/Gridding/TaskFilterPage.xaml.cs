@@ -9,13 +9,13 @@ using Xamarin.Forms.Xaml;
 
 namespace AepApp.View.Gridding
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TaskHandleResultPage : ContentPage
-    {
-        public TaskHandleResultPage()
-        {
-            InitializeComponent();
-        }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class TaskFilterPage : ContentPage
+	{
+		public TaskFilterPage ()
+		{
+			InitializeComponent ();
+		}
 
         private void Switch_Toggled_Title(object sender, ToggledEventArgs e)
         {
@@ -38,16 +38,6 @@ namespace AepApp.View.Gridding
                 pickerStatus.IsVisible = false;
             }
             return;
-            List<string> _status = new List<string>();
-            _status.Add("处理中");
-            _status.Add("已上报");
-            _status.Add("已处理");
-            Picker picker = new Picker
-            {
-                Title = "请选择任务类型",
-                HorizontalOptions = LayoutOptions.Center,
-            };
-            picker.ItemsSource = _status;
         }
 
         private void Switch_Toggled_Type(object sender, ToggledEventArgs e)
@@ -62,19 +52,6 @@ namespace AepApp.View.Gridding
                 pickerType.IsVisible = false;
             }
             return;
-
-            List<string> _types = new List<string>();
-            _types.Add("恶臭事件");
-            _types.Add("污水偷排事件");
-            Picker picker = new Picker
-            {
-                Title = "请选择任务类型",
-                HorizontalOptions = LayoutOptions.Center,
-            };
-            picker.ItemsSource = _types;
-            picker.IsVisible = true;
-            picker.IsEnabled = true;
-            picker.Focus();
         }
 
         private void Switch_Toggled_Griders(object sender, ToggledEventArgs e)

@@ -33,6 +33,17 @@ namespace AepApp.View.Gridding
         {
 
         }
+
+        /// <summary>
+        /// 选择任务模板
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chooseTemplate(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TaskTemplatePage());
+        }
+
         private ObservableCollection<position> addressList = new ObservableCollection<position>();
         private ObservableCollection<position> enterpriseList = new ObservableCollection<position>();
 
@@ -257,8 +268,6 @@ namespace AepApp.View.Gridding
 
             }
         }
-
-
 
     }
 }
