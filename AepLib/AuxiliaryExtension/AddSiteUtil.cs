@@ -30,6 +30,7 @@ namespace AepApp.AuxiliaryExtension
                 // Console.WriteLine("添加站点");                
                 string[] s = siteUrl.Split(new char[] { ':' });
                 string uri = "https://" + siteUrl + "/api/login/getstationName?stationurl=" + s[0];
+                Console.WriteLine("站点接口:" + uri);
                 result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri);
 
             };

@@ -23,6 +23,8 @@ namespace AepApp.View
             layoutGrid.IsVisible = App.moduleConfigEP360 != null;
             layoutGrid.BindingContext = App.moduleConfigEP360;
             menu3.BindingContext = App.moduleConfigFramework;
+            EmegencyLat.BindingContext = App.moduleConfigEmergency;
+            menu2.BindingContext = App.moduleConfigENVQ;
 
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) =>
@@ -41,7 +43,7 @@ namespace AepApp.View
 
             };
 
-            StackLayout[] menus = new StackLayout[6] { menu1, menu2, menu3, layoutEP, layoutSampling, layoutGrid };
+            StackLayout[] menus = new StackLayout[7] { menu1, menu2, menu3, layoutEP, layoutSampling, layoutGrid, EmegencyLat };
 
             foreach (var menu in menus)
             {

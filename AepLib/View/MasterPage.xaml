@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="AepApp.View.MasterPage"
-             Title="菜单"
-             Icon="hamburger">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.MasterPage" Title="菜单" Icon="hamburger">
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="main.css" />
@@ -11,163 +7,265 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="1" BackgroundColor="Silver">
-            <Grid.RowDefinitions >
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-
             <!--<StackLayout Spacing="1">-->
             <Grid BackgroundColor="rgb(48, 116, 163)" Grid.Row="0">
-                <Image Source="tree" HeightRequest="80" WidthRequest="80" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,0"/>
-
+                <Image Source="tree" HeightRequest="80" WidthRequest="80" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,0" />
                 <Label Text="瑞蓝智慧环保系统" FontSize="20" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,12,10,0" />
-                <Label Text="Azura Environmental" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,35,10,0"  />
-                <Label Text="Protection System" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,50,10,0"  />
-
-                <Image Source="user" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" VerticalOptions="End" Margin="0,80,20,30"/>
-
+                <Label Text="Azura Environmental" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,35,10,0" />
+                <Label Text="Protection System" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,50,10,0" />
+                <Image Source="user" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" VerticalOptions="End" Margin="0,80,20,30" />
                 <Frame HorizontalOptions="End" VerticalOptions="End" BackgroundColor="rgb(54, 144, 207)" Margin="0,90,10,8" Padding="10,2,10,2" BorderColor="Transparent" HasShadow="False" CornerRadius="10">
                     <Label Text="测试用户5" TextColor="White" FontSize="12" />
                 </Frame>
             </Grid>
-
-
-            <StackLayout  Grid.Row="1" BackgroundColor="White" Spacing="0" x:Name="menu1">
-                <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                <Grid >
-                    <Label Text="送样记录" BindingContext="AepApp.View.Samples.CollectionSamplesPage" Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
+            <StackLayout Grid.Row="1" BackgroundColor="White" Spacing="0" x:Name="menu1">
+                <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Grid>
+                    <Label Text="送样记录" BindingContext="AepApp.View.Samples.CollectionSamplesPage" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                 </Grid>
-                <Grid >
-                    <Label Text="接样记录" BindingContext="AepApp.View.Samples.TransportSamplesPage"  Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
+                <Grid>
+                    <Label Text="接样记录" BindingContext="AepApp.View.Samples.TransportSamplesPage" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                 </Grid>
-                <Grid  >
-                    <Label Text="采样计划" BindingContext="AepApp.View.Samples.SamplePlanPage"  Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
+                <Grid>
+                    <Label Text="采样计划" BindingContext="AepApp.View.Samples.SamplePlanPage" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                 </Grid>
             </StackLayout>
-
             <!--<BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>-->
-
-            <ScrollView  Grid.Row="2" BackgroundColor="White">
-                <StackLayout Spacing="0" x:Name="menu2" >
-                    <Label Text="环境质量" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="空气质量" BindingContext="AepApp.View.AirPage" />
+            <ScrollView Grid.Row="2" BackgroundColor="White">
+                <StackLayout Spacing="0" x:Name="menu2">
+                    <Label Text="{Binding menuEnvironmentalLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                        IsVisible="false">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding showEmeSummary}" Value="true">
+                                <Setter Property="IsVisible" Value="true">
+                                </Setter>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Grid StyleClass="menuitem" IsVisible="false">
+                        <Grid.Triggers>
+                            <DataTrigger TargetType="Grid" Binding="{Binding menuAir}" Value="true">
+                                <Setter Property="IsVisible" Value="true">
+                                </Setter>
+                            </DataTrigger>
+                        </Grid.Triggers>
+                        <Label BindingContext="AepApp.View.AirPage" HeightRequest="0" BackgroundColor="Transparent" />
+                        <!--                            空气质量-->
+                        <Label Text="{Binding menuAirLabel}" />
                     </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="水环境质量" />
+                    <Grid StyleClass="menuitem" IsVisible="false">
+                        <Grid.Triggers>
+                            <DataTrigger TargetType="Grid" Binding="{Binding menuWater}" Value="true">
+                                <Setter Property="IsVisible" Value="true">
+                                </Setter>
+                            </DataTrigger>
+                        </Grid.Triggers>
+                        <Label BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" HeightRequest="0" BackgroundColor="Transparent" />
+                        <!--                            Text="水环境质量"-->
+                        <Label Text="{Binding menuWaterLabel}" />
                     </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="VOCs环境质量" />
+                    <Grid StyleClass="menuitem" IsVisible="false">
+                        <Grid.Triggers>
+                            <DataTrigger TargetType="Grid" Binding="{Binding menuVOC}" Value="true">
+                                <Setter Property="IsVisible" Value="true">
+                                </Setter>
+                            </DataTrigger>
+                        </Grid.Triggers>
+                        <Label BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" HeightRequest="0" BackgroundColor="Transparent" />
+                        <!--                            Text="VOCs环境质量"-->
+                        <Label Text="{Binding menuVOCLabel}" />
                     </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="环境质量标准" />
+                    <Grid StyleClass="menuitem" IsVisible="false">
+                        <Grid.Triggers>
+                            <DataTrigger TargetType="Grid" Binding="{Binding menuStandards}" Value="true">
+                                <Setter Property="IsVisible" Value="true">
+                                </Setter>
+                            </DataTrigger>
+                        </Grid.Triggers>
+                        <Label BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" HeightRequest="0" BackgroundColor="Transparent" />
+                        <!--                            Text="环境质量标准"-->
+                        <Label Text="{Binding menuStandardsLabel}" />
                     </Grid>
-
-                    <Label Text="环境应急" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="应急事故" BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" />
-                    </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="成功案例" BindingContext="AepApp.View.EnvironmentalEmergency.SuccessCase" />
-                    </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="应急预案" BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyPlan" />
-                    </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="敏感源" BindingContext="AepApp.View.EnvironmentalEmergency.SensitiveSourcePage"  />
-                    </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="救援地点" BindingContext="AepApp.View.EnvironmentalEmergency.RescueSitePage"  />
-                    </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="专家库" BindingContext="AepApp.View.EnvironmentalEmergency.ExpertLibraryPage" />
-                    </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="设备" BindingContext="AepApp.View.EnvironmentalEmergency.EquipmentPage" />
-                    </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="值班表" BindingContext="AepApp.View.EnvironmentalEmergency.WatchListPage" />
-                    </Grid>
-
-                    <Grid StyleClass="menuitem" >
-                        <Label Text="化学品" BindingContext="AepApp.View.EnvironmentalEmergency.ChemicalPage"/>
-                    </Grid>
-                    <StackLayout x:Name="layoutEP" Spacing="0">
-                        <Label Text="{Binding menu360Label}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        <Grid StyleClass="menuitem" IsVisible="{Binding menuPollutionSrc}">
-                            <Label  BindingContext="AepApp.View.PollutionSourcePage" HeightRequest="0"/>
-                            <Label Text="{Binding menuPollutionSrcLabel}" />
+                    <StackLayout Spacing="0" x:Name="EmegencyLat">
+                        <!--                        环境应急-->
+                        <Label Text="{Binding menuEmegencyLabel}" IsVisible="false" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding showEmeSummary}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <!--                        应急事故-->
+                        <Grid StyleClass="menuitem" IsVisible="false">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding menuIncident}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" HeightRequest="0" BackgroundColor="Transparent" />
+                            <Label Text="{Binding menuIncidentLabel}">
+                            </Label>
                         </Grid>
+                        <!--                    成功案例-->
+                        <Grid StyleClass="menuitem" IsVisible="false">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding menuPastIncident}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label BindingContext="AepApp.View.EnvironmentalEmergency.SuccessCase" HeightRequest="0" BackgroundColor="Transparent" />
+                            <Label Text="{Binding menuPastIncidentLabel}">
+                            </Label>
+                        </Grid>
+                        <!--                    应急预案-->
+                        <Grid StyleClass="menuitem" IsVisible="false">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding menuPlan}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyPlan" HeightRequest="0" BackgroundColor="Transparent" />
+                            <Label Text="{Binding menuPlanLabel}">
+                            </Label>
+                        </Grid>
+                        <!--                    敏感源-->
+                        <Grid StyleClass="menuitem" IsVisible="false">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding menuSenReceiver}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label BindingContext="AepApp.View.EnvironmentalEmergency.SensitiveSourcePage" HeightRequest="0" BackgroundColor="Transparent" />
+                            <Label Text="{Binding menuSenReceiverLabel}">
+                            </Label>
+                        </Grid>
+                        <!--                    Text="救援地-->
+                        <Grid StyleClass="menuitem" IsVisible="false">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding menuRescueLoc}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label BindingContext="AepApp.View.EnvironmentalEmergency.RescueSitePage" HeightRequest="0" BackgroundColor="Transparent" />
+                            <Label Text="{Binding menuRescueLocLabel}">
+                            </Label>
+                        </Grid>
+                        <!--                    Text="专家库"-->
+                        <Grid StyleClass="menuitem" IsVisible="false">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding menuExpert}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label BindingContext="AepApp.View.EnvironmentalEmergency.ExpertLibraryPage" HeightRequest="0" BackgroundColor="Transparent" />
+                            <Label Text="{Binding menuExpertLabel}">
+                            </Label>
+                        </Grid>
+                        <!--                    Text="设备"-->
+                        <Grid StyleClass="menuitem" IsVisible="false">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding menuEquipment}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label BindingContext="AepApp.View.EnvironmentalEmergency.EquipmentPage" HeightRequest="0" BackgroundColor="Transparent" />
+                            <Label Text="{Binding menuEquipmentLabel}">
+                            </Label>
+                        </Grid>
+                        <!--                    Text="值班表"-->
+                        <Grid StyleClass="menuitem" IsVisible="false">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding menuDutyRoster}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label BindingContext="AepApp.View.EnvironmentalEmergency.WatchListPage" HeightRequest="0" BackgroundColor="Transparent" />
+                            <Label Text="{Binding menuDutyRosterLabel}">
+                            </Label>
+                        </Grid>
+                        <!--                    Text="化学品"-->
+                        <Grid StyleClass="menuitem" IsVisible="false">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding menuChemical}" Value="true">
+                                    <Setter Property="IsVisible" Value="true">
+                                    </Setter>
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label BindingContext="AepApp.View.EnvironmentalEmergency.ChemicalPage" HeightRequest="0" BackgroundColor="Transparent" />
+                            <Label Text="{Binding menuChemicalLabel}">
+                            </Label>
+                        </Grid>
+
+                        <StackLayout x:Name="layoutEP" Spacing="0">
+                            <Label Text="{Binding menu360Label}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Grid StyleClass="menuitem" IsVisible="{Binding menuPollutionSrc}">
+                                <Label  BindingContext="AepApp.View.PollutionSourcePage" HeightRequest="0"/>
+                                <Label Text="{Binding menuPollutionSrcLabel}" />
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout x:Name="layoutSampling" Spacing="0">
+                            <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Grid IsVisible="{Binding menuSampleCarry}">
+                                <Label  BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0"/>
+                                <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
+                            </Grid>
+                            <Grid IsVisible="{Binding menuSampleReceive}">
+                                <Label BindingContext="AepApp.View.Samples.TransportSamplesPage"  HeightRequest="0"/>
+                                <Label Text="{Binding menuSampleReceiveLabel}"  Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
+                            </Grid>
+                            <Grid  IsVisible="{Binding menuSampleTask}">
+                                <Label  BindingContext="AepApp.View.Samples.SamplePlanPage" HeightRequest="0"/>
+                                <Label Text="{Binding menuSampleTaskLabel}"  Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
+                            </Grid>
+                        </StackLayout>
+
+                        <StackLayout x:Name="layoutGrid" Spacing="0">
+                            <Label Text="{Binding menuGridLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Grid StyleClass="menuitem" IsVisible="{Binding menuGridTask}">
+                                <Label  BindingContext="AepApp.View.Gridding.TaskListPage"  HeightRequest="0"/>
+                                <Label Text="{Binding menuGridTaskLabel}"/>
+                            </Grid>
+                            <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEvent}">
+                                <Label  BindingContext="AepApp.View.Gridding.EventListPage"  HeightRequest="0"/>
+                                <Label Text="{Binding menuGridEventLabel}"/>
+                            </Grid>
+                            <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEventReceived}">
+                                <Label  BindingContext="AepApp.View.Gridding.ReportEventPage" HeightRequest="0"/>
+                                <Label Text="{Binding menuGridEventReceivedLabel}" />
+                            </Grid>
+                            <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridInfoReceived}">
+                                <Label  BindingContext="AepApp.View.Gridding.SendInformationPage" HeightRequest="0"/>
+                                <Label Text="{Binding menuGridInfoReceivedLabel}" />
+                            </Grid>
+                        </StackLayout>
                     </StackLayout>
-                    <StackLayout x:Name="layoutSampling" Spacing="0">
-                        <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        <Grid IsVisible="{Binding menuSampleCarry}">
-                            <Label  BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0"/>
-                            <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
-                        </Grid>
-                        <Grid IsVisible="{Binding menuSampleReceive}">
-                            <Label BindingContext="AepApp.View.Samples.TransportSamplesPage"  HeightRequest="0"/>
-                            <Label Text="{Binding menuSampleReceiveLabel}"  Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
-                        </Grid>
-                        <Grid  IsVisible="{Binding menuSampleTask}">
-                            <Label  BindingContext="AepApp.View.Samples.SamplePlanPage" HeightRequest="0"/>
-                            <Label Text="{Binding menuSampleTaskLabel}"  Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
-                        </Grid>
-                    </StackLayout>
-
-                    <StackLayout x:Name="layoutGrid" Spacing="0">
-                        <Label Text="{Binding menuGridLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        <Grid StyleClass="menuitem" IsVisible="{Binding menuGridTask}">
-                            <Label  BindingContext="AepApp.View.Gridding.TaskListPage"  HeightRequest="0"/>
-                            <Label Text="{Binding menuGridTaskLabel}"/>
-                        </Grid>
-                        <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEvent}">
-                            <Label  BindingContext="AepApp.View.Gridding.EventListPage"  HeightRequest="0"/>
-                            <Label Text="{Binding menuGridEventLabel}"/>
-                        </Grid>
-                        <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEventReceived}">
-                            <Label  BindingContext="AepApp.View.Gridding.ReportEventPage" HeightRequest="0"/>
-                            <Label Text="{Binding menuGridEventReceivedLabel}" />
-                        </Grid>
-                        <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridInfoReceived}">
-                            <Label  BindingContext="AepApp.View.Gridding.SendInformationPage" HeightRequest="0"/>
-                            <Label Text="{Binding menuGridInfoReceivedLabel}" />
-                        </Grid>
-                    </StackLayout>
-                </StackLayout>
-
+                </StackLayout>                
             </ScrollView>
-
-            <!--<BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>-->
-
             <StackLayout  Grid.Row="3" BackgroundColor="White" Spacing="0" x:Name="menu3">
                 <Grid IsVisible="False">
                     <Label  BindingContext="AepApp.View.ScanLoginPage" HeightRequest="0"/>
                     <Label Text="扫码登录"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
-
                 <Grid>
-                    <Label Text="设置" BindingContext="AepApp.View.SelectSitePage"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
+                    <Label Text="设置" BindingContext="AepApp.View.SelectSitePage" Margin="35,10,0,0" FontSize="19" TextColor="Black" />
                 </Grid>
             </StackLayout>
-
-            <!--</StackLayout>-->
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>
-
