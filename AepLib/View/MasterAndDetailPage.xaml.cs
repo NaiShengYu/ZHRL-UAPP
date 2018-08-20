@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 
 using AepApp.View.EnvironmentalEmergency;
+using AepApp.Models;
+using CloudWTO.Services;
+using System.Net;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+
 namespace AepApp.View
 {
     public partial class MasterAndDetailPage : MasterDetailPage
@@ -38,5 +44,6 @@ namespace AepApp.View
             Detail = new NavigationPage(new EmergencyAccidentPage());
 
         }
+
     }
 }

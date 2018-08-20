@@ -49,6 +49,9 @@ namespace AepApp
 
         public static string SampleURL = "http://192.168.1.128:30011";
 
+        public static ModuleConfigEP360 moduleConfigEP360 = null;
+        public static ModuleConfigSampling moduleConfigSampling = null;
+        public static ModuleConfigFramework moduleConfigFramework = null;
 
         public List<ModuleInfo> Modules = null;
         public static ModuleInfo EmergencyModule = null;
@@ -210,6 +213,9 @@ namespace AepApp
                         case SimVisModuleID: SimVisModule = mi; break;
                     }
                 }
+                moduleConfigEP360 = await GetModuleConfigEP360();
+                moduleConfigSampling = await GetModuleConfigSampling();
+                moduleConfigFramework = await GetModuleConfigFramework();
             }
 
             if (EmergencyModule != null)
@@ -325,6 +331,94 @@ namespace AepApp
                 return token;
             }
             catch
+            {
+                return null;
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// Get the main menu config of EP360
+        /// </summary>
+        /// <returns></returns>
+        private async Task<ModuleConfigEP360> GetModuleConfigEP360()
+        {
+            try
+            {
+                string url = App.EP360Module.url + "/api/mod/custconfig";
+                ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
+                {
+                    authProvider = "AzuraAuth",
+                };
+                string param = JsonConvert.SerializeObject(parameter);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
+                ModuleConfigEP360 config = null;
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    config = JsonConvert.DeserializeObject<ModuleConfigEP360>(res.Results);
+                }
+                return config;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get the main menu config of sampling
+        /// </summary>
+        /// <returns></returns>
+        private async Task<ModuleConfigSampling> GetModuleConfigSampling()
+        {
+            try
+            {
+                string url = App.SamplingModule.url + "/api/mod/custconfig";
+                ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
+                {
+                    authProvider = "AzuraAuth",
+                };
+                string param = JsonConvert.SerializeObject(parameter);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
+                ModuleConfigSampling config = null;
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    config = JsonConvert.DeserializeObject<ModuleConfigSampling>(res.Results);
+                }
+                return config;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get the main menu config of Framework
+        /// </summary>
+        /// <returns></returns>
+        private async Task<ModuleConfigFramework> GetModuleConfigFramework()
+        {
+            try
+            {
+                string url = App.BasicDataModule.url + "/api/mod/custconfig";
+                ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
+                {
+                    authProvider = "AzuraAuth",
+                };
+                string param = JsonConvert.SerializeObject(parameter);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
+                ModuleConfigFramework config = null;
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    config = JsonConvert.DeserializeObject<ModuleConfigFramework>(res.Results);
+                }
+                return config;
+            }
+            catch (Exception ex)
             {
                 return null;
             }

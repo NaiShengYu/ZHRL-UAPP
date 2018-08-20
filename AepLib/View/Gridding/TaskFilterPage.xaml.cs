@@ -12,14 +12,23 @@ namespace AepApp.View.Gridding
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TaskFilterPage : ContentPage
 	{
-		public TaskFilterPage ()
+
+        private TaskListPage.TaskFilterCondition conditions;
+        public TaskFilterPage (TaskListPage.TaskFilterCondition filterCondition)
 		{
 			InitializeComponent ();
-		}
+            conditions = filterCondition;
+            BindingContext = filterCondition;
+            //switchKey.IsToggled = !string.IsNullOrWhiteSpace(filterCondition.SearchName);
+            //switchStatus.IsToggled = !string.IsNullOrWhiteSpace(filterCondition.Status);
+        }
 
         private void Switch_Toggled_Title(object sender, ToggledEventArgs e)
         {
-
+            if (!e.Value)
+            {
+                conditions.SearchName = "";
+            }
         }
         private void Switch_Toggled_Time(object sender, ToggledEventArgs e)
         {
@@ -30,12 +39,13 @@ namespace AepApp.View.Gridding
         {
             if (e.Value)
             {
-                pickerStatus.IsVisible = true;
+                //pickerStatus.IsVisible = true;
                 pickerStatus.Focus();
             }
             else
             {
-                pickerStatus.IsVisible = false;
+                //pickerStatus.IsVisible = false;
+                conditions.Status = "";
             }
             return;
         }
@@ -67,5 +77,6 @@ namespace AepApp.View.Gridding
         {
 
         }
+
     }
 }
