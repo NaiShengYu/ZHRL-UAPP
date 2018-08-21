@@ -13,13 +13,13 @@
         <StackLayout Spacing="0">
             <Grid>
                 <Label StyleClass="itemtitle" Text="名称"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Label StyleClass="itemsubtitle" Text="search key" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" />
-                <Switch  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="True" Toggled="Switch_Toggled_Title"/>
+                <Entry x:Name="labelKey" StyleClass="itemsubtitle" Text="{Binding SearchName}" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchKey}, Path=IsToggled}"/>
+                <Switch x:Name="switchKey" HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" Toggled="Switch_Toggled_Title" IsToggled="{Binding isKeyOn}"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
-                <Label StyleClass="itemtitle" Text="状态" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <views:BorderlessPicker x:Name="pickerStatus" Title="请选择" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="False" StyleClass="itemsubtitle" >
+                <Label StyleClass="itemtitle" Text="状态" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10"/>
+                <views:BorderlessPicker x:Name="pickerStatus" Title="请选择" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchStatus}, Path=IsToggled}" StyleClass="itemsubtitle" >
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>已上报</x:String>
@@ -28,7 +28,7 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </views:BorderlessPicker>
-                <Switch  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="False" Toggled="Switch_Toggled_Status"/>
+                <Switch x:Name="switchStatus" HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" Toggled="Switch_Toggled_Status" IsToggled="{Binding isStatusOn}"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>

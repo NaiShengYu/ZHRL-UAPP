@@ -50,6 +50,9 @@ namespace AepApp
 
         public static string SampleURL = "http://192.168.1.128:30011";
 
+        public static ModuleConfigEP360 moduleConfigEP360 = null;
+        public static ModuleConfigSampling moduleConfigSampling = null;
+        public static ModuleConfigFramework moduleConfigFramework = null;
         public static ModuleConfigEmergency moduleConfigEmergency = null;//应急模块需要展示的内容
         public static ModuleConfigENVQ moduleConfigENVQ = null;//环境质量需要展示的内容
 
@@ -142,6 +145,11 @@ namespace AepApp
             try
             {
                 currentLocation = await Geolocation.GetLastKnownLocationAsync();
+                if (currentLocation != null &&  Device.RuntimePlatform == Device.Android)
+                {
+                    Gps gps = PositionUtil.gps84_To_Gcj02(currentLocation.Latitude, currentLocation.Longitude);
+                    currentLocation = new Location(gps.getWgLat(), gps.getWgLon());
+                }
                 if (currentLocation == null) HandleEventHandler();
             }
             catch (Exception ex)
@@ -217,11 +225,11 @@ namespace AepApp
                         case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
                 }
-
-
+                moduleConfigEP360 = await GetModuleConfigEP360();
+                moduleConfigSampling = await GetModuleConfigSampling();
+                moduleConfigFramework = await GetModuleConfigFramework();
                 postEmergencyReq();
                 postEnvironmentalReq();
-
             }
 
             if (EmergencyModule != null)
@@ -341,7 +349,93 @@ namespace AepApp
                 return null;
             }
         }
+        
 
+
+        /// <summary>
+        /// Get the main menu config of EP360
+        /// </summary>
+        /// <returns></returns>
+        private async Task<ModuleConfigEP360> GetModuleConfigEP360()
+        {
+            try
+            {
+                string url = App.EP360Module.url + "/api/mod/custconfig";
+                ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
+                {
+                    authProvider = "AzuraAuth",
+                };
+                string param = JsonConvert.SerializeObject(parameter);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
+                ModuleConfigEP360 config = null;
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    config = JsonConvert.DeserializeObject<ModuleConfigEP360>(res.Results);
+                }
+                return config;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get the main menu config of sampling
+        /// </summary>
+        /// <returns></returns>
+        private async Task<ModuleConfigSampling> GetModuleConfigSampling()
+        {
+            try
+            {
+                string url = App.SamplingModule.url + "/api/mod/custconfig";
+                ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
+                {
+                    authProvider = "AzuraAuth",
+                };
+                string param = JsonConvert.SerializeObject(parameter);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
+                ModuleConfigSampling config = null;
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    config = JsonConvert.DeserializeObject<ModuleConfigSampling>(res.Results);
+                }
+                return config;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get the main menu config of Framework
+        /// </summary>
+        /// <returns></returns>
+        private async Task<ModuleConfigFramework> GetModuleConfigFramework()
+        {
+            try
+            {
+                string url = App.BasicDataModule.url + "/api/mod/custconfig";
+                ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
+                {
+                    authProvider = "AzuraAuth",
+                };
+                string param = JsonConvert.SerializeObject(parameter);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
+                ModuleConfigFramework config = null;
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    config = JsonConvert.DeserializeObject<ModuleConfigFramework>(res.Results);
+                }
+                return config;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         /// <summary>
         /// 环境应急需要展示的窗口
         /// </summary>
@@ -381,8 +475,6 @@ namespace AepApp
             }
 
         } 
-
-
 
 
         private async Task GetSqlDataAsync()

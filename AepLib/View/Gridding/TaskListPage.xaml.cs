@@ -13,12 +13,13 @@ namespace AepApp.View.Gridding
         private int totalNum;
         private string mSearchKey;
         private ObservableCollection<GridTaskModel> dataList = new ObservableCollection<GridTaskModel>();
+        private TaskFilterCondition filterCondition;
 
         public TaskListPage()
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-
+            filterCondition = new TaskFilterCondition();
             SearchData();
 
         }
@@ -84,7 +85,37 @@ namespace AepApp.View.Gridding
         /// <param name="e"></param>
         private void BarFilter_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new TaskFilterPage());
+            Navigation.PushAsync(new TaskFilterPage(filterCondition));
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            DisplayAlert("condition", "key: " + filterCondition.SearchName + "  status:" + filterCondition.Status, "ok");
+        }
+
+        //任务筛选条件
+        public class TaskFilterCondition : BaseModel
+        {
+            private string searchName;
+            public string SearchName { get { return searchName; } set { this.searchName = value; NotifyPropertyChanged(); } }
+            private string status;
+            public string Status { get { return status; }set { status = value; NotifyPropertyChanged(); } }
+            public string type { get; set; }
+            public string griders { get; set; }
+            public DateTime dayStart { get; set; } 
+            public DateTime timeStart { get; set; }
+            public DateTime dayEnd { get; set; }
+            public DateTime timeEnd { get; set; }
+            public string address { get; set; }
+            public string watcher { get; set; }
+            public bool isKeyOn { get; set; }
+            public bool isStatusOn { get; set; }
+            public bool isTypeOn { get; set; }
+            public bool isGriderOn { get; set; }
+            public bool isTimeOn { get; set; }
+            public bool isAddressOn { get; set; }
+            public bool isWatcherOn { get; set; }
         }
     }
 }

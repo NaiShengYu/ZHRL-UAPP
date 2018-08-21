@@ -16,6 +16,13 @@ namespace AepApp.View
         {
             InitializeComponent();
 
+            layoutSampling.IsVisible = App.moduleConfigSampling != null;
+            layoutSampling.BindingContext = App.moduleConfigSampling;
+            layoutEP.IsVisible = App.moduleConfigEP360 != null;
+            layoutEP.BindingContext = App.moduleConfigEP360;
+            layoutGrid.IsVisible = App.moduleConfigEP360 != null;
+            layoutGrid.BindingContext = App.moduleConfigEP360;
+            menu3.BindingContext = App.moduleConfigFramework;
             EmegencyLat.BindingContext = App.moduleConfigEmergency;
             menu2.BindingContext = App.moduleConfigENVQ;
 
@@ -36,7 +43,7 @@ namespace AepApp.View
 
             };
 
-            StackLayout[] menus = new StackLayout[4] { menu1, menu2,EmegencyLat ,menu3 };
+            StackLayout[] menus = new StackLayout[7] { menu1, menu2, menu3, layoutEP, layoutSampling, layoutGrid, EmegencyLat };
 
             foreach (var menu in menus)
             {
@@ -46,7 +53,7 @@ namespace AepApp.View
                     {
                         //if (child.StyleClass != null && child.StyleClass.Contains("menuitem"))
                         //{
-                            child.GestureRecognizers.Add(tapGestureRecognizer);
+                        child.GestureRecognizers.Add(tapGestureRecognizer);
                         //}
                     }
                 }

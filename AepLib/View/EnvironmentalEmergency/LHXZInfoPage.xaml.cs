@@ -174,7 +174,7 @@ namespace AepApp.View.EnvironmentalEmergency
         private async void getAllAddress()
         {
             string param = "";
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleWorkURL + "/api/Sampleplan/GetPlanListByProid" + "?Proid=" + App.EmergencyAccidentID, param, "GET", App.EmergencyToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/api/Sampleplan/GetPlanListByProid" + "?Proid=" + App.EmergencyAccidentID, param, "GET", App.EmergencyToken);
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {

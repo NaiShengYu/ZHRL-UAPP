@@ -11,11 +11,11 @@ using Todo;
 using Xamarin.Auth;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-//#if __IOS__
+#if __IOS__
 using Foundation;
 using UIKit;
 using CoreGraphics;
-//#endif
+#endif
 namespace AepApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -26,7 +26,7 @@ namespace AepApp.View
         private string siteUrl;
 
 
-       
+        #if __IOS__      
         void HandleAction(NSNotification obj)
         {
             var dic = obj.UserInfo as NSMutableDictionary;
@@ -42,7 +42,7 @@ namespace AepApp.View
                 sl_add_site.TranslationY = 0;
             }
         }
-//#endif
+#endif
 
         public SelectSitePage()
         {

@@ -195,19 +195,22 @@ namespace AepApp.View.EnvironmentalEmergency
             AzmCoord coord = null;
             foreach (IncidentLoggingEventsBean item in dataList)
             {
-                if (item.TargetLat != null)
+                if (item.TargetLat !=0 && item.TargetLng !=0)
                 {//筛选最新的一次事故中心位置
-                    if (Convert.ToDouble(item.TargetLat) <= 90.0) coord = new AzmCoord(Convert.ToDouble(item.TargetLng), Convert.ToDouble(item.TargetLat));
+                    if (coord == null)
+                    {
+                        if (Convert.ToDouble(item.TargetLat) <= 90.0) coord = new AzmCoord(Convert.ToDouble(item.TargetLng), Convert.ToDouble(item.TargetLat));
+                    }
                 }
-                if (item.lat != null)
+                if (item.lat != null && Convert.ToDouble(item.lat) !=0.0)
                 {
                     //因子上传位置
                     if (item.category == "IncidentFactorMeasurementEvent")
                     {
                         //Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
-                        coord = new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat));
+                        var coord1 = new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat));
 
-                        AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("reddot"), new Size(25, 25), coord)
+                        AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("reddot"), new Size(25, 25), coord1)
                         {
                         };
                         map.Overlays.Add(mv);
@@ -217,7 +220,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             Console.WriteLine("lat===" + coord.lat + "lng==" + coord.lng);
             //设置target坐标//事故中心位置
-            if (coord != null)
+            if (coord.lat !=0.0f && coord.lng !=0.0)
             {
                 try
                 {

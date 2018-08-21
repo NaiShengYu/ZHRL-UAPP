@@ -111,7 +111,7 @@ namespace CloudWTO.Services
             }
             catch (Exception ex)
             {
-                result = ex.Message;
+                result = ex== null ? "" : ex.Message;
                 Console.WriteLine("错误信息：" + ex);
                 return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
             }

@@ -60,6 +60,11 @@ namespace AepApp.View.EnvironmentalEmergency
             try
             {
                 _location = await Geolocation.GetLastKnownLocationAsync();
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    Gps gps = PositionUtil.gps84_To_Gcj02(_location.Latitude, _location.Longitude);
+                    _location = new Location(gps.getWgLat(), gps.getWgLon());
+                }
                 if (_location != null)
                 {
                     App.currentLocation = _location;
@@ -534,8 +539,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 };
                 try
                 {
-                    emergencyModel.lat = App.currentLocation.Latitude;
-                    emergencyModel.lng = App.currentLocation.Longitude;
+                    emergencyModel.lat = Convert.ToDouble(item.lat);
+                    emergencyModel.lng = Convert.ToDouble(item.lng);
                 }
                 catch (Exception)
                 {
