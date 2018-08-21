@@ -11,7 +11,11 @@ using Todo;
 using Xamarin.Auth;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+//#if __IOS__
+using Foundation;
+using UIKit;
+using CoreGraphics;
+//#endif
 namespace AepApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -20,9 +24,36 @@ namespace AepApp.View
         private AddSiteUtil addSiteUtil;
         private string siteName;
         private string siteUrl;
+
+
+       
+        void HandleAction(NSNotification obj)
+        {
+            var dic = obj.UserInfo as NSMutableDictionary;
+            var rc = dic.ValueForKey((Foundation.NSString)"UIKeyboardFrameEndUserInfoKey");
+            CGRect r = (rc as NSValue).CGRectValue;
+
+            if(Convert.ToInt32(r.Y) != App.ScreenHeight){
+                //entryStack.TranslateTo(0, 206 - r.Size.Height);
+                sl_add_site.TranslationY = -r.Size.Height;
+            }
+            else {
+                //entryStack.TranslateTo(0, 0);
+                sl_add_site.TranslationY = 0;
+            }
+        }
+//#endif
+
         public SelectSitePage()
         {
             InitializeComponent();
+
+            #if __IOS__//监听键盘的高度
+            var not = NSNotificationCenter.DefaultCenter;
+            not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
+#endif
+
+
             this.Title = "选择站点";
 
             HeaderList.ItemSelected += (sender, e) =>
