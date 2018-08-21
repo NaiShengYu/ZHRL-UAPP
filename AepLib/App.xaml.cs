@@ -165,14 +165,14 @@ namespace AepApp
             base.OnStart();
             //return;
             HandleEventHandler();
-            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
-            {
-                bool al = await LoginAsync("admin", "123456");
-                if (al) MainPage = new NavigationPage(new MasterAndDetailPage());
-                else MainPage = new NavigationPage(new LoginPage());
+            //if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            //{
+            //    bool al = await LoginAsync("admin", "123456");
+            //    if (al) MainPage = new NavigationPage(new MasterAndDetailPage());
+            //    else MainPage = new NavigationPage(new LoginPage());
 
-                return;
-            }
+            //    return;
+            //}
 
             //return;
             //获取存储的账号密码

@@ -65,8 +65,7 @@ namespace AepApp.View.EnvironmentalEmergency
             searchBar.TranslationY = -App.ScreenHeight;
         }
 
-        static int i = 0;
-
+        public AzmMarkerView aaa =null;
         async void HandleEventHandler()
         {
 
@@ -80,14 +79,15 @@ namespace AepApp.View.EnvironmentalEmergency
                 App.currentLocation = location;
                 if (location != null)
                 {
-                    if (i > 0)
+                    map.SetCenter(12, new AzmCoord(location.Longitude, location.Latitude));
+                    if (aaa != null)
                     {
-                        map.SetCenter(12, new AzmCoord(location.Longitude, location.Latitude));
+                        return;
                     }
+
                     var img = ImageSource.FromFile("markerred.png");
-                    var aaa = new AzmMarkerView(img, new Size(30, 30), new AzmCoord(location.Longitude, location.Latitude));
+                    aaa = new AzmMarkerView(img, new Size(30, 30), new AzmCoord(location.Longitude, location.Latitude));
                     map.Overlays.Add(aaa);
-                    i += 1;
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}");
                 }
             }
