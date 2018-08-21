@@ -72,12 +72,10 @@ namespace AepApp.View.EnvironmentalEmergency
 
             try
             {
-                Location location = await Geolocation.GetLastKnownLocationAsync();
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    Gps gps = PositionUtil.gps84_To_Gcj02(location.Latitude, location.Longitude);
-                    location = new Location(gps.getWgLat(), gps.getWgLon());
-                }
+                //Location location = await Geolocation.GetLastKnownLocationAsync();
+
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                Location location = await Geolocation.GetLocationAsync(request);
 
                 App.currentLocation = location;
                 if (location != null)

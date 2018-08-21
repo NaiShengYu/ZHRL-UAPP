@@ -18,6 +18,8 @@ namespace AepApp.View
 
             layoutSampling.IsVisible = App.moduleConfigSampling != null;
             layoutSampling.BindingContext = App.moduleConfigSampling;
+            menu1.IsVisible = App.moduleConfigSampling != null;
+            menu1.BindingContext = App.moduleConfigSampling;
             layoutEP.IsVisible = App.moduleConfigEP360 != null;
             layoutEP.BindingContext = App.moduleConfigEP360;
             layoutGrid.IsVisible = App.moduleConfigEP360 != null;

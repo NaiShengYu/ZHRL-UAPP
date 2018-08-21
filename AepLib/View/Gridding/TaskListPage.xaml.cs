@@ -91,7 +91,7 @@ namespace AepApp.View.Gridding
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            DisplayAlert("condition", "key: " + filterCondition.SearchName + "  status:" + filterCondition.Status, "ok");
+            //DisplayAlert("condition", "key: " + filterCondition.SearchName + "  status:" + filterCondition.Status, "ok");
         }
 
         //任务筛选条件

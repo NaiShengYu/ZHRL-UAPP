@@ -26,14 +26,17 @@
             </Grid>
             <StackLayout Grid.Row="1" BackgroundColor="White" Spacing="0" x:Name="menu1">
                 <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                <Grid>
-                    <Label Text="送样记录" BindingContext="AepApp.View.Samples.CollectionSamplesPage" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
+                <Grid IsVisible="{Binding menuSampleCarry}">
+                    <Label  BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0"/>
+                    <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                 </Grid>
-                <Grid>
-                    <Label Text="接样记录" BindingContext="AepApp.View.Samples.TransportSamplesPage" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
+                <Grid IsVisible="{Binding menuSampleReceive}">
+                    <Label BindingContext="AepApp.View.Samples.TransportSamplesPage"  HeightRequest="0"/>
+                    <Label Text="{Binding menuSampleReceiveLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                 </Grid>
-                <Grid>
-                    <Label Text="采样计划" BindingContext="AepApp.View.Samples.SamplePlanPage" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
+                <Grid IsVisible="{Binding menuSampleTask}">
+                    <Label BindingContext="AepApp.View.Samples.SamplePlanPage"  HeightRequest="0"/>
+                    <Label Text="{Binding menuSampleTaskLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                 </Grid>
             </StackLayout>
             <!--<BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>-->

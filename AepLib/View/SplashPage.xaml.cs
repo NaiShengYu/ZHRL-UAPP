@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Todo;
@@ -14,12 +15,17 @@ using Xamarin.Forms.Xaml;
 
 namespace AepApp.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SplashPage : ContentPage
-	{
-        public SplashPage ()
-		{
-			InitializeComponent ();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SplashPage : ContentPage
+    {
+
+        private Account acc;
+
+        public SplashPage()
+        {
+            InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
+
     }
 }

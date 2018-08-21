@@ -823,6 +823,10 @@ namespace AepApp.View
             foreach(var so in ShapeOverlays)
             {
                 Gps g = PositionUtil.gps84_To_Gcj02(so.Coord.lat, so.Coord.lng);
+                if(g == null)
+                {
+                    continue;
+                }
                 Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
                 //Point p = GetXYFromCoord(level, so.Coord);
                 double upm = GetUnitPerMeterFromCoord(level, so.Coord);
