@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.Gridding.GridTreeCardView">
+    <ContentView.Content>
+        <Grid BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <!-- expandbutton -->
+            <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Orientation="Horizontal">
+                <BoxView WidthRequest="{Binding IndentWidth}"/>
+                <Button Image="right" WidthRequest="40" HeightRequest="50" Command="{Binding ToggleIsExpandedCommand}" BackgroundColor="Transparent">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsExpanded}" Value="true">
+                            <Setter Property="Image" Value="bottom"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsExpanded}" Value="false">
+                            <Setter Property="Image" Value="right"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsLeaf}" Value="true">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsLeaf}" Value="false">
+                            <Setter Property="IsVisible" Value="True"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Button Image="empty" WidthRequest="40" HeightRequest="50" BackgroundColor="Transparent" IsVisible="{Binding IsLeaf}"/>
+            </StackLayout>
+
+            <!-- checkbutton -->
+            <StackLayout Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Horizontal">
+
+                <Button Image="graytick" Grid.Column="0" WidthRequest="40" HeightRequest="50"  Command="{Binding ToggleIsCheckedCommand}" BackgroundColor="Transparent">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsChecked}" Value="true">
+                            <Setter Property="Image" Value="greentick"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsChecked}" Value="false">
+                            <Setter Property="Image" Value="graytick"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+
+            <!-- left side -->
+            <StackLayout Grid.Column="2" Orientation="Horizontal" HorizontalOptions="Start">
+                <Label x:Name="TitleLabel" Text="{Binding Title}" FontSize="17" TextColor="Black" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <!-- right side -->
+            <!-- if you're testing on a smaller (smartphone) screen, you can comment out the following right side of content and delete one of the ColumnDefinitions for the Grid-->
+            <StackLayout Grid.Column="3" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="16,0,0,0">
+                <Label Text="{Binding Total}" Font="17" TextColor="Black" VerticalOptions="Center"/>
+                <!-- TODO: bind WidthRequest and use ValueConverter to convert from 0-1 score to the width of the chart on screen -->
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

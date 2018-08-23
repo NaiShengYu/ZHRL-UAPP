@@ -366,10 +366,10 @@ namespace AepApp
                 string url = App.EP360Module.url + "/api/mod/custconfig";
                 ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
                 {
-                    
+                    authProvider = "AzuraAuth",
                 };
                 string param = JsonConvert.SerializeObject(parameter);
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     moduleConfigEP360 = JsonConvert.DeserializeObject<ModuleConfigEP360>(res.Results);
@@ -396,10 +396,10 @@ namespace AepApp
                 string url = App.SamplingModule.url + "/api/mod/custconfig";
                 ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
                 {
-                    
+                    authProvider = "AzuraAuth",
                 };
                 string param = JsonConvert.SerializeObject(parameter);
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     moduleConfigSampling = JsonConvert.DeserializeObject<ModuleConfigSampling>(res.Results);
@@ -429,7 +429,7 @@ namespace AepApp
                     
                 };
                 string param = JsonConvert.SerializeObject(parameter);
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", App.FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     moduleConfigFramework = JsonConvert.DeserializeObject<ModuleConfigFramework>(res.Results);
