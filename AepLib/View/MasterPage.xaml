@@ -266,7 +266,7 @@
                     <Label Text="扫码登录"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
                 </Grid>
                 <Grid>
-                    <Label Text="设置" BindingContext="AepApp.View.Gridding.TestTreeViewPage" Margin="35,10,0,0" FontSize="19" TextColor="Black" />
+                    <Label Text="设置" BindingContext="AepApp.View.Gridding.GridTreeViewPage" Margin="35,10,0,0" FontSize="19" TextColor="Black" />
                 </Grid>
             </StackLayout>
         </Grid>

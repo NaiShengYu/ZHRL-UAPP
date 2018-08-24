@@ -54,7 +54,8 @@ namespace AepApp.View.EnvironmentalEmergency
             if (x1 < 0) tand = 360 - tand;
             directionLab.Text = Math.Round(tand,2).ToString();
             winLab.Text = WindDirectionWithfloat(Math.Round(tand, 2));
-            zhizhen.RotateTo(tand, 0);
+            Console.WriteLine("///////rotate//////" + tand);
+            zhizhen.RotateTo(tand, 10);
         }
         string WindDirectionWithfloat(double tand)
         {

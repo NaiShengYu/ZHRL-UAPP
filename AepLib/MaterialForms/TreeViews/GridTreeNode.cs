@@ -73,9 +73,12 @@ namespace AepApp.MaterialForms.TreeViews
         }
 
         //选择或取消选择
-        private void CheckEvent()
+        public void CheckEvent(bool isReverse)
         {
-            IsChecked = !IsChecked;
+            if (isReverse)
+            {
+                IsChecked = !IsChecked;
+            }
             foreach (GridTreeNode node in Descendants)
             {
                 if(node.IsChecked == IsChecked)
@@ -111,7 +114,7 @@ namespace AepApp.MaterialForms.TreeViews
         public GridTreeNode()
         {
             ToggleIsExpandedCommand = new Command(obj => IsExpanded = !IsExpanded);
-            ToggleIsCheckedCommand = new Command(obj => CheckEvent());
+            ToggleIsCheckedCommand = new Command(obj => CheckEvent(true));
         }
 
         public override string ToString()

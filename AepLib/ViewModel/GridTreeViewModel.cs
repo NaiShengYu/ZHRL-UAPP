@@ -20,42 +20,32 @@ namespace AepApp.ViewModel
         public ICommand AddNodeCommand { protected set; get; }
 
         static Random random = new Random(DateTime.Now.Millisecond + DateTime.Now.Second + DateTime.Now.Day);
-
+        
         public GridTreeViewModel(TestTreeModel data)
         {
             if (data == null)
             {
-                MyTree = new GridTreeNode { Title = "Root1", Score = 0.5, IsExpanded = false }; ;
-
-                var a = MyTree.Children.Add(new GridTreeNode { Title = "Branch A", Score = 0.75, IsExpanded = false });
-
-
-                var b = a.Children.Add(new GridTreeNode { Title = "Leaf A1", Score = 0.85, IsExpanded = true, IsChecked = true, IsLeaf = true, });
-                a.Children.Add(new GridTreeNode { Title = "Leaf A2", Score = 0.65, IsExpanded = true, IsChecked = false, IsLeaf = true, });
-                var c = a.Children.Add(new GridTreeNode { Title = "Leaf A3", Score = 0.65, IsExpanded = true, IsChecked = true, IsLeaf = false, });
-                c.Children.Add(new GridTreeNode { Title = "Leaf A31", Score = 0.65, IsExpanded = true, IsChecked = false, IsLeaf = true, });
-
-                b = MyTree.Children.Add(new GridTreeNode { Title = "Branch B", Score = 0.25, IsExpanded = false });
-                b.Children.Add(new GridTreeNode { Title = "Leaf B1", Score = 0.35, IsExpanded = true, IsLeaf = true, });
-                b.Children.Add(new GridTreeNode { Title = "Leaf B2", Score = 0.15, IsExpanded = true, IsLeaf = true, });
+                return;
             }
-            else
-            {
-                //todo
-                MyTree = new GridTreeNode
-                {
-                    Title = data.name,
-                };
-                TreeNodeList<GridTreeNode> children = MyTree.Children;
-                List<TestTreeModel> l = data.children;
-                while (l != null)
-                {
-                    foreach (TestTreeModel t in l)
-                    {
-                        ITreeNode<GridTreeNode> node = children.Add(new GridTreeNode { Title = t.name });
-                    }
 
-                }
+            MyTree = new GridTreeNode
+            {
+                Title = data.name,
+            };
+            AddChildren(data, MyTree);
+        }
+
+        private void AddChildren(TestTreeModel model, GridTreeNode treeNode)
+        {
+            if (model == null || model.children == null || model.children.Count == 0 || treeNode == null)
+            {
+                return;
+            }
+            foreach (TestTreeModel m in model.children)
+            {
+                GridTreeNode node = new GridTreeNode { Title = m.name, IsChecked = m.isChecked, IsExpanded = m.isExpanded, IsLeaf = m.isLeaf };
+                treeNode.Children.Add(node);
+                AddChildren(m, node);
             }
         }
 
@@ -63,6 +53,9 @@ namespace AepApp.ViewModel
         {
             public string name { get; set; }
             public List<TestTreeModel> children { get; set; }
+            public bool isLeaf { get; set; }
+            public bool isChecked { get; set; }
+            public bool isExpanded { get; set; }
         }
     }
 }
