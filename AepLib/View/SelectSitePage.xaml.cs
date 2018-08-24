@@ -1,4 +1,5 @@
 ﻿using AepApp.AuxiliaryExtension;
+using AepApp.Models;
 using Plugin.Hud;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,7 @@ using Todo;
 using Xamarin.Auth;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-#if __IOS__
-using Foundation;
-using UIKit;
-using CoreGraphics;
-#endif
+
 namespace AepApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -26,33 +23,32 @@ namespace AepApp.View
         private string siteUrl;
 
 
-        #if __IOS__      
-        void HandleAction(NSNotification obj)
+        protected override void OnDisappearing()
         {
-            var dic = obj.UserInfo as NSMutableDictionary;
-            var rc = dic.ValueForKey((Foundation.NSString)"UIKeyboardFrameEndUserInfoKey");
-            CGRect r = (rc as NSValue).CGRectValue;
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
 
-            if(Convert.ToInt32(r.Y) != App.ScreenHeight){
-                //entryStack.TranslateTo(0, 206 - r.Size.Height);
-                sl_add_site.TranslationY = -r.Size.Height;
-            }
-            else {
-                //entryStack.TranslateTo(0, 0);
-                sl_add_site.TranslationY = 0;
-            }
         }
-#endif
 
         public SelectSitePage()
         {
             InitializeComponent();
 
-            #if __IOS__//监听键盘的高度
-            var not = NSNotificationCenter.DefaultCenter;
-            not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
-#endif
+            //键盘高度改变
+            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
+            MessagingCenter.Subscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged", (ContentPage arg1, KeyboardSizeModel arg2) => {
 
+                Console.WriteLine(arg2.Height);
+                Console.WriteLine(arg2.Wight);
+                if (arg2.Y != App.ScreenHeight)
+                {
+                    sl_add_site.TranslationY = -arg2.Height+60;
+                }
+                else
+                {
+                    sl_add_site.TranslationY = 0;
+                }
+            });
 
             this.Title = "选择站点";
 

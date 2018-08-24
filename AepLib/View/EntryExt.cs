@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-
 namespace AepApp.View
 {
     public class EntryExt : Entry

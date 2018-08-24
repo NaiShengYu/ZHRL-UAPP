@@ -260,10 +260,10 @@
             <StackLayout  Grid.Row="3" BackgroundColor="White" Spacing="0" x:Name="menu3">
                 <Grid IsVisible="False">
                     <Label  BindingContext="AepApp.View.ScanLoginPage" HeightRequest="0"/>
-                    <Label Text="扫码登录"  Margin="35,10,0,0" FontSize="19" TextColor="Black"/>
+                    <Label Text="扫码登录"  Margin="35,10,0,10" FontSize="19" TextColor="Black"/>
                 </Grid>
                 <Grid>
-                    <Label Text="设置" BindingContext="AepApp.View.SelectSitePage" Margin="35,10,0,0" FontSize="19" TextColor="Black" />
+                    <Label Text="设置" BindingContext="AepApp.View.SelectSitePage" Margin="35,10,0,10" FontSize="19" TextColor="Black" />
                 </Grid>
             </StackLayout>
         </Grid>

@@ -5,14 +5,40 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using OxyPlot;
+using Xamarin.Forms;
+using CoreGraphics;
+using AepApp.Models;
 
 namespace AepApp.iOS
 {
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
+
+        void HandleAction(NSNotification obj)
+        {
+            var dic = obj.UserInfo as NSMutableDictionary;
+            var rc = dic.ValueForKey((Foundation.NSString)"UIKeyboardFrameEndUserInfoKey");
+            CGRect r = (rc as NSValue).CGRectValue;
+            KeyboardSizeModel keyboardSizeModel = new KeyboardSizeModel
+            {
+                X = Convert.ToInt32(r.X),
+                Y = Convert.ToInt32(r.Y),
+                Wight = Convert.ToInt32(r.Size.Width),
+                Height = Convert.ToInt32(r.Size.Height),
+            };
+            MessagingCenter.Send<ContentPage,KeyboardSizeModel>(new ContentPage(), "keyBoardFrameChanged",keyboardSizeModel);
+
+
+        }
+
+
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            
+            var not = NSNotificationCenter.DefaultCenter;
+            not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
+
             App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
             //视频录制
@@ -28,6 +54,8 @@ namespace AepApp.iOS
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             LoadApplication(new App());
          
+
+
             return base.FinishedLaunching(app, options);
         }
 
