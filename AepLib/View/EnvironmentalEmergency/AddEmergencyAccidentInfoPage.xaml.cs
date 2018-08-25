@@ -19,7 +19,6 @@ using SkiaSharp;
 using SimpleAudioForms;
 using InTheHand.Forms;
 using AepApp.Interface;
-
 #if __IOS__
 using Foundation;
 using UIKit;
@@ -29,6 +28,9 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AddEmergencyAccidentInfoPage : ContentPage
     {
+       
+
+
         //void Handle_PanUpdated(object sender, Xamarin.Forms.PanUpdatedEventArgs e)
         //{
 
@@ -112,23 +114,9 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
-#if __IOS__
-        void HandleAction(NSNotification obj)
-        {
-            var dic = obj.UserInfo as NSMutableDictionary;
-            var rc = dic.ValueForKey((Foundation.NSString)"UIKeyboardFrameEndUserInfoKey");
-            CGRect r = (rc as NSValue).CGRectValue;
 
-            if(Convert.ToInt32(r.Y) != App.ScreenHeight){
-                //entryStack.TranslateTo(0, 206 - r.Size.Height);
-                cccc.Height = 55-Convert.ToDouble((206 - r.Size.Height));
-            }
-            else {
-                //entryStack.TranslateTo(0, 0);
-                cccc.Height = 55;
-            }
-        }
-#endif
+      
+
       //输入框点击了编辑按钮
         async void clickedReturnKey(object sender, System.EventArgs e)
         {
@@ -880,15 +868,25 @@ namespace AepApp.View.EnvironmentalEmergency
         public AddEmergencyAccidentInfoPage(string id)
         {
             InitializeComponent();
-           
-            NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
-            HandleEventHandler();
+
+            //键盘高度改变
+            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
+            MessagingCenter.Subscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged", (ContentPage arg1, KeyboardSizeModel arg2) => {
+               
+                Console.WriteLine(arg2.Height);
+                Console.WriteLine(arg2.Wight);
+                if (arg2.Y != App.ScreenHeight)
+                {
+                    cccc.Height = 55 - (206 - arg2.Height);
+                }
+                else
+                {
+                    cccc.Height = 55;
+                }
+            });
 
          
-#if __IOS__//监听键盘的高度
-            var not = NSNotificationCenter.DefaultCenter;
-            not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
-#endif
+
             emergencyId = id;
 
             //进入上传数据界面先清空contaminantsList

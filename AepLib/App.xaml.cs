@@ -50,6 +50,9 @@ namespace AepApp
 
         public static string SampleURL = "http://192.168.1.128:30011";
 
+        public static UserInfoModel userInfo = null;
+        public static GridUserInfoModel gridUser = null;
+
         public static ModuleConfigEP360 moduleConfigEP360 = null;
         public static ModuleConfigSampling moduleConfigSampling = null;
         public static ModuleConfigFramework moduleConfigFramework = null;
@@ -122,8 +125,11 @@ namespace AepApp
         {
             InitializeComponent();
             vm = new VM();
-            splashPage = new SplashPage();
+            //MainPage = new HomePagePage();
             //MainPage = new NavigationPage(splashPage);
+
+
+            splashPage = new SplashPage();
             MainPage = splashPage;
 
             personViewModel = new TestPersonViewModel();
@@ -205,6 +211,9 @@ namespace AepApp
         {
             FrameworkToken fwtoken = await GetFrameworkTokenAsync(username, password);
             if (fwtoken == null) return false;
+            App.userInfo = await getUserInfoAsync(fwtoken.access_token);//获取用户信息
+            if (App.userInfo == null) return false;
+
             FrameworkToken = fwtoken.access_token;
 
             Modules = await GetModuleInfoAsync(fwtoken.access_token);
@@ -293,6 +302,29 @@ namespace AepApp
             }
         }
 
+
+        private async Task<UserInfoModel> getUserInfoAsync(string frameToken){
+
+            try
+            {
+                string url = FrameworkURL + "/api/fw/getUserinfo";
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url,"", "POST", frameToken);
+                UserInfoModel userInfo = null;
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    userInfo = JsonConvert.DeserializeObject<UserInfoModel>(res.Results);
+                }
+                return userInfo;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+        }
+
+
         /// <summary>
         /// Get a list of module names and URLs from the framework server
         /// </summary>
@@ -318,6 +350,34 @@ namespace AepApp
                 return null;
             }
         }
+
+
+        /// <summary>
+        /// 获取网格化登录人员信息
+        /// </summary>
+        /// <value>The get staff info.</value>
+        public async Task<GridUserInfoModel> getStaffInfo(){
+            try
+            {
+                string url = App.EP360Module.url + "/api/gbm/GetStaffInfo";
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "id="+App.userInfo.id, "POST", FrameworkToken);
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    App.gridUser = JsonConvert.DeserializeObject<GridUserInfoModel>(res.Results);
+                }
+                return App.gridUser;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+
+        }
+
+
+
 
         /// <summary>
         /// Get a converted token to be used for all subsequent requests to the Emergency module server

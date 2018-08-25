@@ -458,6 +458,8 @@
     <BundleResource Include="Resources\scan_3%402x.png" />
     <BundleResource Include="Resources\scan_4%402x.png" />
     <BundleResource Include="Resources\left.png" />
+    <BundleResource Include="Resources\empty.png" />
+    <BundleResource Include="Resources\bottom.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -578,7 +580,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AepLib\AepLib.csproj">
-      <Project>{ab4fed17-66a7-42d7-a7f7-fe7190221d1c}</Project>
+      <Project>{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}</Project>
       <Name>AepLib</Name>
     </ProjectReference>
   </ItemGroup>
