@@ -30,8 +30,9 @@
                     <Grid.Effects>
                      <tt:TouchEffect Capture="true" TouchAction="Handle_TouchAction"/>
                      </Grid.Effects>
-                    <Image AnchorX="0.5" AnchorY="0.5" x:Name="zhizhen" Source="dirarrow.png" VerticalOptions="Center" HorizontalOptions="Center" Margin="125"/> 
-                   <Image Margin="40,40,40,40" Source="dirface" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" /> 
+
+                    <Image AnchorX="0.5" AnchorY="0.5" x:Name="zhizhen" Source="dirarrow.png" VerticalOptions="Center" HorizontalOptions="Center" Margin="100" IsEnabled="False"/> 
+                   <Image Margin="40,40,40,40" Source="dirface" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" IsEnabled="False" /> 
                    <Label VerticalOptions="Start" HorizontalOptions="Center" Margin="0,10,0,0" Text="北"/>
                    <Label VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" Text="东"/>
                    <Label VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10" Text="南"/>

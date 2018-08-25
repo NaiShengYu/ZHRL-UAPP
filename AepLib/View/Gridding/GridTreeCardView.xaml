@@ -7,17 +7,16 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <!-- expandbutton -->
             <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Orientation="Horizontal">
                 <BoxView WidthRequest="{Binding IndentWidth}"/>
-                <Button Image="right" WidthRequest="40" HeightRequest="50" Command="{Binding ToggleIsExpandedCommand}" BackgroundColor="Transparent">
+                <Button Image="right" WidthRequest="35" HeightRequest="50" Command="{Binding ToggleIsExpandedCommand}" BackgroundColor="Transparent">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button" Binding="{Binding IsExpanded}" Value="true">
                             <Setter Property="Image" Value="bottom"/>
@@ -33,13 +32,13 @@
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
-                <Button Image="empty" WidthRequest="40" HeightRequest="50" BackgroundColor="Transparent" IsVisible="{Binding IsLeaf}"/>
+                <Button Image="empty" WidthRequest="35" HeightRequest="50" BackgroundColor="Transparent" IsVisible="{Binding IsLeaf}"/>
             </StackLayout>
 
             <!-- checkbutton -->
             <StackLayout Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Horizontal">
 
-                <Button Image="graytick" Grid.Column="0" WidthRequest="40" HeightRequest="50"  Command="{Binding ToggleIsCheckedCommand}" BackgroundColor="Transparent">
+                <Button Image="graytick" Grid.Column="0" WidthRequest="35" HeightRequest="50"  Command="{Binding ToggleIsCheckedCommand}" BackgroundColor="Transparent">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button" Binding="{Binding IsChecked}" Value="true">
                             <Setter Property="Image" Value="greentick"/>
@@ -51,17 +50,12 @@
                 </Button>
             </StackLayout>
 
-            <!-- left side -->
-            <StackLayout Grid.Column="2" Orientation="Horizontal" HorizontalOptions="Start">
+            <!-- right side -->
+            <StackLayout Grid.Column="2" Orientation="Horizontal" HorizontalOptions="Start" Padding="0,10, 10, 10">
                 <Label x:Name="TitleLabel" Text="{Binding Title}" FontSize="17" TextColor="Black" VerticalOptions="Center"/>
+                <Label Text="{Binding Total}" Font="17" TextColor="Black" VerticalOptions="Center"/>
             </StackLayout>
 
-            <!-- right side -->
-            <!-- if you're testing on a smaller (smartphone) screen, you can comment out the following right side of content and delete one of the ColumnDefinitions for the Grid-->
-            <StackLayout Grid.Column="3" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="16,0,0,0">
-                <Label Text="{Binding Total}" Font="17" TextColor="Black" VerticalOptions="Center"/>
-                <!-- TODO: bind WidthRequest and use ValueConverter to convert from 0-1 score to the width of the chart on screen -->
-            </StackLayout>
         </Grid>
     </ContentView.Content>
 </ContentView>

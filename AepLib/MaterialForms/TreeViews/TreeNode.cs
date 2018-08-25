@@ -285,5 +285,6 @@ namespace AepApp.MaterialForms.TreeViews
         {
             return "Depth=" + Depth + ", Height=" + Height + ", Children=" + Children.Count;
         }
+
     }
 }
