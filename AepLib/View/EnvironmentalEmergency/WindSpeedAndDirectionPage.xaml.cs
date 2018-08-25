@@ -40,6 +40,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         void Handle_TouchAction(object sender, TouchTracking.TouchActionEventArgs args)
         {
+            
             var x1 = args.Location.X -App.ScreenWidth / 2 ;
             var y1 =App.ScreenWidth / 2- args.Location.Y ;
 

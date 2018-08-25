@@ -106,7 +106,6 @@ namespace AepApp.View
             siteNmae = site_name.Text;
             if (acc == null || acc.Length == 0)
             {
-
                 await DisplayAlert("提示", "账号不能为空", "确定");
                 //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
             }
@@ -122,38 +121,44 @@ namespace AepApp.View
             }
             else
             {
-                bool loggedin = await (App.Current as App).LoginAsync(acc, pwd);
+                bool autologin = await (App.Current as App).LoginAsync(acc, pwd);
 
-                if (loggedin)
+                if (autologin)
                 {
-                    App.Current.MainPage = new NavigationPage(new MasterAndDetailPage());
-
+                    await Navigation.PushAsync(new MasterAndDetailPage());
                     // save the credential only after successful login
-
-#if !(DEBUG && __IOS__)
-
-                    //循环删除所存的数据
-                    IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.AppName);
-                    for (int i = 0; i < outs.Count(); i++)
-                    {
-                        AccountStore.Create().Delete(outs.ElementAt(i), App.AppName);
-                    }
-                    if (remember_pwd.IsToggled)
-                    {
-                        Account count = new Account
-                        {
-                            Username = acc
-                        };
-                        count.Properties.Add("pwd", pwd);
-                        AccountStore.Create().Save(count, App.AppName);
-                    }                    
-#endif
+                    deleteData();
+                    //Navigation.RemovePage(Navigation.NavigationStack[0]);
                 }
                 else
                 {
-                    DisplayAlert("提示", "登入失败", "确定");
+                    await DisplayAlert("提示", "登入失败", "确定");
                 }
             }
         }
+
+        private void deleteData()
+        {
+
+#if !(DEBUG && __IOS__)
+
+            //循环删除所存的数据
+            IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.AppName);
+            for (int i = 0; i < outs.Count(); i++)
+            {
+                AccountStore.Create().Delete(outs.ElementAt(i), App.AppName);
+            }
+            if (remember_pwd.IsToggled)
+            {
+                Account count = new Account
+                {
+                    Username = acc
+                };
+                count.Properties.Add("pwd", pwd);
+                AccountStore.Create().Save(count, App.AppName);
+            }
+#endif
+        }
+
     }
 }

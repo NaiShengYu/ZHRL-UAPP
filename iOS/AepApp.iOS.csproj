@@ -458,6 +458,8 @@
     <BundleResource Include="Resources\scan_3%402x.png" />
     <BundleResource Include="Resources\scan_4%402x.png" />
     <BundleResource Include="Resources\left.png" />
+    <BundleResource Include="Resources\empty.png" />
+    <BundleResource Include="Resources\bottom.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

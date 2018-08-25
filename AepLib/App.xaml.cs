@@ -36,19 +36,22 @@ namespace AepApp
 
         public static UploadEmergencyShowModel LastNatureAccidentModel = null;
         public static MasterDetailPage appHunbegerPage = null;
-        public static Location currentLocation =null;
-        private const string EmergencyModuleID  = "99A2844E-DF79-41D1-8CC4-CE98074CF31A";
-        private const string BasicDataModuleID  = "D53E7751-26A7-4B6C-B8E1-E243621A84CF"; //基础数据模块id
-        private const string EP360ModuleID      = "C105368C-7AF6-49C8-AED3-6A0C7A9E3F7B";
-        private const string SamplingModuleID   = "65B3E603-4493-44CA-953A-685513B01298";
-        private const string SimVisModuleID     = "4C534464-AD7D-42FF-80AF-0049CDC6A9F6";
-        private const string environmentalQualityID = "ED21BC68-236F-4B29-BE78-5F951AD4B054";//环保监测预警平台基础数据
+        public static Location currentLocation = null;
+        public const string EmergencyModuleID = "99A2844E-DF79-41D1-8CC4-CE98074CF31A";
+        public const string BasicDataModuleID = "D53E7751-26A7-4B6C-B8E1-E243621A84CF"; //基础数据模块id
+        public const string EP360ModuleID = "C105368C-7AF6-49C8-AED3-6A0C7A9E3F7B";
+        public const string SamplingModuleID = "65B3E603-4493-44CA-953A-685513B01298";
+        public const string SimVisModuleID = "4C534464-AD7D-42FF-80AF-0049CDC6A9F6";
+        public const string environmentalQualityID = "ED21BC68-236F-4B29-BE78-5F951AD4B054";//环保监测预警平台基础数据
 
-        public string FrameworkURL = "http://gx.azuratech.com:30000";
+        public static string FrameworkURL = "http://gx.azuratech.com:30000";
 
         public static string SampleWorkURL = "http://gx.azuratech.com:30011";
 
         public static string SampleURL = "http://192.168.1.128:30011";
+
+        public static UserInfoModel userInfo = null;
+        public static GridUserInfoModel gridUser = null;
 
         public static ModuleConfigEP360 moduleConfigEP360 = null;
         public static ModuleConfigSampling moduleConfigSampling = null;
@@ -78,7 +81,7 @@ namespace AepApp
 
         public static string FrameworkToken = "";       // Returned by the framework server. To be used as the ONLY access token throughout the APP
         public static string EmergencyToken = "";        // used temporarily for the emergency module
-        public static string EmergencyAccidentID = "";      
+        public static string EmergencyAccidentID = "";
 
         // needed in AccountStore for credential storing
         public static string AppName = "Aep";
@@ -95,6 +98,7 @@ namespace AepApp
         public static List<TodoItem> todoItemList = new List<TodoItem>();
 
         static TodoItemDatabase database;
+        public static SplashPage splashPage;
 
         private bool _isMasterDetailPageGestureEnabled = true;
         public bool IsMasterDetailPageGestureEnabled
@@ -121,7 +125,12 @@ namespace AepApp
         {
             InitializeComponent();
             vm = new VM();
-            MainPage = new HomePagePage();
+            //MainPage = new HomePagePage();
+            //MainPage = new NavigationPage(splashPage);
+
+
+            splashPage = new SplashPage();
+            MainPage = splashPage;
 
             personViewModel = new TestPersonViewModel();
             //MainPage = new TestOxyPage();
@@ -131,12 +140,13 @@ namespace AepApp
         }
 
         //使用后删除错误数据
-        async void aaaa(){
+        async void aaaa()
+        {
             List<UploadEmergencyModel> dataList2 = await App.Database.GetEmergencyAsync();
             foreach (UploadEmergencyModel model in dataList2)
             {
                 await App.Database.DeleteEmergencyAsync(model);
-            } 
+            }
         }
 
         //获取当前位置
@@ -144,12 +154,11 @@ namespace AepApp
         {
             try
             {
-                currentLocation = await Geolocation.GetLastKnownLocationAsync();
-                if (currentLocation != null &&  Device.RuntimePlatform == Device.Android)
-                {
-                    Gps gps = PositionUtil.gps84_To_Gcj02(currentLocation.Latitude, currentLocation.Longitude);
-                    currentLocation = new Location(gps.getWgLat(), gps.getWgLon());
-                }
+                //currentLocation = await Geolocation.GetLastKnownLocationAsync();
+
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                currentLocation = await Geolocation.GetLocationAsync(request);
+
                 if (currentLocation == null) HandleEventHandler();
             }
             catch (Exception ex)
@@ -160,7 +169,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-            return;
+            //return;
             HandleEventHandler();
             //if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             //{
@@ -202,6 +211,9 @@ namespace AepApp
         {
             FrameworkToken fwtoken = await GetFrameworkTokenAsync(username, password);
             if (fwtoken == null) return false;
+            App.userInfo = await getUserInfoAsync(fwtoken.access_token);//获取用户信息
+            if (App.userInfo == null) return false;
+
             FrameworkToken = fwtoken.access_token;
 
             Modules = await GetModuleInfoAsync(fwtoken.access_token);
@@ -225,9 +237,9 @@ namespace AepApp
                         case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
                 }
-                moduleConfigEP360 = await GetModuleConfigEP360();
-                moduleConfigSampling = await GetModuleConfigSampling();
-                moduleConfigFramework = await GetModuleConfigFramework();
+                GetModuleConfigEP360();
+                GetModuleConfigSampling();
+                GetModuleConfigFramework();
                 postEmergencyReq();
                 postEnvironmentalReq();
             }
@@ -290,6 +302,29 @@ namespace AepApp
             }
         }
 
+
+        private async Task<UserInfoModel> getUserInfoAsync(string frameToken){
+
+            try
+            {
+                string url = FrameworkURL + "/api/fw/getUserinfo";
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url,"", "POST", frameToken);
+                UserInfoModel userInfo = null;
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    userInfo = JsonConvert.DeserializeObject<UserInfoModel>(res.Results);
+                }
+                return userInfo;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+        }
+
+
         /// <summary>
         /// Get a list of module names and URLs from the framework server
         /// </summary>
@@ -315,6 +350,34 @@ namespace AepApp
                 return null;
             }
         }
+
+
+        /// <summary>
+        /// 获取网格化登录人员信息
+        /// </summary>
+        /// <value>The get staff info.</value>
+        public async Task<GridUserInfoModel> getStaffInfo(){
+            try
+            {
+                string url = App.EP360Module.url + "/api/gbm/GetStaffInfo";
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "id="+App.userInfo.id, "POST", FrameworkToken);
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    App.gridUser = JsonConvert.DeserializeObject<GridUserInfoModel>(res.Results);
+                }
+                return App.gridUser;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+
+        }
+
+
+
 
         /// <summary>
         /// Get a converted token to be used for all subsequent requests to the Emergency module server
@@ -349,14 +412,14 @@ namespace AepApp
                 return null;
             }
         }
-        
+
 
 
         /// <summary>
         /// Get the main menu config of EP360
         /// </summary>
         /// <returns></returns>
-        private async Task<ModuleConfigEP360> GetModuleConfigEP360()
+        private async void GetModuleConfigEP360()
         {
             try
             {
@@ -366,18 +429,19 @@ namespace AepApp
                     authProvider = "AzuraAuth",
                 };
                 string param = JsonConvert.SerializeObject(parameter);
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
-                ModuleConfigEP360 config = null;
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
-                    config = JsonConvert.DeserializeObject<ModuleConfigEP360>(res.Results);
+                    moduleConfigEP360 = JsonConvert.DeserializeObject<ModuleConfigEP360>(res.Results);
                 }
-                return config;
             }
             catch (Exception ex)
             {
 
-                return null;
+            }
+            finally
+            {
+                //GetModuleConfigSampling();
             }
         }
 
@@ -385,7 +449,7 @@ namespace AepApp
         /// Get the main menu config of sampling
         /// </summary>
         /// <returns></returns>
-        private async Task<ModuleConfigSampling> GetModuleConfigSampling()
+        private async void GetModuleConfigSampling()
         {
             try
             {
@@ -395,17 +459,19 @@ namespace AepApp
                     authProvider = "AzuraAuth",
                 };
                 string param = JsonConvert.SerializeObject(parameter);
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
-                ModuleConfigSampling config = null;
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
-                    config = JsonConvert.DeserializeObject<ModuleConfigSampling>(res.Results);
+                    moduleConfigSampling = JsonConvert.DeserializeObject<ModuleConfigSampling>(res.Results);
                 }
-                return config;
             }
             catch (Exception ex)
             {
-                return null;
+                
+            }
+            finally
+            {
+                //GetModuleConfigFramework();
             }
         }
 
@@ -413,68 +479,93 @@ namespace AepApp
         /// Get the main menu config of Framework
         /// </summary>
         /// <returns></returns>
-        private async Task<ModuleConfigFramework> GetModuleConfigFramework()
+        private async void GetModuleConfigFramework()
         {
             try
             {
                 string url = App.BasicDataModule.url + "/api/mod/custconfig";
                 ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
                 {
-                    authProvider = "AzuraAuth",
+                    
                 };
                 string param = JsonConvert.SerializeObject(parameter);
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
-                ModuleConfigFramework config = null;
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", App.FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
-                    config = JsonConvert.DeserializeObject<ModuleConfigFramework>(res.Results);
+                    moduleConfigFramework = JsonConvert.DeserializeObject<ModuleConfigFramework>(res.Results);
                 }
-                return config;
             }
             catch (Exception ex)
             {
-                return null;
+                
+            }
+            finally
+            {
+                //postEmergencyReq();
             }
         }
         /// <summary>
         /// 环境应急需要展示的窗口
         /// </summary>
-        async void postEmergencyReq(){
-
-            string url = App.EmergencyModule.url+"/api/mod/custconfig";
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
-
-            if (hTTPResponse.StatusCode == HttpStatusCode.OK)
+        async void postEmergencyReq()
+        {
+            try
             {
-                Console.WriteLine(hTTPResponse.Results);
-                var emergency = JsonConvert.DeserializeObject<ModuleConfigEmergency>(hTTPResponse.Results);
-                //emergency.showEmeSummary = false;
-                //emergency.menuPastIncident = false;
-                //emergency.menuDutyRoster = false;
-                App.moduleConfigEmergency = emergency;
-            }
+                string url = App.EmergencyModule.url + "/api/mod/custconfig";
+                HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
 
-        } 
+                if (hTTPResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    Console.WriteLine(hTTPResponse.Results);
+                    var emergency = JsonConvert.DeserializeObject<ModuleConfigEmergency>(hTTPResponse.Results);
+                    //emergency.showEmeSummary = false;
+                    //emergency.menuPastIncident = false;
+                    //emergency.menuDutyRoster = false;
+                    App.moduleConfigEmergency = emergency;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                //postEnvironmentalReq();
+            }
+            
+
+        }
 
         /// <summary>
         /// 环境质量需要展示的窗口
         /// </summary>
-        async void postEnvironmentalReq(){
-
-            string url = App.environmentalQualityModel.url+"/api/mod/custconfig";
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
-
-            if (hTTPResponse.StatusCode == HttpStatusCode.OK)
+        async void postEnvironmentalReq()
+        {
+            try
             {
-                Console.WriteLine(hTTPResponse.Results);
-                var eNVQ = JsonConvert.DeserializeObject<ModuleConfigENVQ>(hTTPResponse.Results);
-                //emergency.showEmeSummary = false;
-                //eNVQ.menuPastIncident = false;
-                //eNVQ.menuDutyRoster = false;
-                App.moduleConfigENVQ = eNVQ;
-            }
 
-        } 
+            }
+            catch (Exception e)
+            {
+                string url = App.environmentalQualityModel.url + "/api/mod/custconfig";
+                HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
+
+                if (hTTPResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    Console.WriteLine(hTTPResponse.Results);
+                    var eNVQ = JsonConvert.DeserializeObject<ModuleConfigENVQ>(hTTPResponse.Results);
+                    //emergency.showEmeSummary = false;
+                    //eNVQ.menuPastIncident = false;
+                    //eNVQ.menuDutyRoster = false;
+                    App.moduleConfigENVQ = eNVQ;
+                }
+            }
+            finally
+            {
+
+            }
+            
+        }
 
 
         private async Task GetSqlDataAsync()
@@ -509,8 +600,8 @@ namespace AepApp
                 return database;
             }
         }
-    
-    
+
+
         public int ResumeAtTodoId { get; set; }
 
 
