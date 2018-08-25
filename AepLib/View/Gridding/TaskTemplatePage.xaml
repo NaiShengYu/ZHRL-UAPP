@@ -24,7 +24,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center" Padding="20, 10, 0, 10">
-                                <Label StyleClass="itemtitle" HorizontalOptions="Start" VerticalOptions="Center" Text="现场检查任务"/>
+                                <Label StyleClass="itemtitle" HorizontalOptions="Start" VerticalOptions="Center" Text="{Binding title}"/>
                                 <Image Source="right" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 10, 0"/>
                             </Grid>
                         </ViewCell>

@@ -9,43 +9,47 @@ using Xamarin.Forms.Xaml;
 
 namespace AepApp.View.Gridding
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TaskFilterPage : ContentPage
-	{
-
-        private TaskListPage.TaskFilterCondition conditions;
-        public TaskFilterPage (TaskListPage.TaskFilterCondition filterCondition)
-		{
-			InitializeComponent ();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class TaskFilterPage : ContentPage
+    {
+        TaskListPage.TaskFilterCondition conditions;
+        public TaskFilterPage(TaskListPage.TaskFilterCondition filterCondition)
+        {
+            InitializeComponent();
             conditions = filterCondition;
             BindingContext = filterCondition;
-            //switchKey.IsToggled = !string.IsNullOrWhiteSpace(filterCondition.SearchName);
-            //switchStatus.IsToggled = !string.IsNullOrWhiteSpace(filterCondition.Status);
+            Init(filterCondition);
+        }
+
+        private void Init(TaskListPage.TaskFilterCondition conditions)
+        {
+            if (conditions == null)
+            {
+                return;
+            }
+            pickerType.SelectedItem = conditions.type;
+            pickerStatus.SelectedItem = conditions.status;
+            if (conditions.isTimeOn)
+            {
+                DatePickerStart.Date = conditions.dayStart;
+                DatePickerEnd.Date = conditions.dayEnd;
+            }
         }
 
         private void Switch_Toggled_Title(object sender, ToggledEventArgs e)
         {
-            if (!e.Value)
-            {
-                conditions.SearchName = "";
-            }
+
         }
         private void Switch_Toggled_Time(object sender, ToggledEventArgs e)
         {
-
+            
         }
 
         private void Switch_Toggled_Status(object sender, ToggledEventArgs e)
         {
             if (e.Value)
             {
-                //pickerStatus.IsVisible = true;
                 pickerStatus.Focus();
-            }
-            else
-            {
-                //pickerStatus.IsVisible = false;
-                conditions.Status = "";
             }
             return;
         }
@@ -54,12 +58,7 @@ namespace AepApp.View.Gridding
         {
             if (e.Value)
             {
-                pickerType.IsVisible = true;
                 pickerType.Focus();
-            }
-            else
-            {
-                pickerType.IsVisible = false;
             }
             return;
         }
@@ -78,5 +77,26 @@ namespace AepApp.View.Gridding
 
         }
 
+        private void pickerStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = sender as Picker;
+            conditions.status = picker.SelectedItem as string;
+        }
+
+        private void pickerType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = sender as Picker;
+            conditions.type = picker.SelectedItem as string;
+        }
+
+        private void DatePickerStart_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            conditions.dayStart = e.NewDate;
+        }
+
+        private void DatePickerEnd_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            conditions.dayEnd = e.NewDate;
+        }
     }
 }

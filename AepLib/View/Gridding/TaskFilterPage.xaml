@@ -13,13 +13,15 @@
         <StackLayout Spacing="0">
             <Grid>
                 <Label StyleClass="itemtitle" Text="名称"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Entry x:Name="labelKey" StyleClass="itemsubtitle" Text="{Binding SearchName}" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchKey}, Path=IsToggled}"/>
+                <Entry x:Name="labelKey" StyleClass="itemsubtitle" Text="{Binding searchName}" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchKey}, Path=IsToggled}"/>
                 <Switch x:Name="switchKey" HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" Toggled="Switch_Toggled_Title" IsToggled="{Binding isKeyOn}"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="状态" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10"/>
-                <views:BorderlessPicker x:Name="pickerStatus" Title="请选择" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchStatus}, Path=IsToggled}" StyleClass="itemsubtitle" >
+                <views:BorderlessPicker x:Name="pickerStatus" Title="请选择" HorizontalOptions="End" VerticalOptions="Center"  
+                                        Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchStatus}, Path=IsToggled}" 
+                                        StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatus_SelectedIndexChanged">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>已上报</x:String>
@@ -33,7 +35,9 @@
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="任务类型"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <views:BorderlessPicker x:Name="pickerType" Title="请选择" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="False" StyleClass="itemsubtitle" >
+                <views:BorderlessPicker x:Name="pickerType" Title="请选择" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Margin="100,0,80,0" 
+                                        IsVisible="{Binding Source={x:Reference switchType}, Path=IsToggled}" 
+                                        StyleClass="itemsubtitle" SelectedIndexChanged="pickerType_SelectedIndexChanged">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>恶臭事件</x:String>
@@ -41,41 +45,41 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </views:BorderlessPicker>
-                <Switch  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="False" Toggled="Switch_Toggled_Type"/>
+                <Switch x:Name="switchType"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isTypeOn}" Toggled="Switch_Toggled_Type"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="网格"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Label StyleClass="itemsubtitle" Text="" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" />
-                <Switch  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="False" Toggled="Switch_Toggled_Griders"/>
+                <Entry StyleClass="itemsubtitle" Text="{Binding griders}" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchGrider}, Path=IsToggled}"/>
+                <Switch x:Name="switchGrider"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isGriderOn}" Toggled="Switch_Toggled_Griders"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="时间"  HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="90" Margin="10,10,0,10" />
-                <Grid HorizontalOptions="End" VerticalOptions="Center" Margin="100, 10, 80, 10">
+                <Grid HorizontalOptions="End" VerticalOptions="Center" Margin="100, 10, 80, 10" IsVisible="{Binding Source={x:Reference switchTime}, Path=IsToggled}">
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <views:BorderlessDatePicker TSize="15" HasBorder="False" x:Name="DatePickerStart"  StyleClass="itemsubtitle" HorizontalOptions="Start" Format="yyyy-MM-dd"/>
-                        <views:BorderlessTimePicker TSize="15" x:Name="TimePickerStart"  StyleClass="itemsubtitle" HorizontalOptions="End" Format="HH:mm" Margin="10, 0, 0, 0"/>
+                        <views:BorderlessDatePicker TSize="15" HasBorder="False" x:Name="DatePickerStart"  StyleClass="itemsubtitle" HorizontalOptions="Start" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected"/>
+                        <views:BorderlessTimePicker TSize="15" x:Name="TimePickerStart"  StyleClass="itemsubtitle" HorizontalOptions="End" Format="HH:mm" Margin="10, 0, 0, 0" />
                     </StackLayout>
                     <Image Grid.Row="1" HorizontalOptions="Center" Source="left" Margin="4"/>
                     <StackLayout Grid.Row="2" Orientation="Horizontal" Spacing="0">
-                        <views:BorderlessDatePicker TSize="15" x:Name="DatePickerEnd"  StyleClass="itemsubtitle" HorizontalOptions="Start" Format="yyyy-MM-dd"/>
+                        <views:BorderlessDatePicker TSize="15" x:Name="DatePickerEnd"  StyleClass="itemsubtitle" HorizontalOptions="Start" Format="yyyy-MM-dd" DateSelected="DatePickerEnd_DateSelected"/>
                         <views:BorderlessTimePicker TSize="15" x:Name="TimePickerEnd"  StyleClass="itemsubtitle" HorizontalOptions="End" Format="HH:mm" Margin="10, 0, 0, 0"/>
                     </StackLayout>
                 </Grid>
-                <Switch  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="False" Toggled="Switch_Toggled_Time"/>
+                <Switch x:Name="switchTime" HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isTimeOn}" Toggled="Switch_Toggled_Time"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="地点名称"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Label StyleClass="itemsubtitle" Text="" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" />
-                <Switch  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="False" Toggled="Switch_Toggled_Address"/>
+                <Entry StyleClass="itemsubtitle" Text="{Binding address}" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchAddress}, Path=IsToggled}"/>
+                <Switch x:Name="switchAddress"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isAddressOn}" Toggled="Switch_Toggled_Address"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="监控点"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Label StyleClass="itemsubtitle" Text="" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" />
-                <Switch  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="False" Toggled="Switch_Toggled_Watchers"/>
+                <Entry StyleClass="itemsubtitle" Text="{Binding watcher}" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchWatcher}, Path=IsToggled}"/>
+                <Switch x:Name="switchWatcher" HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isWatcherOn}" Toggled="Switch_Toggled_Watchers"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
         </StackLayout>
