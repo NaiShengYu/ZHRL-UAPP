@@ -14,8 +14,8 @@
                         <ViewCell>
                             <Grid VerticalOptions="Center">
                                 <StackLayout VerticalOptions="Center" Margin="20,0,50,0" Spacing="2">
-                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding name}" />
-                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding eventName}" TextColor="Gray" Font="16"/>
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding staff}" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding subTitle}" TextColor="Gray" Font="16"/>
                                 </StackLayout>
                                     <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                             </Grid>

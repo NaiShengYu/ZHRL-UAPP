@@ -19,6 +19,9 @@ namespace AepApp.View.Gridding
         private ObservableCollection<GridTaskModel> dataList = new ObservableCollection<GridTaskModel>();
         private TaskFilterCondition filterCondition;
 
+        private const string SEARCH_MULTIPLE = "《复杂条件搜索》";
+        private bool isSearchMultiple = false;
+
         public TaskListPage()
         {
             InitializeComponent();
@@ -50,6 +53,7 @@ namespace AepApp.View.Gridding
 
         private async void SearchData()
         {
+            pageIndex = 0;
             dataList.Clear();
             hasMore = true;
             if (App.gridUser == null)
@@ -59,28 +63,25 @@ namespace AepApp.View.Gridding
 
         private async void ReqGridTaskList()
         {
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    GridTaskModel _event = new GridTaskModel();
-            //    _event.name = i + "在工厂周围检测水质";
-            //    _event.eventName = "化工偷排事件";
-            //    _event.addTime = "2018-8-13";
-
-            //    dataList.Add(_event);
-            //}
-
             string url = App.EP360Module.url + "/api/gbm/GetTasksByKey";
             Dictionary<string, string> map = new Dictionary<string, string>();
             map.Add("pageIndex", pageIndex + "");
             map.Add("pageSize", "10");
-            map.Add("taskName", filterCondition.isKeyOn ? filterCondition.searchName : "");
-            map.Add("state", filterCondition.isStatusOn ? filterCondition.status : "");
-            map.Add("type", filterCondition.isTypeOn ? filterCondition.type : "");
-            map.Add("gridName", filterCondition.isGriderOn ? filterCondition.griders : "");
-            map.Add("strDate", filterCondition.isTimeOn ? TimeUtils.DateTime2YMD(filterCondition.dayStart) : "");
-            map.Add("endDate", filterCondition.isTimeOn ? TimeUtils.DateTime2YMD(filterCondition.dayEnd) : "");
-            map.Add("addr", filterCondition.isAddressOn ? filterCondition.address : "");
-            map.Add("pointName", filterCondition.isWatcherOn ? filterCondition.watcher : "");
+            if (isSearchMultiple)
+            {
+                map.Add("taskName", filterCondition.isKeyOn ? filterCondition.searchName : "");
+                map.Add("state", filterCondition.isStatusOn ? filterCondition.status : "");
+                map.Add("type", filterCondition.isTypeOn ? filterCondition.type : "");
+                map.Add("gridName", filterCondition.isGriderOn ? filterCondition.griders : "");
+                map.Add("strDate", filterCondition.isTimeOn ? TimeUtils.DateTime2YMD(filterCondition.dayStart) : "");
+                map.Add("endDate", filterCondition.isTimeOn ? TimeUtils.DateTime2YMD(filterCondition.dayEnd) : "");
+                map.Add("addr", filterCondition.isAddressOn ? filterCondition.address : "");
+                map.Add("pointName", filterCondition.isWatcherOn ? filterCondition.watcher : "");
+            }
+            else
+            {
+                map.Add("taskName", mSearchKey);
+            }
             string param = JsonConvert.SerializeObject(map);
             await DisplayAlert("param", param, "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
@@ -132,10 +133,12 @@ namespace AepApp.View.Gridding
             if(filterCondition.isKeyOn || filterCondition.isStatusOn || filterCondition.isTypeOn || filterCondition.isGriderOn
                 || filterCondition.isTimeOn || filterCondition.isAddressOn || filterCondition.isWatcherOn)
             {
-                search.Text = "《复杂条件搜索》";
+                isSearchMultiple = true;
+                search.Text = SEARCH_MULTIPLE;
             }
             else
             {
+                isSearchMultiple = false;
                 search.Text = "";
             }
             SearchData();

@@ -52,6 +52,7 @@ namespace AepApp.View.Gridding
 
         private void SearchData()
         {
+            pageIndex = 0;
             hasMore = true;
             dataList.Clear();
             ReqTaskTemplateList();

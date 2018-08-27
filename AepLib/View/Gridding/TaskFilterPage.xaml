@@ -47,12 +47,14 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </views:BorderlessPicker>
-                <Switch x:Name="switchType"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isTypeOn}" Toggled="Switch_Toggled_Type"/>
+                <Switch x:Name="switchType"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" 
+                        IsToggled="{Binding isTypeOn}" Toggled="Switch_Toggled_Type"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="网格"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Entry StyleClass="itemsubtitle" Text="{Binding griders}" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchGrider}, Path=IsToggled}"/>
+                <Entry StyleClass="itemsubtitle" Text="{Binding griders}" HorizontalOptions="End" VerticalOptions="Center"  
+                       Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchGrider}, Path=IsToggled}"/>
                 <Switch x:Name="switchGrider"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isGriderOn}" Toggled="Switch_Toggled_Griders"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
@@ -74,14 +76,15 @@
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="地点名称"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Entry StyleClass="itemsubtitle" Text="{Binding address}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" 
+                <Entry StyleClass="itemsubtitle" Text="{Binding address}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
                        Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchAddress}, Path=IsToggled}" HorizontalTextAlignment="End"/>
                 <Switch x:Name="switchAddress"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isAddressOn}" Toggled="Switch_Toggled_Address"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="监控点"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Entry StyleClass="itemsubtitle" Text="{Binding watcher}" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchWatcher}, Path=IsToggled}"/>
+                <Entry StyleClass="itemsubtitle" Text="{Binding watcher}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
+                       Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchWatcher}, Path=IsToggled}" HorizontalTextAlignment="End"/>
                 <Switch x:Name="switchWatcher" HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isWatcherOn}" Toggled="Switch_Toggled_Watchers"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />

@@ -11,8 +11,9 @@ namespace AepApp.View.Gridding
 {
     public partial class EventListPage : ContentPage
     {
-        private int totalNum;
         private string mSearchKey;
+        int page = 0;//请求页码
+        bool haveMore = true;//返回是否还有
         private ObservableCollection<GridEventModel> dataList = new ObservableCollection<GridEventModel>();
 
         public EventListPage()
@@ -50,8 +51,9 @@ namespace AepApp.View.Gridding
 
         private async void SearchData()
         {
+            page = 0;
             dataList.Clear();
-
+            haveMore = true;
             if(App.gridUser ==null){
                 App.gridUser = await (App.Current as App).getStaffInfo();
                 ReqGridEventList();
@@ -124,15 +126,13 @@ namespace AepApp.View.Gridding
             GridEventModel item = e.Item as GridEventModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (dataList.Count < totalNum)
+                if (haveMore)
                 {
                     ReqGridEventList();
                 }
             }
         }
 
-        int page = 0;//请求页码
-        bool haveMore = true;//返回是否还有
         private async void ReqGridEventList(){
 
             string url = App.EmergencyModule.url+"/api/gbm/GetIncidentsByKey";
