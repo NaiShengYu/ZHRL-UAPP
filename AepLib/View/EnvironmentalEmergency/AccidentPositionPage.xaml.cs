@@ -71,11 +71,14 @@ namespace AepApp.View.EnvironmentalEmergency
 
             try
             {
-                //Location location = await Geolocation.GetLastKnownLocationAsync();
-
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                Location location = await Geolocation.GetLocationAsync(request);
-
+                Location location;
+                if(Device.RuntimePlatform == Device.iOS){
+                    location = await Geolocation.GetLastKnownLocationAsync();
+                }else{
+                    var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                    location = await Geolocation.GetLocationAsync(request);
+                }
+               
                 App.currentLocation = location;
                 if (location != null)
                 {
@@ -178,7 +181,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public AccidentPositionPage(string lng, string lat)
         {
             InitializeComponent();
-            HandleEventHandler();
+
             searchBar.Margin = new Thickness(0, 0, 0, -App.ScreenHeight);
             searchBar.HeightRequest = App.ScreenHeight - 150;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
@@ -196,6 +199,8 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 map.SetCenter(12, new AzmCoord(Convert.ToDouble(lng), Convert.ToDouble(lat)));
             }
+
+            HandleEventHandler();
         }
         
 

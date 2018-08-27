@@ -34,10 +34,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
+                            <Grid x:Name="GridAttachment">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Grid.GestureRecognizers>
                                 <StackLayout Margin="50,10,10,10" VerticalOptions="Center" HorizontalOptions="Start" Spacing="1">
-                                    <Label Text="{Binding name}" Font="18" />
-                                    <Label Text="{Binding lenth}" Font="16" TextColor="Gray" />
+                                    <Label Text="{Binding filename}" Font="18" />
+                                    <Label Text="{Binding length}" Font="16" TextColor="Gray" />
                                 </StackLayout>
                                 <BoxView BackgroundColor="Silver" HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="End" />
                                 <Image Source="pdf" HorizontalOptions="Start" VerticalOptions="Center" Margin="10" HeightRequest="30" WidthRequest="30"/>

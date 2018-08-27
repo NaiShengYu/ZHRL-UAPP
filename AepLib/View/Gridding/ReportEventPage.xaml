@@ -23,8 +23,8 @@
                         <ViewCell>
                             <Grid VerticalOptions="Center">
                                 <StackLayout  VerticalOptions="Center" Margin="20,0,150,0" Spacing="2">
-                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding Name}" />
-                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding Time}"  />
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding Title}" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding GridName}"  />
                                 </StackLayout>
                                 <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="120" HeightRequest="30">
                                     <Grid.Triggers>

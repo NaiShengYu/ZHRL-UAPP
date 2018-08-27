@@ -4,13 +4,13 @@ namespace AepApp.Models
     public class GridUserInfoModel
     {
 
-        public string id
+        public Guid id
         {
             get;
             set;
         }
 
-        public string gridcell
+        public Guid gridcell
         {
             get;
             set;

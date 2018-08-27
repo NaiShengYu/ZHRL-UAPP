@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.EditContentsPage">
+    <ContentPage.Content>
+    <StackLayout>
+    <Editor x:Name="EditText" Margin="10" FontSize="17" TextChanged="Handle_TextChanged" IsEnabled="{Binding canEdit}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

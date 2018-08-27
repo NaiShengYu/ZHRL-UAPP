@@ -21,13 +21,14 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center">
-                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
+                                <StackLayout VerticalOptions="Center" Margin="20,0,120,0" Spacing="2">
                                     <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding taskTitle}" />
                                     <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding incidentTitle}" />
                                 </StackLayout>
-                                <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="90" HeightRequest="30" BackgroundColor="#2772A5">
-                                    <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation" Text="事件处理" TextColor="White" />
-                                </Grid>
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="110"  BackgroundColor="#2772A5">
+                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center"  Text="执行期限" TextColor="White" />
+                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center" Text="{Binding lastDate, StringFormat='{0:yyyy-MM-dd}'}" TextColor="White" />
+                                </StackLayout>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

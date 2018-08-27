@@ -62,7 +62,7 @@
                 <Label StyleClass="itemtitle" Text="时间"  HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="90" Margin="10,10,0,10" />
                 <Grid HorizontalOptions="End" VerticalOptions="Center" Margin="100, 10, 80, 10" IsVisible="{Binding Source={x:Reference switchTime}, Path=IsToggled}">
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <views:BorderlessDatePicker TSize="15" HasBorder="False" x:Name="DatePickerStart"  StyleClass="itemsubtitle" HorizontalOptions="Start" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected"/>
+                        <views:BorderlessDatePicker TSize="15" HasBorder="False" x:Name="DatePickerStart"  StyleClass="itemsubtitle" HorizontalOptions="Start" Format="yyyy-MM-dd HH:mm" DateSelected="DatePickerStart_DateSelected"/>
                         <views:BorderlessTimePicker TSize="15" x:Name="TimePickerStart"  StyleClass="itemsubtitle" HorizontalOptions="End" Format="HH:mm" Margin="10, 0, 0, 0" />
                     </StackLayout>
                     <Image Grid.Row="1" HorizontalOptions="Center" Source="left" Margin="4"/>

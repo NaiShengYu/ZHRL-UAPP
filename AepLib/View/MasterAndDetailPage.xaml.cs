@@ -14,6 +14,7 @@ using System.Net;
 using AepApp.Models;
 using Newtonsoft.Json;
 
+using AepApp.View.Gridding;
 namespace AepApp.View
 {
     public partial class MasterAndDetailPage : MasterDetailPage
@@ -53,7 +54,7 @@ namespace AepApp.View
             Master = new MasterPage(this);
             Master.WidthRequest = 100;
 
-            Detail = new NavigationPage(new EmergencyAccidentPage());
+            Detail = new NavigationPage(new EventListPage());
         }
 
     }

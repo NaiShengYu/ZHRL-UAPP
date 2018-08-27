@@ -45,7 +45,7 @@ namespace AepApp
         public const string environmentalQualityID = "ED21BC68-236F-4B29-BE78-5F951AD4B054";//环保监测预警平台基础数据
 
         //public static string FrameworkURL = "http://gx.azuratech.com:30000";
-        public static string FrameworkURL = "http://gx.azuratech.com:50000";
+        public static string FrameworkURL = "http://dev.azuratech.com:50000";
 
         public static UserInfoModel userInfo = null;
         public static GridUserInfoModel gridUser = null;
@@ -122,6 +122,7 @@ namespace AepApp
         {
             InitializeComponent();
             vm = new VM();
+            HandleEventHandler();
             //MainPage = new HomePagePage();
             //MainPage = new NavigationPage(splashPage);
 
@@ -149,12 +150,18 @@ namespace AepApp
         //获取当前位置
         async void HandleEventHandler()
         {
+
             try
             {
-                //currentLocation = await Geolocation.GetLastKnownLocationAsync();
-
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                currentLocation = await Geolocation.GetLocationAsync(request);
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    currentLocation = await Geolocation.GetLastKnownLocationAsync();
+                }
+                else
+                {
+                    var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                    currentLocation = await Geolocation.GetLocationAsync(request);
+                }
 
                 if (currentLocation == null) HandleEventHandler();
             }
@@ -167,7 +174,7 @@ namespace AepApp
         {
             base.OnStart();
             //return;
-            HandleEventHandler();
+
             //if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             //{
             //    bool al = await LoginAsync("admin", "123456");
@@ -193,10 +200,33 @@ namespace AepApp
             string username = acc.Username;
 
             // try auto login
-            bool autologgedin = await LoginAsync(username, password);
-            if (autologgedin) MainPage = new NavigationPage(new MasterAndDetailPage());
+            _autologgedin = await LoginAsync(username, password);
+            if (_autologgedin) canGo();
             else MainPage = new NavigationPage(new LoginPage());
         }
+
+        bool _autologgedin = false;
+        bool _isSampling = false;
+        bool _isEmergency = false;
+        bool _ISBasicData = false;
+        bool _isEP360 = false;
+        bool _isenvironmental = false;
+
+        private void canGo()
+        {
+
+            if (_autologgedin == true &&
+               _isSampling == true &&
+               _isEmergency == true &&
+               _ISBasicData == true &&
+               _isEP360 == true &&
+               _isenvironmental == true)
+            {
+                MainPage = new NavigationPage(new MasterAndDetailPage());
+            }
+
+        }
+
 
         /// <summary>
         /// Login server with provided username and password
@@ -234,11 +264,12 @@ namespace AepApp
                         case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
                 }
-                GetModuleConfigEP360();
-                GetModuleConfigSampling();
-                GetModuleConfigFramework();
-                postEmergencyReq();
-                postEnvironmentalReq();
+                if (EP360Module != null) GetModuleConfigEP360(); else _isEP360 = true;
+                if (SamplingModule != null) GetModuleConfigSampling(); else _isSampling = true;
+                if (BasicDataModule != null) GetModuleConfigFramework(); else _ISBasicData = true;
+                if (EmergencyModule != null) postEmergencyReq(); else _isEmergency = true;
+                if (environmentalQualityModel != null) postEnvironmentalReq(); else _isenvironmental = true;
+
             }
 
             if (EmergencyModule != null)
@@ -270,6 +301,10 @@ namespace AepApp
                     return true;
                 }
             }
+            else
+            {
+                return true;
+            }
 
             return false;
         }
@@ -299,13 +334,20 @@ namespace AepApp
             }
         }
 
-
-        private async Task<UserInfoModel> getUserInfoAsync(string frameToken){
+        /// <summary>
+        /// 获取网格化人员信息
+        /// </summary>
+        /// <param name="frameToken"></param>
+        /// <returns></returns>
+        private async Task<UserInfoModel> getUserInfoAsync(string frameToken)
+        {
 
             try
             {
-                string url = FrameworkURL + "/api/fw/getUserinfo";
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url,"", "POST", frameToken);
+                ///api/f w/GetUser
+                //string url = FrameworkURL + "/api/fw/getUserinfo";
+                string url = FrameworkURL + "/api/fw/GetUser";
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", frameToken);
                 UserInfoModel userInfo = null;
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
@@ -321,6 +363,23 @@ namespace AepApp
 
         }
 
+        /// <summary>
+        /// 获取特定用户的信息
+        /// </summary>
+        /// <param name="staffId"></param>
+        /// <returns></returns>
+        public async Task<UserInfoModel> GetUserInfo(string staffId)
+        {
+
+            string url = App.FrameworkURL + "/api/fw/GetUserByid?id=" + staffId;
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.FrameworkToken);
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                UserInfoModel user = JsonConvert.DeserializeObject<UserInfoModel>(res.Results);
+                return user;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Get a list of module names and URLs from the framework server
@@ -353,11 +412,16 @@ namespace AepApp
         /// 获取网格化登录人员信息
         /// </summary>
         /// <value>The get staff info.</value>
-        public async Task<GridUserInfoModel> getStaffInfo(){
+        public async Task<GridUserInfoModel> getStaffInfo()
+        {
             try
             {
                 string url = App.EP360Module.url + "/api/gbm/GetStaffInfo";
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "id="+App.userInfo.id, "POST", FrameworkToken);
+                Dictionary<string, string> dic = new Dictionary<string, string>();
+                dic.Add("id", userInfo.id.ToString());
+                string param = JsonConvert.SerializeObject(dic);
+
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     App.gridUser = JsonConvert.DeserializeObject<GridUserInfoModel>(res.Results);
@@ -430,7 +494,9 @@ namespace AepApp
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     moduleConfigEP360 = JsonConvert.DeserializeObject<ModuleConfigEP360>(res.Results);
+
                 }
+
             }
             catch (Exception ex)
             {
@@ -439,6 +505,8 @@ namespace AepApp
             finally
             {
                 //GetModuleConfigSampling();
+                _isEP360 = true;
+                canGo();
             }
         }
 
@@ -460,15 +528,19 @@ namespace AepApp
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     moduleConfigSampling = JsonConvert.DeserializeObject<ModuleConfigSampling>(res.Results);
+
                 }
+
             }
             catch (Exception ex)
             {
-                
+
             }
             finally
             {
                 //GetModuleConfigFramework();
+                _isSampling = true;
+                canGo();
             }
         }
 
@@ -483,22 +555,26 @@ namespace AepApp
                 string url = App.BasicDataModule.url + "/api/mod/custconfig";
                 ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
                 {
-                    
+
                 };
                 string param = JsonConvert.SerializeObject(parameter);
                 HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", App.FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     moduleConfigFramework = JsonConvert.DeserializeObject<ModuleConfigFramework>(res.Results);
+
                 }
+
             }
             catch (Exception ex)
             {
-                
+
             }
             finally
             {
                 //postEmergencyReq();
+                _ISBasicData = true;
+                canGo();
             }
         }
         /// <summary>
@@ -520,6 +596,7 @@ namespace AepApp
                     //emergency.menuDutyRoster = false;
                     App.moduleConfigEmergency = emergency;
                 }
+
             }
             catch (Exception e)
             {
@@ -528,8 +605,10 @@ namespace AepApp
             finally
             {
                 //postEnvironmentalReq();
+                _isEmergency = true;
+                canGo();
             }
-            
+
 
         }
 
@@ -539,10 +618,6 @@ namespace AepApp
         async void postEnvironmentalReq()
         {
             try
-            {
-
-            }
-            catch (Exception e)
             {
                 string url = App.environmentalQualityModel.url + "/api/mod/custconfig";
                 HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
@@ -557,11 +632,17 @@ namespace AepApp
                     App.moduleConfigENVQ = eNVQ;
                 }
             }
-            finally
+            catch (Exception e)
             {
 
+
             }
-            
+            finally
+            {
+                _isenvironmental = true;
+                canGo();
+            }
+
         }
 
 
