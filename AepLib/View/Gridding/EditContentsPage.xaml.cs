@@ -11,9 +11,9 @@ namespace AepApp.View.Gridding
         {
             
             if (_type == "EditResult") 
-                _infoModel.results = e.NewTextValue;
+                _infoModel.Results = e.NewTextValue;
             if (_type == "EditContent")
-                _infoModel.content = e.NewTextValue;        
+                _infoModel.Content = e.NewTextValue;        
         }
 
         GridEventInfoModel _infoModel = null;
@@ -25,9 +25,9 @@ namespace AepApp.View.Gridding
             BindingContext = _infoModel;
             _type = type;
             if (_type == "EditResult")
-                EditText.Text = _infoModel.results;
+                EditText.Text = _infoModel.Results;
             if (_type == "EditContent")
-                EditText.Text = _infoModel.content;     
+                EditText.Text = _infoModel.Content;     
             ToolbarItems.Add(new ToolbarItem("确定","" , () =>
             {
                 Navigation.PopAsync();

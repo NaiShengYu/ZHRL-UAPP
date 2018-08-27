@@ -482,6 +482,7 @@
     <Compile Include="Services\RecordVoice.cs" />
     <Compile Include="Services\OpenApp.cs" />
     <Compile Include="Services\DatabaseService.cs" />
+    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
