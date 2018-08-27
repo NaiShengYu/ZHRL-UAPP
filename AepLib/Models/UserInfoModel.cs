@@ -9,7 +9,13 @@ namespace AepApp.Models
             set;
         }
 
-        public string id
+        public Guid id
+        {
+            get;
+            set;
+        }
+
+        public string tel
         {
             get;
             set;

@@ -29,7 +29,7 @@ namespace AepApp.View.Gridding
         }
 
         void RegistrationEvent(object sender, System.EventArgs e){
-            Navigation.PushAsync(new RegistrationEventPage(new GridEventModel()));
+            Navigation.PushAsync(new RegistrationEventPage(""));
         }
         void Handle_Clicked(object sender, System.EventArgs e)
         {

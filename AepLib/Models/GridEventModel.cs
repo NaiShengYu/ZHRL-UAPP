@@ -52,5 +52,58 @@ namespace AepApp.Models
         {
             get { return lng + " E, " + lat + " N"; }
         }
+
+        private string Incident;
+        public string incident             
+        {
+            get { return Incident; }
+            set { Incident = value; NotifyPropertyChanged(); }
+        }
+
+
+        private string Gridcell;
+        public string gridcell             
+        {
+            get { return Gridcell; }
+            set { Gridcell = value; NotifyPropertyChanged(); }
+        }
+
+
+        private string Title;
+        public string title                
+        {
+            get { return Title; }
+            set { Title = value; NotifyPropertyChanged(); }
+        }
+
+        private int Type;
+        public int type                 
+        {
+            get { return Type; }
+            set { Type = value; NotifyPropertyChanged(); }
+        }
+
+        private DateTime Date;
+        public DateTime date                 
+        {
+            get { return Date; }
+            set { Date = value; NotifyPropertyChanged(); }
+        }
+
+        private string GridName;
+        public string gridName             
+        {
+            get { return GridName; }
+            set { GridName = value; NotifyPropertyChanged(); }
+        }
+
+
+        private int Level;
+        public int level                
+        {
+            get { return Level; }
+            set { Level = value; NotifyPropertyChanged(); }
+        }
+
     }
 }
