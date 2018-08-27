@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AepApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -7,6 +8,8 @@ namespace AepApp.View.Gridding
 {
     public partial class SendInformationInfoPage : ContentPage
     {
+
+
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
 
@@ -14,7 +17,7 @@ namespace AepApp.View.Gridding
 
         private ObservableCollection<informationFile> dataList = new ObservableCollection<informationFile>();
 
-        public SendInformationInfoPage()
+        public SendInformationInfoPage(GridSendInformationModel info)
         {
             InitializeComponent();
 
@@ -28,10 +31,8 @@ namespace AepApp.View.Gridding
                 };
                 dataList.Add(file);
             }
-
+            BindingContext = info;
             listV.ItemsSource = dataList;
-
-
         }
 
 

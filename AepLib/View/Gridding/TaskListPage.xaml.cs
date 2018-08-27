@@ -1,33 +1,38 @@
 ﻿using AepApp.Models;
+using AepApp.Tools;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using Sample;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net;
 using Xamarin.Forms;
 
 namespace AepApp.View.Gridding
 {
     public partial class TaskListPage : ContentPage
     {
-        
-        private int totalNum;
+        private int pageIndex;
+        private bool hasMore = true;
         private string mSearchKey;
         private ObservableCollection<GridTaskModel> dataList = new ObservableCollection<GridTaskModel>();
         private TaskFilterCondition filterCondition;
+
+        private const string SEARCH_MULTIPLE = "《复杂条件搜索》";
+        private bool isSearchMultiple = false;
 
         public TaskListPage()
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             filterCondition = new TaskFilterCondition();
-            SearchData();
-
         }
-        
+
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
             GridTaskModel taskM = e.SelectedItem as GridTaskModel;
-            if(taskM == null)
+            if (taskM == null)
             {
                 return;
             }
@@ -46,23 +51,57 @@ namespace AepApp.View.Gridding
             SearchData();
         }
 
-        private void SearchData()
+        private async void SearchData()
         {
+            pageIndex = 0;
             dataList.Clear();
+            hasMore = true;
+            if (App.gridUser == null)
+                App.gridUser = await (App.Current as App).getStaffInfo();
             ReqGridTaskList();
         }
 
-        private void ReqGridTaskList()
+        private async void ReqGridTaskList()
         {
-            for (int i = 0; i < 20; i++)
+            string url = App.EP360Module.url + "/api/gbm/GetTasksByKey";
+            Dictionary<string, string> map = new Dictionary<string, string>();
+            map.Add("pageIndex", pageIndex + "");
+            map.Add("pageSize", "10");
+            if (isSearchMultiple)
             {
-                GridTaskModel _event = new GridTaskModel();
-                _event.name = i + "在工厂周围检测水质";
-                _event.eventName = "化工偷排事件";
-                _event.addTime = "2018-8-13";
-                
-                dataList.Add(_event);
+                map.Add("taskName", filterCondition.isKeyOn ? filterCondition.searchName : "");
+                map.Add("state", filterCondition.isStatusOn ? filterCondition.status : "");
+                map.Add("type", filterCondition.isTypeOn ? filterCondition.type : "");
+                map.Add("gridName", filterCondition.isGriderOn ? filterCondition.griders : "");
+                map.Add("strDate", filterCondition.isTimeOn ? TimeUtils.DateTime2YMD(filterCondition.dayStart) : "");
+                map.Add("endDate", filterCondition.isTimeOn ? TimeUtils.DateTime2YMD(filterCondition.dayEnd) : "");
+                map.Add("addr", filterCondition.isAddressOn ? filterCondition.address : "");
+                map.Add("pointName", filterCondition.isWatcherOn ? filterCondition.watcher : "");
             }
+            else
+            {
+                map.Add("taskName", mSearchKey);
+            }
+            string param = JsonConvert.SerializeObject(map);
+            await DisplayAlert("param", param, "ok");
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                List<GridTaskModel> list = JsonConvert.DeserializeObject<List<GridTaskModel>>(res.Results);
+                if (list != null && list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        dataList.Add(item);
+                    }
+                    pageIndex++;
+                }
+                else
+                {
+                    hasMore = false;
+                }
+            }
+
             listView.ItemsSource = dataList;
         }
 
@@ -71,7 +110,7 @@ namespace AepApp.View.Gridding
             GridTaskModel item = e.Item as GridTaskModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (dataList.Count < totalNum)
+                if (hasMore)
                 {
                     ReqGridTaskList();
                 }
@@ -91,24 +130,35 @@ namespace AepApp.View.Gridding
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            if(filterCondition.isKeyOn || filterCondition.isStatusOn || filterCondition.isTypeOn || filterCondition.isGriderOn
+                || filterCondition.isTimeOn || filterCondition.isAddressOn || filterCondition.isWatcherOn)
+            {
+                isSearchMultiple = true;
+                search.Text = SEARCH_MULTIPLE;
+            }
+            else
+            {
+                isSearchMultiple = false;
+                search.Text = "";
+            }
+            SearchData();
             //DisplayAlert("condition", "key: " + filterCondition.SearchName + "  status:" + filterCondition.Status, "ok");
         }
 
         //任务筛选条件
         public class TaskFilterCondition : BaseModel
         {
-            private string searchName;
-            public string SearchName { get { return searchName; } set { this.searchName = value; NotifyPropertyChanged(); } }
-            private string status;
-            public string Status { get { return status; }set { status = value; NotifyPropertyChanged(); } }
+            public string searchName;
+            public string status;
             public string type { get; set; }
             public string griders { get; set; }
-            public DateTime dayStart { get; set; } 
-            public DateTime timeStart { get; set; }
+            public DateTime dayStart { get; set; }
+            public TimeSpan timeStart { get; set; }
             public DateTime dayEnd { get; set; }
-            public DateTime timeEnd { get; set; }
+            public TimeSpan timeEnd { get; set; }
             public string address { get; set; }
             public string watcher { get; set; }
+
             public bool isKeyOn { get; set; }
             public bool isStatusOn { get; set; }
             public bool isTypeOn { get; set; }

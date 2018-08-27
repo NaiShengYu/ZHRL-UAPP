@@ -23,14 +23,14 @@
             <StackLayout Spacing="0">
                 <Grid>
                     <Label StyleClass="itemlabel" Text="名称" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 15, 0, 15"/>
-                    <Label StyleClass="itemvalue" Text="污染源例行检查" HorizontalOptions="End" VerticalOptions="Center"/>
+                    <Label StyleClass="itemvalue" Text="{Binding title}" HorizontalOptions="End" VerticalOptions="Center"/>
                 </Grid>
                 <BoxView StyleClass="sep" />
             </StackLayout>
             <StackLayout Spacing="0" Grid.Row="1">
                 <Grid>
                     <Label StyleClass="itemlabel" Text="默认期限天数" HorizontalOptions="Start"  VerticalOptions="Center" Margin="20, 15, 0, 15"/>
-                    <Label StyleClass="itemvalue" Text="3天" HorizontalOptions="End"  VerticalOptions="Center"/>
+                    <Label StyleClass="itemvalue" Text="{Binding Period}" HorizontalOptions="End"  VerticalOptions="Center"/>
                 </Grid>
                 <BoxView StyleClass="sep" />
             </StackLayout>

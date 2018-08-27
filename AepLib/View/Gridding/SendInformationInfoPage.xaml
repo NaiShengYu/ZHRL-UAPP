@@ -7,21 +7,21 @@
                     <StackLayout Spacing="0">
                         <Grid>
                             <Label Text="类型" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
-                            <Label Text="政策法规" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,25,10" />
+                            <Label Text="{Binding type}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,25,10" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
                             <Label Text="日期" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                            <Label Text="2018-08-12" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                            <Label Text="{Binding date, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
-                            <Label Text="下法人" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                            <Label Text="王五" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" LineBreakMode="TailTruncation" />
+                            <Label Text="下发人" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="{Binding staff}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" LineBreakMode="TailTruncation" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                        <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,0,15" HorizontalOptions="Start" />
-                        <Editor HeightRequest="150" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10" />
+                        <Label Text="信息内容" Font="18" VerticalOptions="Center" Margin="10,15,0,15" HorizontalOptions="Start" />
+                        <Editor Text="{Binding contents}" HeightRequest="150" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10" />
 
                         <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                             <Label Text="附件" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />

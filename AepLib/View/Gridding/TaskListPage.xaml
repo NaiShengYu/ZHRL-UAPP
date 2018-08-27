@@ -22,8 +22,8 @@
                         <ViewCell>
                             <Grid VerticalOptions="Center">
                                 <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
-                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding name}" />
-                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding eventName}" />
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding taskTitle}" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding incidentTitle}" />
                                 </StackLayout>
                                 <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="90" HeightRequest="30" BackgroundColor="#2772A5">
                                     <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation" Text="事件处理" TextColor="White" />

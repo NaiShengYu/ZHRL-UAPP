@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using AepApp;
 using Plugin.Media.Abstractions;
 using System.Threading;
+using Newtonsoft.Json;
 
 #if __MOBILE__
 using Newtonsoft.Json;
@@ -56,7 +57,7 @@ namespace CloudWTO.Services
             return result;
         }
 
-        public static async Task<HTTPResponse> SendHTTPRequestAsync(string url, string param, string method = "GET", string token = null, string contenttype="json")
+        public static async Task<HTTPResponse> SendHTTPRequestAsync(string url, string param, string method = "GET", string token = null, string contenttype = "json")
         {
             HttpWebResponse res = null;
             string result = null;
@@ -82,7 +83,7 @@ namespace CloudWTO.Services
 
                     req.Method = method;
 
-                    if (contenttype=="json")
+                    if (contenttype == "json")
                     {
                         req.ContentType = "application/json";
                     }
@@ -111,7 +112,7 @@ namespace CloudWTO.Services
             }
             catch (Exception ex)
             {
-                result = ex== null ? "" : ex.Message;
+                result = ex == null ? "" : ex.Message;
                 Console.WriteLine("错误信息：" + ex);
                 return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
             }
@@ -120,7 +121,88 @@ namespace CloudWTO.Services
             return new HTTPResponse { Results = result, StatusCode = res.StatusCode };
         }
 
-        public static async Task<HTTPResponse> HTTPRequestDownloadAsync(string url,string fileN,string token = null){
+        //public static async Task<T> SendHTTPRequestAsync(string url, string param, string method = "GET", string token = null, string contenttype = "json", Callback<T> callback)
+        //{
+        //    HTTPResponse response = new HTTPResponse();
+        //    HttpWebResponse res = null;
+        //    string result = null;
+        //    try
+        //    {
+        //        Console.WriteLine("请求URL：" + url);
+        //        Console.WriteLine("请求token：" + "Bearer " + token);
+        //        Console.WriteLine("请求参数：" + param);
+        //        ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
+        //        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+        //        if (token != null)
+        //        {
+        //            req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);//给请求添加权限
+        //        }
+        //        req.ContentType = "application/json";
+        //        if (method.Equals("GET"))
+        //        {
+        //            req.Method = "GET";
+        //        }
+        //        else
+        //        {
+        //            byte[] bs = Encoding.UTF8.GetBytes(param);
+
+        //            req.Method = method;
+
+        //            if (contenttype == "json")
+        //            {
+        //                req.ContentType = "application/json";
+        //            }
+        //            else
+        //            {
+        //                req.ContentType = "application/x-www-form-urlencoded";
+        //            }
+
+        //            req.ContentLength = bs.Length;
+        //            try
+        //            {
+        //                Stream requestStream = await req.GetRequestStreamAsync();
+        //                await requestStream.WriteAsync(bs, 0, bs.Length);
+        //                requestStream.Close();
+        //            }
+        //            catch (WebException ex)
+        //            {
+                        
+        //            }
+        //        }
+        //        WebResponse wr = await req.GetResponseAsync();
+        //        res = wr as HttpWebResponse;
+        //        StreamReader sr = new StreamReader(res.GetResponseStream());
+        //        result = await sr.ReadToEndAsync();
+        //        sr.Close();
+
+        //        response.Results = result;
+        //        response.StatusCode = res.StatusCode;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = ex == null ? "" : ex.Message;
+        //        Console.WriteLine("错误信息：" + ex);
+        //        response = new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
+        //    }
+        //    Console.WriteLine("ex:" + result);
+
+        //    if (response.StatusCode == HttpStatusCode.OK)
+        //    {
+        //        T t = JsonConvert.DeserializeObject<T>(result);
+
+        //        if (callback != null)
+        //        {
+        //            callback.OnSuccess(t);
+        //        }
+        //    } else {
+        //        if (callback != null)
+        //        {
+        //            callback.OnFailed();
+        //        }
+        //    }
+        //}
+
+        public static async Task<HTTPResponse> HTTPRequestDownloadAsync(string url, string fileN, string token = null) {
 
             HttpWebResponse res = null;
             string result = null;
@@ -145,7 +227,7 @@ namespace CloudWTO.Services
                 //存储文件名
                 string filename = Path.Combine(path, fileN);
                 //创建一个文件流，路径为flieName
-                FileStream fileStream = new FileStream(filename,FileMode.Create, FileAccess.Write);
+                FileStream fileStream = new FileStream(filename, FileMode.Create, FileAccess.Write);
                 //获取到数据库的数据流
                 Stream stream = res.GetResponseStream();
                 //将数据库的数据流拷贝到本地文件流中
@@ -164,11 +246,11 @@ namespace CloudWTO.Services
             Console.WriteLine("ex:" + result);
 
             return new HTTPResponse { Results = result, StatusCode = res.StatusCode };
-  
+
 
         }
-       
-        public static async Task<HTTPResponse> upload(string filePath,string Suffix)
+
+        public static async Task<HTTPResponse> upload(string filePath, string Suffix)
         {
 
             HttpWebResponse res = null;
@@ -182,16 +264,16 @@ namespace CloudWTO.Services
 
                 var multi = new MultipartFormDataContent();
                 //这句话很关键第一个“files”是接口参数名，第二个文件后缀名(.jpg,.png)
-                multi.Add(new StreamContent(imageStream),"files",Suffix);
+                multi.Add(new StreamContent(imageStream), "files", Suffix);
 
                 HttpClient client = new HttpClient();
                 //client.BaseAddress = new Uri(App.EmergencyModule.url);
                 client.BaseAddress = new Uri("http://gx.azuratech.com:5000");
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer" , App.EmergencyToken);
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.EmergencyToken);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage resurlt1 =await client.PostAsync("/api/File/Upload", multi) ;
-                result =await resurlt1.Content.ReadAsStringAsync();
+                HttpResponseMessage resurlt1 = await client.PostAsync("/api/File/Upload", multi);
+                result = await resurlt1.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
             {
@@ -278,6 +360,11 @@ namespace CloudWTO.Services
             // Ignore errors
             return true;
         }
-     
+
+        public abstract class Callback<T>{
+            public abstract void OnSuccess(T data);
+            public abstract void OnFailed();
+        }
+
     }
 }

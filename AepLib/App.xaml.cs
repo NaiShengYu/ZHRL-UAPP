@@ -47,9 +47,6 @@ namespace AepApp
         //public static string FrameworkURL = "http://gx.azuratech.com:30000";
         public static string FrameworkURL = "http://dev.azuratech.com:50000";
 
-        public static string SampleWorkURL = "http://gx.azuratech.com:30011";
-
-        public static string SampleURL = "http://192.168.1.128:30011";
 
         public static UserInfoModel userInfo = null;
         public static GridUserInfoModel gridUser = null;
@@ -157,7 +154,6 @@ namespace AepApp
             
             try
             {
-                
                 if(Device.RuntimePlatform == Device.iOS){
                     currentLocation = await Geolocation.GetLastKnownLocationAsync();
                 }else{

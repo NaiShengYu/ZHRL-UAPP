@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace AepApp.View.Gridding
@@ -16,20 +18,21 @@ namespace AepApp.View.Gridding
             SearchData();
         }
 
-        private int totalNum;
+        private bool hasMore = true;
+        private int pageIndex;
         private string mSearchKey;
-        private ObservableCollection<GridTaskModel> dataList = new ObservableCollection<GridTaskModel>();
+        private ObservableCollection<GridSendInformationModel> dataList = new ObservableCollection<GridSendInformationModel>();
 
      
 
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
-            GridTaskModel taskM = e.SelectedItem as GridTaskModel;
-            if (taskM == null)
+            GridSendInformationModel info = e.SelectedItem as GridSendInformationModel;
+            if (info == null)
             {
                 return;
             }
-            Navigation.PushAsync(new SendInformationInfoPage());
+            Navigation.PushAsync(new SendInformationInfoPage(info));
             listView.SelectedItem = null;
         }
 
@@ -47,30 +50,48 @@ namespace AepApp.View.Gridding
 
         private void SearchData()
         {
+            pageIndex = 0;
+            hasMore = true;
             dataList.Clear();
             ReqGridTaskList();
         }
 
-        private void ReqGridTaskList()
+        private async void ReqGridTaskList()
         {
-            for (int i = 0; i < 20; i++)
+            string url = App.EP360Module.url + "/api/gbm/GetStaffInfo";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("pageIndex", pageIndex);
+            map.Add("pageSize", "10");
+            map.Add("searchKey", mSearchKey);
+            map.Add("disseminate", "");
+            string param = JsonConvert.SerializeObject(map);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            if(res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                GridTaskModel _event = new GridTaskModel();
-                _event.name = i + "在工厂周围检测水质";
-                _event.eventName = "化工偷排事件";
-                _event.addTime = "高桥镇，韩佳差家偶尔";
-
-                dataList.Add(_event);
+                List<GridSendInformationModel> list = JsonConvert.DeserializeObject<List<GridSendInformationModel>>(res.Results);
+                if(list != null && list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        dataList.Add(item);
+                    }
+                    pageIndex++;
+                }
+                else
+                {
+                    hasMore = false;
+                }
             }
+
             listView.ItemsSource = dataList;
         }
 
         public void LoadMore(object sender, ItemVisibilityEventArgs e)
         {
-            GridTaskModel item = e.Item as GridTaskModel;
+            GridSendInformationModel item = e.Item as GridSendInformationModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (dataList.Count < totalNum)
+                if (hasMore)
                 {
                     ReqGridTaskList();
                 }

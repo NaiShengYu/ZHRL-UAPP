@@ -1,4 +1,6 @@
 ﻿using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,9 +16,10 @@ namespace AepApp.View.Gridding
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SelectGridWorkerPage : ContentPage
     {
-        private int totalNum;
+        private int pageIndex;
         private string mSearchKey;
-        private ObservableCollection<GridEventModel> dataList = new ObservableCollection<GridEventModel>();
+        private bool hasMore;
+        private ObservableCollection<GridStaffModel> dataList = new ObservableCollection<GridStaffModel>();
 
         public SelectGridWorkerPage()
         {
@@ -24,13 +27,17 @@ namespace AepApp.View.Gridding
             SearchData();
         }
 
-        public async void OnMessageClicked(Object sender, EventArgs e)
+        public void OnMessageClicked(Object sender, EventArgs e)
         {
-            await DisplayAlert("title", "message", "ok");
+            var but = sender as Image;
+            GridStaffModel item = but.BindingContext as GridStaffModel;
+            Device.OpenUri(new Uri("sms:" + item.mobil));
         }
-        public async void OnPhoneClicked(Object sender, EventArgs e)
+        public void OnPhoneClicked(Object sender, EventArgs e)
         {
-            await DisplayAlert("title", "call", "ok");
+            var but = sender as Image;
+            GridStaffModel item = but.BindingContext as GridStaffModel;
+            Device.OpenUri(new Uri("tel:" + item.mobil));
         }
 
         public void Handle_TextChanged(Object sender, TextChangedEventArgs e)
@@ -49,23 +56,57 @@ namespace AepApp.View.Gridding
         }
         private void SearchData()
         {
+            pageIndex = 0;
+            hasMore = true;
             dataList.Clear();
             ReqWorksList();
         }
 
-        private void ReqWorksList()
+        private async void ReqWorksList()
         {
-            List<string> datas = new List<string>();
-            for (int i = 0; i < 10; i++)
+            //List<string> datas = new List<string>();
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    datas.Add(i.ToString());
+            //}
+
+            string url = App.EP360Module.url + "/api/gbm/GetStaffByKey";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("pageIndex", pageIndex);
+            map.Add("pageSize", 20);
+            map.Add("searchKey", mSearchKey);
+            string param = JsonConvert.SerializeObject(map);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            if(res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                datas.Add(i.ToString());
+                List<GridStaffModel> list = JsonConvert.DeserializeObject<List<GridStaffModel>>(res.Results);
+                if(list != null && list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        dataList.Add(item);
+                    }
+                    pageIndex++;
+                }
+                else
+                {
+                    hasMore = false;
+                }
             }
-            listView.ItemsSource = datas;
+
+            listView.ItemsSource = dataList;
         }
 
         public void LoadMore(object sender, ItemVisibilityEventArgs e)
         {
-
+            GridStaffModel item = e.Item as GridStaffModel;
+            if (item == dataList[dataList.Count - 1] && item != null)
+            {
+                if (hasMore)
+                {
+                    ReqWorksList();
+                }
+            }
         }
     }
 }

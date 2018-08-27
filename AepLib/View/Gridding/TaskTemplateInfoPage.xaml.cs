@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,21 +15,36 @@ namespace AepApp.View.Gridding
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TaskTemplateInfoPage : ContentPage
     {
-        public TaskTemplateInfoPage()
+        private string templateId;
+        public TaskTemplateInfoPage(string id)
         {
             InitializeComponent();
+            templateId = id;
+            GetTemplateDetail();
+        }
+
+        private async void GetTemplateDetail()
+        {
+            string url = App.EP360Module.url + "/api/gbm/GetTemplateDetail";
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "id=" + templateId, "POST");
+            if(res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                TaskTemplateModel data = JsonConvert.DeserializeObject<TaskTemplateModel>(res.Results);
+                BindingContext = data;
+                SetWebviewInfo(data);
+            }
+        }
+
+        private void SetWebviewInfo(TaskTemplateModel data)
+        {
+            if(data == null)
+            {
+                return;
+            }
             var htmSource = new HtmlWebViewSource();
-            htmSource.Html = @"
-                  <h1>Xamarin.Forms</h1>
-                  <p>Welcome to WebView.<br/>
-                    Welcome to WebView.<br/>
-                    Welcome to WebView.<br/>
-                    Welcome to WebView.<br/>
-                    Welcome to WebView.<br/>
-                    Welcome to WebView.<br/>
-                    End.</p>";
-            contentWebview.Source = htmSource;
-            reportWebview.Source = htmSource;
+            var htmSourceReply = new HtmlWebViewSource();
+            htmSource.Html = data.contents;
+            htmSourceReply.Html = data.replycontents;
         }
 
     }
