@@ -148,8 +148,8 @@ namespace AepApp.View.Gridding
         //任务筛选条件
         public class TaskFilterCondition : BaseModel
         {
-            public string searchName;
-            public string status;
+            public string searchName { get; set; }
+            public string status { get; set; }
             public string type { get; set; }
             public string griders { get; set; }
             public DateTime dayStart { get; set; }
