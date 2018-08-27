@@ -30,12 +30,12 @@ namespace AepApp.View.Gridding
 
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
-            var v = e.SelectedItem;
+            TaskTemplateModel v = e.SelectedItem as TaskTemplateModel;
             if (v == null)
             {
                 return;
             }
-            Navigation.PushAsync(new TaskTemplateInfoPage());
+            Navigation.PushAsync(new TaskTemplateInfoPage(v.tasktemplate));
             listView.SelectedItem = null;
         }
 

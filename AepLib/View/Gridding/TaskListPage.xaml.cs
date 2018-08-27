@@ -24,8 +24,6 @@ namespace AepApp.View.Gridding
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             filterCondition = new TaskFilterCondition();
-            SearchData();
-
         }
 
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
@@ -131,6 +129,16 @@ namespace AepApp.View.Gridding
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            if(filterCondition.isKeyOn || filterCondition.isStatusOn || filterCondition.isTypeOn || filterCondition.isGriderOn
+                || filterCondition.isTimeOn || filterCondition.isAddressOn || filterCondition.isWatcherOn)
+            {
+                search.Text = "《复杂条件搜索》";
+            }
+            else
+            {
+                search.Text = "";
+            }
+            SearchData();
             //DisplayAlert("condition", "key: " + filterCondition.SearchName + "  status:" + filterCondition.Status, "ok");
         }
 
@@ -142,9 +150,9 @@ namespace AepApp.View.Gridding
             public string type { get; set; }
             public string griders { get; set; }
             public DateTime dayStart { get; set; }
-            public DateTime timeStart { get; set; }
+            public TimeSpan timeStart { get; set; }
             public DateTime dayEnd { get; set; }
-            public DateTime timeEnd { get; set; }
+            public TimeSpan timeEnd { get; set; }
             public string address { get; set; }
             public string watcher { get; set; }
 

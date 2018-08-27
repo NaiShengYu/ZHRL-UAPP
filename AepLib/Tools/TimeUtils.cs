@@ -14,5 +14,14 @@ namespace AepApp.Tools
             }
             return time.ToString("yyyy-MM-dd");
         }
+
+        public static string Time2HHmm(TimeSpan time)
+        {
+            if(time == null)
+            {
+                return "";
+            }
+            return time.ToString("HH:mm");
+        }
     }
 }

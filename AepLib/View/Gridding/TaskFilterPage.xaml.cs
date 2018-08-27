@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AepApp.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,8 +32,10 @@ namespace AepApp.View.Gridding
             pickerStatus.SelectedItem = conditions.status;
             if (conditions.isTimeOn)
             {
-                DatePickerStart.Date = conditions.dayStart;
-                DatePickerEnd.Date = conditions.dayEnd;
+                DatePickerStart.Date = conditions.dayStart == null ? DateTime.Now : conditions.dayStart;
+                DatePickerEnd.Date = conditions.dayEnd == null ? DateTime.Now : conditions.dayEnd;
+                TimePickerStart.Time = conditions.timeStart;
+                TimePickerEnd.Time = conditions.timeEnd;
             }
         }
 
@@ -97,6 +100,21 @@ namespace AepApp.View.Gridding
         private void DatePickerEnd_DateSelected(object sender, DateChangedEventArgs e)
         {
             conditions.dayEnd = e.NewDate;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            conditions.timeStart = TimePickerStart.Time;
+            conditions.timeEnd = TimePickerEnd.Time;
+            if(conditions.dayStart == null)
+            {
+                conditions.dayStart = DateTime.Now;
+            }
+            if(conditions.dayEnd == null)
+            {
+                conditions.dayEnd = DateTime.Now;
+            }
         }
     }
 }

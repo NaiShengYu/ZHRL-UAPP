@@ -13,7 +13,9 @@
         <StackLayout Spacing="0">
             <Grid>
                 <Label StyleClass="itemtitle" Text="名称"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Entry x:Name="labelKey" StyleClass="itemsubtitle" Text="{Binding searchName}" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchKey}, Path=IsToggled}"/>
+                <Entry x:Name="labelKey" StyleClass="itemsubtitle" Text="{Binding searchName}" HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchKey}, Path=IsToggled}"
+                       HorizontalTextAlignment="End"/>
                 <Switch x:Name="switchKey" HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" Toggled="Switch_Toggled_Title" IsToggled="{Binding isKeyOn}"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
@@ -72,7 +74,8 @@
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="地点名称"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Entry StyleClass="itemsubtitle" Text="{Binding address}" HorizontalOptions="End" VerticalOptions="Center"  Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchAddress}, Path=IsToggled}"/>
+                <Entry StyleClass="itemsubtitle" Text="{Binding address}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" 
+                       Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchAddress}, Path=IsToggled}" HorizontalTextAlignment="End"/>
                 <Switch x:Name="switchAddress"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isAddressOn}" Toggled="Switch_Toggled_Address"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
