@@ -1,6 +1,8 @@
 ﻿using AepApp.MaterialForms.TreeViews;
+using AepApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,10 +51,11 @@ namespace AepApp.ViewModel
             }
         }
 
-        public class TestTreeModel
+        public class TestTreeModel : BaseModel
         {
             public string name { get; set; }
-            public List<TestTreeModel> children { get; set; }
+            private ObservableCollection<TestTreeModel> Children;
+            public ObservableCollection<TestTreeModel> children { get { return Children; } set { Children = value; NotifyPropertyChanged(); } }
             public bool isLeaf { get; set; }
             public bool isChecked { get; set; }
             public bool isExpanded { get; set; }

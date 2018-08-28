@@ -15,7 +15,7 @@
                 <RowDefinition Height="*">
                 </RowDefinition>
             </Grid.RowDefinitions>
-            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search" />
+            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" SearchButtonPressed="Handle_Search" />
             <ListView BackgroundColor="White" x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
                 <ListView.ItemTemplate>
                     <DataTemplate>

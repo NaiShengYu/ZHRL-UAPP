@@ -61,68 +61,35 @@ namespace AepApp.View.Gridding
 
         private async void ReqGridEventList()
         {
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    GridEventModel _event = new GridEventModel();
-            //    _event.Name = i + "化工偷排事件";
-            //    _event.Time = "2018-8-13";
-            //    _event.Address = "李家村";
-            //    _event.taskList = new ObservableCollection<GridTaskModel>();
-            //    for (int j = 0; j < 8; j++)
-            //    {
-            //        GridTaskModel taskM = new GridTaskModel
-            //        {
-            //            name = j + "调度事件",
-            //            addTime = "2018-12-11 09:10",
-            //            taskStatus = (j % 3).ToString(),
-            //        };
-            //        _event.taskList.Add(taskM);
-            //    }
-            //    if (i % 3 == 0)
-            //    {
-            //        _event.EventStatus = "0";
-            //    }
-            //    else if (i % 3 == 1)
-            //    {
-            //        _event.EventStatus = "1";
-            //    }
-            //    else if (i % 3 == 2)
-            //    {
-            //        _event.EventStatus = "2";
-            //    }
-            //    if (i % 2 == 0)
-            //    {
-            //        _event.EventType = "0";
-            //    }
-            //    else
-            //    {
-            //        _event.EventType = "1";
-            //    }
-            //    dataList.Add(_event);
-            //}
-
             string url = App.EP360Module.url + "/api/gbm/GetIncidentsByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", "20");
+            map.Add("pageSize", 20);
             map.Add("searchKey", mSearchKey);
             map.Add("grid", App.gridUser.gridcell);
             string param = JsonConvert.SerializeObject(map);
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                List<GridEventModel> list = JsonConvert.DeserializeObject<List<GridEventModel>>(res.Results);
-                if (list != null && list.Count > 0)
+                try
                 {
-                    foreach (var item in list)
+                    List<GridEventModel> list = JsonConvert.DeserializeObject<List<GridEventModel>>(res.Results);
+                    if (list != null && list.Count > 0)
                     {
-                        dataList.Add(item);
+                        foreach (var item in list)
+                        {
+                            dataList.Add(item);
+                        }
+                        pageIndex++;
                     }
-                    pageIndex++;
+                    else
+                    {
+                        haveMore = false;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    haveMore = false;
+
                 }
             }
 

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Sample;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using static AepApp.ViewModel.GridTreeViewModel;
 
 namespace AepApp.MaterialForms.TreeViews
 {
@@ -72,6 +74,23 @@ namespace AepApp.MaterialForms.TreeViews
             }
         }
 
+        public void GetChildren()
+        {
+            if (!IsExpanded && Children.Count == 0)
+            {
+                //TestTreeModel m = Parent as TestTreeModel;
+                //if (m != null)
+                //{
+                    DependencyService.Get<IToast>().ShortAlert("add children");
+                    GridTreeNode node = new GridTreeNode { Title = "test", IsChecked = false, IsExpanded = false, IsLeaf = false };
+                    Children.Add(node);
+                    OnDescendantChanged(NodeChangeType.NodeAdded, this);
+                //}
+            }
+            IsExpanded = !IsExpanded;
+
+        }
+
         //选择或取消选择
         public void CheckEvent(bool isReverse)
         {
@@ -81,7 +100,7 @@ namespace AepApp.MaterialForms.TreeViews
             }
             foreach (GridTreeNode node in Descendants)
             {
-                if(node.IsChecked == IsChecked)
+                if (node.IsChecked == IsChecked)
                 {
                     continue;
                 }
@@ -113,13 +132,14 @@ namespace AepApp.MaterialForms.TreeViews
 
         public GridTreeNode()
         {
-            ToggleIsExpandedCommand = new Command(obj => IsExpanded = !IsExpanded);
+            //ToggleIsExpandedCommand = new Command(obj => IsExpanded = !IsExpanded);
+            ToggleIsExpandedCommand = new Command(obj => GetChildren());
             ToggleIsCheckedCommand = new Command(obj => CheckEvent(true));
         }
 
         public override string ToString()
         {
-            return string.Format("DemoTreeNode: Title={3}, Score={4}, IsExpanded={1}, IndentWidth={2} " + base.ToString(), ToggleIsExpandedCommand, IsExpanded, IndentWidth, Title, Score);
+            return string.Format("DemoTreeNode: Title={3}, Score={4}, IsExpanded={1}, IndentWidth={2} " + base.ToString(), ToggleIsExpandedCommand, IsExpanded, IndentWidth, Title);
         }
     }
 }

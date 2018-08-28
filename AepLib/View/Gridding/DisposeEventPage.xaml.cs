@@ -40,7 +40,11 @@ namespace AepApp.View.Gridding
 
         private void OnWorkersTapped()
         {
-            Navigation.PushAsync(new SelectGridWorkerPage());
+            if(detail == null)
+            {
+                return;
+            }
+            Navigation.PushAsync(new SelectGridWorkerPage(detail.gridcell));
         }
 
         /// <summary>
@@ -52,15 +56,22 @@ namespace AepApp.View.Gridding
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", mEventId);
             string param = JsonConvert.SerializeObject(map);
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                detail = JsonConvert.DeserializeObject<GridEventInfoModel>(res.Results);
-                BindingContext = detail;
-                if (detail != null && detail.staff != null)
+                try
                 {
-                    GetStaffInfo(detail.staff.ToString());
+                    detail = JsonConvert.DeserializeObject<GridEventInfoModel>(res.Results);
+                    BindingContext = detail;
+                    if (detail != null && detail.staff != null)
+                    {
+                        GetStaffInfo(detail.staff);
+                    }
                 }
+                catch (Exception e)
+                {
+                }
+                
             }
         }
 
@@ -68,7 +79,7 @@ namespace AepApp.View.Gridding
         /// 审核人
         /// </summary>
         /// <param name="staffId"></param>
-        private async void GetStaffInfo(string staffId)
+        private async void GetStaffInfo(Guid staffId)
         {
             auditor = await (App.Current as App).GetUserInfo(staffId);
             if (auditor != null)

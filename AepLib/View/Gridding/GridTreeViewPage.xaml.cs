@@ -1,6 +1,7 @@
 ﻿using AepApp.MaterialForms.TreeViews;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,17 +27,17 @@ namespace AepApp.View.Gridding
 
                 TestTreeModel modelRoot = new TestTreeModel();
                 modelRoot.name = i + "高桥镇";
-                List<TestTreeModel> rootChildren = new List<TestTreeModel>();
+                ObservableCollection<TestTreeModel> rootChildren = new ObservableCollection<TestTreeModel>();
                 for (int j = 0; j < 3; j++)
                 {
                     TestTreeModel modelBranch = new TestTreeModel();
                     modelBranch.name = i + "" + j + "小牙山村";
-                    List<TestTreeModel> branchChildren = new List<TestTreeModel>();
+                    ObservableCollection<TestTreeModel> branchChildren = new ObservableCollection<TestTreeModel>();
                     for (int k = 0; k < 2; k++)
                     {
                         TestTreeModel modelLeaf = new TestTreeModel();
                         modelLeaf.name = i + "" + j + "" + k + " 王麻子";
-                        modelLeaf.isLeaf = true;
+                        modelLeaf.isLeaf = false;
                         branchChildren.Add(modelLeaf);
                     }
 

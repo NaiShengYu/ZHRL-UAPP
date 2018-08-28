@@ -18,23 +18,11 @@ namespace AepApp.View.Gridding
 
         }
 
-        public SendInformationInfoPage(string info)
+        public SendInformationInfoPage(GridSendInformationModel info)
         {
             InitializeComponent();
-            GetInformationDetail(info);
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    informationFile file = new informationFile
-            //    {
-            //        name = "2017年国家环境保护局",
-            //        lenth = "1.5M",
-            //        type = i % 2,
-            //    };
-            //    dataList.Add(file);
-            //}
-            //BindingContext = info;
-            //listV.ItemsSource = dataList;
+            GetStaffInfo(info.staff);
+            GetInformationDetail(info.id);
         }
 
         /// <summary>
@@ -48,15 +36,37 @@ namespace AepApp.View.Gridding
                 return;
             }
             string url = App.EP360Module.url + "/api/gbm/GetDisseminateDetail";
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "id=" + id, "POST");
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("id", id);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if(res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                GridSendInformationModel detail = JsonConvert.DeserializeObject<GridSendInformationModel>(res.Results);
-                BindingContext = detail;
-                if (detail != null)
+                try
                 {
-                    listV.ItemsSource = detail.attachments;
+                    GridSendInformationModel detail = JsonConvert.DeserializeObject<GridSendInformationModel>(res.Results);
+                    BindingContext = detail;
+                    if (detail != null)
+                    {
+                        listV.ItemsSource = detail.attachments;
+                    }
                 }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// 下发人
+        /// </summary>
+        /// <param name="staffId"></param>
+        private async void GetStaffInfo(Guid staffId)
+        {
+            UserInfoModel author = await (App.Current as App).GetUserInfo(staffId);
+            if (author != null)
+            {
+                LabelAuthor.Text = author.userName;
             }
         }
 

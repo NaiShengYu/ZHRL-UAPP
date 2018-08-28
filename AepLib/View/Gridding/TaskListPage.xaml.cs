@@ -65,19 +65,29 @@ namespace AepApp.View.Gridding
         {
             string url = App.EP360Module.url + "/api/gbm/GetTasksByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("pageIndex", pageIndex + "");
-            map.Add("pageSize", "10");
+            map.Add("pageIndex", pageIndex);
+            map.Add("pageSize", 20);
             if (isSearchMultiple)
             {
                 map.Add("taskName", filterCondition.isKeyOn ? filterCondition.searchName : "");
-                map.Add("state", filterCondition.isStatusOn ? filterCondition.status : "");
-                map.Add("type", filterCondition.isTypeOn ? filterCondition.type : "");
-                map.Add("gridName", filterCondition.isGriderOn ? filterCondition.griders : "");
+                if (filterCondition.isStatusOn)
+                {
+                    map.Add("state", filterCondition.TaskStatus);
+                }
+                if (filterCondition.isTypeOn)
+                {
+                    map.Add("type", filterCondition.TaskType);
+                }
                 if (filterCondition.isTimeOn)
                 {
-                    map.Add("strDate", filterCondition.dayStart);
-                    map.Add("endDate", filterCondition.dayEnd);
+                    DateTime start = new DateTime(filterCondition.dayStart.Year, filterCondition.dayStart.Month, filterCondition.dayStart.Day,
+                        filterCondition.timeStart.Hours, filterCondition.timeStart.Minutes, filterCondition.timeStart.Seconds);
+                    DateTime end = new DateTime(filterCondition.dayEnd.Year, filterCondition.dayEnd.Month, filterCondition.dayEnd.Day,
+                        filterCondition.timeEnd.Hours, filterCondition.timeEnd.Minutes, filterCondition.timeEnd.Seconds);
+                    map.Add("strDate", start);
+                    map.Add("endDate", end);
                 }
+                map.Add("gridName", filterCondition.isGriderOn ? filterCondition.griders : "");
                 map.Add("addr", filterCondition.isAddressOn ? filterCondition.address : "");
                 map.Add("pointName", filterCondition.isWatcherOn ? filterCondition.watcher : "");
             }
@@ -87,22 +97,30 @@ namespace AepApp.View.Gridding
             }
             string param = JsonConvert.SerializeObject(map);
             await DisplayAlert("param", param, "ok");
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == HttpStatusCode.OK)
             {
-                List<GridTaskModel> list = JsonConvert.DeserializeObject<List<GridTaskModel>>(res.Results);
-                if (list != null && list.Count > 0)
+                try
                 {
-                    foreach (var item in list)
+                    List<GridTaskModel> list = JsonConvert.DeserializeObject<List<GridTaskModel>>(res.Results);
+                    if (list != null && list.Count > 0)
                     {
-                        dataList.Add(item);
+                        foreach (var item in list)
+                        {
+                            dataList.Add(item);
+                        }
+                        pageIndex++;
                     }
-                    pageIndex++;
+                    else
+                    {
+                        hasMore = false;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    hasMore = false;
+
                 }
+
             }
 
             listView.ItemsSource = dataList;
@@ -145,7 +163,6 @@ namespace AepApp.View.Gridding
                 search.Text = "";
             }
             SearchData();
-            //DisplayAlert("condition", "key: " + filterCondition.SearchName + "  status:" + filterCondition.Status, "ok");
         }
 
         //任务筛选条件
@@ -153,7 +170,15 @@ namespace AepApp.View.Gridding
         {
             public string searchName { get; set; }
             public string status { get; set; }
+            public int TaskStatus
+            {
+                get { return ConstConvertUtils.GridTaskStatus2Int(status); }
+            }
             public string type { get; set; }
+            public int TaskType
+            {
+                get { return ConstConvertUtils.GridTaskType2Int(type); }
+            }
             public string griders { get; set; }
             public DateTime dayStart { get; set; }
             public TimeSpan timeStart { get; set; }

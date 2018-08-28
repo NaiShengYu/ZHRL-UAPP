@@ -35,7 +35,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskTemplateInfoPage(v.tasktemplate));
+            Navigation.PushAsync(new TaskTemplateInfoPage(v.id));
             listView.SelectedItem = null;
         }
 
@@ -60,32 +60,34 @@ namespace AepApp.View.Gridding
 
         private async void ReqTaskTemplateList()
         {
-            //List<string> list = new List<string>();
-            //list.Add("现场检查任务");
-            //list.Add("日常检查任务");
-            //list.Add("现场检查任务（2018修订）");
-
             string url = App.EP360Module.url + "/api/gbm/GetTemplateByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", "10");
+            map.Add("pageSize", 20);
             map.Add("searchKey", mSearchKey);
             string param = JsonConvert.SerializeObject(map);
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
-            if(res.StatusCode == System.Net.HttpStatusCode.OK)
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                List<TaskTemplateModel> list = JsonConvert.DeserializeObject<List<TaskTemplateModel>>(res.Results);
-                if(list != null && list.Count > 0)
+                try
                 {
-                    foreach (var item in list)
+                    List<TaskTemplateModel> list = JsonConvert.DeserializeObject<List<TaskTemplateModel>>(res.Results);
+                    if (list != null && list.Count > 0)
                     {
-                        dataList.Add(item);
+                        foreach (var item in list)
+                        {
+                            dataList.Add(item);
+                        }
+                        pageIndex++;
                     }
-                    pageIndex++;
+                    else
+                    {
+                        hasMore = false;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    hasMore = false;
+
                 }
             }
             listView.ItemsSource = dataList;
