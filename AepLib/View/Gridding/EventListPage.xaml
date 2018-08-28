@@ -24,27 +24,34 @@
                         <ViewCell>
                             <Grid VerticalOptions="Center">
                                 <StackLayout  VerticalOptions="Center" Margin="20,0,150,0" Spacing="2">
-                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding title}" />
-                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding date StringFormat='{0:yyyy-MM-dd}'}"  />
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding Title}" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding Date, StringFormat='{0:yyyy-MM-dd}'}"  />
                                 </StackLayout>
                                 <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="120" HeightRequest="30">
                                     <Grid.Triggers>
-                                        <DataTrigger TargetType="Grid" Binding="{Binding EventStatus}" Value="0">
+                                        <!--未知-->
+                                        <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="0">
                                             <Setter Property="BackgroundColor" Value="#859000"/>
                                         </DataTrigger>
-                                        <DataTrigger TargetType="Grid" Binding="{Binding EventStatus}" Value="1">
+                                        <!--已上报-->
+                                        <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="1">
+                                            <Setter Property="BackgroundColor" Value="#859000"/>
+                                        </DataTrigger>
+                                        <!--处理中-->
+                                        <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="2">
                                             <Setter Property="BackgroundColor" Value="#27A53C"/>
                                         </DataTrigger>
-                                        <DataTrigger TargetType="Grid" Binding="{Binding EventStatus}" Value="2">
+                                        <!--已处理-->
+                                        <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="3">
                                             <Setter Property="BackgroundColor" Value="#CF9000"/>
                                         </DataTrigger>
                                     </Grid.Triggers>
-                                    <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation">
+                                    <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation" TextColor="White">
                                         <Label.Triggers>
-                                            <DataTrigger TargetType="Label" Binding="{Binding EventType}" Value="0">
+                                            <DataTrigger TargetType="Label" Binding="{Binding Type}" Value="1">
                                                 <Setter Property="Text" Value="污水偷排事件"/>
                                             </DataTrigger>
-                                            <DataTrigger TargetType="Label" Binding="{Binding EventType}" Value="1">
+                                            <DataTrigger TargetType="Label" Binding="{Binding Type}" Value="2">
                                                 <Setter Property="Text" Value="恶臭事件"/>
                                             </DataTrigger>
                                         </Label.Triggers>

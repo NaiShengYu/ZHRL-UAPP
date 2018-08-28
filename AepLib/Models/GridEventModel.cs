@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AepApp.Tools;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -7,102 +8,57 @@ namespace AepApp.Models
 {
     public class GridEventModel : BaseModel
     {
-        private string name;
-        private string time;
-        private string address;
-        public string lng { get; set; }
-        public string lat { get; set; }
-        private string eventType;//事件类型
-        private string eventStatus;//事件状态
         public string addTime { get; set; }
         public string townHandleTime { get; set; }
         public string countryHandleTime { get; set; }
-        public ObservableCollection<GridTaskModel> taskList { get; set; }
         public string finishTime { get; set; }
+        public ObservableCollection<GridTaskModel> taskList { get; set; }
 
-        public string Name
-        {
-            get { return name; }
-            set { name = value; NotifyPropertyChanged(); }
-        }
-        public string Time
-        {
-            get { return time; }
-            set { time = value; NotifyPropertyChanged(); }
-        }
-        public string Address
-        {
-            get { return address; }
-            set { address = value; NotifyPropertyChanged(); }
-        }
 
-        public string EventType
-        {
-            get { return eventType; }
-            set { eventType = value; NotifyPropertyChanged(); }
-        }
 
+        public Guid id { get; set; }
+        public Guid grid { get; set; }
+
+        public int state { get; set; }
         public string EventStatus
         {
-            get { return eventStatus; }
-            set { eventStatus = value; NotifyPropertyChanged(); }
+            get { return ConstConvertUtils.GridTaskStatus2String(state); }
+        }
+        
+        private string title;
+        public string Title                
+        {
+            get { return title; }
+            set { title = value; NotifyPropertyChanged(); }
         }
 
-        public string lnglatString
+        private int type;
+        public int Type                 
         {
-            get { return lng + " E, " + lat + " N"; }
+            get { return type; }
+            set { type = value; NotifyPropertyChanged(); }
         }
 
-        private string Incident;
-        public string incident             
+        private DateTime date;
+        public DateTime Date                 
         {
-            get { return Incident; }
-            set { Incident = value; NotifyPropertyChanged(); }
+            get { return date; }
+            set { date = value; NotifyPropertyChanged(); }
         }
 
-
-        private string Gridcell;
-        public string gridcell             
+        private string gridName;
+        public string GridName             
         {
-            get { return Gridcell; }
-            set { Gridcell = value; NotifyPropertyChanged(); }
-        }
-
-
-        private string Title;
-        public string title                
-        {
-            get { return Title; }
-            set { Title = value; NotifyPropertyChanged(); }
-        }
-
-        private int Type;
-        public int type                 
-        {
-            get { return Type; }
-            set { Type = value; NotifyPropertyChanged(); }
-        }
-
-        private DateTime Date;
-        public DateTime date                 
-        {
-            get { return Date; }
-            set { Date = value; NotifyPropertyChanged(); }
-        }
-
-        private string GridName;
-        public string gridName             
-        {
-            get { return GridName; }
-            set { GridName = value; NotifyPropertyChanged(); }
+            get { return gridName; }
+            set { gridName = value; NotifyPropertyChanged(); }
         }
 
 
-        private int Level;
-        public int level                
+        private string level;
+        public string Level                
         {
-            get { return Level; }
-            set { Level = value; NotifyPropertyChanged(); }
+            get { return level; }
+            set { level = value; NotifyPropertyChanged(); }
         }
 
     }

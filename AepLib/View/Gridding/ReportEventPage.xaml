@@ -28,22 +28,25 @@
                                 </StackLayout>
                                 <Grid VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="120" HeightRequest="30">
                                     <Grid.Triggers>
-                                        <DataTrigger TargetType="Grid" Binding="{Binding EventStatus}" Value="0">
+                                        <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="0">
                                             <Setter Property="BackgroundColor" Value="#859000"/>
                                         </DataTrigger>
-                                        <DataTrigger TargetType="Grid" Binding="{Binding EventStatus}" Value="1">
+                                        <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="1">
+                                            <Setter Property="BackgroundColor" Value="#859000"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="2">
                                             <Setter Property="BackgroundColor" Value="#27A53C"/>
                                         </DataTrigger>
-                                        <DataTrigger TargetType="Grid" Binding="{Binding EventStatus}" Value="2">
+                                        <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="3">
                                             <Setter Property="BackgroundColor" Value="#CF9000"/>
                                         </DataTrigger>
                                     </Grid.Triggers>
-                                    <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation">
+                                    <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation" TextColor="White">
                                         <Label.Triggers>
-                                            <DataTrigger TargetType="Label" Binding="{Binding EventType}" Value="0">
+                                            <DataTrigger TargetType="Label" Binding="{Binding Type}" Value="1">
                                                 <Setter Property="Text" Value="污水偷排事件"/>
                                             </DataTrigger>
-                                            <DataTrigger TargetType="Label" Binding="{Binding EventType}" Value="1">
+                                            <DataTrigger TargetType="Label" Binding="{Binding Type}" Value="2">
                                                 <Setter Property="Text" Value="恶臭事件"/>
                                             </DataTrigger>
                                         </Label.Triggers>

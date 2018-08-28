@@ -25,7 +25,7 @@
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Label Text="信息内容" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,0,15" HorizontalOptions="Start" />
-                        <views:BorderlessEditor Text="{Binding contents}" HeightRequest="150" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10" IsEnabled="False"/>
+                        <WebView x:Name="webviewContent" HeightRequest="150" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10"/>
 
                         <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                             <Label Text="附件" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
@@ -43,8 +43,8 @@
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
                                 <StackLayout Margin="50,10,10,10" VerticalOptions="Center" HorizontalOptions="Start" Spacing="1">
-                                    <Label Text="{Binding filename}" Font="18" />
-                                    <Label Text="{Binding length}" Font="16" TextColor="Gray" />
+                                    <Label Text="{Binding attach_title}" TextColor="Black" FontSize="15"/>
+                                    <!--<Label Text="{Binding length}" Font="16" TextColor="Gray" />-->
                                 </StackLayout>
                                 <BoxView BackgroundColor="Silver" HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="End" />
                                 <Image Source="pdf" HorizontalOptions="Start" VerticalOptions="Center" Margin="10" HeightRequest="30" WidthRequest="30"/>

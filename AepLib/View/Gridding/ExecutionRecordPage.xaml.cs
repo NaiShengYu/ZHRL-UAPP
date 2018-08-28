@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net;
 using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace AepApp.View.Gridding
 {
     public partial class ExecutionRecordPage : ContentPage
     {
+        private int pageIndex;
+        private bool hasMore = true;
         private int totalNum;
         private string mSearchKey;
-        private ObservableCollection<GridTaskModel> dataList = new ObservableCollection<GridTaskModel>();
-
-        public ExecutionRecordPage()
+        private ObservableCollection<GridEventHandleRecordModel> dataList = new ObservableCollection<GridEventHandleRecordModel>();
+        private string mTaskId;
+        public ExecutionRecordPage(string taskId)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-
+            mTaskId = taskId;
             SearchData();
         }
 
@@ -45,30 +50,57 @@ namespace AepApp.View.Gridding
 
         private void SearchData()
         {
+            pageIndex = 0;
+            hasMore = true;
             dataList.Clear();
             ReqGridTaskList();
         }
 
-        private void ReqGridTaskList()
+        private async void ReqGridTaskList()
         {
-            for (int i = 0; i < 20; i++)
-            {
-                GridTaskModel _event = new GridTaskModel();
-                _event.name = i + "在工厂周围检测水质";
-                _event.eventName = "化工偷排事件";
-                _event.addTime = "高桥镇，韩佳差家偶尔";
+            string url = App.EP360Module.url + "/api/gbm/GetTaskHandleList";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("pageIndex", pageIndex);
+            map.Add("pageSize", 20);
+            map.Add("searchKey", mSearchKey);
+            map.Add("id", mTaskId);
 
-                dataList.Add(_event);
+            string param = JsonConvert.SerializeObject(map);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                try
+                {
+                    List<GridEventHandleRecordModel> list = JsonConvert.DeserializeObject<List<GridEventHandleRecordModel>>(res.Results);
+                    if (list != null && list.Count > 0)
+                    {
+                        foreach (var item in list)
+                        {
+                            dataList.Add(item);
+                        }
+                        pageIndex++;
+                    }
+                    else
+                    {
+                        hasMore = false;
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+
             }
+
             listView.ItemsSource = dataList;
         }
 
         public void LoadMore(object sender, ItemVisibilityEventArgs e)
         {
-            GridTaskModel item = e.Item as GridTaskModel;
+            GridEventHandleRecordModel item = e.Item as GridEventHandleRecordModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (dataList.Count < totalNum)
+                if (hasMore)
                 {
                     ReqGridTaskList();
                 }

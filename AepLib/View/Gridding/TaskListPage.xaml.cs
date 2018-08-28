@@ -146,6 +146,7 @@ namespace AepApp.View.Gridding
         private void BarFilter_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new TaskFilterPage(filterCondition));
+            //Navigation.PushAsync(new SelectGridWorkerPage(new Guid()));
         }
 
         protected override void OnAppearing()

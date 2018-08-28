@@ -48,6 +48,9 @@ namespace AepApp.View.Gridding
                     if (detail != null)
                     {
                         listV.ItemsSource = detail.attachments;
+                        HtmlWebViewSource source = new HtmlWebViewSource();
+                        source.Html = @detail.contents;
+                        webviewContent.Source = source;
                     }
                 }
                 catch (Exception e)
@@ -74,8 +77,8 @@ namespace AepApp.View.Gridding
         {
             var g = sender as Grid;
             AttachmentInfo attach = g.BindingContext as AttachmentInfo;
-            string fileName = attach.id + ".pdf";
-            string url = App.EP360Module.url + attach.url;
+            string fileName = attach.attach_filename + ".pdf";
+            string url = App.EP360Module.url + attach.attach_url;
             HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileName, App.EmergencyToken);
             await Navigation.PushAsync(new ShowFilePage(fileName));
         }

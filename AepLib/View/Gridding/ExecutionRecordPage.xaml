@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.ExecutionRecordPage" Title="执行记录">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.Gridding.ExecutionRecordPage" 
+             Title="执行记录">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="1" BackgroundColor="#fafafa">
             <Grid.RowDefinitions>
@@ -14,8 +22,8 @@
                         <ViewCell>
                             <Grid VerticalOptions="Center">
                                 <StackLayout VerticalOptions="Center" Margin="20,0,50,0" Spacing="2">
-                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding name}" />
-                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding eventName}" TextColor="Gray" Font="16"/>
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding date, StringFormat='{0:yyyy-MM-dd HH:mm}'}" />
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding SubTitle}" TextColor="Gray" Font="16"/>
                                 </StackLayout>
                                     <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                             </Grid>

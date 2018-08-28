@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AepApp.Models;
+using AepApp.Tools;
 using AepApp.View.EnvironmentalEmergency;
 using CloudWTO.Services;
 using Newtonsoft.Json;
@@ -23,16 +24,14 @@ namespace AepApp.View.Gridding
         {
 
             if (string.IsNullOrEmpty(_infoModel.Tel)) return;
-                Device.OpenUri(new Uri("tel:" + _infoModel.Tel));
-           
+            DeviceUtils.phone(_infoModel.Tel);          
 
         }
         //发信息
         void sms_Tapped(object sender, System.EventArgs e)
         {
             if (string.IsNullOrEmpty(_infoModel.Tel)) return;
-
-                Device.OpenUri(new Uri("sms:" + _infoModel.Tel));
+            DeviceUtils.sms(_infoModel.Tel);
         }
 
      
