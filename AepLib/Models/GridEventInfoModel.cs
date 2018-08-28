@@ -19,63 +19,62 @@ namespace AepApp.Models
         public Guid gridcell { get; set; }
         public string gridName { get; set; }
         public ObservableCollection<Followup> Followup { get; set; }
-       
-        //public bool isEnd{
-        //    get {
-        //        if (state == 4) return true;
-        //        else return false;
-        //    }
-        //    set{}
-        //}
-
-        private string Addr { get; set; }
-        public string addr
-        {
-            get { return Addr; }
-            set { Addr = value; NotifyPropertyChanged(); }
+        public bool stateStatus{
+            get {
+                if (state == 4) return true;
+                else return false;
+            }
+            set{}
         }
 
-        private string Content;
-        public string content
+        private string  addr{ get; set; }
+        public string Addr
         {
-            get { return Content; }
-            set { Content = value; NotifyPropertyChanged(); }
-        }
-        private string Results;
-        public string results
-        {
-            get { return Results; }
-            set { Results = value; NotifyPropertyChanged(); }
+            get { return addr; }
+            set { addr = value; NotifyPropertyChanged(); }
         }
 
-
-        private string UserName;
-        public string userName
+        private string content;
+        public string Content
         {
-            get { return UserName; }
-            set { UserName = value; NotifyPropertyChanged(); }
+            get { return content; }
+            set {  content= value; NotifyPropertyChanged(); }
         }
-
-        private string Tel;
-        public string tel
+        private string results;
+        public string Results
         {
-            get { return Tel; }
-            set { Tel = value; NotifyPropertyChanged(); }
-        }
-
-        private string EnterpriseName;
-        public string enterpriseName
-        {
-            get { return EnterpriseName; }
-            set { EnterpriseName = value; NotifyPropertyChanged(); }
+            get { return results; }
+            set { results = value; NotifyPropertyChanged(); }
         }
 
 
-        private string LnglatString;
-        public string lnglatString
+        private string userName;
+        public string UserName
         {
-            get { return lng + " E, " + lat + " N"; }
-            set { LnglatString = value; NotifyPropertyChanged(); }
+            get { return userName; }
+            set { userName = value; NotifyPropertyChanged(); }
+        }
+
+        private string tel;
+        public string Tel
+        {
+            get { return tel; }
+            set { tel = value; NotifyPropertyChanged(); }
+        }
+
+        private string enterpriseName;
+        public string EnterpriseName
+        {
+            get { return enterpriseName; }
+            set { enterpriseName = value; NotifyPropertyChanged(); }
+        }
+
+
+        private string lnglatString;
+        public string LnglatString
+        {
+            get { return lng.ToString("f6") + " E, " + lng.ToString("f6") + " N"; }
+            set { lnglatString = value; NotifyPropertyChanged(); }
         }
 
 

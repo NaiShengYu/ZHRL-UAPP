@@ -12,8 +12,6 @@
   <ItemGroup>
     <EmbeddedResource Include="msyh.ttc" />
   </ItemGroup>
-
-  
   <ItemGroup>
     <Compile Update="Page1.xaml.cs">
       <SubType>Code</SubType>

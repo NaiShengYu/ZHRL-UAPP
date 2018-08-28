@@ -26,8 +26,8 @@
                                     <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding incidentTitle}" />
                                 </StackLayout>
                                 <StackLayout VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="110"  BackgroundColor="#2772A5">
-                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center"  Text="执行期限" TextColor="White" />
-                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center" Text="{Binding lastDate, StringFormat='{0:yyyy-MM-dd}'}" TextColor="White" />
+                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center"  Text="执行期限" />
+                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center" Text="{Binding lastDate, StringFormat='{0:yyyy-MM-dd}'}"/>
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

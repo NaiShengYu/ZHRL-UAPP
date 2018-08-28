@@ -60,14 +60,9 @@ namespace AepApp.View.EnvironmentalEmergency
         private async void downloadPlan(String filePath, string fileFormat)
         {
             string url = App.EmergencyModule.url + filePath;
-
             HTTPResponse hTTPResponse = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileFormat, App.EmergencyToken);
             await Navigation.PushAsync(new ShowFilePage(fileFormat));
-
         }
-
-
-
 
         private async void ReqSuccessCase(String Filter, String Sorting, int SkipCount, int MaxResultCount)
         {

@@ -12,19 +12,32 @@ namespace AepApp.View.Gridding
 {
     public partial class RegistrationEventPage : ContentPage
     {
-        void Handle_Toggled(object sender, Xamarin.Forms.ToggledEventArgs e)
+        void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            Switch SW = sender as Switch;
-            SW.IsToggled = !SW.IsToggled;
-            if (SW.IsToggled == true)
-                _infoModel.state = 4;
-            else _infoModel.state = 0;
+            _infoModel.title = e.NewTextValue;     
 
         }
 
+        //打电话
+        void phone_Tapped(object sender, System.EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(_infoModel.Tel)) return;
+                Device.OpenUri(new Uri("tel:" + _infoModel.Tel));
+           
+
+        }
+        //发信息
+        void sms_Tapped(object sender, System.EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_infoModel.Tel)) return;
+
+                Device.OpenUri(new Uri("sms:" + _infoModel.Tel));
+        }
+
+     
+
         private ObservableCollection<string> photoList = new ObservableCollection<string>();
-
-
         void UpData(object sender, System.EventArgs e){
             postAddEvent();
         }
@@ -60,7 +73,7 @@ namespace AepApp.View.Gridding
                 _infoModel.lng = Convert.ToDouble(p[0]);
                 _infoModel.lat = Convert.ToDouble(p[1]);
                 setPosition();
-                labelLngLat.Text = _infoModel.lnglatString;
+                labelLngLat.Text = _infoModel.LnglatString;
                 getAddressWihtLocation();
             });
         }
@@ -69,7 +82,7 @@ namespace AepApp.View.Gridding
         void RelatedEnterPrises(object sender, System.EventArgs e)
         {
 
-            Navigation.PushAsync(new RelatedEnterprisesPage());
+            Navigation.PushAsync(new RelatedEnterprisesPage(_infoModel));
         }
 
 
@@ -202,14 +215,12 @@ namespace AepApp.View.Gridding
                     canEdit = true,
                     date = DateTime.Now,
                     staff = App.userInfo.id,
-                    userName = App.userInfo.userName,
-                  
+                    UserName = App.userInfo.userName,
                     state = 4,
                     type = 2,
-                    addr = "梅墟",
-                    title = "biaoti",
                     id = Guid.NewGuid(),
                     gridcell = App.gridUser.gridcell,
+                    Tel = App.userInfo.tel,
 
                 };
                 try{
@@ -229,7 +240,6 @@ namespace AepApp.View.Gridding
             ToolbarItems.Add(new ToolbarItem("", "qrcode", HandleAction));
             ST.BindingContext = photoList;
             getAddressWihtLocation();
-
         }
 
 
@@ -258,6 +268,17 @@ namespace AepApp.View.Gridding
 
         private async void postAddEvent()
         {
+
+            if(string.IsNullOrEmpty(_infoModel.title)){
+               await DisplayAlert("提示", "请填写事件名称", "确定");
+                return;
+            }
+
+            if (SW.IsToggled == true)
+                _infoModel.state = 4;
+            else _infoModel.state = 0;
+
+
             string url = App.EP360Module.url + "/api/gbm/updateincident";
             parameModel parame = new parameModel
             {
@@ -267,16 +288,15 @@ namespace AepApp.View.Gridding
                 title = _infoModel.title,
                 date = _infoModel.date,
                 handleDate = DateTime.Now,
-                contents = _infoModel.content,
-                results = _infoModel.results,
+                contents = _infoModel.Content,
+                results = _infoModel.Results,
                 type = _infoModel.type,
                 state = _infoModel.state,
                 lat = _infoModel.lat,
                 lng = _infoModel.lng,
-                addr = _infoModel.addr,
+                addr = _infoModel.Addr,
                 staff = App.userInfo.id,
-
-
+                enterprise = _infoModel.enterprise,
             };
             string param = JsonConvert.SerializeObject(parame);
 
@@ -351,7 +371,7 @@ namespace AepApp.View.Gridding
                 Dictionary<string,object> resultDic = JsonConvert.DeserializeObject<Dictionary<string, object>>(dic["result"].ToString());
                 try
                 {
-                    _infoModel.addr = resultDic["address"].ToString();
+                    _infoModel.Addr = resultDic["address"].ToString();
                 }
                 catch (Exception ex)
                 {
@@ -390,8 +410,9 @@ namespace AepApp.View.Gridding
 
             public string contents{get;set;}
 
-            public string results{get;set;}
-
+            public string results { get; set; }
+            public string enterprise { get; set; }
+                
             public DateTime handleDate{get;set;}
 
             ObservableCollection<Attachments> attachments { set; get; }
