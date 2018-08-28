@@ -16,14 +16,16 @@ namespace AepApp.View.Gridding
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SelectGridWorkerPage : ContentPage
     {
+        private Guid gridId;
         private int pageIndex;
         private string mSearchKey;
         private bool hasMore;
         private ObservableCollection<GridStaffModel> dataList = new ObservableCollection<GridStaffModel>();
 
-        public SelectGridWorkerPage()
+        public SelectGridWorkerPage(Guid gridcell)
         {
             InitializeComponent();
+            gridId = gridcell;
             SearchData();
         }
 
@@ -64,34 +66,35 @@ namespace AepApp.View.Gridding
 
         private async void ReqWorksList()
         {
-            //List<string> datas = new List<string>();
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    datas.Add(i.ToString());
-            //}
-
             string url = App.EP360Module.url + "/api/gbm/GetGridAndParentGridStaff";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
             map.Add("pageSize", 20);
             map.Add("searchKey", mSearchKey);
-            map.Add("grid", "");
+            map.Add("grid", gridId);
             string param = JsonConvert.SerializeObject(map);
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if(res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                List<GridStaffModel> list = JsonConvert.DeserializeObject<List<GridStaffModel>>(res.Results);
-                if(list != null && list.Count > 0)
+                try
                 {
-                    foreach (var item in list)
+                    List<GridStaffModel> list = JsonConvert.DeserializeObject<List<GridStaffModel>>(res.Results);
+                    if (list != null && list.Count > 0)
                     {
-                        dataList.Add(item);
+                        foreach (var item in list)
+                        {
+                            dataList.Add(item);
+                        }
+                        pageIndex++;
                     }
-                    pageIndex++;
+                    else
+                    {
+                        hasMore = false;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    hasMore = false;
+
                 }
             }
 

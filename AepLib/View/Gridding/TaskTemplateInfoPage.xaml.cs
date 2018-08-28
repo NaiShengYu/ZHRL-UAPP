@@ -26,12 +26,19 @@ namespace AepApp.View.Gridding
         private async void GetTemplateDetail()
         {
             string url = App.EP360Module.url + "/api/gbm/GetTemplateDetail";
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "id=" + templateId, "POST");
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "id=" + templateId, "POST", App.FrameworkToken);
             if(res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                TaskTemplateModel data = JsonConvert.DeserializeObject<TaskTemplateModel>(res.Results);
-                BindingContext = data;
-                SetWebviewInfo(data);
+                try
+                {
+                    TaskTemplateModel data = JsonConvert.DeserializeObject<TaskTemplateModel>(res.Results);
+                    BindingContext = data;
+                    SetWebviewInfo(data);
+                }
+                catch (Exception e)
+                {
+
+                }
             }
         }
 

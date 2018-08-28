@@ -9,8 +9,8 @@ namespace AepApp.Models
     //下发信息
     public class GridSendInformationModel
     {
-        public string Disseminate { get; set; }
-        public string staff { get; set; }
+        public string id { get; set; }
+        public Guid staff { get; set; }
         public string title { get; set; }
         public int type { get; set; }
         public DateTime date { get; set; }

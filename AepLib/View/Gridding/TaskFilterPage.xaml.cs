@@ -107,14 +107,8 @@ namespace AepApp.View.Gridding
             base.OnDisappearing();
             conditions.timeStart = TimePickerStart.Time;
             conditions.timeEnd = TimePickerEnd.Time;
-            if(conditions.dayStart == null)
-            {
-                conditions.dayStart = DateTime.Now;
-            }
-            if(conditions.dayEnd == null)
-            {
-                conditions.dayEnd = DateTime.Now;
-            }
+            conditions.dayStart = DatePickerStart.Date;
+            conditions.dayEnd = DatePickerEnd.Date;
         }
     }
 }

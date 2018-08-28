@@ -3,6 +3,7 @@ using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,32 @@ namespace AepApp.View.Gridding
                     HorizontalOptions = LayoutOptions.FillAndExpand,
                 };
                 TestTreeModel modelRoot = gridList[i];
+//=======
+
+//                TestTreeModel modelRoot = new TestTreeModel();
+//                modelRoot.name = i + "高桥镇";
+//                ObservableCollection<TestTreeModel> rootChildren = new ObservableCollection<TestTreeModel>();
+//                for (int j = 0; j < 3; j++)
+//                {
+//                    TestTreeModel modelBranch = new TestTreeModel();
+//                    modelBranch.name = i + "" + j + "小牙山村";
+//                    ObservableCollection<TestTreeModel> branchChildren = new ObservableCollection<TestTreeModel>();
+//                    for (int k = 0; k < 2; k++)
+//                    {
+//                        TestTreeModel modelLeaf = new TestTreeModel();
+//                        modelLeaf.name = i + "" + j + "" + k + " 王麻子";
+//                        modelLeaf.isLeaf = false;
+//                        branchChildren.Add(modelLeaf);
+//                    }
+
+//                    modelBranch.children = branchChildren;
+//                    modelBranch.isExpanded = j == 1 ? true : false;
+//                    modelBranch.isChecked = j == 0 ? true : false;
+//                    rootChildren.Add(modelBranch);
+//                }
+//                modelRoot.children = rootChildren;
+
+//>>>>>>> 16414d6237b8147be3cba33bd713bc00681be839
                 tree.SetDataSource(modelRoot);
                 layoutTree.Children.Add(tree);
             }

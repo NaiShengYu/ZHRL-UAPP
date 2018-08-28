@@ -36,24 +36,6 @@ namespace AepApp.View.Gridding
             InitializeComponent();
             mEventId = eventId;
             GetTaskDetail();
-
-            //taskList.Add(new Task
-            //{
-            //    name = "在厂房周围监测水质",
-            //    address = "村级网络，四官旺村",
-            //});
-            //taskList.Add(new Task
-            //{
-            //    name = "在厂房周围监测水质",
-            //    address = "村级网络，四官旺村",
-            //});
-            //taskList.Add(new Task
-            //{
-            //    name = "在厂房周围监测水质",
-            //    address = "村级网络，四官旺村",
-            //});
-            //listV.ItemsSource = taskList;
-
         }
 
         /// <summary>
@@ -65,18 +47,25 @@ namespace AepApp.View.Gridding
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", mEventId);
             string param = JsonConvert.SerializeObject(map);
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                detail = JsonConvert.DeserializeObject<GridEventInfoModel>(res.Results);
-                BindingContext = detail;
-                if (detail != null)
+                try
                 {
-                    listV.ItemsSource = detail.Followup;
-                    if (detail.staff != null)
+                    detail = JsonConvert.DeserializeObject<GridEventInfoModel>(res.Results);
+                    BindingContext = detail;
+                    if (detail != null)
                     {
-                        GetStaffInfo(detail.staff.ToString());
+                        listV.ItemsSource = detail.Followup;
+                        if (detail.staff != null)
+                        {
+                            GetStaffInfo(detail.staff);
+                        }
                     }
+                }
+                catch (Exception x)
+                {
+
                 }
             }
         }
@@ -85,7 +74,7 @@ namespace AepApp.View.Gridding
         /// 审核人
         /// </summary>
         /// <param name="staffId"></param>
-        private async void GetStaffInfo(string staffId)
+        private async void GetStaffInfo(Guid staffId)
         {
             auditor = await (App.Current as App).GetUserInfo(staffId);
             if (auditor != null)

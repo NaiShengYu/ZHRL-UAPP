@@ -32,7 +32,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new SendInformationInfoPage(info.Disseminate));
+            Navigation.PushAsync(new SendInformationInfoPage(info));
             listView.SelectedItem = null;
         }
 
@@ -48,38 +48,46 @@ namespace AepApp.View.Gridding
         }
 
 
-        private void SearchData()
+        private async void SearchData()
         {
             pageIndex = 0;
             hasMore = true;
             dataList.Clear();
-            ReqGridTaskList();
+            if (App.gridUser == null)
+                App.gridUser = await(App.Current as App).getStaffInfo();
+            ReqGridInformationList();
         }
 
-        private async void ReqGridTaskList()
+        private async void ReqGridInformationList()
         {
-            string url = App.EP360Module.url + "/api/gbm/GetStaffInfo";
+            string url = App.EP360Module.url + "/api/gbm/GetDisseminateByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", "10");
+            map.Add("pageSize", 20);
             map.Add("searchKey", mSearchKey);
-            map.Add("disseminate", "");
             string param = JsonConvert.SerializeObject(map);
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if(res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                List<GridSendInformationModel> list = JsonConvert.DeserializeObject<List<GridSendInformationModel>>(res.Results);
-                if(list != null && list.Count > 0)
+                try
                 {
-                    foreach (var item in list)
+                    List<GridSendInformationModel> list = JsonConvert.DeserializeObject<List<GridSendInformationModel>>(res.Results);
+                    if (list != null && list.Count > 0)
                     {
-                        dataList.Add(item);
+                        foreach (var item in list)
+                        {
+                            dataList.Add(item);
+                        }
+                        pageIndex++;
                     }
-                    pageIndex++;
+                    else
+                    {
+                        hasMore = false;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    hasMore = false;
+
                 }
             }
 
@@ -93,7 +101,7 @@ namespace AepApp.View.Gridding
             {
                 if (hasMore)
                 {
-                    ReqGridTaskList();
+                    ReqGridInformationList();
                 }
             }
         }

@@ -28,18 +28,6 @@ namespace AepApp.Droid.Renderers
         protected override void OnElementChanged(ElementChangedEventArgs<Picker> e)
         {
             base.OnElementChanged(e);
-            //if (e.OldElement == null)
-            //{
-            //Control.Background = null;
-
-            //var layoutParams = new MarginLayoutParams(Control.LayoutParameters);
-            //layoutParams.SetMargins(0, 0, 0, 0);
-            //LayoutParameters = layoutParams;
-            //Control.LayoutParameters = layoutParams;
-            //Control.SetPadding(0, 0, 0, 0);
-            //Control.TextAlignment = Android.Views.TextAlignment.TextEnd;
-            //SetPadding(0, 0, 0, 0);
-            //}
 
             var view = (BorderlessPicker)Element;
             SetBorder(view);

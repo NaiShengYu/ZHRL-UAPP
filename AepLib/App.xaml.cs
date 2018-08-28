@@ -368,7 +368,7 @@ namespace AepApp
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
-        public async Task<UserInfoModel> GetUserInfo(string staffId)
+        public async Task<UserInfoModel> GetUserInfo(Guid staffId)
         {
 
             string url = App.FrameworkURL + "/api/fw/GetUserByid?id=" + staffId;
