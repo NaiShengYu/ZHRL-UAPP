@@ -10,9 +10,12 @@ namespace AepApp.Droid.Renderers
 {
     public interface BorderlessEntryRenderer:EntryRenderer
     {
-        public BorderlessDatePickerRenderer(Context context) : base(context)
+        public BorderlessEntryRenderer(Context context) : base(context)
         {
         }
+
+        public static void Init() { }
+
 
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
