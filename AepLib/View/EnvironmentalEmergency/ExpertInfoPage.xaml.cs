@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AepApp.Models;
+using AepApp.Tools;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
@@ -14,15 +15,14 @@ namespace AepApp.View.EnvironmentalEmergency
 
             var but = sender as Button;
             ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
-
-            Device.OpenUri(new Uri("tel:" + item.mobilePhone));
+            DeviceUtils.phone(item.mobilePhone);
         }
         //发信息
         void sms_Tapped(object sender, System.EventArgs e)
         {
             var but = sender as Button;
             ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
-            Device.OpenUri(new Uri("sms:" + item.mobilePhone));
+            DeviceUtils.sms(item.mobilePhone);
         }
 
         public ExpertInfoPage(ExpertLibraryModels.ItemsBean item)

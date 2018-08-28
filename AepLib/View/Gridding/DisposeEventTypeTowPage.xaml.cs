@@ -1,4 +1,5 @@
 ﻿using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -10,7 +11,7 @@ namespace AepApp.View.Gridding
 {
     public partial class DisposeEventTypeTowPage : ContentPage
     {
-        private string mEventId;
+        private Guid mEventId;
         private UserInfoModel auditor;//审核人
         private GridEventInfoModel detail;
 
@@ -31,7 +32,7 @@ namespace AepApp.View.Gridding
         {
         }
 
-        public DisposeEventTypeTowPage(string eventId)
+        public DisposeEventTypeTowPage(Guid eventId)
         {
             InitializeComponent();
             mEventId = eventId;
@@ -89,7 +90,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Device.OpenUri(new Uri("tel:" + auditor.tel));
+            DeviceUtils.phone(auditor.tel);
         }
 
         private void BtnMsg_Clicked(object sender, EventArgs e)
@@ -98,7 +99,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Device.OpenUri(new Uri("sms:" + auditor.tel));
+            DeviceUtils.sms(auditor.tel);
         }
         //private class Task
         //{

@@ -31,7 +31,7 @@ namespace AepApp.View.Gridding
                 return;
             }
 
-            Navigation.PushAsync(new DisposeEventTypeTowPage(eventM.incident));
+            Navigation.PushAsync(new DisposeEventTypeTowPage(eventM.id));
             listView.SelectedItem = null;
         }
 
@@ -66,7 +66,8 @@ namespace AepApp.View.Gridding
             map.Add("pageIndex", pageIndex);
             map.Add("pageSize", 20);
             map.Add("searchKey", mSearchKey);
-            map.Add("grid", App.gridUser.gridcell);
+            //map.Add("grid", App.gridUser.gridcell);
+            map.Add("grid", "72a38f57-1939-40e6-8cca-2960e0d994ea");
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)

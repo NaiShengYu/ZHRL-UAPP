@@ -12,7 +12,7 @@ namespace AepApp.View.Gridding
     public partial class EventListPage : ContentPage
     {
         private string mSearchKey;
-        int page = 0;//请求页码
+        int pageIndex = 0;//请求页码
         bool haveMore = true;//返回是否还有
         private ObservableCollection<GridEventModel> dataList = new ObservableCollection<GridEventModel>();
 
@@ -51,7 +51,7 @@ namespace AepApp.View.Gridding
 
         private async void SearchData()
         {
-            page = 0;
+            pageIndex = 0;
             dataList.Clear();
             haveMore = true;
             if(App.gridUser ==null){
@@ -81,15 +81,13 @@ namespace AepApp.View.Gridding
         private async void ReqGridEventList(){
 
             string url = App.EP360Module.url+"/api/gbm/GetIncidentsByKey";
-            ChemicalStruct parameter = new ChemicalStruct
-            {
-                searchKey = mSearchKey,
-                pageSize = 20,
-                pageIndex = 0,
-                //gridId = App.gridUser.gridcell,
-                gridId = Guid.Parse("08429856-a5fe-4861-87ae-1a0b247c94bc"),
-            };
-            string param = JsonConvert.SerializeObject(parameter);
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("pageIndex", pageIndex);
+            map.Add("pageSize", 20);
+            map.Add("searchKey", mSearchKey);
+            //map.Add("grid", App.gridUser.gridcell);
+            map.Add("grid", "72a38f57-1939-40e6-8cca-2960e0d994ea");
+            string param = JsonConvert.SerializeObject(map);
 
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
@@ -97,13 +95,20 @@ namespace AepApp.View.Gridding
                 try
                 {
                     List<GridEventModel> eventList = JsonConvert.DeserializeObject<List<GridEventModel>>(hTTPResponse.Results);
-                    //totalNum = specialBean.result.professionals.totalCount;
-                    //List<ExpertLibraryModels.ItemsBean> list = specialBean.result.professionals.items;
-                    int count = eventList.Count;
-                    for (int i = 0; i < count; i++)
+                    if(eventList != null && eventList.Count > 0)
                     {
-                        dataList.Add(eventList[i]);
+                        int count = eventList.Count;
+                        for (int i = 0; i < count; i++)
+                        {
+                            dataList.Add(eventList[i]);
+                        }
+                        pageIndex++;
                     }
+                    else
+                    {
+                        haveMore = false;
+                    }
+                    
                     listView.ItemsSource = dataList;
                 }
                 catch (Exception ex)
@@ -115,14 +120,6 @@ namespace AepApp.View.Gridding
             }
 
         }
-
-        internal class ChemicalStruct
-        {
-            public int pageIndex { get; set; }
-            public int pageSize { get; set; }
-            public string searchKey { get; set; }
-            public Guid gridId { get; set; }
-        }
-
+        
     }
 }

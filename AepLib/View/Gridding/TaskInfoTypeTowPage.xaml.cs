@@ -16,7 +16,7 @@ namespace AepApp.View.Gridding
         /// <param name="e">E.</param>
         void ExecutionRecord(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new ExecutionRecordPage());
+            Navigation.PushAsync(new ExecutionRecordPage(""));
         }
 
         /// <summary>

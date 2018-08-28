@@ -1,4 +1,5 @@
 ﻿using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -31,15 +32,15 @@ namespace AepApp.View.Gridding
 
         public void OnMessageClicked(Object sender, EventArgs e)
         {
-            var but = sender as Image;
+            var but = sender as Button;
             GridStaffModel item = but.BindingContext as GridStaffModel;
-            Device.OpenUri(new Uri("sms:" + item.mobil));
+            DeviceUtils.sms(item.mobil);
         }
         public void OnPhoneClicked(Object sender, EventArgs e)
         {
-            var but = sender as Image;
+            var but = sender as Button;
             GridStaffModel item = but.BindingContext as GridStaffModel;
-            Device.OpenUri(new Uri("tel:" + item.mobil));
+            DeviceUtils.phone(item.mobil);
         }
 
         public void Handle_TextChanged(Object sender, TextChangedEventArgs e)
@@ -71,10 +72,11 @@ namespace AepApp.View.Gridding
             map.Add("pageIndex", pageIndex);
             map.Add("pageSize", 20);
             map.Add("searchKey", mSearchKey);
-            map.Add("grid", gridId);
+            //map.Add("grid", gridId);
+            map.Add("grid", Guid.Parse("72a38f57-1939-40e6-8cca-2960e0d994ea"));
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
-            if(res.StatusCode == System.Net.HttpStatusCode.OK)
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {

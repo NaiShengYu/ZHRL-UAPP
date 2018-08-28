@@ -16,7 +16,7 @@ namespace AepApp.Models
         public string grid { get; set; }
         public string state { get; set; }
         public string remarks { get; set; }
-        public DateTime registerdate { get; set; }
+        public DateTime? registerdate { get; set; }
 
     }
 }

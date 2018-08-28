@@ -28,9 +28,9 @@ namespace AepApp.Models
 
     public class AttachmentInfo
     {
-        public Guid id { get; set; }
-        public string url { get; set; }
-        public string title { get; set; }
-        public string filename { get; set; }
+        public Guid attach_id { get; set; }
+        public string attach_url { get; set; }
+        public string attach_title { get; set; }
+        public string attach_filename { get; set; }
     }
 }

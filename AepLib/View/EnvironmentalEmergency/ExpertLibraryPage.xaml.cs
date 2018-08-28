@@ -1,4 +1,5 @@
 using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -17,8 +18,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             var but = sender as Image;
             ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
-
-            Device.OpenUri(new Uri("tel:" + item.mobilePhone));
+            DeviceUtils.phone(item.mobilePhone);
 
         }
         //发信息
@@ -26,7 +26,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             var but = sender as Image;
             ExpertLibraryModels.ItemsBean item = but.BindingContext as ExpertLibraryModels.ItemsBean;
-            Device.OpenUri(new Uri("sms:" + item.mobilePhone));
+            DeviceUtils.sms(item.mobilePhone);
         }
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)

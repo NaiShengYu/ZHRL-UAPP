@@ -1,5 +1,6 @@
 ﻿
 using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -94,7 +95,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Device.OpenUri(new Uri("tel:" + auditor.tel));
+            DeviceUtils.phone(auditor.tel);
         }
 
         private void BtnMsg_Clicked(object sender, EventArgs e)
@@ -103,7 +104,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Device.OpenUri(new Uri("sms:" + auditor.tel));
+            DeviceUtils.sms(auditor.tel);
         }
     }
 }

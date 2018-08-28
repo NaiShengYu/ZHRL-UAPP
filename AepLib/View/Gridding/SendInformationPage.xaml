@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.SendInformationPage" Title="上级下发信息">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
          <Grid RowSpacing="1" BackgroundColor="#fafafa">
             <Grid.RowDefinitions>
@@ -14,7 +19,7 @@
                         <ViewCell>
                             <Grid VerticalOptions="Center">
                                 <StackLayout VerticalOptions="Center" Margin="20,0,50,0" Spacing="2">
-                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding staff}" />
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding title}" />
                                     <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding subTitle}" TextColor="Gray" Font="16"/>
                                 </StackLayout>
                                     <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />

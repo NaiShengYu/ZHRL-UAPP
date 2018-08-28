@@ -22,8 +22,8 @@
                         <ViewCell>
                             <Grid VerticalOptions="Center">
                                 <StackLayout  VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
-                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding uSername}" />
-                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding grid}"  />
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding username}" />
+                                    <!--<Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding grid}"  />-->
                                 </StackLayout>
                                 <StackLayout VerticalOptions="Center" HorizontalOptions="End" WidthRequest="90" Orientation="Horizontal" Spacing="0">
                                     <Button Image="text2" WidthRequest="40" Clicked="OnMessageClicked"/>
