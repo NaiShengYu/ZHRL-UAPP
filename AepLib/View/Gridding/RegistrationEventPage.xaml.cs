@@ -191,11 +191,9 @@ namespace AepApp.View.Gridding
                 title = "事件描述";
                 type = "EditContent";
             }
-            EditContentsPage editContentsPage = new EditContentsPage(_infoModel, type);
+            EditContentsPage editContentsPage = new EditContentsPage(_infoModel, type,1);
             editContentsPage.Title = title;
             Navigation.PushAsync(editContentsPage);
-
-
         }
 
 
@@ -317,7 +315,13 @@ namespace AepApp.View.Gridding
         private async void getEventInfo()
         {
 
-            string url = App.EmergencyModule.url + "/api/gbm/GetIncidentDetail";
+            string url = App.EP360Module.url + "/api/gbm/GetGridList";
+
+            Dictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("grid", "");
+            param.Add("searchKey", "");
+            //string pa =
+
 
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "id="+_eventId, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)

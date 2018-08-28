@@ -9,30 +9,58 @@ namespace AepApp.View.Gridding
     {
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            
-            if (_type == "EditResult") 
-                _infoModel.Results = e.NewTextValue;
+            if(_page ==1){
+                if (_type == "EditResult") 
+                    _EventInfoModel.Results = e.NewTextValue;
             if (_type == "EditContent")
-                _infoModel.Content = e.NewTextValue;        
+                    _EventInfoModel.Content = e.NewTextValue;    
+            }
+            if(_page ==2){
+                _taskInfoModel.Contents = e.NewTextValue;
+            }
+               
         }
 
-        GridEventInfoModel _infoModel = null;
-        string _type = "";
-            public EditContentsPage(GridEventInfoModel infoModel,string type)
-        {
+        int _page = 0;
+        public EditContentsPage(){
             InitializeComponent();
-            _infoModel = infoModel;
-            BindingContext = _infoModel;
+
+        }
+
+        GridEventInfoModel _EventInfoModel = null;
+        string _type = "";
+        public EditContentsPage(GridEventInfoModel infoModel,string type,int page):this()
+        {
+            _EventInfoModel = infoModel;
+            BindingContext = _EventInfoModel;
+            _page = page;
             _type = type;
             if (_type == "EditResult")
-                EditText.Text = _infoModel.Results;
+                EditText.Text = _EventInfoModel.Results;
             if (_type == "EditContent")
-                EditText.Text = _infoModel.Content;     
+                EditText.Text = _EventInfoModel.Content;     
             ToolbarItems.Add(new ToolbarItem("确定","" , () =>
             {
                 Navigation.PopAsync();
             }));
 
         }
+
+        GridTaskInfoModel _taskInfoModel = null;
+        public EditContentsPage(GridTaskInfoModel infoModel, string type, int page):this()
+        {
+            _taskInfoModel = infoModel;
+            BindingContext = _taskInfoModel;
+            _page = page;
+            _type = type;
+            EditText.Text = _taskInfoModel.Contents;     
+            ToolbarItems.Add(new ToolbarItem("确定", "", () =>
+            {
+                Navigation.PopAsync();
+            }));
+
+        }
+
+
     }
 }

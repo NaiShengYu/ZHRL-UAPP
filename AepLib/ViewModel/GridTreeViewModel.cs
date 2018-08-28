@@ -51,11 +51,15 @@ namespace AepApp.ViewModel
 
         public class TestTreeModel
         {
-            public string name { get; set; }
-            public List<TestTreeModel> children { get; set; }
             public bool isLeaf { get; set; }
             public bool isChecked { get; set; }
             public bool isExpanded { get; set; }
+            public Guid id { get; set; }
+            public string name { get; set; }
+            public int? level { get; set; }
+            public string parentName { get; set; }
+            public List<TestTreeModel> children { get; set; }
+
         }
     }
 }
