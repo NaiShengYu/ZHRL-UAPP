@@ -70,11 +70,12 @@ namespace AepApp.View.Gridding
             //    datas.Add(i.ToString());
             //}
 
-            string url = App.EP360Module.url + "/api/gbm/GetStaffByKey";
+            string url = App.EP360Module.url + "/api/gbm/GetGridAndParentGridStaff";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
             map.Add("pageSize", 20);
             map.Add("searchKey", mSearchKey);
+            map.Add("grid", "");
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
             if(res.StatusCode == System.Net.HttpStatusCode.OK)

@@ -1,4 +1,6 @@
 ﻿using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +10,8 @@ namespace AepApp.View.Gridding
 {
     public partial class ReportEventPage : ContentPage
     {
-        private int totalNum;
+        private int pageIndex;
+        bool haveMore = true;
         private string mSearchKey;
         private ObservableCollection<GridEventModel> dataList = new ObservableCollection<GridEventModel>();
 
@@ -28,7 +31,7 @@ namespace AepApp.View.Gridding
                 return;
             }
 
-            Navigation.PushAsync(new DisposeEventPage());
+            Navigation.PushAsync(new DisposeEventTypeTowPage(eventM.incident));
             listView.SelectedItem = null;
         }
 
@@ -43,53 +46,86 @@ namespace AepApp.View.Gridding
             SearchData();
         }
 
-        private void SearchData()
+        private async void SearchData()
         {
+            pageIndex = 0;
+            haveMore = true;
             dataList.Clear();
+            if (App.gridUser == null)
+            {
+                App.gridUser = await(App.Current as App).getStaffInfo();
+                if (App.gridUser == null) return;
+            }
             ReqGridEventList();
         }
 
-        private void ReqGridEventList()
+        private async void ReqGridEventList()
         {
-            for (int i = 0; i < 20; i++)
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    GridEventModel _event = new GridEventModel();
+            //    _event.Name = i + "化工偷排事件";
+            //    _event.Time = "2018-8-13";
+            //    _event.Address = "李家村";
+            //    _event.taskList = new ObservableCollection<GridTaskModel>();
+            //    for (int j = 0; j < 8; j++)
+            //    {
+            //        GridTaskModel taskM = new GridTaskModel
+            //        {
+            //            name = j + "调度事件",
+            //            addTime = "2018-12-11 09:10",
+            //            taskStatus = (j % 3).ToString(),
+            //        };
+            //        _event.taskList.Add(taskM);
+            //    }
+            //    if (i % 3 == 0)
+            //    {
+            //        _event.EventStatus = "0";
+            //    }
+            //    else if (i % 3 == 1)
+            //    {
+            //        _event.EventStatus = "1";
+            //    }
+            //    else if (i % 3 == 2)
+            //    {
+            //        _event.EventStatus = "2";
+            //    }
+            //    if (i % 2 == 0)
+            //    {
+            //        _event.EventType = "0";
+            //    }
+            //    else
+            //    {
+            //        _event.EventType = "1";
+            //    }
+            //    dataList.Add(_event);
+            //}
+
+            string url = App.EP360Module.url + "/api/gbm/GetIncidentsByKey";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("pageIndex", pageIndex);
+            map.Add("pageSize", "20");
+            map.Add("searchKey", mSearchKey);
+            map.Add("grid", App.gridUser.gridcell);
+            string param = JsonConvert.SerializeObject(map);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST");
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                GridEventModel _event = new GridEventModel();
-                _event.Name = i + "化工偷排事件";
-                _event.Time = "2018-8-13";
-                _event.Address = "李家村";
-                _event.taskList = new ObservableCollection<GridTaskModel>();
-                for (int j = 0; j < 8; j++)
+                List<GridEventModel> list = JsonConvert.DeserializeObject<List<GridEventModel>>(res.Results);
+                if (list != null && list.Count > 0)
                 {
-                    GridTaskModel taskM = new GridTaskModel
+                    foreach (var item in list)
                     {
-                        name = j + "调度事件",
-                        addTime = "2018-12-11 09:10",
-                        taskStatus = (j % 3).ToString(),
-                    };
-                    _event.taskList.Add(taskM);
-                }
-                if (i % 3 == 0)
-                {
-                    _event.EventStatus = "0";
-                }
-                else if (i % 3 == 1)
-                {
-                    _event.EventStatus = "1";
-                }
-                else if (i % 3 == 2)
-                {
-                    _event.EventStatus = "2";
-                }
-                if (i % 2 == 0)
-                {
-                    _event.EventType = "0";
+                        dataList.Add(item);
+                    }
+                    pageIndex++;
                 }
                 else
                 {
-                    _event.EventType = "1";
+                    haveMore = false;
                 }
-                dataList.Add(_event);
             }
+
             listView.ItemsSource = dataList;
         }
 
@@ -98,7 +134,7 @@ namespace AepApp.View.Gridding
             GridEventModel item = e.Item as GridEventModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (dataList.Count < totalNum)
+                if (haveMore)
                 {
                     ReqGridEventList();
                 }

@@ -64,7 +64,7 @@ namespace AepApp.View.Gridding
         private async void ReqGridTaskList()
         {
             string url = App.EP360Module.url + "/api/gbm/GetTasksByKey";
-            Dictionary<string, string> map = new Dictionary<string, string>();
+            Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex + "");
             map.Add("pageSize", "10");
             if (isSearchMultiple)
@@ -73,8 +73,11 @@ namespace AepApp.View.Gridding
                 map.Add("state", filterCondition.isStatusOn ? filterCondition.status : "");
                 map.Add("type", filterCondition.isTypeOn ? filterCondition.type : "");
                 map.Add("gridName", filterCondition.isGriderOn ? filterCondition.griders : "");
-                map.Add("strDate", filterCondition.isTimeOn ? TimeUtils.DateTime2YMD(filterCondition.dayStart) : "");
-                map.Add("endDate", filterCondition.isTimeOn ? TimeUtils.DateTime2YMD(filterCondition.dayEnd) : "");
+                if (filterCondition.isTimeOn)
+                {
+                    map.Add("strDate", filterCondition.dayStart);
+                    map.Add("endDate", filterCondition.dayEnd);
+                }
                 map.Add("addr", filterCondition.isAddressOn ? filterCondition.address : "");
                 map.Add("pointName", filterCondition.isWatcherOn ? filterCondition.watcher : "");
             }
@@ -130,7 +133,7 @@ namespace AepApp.View.Gridding
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if(filterCondition.isKeyOn || filterCondition.isStatusOn || filterCondition.isTypeOn || filterCondition.isGriderOn
+            if (filterCondition.isKeyOn || filterCondition.isStatusOn || filterCondition.isTypeOn || filterCondition.isGriderOn
                 || filterCondition.isTimeOn || filterCondition.isAddressOn || filterCondition.isWatcherOn)
             {
                 isSearchMultiple = true;
@@ -148,8 +151,8 @@ namespace AepApp.View.Gridding
         //任务筛选条件
         public class TaskFilterCondition : BaseModel
         {
-            public string searchName;
-            public string status;
+            public string searchName { get; set; }
+            public string status { get; set; }
             public string type { get; set; }
             public string griders { get; set; }
             public DateTime dayStart { get; set; }

@@ -11,6 +11,8 @@ namespace AepApp.Models
         public string taskStatus { get; set; }
         public string eventName { get; set; }
 
+
+
         public string task { get; set; }
         public string taskTitle { get; set; }
         public string incidentTitle { get; set; }

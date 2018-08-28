@@ -9,8 +9,8 @@ namespace AepApp.Models
     /// </summary>
     public class GridStaffModel
     {
-        public string id { get; set; }
-        public string uSername { get; set; }
+        public Guid id { get; set; }
+        public string username { get; set; }
         public string mobil { get; set; }
         public int grade { get; set; }
         public string grid { get; set; }

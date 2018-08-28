@@ -47,7 +47,6 @@ namespace AepApp
         //public static string FrameworkURL = "http://gx.azuratech.com:30000";
         public static string FrameworkURL = "http://dev.azuratech.com:50000";
 
-
         public static UserInfoModel userInfo = null;
         public static GridUserInfoModel gridUser = null;
 
@@ -151,12 +150,15 @@ namespace AepApp
         //获取当前位置
         async void HandleEventHandler()
         {
-            
+
             try
             {
-                if(Device.RuntimePlatform == Device.iOS){
+                if (Device.RuntimePlatform == Device.iOS)
+                {
                     currentLocation = await Geolocation.GetLastKnownLocationAsync();
-                }else{
+                }
+                else
+                {
                     var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                     currentLocation = await Geolocation.GetLocationAsync(request);
                 }
@@ -172,7 +174,7 @@ namespace AepApp
         {
             base.OnStart();
             //return;
-           
+
             //if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             //{
             //    bool al = await LoginAsync("admin", "123456");
@@ -208,16 +210,18 @@ namespace AepApp
         bool _isEmergency = false;
         bool _ISBasicData = false;
         bool _isEP360 = false;
-        bool _isenvironmental= false;
+        bool _isenvironmental = false;
 
-        private void canGo(){
-            
-            if(_autologgedin == true &&
+        private void canGo()
+        {
+
+            if (_autologgedin == true &&
                _isSampling == true &&
                _isEmergency == true &&
                _ISBasicData == true &&
                _isEP360 == true &&
-               _isenvironmental == true){
+               _isenvironmental == true)
+            {
                 MainPage = new NavigationPage(new MasterAndDetailPage());
             }
 
@@ -296,7 +300,9 @@ namespace AepApp
                 {
                     return true;
                 }
-            }else{
+            }
+            else
+            {
                 return true;
             }
 
@@ -328,15 +334,20 @@ namespace AepApp
             }
         }
 
-
-        private async Task<UserInfoModel> getUserInfoAsync(string frameToken){
+        /// <summary>
+        /// 获取网格化人员信息
+        /// </summary>
+        /// <param name="frameToken"></param>
+        /// <returns></returns>
+        private async Task<UserInfoModel> getUserInfoAsync(string frameToken)
+        {
 
             try
             {
                 ///api/f w/GetUser
                 //string url = FrameworkURL + "/api/fw/getUserinfo";
                 string url = FrameworkURL + "/api/fw/GetUser";
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url,"", "GET", frameToken);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", frameToken);
                 UserInfoModel userInfo = null;
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
@@ -352,6 +363,23 @@ namespace AepApp
 
         }
 
+        /// <summary>
+        /// 获取特定用户的信息
+        /// </summary>
+        /// <param name="staffId"></param>
+        /// <returns></returns>
+        public async Task<UserInfoModel> GetUserInfo(string staffId)
+        {
+
+            string url = App.FrameworkURL + "/api/fw/GetUserByid?id=" + staffId;
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.FrameworkToken);
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                UserInfoModel user = JsonConvert.DeserializeObject<UserInfoModel>(res.Results);
+                return user;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Get a list of module names and URLs from the framework server
@@ -384,7 +412,8 @@ namespace AepApp
         /// 获取网格化登录人员信息
         /// </summary>
         /// <value>The get staff info.</value>
-        public async Task<GridUserInfoModel> getStaffInfo(){
+        public async Task<GridUserInfoModel> getStaffInfo()
+        {
             try
             {
                 string url = App.EP360Module.url + "/api/gbm/GetStaffInfo";
@@ -465,13 +494,13 @@ namespace AepApp
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     moduleConfigEP360 = JsonConvert.DeserializeObject<ModuleConfigEP360>(res.Results);
-                   
+
                 }
-             
+
             }
             catch (Exception ex)
             {
-               
+
             }
             finally
             {
@@ -499,13 +528,13 @@ namespace AepApp
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     moduleConfigSampling = JsonConvert.DeserializeObject<ModuleConfigSampling>(res.Results);
-                   
+
                 }
-               
+
             }
             catch (Exception ex)
             {
-                
+
             }
             finally
             {
@@ -526,20 +555,20 @@ namespace AepApp
                 string url = App.BasicDataModule.url + "/api/mod/custconfig";
                 ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
                 {
-                    
+
                 };
                 string param = JsonConvert.SerializeObject(parameter);
                 HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", App.FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
                     moduleConfigFramework = JsonConvert.DeserializeObject<ModuleConfigFramework>(res.Results);
-                   
+
                 }
-            
+
             }
             catch (Exception ex)
             {
-                
+
             }
             finally
             {
@@ -565,9 +594,9 @@ namespace AepApp
                     //emergency.showEmeSummary = false;
                     //emergency.menuPastIncident = false;
                     //emergency.menuDutyRoster = false;
-                    App.moduleConfigEmergency = emergency;                   
+                    App.moduleConfigEmergency = emergency;
                 }
-               
+
             }
             catch (Exception e)
             {
@@ -579,7 +608,7 @@ namespace AepApp
                 _isEmergency = true;
                 canGo();
             }
-            
+
 
         }
 
@@ -605,7 +634,7 @@ namespace AepApp
             }
             catch (Exception e)
             {
-              
+
 
             }
             finally
@@ -613,7 +642,7 @@ namespace AepApp
                 _isenvironmental = true;
                 canGo();
             }
-            
+
         }
 
 

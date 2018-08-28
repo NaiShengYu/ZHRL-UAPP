@@ -84,7 +84,7 @@ namespace AepApp.Models
         public string id { get; set; }
         public string level { get; set; }
         public string staff { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public string remarks { get; set; }
 
     }

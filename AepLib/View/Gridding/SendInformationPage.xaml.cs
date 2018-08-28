@@ -32,7 +32,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new SendInformationInfoPage(info));
+            Navigation.PushAsync(new SendInformationInfoPage(info.Disseminate));
             listView.SelectedItem = null;
         }
 
