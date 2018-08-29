@@ -72,7 +72,6 @@ namespace AepApp.View.Gridding
                 catch (Exception e)
                 {
                 }
-                
             }
         }
 

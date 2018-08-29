@@ -8,11 +8,20 @@ using CloudWTO.Services;
 using Newtonsoft.Json;
 using Plugin.Media;
 using Xamarin.Forms;
-
+using AepApp.Tools;
 namespace AepApp.View.Gridding
 {
     public partial class RegistrationEventPage : ContentPage
     {
+
+
+        private void pickerNature_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = sender as Picker;
+            var typeName = picker.SelectedItem as string;
+            _infoModel.type = ConstConvertUtils.GridTaskType2Int(typeName);
+        }
+
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             _infoModel.title = e.NewTextValue;     

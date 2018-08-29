@@ -19,10 +19,9 @@ namespace AepApp.View.Gridding
         public ReportEventPage()
         {
             InitializeComponent();
-
+            NavigationPage.SetBackButtonTitle(this, "");
             SearchData();
         }
-
 
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
@@ -32,8 +31,21 @@ namespace AepApp.View.Gridding
                 return;
             }
 
-            Navigation.PushAsync(new DisposeEventTypeTowPage(eventM.id));
-            listView.SelectedItem = null;
+            //乡级
+            if(App.gridUser.gridLevel == App.GridMaxLevel -1){
+                var dsPage = new DisposeEventTypeTowPage(eventM);
+                Navigation.PushAsync(dsPage);
+                listView.SelectedItem = null;
+
+            }
+            //县级
+            if (App.gridUser.gridLevel == App.GridMaxLevel - 2)
+            {
+                var dsPage = new DisposeEventTypeTowPage(eventM);
+                Navigation.PushAsync(dsPage);
+                listView.SelectedItem = null;
+            }
+           
         }
 
         public void Handle_TextChanged(Object sender, TextChangedEventArgs e)

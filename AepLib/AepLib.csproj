@@ -13,8 +13,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="msyh.ttc" />
-    <EmbeddedResource Include="View\Gridding\jquery-1.10.2.min.js" />
-    <EmbeddedResource Include="View\Gridding\wangEditor.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Page1.xaml.cs">

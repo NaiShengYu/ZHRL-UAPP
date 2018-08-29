@@ -14,7 +14,7 @@ namespace AepApp.View.Gridding
         GridTaskInfoModel _infoModel = null;
         string _taskId = "";
         bool mNeedExcute = false;
-
+        string _eventId = "";
         void updata (object sender, System.EventArgs eventArgs){
 
             addTask();
@@ -164,16 +164,15 @@ namespace AepApp.View.Gridding
             Navigation.PushAsync(new TaskTemplatePage());
         }
 
-        /// <summary>
-        /// 
+
         /// </summary>
         /// <param name="taskId"></param>
         /// <param name="needExcute">是否需要执行记录 true：可以添加执行结果 false：只能查看执行结果</param>
-        public TaskInfoTypeTowPage(string taskId, bool needExcute)
+        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-
+            _eventId = eventId;
             _taskId = taskId;
             mNeedExcute = needExcute;
             //
@@ -182,6 +181,7 @@ namespace AepApp.View.Gridding
             {
                 _infoModel = new GridTaskInfoModel
                 {
+                    
                     canEdit = true,
                     rowState = "add",
                     date = DateTime.Now,
@@ -190,9 +190,9 @@ namespace AepApp.View.Gridding
                     state = 1,
                     type = 1,
                     id = Guid.NewGuid(),
+
                     index = 0,
                     userName = App.userInfo.userName,
-
                     coords = new ObservableCollection<Coords>(),
                     enterprise = new ObservableCollection<Enterprise>(),
                     assignments = new ObservableCollection<Assignments>(),
@@ -200,6 +200,14 @@ namespace AepApp.View.Gridding
                 BindingContext = _infoModel;
                 pickerNature.Title = "日常任务";
                 pickerStatus.Title = "上报中";
+                try
+                {
+                    _infoModel.incident = new Guid(_eventId);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
 

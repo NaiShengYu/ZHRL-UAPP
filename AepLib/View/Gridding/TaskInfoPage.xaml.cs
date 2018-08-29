@@ -36,11 +36,9 @@ namespace AepApp.View.Gridding
         }
 
         private ObservableCollection<position> addressList = new ObservableCollection<position>();
-
         public TaskInfoPage()
         {
             InitializeComponent();
-
             addressList.Add(new position
             {
                 name = "江南路",
