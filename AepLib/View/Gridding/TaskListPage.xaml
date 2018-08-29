@@ -15,19 +15,19 @@
                 <RowDefinition Height="*">
                 </RowDefinition>
             </Grid.RowDefinitions>
-            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" SearchButtonPressed="Handle_Search" />
+            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" SearchButtonPressed="Handle_Search" TextChanged="Handle_TextChanged"/>
             <ListView BackgroundColor="White" x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center">
                                 <StackLayout VerticalOptions="Center" Margin="20,0,120,0" Spacing="2">
-                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding taskTitle}" />
+                                    <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding title}" />
                                     <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding incidentTitle}" />
                                 </StackLayout>
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="110"  BackgroundColor="#2772A5">
-                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center"  Text="执行期限" />
-                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center" Text="{Binding lastDate, StringFormat='{0:yyyy-MM-dd}'}"/>
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="110" Spacing="0">
+                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center"  Text="执行期限" FontSize="12"/>
+                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center" Text="{Binding lastDate, StringFormat='{0:yyyy-MM-dd}'}" FontSize="12"/>
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

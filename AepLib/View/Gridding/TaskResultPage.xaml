@@ -15,22 +15,23 @@
                 <StackLayout Spacing="0">
                     <Grid>
                         <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessDatePicker x:Name="DatePicker" Format="yyyy-MM-dd HH:mm" FontSize="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <views:BorderlessDatePicker x:Name="DatePicker" Format="yyyy-MM-dd HH:mm" FontSize="16" TextColor="Gray" 
+                                                    VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" 
+                                                    Date="{Binding date}"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="网络/部门" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="梅墟街道" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label Text="{Binding gridName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="执行人" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="王五" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label x:Name="LabelStaff" Text="" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-
-                    <Editor VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10"/>
+                    <views:BorderlessEditor x:Name="Editor" Text="{Binding results}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10"/>
                 </StackLayout>
             </ScrollView>
             <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">
@@ -45,7 +46,7 @@
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
-            <Grid x:Name="GridOperate" Grid.Row="2" BackgroundColor="#e6e6e6">
+            <Grid x:Name="GridOperate" Grid.Row="2" BackgroundColor="#e6e6e6" IsVisible="False">
                 <Button Clicked="takePhoto" Image="image" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" />
                 <Button Font="18" Text="执行完毕" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" Margin="0,8,0,8" BackgroundColor="Transparent" TextColor="#2c73a3"/>
             </Grid>

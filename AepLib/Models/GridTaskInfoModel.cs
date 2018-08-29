@@ -13,7 +13,7 @@ namespace AepApp.Models
         public Guid staff { get; set; }
         public Guid template { get; set; }
         public string title { get; set; }
-        public string userName { get; set; }
+        public string userName { get; set; }//任务发出人
         public string gridName { get; set; }
         public DateTime deadline { get; set; }
         public double period { get; set; }

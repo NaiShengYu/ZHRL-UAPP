@@ -70,7 +70,7 @@ namespace AepApp.View.Gridding
             string url = App.EP360Module.url + "/api/gbm/GetGridAndParentGridStaff";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", 20);
+            map.Add("pageSize", ConstantUtils.PAGE_SIZE);
             map.Add("searchKey", mSearchKey);
             //map.Add("grid", gridId);
             map.Add("grid", Guid.Parse("72a38f57-1939-40e6-8cca-2960e0d994ea"));
@@ -108,7 +108,7 @@ namespace AepApp.View.Gridding
             GridStaffModel item = e.Item as GridStaffModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (hasMore)
+                if (hasMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
                 {
                     ReqWorksList();
                 }

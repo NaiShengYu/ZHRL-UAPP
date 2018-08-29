@@ -19,6 +19,7 @@ namespace AepApp.View.Gridding
         private ObservableCollection<GridTaskModel> dataList = new ObservableCollection<GridTaskModel>();
         private TaskFilterCondition filterCondition;
 
+        public const string SUBSCRIBE_SEARCH = "MultipleSearch";
         private const string SEARCH_MULTIPLE = "《复杂条件搜索》";
         private bool isSearchMultiple = false;
 
@@ -27,6 +28,7 @@ namespace AepApp.View.Gridding
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             filterCondition = new TaskFilterCondition();
+            SearchData();
         }
 
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
@@ -36,13 +38,21 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskInfoTypeTowPage(taskM.task.ToString()));
+            Navigation.PushAsync(new TaskInfoTypeTowPage(taskM.task.ToString(), true));
             listView.SelectedItem = null;
         }
 
         public void Handle_TextChanged(Object sender, TextChangedEventArgs e)
         {
             mSearchKey = e.NewTextValue;
+            if (SEARCH_MULTIPLE.Equals(mSearchKey))
+            {
+                isSearchMultiple = true;
+            }
+            else
+            {
+                isSearchMultiple = false;
+            }
             SearchData();
         }
 
@@ -66,10 +76,13 @@ namespace AepApp.View.Gridding
             string url = App.EP360Module.url + "/api/gbm/GetTasksByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", 20);
+            map.Add("pageSize", ConstantUtils.PAGE_SIZE);
             if (isSearchMultiple)
             {
-                map.Add("taskName", filterCondition.isKeyOn ? filterCondition.searchName : "");
+                if (filterCondition.isKeyOn)
+                {
+                    map.Add("taskName", filterCondition.searchName);
+                }
                 if (filterCondition.isStatusOn)
                 {
                     map.Add("state", filterCondition.TaskStatus);
@@ -87,16 +100,25 @@ namespace AepApp.View.Gridding
                     map.Add("strDate", start);
                     map.Add("endDate", end);
                 }
-                map.Add("gridName", filterCondition.isGriderOn ? filterCondition.griders : "");
-                map.Add("addr", filterCondition.isAddressOn ? filterCondition.address : "");
-                map.Add("pointName", filterCondition.isWatcherOn ? filterCondition.watcher : "");
+                if (filterCondition.isGriderOn)
+                {
+                    map.Add("gridName", filterCondition.griders);
+                }
+                if (filterCondition.isAddressOn)
+                {
+                    map.Add("addr", filterCondition.address);
+                }
+                if (filterCondition.isWatcherOn)
+                {
+                    map.Add("pointName", filterCondition.watcher);
+                }
             }
             else
             {
                 map.Add("taskName", mSearchKey);
             }
             string param = JsonConvert.SerializeObject(map);
-            await DisplayAlert("param", param, "ok");
+            //await DisplayAlert("param", param, "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == HttpStatusCode.OK)
             {
@@ -131,7 +153,7 @@ namespace AepApp.View.Gridding
             GridTaskModel item = e.Item as GridTaskModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (hasMore)
+                if (hasMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
                 {
                     ReqGridTaskList();
                 }
@@ -146,24 +168,23 @@ namespace AepApp.View.Gridding
         private void BarFilter_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new TaskFilterPage(filterCondition));
-            //Navigation.PushAsync(new SelectGridWorkerPage(new Guid()));
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            if (filterCondition.isKeyOn || filterCondition.isStatusOn || filterCondition.isTypeOn || filterCondition.isGriderOn
+            MessagingCenter.Unsubscribe<ContentPage, TaskFilterCondition>(this, SUBSCRIBE_SEARCH);
+            MessagingCenter.Subscribe<ContentPage, TaskFilterCondition>(this, SUBSCRIBE_SEARCH, (arg1, arg2) =>
+            {
+                filterCondition = arg2 as TaskFilterCondition;
+                if (filterCondition.isKeyOn || filterCondition.isStatusOn || filterCondition.isTypeOn || filterCondition.isGriderOn
                 || filterCondition.isTimeOn || filterCondition.isAddressOn || filterCondition.isWatcherOn)
-            {
-                isSearchMultiple = true;
-                search.Text = SEARCH_MULTIPLE;
+                {
+                    isSearchMultiple = true;
+                    search.Text = SEARCH_MULTIPLE;
+                }
+                else
+                {
+                    isSearchMultiple = false;
+                    search.Text = "";
+                }
             }
-            else
-            {
-                isSearchMultiple = false;
-                search.Text = "";
-            }
-            SearchData();
+            );
         }
 
         //任务筛选条件

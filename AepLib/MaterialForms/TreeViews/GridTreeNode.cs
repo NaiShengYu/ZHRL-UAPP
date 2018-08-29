@@ -74,22 +74,6 @@ namespace AepApp.MaterialForms.TreeViews
             }
         }
 
-        public void GetChildren()
-        {
-            if (!IsExpanded && Children.Count == 0)
-            {
-                //TestTreeModel m = Parent as TestTreeModel;
-                //if (m != null)
-                //{
-                    DependencyService.Get<IToast>().ShortAlert("add children");
-                    GridTreeNode node = new GridTreeNode { Title = "test", IsChecked = false, IsExpanded = false, IsLeaf = false };
-                    Children.Add(node);
-                    OnDescendantChanged(NodeChangeType.NodeAdded, this);
-                //}
-            }
-            IsExpanded = !IsExpanded;
-
-        }
 
         //选择或取消选择
         public void CheckEvent(bool isReverse)
@@ -132,8 +116,7 @@ namespace AepApp.MaterialForms.TreeViews
 
         public GridTreeNode()
         {
-            //ToggleIsExpandedCommand = new Command(obj => IsExpanded = !IsExpanded);
-            ToggleIsExpandedCommand = new Command(obj => GetChildren());
+            ToggleIsExpandedCommand = new Command(obj => IsExpanded = !IsExpanded);
             ToggleIsCheckedCommand = new Command(obj => CheckEvent(true));
         }
 

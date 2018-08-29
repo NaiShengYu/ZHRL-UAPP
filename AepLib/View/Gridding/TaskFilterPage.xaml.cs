@@ -109,6 +109,8 @@ namespace AepApp.View.Gridding
             conditions.timeEnd = TimePickerEnd.Time;
             conditions.dayStart = DatePickerStart.Date;
             conditions.dayEnd = DatePickerEnd.Date;
+            MessagingCenter.Send<ContentPage, TaskListPage.TaskFilterCondition>(this, TaskListPage.SUBSCRIBE_SEARCH, conditions);
+            MessagingCenter.Unsubscribe<ContentPage, string>(this, TaskListPage.SUBSCRIBE_SEARCH);
         }
     }
 }

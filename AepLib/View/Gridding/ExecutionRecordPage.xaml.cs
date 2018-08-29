@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -32,7 +33,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskResultPage(record, false));
+            Navigation.PushAsync(new TaskResultPage(record.id, record, false));
             listView.SelectedItem = null;
         }
 
@@ -61,7 +62,7 @@ namespace AepApp.View.Gridding
             string url = App.EP360Module.url + "/api/gbm/GetTaskHandleList";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", 20);
+            map.Add("pageSize", ConstantUtils.PAGE_SIZE);
             map.Add("searchKey", mSearchKey);
             map.Add("id", mTaskId);
 
@@ -100,7 +101,7 @@ namespace AepApp.View.Gridding
             GridTaskHandleRecordModel item = e.Item as GridTaskHandleRecordModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (hasMore)
+                if (hasMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
                 {
                     ReqGridTaskList();
                 }
