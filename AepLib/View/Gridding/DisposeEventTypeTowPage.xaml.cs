@@ -15,6 +15,7 @@ namespace AepApp.View.Gridding
         private UserInfoModel auditor;//审核人
         private GridEventInfoModel detail;
         private GridEventFollowModel _followMoel;
+        string _eventId = "";
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -40,7 +41,7 @@ namespace AepApp.View.Gridding
           
         }
         void AddEventTask(object sender, System.EventArgs e){
-            Navigation.PushAsync(new TaskInfoTypeTowPage("",_eventModel.id.ToString()));
+            Navigation.PushAsync(new TaskInfoTypeTowPage("",false,_eventModel.id.ToString()));
         }
 
         void addEventFollowUp (object sender,System.EventArgs eventArgs){

@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.TaskResultPage" Title="任务执行结果">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.Gridding.TaskResultPage" 
+             xmlns:views="clr-namespace:AepApp.MaterialForms"
+             Title="任务执行结果">
     <ContentPage.Content>
         <Grid>
-        <Grid.RowDefinitions>
+            <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="140"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <ScrollView>
                 <StackLayout Spacing="0">
-                  <Grid>
+                    <Grid>
                         <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="2017-07-22 15:19" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <views:BorderlessDatePicker x:Name="DatePicker" Format="yyyy-MM-dd HH:mm" FontSize="16" TextColor="Gray" 
+                                                    VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" 
+                                                    Date="{Binding date}"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                     <Grid>
+                    <Grid>
                         <Label Text="网络/部门" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="梅墟街道" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label Text="{Binding gridName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                     <Grid>
+                    <Grid>
                         <Label Text="执行人" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="王五" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label x:Name="LabelStaff" Text="" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-
-                    <Editor VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10"/>
-            </StackLayout>
+                    <views:BorderlessEditor x:Name="Editor" Text="{Binding results}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10"/>
+                </StackLayout>
             </ScrollView>
-              <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">
+            <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">
                 <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                     <Label Text="拍照" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
                     <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
@@ -41,7 +46,7 @@
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
-               <Grid Grid.Row="2" BackgroundColor="#e6e6e6">
+            <Grid x:Name="GridOperate" Grid.Row="2" BackgroundColor="#e6e6e6" IsVisible="False">
                 <Button Clicked="takePhoto" Image="image" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" />
                 <Button Font="18" Text="执行完毕" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" Margin="0,8,0,8" BackgroundColor="Transparent" TextColor="#2c73a3"/>
             </Grid>

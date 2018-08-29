@@ -55,9 +55,8 @@ namespace AepApp.ViewModel
         {
 
             public string name { get; set; }
-            private ObservableCollection<TestTreeModel> Children;
-            public ObservableCollection<TestTreeModel> children { get { return Children; } set { Children = value; NotifyPropertyChanged(); } }
-            public bool isLeaf { get; set; }
+            public ObservableCollection<TestTreeModel> children { get; set; }
+            public bool isLeaf { get { return children.Count > 0; } }
             public bool isChecked { get; set; }
             public bool isExpanded { get; set; }
             public Guid id { get; set; }

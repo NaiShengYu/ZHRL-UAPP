@@ -1,4 +1,5 @@
 ﻿using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -76,7 +77,7 @@ namespace AepApp.View.Gridding
             string url = App.EP360Module.url + "/api/gbm/GetIncidentsByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", 20);
+            map.Add("pageSize", ConstantUtils.PAGE_SIZE);
             map.Add("searchKey", mSearchKey);
             //map.Add("grid", App.gridUser.gridcell);
             map.Add("grid", "72a38f57-1939-40e6-8cca-2960e0d994ea");
@@ -114,7 +115,7 @@ namespace AepApp.View.Gridding
             GridEventModel item = e.Item as GridEventModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (haveMore)
+                if (haveMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
                 {
                     ReqGridEventList();
                 }

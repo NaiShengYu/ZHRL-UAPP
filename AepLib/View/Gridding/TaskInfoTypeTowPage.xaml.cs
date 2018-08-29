@@ -11,6 +11,10 @@ namespace AepApp.View.Gridding
 {
     public partial class TaskInfoTypeTowPage : ContentPage
     {
+        GridTaskInfoModel _infoModel = null;
+        string _taskId = "";
+        bool mNeedExcute = false;
+        string _eventId = "";
         void updata (object sender, System.EventArgs eventArgs){
 
             addTask();
@@ -111,7 +115,17 @@ namespace AepApp.View.Gridding
         /// <param name="sender">Sender.</param>
         /// <param name="e">E.</param>
         void taskResult(object sender,System.EventArgs e){
-            Navigation.PushAsync(new TaskResultPage());
+            if(_infoModel == null)
+            {
+                return;
+            }
+            GridTaskHandleRecordModel record = new GridTaskHandleRecordModel
+            {
+                date = _infoModel.date,
+                staff = _infoModel.staff,
+                gridName = _infoModel.gridName,                
+            };
+            Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute));
         }
 
         void editContent(object sender, System.EventArgs e)
@@ -150,15 +164,17 @@ namespace AepApp.View.Gridding
             Navigation.PushAsync(new TaskTemplatePage());
         }
 
-        GridTaskInfoModel _infoModel = null;
-        string _taskId = "";
-        string _eventId = "";
-        public TaskInfoTypeTowPage(string taskId,string eventId)
+
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <param name="needExcute">是否需要执行记录 true：可以添加执行结果 false：只能查看执行结果</param>
+        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             _eventId = eventId;
             _taskId = taskId;
+            mNeedExcute = needExcute;
             //
             if (!string.IsNullOrEmpty(_taskId)) getTaskInfo();
             else
@@ -200,13 +216,21 @@ namespace AepApp.View.Gridding
         {
 
             string url = App.EP360Module.url + "/api/gbm/GetIncidentDetail";
-
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "id=" + _taskId, "POST", App.FrameworkToken);
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("id", _taskId);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(hTTPResponse.Results);
-                _infoModel.canEdit = false;
-                BindingContext = _infoModel;
+                try
+                {
+                    _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(hTTPResponse.Results);
+                    _infoModel.canEdit = false;
+                    BindingContext = _infoModel;
+                }
+                catch (Exception e)
+                {
+
+                }
             }
 
         }

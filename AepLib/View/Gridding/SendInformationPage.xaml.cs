@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -63,7 +64,7 @@ namespace AepApp.View.Gridding
             string url = App.EP360Module.url + "/api/gbm/GetDisseminateByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", 20);
+            map.Add("pageSize", ConstantUtils.PAGE_SIZE);
             map.Add("searchKey", mSearchKey);
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
@@ -99,7 +100,7 @@ namespace AepApp.View.Gridding
             GridSendInformationModel item = e.Item as GridSendInformationModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (hasMore)
+                if (hasMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
                 {
                     ReqGridInformationList();
                 }

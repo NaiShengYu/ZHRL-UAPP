@@ -5,8 +5,8 @@ using System.Text;
 
 namespace AepApp.Models
 {
-    //事件执行记录
-    public class GridEventHandleRecordModel
+    //任务执行记录
+    public class GridTaskHandleRecordModel
     {
         public Guid id { get; set; }
         public DateTime date { get; set; }
@@ -16,6 +16,8 @@ namespace AepApp.Models
         public string parentName { get; set; }
         public string results { get; set; }
         public ObservableCollection<AttachmentInfo> attachments { get; set; }
+
+        public string staffName { get; set; }//通过staff获取后赋值
 
         public string SubTitle { get { return parentName + " - " + gridName; } }
     }
