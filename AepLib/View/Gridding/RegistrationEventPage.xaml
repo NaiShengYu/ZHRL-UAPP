@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:views ="clr-namespace:AepApp.MaterialForms"
-             x:Class="AepApp.View.Gridding.RegistrationEventPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:AepApp.MaterialForms" x:Class="AepApp.View.Gridding.RegistrationEventPage">
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
@@ -14,7 +11,7 @@
                 <StackLayout>
                     <Grid>
                         <Label Text="标题" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
-                        <views:BorderlessEntry Placeholder="输入事件标题" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding title}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="100,15,10,5" TextColor="Gray" TextChanged="Handle_TextChanged" HeightRequest="30"/>
+                        <views:BorderlessEntry Placeholder="输入事件标题" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding title}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="100,15,10,5" TextColor="Gray" TextChanged="Handle_TextChanged" HeightRequest="30" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
@@ -25,8 +22,8 @@
                     <Grid>
                         <Label Text="网络员" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                         <Label Text="{Binding UserName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
-                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0" Clicked="phone_Tapped"/>
-                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0" Clicked="sms_Tapped"/>
+                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0" Clicked="phone_Tapped" />
+                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0" Clicked="sms_Tapped" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
@@ -52,9 +49,15 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="事件类型" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label Text="{Binding 污染事件}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <views:BorderlessPicker WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="请选择" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>污水偷拍事件</x:String>
+                                    <x:String>恶臭事件</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </views:BorderlessPicker>
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
-                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="selectEventType" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
@@ -92,7 +95,7 @@
             </StackLayout>
             <Grid Grid.Row="2" BackgroundColor="#e6e6e6">
                 <Button Clicked="takePhoto" Image="image" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" />
-                <Button Text="登记" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" Margin="0,8,10,8" BackgroundColor="Transparent" TextColor="#2c73a3" Clicked="UpData"/>
+                <Button Text="登记" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" Margin="0,8,10,8" BackgroundColor="Transparent" TextColor="#2c73a3" Clicked="UpData" />
             </Grid>
         </Grid>
     </ContentPage.Content>

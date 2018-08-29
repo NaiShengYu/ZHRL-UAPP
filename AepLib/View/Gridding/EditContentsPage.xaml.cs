@@ -18,13 +18,20 @@ namespace AepApp.View.Gridding
             if(_page ==2){
                 _taskInfoModel.Contents = e.NewTextValue;
             }
-               
+             
+            if (_page == 3)
+            {
+                _followModel.Remarks = e.NewTextValue;
+            }
         }
 
         int _page = 0;
         public EditContentsPage(){
             InitializeComponent();
-
+            ToolbarItems.Add(new ToolbarItem("确定", "", () =>
+            {
+                Navigation.PopAsync();
+            }));
         }
 
         GridEventInfoModel _EventInfoModel = null;
@@ -39,11 +46,7 @@ namespace AepApp.View.Gridding
                 EditText.Text = _EventInfoModel.Results;
             if (_type == "EditContent")
                 EditText.Text = _EventInfoModel.Content;     
-            ToolbarItems.Add(new ToolbarItem("确定","" , () =>
-            {
-                Navigation.PopAsync();
-            }));
-
+         
         }
 
         GridTaskInfoModel _taskInfoModel = null;
@@ -54,12 +57,18 @@ namespace AepApp.View.Gridding
             _page = page;
             _type = type;
             EditText.Text = _taskInfoModel.Contents;     
-            ToolbarItems.Add(new ToolbarItem("确定", "", () =>
-            {
-                Navigation.PopAsync();
-            }));
-
         }
+
+        GridEventFollowModel _followModel = null;
+        public EditContentsPage(GridEventFollowModel followModel, string type, int page) : this()
+        {
+            _followModel = followModel;
+            BindingContext = _followModel;
+            _page = page;
+            _type = type;
+            EditText.Text = _followModel.Remarks;
+        }
+
 
 
     }

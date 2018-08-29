@@ -152,11 +152,12 @@ namespace AepApp.View.Gridding
 
         GridTaskInfoModel _infoModel = null;
         string _taskId = "";
-        public TaskInfoTypeTowPage(string taskId)
+        string _eventId = "";
+        public TaskInfoTypeTowPage(string taskId,string eventId)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-
+            _eventId = eventId;
             _taskId = taskId;
             //
             if (!string.IsNullOrEmpty(_taskId)) getTaskInfo();
@@ -164,6 +165,7 @@ namespace AepApp.View.Gridding
             {
                 _infoModel = new GridTaskInfoModel
                 {
+                    
                     canEdit = true,
                     rowState = "add",
                     date = DateTime.Now,
@@ -172,9 +174,9 @@ namespace AepApp.View.Gridding
                     state = 1,
                     type = 1,
                     id = Guid.NewGuid(),
+
                     index = 0,
                     userName = App.userInfo.userName,
-
                     coords = new ObservableCollection<Coords>(),
                     enterprise = new ObservableCollection<Enterprise>(),
                     assignments = new ObservableCollection<Assignments>(),
@@ -182,6 +184,14 @@ namespace AepApp.View.Gridding
                 BindingContext = _infoModel;
                 pickerNature.Title = "日常任务";
                 pickerStatus.Title = "上报中";
+                try
+                {
+                    _infoModel.incident = new Guid(_eventId);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
 

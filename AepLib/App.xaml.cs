@@ -34,6 +34,7 @@ namespace AepApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public static int GridMaxLevel = 3;
         public static UploadEmergencyShowModel LastNatureAccidentModel = null;
         public static MasterDetailPage appHunbegerPage = null;
         public static Location currentLocation = null;
