@@ -55,7 +55,7 @@
                         <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                             <Label Text="分派任务" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
                             <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
-                                <Label Text="{Binding ItemsSource.Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Label Text="{Binding Tasks.Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
                             </Frame>
                         </Grid>
                     </StackLayout>
@@ -65,8 +65,8 @@
                         <ViewCell>
                             <Grid>
                                 <StackLayout Margin="10,10,30,10" VerticalOptions="Center" HorizontalOptions="Start" Spacing="1">
-                                    <Label Text="{Binding Title}" Font="18" />
-                                    <Label Text="{Binding GridName}" Font="16" TextColor="Gray" />
+                                    <Label Text="{Binding name}" Font="18" />
+                                    <Label Text="{Binding name}" Font="16" TextColor="Gray" />
                                 </StackLayout>
                                 <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                                 <BoxView BackgroundColor="Silver" HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="End" />

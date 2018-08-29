@@ -15,6 +15,11 @@ namespace AepApp.View.Gridding
         string _taskId = "";
         bool mNeedExcute = false;
         string _eventId = "";
+        bool mNeedUp = true;
+
+        public delegate void AddTaskToEvent(object sender, EventArgs args);
+        public event AddTaskToEvent AddATask;
+
         void updata (object sender, System.EventArgs eventArgs){
 
             addTask();
@@ -168,46 +173,49 @@ namespace AepApp.View.Gridding
         /// </summary>
         /// <param name="taskId"></param>
         /// <param name="needExcute">是否需要执行记录 true：可以添加执行结果 false：只能查看执行结果</param>
-        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId)
+        ///  <param name="needUp">是否需要上传任务 true：可以上传 false：将任务提交到上一级</param>
+        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId,bool needUp)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             _eventId = eventId;
             _taskId = taskId;
             mNeedExcute = needExcute;
+            mNeedUp = needUp;
             //
             if (!string.IsNullOrEmpty(_taskId)) getTaskInfo();
             else
             {
-                _infoModel = new GridTaskInfoModel
-                {
+               
+                    _infoModel = new GridTaskInfoModel
+                    {
+                        canEdit = true,
+                        rowState = "add",
+                        date = DateTime.Now,
+                        deadline = DateTime.Now,
+                        staff = App.userInfo.id,
+                        state = 1,
+                        type = 1,
+                        id = Guid.NewGuid(),
+
+                        index = 0,
+                        userName = App.userInfo.userName,
+                        coords = new ObservableCollection<Coords>(),
+                        enterprise = new ObservableCollection<Enterprise>(),
+                        assignments = new ObservableCollection<Assignments>(),
+                    };
+                    BindingContext = _infoModel;
+                    pickerNature.Title = "日常任务";
+                    pickerStatus.Title = "上报中";
+                    try
+                    {
+                        _infoModel.incident = new Guid(_eventId);
+                    }
+                    catch (Exception ex)
+                    {
                     
-                    canEdit = true,
-                    rowState = "add",
-                    date = DateTime.Now,
-                    deadline = DateTime.Now,
-                    staff = App.userInfo.id,
-                    state = 1,
-                    type = 1,
-                    id = Guid.NewGuid(),
-
-                    index = 0,
-                    userName = App.userInfo.userName,
-                    coords = new ObservableCollection<Coords>(),
-                    enterprise = new ObservableCollection<Enterprise>(),
-                    assignments = new ObservableCollection<Assignments>(),
-                };
-                BindingContext = _infoModel;
-                pickerNature.Title = "日常任务";
-                pickerStatus.Title = "上报中";
-                try
-                {
-                    _infoModel.incident = new Guid(_eventId);
                 }
-                catch (Exception ex)
-                {
-
-                }
+           
             }
         }
 
@@ -267,6 +275,22 @@ namespace AepApp.View.Gridding
         //添加任务
         private async void addTask()
         {
+
+            if (string.IsNullOrEmpty(_infoModel.title))
+            {
+                await DisplayAlert("提示", "请添加标题", "确定");
+
+                return;
+            }
+
+
+
+            if(mNeedUp ==false){
+                AddATask(_infoModel, new EventArgs());
+                Navigation.PopAsync();
+                return;
+            }
+
             string url = App.EP360Module.url + "/api/gbm/updatetask";
             string param = JsonConvert.SerializeObject(_infoModel);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url,param, "POST", App.FrameworkToken);

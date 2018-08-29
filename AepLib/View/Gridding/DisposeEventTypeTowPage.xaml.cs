@@ -13,9 +13,10 @@ namespace AepApp.View.Gridding
     {
         private GridEventModel _eventModel;
         private UserInfoModel auditor;//审核人
-        private GridEventInfoModel detail;
+        private GridEventFollowModel detail;
         private GridEventFollowModel _followMoel;
         string _eventId = "";
+        private ObservableCollection<GridTaskInfoModel> taskInfoList = new ObservableCollection<GridTaskInfoModel>();
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -23,6 +24,7 @@ namespace AepApp.View.Gridding
             if (task == null) return;
             Navigation.PushAsync(new TaskInfoPage());
             listV.SelectedItem = null;
+
         }
 
         void Handle_Tapped(object sender, System.EventArgs e)
@@ -41,7 +43,25 @@ namespace AepApp.View.Gridding
           
         }
         void AddEventTask(object sender, System.EventArgs e){
-            Navigation.PushAsync(new TaskInfoTypeTowPage("",false,_eventModel.id.ToString()));
+
+            TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage("", false, _eventModel.id.ToString(),false);
+            towPage.AddATask += (object taskinfo, EventArgs args) =>
+            {
+                GridTaskInfoModel taskInfoModel = taskinfo as GridTaskInfoModel;
+                if(taskInfoModel !=null){
+                    taskInfoList.Add(taskInfoModel);
+                    GridEventFollowTaskModel taskModel = new GridEventFollowTaskModel
+                    {
+                        name = taskInfoModel.title,
+                        state = taskInfoModel.state,
+                    };
+                    _followMoel.Tasks.Add(taskModel);
+                }
+
+            };
+                
+
+            Navigation.PushAsync(towPage);
         }
 
         void addEventFollowUp (object sender,System.EventArgs eventArgs){
@@ -55,20 +75,9 @@ namespace AepApp.View.Gridding
         {
             InitializeComponent();
             _eventModel = eventModel;
-            //GetTaskDetail();
-            _followMoel = new GridEventFollowModel
-            {
-                canEdit = true,
-                title = eventModel.Title,
-                date = DateTime.Now,
-                staff = App.userInfo.id,
-                staffName = App.userInfo.userName,
-                staffTel = App.userInfo.tel,
-                state =4,
-                incident = eventModel.id,
-                level = App.gridUser.gridLevel,
-            };
-            BindingContext = _followMoel;
+            GetTaskDetail();
+
+         
 
         }
 
@@ -77,7 +86,7 @@ namespace AepApp.View.Gridding
         /// </summary>
         private async void GetTaskDetail()
         {
-            string url = App.EP360Module.url + "/api/gbm/GetIncidentDetail";
+            string url = App.EP360Module.url + "/api/gbm/GetIncidentFollowupDetail";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", _eventModel.id);
             string param = JsonConvert.SerializeObject(map);
@@ -86,21 +95,37 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    detail = JsonConvert.DeserializeObject<GridEventInfoModel>(res.Results);
+                    detail = JsonConvert.DeserializeObject<GridEventFollowModel>(res.Results);
+                    detail.title = _eventModel.Title;
                     BindingContext = detail;
                     if (detail != null)
                     {
-                        listV.ItemsSource = detail.Followup;
                         if (detail.staff != null)
                         {
                             GetStaffInfo(detail.staff);
                         }
                     }
+                    listV.ItemsSource = detail.Tasks;
                 }
                 catch (Exception x)
                 {
-
+                    _followMoel = new GridEventFollowModel
+                    {
+                        canEdit = true,
+                        title = _eventModel.Title,
+                        date = DateTime.Now,
+                        staff = App.userInfo.id,
+                        staffName = App.userInfo.userName,
+                        staffTel = App.userInfo.tel,
+                        state = 4,
+                        incident = _eventModel.id,
+                        level = App.gridUser.gridLevel,
+                        Tasks = new ObservableCollection<GridEventFollowTaskModel>(),
+                    };
+                    BindingContext = _followMoel;
+                    listV.ItemsSource = _followMoel.Tasks;
                 }
+
             }
         }
 
@@ -118,7 +143,7 @@ namespace AepApp.View.Gridding
             par.Add("remarks", _followMoel.Remarks);
             par.Add("level", _followMoel.level);
             par.Add("state", _followMoel.state);
-
+            par.Add("task", taskInfoList);
             string param = JsonConvert.SerializeObject(par);
 
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
@@ -141,7 +166,8 @@ namespace AepApp.View.Gridding
             auditor = await (App.Current as App).GetUserInfo(staffId);
             if (auditor != null)
             {
-                LabelAuditor.Text = auditor.userName;
+                detail.staffTel = auditor.tel;
+                detail.staffName = auditor.userName;
             }
         }
 
