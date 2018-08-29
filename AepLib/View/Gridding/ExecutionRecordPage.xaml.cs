@@ -15,7 +15,7 @@ namespace AepApp.View.Gridding
         private bool hasMore = true;
         private int totalNum;
         private string mSearchKey;
-        private ObservableCollection<GridEventHandleRecordModel> dataList = new ObservableCollection<GridEventHandleRecordModel>();
+        private ObservableCollection<GridTaskHandleRecordModel> dataList = new ObservableCollection<GridTaskHandleRecordModel>();
         private string mTaskId;
         public ExecutionRecordPage(string taskId)
         {
@@ -27,12 +27,12 @@ namespace AepApp.View.Gridding
 
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
-            GridTaskModel taskM = e.SelectedItem as GridTaskModel;
-            if (taskM == null)
+            GridTaskHandleRecordModel record = e.SelectedItem as GridTaskHandleRecordModel;
+            if (record == null)
             {
                 return;
             }
-            Navigation.PushAsync(new TaskResultPage());
+            Navigation.PushAsync(new TaskResultPage(record, false));
             listView.SelectedItem = null;
         }
 
@@ -71,7 +71,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    List<GridEventHandleRecordModel> list = JsonConvert.DeserializeObject<List<GridEventHandleRecordModel>>(res.Results);
+                    List<GridTaskHandleRecordModel> list = JsonConvert.DeserializeObject<List<GridTaskHandleRecordModel>>(res.Results);
                     if (list != null && list.Count > 0)
                     {
                         foreach (var item in list)
@@ -97,7 +97,7 @@ namespace AepApp.View.Gridding
 
         public void LoadMore(object sender, ItemVisibilityEventArgs e)
         {
-            GridEventHandleRecordModel item = e.Item as GridEventHandleRecordModel;
+            GridTaskHandleRecordModel item = e.Item as GridTaskHandleRecordModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
                 if (hasMore)

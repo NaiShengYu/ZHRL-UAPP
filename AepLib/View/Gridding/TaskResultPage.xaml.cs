@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using AepApp.Models;
 using Plugin.Media;
 using Xamarin.Forms;
 
 namespace AepApp.View.Gridding
 {
+    /// <summary>
+    /// 任务执行结果
+    /// </summary>
     public partial class TaskResultPage : ContentPage
     {
         private ObservableCollection<string> photoList = new ObservableCollection<string>();
@@ -17,10 +21,19 @@ namespace AepApp.View.Gridding
         }
 
 
-        public TaskResultPage()
+        public TaskResultPage(GridTaskHandleRecordModel result, bool isEdit)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
+            GridOperate.IsVisible = isEdit ? true : false;            
+        }
+
+        private void InitResultInfo(GridTaskHandleRecordModel result)
+        {
+            if (result == null)
+            {
+                return;
+            }
             ST.BindingContext = photoList;
 
         }
