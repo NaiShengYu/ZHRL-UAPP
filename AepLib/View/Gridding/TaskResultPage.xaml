@@ -31,7 +31,7 @@
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                    <views:BorderlessEditor x:Name="Editor" Text="{Binding results}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10"/>
+                    <WebView x:Name="Webview" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10"/>
                 </StackLayout>
             </ScrollView>
             <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">

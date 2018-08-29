@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using AepApp.Interface;
 using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
@@ -27,7 +28,7 @@ namespace AepApp.View.Gridding
         /// <param name="e"></param>
         async void ExecutionRecord(object sender, System.EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Editor.Text))
+            if (string.IsNullOrWhiteSpace(""))
             {
                 DependencyService.Get<IToast>().ShortAlert("请输入执行结果");
                 return;
@@ -38,8 +39,8 @@ namespace AepApp.View.Gridding
             map.Add("rowState", mIsEdit ? "add" : "");
             map.Add("task", mTaskId);
             map.Add("date", DatePicker.Date);
-            map.Add("staff", mRecord== null ? new Guid() : mRecord.staff);
-            map.Add("results", Editor.Text);
+            map.Add("staff", mRecord == null ? new Guid() : mRecord.staff);
+            map.Add("results", "");
             map.Add("forassignment", "");
             map.Add("attachments", "");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
@@ -77,7 +78,19 @@ namespace AepApp.View.Gridding
                 return;
             }
             GridOperate.IsVisible = isEdit ? true : false;
-            Editor.IsEnabled = isEdit;
+            if (!isEdit)
+            {
+                var source = new HtmlWebViewSource();
+                source.Html = @record.results;
+                Webview.Source = source;
+            }
+            else
+            {
+                var source = new UrlWebViewSource();
+                var rootPath = DependencyService.Get<IWebviewBaseUrl>().Get();
+                source.Url = System.IO.Path.Combine(rootPath, "EditorHome.html");
+                Webview.Source = source;
+            }
             BindingContext = record;
             photoList.Clear();
             if (record.attachments != null && record.attachments.Count > 0)

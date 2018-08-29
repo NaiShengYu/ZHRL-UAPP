@@ -472,6 +472,7 @@
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
     <Compile Include="Renderers\BorderlessTimePickerRenderer.cs" />
+    <Compile Include="Services\WebviewBaseUrl.cs" />
     <Compile Include="StatusBar.cs" />
     <Compile Include="TextMeter.cs" />
     <Compile Include="Toast_Ios.cs" />
@@ -585,6 +586,15 @@
       <Project>{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}</Project>
       <Name>AepLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EditorHome.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\wangEditor.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\jquery-1.10.2.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

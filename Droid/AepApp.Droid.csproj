@@ -402,6 +402,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Services\DatabaseService.cs" />
     <Compile Include="Services\RecordService.cs" />
+    <Compile Include="Services\WebviewBaseUrl.cs" />
     <Compile Include="StatusBar.cs" />
     <Compile Include="TextMeter.cs" />
     <Compile Include="Toast_Android.cs" />
@@ -707,6 +708,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\dirarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\EditorHome.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\wangEditor.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\jquery-1.10.2.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -125,7 +125,7 @@ namespace AepApp.View.Gridding
                 staff = _infoModel.staff,
                 gridName = _infoModel.gridName,                
             };
-            Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute));
+            Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, true));
         }
 
         void editContent(object sender, System.EventArgs e)
