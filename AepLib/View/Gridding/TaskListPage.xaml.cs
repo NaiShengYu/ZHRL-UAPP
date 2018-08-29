@@ -38,7 +38,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskInfoTypeTowPage(taskM.task.ToString(),true,""));
+            Navigation.PushAsync(new TaskInfoTypeTowPage(taskM.task.ToString(),true,"",true));
             listView.SelectedItem = null;
         }
 
