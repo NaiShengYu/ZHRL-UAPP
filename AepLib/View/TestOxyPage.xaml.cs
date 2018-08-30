@@ -1,5 +1,6 @@
 ﻿using AepApp.Interface;
 using AepApp.Models;
+using AepApp.Tools;
 using AepApp.ViewModels;
 using CloudWTO.Services;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -243,7 +244,7 @@ namespace AepApp.View
 
         private async void PostupLoadVideoSending(string path)
         {
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(path, ".mp4");
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(path, ".mp4", ConstantUtils.UPLOAD_EMERGENCY_BASEURL, ConstantUtils.UPLOAD_EMERGENCY_API);
 
         }
 

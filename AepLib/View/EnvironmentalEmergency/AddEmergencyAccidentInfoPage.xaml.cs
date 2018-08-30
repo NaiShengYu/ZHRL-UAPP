@@ -19,6 +19,7 @@ using SkiaSharp;
 using SimpleAudioForms;
 using InTheHand.Forms;
 using AepApp.Interface;
+using AepApp.Tools;
 #if __IOS__
 using Foundation;
 using UIKit;
@@ -1261,7 +1262,7 @@ namespace AepApp.View.EnvironmentalEmergency
             //HTTPResponse hTTPResponse = await EasyWebRequest.SendImageAsync(model.StorePath);
 
 
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.StorePath,".png");
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.StorePath,".png", ConstantUtils.UPLOAD_EMERGENCY_BASEURL, ConstantUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
@@ -1309,7 +1310,7 @@ namespace AepApp.View.EnvironmentalEmergency
         private async void PostupLoadVideoSending(UploadEmergencyShowModel model)
         {
 
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VideoStorePath,".mp4");
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VideoStorePath,".mp4", ConstantUtils.UPLOAD_EMERGENCY_BASEURL, ConstantUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
@@ -1355,7 +1356,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //上传录音
         private async void PostupLoadVoiceSending(UploadEmergencyShowModel model)
         {
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VoiceStorePath, ".mp4");
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VoiceStorePath, ".mp4", ConstantUtils.UPLOAD_EMERGENCY_BASEURL, ConstantUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);

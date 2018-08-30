@@ -15,7 +15,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search"/>
+            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search" IsVisible="False"/>
             <ListView x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -23,7 +23,7 @@
                             <Grid VerticalOptions="Center">
                                 <StackLayout  VerticalOptions="Center" Margin="20,0,100,0" Spacing="2">
                                     <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding username}" />
-                                    <!--<Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding grid}"  />-->
+                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding gridName}"  />
                                 </StackLayout>
                                 <StackLayout VerticalOptions="Center" HorizontalOptions="End" WidthRequest="90" Orientation="Horizontal" Spacing="0">
                                     <Button Image="text2" WidthRequest="40" Clicked="OnMessageClicked"/>

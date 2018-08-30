@@ -21,9 +21,12 @@
 
 </html>
 <script>
+
+    var editor;
+
     var loadEditor = function (editordom) {
         var E = window.wangEditor
-        var editor = new E('#' + editordom);
+        editor = new E('#' + editordom);
         editor.customConfig.menus = [
             'bold',
             'italic',
@@ -39,11 +42,19 @@
         editor.create();
         return editor;
     }
-    var getEditorValue=function(editor){
+
+
+
+    var getEditorValue = function () {
         return editor.txt.html();
     }
-    var setEditorValue=function(editor,val){
-        return editor.txt.html(val);
+    var setEditorValue = function (val) {
+        editor.txt.html(val);
+        return editor.txt.html();
+    }
+    var appendEditorValue = function (val) {
+        editor.txt.append(val);
+        return editor.txt.html();
     }
 
     loadEditor("editor_test");

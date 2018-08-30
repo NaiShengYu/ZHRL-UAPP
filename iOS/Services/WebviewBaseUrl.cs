@@ -8,14 +8,19 @@ using Foundation;
 using UIKit;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(WebviewBaseUrl))]
+[assembly: Dependency(typeof(WebviewService))]
 namespace AepApp.iOS.Services
 {
-    public class WebviewBaseUrl : IWebviewBaseUrl
+    public class WebviewService : IWebviewService
     {
         public string Get()
         {
             return NSBundle.MainBundle.BundlePath;
+        }
+
+        public string SetEditorContent(WebView web, string html)
+        {
+            return null;
         }
     }
 }

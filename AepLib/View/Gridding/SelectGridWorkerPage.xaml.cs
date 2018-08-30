@@ -34,13 +34,13 @@ namespace AepApp.View.Gridding
         {
             var but = sender as Button;
             GridStaffModel item = but.BindingContext as GridStaffModel;
-            DeviceUtils.sms(item.mobil);
+            DeviceUtils.sms(item.mobile);
         }
         public void OnPhoneClicked(Object sender, EventArgs e)
         {
             var but = sender as Button;
             GridStaffModel item = but.BindingContext as GridStaffModel;
-            DeviceUtils.phone(item.mobil);
+            DeviceUtils.phone(item.mobile);
         }
 
         public void Handle_TextChanged(Object sender, TextChangedEventArgs e)

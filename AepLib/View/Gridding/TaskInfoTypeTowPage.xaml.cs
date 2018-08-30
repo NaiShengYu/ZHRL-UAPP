@@ -128,7 +128,8 @@ namespace AepApp.View.Gridding
             {
                 date = _infoModel.date,
                 staff = _infoModel.staff,
-                gridName = _infoModel.gridName,                
+                gridName = _infoModel.gridName,
+                results = @"<p> 初始化的内容 </p><p> 初始化的内容 </p>",
             };
             Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, true));
         }

@@ -9,17 +9,23 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using Android.Webkit;
 using Android.Widget;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(WebviewBaseUrl))]
+[assembly: Dependency(typeof(WebviewService))]
 namespace AepApp.Droid.Services
 {
-    public class WebviewBaseUrl : IWebviewBaseUrl
+    public class WebviewService : IWebviewService
     {
         public string Get()
         {
             return "file:///android_asset/";
+        }
+
+        public string SetEditorContent(Xamarin.Forms.WebView web, string html)
+        {
+            return null;
         }
     }
 }

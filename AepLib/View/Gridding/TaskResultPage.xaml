@@ -31,7 +31,9 @@
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                    <WebView x:Name="Webview" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10"/>
+                    <views:WebViewer x:Name="Webview" EvaluateJavascript="{Binding EvaluateJavascript, Mode=OneWayToSource}" 
+                                     HeightRequest="400" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
+                                     Margin="10,5,10,10" Navigated="Webview_Navigated"/>
                 </StackLayout>
             </ScrollView>
             <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">
@@ -48,7 +50,7 @@
             </StackLayout>
             <Grid x:Name="GridOperate" Grid.Row="2" BackgroundColor="#e6e6e6" IsVisible="False">
                 <Button Clicked="takePhoto" Image="image" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" />
-                <Button Font="18" Text="执行完毕" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" Margin="0,8,0,8" BackgroundColor="Transparent" TextColor="#2c73a3"/>
+                <Button Font="18" Text="执行完毕" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" BackgroundColor="Transparent" TextColor="#2c73a3" Clicked="ExecutionRecord"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.Gridding.TaskExamineStaffPage"
+             Title="任务考核">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <StackLayout Spacing="0">
+                <Grid>
+                    <Label Text="网格" FontSize="17" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 10, 0, 10"/>
+                    <Label Text="李家村" FontSize="15" TextColor="Gray" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
+                </Grid>
+                <BoxView BackgroundColor="#e8e8e8" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+            <StackLayout Spacing="0">
+                <Grid>
+                    <Label Text="月份" FontSize="17" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 10, 0, 10"/>
+                    <Label Text="{Binding date, StringFormat='{0:yyyy-MM-dd}'}" FontSize="15" TextColor="Gray" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
+                </Grid>
+                <BoxView BackgroundColor="#e8e8e8" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+            <StackLayout Spacing="2" Padding="20, 10, 20, 10">
+                <Label FormattedText="{Binding totalDes}" HorizontalOptions="Start"/>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FormattedText="{Binding finishDes}" HorizontalOptions="Start"/>
+                    <Label FormattedText="{Binding workingDes}" HorizontalOptions="Center"/>
+                    <Label FormattedText="{Binding ratioDes}" HorizontalOptions="End"/>
+                </Grid>
+                <Label FormattedText="{Binding lastMonthDes}" HorizontalOptions="End" TextColor="Gray"/>
+            </StackLayout>
+            <StackLayout Spacing="2" Padding="20, 10, 20, 10">
+                <Label FormattedText="{Binding dispatchTotalDes}" HorizontalOptions="Start"/>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FormattedText="{Binding dispatchFinishDes}" HorizontalOptions="Start"/>
+                    <Label Grid.Column="1" FormattedText="{Binding dispatchWorkingDes}" HorizontalOptions="Center"/>
+                    <Label Grid.Column="2" FormattedText="{Binding dispatchRatioDes}" HorizontalOptions="End"/>
+                </Grid>
+                <Label FormattedText="{Binding dispatchLastMonthDes}" HorizontalOptions="End" TextColor="Gray"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -13,6 +13,7 @@ using AepApp;
 using Plugin.Media.Abstractions;
 using System.Threading;
 using Newtonsoft.Json;
+using System.Collections.Specialized;
 
 #if __MOBILE__
 using Newtonsoft.Json;
@@ -169,9 +170,8 @@ namespace CloudWTO.Services
 
         }
 
-        public static async Task<HTTPResponse> upload(string filePath, string Suffix)
+        public static async Task<HTTPResponse> upload(string filePath, string Suffix, string baseUrl, string requestUri, NameValueCollection nameValue = null)
         {
-
             HttpWebResponse res = null;
             string result = null;
             try
@@ -184,14 +184,20 @@ namespace CloudWTO.Services
                 var multi = new MultipartFormDataContent();
                 //这句话很关键第一个“files”是接口参数名，第二个文件后缀名(.jpg,.png)
                 multi.Add(new StreamContent(imageStream), "files", Suffix);
+                if(nameValue != null)
+                {
+                    foreach (string key in nameValue.Keys)
+                    {
+                        multi.Add(new StringContent(nameValue[key]), key);
+                    }
+                }
 
                 HttpClient client = new HttpClient();
-                //client.BaseAddress = new Uri(App.EmergencyModule.url);
-                client.BaseAddress = new Uri("http://gx.azuratech.com:5000");
+                client.BaseAddress = new Uri(baseUrl);
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.EmergencyToken);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage resurlt1 = await client.PostAsync("/api/File/Upload", multi);
+                HttpResponseMessage resurlt1 = await client.PostAsync(requestUri, multi);
                 result = await resurlt1.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
@@ -203,7 +209,6 @@ namespace CloudWTO.Services
             return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.OK };
 
         }
-
 
 
         public static string sendGetHttpWebRequestWithNoToken(string url)

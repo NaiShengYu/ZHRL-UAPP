@@ -17,7 +17,7 @@ namespace AepApp.Models
         public string contents { get; set; }
         public string subTitle
         {
-            get { return TimeUtils.DateTime2YMD(date) + ": "+contents; }
+            get { return TimeUtils.DateTime2YMD(date) + ": "+ StringUtils.ReplaceHtmlTag(contents, 40); }
         }
         public ObservableCollection<AttachmentInfo> attachments { get; set; }
         public int Count

@@ -176,7 +176,14 @@ namespace AepApp.View.Gridding
                 || filterCondition.isTimeOn || filterCondition.isAddressOn || filterCondition.isWatcherOn)
                 {
                     isSearchMultiple = true;
-                    search.Text = SEARCH_MULTIPLE;
+                    if (SEARCH_MULTIPLE.Equals(search.Text))
+                    {
+                        SearchData();
+                    }
+                    else
+                    {
+                        search.Text = SEARCH_MULTIPLE;
+                    }
                 }
                 else
                 {

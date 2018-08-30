@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AepApp.Models
 {
@@ -20,5 +21,12 @@ namespace AepApp.Models
         public string staffName { get; set; }//通过staff获取后赋值
 
         public string SubTitle { get { return parentName + " - " + gridName; } }
+
+        private Func<string, Task<string>> _evaluateJavascript;//webview调用js
+        public Func<string, Task<string>> EvaluateJavascript
+        {
+            get { return _evaluateJavascript; }
+            set { _evaluateJavascript = value; }
+        }
     }
 }
