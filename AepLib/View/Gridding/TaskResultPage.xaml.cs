@@ -35,7 +35,8 @@ namespace AepApp.View.Gridding
             mRecord = record;
             GridOperate.IsVisible = mIsEdit ? true : false;
             GetStaffInfo();
-            GetRecordDetail();
+            if (!isEdit) GetRecordDetail();
+            else SetRecordInfo(record);
         }
 
         private void SetRecordInfo(GridTaskHandleRecordModel record)
@@ -182,8 +183,8 @@ namespace AepApp.View.Gridding
             map.Add("date", DatePicker.Date);
             map.Add("staff", App.userInfo.id);
             map.Add("results", content);
-            map.Add("forassignment", "");
-            map.Add("attachments", JsonConvert.SerializeObject(uploadModel));
+            //map.Add("forassignment", "");
+            map.Add("attachments", uploadModel);
             await DisplayAlert("imgs", JsonConvert.SerializeObject(uploadModel), "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
