@@ -77,8 +77,8 @@ namespace AepApp.View.Gridding
         {
             var g = sender as Grid;
             AttachmentInfo attach = g.BindingContext as AttachmentInfo;
-            string fileName = attach.attach_filename + ".pdf";
-            string url = App.EP360Module.url + attach.attach_url;
+            string fileName = attach.filename;
+            string url = App.EP360Module.url + "/api/gbm/GetAttachment/id?id=" + attach.id;
             HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileName, App.EmergencyToken);
             await Navigation.PushAsync(new ShowFilePage(fileName));
         }

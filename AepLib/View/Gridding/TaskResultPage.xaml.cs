@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Text.RegularExpressions;
+using AepApp.Interface;
 using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using Plugin.Media;
@@ -18,46 +22,9 @@ namespace AepApp.View.Gridding
         private Guid mTaskId;
         private bool mIsEdit = false;
         private GridTaskHandleRecordModel mRecord;
-        private ObservableCollection<string> photoList = new ObservableCollection<string>();
-
-        /// <summary>
-        /// 添加/更新任务处理记录
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        async void ExecutionRecord(object sender, System.EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(Editor.Text))
-            {
-                DependencyService.Get<IToast>().ShortAlert("请输入执行结果");
-                return;
-            }
-            string url = App.EP360Module.url + "/api/gbm/updatetaskhandle";
-            Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("id", "");
-            map.Add("rowState", mIsEdit ? "add" : "");
-            map.Add("task", mTaskId);
-            map.Add("date", DatePicker.Date);
-            map.Add("staff", mRecord== null ? new Guid() : mRecord.staff);
-            map.Add("results", Editor.Text);
-            map.Add("forassignment", "");
-            map.Add("attachments", "");
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
-            if (res.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                try
-                {
-                    string result = res.Results;
-                    await DisplayAlert("result", result, "ok");
-                }
-                catch (Exception ex)
-                {
-                    await DisplayAlert("error", ex.Message, "ok");
-                }
-            }
-
-        }
-
+        private ObservableCollection<AttachmentInfo> photoList = new ObservableCollection<AttachmentInfo>();
+        private ObservableCollection<GridAttachmentUploadModel> uploadModel = new ObservableCollection<GridAttachmentUploadModel>();
+        private int UploadSuccessCount = 0;
 
         public TaskResultPage(Guid taskId, GridTaskHandleRecordModel record, bool isEdit)
         {
@@ -77,17 +44,29 @@ namespace AepApp.View.Gridding
                 return;
             }
             GridOperate.IsVisible = isEdit ? true : false;
-            Editor.IsEnabled = isEdit;
-            BindingContext = record;
+            if (!isEdit)
+            {
+                var source = new HtmlWebViewSource();
+                source.Html = @record.results;
+                Webview.Source = source;
+            }
+            else
+            {
+                var source = new UrlWebViewSource();
+                var rootPath = DependencyService.Get<IWebviewService>().Get();
+                source.Url = System.IO.Path.Combine(rootPath, "EditorHome.html");
+                Webview.Source = source;
+            }
             photoList.Clear();
             if (record.attachments != null && record.attachments.Count > 0)
             {
                 foreach (var item in record.attachments)
                 {
-                    photoList.Add(item.attach_url);
+                    photoList.Add(item);
                 }
                 creatPhotoView(true);
             }
+            BindingContext = record;
             ST.BindingContext = photoList;
         }
 
@@ -105,6 +84,99 @@ namespace AepApp.View.Gridding
             if (user != null)
             {
                 LabelStaff.Text = user.userName;
+            }
+        }
+
+
+        /// <summary>
+        /// 添加任务处理记录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ExecutionRecord(object sender, System.EventArgs e)
+        {
+            uploadImg();
+        }
+
+        private async void uploadImg()
+        {
+            foreach (var item in photoList)
+            {
+                if (item.isUploaded)
+                {
+                    continue;
+                }
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("id", mIsEdit ? Guid.NewGuid().ToString() : mRecord.id.ToString());
+                HTTPResponse res = await EasyWebRequest.upload(item.url, ".png", ConstantUtils.UPLOAD_GRID_BASEURL, ConstantUtils.UPLOAD_GRID_API, nameValue);
+                if (res.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    try
+                    {
+                        //await DisplayAlert("上传结果", res.Results, "确定");
+                        List<GridAttachmentResultModel> result = JsonConvert.DeserializeObject<List<GridAttachmentResultModel>>(res.Results);
+                        if (result != null && result.Count > 0)
+                        {
+                            item.isUploaded = true;
+                            GridAttachmentUploadModel m = new GridAttachmentUploadModel
+                            {
+                                id = result[0].id,
+                                rowState = "add",
+                            };
+                            uploadModel.Add(m);
+                            UploadSuccessCount++;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+
+            if (UploadSuccessCount == photoList.Count)
+            {
+                addResult();
+            }
+            else
+            {
+                DependencyService.Get<IToast>().LongAlert("图片上传失败，请重试");
+            }
+        }
+
+        //添加记录
+        private async void addResult()
+        {
+            var result = await mRecord.EvaluateJavascript("javascript:getEditorValue();");
+            string content = Regex.Unescape(result);
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                DependencyService.Get<IToast>().ShortAlert("请输入执行结果");
+                return;
+            }
+            string url = App.EP360Module.url + "/api/gbm/updatetaskhandle";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("id", mIsEdit ? Guid.NewGuid() : mRecord.id);
+            map.Add("rowState", mIsEdit ? "add" : "");
+            map.Add("task", mTaskId);
+            map.Add("date", DatePicker.Date);
+            map.Add("staff", App.userInfo.id);
+            map.Add("results", content);
+            //map.Add("forassignment", mTaskId);
+            map.Add("attachments", JsonConvert.SerializeObject(uploadModel));
+            await DisplayAlert("imgs", JsonConvert.SerializeObject(uploadModel), "ok");
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    string result1 = res.Results;
+                    await DisplayAlert("result", result1, "ok");
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("error", ex.Message, "ok");
+                }
             }
         }
 
@@ -135,7 +207,11 @@ namespace AepApp.View.Gridding
             else
             {
 
-                photoList.Add(file.Path);
+                photoList.Add(new AttachmentInfo
+                {
+                    url = file.Path,
+                    isUploaded = false,
+                });
 
                 creatPhotoView(false);
 
@@ -154,14 +230,14 @@ namespace AepApp.View.Gridding
 
             PickSK.Children.Clear();
 
-            foreach (string path in photoList)
+            foreach (AttachmentInfo img in photoList)
             {
                 Grid grid = new Grid();
                 PickSK.Children.Add(grid);
                 Console.WriteLine("图片张数：" + photoList.Count);
                 Image button = new Image
                 {
-                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(path)) : ImageSource.FromFile(path) as FileImageSource,
+                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(img.url)) : ImageSource.FromFile(img.url) as FileImageSource,
                     HeightRequest = 80,
                     WidthRequest = 80,
                     BackgroundColor = Color.White,
@@ -179,5 +255,13 @@ namespace AepApp.View.Gridding
 
         }
 
+        private async void Webview_Navigated(object sender, WebNavigatedEventArgs e)
+        {
+            if (mRecord != null && !string.IsNullOrWhiteSpace(mRecord.results))
+            {
+                await mRecord.EvaluateJavascript("javascript:setEditorValue('" + mRecord.results + "');");
+            }
+
+        }
     }
 }

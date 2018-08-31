@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.Gridding.TaskExaminePage"
+             Title="任务考核">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../main.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ListView x:Name="ListView" HasUnevenRows="True" SeparatorVisibility="Default" ItemSelected="ListView_ItemSelected" BackgroundColor="#fafafa">
+            <ListView.Header>
+                <StackLayout Spacing="0">
+                    <StackLayout Spacing="0">
+                        <Grid>
+                            <Label Text="网格" FontSize="17" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 10, 0, 10"/>
+                            <Label Text="县调度中心" FontSize="15" TextColor="Gray" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
+                        </Grid>
+                        <BoxView BackgroundColor="#e8e8e8" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                    <StackLayout Spacing="0">
+                        <Grid>
+                            <Label Text="月份" FontSize="17" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 10, 0, 10"/>
+                            <Label Text="{Binding date, StringFormat='{0:yyyy-MM-dd}'}" FontSize="15" TextColor="Gray" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
+                        </Grid>
+                        <BoxView BackgroundColor="#e8e8e8" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                    <StackLayout Spacing="2" Padding="20, 10, 20, 10">
+                        <Label FormattedText="{Binding totalDes}" HorizontalOptions="Start"/>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label FormattedText="{Binding finishDes}" HorizontalOptions="Start"/>
+                            <Label Grid.Column="1" FormattedText="{Binding workingDes}" HorizontalOptions="Center"/>
+                            <Label Grid.Column="2" FormattedText="{Binding ratioDes}" HorizontalOptions="End"/>
+                        </Grid>
+                        <Label FormattedText="{Binding lastMonthDes}" HorizontalOptions="End" TextColor="Gray"/>
+                    </StackLayout>
+                    <Grid BackgroundColor="#e6e6e6">
+                        <Label Text="下级网格" TextColor="Black" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 0, 80, 0"/>
+                        <Frame Margin="0,3,20,3" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
+                            <Label Text="100" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
+                        </Frame>
+                    </Grid>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <!--<StackLayout Spacing="0">-->
+                        <Grid VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout VerticalOptions="Center" Margin="20,0,10,0" Spacing="2">
+                                <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="高桥镇" />
+                                <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="乡级网络" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Spacing="0">
+                                <Label StyleClass="itemtitle" HorizontalOptions="End"  Text="完成率 91.8888%" FontSize="12"/>
+                                <Label StyleClass="itemsubtitle" HorizontalOptions="End" Text="上月完成率90.3366%" FontSize="12"/>
+                            </StackLayout>
+                            <Image Grid.Column="2" Source="right" Margin="10, 0, 20, 0" VerticalOptions="Center"/>
+                        </Grid>
+                        <!--<BoxView StyleClass="sep" />-->
+                        <!--</StackLayout>-->
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

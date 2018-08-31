@@ -171,12 +171,19 @@ namespace AepApp.View.Gridding
             MessagingCenter.Unsubscribe<ContentPage, TaskFilterCondition>(this, SUBSCRIBE_SEARCH);
             MessagingCenter.Subscribe<ContentPage, TaskFilterCondition>(this, SUBSCRIBE_SEARCH, (arg1, arg2) =>
             {
-                filterCondition = arg2 as TaskFilterCondition;
+                //filterCondition = arg2 as TaskFilterCondition;
                 if (filterCondition.isKeyOn || filterCondition.isStatusOn || filterCondition.isTypeOn || filterCondition.isGriderOn
                 || filterCondition.isTimeOn || filterCondition.isAddressOn || filterCondition.isWatcherOn)
                 {
                     isSearchMultiple = true;
-                    search.Text = SEARCH_MULTIPLE;
+                    if (SEARCH_MULTIPLE.Equals(search.Text))
+                    {
+                        SearchData();
+                    }
+                    else
+                    {
+                        search.Text = SEARCH_MULTIPLE;
+                    }
                 }
                 else
                 {

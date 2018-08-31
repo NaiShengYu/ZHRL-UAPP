@@ -6,7 +6,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="filter" Icon="report" Clicked="BarFilter_Clicked" />
+        <ToolbarItem Name="filter" Text="筛选" Clicked="BarFilter_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid RowSpacing="1" BackgroundColor="#fafafa">

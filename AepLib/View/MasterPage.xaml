@@ -267,7 +267,7 @@
                 </Grid>
                 <Grid>
 
-                    <Label Text="设置" BindingContext="AepApp.View.Gridding.GridTreeViewPage" Margin="35,10,0,10" FontSize="19" TextColor="Black" />
+                    <Label Text="设置" BindingContext="AepApp.View.Gridding.TaskExamineStaffPage" Margin="35,10,0,10" FontSize="19" TextColor="Black" />
                 </Grid>
             </StackLayout>
         </Grid>

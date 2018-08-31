@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <None Remove="msyh.ttc" />
+    <None Remove="View\Gridding\jquery-1.10.2.min.js" />
+    <None Remove="View\Gridding\wangEditor.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,6 +74,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Gridding\SelectGridWorkerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Gridding\TaskExaminePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Gridding\TaskExamineStaffPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Gridding\TaskFilterPage.xaml">

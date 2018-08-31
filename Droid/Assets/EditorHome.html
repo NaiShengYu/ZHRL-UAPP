@@ -1,0 +1,61 @@
+﻿<html>
+
+<head>
+<title>富文本</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    #editor_test{
+        height: 100%;
+    }
+</style>
+<script src="wangEditor.js"></script>
+<script src="jquery-1.10.2.min.js"></script>
+
+<body>
+    <div id="editor_test"></div>
+</body>
+
+</html>
+<script>
+
+    var editor;
+
+    var loadEditor = function (editordom) {
+        var E = window.wangEditor
+        editor = new E('#' + editordom);
+        editor.customConfig.menus = [
+            'bold',
+            'italic',
+            'underline',
+            'fontSize',
+            'fontName',
+            'link',
+            'list',
+            'justify'
+        ];
+        editor.customConfig.uploadImgShowBase64 = true;
+        editor.customConfig.showLinkImg = false;
+        editor.create();
+        return editor;
+    }
+
+
+
+    var getEditorValue = function () {
+        return editor.txt.html();
+    }
+    var setEditorValue = function (val) {
+        editor.txt.html(val);
+        return editor.txt.html();
+    }
+    var appendEditorValue = function (val) {
+        editor.txt.append(val);
+        return editor.txt.html();
+    }
+
+    loadEditor("editor_test");
+</script>

@@ -130,10 +130,12 @@ namespace AepApp.View.Gridding
             GridTaskHandleRecordModel record = new GridTaskHandleRecordModel
             {
                 date = _infoModel.date,
+
                 staff = _infoModel.staff.Value,
                 gridName = _infoModel.gridName,
+                results = @"<p> 初始化的内容 </p><p> 初始化的内容 </p>",
             };
-            Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute));
+            Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, true));
         }
 
         void editContent(object sender, System.EventArgs e)

@@ -67,5 +67,23 @@ namespace AepApp.Tools
             }
             return 1;
         }
+
+        /// <summary>
+        /// 网格化-下发信息的类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static string GridInformationType2String(int type)
+        {
+            string des = "政策法规";
+            switch (type)
+            {
+                case 1:
+                    des = "政策法规";
+                    break;
+            }
+            return des;
+        }
+
     }
 }
