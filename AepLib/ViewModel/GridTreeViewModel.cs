@@ -22,7 +22,7 @@ namespace AepApp.ViewModel
         public ICommand AddNodeCommand { protected set; get; }
 
         static Random random = new Random(DateTime.Now.Millisecond + DateTime.Now.Second + DateTime.Now.Day);
-        
+
         public GridTreeViewModel(TestTreeModel data)
         {
             if (data == null)
@@ -33,6 +33,11 @@ namespace AepApp.ViewModel
             MyTree = new GridTreeNode
             {
                 Title = data.name,
+                Total = data.count.Value,
+                IsLeaf = data.isLeaf,
+                IsChecked = data.isChecked,
+                IsExpanded = data.isExpanded,
+                testTreeModel = data,
             };
             AddChildren(data, MyTree);
         }
@@ -45,7 +50,15 @@ namespace AepApp.ViewModel
             }
             foreach (TestTreeModel m in model.children)
             {
-                GridTreeNode node = new GridTreeNode { Title = m.name, IsChecked = m.isChecked, IsExpanded = m.isExpanded, IsLeaf = m.isLeaf };
+                GridTreeNode node = new GridTreeNode
+                {
+                    Title = m.name,
+                    IsChecked = m.isChecked,
+                    IsExpanded = m.isExpanded,
+                    IsLeaf = m.isLeaf,
+                    Total = m.count.Value,
+                    testTreeModel = m,
+                };
                 treeNode.Children.Add(node);
                 AddChildren(m, node);
             }
@@ -56,11 +69,16 @@ namespace AepApp.ViewModel
 
             public string name { get; set; }
             public ObservableCollection<TestTreeModel> children { get; set; }
-            public bool isLeaf { get { return children.Count > 0; } }
+            public bool isLeaf
+            {
+                get; set;
+            }
             public bool isChecked { get; set; }
             public bool isExpanded { get; set; }
             public Guid id { get; set; }
             public int? level { get; set; }
+            public int? count { get; set; }
+            public int? type { get; set; }
             public string parentName { get; set; }
 
         }

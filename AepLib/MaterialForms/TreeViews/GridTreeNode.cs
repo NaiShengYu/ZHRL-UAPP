@@ -15,6 +15,7 @@ namespace AepApp.MaterialForms.TreeViews
         public ICommand ToggleIsCheckedCommand { protected set; get; }
 
         // normal view model properties provide the content as well as the visual state
+        public TestTreeModel testTreeModel { set; get; }
 
         bool _IsExpanded;
         public bool IsExpanded
@@ -49,15 +50,15 @@ namespace AepApp.MaterialForms.TreeViews
             set { Set("Title", ref _Title, value); }
         }
 
-        double _Score = 0;
-        public double Score
+        double? _Score = 0;
+        public double? Score
         {
             get { return _Score; }
             set { Set("Score", ref _Score, value); }
         }
 
-        int _Total = 0;
-        public int Total
+        int? _Total = 0;
+        public int? Total
         {
             get { return _Total; }
             set { Set("Total", ref _Total, value); }
@@ -81,6 +82,7 @@ namespace AepApp.MaterialForms.TreeViews
             if (isReverse)
             {
                 IsChecked = !IsChecked;
+                testTreeModel.isChecked = IsChecked;
             }
             foreach (GridTreeNode node in Descendants)
             {
@@ -89,6 +91,7 @@ namespace AepApp.MaterialForms.TreeViews
                     continue;
                 }
                 node.IsChecked = IsChecked;
+                node.testTreeModel.isChecked = IsChecked;
             }
 
             GridTreeNode p = Parent as GridTreeNode;
@@ -100,6 +103,7 @@ namespace AepApp.MaterialForms.TreeViews
                     if (!node.IsChecked)
                     {
                         p.IsChecked = false;
+                        p.testTreeModel.isChecked = p.IsChecked;
                         break;
                     }
                     checkedCount++;
@@ -107,6 +111,7 @@ namespace AepApp.MaterialForms.TreeViews
                 if (checkedCount == p.Children.Count)
                 {
                     p.IsChecked = true;
+                    p.testTreeModel.isChecked = p.IsChecked;
                 }
                 p = p.Parent as GridTreeNode;
             }
@@ -116,13 +121,19 @@ namespace AepApp.MaterialForms.TreeViews
 
         public GridTreeNode()
         {
-            ToggleIsExpandedCommand = new Command(obj => IsExpanded = !IsExpanded);
+            ToggleIsExpandedCommand = new Command(obj => ExpandChanged());
             ToggleIsCheckedCommand = new Command(obj => CheckEvent(true));
         }
 
-        public override string ToString()
+        public void ExpandChanged()
         {
-            return string.Format("DemoTreeNode: Title={3}, Score={4}, IsExpanded={1}, IndentWidth={2} " + base.ToString(), ToggleIsExpandedCommand, IsExpanded, IndentWidth, Title);
+            IsExpanded = !IsExpanded;
         }
+
+
+        //public override string ToString()
+        //{
+        //    return string.Format("DemoTreeNode: Title={3}, Score={4}, IsExpanded={1}, IndentWidth={2} " + base.ToString(), ToggleIsExpandedCommand, IsExpanded, IndentWidth, Title);
+        //}
     }
 }

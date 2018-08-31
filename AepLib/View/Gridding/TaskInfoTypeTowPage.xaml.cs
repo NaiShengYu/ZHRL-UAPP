@@ -20,12 +20,14 @@ namespace AepApp.View.Gridding
         public delegate void AddTaskToEvent(object sender, EventArgs args);
         public event AddTaskToEvent AddATask;
 
-        void updata (object sender, System.EventArgs eventArgs){
+        void updata(object sender, System.EventArgs eventArgs)
+        {
 
             addTask();
         }
 
-        void period_change(object sender, Xamarin.Forms.TextChangedEventArgs e){
+        void period_change(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
             try
             {
                 _infoModel.period = Convert.ToDouble(e.NewTextValue);
@@ -34,7 +36,7 @@ namespace AepApp.View.Gridding
             {
 
             }
-      
+
         }
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
@@ -58,12 +60,12 @@ namespace AepApp.View.Gridding
         //选择事件
         void chooseEvent(object sender, System.EventArgs e)
         {
-            
+
         }
         //指派网格员
         void choiseUser(object sender, System.EventArgs e)
         {
-
+            Navigation.PushAsync(new GridTreeWithUserPage(_infoModel));
         }
 
         //添加相关企业
@@ -77,7 +79,7 @@ namespace AepApp.View.Gridding
             AccidentPositionPage page;
             //if (_infoModel.lat == 0.0 || _infoModel.lng == 0.0)
             //{
-                page = new AccidentPositionPage(null, null);
+            page = new AccidentPositionPage(null, null);
             //}
             //else
             //{
@@ -96,14 +98,14 @@ namespace AepApp.View.Gridding
                 string[] p = pos.Replace("E", "").Replace("N", "").Replace("W", "").Replace("S", "").Split(",".ToCharArray());
 
 
-                Coords coords= new Coords
+                Coords coords = new Coords
                 {
-                    lng =Convert.ToDouble(p[0]),
+                    lng = Convert.ToDouble(p[0]),
                     lat = Convert.ToDouble(p[1]),
                     remarks = arg,
                     id = Guid.NewGuid(),
                     rowState = "add",
-                    index = _infoModel.coords.Count +1,
+                    index = _infoModel.coords.Count + 1,
 
                 };
 
@@ -119,16 +121,17 @@ namespace AepApp.View.Gridding
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">E.</param>
-        void taskResult(object sender,System.EventArgs e){
-            if(_infoModel == null)
+        void taskResult(object sender, System.EventArgs e)
+        {
+            if (_infoModel == null)
             {
                 return;
             }
             GridTaskHandleRecordModel record = new GridTaskHandleRecordModel
             {
                 date = _infoModel.date,
-                staff = _infoModel.staff,
-                gridName = _infoModel.gridName,                
+                staff = _infoModel.staff.Value,
+                gridName = _infoModel.gridName,
             };
             Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute));
         }
@@ -174,7 +177,7 @@ namespace AepApp.View.Gridding
         /// <param name="taskId"></param>
         /// <param name="needExcute">是否需要执行记录 true：可以添加执行结果 false：只能查看执行结果</param>
         ///  <param name="needUp">是否需要上传任务 true：可以上传 false：将任务提交到上一级</param>
-        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId,bool needUp)
+        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId, bool needUp)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
@@ -186,36 +189,35 @@ namespace AepApp.View.Gridding
             if (!string.IsNullOrEmpty(_taskId)) getTaskInfo();
             else
             {
-               
-                    _infoModel = new GridTaskInfoModel
-                    {
-                        canEdit = true,
-                        rowState = "add",
-                        date = DateTime.Now,
-                        deadline = DateTime.Now,
-                        staff = App.userInfo.id,
-                        state = 1,
-                        type = 1,
-                        id = Guid.NewGuid(),
 
-                        index = 0,
-                        userName = App.userInfo.userName,
-                        coords = new ObservableCollection<Coords>(),
-                        enterprise = new ObservableCollection<Enterprise>(),
-                        assignments = new ObservableCollection<Assignments>(),
-                    };
-                    BindingContext = _infoModel;
-                    pickerNature.Title = "日常任务";
-                    pickerStatus.Title = "上报中";
-                    try
-                    {
-                        _infoModel.incident = new Guid(_eventId);
-                    }
-                    catch (Exception ex)
-                    {
-                    
+                _infoModel = new GridTaskInfoModel
+                {
+                    canEdit = true,
+                    rowState = "add",
+                    date = DateTime.Now,
+                    deadline = DateTime.Now,
+                    staff = App.userInfo.id,
+                    state = 2,
+                    type = 1,
+                    id = Guid.NewGuid(),
+                    index = 2,
+                    userName = App.userInfo.userName,
+                    coords = new ObservableCollection<Coords>(),
+                    enterprise = new ObservableCollection<Enterprise>(),
+                    assignments = new ObservableCollection<Assignments>(),
+                };
+                BindingContext = _infoModel;
+                pickerNature.Title = "日常任务";
+                pickerStatus.Title = "上报中";
+                try
+                {
+                    _infoModel.incident = new Guid(_eventId);
                 }
-           
+                catch (Exception ex)
+                {
+
+                }
+
             }
         }
 
@@ -223,7 +225,7 @@ namespace AepApp.View.Gridding
         private async void getTaskInfo()
         {
 
-            string url = App.EP360Module.url + "/api/gbm/GetIncidentDetail";
+            string url = App.EP360Module.url + "/api/gbm/GetTaskDetail";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", _taskId);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
@@ -233,6 +235,8 @@ namespace AepApp.View.Gridding
                 {
                     _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(hTTPResponse.Results);
                     _infoModel.canEdit = false;
+                    creatPositionList();
+                    creatEnterpriseList();
                     BindingContext = _infoModel;
                 }
                 catch (Exception e)
@@ -275,28 +279,43 @@ namespace AepApp.View.Gridding
         //添加任务
         private async void addTask()
         {
-
             if (string.IsNullOrEmpty(_infoModel.title))
             {
                 await DisplayAlert("提示", "请添加标题", "确定");
 
                 return;
             }
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("id", _infoModel.id);
+            dic.Add("rowState", _infoModel.rowState);
+            if (_infoModel.incident != Guid.Empty) dic.Add("incident", _infoModel.incident);
+            dic.Add("staff", _infoModel.staff);
+            if (_infoModel.template != Guid.Empty) dic.Add("template", _infoModel.template);
+            dic.Add("title", _infoModel.title);
+            dic.Add("contents", _infoModel.Contents);
+            dic.Add("deadline", _infoModel.deadline);
+            dic.Add("period", _infoModel.period);
+            dic.Add("type", _infoModel.type);
+            dic.Add("state", _infoModel.state);
+            dic.Add("index", _infoModel.index);
+            dic.Add("date", _infoModel.date);
+            dic.Add("enterprise", _infoModel.enterprise);
+            dic.Add("coords", _infoModel.coords);
+            dic.Add("assignments", _infoModel.assignments);
 
 
-
-            if(mNeedUp ==false){
-                AddATask(_infoModel, new EventArgs());
-                Navigation.PopAsync();
-                return;
-            }
+            //if(mNeedUp ==false){
+            //    AddATask(_infoModel, new EventArgs());
+            //    Navigation.PopAsync();
+            //    return;
+            //}
 
             string url = App.EP360Module.url + "/api/gbm/updatetask";
-            string param = JsonConvert.SerializeObject(_infoModel);
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url,param, "POST", App.FrameworkToken);
+            string param = JsonConvert.SerializeObject(dic);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-               
+                if (hTTPResponse.Results == "OK") _infoModel.rowState = "upd";
             }
 
         }
@@ -307,7 +326,8 @@ namespace AepApp.View.Gridding
         /// <summary>
         /// 相关企业列表
         /// </summary>
-        void creatEnterpriseList(){
+        void creatEnterpriseList()
+        {
             foreach (var po in _infoModel.enterprise)
             {
                 Grid G1 = new Grid
@@ -331,7 +351,7 @@ namespace AepApp.View.Gridding
                     WidthRequest = 30,
                     BackgroundColor = Color.Red,
                     Padding = new Thickness(0),
-                    Margin = new Thickness(10,15,10,15),
+                    Margin = new Thickness(10, 15, 10, 15),
                     VerticalOptions = LayoutOptions.Center,
                     HorizontalOptions = LayoutOptions.Start,
                     HasShadow = false,
@@ -344,7 +364,7 @@ namespace AepApp.View.Gridding
                     TextColor = Color.White,
                     Text = "1",
                 };
-                frame.Content =numLab;
+                frame.Content = numLab;
                 Image image = new Image
                 {
                     Source = ImageSource.FromFile("right"),
@@ -374,15 +394,17 @@ namespace AepApp.View.Gridding
         }
 
         // 相关位置列表
-        void creatPositionList(){
-            
+        void creatPositionList()
+        {
+
             positionNum.Text = _infoModel.coords.Count.ToString();
             positionSK.Children.Clear();
             for (int i = 0; i < _infoModel.coords.Count; i++)
             {
                 var po = _infoModel.coords[i];
-            
-                Grid G1 = new Grid{
+
+                Grid G1 = new Grid
+                {
                     //BackgroundColor = Color.Blue,
                 };
                 positionSK.Children.Add(G1);
