@@ -256,6 +256,13 @@
                                 <Label  BindingContext="AepApp.View.Gridding.SendInformationPage" HeightRequest="0"/>
                                 <Label Text="{Binding menuGridInfoReceivedLabel}" />
                             </Grid>
+                            <Grid x:Name="gridAssessment" StyleClass="menuitem"  IsVisible="True">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Grid.GestureRecognizers>
+                                <Label  HeightRequest="0"/>
+                                <Label Text="考核" />
+                            </Grid>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>                
@@ -267,7 +274,7 @@
                 </Grid>
                 <Grid>
 
-                    <Label Text="设置" BindingContext="AepApp.View.Gridding.TaskExamineStaffPage" Margin="35,10,0,10" FontSize="19" TextColor="Black" />
+                    <Label Text="设置" BindingContext="AepApp.View.SelectSitePage" Margin="35,10,0,10" FontSize="19" TextColor="Black" />
                 </Grid>
             </StackLayout>
         </Grid>

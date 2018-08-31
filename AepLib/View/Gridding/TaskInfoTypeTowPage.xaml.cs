@@ -135,7 +135,7 @@ namespace AepApp.View.Gridding
                 gridName = _infoModel.gridName,
                 results = @"<p> 初始化的内容 </p><p> 初始化的内容 </p>",
             };
-            Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, true));
+            Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute));
         }
 
         void editContent(object sender, System.EventArgs e)

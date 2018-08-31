@@ -86,7 +86,7 @@ namespace AepApp
         public static string SiteData = "site";
 
         ///////////////////////////
-        public static string BaseUrl = "";  // old app url
+        public static string BaseUrl = "";  // old app url (360)
         public static string token = "";    // old app token
         public static bool isDeleteInfo = false;
         public static bool isAutoLogin = false;
@@ -265,7 +265,7 @@ namespace AepApp
                         case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
                 }
-                if (EP360Module != null) GetModuleConfigEP360(); else _isEP360 = true;
+                if (EP360Module != null) { GetModuleConfigEP360(); App.BaseUrl = EP360Module.url; } else _isEP360 = true;
                 if (SamplingModule != null) GetModuleConfigSampling(); else _isSampling = true;
                 if (BasicDataModule != null) GetModuleConfigFramework(); else _ISBasicData = true;
                 if (EmergencyModule != null) postEmergencyReq(); else _isEmergency = true;
@@ -661,7 +661,7 @@ namespace AepApp
                     item = todoItems[i];
                     if (item.isCurrent == true)
                     {
-                        App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl    
+                        //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl    
                         break;
                     }
                 }

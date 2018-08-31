@@ -108,7 +108,8 @@ namespace AepApp.View.Gridding
 
             string url = App.EP360Module.url + "/api/gbm/GetGridList";
             Dictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("grid", "72a38f57-1939-40e6-8cca-2960e0d994ea");
+            //param.Add("grid", "72a38f57-1939-40e6-8cca-2960e0d994ea");
+            param.Add("grid", App.gridUser.gridcell.ToString());
             param.Add("searchKey", "");
             string pa = JsonConvert.SerializeObject(param);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url,pa, "POST", App.FrameworkToken);

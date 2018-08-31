@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static AepApp.ViewModel.GridTreeViewModel;
 
 namespace AepApp.View.Gridding
 {
@@ -45,7 +46,7 @@ namespace AepApp.View.Gridding
         }
         private void Switch_Toggled_Time(object sender, ToggledEventArgs e)
         {
-            
+
         }
 
         private void Switch_Toggled_Status(object sender, ToggledEventArgs e)
@@ -68,7 +69,16 @@ namespace AepApp.View.Gridding
 
         private void Switch_Toggled_Griders(object sender, ToggledEventArgs e)
         {
-
+            Navigation.PushAsync(new GridTreeViewPage());
+            MessagingCenter.Unsubscribe<ContentPage, TestTreeModel>(this, "SelectGrider");
+            MessagingCenter.Subscribe<ContentPage, TestTreeModel>(this, "SelectGrider", (arg1, arg2) =>
+            {
+                TestTreeModel node = arg2 as TestTreeModel;
+                if (node != null)
+                {
+                    conditions.griders = node.name;
+                }
+            });
         }
 
         private void Switch_Toggled_Address(object sender, ToggledEventArgs e)

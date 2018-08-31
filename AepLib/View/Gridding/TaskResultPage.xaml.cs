@@ -33,18 +33,18 @@ namespace AepApp.View.Gridding
             mIsEdit = isEdit;
             mTaskId = taskId;
             mRecord = record;
-            GetStaffInfo(record);
-            InitResultInfo(record, isEdit);
+            GridOperate.IsVisible = mIsEdit ? true : false;
+            GetStaffInfo();
+            GetRecordDetail();
         }
 
-        private void InitResultInfo(GridTaskHandleRecordModel record, bool isEdit)
+        private void SetRecordInfo(GridTaskHandleRecordModel record)
         {
             if (record == null)
             {
                 return;
             }
-            GridOperate.IsVisible = isEdit ? true : false;
-            if (!isEdit)
+            if (!mIsEdit)
             {
                 var source = new HtmlWebViewSource();
                 source.Html = @record.results;
@@ -74,16 +74,36 @@ namespace AepApp.View.Gridding
         /// 获取执行人信息
         /// </summary>
         /// <param name="record"></param>
-        private async void GetStaffInfo(GridTaskHandleRecordModel record)
+        private async void GetStaffInfo()
         {
-            if (record == null)
+            if (mRecord == null)
             {
                 return;
             }
-            UserInfoModel user = await (App.Current as App).GetUserInfo(record.staff);
+            UserInfoModel user = await (App.Current as App).GetUserInfo(mRecord.staff);
             if (user != null)
             {
                 LabelStaff.Text = user.userName;
+            }
+        }
+
+        private async void GetRecordDetail()
+        {
+            string url = App.EP360Module.url + "/api/gbm/GetTaskHandleDetail";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("id", mRecord.id);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
+            if(res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    mRecord = JsonConvert.DeserializeObject<GridTaskHandleRecordModel>(res.Results);
+                    SetRecordInfo(mRecord);
+                }
+                catch (Exception e)
+                {
+
+                }
             }
         }
 
@@ -162,7 +182,7 @@ namespace AepApp.View.Gridding
             map.Add("date", DatePicker.Date);
             map.Add("staff", App.userInfo.id);
             map.Add("results", content);
-            //map.Add("forassignment", mTaskId);
+            map.Add("forassignment", "");
             map.Add("attachments", JsonConvert.SerializeObject(uploadModel));
             await DisplayAlert("imgs", JsonConvert.SerializeObject(uploadModel), "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
@@ -196,7 +216,7 @@ namespace AepApp.View.Gridding
                 MaxWidthHeight = 2000,
                 CompressionQuality = 50,
                 Directory = "Gridding",
-                Name = System.DateTime.Now + ".jpg"
+                Name = System.DateTime.Now + ".png"
             });
 
             if (file == null)
