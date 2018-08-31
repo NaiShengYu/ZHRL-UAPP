@@ -17,17 +17,18 @@ namespace AepApp.View.Gridding
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SelectGridWorkerPage : ContentPage
     {
-        private Guid gridId;
+        Assignments _assignments;
         private int pageIndex;
         private string mSearchKey;
         private bool hasMore;
         private ObservableCollection<GridStaffModel> dataList = new ObservableCollection<GridStaffModel>();
 
-        public SelectGridWorkerPage(Guid gridcell)
+        public SelectGridWorkerPage(Assignments assignments)
         {
             InitializeComponent();
-            gridId = gridcell;
             SearchData();
+            listView.ItemsSource = dataList;
+            _assignments = assignments;
         }
 
         public void OnMessageClicked(Object sender, EventArgs e)
@@ -55,7 +56,13 @@ namespace AepApp.View.Gridding
 
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
-
+            GridStaffModel staffModel = e.SelectedItem as GridStaffModel;
+            if (staffModel == null) return;
+            _assignments.StaffName = staffModel.username;
+            _assignments.staff = staffModel.id;
+            _assignments.grid = staffModel.grid;
+            Navigation.PopAsync();
+       
         }
         private void SearchData()
         {
@@ -85,7 +92,7 @@ namespace AepApp.View.Gridding
                     {
                         foreach (var item in list)
                         {
-                            dataList.Add(item);
+                            GetStaffInfo(item);
                         }
                         pageIndex++;
                     }
@@ -99,9 +106,19 @@ namespace AepApp.View.Gridding
 
                 }
             }
-
-            listView.ItemsSource = dataList;
         }
+
+        private async void GetStaffInfo(GridStaffModel staffModel)
+        {
+            UserInfoModel auditor = await (App.Current as App).GetUserInfo(staffModel.id);
+            if (auditor != null)
+            {
+                staffModel.username = auditor.userName;
+                staffModel.mobil = auditor.telephone;
+                dataList.Add(staffModel);
+            }
+        }
+
 
         public void LoadMore(object sender, ItemVisibilityEventArgs e)
         {

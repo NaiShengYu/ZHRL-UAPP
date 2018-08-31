@@ -52,6 +52,20 @@ namespace AepApp.Models
         public Guid? staff { get; set; }
         public Guid? grid { get; set; }
         public int type { get; set; }
+      
+        private string staffName;
+        public string StaffName
+        {
+            get { return staffName; }
+            set { staffName = value; NotifyPropertyChanged(); }
+        }
+
+        private string tel;
+        public string Tel
+        {
+            get { return tel; }
+            set { tel = value; NotifyPropertyChanged(); }
+        }
     }
 
     public class Coords : BaseModel

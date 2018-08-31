@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AepApp.View.Gridding.SelectGridWorkerPage"
@@ -11,12 +11,12 @@
 
     <ContentPage.Content>
         <Grid RowSpacing="1" BackgroundColor="#fafafa">
-            <Grid.RowDefinitions>
+          <!--  <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search"/>
-            <ListView x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
+        -->    <ListView x:Name="listView" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -25,9 +25,9 @@
                                     <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding username}" />
                                     <!--<Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding grid}"  />-->
                                 </StackLayout>
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="End" WidthRequest="90" Orientation="Horizontal" Spacing="0">
-                                    <Button Image="text2" WidthRequest="40" Clicked="OnMessageClicked"/>
-                                    <Button Image="phone" WidthRequest="40" Clicked="OnPhoneClicked" Margin="0, 0, 10, 0"/>
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="End" WidthRequest="100" Orientation="Horizontal" Spacing="0">
+                                    <Button Image="text2" WidthRequest="40" Clicked="OnMessageClicked" HeightRequest="40"/>
+                                    <Button Image="phone" WidthRequest="40" Clicked="OnPhoneClicked" Margin="0, 0, 10, 0" HeightRequest="40"/>
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

@@ -102,7 +102,7 @@ namespace AepApp.View.Gridding
                     {
                         if (detail.staff != null)
                         {
-                            GetStaffInfo(detail.staff);
+                            GetStaffInfo(detail.staff.Value);
                         }
                     }
                     listV.ItemsSource = detail.Tasks;

@@ -20,5 +20,14 @@ namespace AepApp.Models
             get;
             set;
         }
+
+
+        public string telephone
+        {
+            get;
+            set;
+        }
+
+
     }
 }

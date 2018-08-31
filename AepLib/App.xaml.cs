@@ -336,7 +336,7 @@ namespace AepApp
         }
 
         /// <summary>
-        /// 获取网格化人员信息
+        /// 获取登录人员信息
         /// </summary>
         /// <param name="frameToken"></param>
         /// <returns></returns>
@@ -421,13 +421,13 @@ namespace AepApp
                 Dictionary<string, string> dic = new Dictionary<string, string>();
                 dic.Add("id", userInfo.id.ToString());
                 string param = JsonConvert.SerializeObject(dic);
-
+                GridUserInfoModel gridUserInfo = null;
                 HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
-                    App.gridUser = JsonConvert.DeserializeObject<GridUserInfoModel>(res.Results);
+                    gridUserInfo = JsonConvert.DeserializeObject<GridUserInfoModel>(res.Results);
                 }
-                return App.gridUser;
+                return gridUserInfo;
             }
             catch
             {

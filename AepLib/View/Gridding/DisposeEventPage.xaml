@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.DisposeEventPage" Title="处理事件">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.DisposeEventPage" xmlns:views="clr-namespace:AepApp.MaterialForms" Title="处理事件">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <StyleSheet Source="../main.css"/>
+            <StyleSheet Source="../main.css" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid RowSpacing="0">
+       <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="50" x:Name="sureH"/>
             </Grid.RowDefinitions>
             <ScrollView>
                 <StackLayout Spacing="0">
@@ -24,53 +24,82 @@
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
+                        <Label Text="网格/部门" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="{Binding GridName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
                         <Label Text="审核人" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label x:Name="LabelAuditor" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
-                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0"/>
-                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0"/>
+                        <Label x:Name="LabelAuditor" Text="{Binding staffName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
+                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0" />
+                        <Button HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="事件属实" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Switch IsToggled="true" HorizontalOptions="End" VerticalOptions="Center" Margin="10"/>
+                        <Switch IsEnabled="{Binding canEdit}" x:Name="SW" IsToggled="true" HorizontalOptions="End" VerticalOptions="Center" Margin="10"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="备注" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label Text="{Binding Contents}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
-
+                        <Label Text="{Binding Remarks}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                         <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid ColumnSpacing="1">
+
+                    
+                    <Grid ColumnSpacing="1" IsVisible="{Binding canEdit}">
+                        <Grid.Triggers>
+                            <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="8">
+                                <Setter Property="IsVisible" Value="false"></Setter>
+                            </DataTrigger>
+                        </Grid.Triggers>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Button VerticalOptions="FillAndExpand" BackgroundColor="#c1e0bd" Text="下发责令整改任务" BorderRadius="0" TextColor="White"/>
-                        <Button VerticalOptions="FillAndExpand" Grid.Column="1" BackgroundColor="#ecdab9" Text="上报上级处理" BorderRadius="0" TextColor="White"/>
+                        <Button IsEnabled="{Binding canEdit}" Clicked="SetSelectDown" VerticalOptions="FillAndExpand" BackgroundColor="#c1e0bd" Text="下发责令整改任务" BorderRadius="0" TextColor="White">
+                            <Button.Triggers>
+                                <DataTrigger TargetType="Button" Binding="{Binding Downing}" Value="false">
+                                    <Setter Property="BackgroundColor" Value="#c1e0bd"></Setter>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Button" Binding="{Binding Downing}" Value="true">
+                                    <Setter Property="BackgroundColor" Value="#cbfedb"></Setter>
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button IsEnabled="{Binding canEdit}" Clicked="SetSelectUp" VerticalOptions="FillAndExpand" Grid.Column="1" BackgroundColor="#ecdab9" Text="上报上级处理" BorderRadius="0" TextColor="White">
+                              <Button.Triggers>
+                                <DataTrigger TargetType="Button" Binding="{Binding Uping}" Value="false">
+                                    <Setter Property="BackgroundColor" Value="#ecdab9"></Setter>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Button" Binding="{Binding Uping}" Value="true">
+                                    <Setter Property="BackgroundColor" Value="#eceeb9"></Setter>
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
                     </Grid>
-                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid x:Name="gridWorker">
-                        <Label Text="指派网格员" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label Text="" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
-                        <Button x:Name="BtnPhone" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0" Clicked="BtnPhone_Clicked"/>
-                        <Button x:Name="BtnMsg" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0" Clicked="BtnMsg_Clicked"/>
-                    </Grid>
-                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid>
-                        <Label Text="复查期限" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label Text="" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
-                    </Grid>
-                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-
-                    <Button HorizontalOptions="Center" WidthRequest="120" HeightRequest="40" Margin="10,30,10,30" BackgroundColor="#2c73a3" Text="事件内容" TextColor="White" Clicked="RegistrationEvent"/>
-
+                    <StackLayout IsVisible="{Binding Downing}" VerticalOptions="FillAndExpand" Spacing="0">
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                        <Grid x:Name="gridWorker">
+                            <Label Text="指派网格员" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="{Binding StaffName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
+                            <Button x:Name="BtnPhone" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0" Clicked="BtnPhone_Clicked" />
+                            <Button x:Name="BtnMsg" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0" Clicked="BtnMsg_Clicked" />
+                        </Grid>
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                        <Grid>
+                            <Label Text="复查期限" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <views:BorderlessDatePicker Date="{Binding deadline, StringFormat='{0:yyyy-MM-dd}'}" IsEnabled="{Binding canEdit}" TSize="15" TextColor="Gray" HasBorder="False" x:Name="DatePickerStart" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,10,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" WidthRequest="120" />
+                        </Grid>
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    </StackLayout>
+                    <Button HorizontalOptions="Center" WidthRequest="120" HeightRequest="40" Margin="10,30,10,30" BackgroundColor="#2c73a3" Text="事件内容" TextColor="White" Clicked="RegistrationEvent" />
                 </StackLayout>
             </ScrollView>
             <Grid Grid.Row="1" BackgroundColor="#e6e6e6">
-                <Button Image="greentick" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="Transparent" Margin="10,5,10,5"/>
+                <Button Image="greentick" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="Transparent" Margin="10,5,10,5" Clicked="addEventFollowUp"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

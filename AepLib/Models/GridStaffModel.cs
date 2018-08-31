@@ -13,7 +13,7 @@ namespace AepApp.Models
         public string username { get; set; }
         public string mobil { get; set; }
         public int grade { get; set; }
-        public string grid { get; set; }
+        public Guid? grid { get; set; }
         public string state { get; set; }
         public string remarks { get; set; }
         public DateTime? registerdate { get; set; }

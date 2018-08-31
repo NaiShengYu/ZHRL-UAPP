@@ -9,7 +9,7 @@ namespace AepApp.Models
         public bool canEdit { get; set; }
         public Guid id { get; set; }
         public string title { get; set; }
-        public Guid staff { get; set; }
+        public Guid? staff { get; set; }
         public DateTime date { get; set; }
         public double lat { get; set; }
         public double lng { get; set; }
