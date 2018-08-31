@@ -4,8 +4,8 @@ using System.Text;
 
 namespace AepApp.Models
 {
-    //网格化模块图片上传返回值
-    public class GridImageModel
+    //网格化模块附件上传返回值
+    public class GridAttachmentResultModel
     {
         public Guid id { get; set; }
         public string fname { get; set; }

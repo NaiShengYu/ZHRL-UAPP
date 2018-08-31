@@ -11,7 +11,7 @@
                     <StackLayout Spacing="0">
                         <Grid>
                             <Label Text="类型" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
-                            <Label Text="{Binding type}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,25,10" />
+                            <Label Text="{Binding Type}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,25,10" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
@@ -43,7 +43,7 @@
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
                                 <StackLayout Margin="50,10,10,10" VerticalOptions="Center" HorizontalOptions="Start" Spacing="1">
-                                    <Label Text="{Binding attach_title}" TextColor="Black" FontSize="15"/>
+                                    <Label Text="{Binding title}" TextColor="Black" FontSize="15"/>
                                     <!--<Label Text="{Binding length}" Font="16" TextColor="Gray" />-->
                                 </StackLayout>
                                 <BoxView BackgroundColor="Silver" HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="End" />

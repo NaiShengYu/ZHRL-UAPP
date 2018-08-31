@@ -194,7 +194,7 @@ namespace AepApp.Models
             }
         }
 
-        public FormattedString dispatchworkingDes
+        public FormattedString dispatchWorkingDes
         {
             get
             {

@@ -22,8 +22,9 @@ namespace AepApp.View.Gridding
         private Guid mTaskId;
         private bool mIsEdit = false;
         private GridTaskHandleRecordModel mRecord;
-        private ObservableCollection<string> photoList = new ObservableCollection<string>();
-
+        private ObservableCollection<AttachmentInfo> photoList = new ObservableCollection<AttachmentInfo>();
+        private ObservableCollection<GridAttachmentUploadModel> uploadModel = new ObservableCollection<GridAttachmentUploadModel>();
+        private int UploadSuccessCount = 0;
 
         public TaskResultPage(Guid taskId, GridTaskHandleRecordModel record, bool isEdit)
         {
@@ -61,7 +62,7 @@ namespace AepApp.View.Gridding
             {
                 foreach (var item in record.attachments)
                 {
-                    photoList.Add(item.attach_url);
+                    photoList.Add(item);
                 }
                 creatPhotoView(true);
             }
@@ -88,36 +89,66 @@ namespace AepApp.View.Gridding
 
 
         /// <summary>
-        /// 添加/更新任务处理记录
+        /// 添加任务处理记录
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void ExecutionRecord(object sender, System.EventArgs e)
         {
             uploadImg();
-
         }
 
         private async void uploadImg()
         {
             foreach (var item in photoList)
             {
+                if (item.isUploaded)
+                {
+                    continue;
+                }
                 NameValueCollection nameValue = new NameValueCollection();
-                nameValue.Add("id", Guid.NewGuid().ToString());
-                HTTPResponse res = await EasyWebRequest.upload(item, ".png", ConstantUtils.UPLOAD_GRID_BASEURL, ConstantUtils.UPLOAD_GRID_API, nameValue);
+                nameValue.Add("id", mIsEdit ? Guid.NewGuid().ToString() : mRecord.id.ToString());
+                HTTPResponse res = await EasyWebRequest.upload(item.url, ".png", ConstantUtils.UPLOAD_GRID_BASEURL, ConstantUtils.UPLOAD_GRID_API, nameValue);
                 if (res.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    await DisplayAlert("上传结果", res.Results, "确定");
-                    //string result = JsonConvert.DeserializeObject<string>(res.Results);
+                    try
+                    {
+                        //await DisplayAlert("上传结果", res.Results, "确定");
+                        List<GridAttachmentResultModel> result = JsonConvert.DeserializeObject<List<GridAttachmentResultModel>>(res.Results);
+                        if (result != null && result.Count > 0)
+                        {
+                            item.isUploaded = true;
+                            GridAttachmentUploadModel m = new GridAttachmentUploadModel
+                            {
+                                id = result[0].id,
+                                rowState = "add",
+                            };
+                            uploadModel.Add(m);
+                            UploadSuccessCount++;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
                 }
+            }
+
+            if (UploadSuccessCount == photoList.Count)
+            {
+                addResult();
+            }
+            else
+            {
+                DependencyService.Get<IToast>().LongAlert("图片上传失败，请重试");
             }
         }
 
+        //添加记录
         private async void addResult()
         {
             var result = await mRecord.EvaluateJavascript("javascript:getEditorValue();");
             string content = Regex.Unescape(result);
-            //await DisplayAlert("result", content, "ok");
             if (string.IsNullOrWhiteSpace(content))
             {
                 DependencyService.Get<IToast>().ShortAlert("请输入执行结果");
@@ -132,7 +163,8 @@ namespace AepApp.View.Gridding
             map.Add("staff", App.userInfo.id);
             map.Add("results", content);
             //map.Add("forassignment", mTaskId);
-            map.Add("attachments", "");
+            map.Add("attachments", JsonConvert.SerializeObject(uploadModel));
+            await DisplayAlert("imgs", JsonConvert.SerializeObject(uploadModel), "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -175,7 +207,11 @@ namespace AepApp.View.Gridding
             else
             {
 
-                photoList.Add(file.Path);
+                photoList.Add(new AttachmentInfo
+                {
+                    url = file.Path,
+                    isUploaded = false,
+                });
 
                 creatPhotoView(false);
 
@@ -194,14 +230,14 @@ namespace AepApp.View.Gridding
 
             PickSK.Children.Clear();
 
-            foreach (string path in photoList)
+            foreach (AttachmentInfo img in photoList)
             {
                 Grid grid = new Grid();
                 PickSK.Children.Add(grid);
                 Console.WriteLine("图片张数：" + photoList.Count);
                 Image button = new Image
                 {
-                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(path)) : ImageSource.FromFile(path) as FileImageSource,
+                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(img.url)) : ImageSource.FromFile(img.url) as FileImageSource,
                     HeightRequest = 80,
                     WidthRequest = 80,
                     BackgroundColor = Color.White,

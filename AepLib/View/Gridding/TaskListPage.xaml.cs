@@ -118,7 +118,7 @@ namespace AepApp.View.Gridding
                 map.Add("taskName", mSearchKey);
             }
             string param = JsonConvert.SerializeObject(map);
-            await DisplayAlert("param", param, "ok");
+            //await DisplayAlert("param", param, "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == HttpStatusCode.OK)
             {

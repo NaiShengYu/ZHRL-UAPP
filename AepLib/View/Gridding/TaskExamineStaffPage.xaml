@@ -33,8 +33,8 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Label FormattedText="{Binding finishDes}" HorizontalOptions="Start"/>
-                    <Label FormattedText="{Binding workingDes}" HorizontalOptions="Center"/>
-                    <Label FormattedText="{Binding ratioDes}" HorizontalOptions="End"/>
+                    <Label Grid.Column="1" FormattedText="{Binding workingDes}" HorizontalOptions="Center"/>
+                    <Label Grid.Column="2" FormattedText="{Binding ratioDes}" HorizontalOptions="End"/>
                 </Grid>
                 <Label FormattedText="{Binding lastMonthDes}" HorizontalOptions="End" TextColor="Gray"/>
             </StackLayout>

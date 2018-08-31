@@ -12,7 +12,8 @@ namespace AepApp.Models
         public string id { get; set; }
         public Guid staff { get; set; }
         public string title { get; set; }
-        public int type { get; set; }
+        private int type { get; set; }
+        public string Type { get { return ConstConvertUtils.GridInformationType2String(type); } }
         public DateTime date { get; set; }
         public string contents { get; set; }
         public string subTitle
@@ -28,9 +29,10 @@ namespace AepApp.Models
 
     public class AttachmentInfo
     {
-        public Guid attach_id { get; set; }
-        public string attach_url { get; set; }
-        public string attach_title { get; set; }
-        public string attach_filename { get; set; }
+        public Guid id { get; set; }
+        public string url { get; set; }//本地/url地址
+        public string title { get; set; }
+        public string filename { get; set; }
+        public bool isUploaded { get; set; }//是否已上传
     }
 }

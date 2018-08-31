@@ -46,7 +46,6 @@ namespace AepApp.Models
             }
         }
 
-
         public FormattedString finishDes
         {
             get
@@ -88,8 +87,7 @@ namespace AepApp.Models
                 return fs;
             }
         }
-
-
+        
         public FormattedString ratioDes
         {
             get
