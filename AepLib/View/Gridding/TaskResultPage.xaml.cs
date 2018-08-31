@@ -183,7 +183,7 @@ namespace AepApp.View.Gridding
             map.Add("date", DatePicker.Date);
             map.Add("staff", App.userInfo.id);
             map.Add("results", content);
-            //map.Add("forassignment", "");
+            map.Add("forassignment", mRecord.assignment);
             map.Add("attachments", uploadModel);
             await DisplayAlert("imgs", JsonConvert.SerializeObject(uploadModel), "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
@@ -256,9 +256,11 @@ namespace AepApp.View.Gridding
                 Grid grid = new Grid();
                 PickSK.Children.Add(grid);
                 Console.WriteLine("图片张数：" + photoList.Count);
+
+                img.url = img.url.Replace("~", "");
                 Image button = new Image
                 {
-                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(img.url)) : ImageSource.FromFile(img.url) as FileImageSource,
+                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(App.EP360Module.url+img.url+img.title)) : ImageSource.FromFile(img.url) as FileImageSource,
                     HeightRequest = 80,
                     WidthRequest = 80,
                     BackgroundColor = Color.White,
@@ -278,7 +280,7 @@ namespace AepApp.View.Gridding
 
         private async void Webview_Navigated(object sender, WebNavigatedEventArgs e)
         {
-            if (mRecord != null && !string.IsNullOrWhiteSpace(mRecord.results))
+            if (mIsEdit && mRecord != null && !string.IsNullOrWhiteSpace(mRecord.results))
             {
                 await mRecord.EvaluateJavascript("javascript:setEditorValue('" + mRecord.results + "');");
             }

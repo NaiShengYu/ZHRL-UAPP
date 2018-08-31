@@ -54,7 +54,7 @@
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid>
+                    <Grid IsEnabled="{Binding canEdit}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="chooseTemplate" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
@@ -142,7 +142,7 @@
                             <TapGestureRecognizer Tapped="taskResult" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" >
+                        <Label x:Name="resultTime" Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" >
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label" Binding="{Binding RecordCount}" Value="0">
                                         <Setter Property="Text" Value="无"/>

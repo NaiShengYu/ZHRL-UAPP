@@ -18,7 +18,7 @@ namespace AepApp.View.Gridding
         bool mNeedExcute = false;
         string _eventId = "";
         bool mNeedUp = true;
-
+        string _assignmentId = "";
         public delegate void AddTaskToEvent(object sender, EventArgs args);
         public event AddTaskToEvent AddATask;
 
@@ -133,6 +133,7 @@ namespace AepApp.View.Gridding
             {
                 date = _infoModel.date,
                 gridName = _infoModel.gridName,
+                assignment = _assignmentId,
                 results = @"<p> 初始化的内容 </p><p> 初始化的内容 </p>",
             };
             if (_infoModel.staff != null)
@@ -179,7 +180,7 @@ namespace AepApp.View.Gridding
         /// <param name="taskId"></param>
         /// <param name="needExcute">是否需要执行记录 true：可以添加执行结果 false：只能查看执行结果</param>
         ///  <param name="needUp">是否需要上传任务 true：可以上传 false：将任务提交到上一级</param>
-        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId, bool needUp)
+        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId, bool needUp,string assignmentId)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
@@ -187,6 +188,7 @@ namespace AepApp.View.Gridding
             _taskId = taskId;
             mNeedExcute = needExcute;
             mNeedUp = needUp;
+            _assignmentId = assignmentId;
             //
             SK.IsVisible = mNeedExcute;
 
@@ -239,7 +241,6 @@ namespace AepApp.View.Gridding
                     string result = hTTPResponse.Results.Replace("[null]", "[]");
                      result = result.Replace("taskassignments", "assignments");
                      result = result.Replace("taskcoords", "coords");
-                     result = result.Replace("taskenterprises", "enterprise");
 
                     _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(result);
                     try
@@ -255,11 +256,13 @@ namespace AepApp.View.Gridding
                     }
                     _infoModel.canEdit = false;
                     creatPositionList();
-                    creatEnterpriseList();
                     GR.IsVisible = true;
                     GH.Height = 0;
                     BindingContext = _infoModel;
                     ReqGridTaskList();
+                    _infoModel.enterprise = new ObservableCollection<Enterprise>();
+
+                    if (_infoModel.taskenterprises !=null && _infoModel.taskenterprises.Count > 0) ReqEnters();
                 }
                 catch (Exception e)
                 {
@@ -268,6 +271,29 @@ namespace AepApp.View.Gridding
             }
 
         }
+
+        //根据id获取企业
+        private async void ReqEnters(){
+
+            string url = App.environmentalQualityModel.url + "/api/mod/GetAllEnterpriseByarrid";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("items",_infoModel.taskenterprises);
+            string param = JsonConvert.SerializeObject(map);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                string result = res.Results.Replace("name", "enterpriseName");
+
+                _infoModel.enterprise = JsonConvert.DeserializeObject<ObservableCollection<Enterprise>>(result);
+
+                creatEnterpriseList();
+
+            }
+
+
+        }
+
+
 
         //任务执行记录
         private async void ReqGridTaskList()
@@ -288,6 +314,7 @@ namespace AepApp.View.Gridding
                         var recorModel = list[0];
                         _infoModel.LastRecordTime = recorModel.date;
                         _infoModel.RecordCount = list.Count;
+                        resultTime.Text = _infoModel.LastRecordTime.ToString("yyyy-MM-dd");
                     }else{
                         //SK.IsVisible = false;
                     }
@@ -382,8 +409,11 @@ namespace AepApp.View.Gridding
         /// </summary>
         void creatEnterpriseList()
         {
-            foreach (var po in _infoModel.enterprise)
+           
+            for (int i = 0; i < _infoModel.enterprise.Count; i++)
             {
+                var po = _infoModel.enterprise[i];
+            
                 Grid G1 = new Grid
                 {
                     //BackgroundColor = Color.Blue,
@@ -416,7 +446,7 @@ namespace AepApp.View.Gridding
                     VerticalOptions = LayoutOptions.Center,
                     BackgroundColor = Color.Transparent,
                     TextColor = Color.White,
-                    Text = "1",
+                    Text = (i + 1).ToString(),
                 };
                 frame.Content = numLab;
                 Image image = new Image

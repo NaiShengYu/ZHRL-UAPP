@@ -62,6 +62,10 @@ namespace AepApp.Models
         public ObservableCollection<Assignments> assignments { get; set; }
         public ObservableCollection<Coords> coords { get; set; }
         public ObservableCollection<Enterprise> enterprise { get; set; }
+        public ObservableCollection<Guid> taskenterprises { get; set; }
+
+
+
     }
 
     public class Assignments : BaseModel
@@ -103,7 +107,14 @@ namespace AepApp.Models
         public string title { get; set; }
         public double? lng { get; set; }
         public double? lat { get; set; }
-        public string remarks { get; set; }
+        public string remarks {
+            get
+            {
+                if (lng != null && lat != null) return lat + "E, " + lng + "N";
+                else return "";
+            }
+            set { }
+        }
         public int? index { get; set; }
 
     }
@@ -111,8 +122,8 @@ namespace AepApp.Models
     public class Enterprise : BaseModel
     {
         public Guid id { get; set; }
-        public string rowState { get; set; }
         public Guid enterprise { get; set; }
+        public string rowState { get; set; }
         public string enterpriseName { get; set; }
 
     }

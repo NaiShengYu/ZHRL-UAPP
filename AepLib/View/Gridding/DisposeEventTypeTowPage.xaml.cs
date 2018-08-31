@@ -44,7 +44,7 @@ namespace AepApp.View.Gridding
         }
         void AddEventTask(object sender, System.EventArgs e){
 
-            TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage("", false, _eventModel.id.ToString(),false);
+            TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage("", false, _eventModel.id.ToString(),false,"");
             towPage.AddATask += (object taskinfo, EventArgs args) =>
             {
                 GridTaskInfoModel taskInfoModel = taskinfo as GridTaskInfoModel;
