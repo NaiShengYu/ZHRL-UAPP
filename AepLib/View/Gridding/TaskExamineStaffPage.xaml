@@ -13,7 +13,7 @@
             <StackLayout Spacing="0">
                 <Grid>
                     <Label Text="网格" FontSize="17" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 10, 0, 10"/>
-                    <Label Text="李家村" FontSize="15" TextColor="Gray" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
+                    <Label Text="{Binding gridName}" FontSize="15" TextColor="Gray" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
                 </Grid>
                 <BoxView BackgroundColor="#e8e8e8" HeightRequest="1" HorizontalOptions="FillAndExpand" />
             </StackLayout>

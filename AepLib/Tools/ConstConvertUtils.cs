@@ -6,6 +6,24 @@ namespace AepApp.Tools
 {
     public class ConstConvertUtils
     {
+        public static string GridLevel2String(int level)
+        {
+            string des = "";
+            switch (level)
+            {
+                case 1:
+                    des = "调度中心";
+                    break;
+                case 2:
+                    des = "乡级网格";
+                    break;
+                case 3:
+                    des = "村级网格";
+                    break;
+            }
+            return des;
+        }
+
         public static string GridTaskStatus2String(int status)
         {
             string des = "";

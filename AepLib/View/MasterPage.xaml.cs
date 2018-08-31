@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using AepApp.View.EnvironmentalEmergency;
 //using AepApp.View.SecondaryFunction;
 using Xamarin.Forms.PlatformConfiguration;
+using AepApp.View.Gridding;
 
 namespace AepApp.View
 {
@@ -61,6 +62,18 @@ namespace AepApp.View
                 }
             }
 
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            if(App.gridUser.gridLevel == App.GridMaxLevel)
+            {
+                Navigation.PushAsync(new TaskExaminePage(App.gridUser.gridcell));
+            }
+            else
+            {
+                Navigation.PushAsync(new TaskExamineStaffPage(App.gridUser.gridcell));
+            }
         }
     }
 }

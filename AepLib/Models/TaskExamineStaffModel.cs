@@ -14,31 +14,37 @@ namespace AepApp.Models
         private Color colorGreen = Color.FromRgb(39, 165, 73);
         private Color colorYellow = Color.FromRgb(165, 121, 39);
 
+        public int gridLevel { get; set; }
         public string gridName { get; set; }
         public DateTime date { get; set; }
-        public int total { get; set; }
-        public int finished { get; set; }
-        public string ratio//完成率
+        public int regularTaskCount { get; set; }// 当月固定任务数目
+        public int regularcompletedCount { get; set; }// 当月固定任务完成数目
+        public string regularcompletedPerM1 { get; set; }// 上月固定任务完成完成百分比
+
+        public string regularRatio//当月完成率
         {
             get
             {
-                double r = (finished / Convert.ToDouble(total));
+                double r = 0;
+                if (regularTaskCount != 0)
+                {
+                    r = (regularcompletedCount / Convert.ToDouble(regularTaskCount));
+                }
                 return string.Format("{0:P}", r);
             }
         }
-        public string lastRatio { get; set; }//上月完成率
 
-        public int dispatchTotal { get; set; }
-        public int dispatchFinished { get; set; }
+        public int assignedTaskCount { get; set; }//上级下发任务总数
+        public int assignedCompletedCount { get; set; }// 上级下发任务完成数目
+        public string assignedCompletedPerM1 { get; set; }// 上月上级下发任务完成百分比
         public string dispatchRatio//完成率
         {
             get
             {
-                double r = (finished / Convert.ToDouble(total));
+                double r = (regularcompletedCount / Convert.ToDouble(regularTaskCount));
                 return string.Format("{0:P}", r);
             }
         }
-        public string dispatchLastRatio { get; set; }
 
 
 
@@ -55,7 +61,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = total + "",
+                    Text = regularTaskCount + "",
                     FontSize = 22,
                     ForegroundColor = colorBlue,
                 });
@@ -78,7 +84,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = finished + "",
+                    Text = regularcompletedCount + "",
                     FontSize = 22,
                     ForegroundColor = colorGreen,
                 });
@@ -99,7 +105,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = (total - finished < 0 ? 0 : (total - finished)) + "",
+                    Text = (regularTaskCount - regularcompletedCount < 0 ? 0 : (regularTaskCount - regularcompletedCount)) + "",
                     FontSize = 22,
                     ForegroundColor = colorYellow,
                 });
@@ -121,7 +127,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = ratio,
+                    Text = regularRatio,
                     FontSize = 22,
                     ForegroundColor = Color.Black,
                 });
@@ -141,7 +147,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = lastRatio,
+                    Text = regularcompletedPerM1,
                     FontSize = 18,
                 });
 
@@ -163,7 +169,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = dispatchTotal + "",
+                    Text = assignedTaskCount + "",
                     FontSize = 22,
                     ForegroundColor = colorBlue,
                 });
@@ -186,7 +192,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = dispatchFinished + "",
+                    Text = assignedCompletedCount + "",
                     FontSize = 22,
                     ForegroundColor = colorGreen,
                 });
@@ -207,7 +213,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = (dispatchTotal - dispatchFinished < 0 ? 0 : (dispatchTotal - dispatchFinished)) + "",
+                    Text = (assignedTaskCount - assignedCompletedCount < 0 ? 0 : (assignedTaskCount - assignedCompletedCount)) + "",
                     FontSize = 22,
                     ForegroundColor = colorYellow,
                 });
@@ -249,7 +255,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = dispatchLastRatio,
+                    Text = assignedCompletedPerM1,
                     FontSize = 18,
                 });
 

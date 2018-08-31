@@ -71,7 +71,7 @@ namespace AepApp.View
                     if (item.isCurrent == true)
                     {
                         site_name.Text = item.Name;
-                        App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
+                        //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
                     }
                 }
             }

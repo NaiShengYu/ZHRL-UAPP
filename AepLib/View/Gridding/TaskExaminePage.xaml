@@ -15,7 +15,7 @@
                     <StackLayout Spacing="0">
                         <Grid>
                             <Label Text="网格" FontSize="17" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 10, 0, 10"/>
-                            <Label Text="县调度中心" FontSize="15" TextColor="Gray" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
+                            <Label Text="{Binding gridName}" FontSize="15" TextColor="Gray" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
                         </Grid>
                         <BoxView BackgroundColor="#e8e8e8" HeightRequest="1" HorizontalOptions="FillAndExpand" />
                     </StackLayout>
@@ -59,12 +59,12 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
                             <StackLayout VerticalOptions="Center" Margin="20,0,10,0" Spacing="2">
-                                <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="高桥镇" />
-                                <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="乡级网络" />
+                                <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding gridName}" />
+                                <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding gridLevelDes}" />
                             </StackLayout>
                             <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Spacing="0">
-                                <Label StyleClass="itemtitle" HorizontalOptions="End"  Text="完成率 91.8888%" FontSize="12"/>
-                                <Label StyleClass="itemsubtitle" HorizontalOptions="End" Text="上月完成率90.3366%" FontSize="12"/>
+                                <Label StyleClass="itemtitle" HorizontalOptions="End"  Text="{Binding childrenRatioDes}" FontSize="12"/>
+                                <Label StyleClass="itemsubtitle" HorizontalOptions="End" Text="{Binding childrenLastMonthDes}" FontSize="12"/>
                             </StackLayout>
                             <Image Grid.Column="2" Source="right" Margin="10, 0, 20, 0" VerticalOptions="Center"/>
                         </Grid>
