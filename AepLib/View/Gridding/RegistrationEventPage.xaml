@@ -95,7 +95,7 @@
             </StackLayout>
             <Grid Grid.Row="2" BackgroundColor="#e6e6e6">
                 <Button Clicked="takePhoto" Image="image" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" />
-                <Button Text="登记" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" Margin="0,8,10,8" BackgroundColor="Transparent" TextColor="#2c73a3" Clicked="UpData" />
+                <Button Text="登记" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" Margin="0,8,10,8" BackgroundColor="Transparent" TextColor="#2c73a3" Clicked="ExecutionRecord" />
             </Grid>
         </Grid>
     </ContentPage.Content>

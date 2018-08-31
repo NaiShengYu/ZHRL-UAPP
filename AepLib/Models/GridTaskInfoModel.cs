@@ -52,7 +52,9 @@ namespace AepApp.Models
         public Guid? staff { get; set; }
         public Guid? grid { get; set; }
         public int type { get; set; }
-      
+        public string gridName { get; set; }
+
+
         private string staffName;
         public string StaffName
         {
@@ -66,6 +68,12 @@ namespace AepApp.Models
             get { return tel; }
             set { tel = value; NotifyPropertyChanged(); }
         }
+
+        //public ObservableCollection<Assignments> nextLevel { get; set; }
+
+
+
+
     }
 
     public class Coords : BaseModel

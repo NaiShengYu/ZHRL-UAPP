@@ -143,8 +143,6 @@ namespace AepApp.View.Gridding
             EditContentsPage editContentsPage = new EditContentsPage(_infoModel, "EditContents", 2);
             editContentsPage.Title = "任务内容";
             Navigation.PushAsync(editContentsPage);
-
-
         }
         private void pickerNature_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -226,7 +224,6 @@ namespace AepApp.View.Gridding
         //获取任务详情
         private async void getTaskInfo()
         {
-
             string url = App.EP360Module.url + "/api/gbm/GetTaskDetail";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", _taskId);
@@ -235,7 +232,24 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(hTTPResponse.Results);
+                    string result = hTTPResponse.Results.Replace("[null]", "[]");
+                     result = result.Replace("taskassignments", "assignments");
+                     result = result.Replace("taskcoords", "coords");
+                     result = result.Replace("taskenterprises", "enterprise");
+
+                    _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(result);
+
+                    try
+                    {
+                            foreach (var ass in _infoModel.assignments)
+                        {
+                            _infoModel.AssignName = _infoModel.AssignName + ass.gridName;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                     _infoModel.canEdit = false;
                     creatPositionList();
                     creatEnterpriseList();
@@ -243,7 +257,7 @@ namespace AepApp.View.Gridding
                 }
                 catch (Exception e)
                 {
-
+                    Navigation.PopAsync();
                 }
             }
 

@@ -34,6 +34,7 @@ namespace AepApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        //最底层网格员
         public static int GridMaxLevel = 3;
         public static UploadEmergencyShowModel LastNatureAccidentModel = null;
         public static MasterDetailPage appHunbegerPage = null;
@@ -132,6 +133,8 @@ namespace AepApp
             MainPage = splashPage;
 
             personViewModel = new TestPersonViewModel();
+
+
             //MainPage = new TestOxyPage();
 
             //MainPage = new NavigationPage(new SendInformationPage());

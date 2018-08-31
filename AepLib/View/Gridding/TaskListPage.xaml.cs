@@ -30,7 +30,6 @@ namespace AepApp.View.Gridding
             filterCondition = new TaskFilterCondition();
             SearchData();
         }
-
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
             GridTaskModel taskM = e.SelectedItem as GridTaskModel;

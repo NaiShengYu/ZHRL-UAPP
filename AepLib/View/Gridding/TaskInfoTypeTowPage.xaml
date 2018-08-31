@@ -37,7 +37,7 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="2017-07-22 15:19" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <views:BorderlessDatePicker Date="{Binding date,StringFormat='{0:yyyy-MM-dd}'}" TSize="15" TextColor="Gray" HasBorder="False" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" WidthRequest="120"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>

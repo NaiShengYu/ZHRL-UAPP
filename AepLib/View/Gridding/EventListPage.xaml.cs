@@ -25,6 +25,7 @@ namespace AepApp.View.Gridding
 
         public void AddButtonClicked(Object sender, EventArgs e)
         {
+            if (App.gridUser == null) return;
             Navigation.PushAsync(new RegistrationEventPage(""));
         }
 
@@ -35,7 +36,8 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new RegistrationEventPage(""));
+            if (App.gridUser == null) return;
+            Navigation.PushAsync(new RegistrationEventPage(eventM.id.ToString()));
             listView.SelectedItem = null;
         }
 

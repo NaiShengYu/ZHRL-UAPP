@@ -9,10 +9,17 @@ using Newtonsoft.Json;
 using Plugin.Media;
 using Xamarin.Forms;
 using AepApp.Tools;
+using System.Collections.Specialized;
+using Sample;
+
 namespace AepApp.View.Gridding
 {
     public partial class RegistrationEventPage : ContentPage
     {
+
+        private int UploadSuccessCount = 0;
+        private ObservableCollection<AttachmentInfo> photoList = new ObservableCollection<AttachmentInfo>();
+        private ObservableCollection<GridAttachmentUploadModel> uploadModel = new ObservableCollection<GridAttachmentUploadModel>();
 
 
         private void pickerNature_SelectedIndexChanged(object sender, EventArgs e)
@@ -43,12 +50,6 @@ namespace AepApp.View.Gridding
             DeviceUtils.sms(_infoModel.Tel);
         }
 
-     
-
-        private ObservableCollection<string> photoList = new ObservableCollection<string>();
-        void UpData(object sender, System.EventArgs e){
-            postAddEvent();
-        }
 
         /// <summary>
         /// 经纬度
@@ -121,9 +122,12 @@ namespace AepApp.View.Gridding
             else
             {
 
-                photoList.Add(file.Path);
-
-                creatPhotoView();
+                photoList.Add(new AttachmentInfo
+                {
+                    url = file.Path,
+                    isUploaded = false,
+                });
+                creatPhotoView(false);
 
 
             }
@@ -134,19 +138,19 @@ namespace AepApp.View.Gridding
         /// <summary>
         /// 根据拍照张数创建图片
         /// </summary>
-        void creatPhotoView()
+        void creatPhotoView(bool isFromNetwork)
         {
 
             PickSK.Children.Clear();
 
-            foreach (string path in photoList)
+            foreach (AttachmentInfo img in photoList)
             {
                 Grid grid = new Grid();
                 PickSK.Children.Add(grid);
                 Console.WriteLine("图片张数：" + photoList.Count);
                 Image button = new Image
                 {
-                    Source = ImageSource.FromFile(path) as FileImageSource,
+                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(img.url)) : ImageSource.FromFile(img.url) as FileImageSource,
                     HeightRequest = 80,
                     WidthRequest = 80,
                     BackgroundColor = Color.White,
@@ -160,22 +164,7 @@ namespace AepApp.View.Gridding
                 if (100.0 * photoList.Count > App.ScreenWidth)
                     pickSCR.ScrollToAsync(100 * photoList.Count - (App.ScreenWidth), 0, true);
 
-
-
-
-                //Image = new Image
-                //{
-                //    VerticalOptions = LayoutOptions.Center,
-                //    HorizontalOptions = LayoutOptions.Start,
-                //    Aspect =Aspect.Fill,
-
-
-                //};
-
-
             }
-
-
 
         }
 
@@ -213,7 +202,10 @@ namespace AepApp.View.Gridding
 
             _eventId = eventId;
             //
-            if (!string.IsNullOrEmpty(_eventId)) getEventInfo();
+            if (!string.IsNullOrEmpty(_eventId)) {
+                getEventInfo();
+                Title = "事件内容";
+            }
             else
             {
                 _infoModel = new GridEventInfoModel
@@ -228,6 +220,7 @@ namespace AepApp.View.Gridding
                     gridcell = App.gridUser.gridcell,
                     Tel = App.userInfo.tel,
 
+
                 };
                 try{
                     _infoModel.lat = App.currentLocation.Latitude;
@@ -239,13 +232,15 @@ namespace AepApp.View.Gridding
 
 
                 BindingContext = _infoModel;
+                Title = "登记事件";
+                getAddressWihtLocation();
+
             }
-            Title = "登记事件";
+
             setPosition();
             NavigationPage.SetBackButtonTitle(this, "");
             ToolbarItems.Add(new ToolbarItem("", "qrcode", HandleAction));
             ST.BindingContext = photoList;
-            getAddressWihtLocation();
         }
 
 
@@ -270,7 +265,61 @@ namespace AepApp.View.Gridding
             base.OnDisappearing();
         }
 
+        /// <summary>
+        /// 添加事件记录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ExecutionRecord(object sender, System.EventArgs e)
+        {
+            uploadImg();
+        }
 
+        private async void uploadImg()
+        {
+            foreach (var item in photoList)
+            {
+                if (item.isUploaded)
+                {
+                    continue;
+                }
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("id", _infoModel.canEdit ? Guid.NewGuid().ToString() : _infoModel.id.ToString());
+                HTTPResponse res = await EasyWebRequest.upload(item.url, ".png", ConstantUtils.UPLOAD_GRID_BASEURL, ConstantUtils.UPLOAD_GRID_API, nameValue);
+                if (res.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    try
+                    {
+                        //await DisplayAlert("上传结果", res.Results, "确定");
+                        List<GridAttachmentResultModel> result = JsonConvert.DeserializeObject<List<GridAttachmentResultModel>>(res.Results);
+                        if (result != null && result.Count > 0)
+                        {
+                            item.isUploaded = true;
+                            GridAttachmentUploadModel m = new GridAttachmentUploadModel
+                            {
+                                id = result[0].id,
+                                rowState = "add",
+                            };
+                            uploadModel.Add(m);
+                            UploadSuccessCount++;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+
+            if (UploadSuccessCount == photoList.Count)
+            {
+                postAddEvent();
+            }
+            else
+            {
+                DependencyService.Get<IToast>().LongAlert("图片上传失败，请重试");
+            }
+        }
 
         private async void postAddEvent()
         {
@@ -303,14 +352,15 @@ namespace AepApp.View.Gridding
                 addr = _infoModel.Addr,
                 staff = App.userInfo.id,
                 enterprise = _infoModel.enterprise,
+                attachments = uploadModel,
             };
             string param = JsonConvert.SerializeObject(parame);
 
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-               
 
+                if (hTTPResponse.Results == "OK") Navigation.PopAsync();
 
 
 
@@ -323,20 +373,28 @@ namespace AepApp.View.Gridding
         private async void getEventInfo()
         {
 
-            string url = App.EP360Module.url + "/api/gbm/GetGridList";
+            string url = App.EP360Module.url + "/api/gbm/GetIncidentDetail";
 
             Dictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("grid", "");
-            param.Add("searchKey", "");
-            //string pa =
+            param.Add("id", _eventId);
+            string pa = JsonConvert.SerializeObject(param);
 
 
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "id="+_eventId, "POST", App.FrameworkToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url,pa , "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                _infoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
-                _infoModel.canEdit = false;
-                BindingContext = _infoModel;
+                try
+                {
+                    _infoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    _infoModel.canEdit = false;
+                    BindingContext = _infoModel;
+                    getAddressWihtLocation();
+
+                }
+                catch (Exception ex)
+                {
+                    Navigation.PopAsync();
+                }
             }
 
         }
@@ -427,15 +485,12 @@ namespace AepApp.View.Gridding
                 
             public DateTime handleDate{get;set;}
 
-            ObservableCollection<Attachments> attachments { set; get; }
+            public ObservableCollection<GridAttachmentUploadModel> attachments { set; get; }
 
         }
 
 
-        public class Attachments{
-            public string id { get; set; }
-            public string rowState { get; set; }
-        }
+  
 
 
     }
