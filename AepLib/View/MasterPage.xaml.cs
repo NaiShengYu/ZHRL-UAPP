@@ -38,7 +38,12 @@ namespace AepApp.View
 
                 if (lastselecteditem.Children[0].BindingContext != null)
                 {
-                    Type pagetype = Type.GetType(lastselecteditem.Children[0].BindingContext as string);
+                    string t = lastselecteditem.Children[0].BindingContext as string;
+                    if(t == null)
+                    {
+                        return;
+                    }
+                    Type pagetype = Type.GetType(t);
                     var page = new NavigationPage((Page)Activator.CreateInstance(pagetype));
                     masterdetailpage.Detail = page;
                 }
@@ -68,11 +73,11 @@ namespace AepApp.View
         {
             if(App.gridUser.gridLevel == App.GridMaxLevel)
             {
-                Navigation.PushAsync(new TaskExaminePage(App.gridUser.gridcell));
+                Navigation.PushAsync(new TaskExamineStaffPage(App.gridUser.grid));
             }
             else
             {
-                Navigation.PushAsync(new TaskExamineStaffPage(App.gridUser.gridcell));
+                Navigation.PushAsync(new TaskExaminePage(App.gridUser.grid));
             }
         }
     }

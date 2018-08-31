@@ -10,7 +10,7 @@ namespace AepApp.Models
             set;
         }
 
-        public Guid gridcell
+        public Guid grid
         {
             get;
             set;

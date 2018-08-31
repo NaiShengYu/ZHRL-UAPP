@@ -260,7 +260,6 @@
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
-                                <Label  HeightRequest="0"/>
                                 <Label Text="考核" />
                             </Grid>
                         </StackLayout>

@@ -217,7 +217,7 @@ namespace AepApp.View.Gridding
                     state = 4,
                     type = 2,
                     id = Guid.NewGuid(),
-                    gridcell = App.gridUser.gridcell,
+                    gridcell = App.gridUser.grid,
                     Tel = App.userInfo.tel,
 
 

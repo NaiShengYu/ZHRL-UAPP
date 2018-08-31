@@ -162,7 +162,7 @@ namespace AepApp.View.Gridding
                         incident = _eventModel.id,
                         //level = App.gridUser.gridLevel,
                         //gridName = App.gridUser.gridName,
-                        //gridId = App.gridUser.id,
+                        //grid = App.gridUser.id,
                         Tasks = new ObservableCollection<GridEventFollowTaskModel>(),
                     };
                     BindingContext = _followMoel;

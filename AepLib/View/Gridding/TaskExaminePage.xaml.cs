@@ -20,7 +20,7 @@ namespace AepApp.View.Gridding
         public TaskExaminePage(Guid grid)
         {
             InitializeComponent();
-            GetAssessmentInfo(grid == null ? App.gridUser.gridcell : grid);
+            GetAssessmentInfo(grid);
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -30,13 +30,13 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            if(model.gridLevel == App.GridMaxLevel - 1)
+            if(taskExamine.gridLevel == App.GridMaxLevel)
             {
-                Navigation.PushAsync(new TaskExamineStaffPage(model.grid));
+                Navigation.PushAsync(new TaskExamineStaffPage(taskExamine.grid));
             }
             else
             {
-                Navigation.PushAsync(new TaskExaminePage(model.grid));
+                Navigation.PushAsync(new TaskExaminePage(taskExamine.grid));
             }
             ListView.SelectedItem = null;
         }

@@ -16,7 +16,7 @@ namespace AepApp.Models
 
         public int gridLevel { get; set; }
         public string gridName { get; set; }
-        public DateTime date { get; set; }
+        public DateTime date { get { return DateTime.Now; } }
         public int regularTaskCount { get; set; }// 当月固定任务数目
         public int regularcompletedCount { get; set; }// 当月固定任务完成数目
         public string regularcompletedPerM1 { get; set; }// 上月固定任务完成完成百分比
@@ -41,7 +41,11 @@ namespace AepApp.Models
         {
             get
             {
-                double r = (regularcompletedCount / Convert.ToDouble(regularTaskCount));
+                double r = 0;
+                if (regularTaskCount != 0)
+                {
+                    r = (regularcompletedCount / Convert.ToDouble(regularTaskCount));
+                }
                 return string.Format("{0:P}", r);
             }
         }

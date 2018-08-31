@@ -79,8 +79,8 @@ namespace AepApp.View.Gridding
             map.Add("pageIndex", pageIndex);
             map.Add("pageSize", ConstantUtils.PAGE_SIZE);
             map.Add("searchKey", mSearchKey);
-            //map.Add("grid", gridId);
-            map.Add("grid", Guid.Parse("72a38f57-1939-40e6-8cca-2960e0d994ea"));
+            map.Add("grid", App.gridUser.grid);
+            //map.Add("grid", Guid.Parse("72a38f57-1939-40e6-8cca-2960e0d994ea"));
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
