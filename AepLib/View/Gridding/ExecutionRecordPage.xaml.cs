@@ -18,11 +18,13 @@ namespace AepApp.View.Gridding
         private string mSearchKey;
         private ObservableCollection<GridTaskHandleRecordModel> dataList = new ObservableCollection<GridTaskHandleRecordModel>();
         private string mTaskId;
-        public ExecutionRecordPage(string taskId)
+        private string mStaff;
+        public ExecutionRecordPage(string taskId,string staff)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             mTaskId = taskId;
+            mStaff = staff;
             SearchData();
         }
 
@@ -61,10 +63,9 @@ namespace AepApp.View.Gridding
         {
             string url = App.EP360Module.url + "/api/gbm/GetTaskHandleList";
             Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", ConstantUtils.PAGE_SIZE);
-            map.Add("searchKey", mSearchKey);
-            map.Add("id", mTaskId);
+            map.Add("staff",mStaff);
+            map.Add("task", mTaskId);
+
 
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);

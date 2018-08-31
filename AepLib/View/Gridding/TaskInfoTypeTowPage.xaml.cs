@@ -6,6 +6,8 @@ using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using AepApp.View.EnvironmentalEmergency;
+using AepApp.Tools;
+using System.Net;
 
 namespace AepApp.View.Gridding
 {
@@ -54,7 +56,7 @@ namespace AepApp.View.Gridding
         /// <param name="e">E.</param>
         void ExecutionRecord(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new ExecutionRecordPage(""));
+            Navigation.PushAsync(new ExecutionRecordPage(_infoModel.id.ToString(),_infoModel.staff.ToString()));
         }
 
         //选择事件
@@ -130,11 +132,11 @@ namespace AepApp.View.Gridding
             GridTaskHandleRecordModel record = new GridTaskHandleRecordModel
             {
                 date = _infoModel.date,
-
-                staff = _infoModel.staff.Value,
                 gridName = _infoModel.gridName,
                 results = @"<p> 初始化的内容 </p><p> 初始化的内容 </p>",
             };
+            if (_infoModel.staff != null)
+                record.staff = _infoModel.staff.Value;
             Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute));
         }
 
@@ -186,6 +188,8 @@ namespace AepApp.View.Gridding
             mNeedExcute = needExcute;
             mNeedUp = needUp;
             //
+            SK.IsVisible = mNeedExcute;
+
             if (!string.IsNullOrEmpty(_taskId)) getTaskInfo();
             else
             {
@@ -217,7 +221,7 @@ namespace AepApp.View.Gridding
                 {
 
                 }
-
+                GR.IsVisible = true;
             }
         }
 
@@ -238,7 +242,6 @@ namespace AepApp.View.Gridding
                      result = result.Replace("taskenterprises", "enterprise");
 
                     _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(result);
-
                     try
                     {
                             foreach (var ass in _infoModel.assignments)
@@ -253,7 +256,10 @@ namespace AepApp.View.Gridding
                     _infoModel.canEdit = false;
                     creatPositionList();
                     creatEnterpriseList();
+                    GR.IsVisible = true;
+                    GH.Height = 0;
                     BindingContext = _infoModel;
+                    ReqGridTaskList();
                 }
                 catch (Exception e)
                 {
@@ -261,6 +267,38 @@ namespace AepApp.View.Gridding
                 }
             }
 
+        }
+
+        //任务执行记录
+        private async void ReqGridTaskList()
+        {
+            string url = App.EP360Module.url + "/api/gbm/GetTaskHandleList";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("task", _infoModel.id);
+            map.Add("staff", _infoModel.staff);
+            string param = JsonConvert.SerializeObject(map);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                try
+                {
+                    List<GridTaskHandleRecordModel> list = JsonConvert.DeserializeObject<List<GridTaskHandleRecordModel>>(res.Results);
+                    if (list != null && list.Count > 0)
+                    {
+                        var recorModel = list[0];
+                        _infoModel.LastRecordTime = recorModel.date;
+                        _infoModel.RecordCount = list.Count;
+                    }else{
+                        //SK.IsVisible = false;
+                    }
+
+                }
+                catch (Exception e)
+                {
+
+                }
+
+            }
         }
 
 

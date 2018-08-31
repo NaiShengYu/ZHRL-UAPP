@@ -460,6 +460,9 @@
     <BundleResource Include="Resources\left.png" />
     <BundleResource Include="Resources\empty.png" />
     <BundleResource Include="Resources\bottom.png" />
+    <BundleResource Include="EditorHome.html" />
+    <BundleResource Include="wangEditor.js" />
+    <BundleResource Include="jquery-1.10.2.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

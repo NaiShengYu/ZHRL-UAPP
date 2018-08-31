@@ -6,7 +6,6 @@ namespace AepApp.Models
     public class GridTaskInfoModel : BaseModel
     {
 
-        public bool canEdit { get; set; }
         public Guid id { get; set; }
         public string rowState { get; set; }
         public Guid? incident { get; set; }
@@ -23,11 +22,32 @@ namespace AepApp.Models
         public int index { get; set; }
         public DateTime date { get; set; }
 
+        private bool CanEdit;
+        public bool canEdit
+        {
+            get { return CanEdit; }
+            set { CanEdit = value; NotifyPropertyChanged(); }
+        }
+
         private string assignName;
         public string AssignName
         {
             get { return assignName; }
             set { assignName = value; NotifyPropertyChanged(); }
+        }
+
+        private DateTime lastRecordTime;
+        public DateTime LastRecordTime
+        {
+            get { return lastRecordTime; }
+            set { lastRecordTime = value; NotifyPropertyChanged(); }
+        }
+
+        private int recordCount;
+        public int RecordCount
+        {
+            get { return recordCount; }
+            set { recordCount = value; NotifyPropertyChanged(); }
         }
 
         private string contents;
