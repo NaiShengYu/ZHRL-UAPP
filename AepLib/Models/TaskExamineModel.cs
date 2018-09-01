@@ -28,11 +28,15 @@ namespace AepApp.Models
         {
             get
             {
-                double r = (completedCount / Convert.ToDouble(taskCount));
+                double r = 0;
+                if (taskCount != 0)
+                {
+                    r = (completedCount / Convert.ToDouble(taskCount));
+                }
                 return string.Format("{0:P}", r);
             }
         }//完成率
-        
+
         public FormattedString totalDes
         {
             get
@@ -152,8 +156,8 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = completedPerM2,
-                    FontSize = 12,
+                    Text = string.IsNullOrWhiteSpace(completedPerM2) ? "0.00%" : completedPerM2,
+                    FontSize = 14,
                     ForegroundColor = Color.Black,
                 });
                 return fs;
@@ -173,8 +177,8 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = completedPerM1,
-                    FontSize = 12,
+                    Text = string.IsNullOrWhiteSpace(completedPerM1) ? "0.00%" : completedPerM1,
+                    FontSize = 14,
                     ForegroundColor = Color.Gray,
                 });
 

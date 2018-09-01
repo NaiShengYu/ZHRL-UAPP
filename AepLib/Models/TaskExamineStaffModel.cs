@@ -42,9 +42,9 @@ namespace AepApp.Models
             get
             {
                 double r = 0;
-                if (regularTaskCount != 0)
+                if (assignedTaskCount != 0)
                 {
-                    r = (regularcompletedCount / Convert.ToDouble(regularTaskCount));
+                    r = (assignedCompletedCount / Convert.ToDouble(assignedTaskCount));
                 }
                 return string.Format("{0:P}", r);
             }
@@ -151,7 +151,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = regularcompletedPerM1,
+                    Text = string.IsNullOrWhiteSpace(regularcompletedPerM1) ? "0.00%" : regularcompletedPerM1,
                     FontSize = 18,
                 });
 
@@ -259,7 +259,7 @@ namespace AepApp.Models
                 });
                 fs.Spans.Add(new Span
                 {
-                    Text = assignedCompletedPerM1,
+                    Text = string.IsNullOrWhiteSpace(assignedCompletedPerM1) ? "0.00%" : assignedCompletedPerM1,
                     FontSize = 18,
                 });
 

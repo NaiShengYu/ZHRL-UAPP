@@ -43,7 +43,7 @@
                     <Grid BackgroundColor="#e6e6e6">
                         <Label Text="下级网格" TextColor="Black" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20, 0, 80, 0"/>
                         <Frame Margin="0,3,20,3" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
-                            <Label Text="100" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
+                            <Label Text="{Binding children.Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
                         </Frame>
                     </Grid>
                 </StackLayout>
@@ -63,8 +63,8 @@
                                 <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding gridLevelDes}" />
                             </StackLayout>
                             <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Spacing="0">
-                                <Label StyleClass="itemtitle" HorizontalOptions="End"  Text="{Binding childrenRatioDes}" FontSize="12"/>
-                                <Label StyleClass="itemsubtitle" HorizontalOptions="End" Text="{Binding childrenLastMonthDes}" FontSize="12"/>
+                                <Label StyleClass="itemtitle" HorizontalOptions="End"  FormattedText="{Binding childrenRatioDes}"/>
+                                <Label StyleClass="itemsubtitle" HorizontalOptions="End" FormattedText="{Binding childrenLastMonthDes}"/>
                             </StackLayout>
                             <Image Grid.Column="2" Source="right" Margin="10, 0, 20, 0" VerticalOptions="Center"/>
                         </Grid>

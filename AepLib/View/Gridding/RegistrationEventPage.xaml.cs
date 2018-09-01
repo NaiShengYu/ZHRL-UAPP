@@ -239,7 +239,7 @@ namespace AepApp.View.Gridding
 
             setPosition();
             NavigationPage.SetBackButtonTitle(this, "");
-            ToolbarItems.Add(new ToolbarItem("", "qrcode", HandleAction));
+            //ToolbarItems.Add(new ToolbarItem("", "qrcode", HandleAction));
             ST.BindingContext = photoList;
         }
 

@@ -12,10 +12,12 @@ namespace AepApp.View
     public partial class MasterPage : ContentPage
     {
         Grid lastselecteditem = null;
+        MasterAndDetailPage _masterdetailpage;
 
         public MasterPage(MasterAndDetailPage masterdetailpage)
         {
             InitializeComponent();
+            _masterdetailpage = masterdetailpage;
 
             layoutSampling.IsVisible = App.moduleConfigSampling != null;
             layoutSampling.BindingContext = App.moduleConfigSampling;
@@ -73,12 +75,13 @@ namespace AepApp.View
         {
             if(App.gridUser.gridLevel == App.GridMaxLevel)
             {
-                Navigation.PushAsync(new TaskExamineStaffPage(App.gridUser.grid));
+                _masterdetailpage.Detail = new NavigationPage(new TaskExamineStaffPage(App.gridUser.grid));
             }
             else
             {
-                Navigation.PushAsync(new TaskExaminePage(App.gridUser.grid));
+                _masterdetailpage.Detail = new NavigationPage(new TaskExaminePage(App.gridUser.grid));
             }
+            _masterdetailpage.IsPresented = false;
         }
     }
 }
