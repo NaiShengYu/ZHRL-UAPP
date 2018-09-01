@@ -16,6 +16,7 @@ namespace AepApp.Models
         public string gridName { get; set; }
         public string parentName { get; set; }
         public string results { get; set; }
+        public string assignment { get; set; }
         public ObservableCollection<AttachmentInfo> attachments { get; set; }
 
         public string staffName { get; set; }//通过staff获取后赋值

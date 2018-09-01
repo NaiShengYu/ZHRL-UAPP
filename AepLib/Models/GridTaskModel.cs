@@ -15,6 +15,7 @@ namespace AepApp.Models
         public string type { get; set; }
         public string addr { get; set; }
         public string pointName { get; set; }
+        public string assignment { get; set; }
 
 
 

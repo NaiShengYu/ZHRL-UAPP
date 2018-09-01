@@ -54,7 +54,7 @@
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid>
+                    <Grid IsEnabled="{Binding canEdit}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="chooseTemplate" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
@@ -80,7 +80,7 @@
                                     <x:String>上报中</x:String>
                                     <x:String>乡级审核</x:String>
                                     <x:String>县级审核</x:String>
-                                    <x:String>已处理 </x:String>
+                                    <x:String>已处理</x:String>
                                 </x:Array>
                             </Picker.ItemsSource>
                         </views:BorderlessPicker>
@@ -96,7 +96,7 @@
                     </Grid>
                     <StackLayout x:Name="enterpriseSK" Spacing="0" />
                     <Button Clicked="AddEnterprise" IsEnabled="{Binding canEdit}" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,20" />
-                                        <!--                相关位置列表-->
+                    <!--                相关位置列表-->
                     <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                         <Label Text="相关位置" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
                         <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
@@ -133,36 +133,36 @@
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                  <StackLayout x:Name="SK">
-                          <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
+                    <StackLayout x:Name="SK">
+                        <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                             <Label Text="执行情况" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
-                    </Grid>
-                    <Grid>
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="taskResult" NumberOfTapsRequired="1" />
-                        </Grid.GestureRecognizers>
+                        </Grid>
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="taskResult" NumberOfTapsRequired="1" />
+                            </Grid.GestureRecognizers>
                             <Label Text="执行结果" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" >
+                            <Label x:Name="resultTime" Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" >
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label" Binding="{Binding RecordCount}" Value="0">
                                         <Setter Property="Text" Value="无"/>
                                     </DataTrigger>
                                 </Label.Triggers>
                             </Label>
-                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
-                    </Grid>
-                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid>
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="ExecutionRecord" NumberOfTapsRequired="1" />
-                        </Grid.GestureRecognizers>
+                            <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        </Grid>
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ExecutionRecord" NumberOfTapsRequired="1" />
+                            </Grid.GestureRecognizers>
                             <Label Text="执行记录" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Frame Margin="0,5,30,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#2c73a3" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
-                            <Label Text="{Binding RecordCount}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
-                        </Frame>
-                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
-                    </Grid>
-                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                            <Frame Margin="0,5,30,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#2c73a3" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
+                                <Label Text="{Binding RecordCount}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Frame>
+                            <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        </Grid>
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
