@@ -12,12 +12,10 @@ namespace AepApp.Models
         public string townHandleTime { get; set; }
         public string countryHandleTime { get; set; }
         public string finishTime { get; set; }
-        public ObservableCollection<GridTaskModel> taskList { get; set; }
+        public ObservableCollection<GridTaskModel> followup { get; set; }
 
-
-
-        public Guid id { get; set; }
-        public Guid grid { get; set; }
+        public Guid? id { get; set; }
+        public Guid? grid { get; set; }
 
         public int state { get; set; }
         public string EventStatus
@@ -32,8 +30,8 @@ namespace AepApp.Models
             set { title = value; NotifyPropertyChanged(); }
         }
 
-        private int type;
-        public int Type                 
+        private int? type;
+        public int? Type                 
         {
             get { return type; }
             set { type = value; NotifyPropertyChanged(); }

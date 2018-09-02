@@ -9,6 +9,12 @@ namespace AepApp.View.Gridding
 {
     public partial class RelatedEnterprisesPage : ContentPage
     {
+        public delegate void addEnterprise();
+        public event addEnterprise addEnter;
+        string searchKey = "";
+        private ObservableCollection<GridEnterpriseModel> dataList = new ObservableCollection<GridEnterpriseModel>();
+        GridEventInfoModel _infoModel = null;
+        ObservableCollection<Enterprise> _enterprise = null;
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
         }
@@ -23,32 +29,48 @@ namespace AepApp.View.Gridding
         {
             GridEnterpriseModel model = e.SelectedItem as GridEnterpriseModel;
             if (model == null) return;
-            _infoModel.enterprise = model.id;
-            _infoModel.EnterpriseName = model.name;
+            if(_infoModel !=null){
+                _infoModel.enterprise = model.id;
+                _infoModel.EnterpriseName = model.name;
+            }
+            if(_enterprise != null){
+                var ent = new Enterprise
+                {
+                    id = Guid.NewGuid(),
+                    enterpriseName = model.name,
+                    enterprise = Guid.Parse(model.id),
+                    rowState = "add",
+                };
 
+                _enterprise.Add(ent);
+                addEnter();
+            }
             listView.SelectedItem = null;
             Navigation.PopAsync();
 
         }
-
-        string searchKey = "";
-        private ObservableCollection<GridEnterpriseModel> dataList = new ObservableCollection<GridEnterpriseModel>();
-        GridEventInfoModel _infoModel = null;
-        public RelatedEnterprisesPage(GridEventInfoModel infoModel)
-        {
+        public RelatedEnterprisesPage(){
             InitializeComponent();
-            _infoModel = infoModel;
             NavigationPage.SetBackButtonTitle(this, "");
             GetAllEnterprise();
+
+        }
+       
+        public RelatedEnterprisesPage(GridEventInfoModel infoModel):this()
+        {
+            _infoModel = infoModel;
         }
 
-
+        public RelatedEnterprisesPage(ObservableCollection<Enterprise> enterprise) : this()
+        {
+            _enterprise = enterprise;
+        }
 
         //获取事件详情
         private async void GetAllEnterprise()
         {
 
-            string url = App.environmentalQualityModel.url + "/api/mod/GetAllEnterprise";
+            string url = App.BasicDataModule.url + "/api/mod/GetAllEnterprise";
             Dictionary<string, string> param = new Dictionary<string, string>();
             param.Add("keys", searchKey);
             string Pa = JsonConvert.SerializeObject(param);

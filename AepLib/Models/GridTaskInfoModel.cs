@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace AepApp.Models
 {
@@ -12,15 +13,50 @@ namespace AepApp.Models
         public Guid? staff { get; set; }
         public Guid? template { get; set; }
         public string title { get; set; }
-        public string userName { get; set; }//任务发出人
-        public string gridName { get; set; }
-        public string incidentTitle { get; set; }
         public DateTime? deadline { get; set; }
         public double? period { get; set; }
-        public int type { get; set; }
-        public int state { get; set; }
-        public int index { get; set; }
+        public int? type { get; set; }
+        public int? state { get; set; }
+        public int? index { get; set; }
         public DateTime date { get; set; }
+
+
+        private string IncidentTitle;//事件标题
+        public string incidentTitle
+        {
+            get { return IncidentTitle; }
+            set { IncidentTitle = value; NotifyPropertyChanged(); }
+        }
+
+        private string UridName;//发出人
+        public string userName
+        {
+            get { return UridName; }
+            set { UridName = value; NotifyPropertyChanged(); }
+        }
+
+
+        private string GridName;
+        public string gridName
+        {
+            get { return GridName; }
+            set { GridName = value; NotifyPropertyChanged(); }
+        }
+
+        private string NatureName;
+        public string natureName
+        {
+            get { return NatureName; }
+            set { NatureName = value; NotifyPropertyChanged(); }
+        }
+
+        private string StateName;
+        public string stateName
+        {
+            get { return StateName; }
+            set { StateName = value; NotifyPropertyChanged(); }
+        }
+
 
         private bool CanEdit;
         public bool canEdit
@@ -56,15 +92,32 @@ namespace AepApp.Models
             get { return contents; }
             set { contents = value; NotifyPropertyChanged(); }
         }
+        private string TemplateName;
+        public string templateName
+        {
+            get { return TemplateName; }
+            set { TemplateName = value; NotifyPropertyChanged(); }
+        }
 
-
+        private string Result;
+        public string results
+        {
+            get { return Result; }
+            set { Result = value; NotifyPropertyChanged(); }
+        }
 
         public ObservableCollection<Assignments> assignments { get; set; }
         public ObservableCollection<Coords> coords { get; set; }
         public ObservableCollection<Enterprise> enterprise { get; set; }
         public ObservableCollection<Guid> taskenterprises { get; set; }
+        public ObservableCollection<taskassignment> taskassignments { get; set; }
 
-
+        private Func<string, Task<string>> _evaluateJavascript;//webview调用js
+        public Func<string, Task<string>> EvaluateJavascript
+        {
+            get { return _evaluateJavascript; }
+            set { _evaluateJavascript = value; }
+        }
 
     }
 
@@ -126,6 +179,21 @@ namespace AepApp.Models
         public string rowState { get; set; }
         public string enterpriseName { get; set; }
 
+    }
+
+    public class taskassignment : BaseModel
+    {
+
+        public Guid? id { get; set; }
+        public string gridcell { get; set; }
+        public string dept { get; set; }
+        public string gridName { get; set; }
+        public Guid? staff { get; set; }
+        public int? type { get; set; }
+        public Guid? grid { get; set; }
+        public taskassignment nextLevel { get; set; }
+
+        //public ObservableCollection<taskassignment> nextLevel { get; set; }
     }
 
 }

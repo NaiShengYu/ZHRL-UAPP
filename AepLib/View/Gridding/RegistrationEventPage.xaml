@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:AepApp.MaterialForms" x:Class="AepApp.View.Gridding.RegistrationEventPage">
     <ContentPage.Content>
-        <Grid RowSpacing="0">
+        <Grid RowSpacing="0" x:Name="GR" IsVisible="false">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="140" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="50" x:Name="bottom"/>
             </Grid.RowDefinitions>
             <ScrollView>
                 <StackLayout>
@@ -30,26 +30,26 @@
                         <Label Text="地址" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                         <Label Text="{Binding Addr}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
-                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                        <Button IsEnabled="{Binding canEdit}" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="经纬度" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                         <Label x:Name="labelLngLat" Text="{Binding LnglatString}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
-                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="EventPositon" />
+                        <Button IsEnabled="{Binding canEdit}" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="EventPositon" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="相关企业" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                         <Label Text="{Binding EnterpriseName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
-                        <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="RelatedEnterPrises" />
+                        <Button IsEnabled="{Binding canEdit}" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="RelatedEnterPrises" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="事件类型" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <views:BorderlessPicker WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="请选择" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
+                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="请选择" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>污水偷拍事件</x:String>
@@ -62,7 +62,7 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="详细描述" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label LineBreakMode="TailTruncation" Text="{Binding Content}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding contents}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                         <Button x:Name="EditContents" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked" />
                     </Grid>
@@ -83,7 +83,13 @@
             </ScrollView>
             <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">
                 <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
-                    <Label Text="拍照" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                    <Label Text="拍照" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding canEdit}" Value="false">
+                                <Setter Property="Text" Value="照片记录"/>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
                     <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
                         <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
                     </Frame>
@@ -93,7 +99,7 @@
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
-            <Grid Grid.Row="2" BackgroundColor="#e6e6e6">
+            <Grid Grid.Row="2" BackgroundColor="#e6e6e6" IsEnabled="{Binding canEdit}">
                 <Button Clicked="takePhoto" Image="image" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" />
                 <Button Text="登记" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" Margin="0,8,10,8" BackgroundColor="Transparent" TextColor="#2c73a3" Clicked="ExecutionRecord" />
             </Grid>

@@ -22,12 +22,21 @@ namespace AepApp.View.Gridding
         private string mSearchKey;
         private ObservableCollection<TaskTemplateModel> dataList = new ObservableCollection<TaskTemplateModel>();
 
+        public delegate void SelectTaskTemplate(object sender, EventArgs args);
+        public SelectTaskTemplate selectTemplateResult;
         public TaskTemplatePage()
         {
             InitializeComponent();
             SearchData();
         }
 
+        void UsingThitTemplate (object sender ,EventArgs args){
+
+            Button button = sender as Button;
+            TaskTemplateModel model = button.BindingContext as TaskTemplateModel;
+            selectTemplateResult(model, null);
+            Navigation.PopAsync();
+        }
 
         public void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
@@ -36,7 +45,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskTemplateInfoPage(v.id));
+            Navigation.PushAsync(new TaskTemplateInfoPage(v.id.ToString()));
             listView.SelectedItem = null;
         }
 

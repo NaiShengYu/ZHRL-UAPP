@@ -33,7 +33,7 @@ namespace AepApp.View.Gridding
 
             //乡级
             if(App.gridUser.gridLevel == App.GridMaxLevel -1){
-                var dsPage = new DisposeEventTypeTowPage(eventM);
+                var dsPage = new DisposeEventPage(eventM);
                 Navigation.PushAsync(dsPage);
                 listView.SelectedItem = null;
 
@@ -66,7 +66,7 @@ namespace AepApp.View.Gridding
             dataList.Clear();
             if (App.gridUser == null)
             {
-                App.gridUser = await(App.Current as App).getStaffInfo();
+                App.gridUser = await(App.Current as App).getStaffInfo(App.userInfo.id);
                 if (App.gridUser == null) return;
             }
             ReqGridEventList();

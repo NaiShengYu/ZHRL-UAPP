@@ -34,7 +34,7 @@ namespace AepApp.View.Gridding
 
         void RegistrationEvent(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new RegistrationEventPage(null));
+            Navigation.PushAsync(new RegistrationEventPage(_eventModel.id.ToString()));
         }
 
         void Handle_Clicked(object sender, System.EventArgs e)
@@ -50,6 +50,7 @@ namespace AepApp.View.Gridding
 
         void addEventFollowUp(object sender, System.EventArgs eventArgs)
         {
+            UpdateIncidentState();
             upDateIncidentfollowup();
         }
         /// <summary>
@@ -66,10 +67,10 @@ namespace AepApp.View.Gridding
         {
             InitializeComponent();
             _eventModel = eventModel;
-            GetTaskDetail();
-
+            getEventInfo();
             _taskInfoModel = new GridTaskInfoModel
             {
+                canEdit = true,
                 id = Guid.NewGuid(),
                 rowState = "add",
                 title = eventModel.Title,
@@ -110,14 +111,69 @@ namespace AepApp.View.Gridding
             Navigation.PushAsync(new SelectGridWorkerPage(_assignments));
         }
 
+
+        //获取事件详情
+        private async void getEventInfo()
+        {
+
+            string url = App.EP360Module.url + "/api/gbm/GetIncidentDetail";
+
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("id", _eventModel.id);
+            string pa = JsonConvert.SerializeObject(param);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, pa, "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    
+                    var eventInfoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    if(eventInfoModel.Followup.Count >0){
+                        Followup followup = eventInfoModel.Followup[0];
+                        GetFollowupDetail(Guid.Parse(followup.id));
+                    }else{
+                        _followMoel = new GridEventFollowModel
+                        {
+                            rowState = "add",
+                            id = Guid.NewGuid(),
+                            canEdit = true,
+                            title = _eventModel.Title,
+                            date = DateTime.Now,
+                            staff = App.userInfo.id,
+                            staffName = App.userInfo.userName,
+                            staffTel = App.userInfo.tel,
+                            state = 4,
+                            incident = _eventModel.id,
+                            level = App.gridUser.gridLevel,
+                            gridName = App.gridUser.gridName,
+                            grid = App.gridUser.id,
+                            Tasks = new ObservableCollection<GridEventFollowTaskModel>(),
+                        };
+                        GR.IsVisible = true;
+                        BindingContext = _followMoel;
+                    }
+                }
+                catch (Exception ex)
+                {
+                
+                
+                
+                
+                
+                }
+            }
+
+        }
+
+
         /// <summary>
         /// 处理事件记录
         /// </summary>
-        private async void GetTaskDetail()
+        private async void GetFollowupDetail(Guid followId)
         {
             string url = App.EP360Module.url + "/api/gbm/GetIncidentFollowupDetail";
             Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("id", _eventModel.id);
+            map.Add("id", followId);
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
@@ -127,6 +183,7 @@ namespace AepApp.View.Gridding
                     _followMoel = JsonConvert.DeserializeObject<GridEventFollowModel>(res.Results);
                     _followMoel.title = _eventModel.Title;
                     _followMoel.rowState = "otherwise";
+                    _followMoel.gridName = _eventModel.GridName;
                     BindingContext = _followMoel;
                     if (_followMoel != null)
                     {
@@ -141,9 +198,9 @@ namespace AepApp.View.Gridding
                         getTaskInfo(followTaskModel.id);
                     }else{
                         
-
-
                     }
+                    GR.IsVisible = true;
+                    if (_followMoel.state == 4) SW.IsToggled = false;
 
                 }
                 catch (Exception x)
@@ -160,13 +217,13 @@ namespace AepApp.View.Gridding
                         staffTel = App.userInfo.tel,
                         state = 4,
                         incident = _eventModel.id,
-                        //level = App.gridUser.gridLevel,
-                        //gridName = App.gridUser.gridName,
-                        //grid = App.gridUser.id,
+                        level = App.gridUser.gridLevel,
+                        gridName = App.gridUser.gridName,
+                        grid = App.gridUser.id,
                         Tasks = new ObservableCollection<GridEventFollowTaskModel>(),
                     };
                     BindingContext = _followMoel;
-
+                    GR.IsVisible = true;
                 }
             }
         }
@@ -176,7 +233,7 @@ namespace AepApp.View.Gridding
         private async void upDateIncidentfollowup()
         {
 
-            if(_followMoel.Uping==false && _followMoel.Downing == false){
+            if(_followMoel.Uping==false && _followMoel.Downing == false && SW.IsToggled ==true){
                 await DisplayAlert("提示", "请选择‘下发责令整改任务’或者‘上报上级处理’", "确定");
                 return;
             }
@@ -186,11 +243,69 @@ namespace AepApp.View.Gridding
                     await DisplayAlert("提示", "请指派网格员", "确定");
                     return;
                 }
-                par.Add("task", _taskInfoList);
+
+                ObservableCollection<Dictionary<string, object>> assigmengtList = new ObservableCollection<Dictionary<string, object>>();
+
+
+                Dictionary<string, object> dic = new Dictionary<string, object>();
+                dic.Add("id", _taskInfoModel.id);
+                dic.Add("rowState", _taskInfoModel.rowState);
+                if (_followMoel.incident != Guid.Empty) dic.Add("incident", _followMoel.incident);
+                dic.Add("staff", _followMoel.staff);
+                if (_taskInfoModel.template != Guid.Empty) dic.Add("template", _taskInfoModel.template);
+                dic.Add("title", _taskInfoModel.title);
+                dic.Add("contents", _taskInfoModel.Contents);
+                dic.Add("deadline", _taskInfoModel.deadline);
+                dic.Add("period", _taskInfoModel.period);
+                dic.Add("type", _taskInfoModel.type);
+                dic.Add("state", _taskInfoModel.state);
+                dic.Add("index", _taskInfoModel.index);
+                dic.Add("date", _taskInfoModel.date);
+                ObservableCollection<Dictionary<string, object>> taskList = new ObservableCollection<Dictionary<string, object>>();
+                foreach (var item in _taskInfoModel.assignments)
+                {
+                    Dictionary<string, object> assigmengtdic = new Dictionary<string, object>();
+                    assigmengtdic.Add("id", item.id);
+                    assigmengtdic.Add("rowState", item.rowState);
+                    assigmengtdic.Add("dept", item.dept);
+                    assigmengtdic.Add("staff", item.staff);
+                    assigmengtdic.Add("grid", item.grid);
+                    assigmengtdic.Add("type", item.type);
+                    assigmengtList.Add(assigmengtdic);
+                }
+
+                ObservableCollection<Dictionary<string, object>> coordsList = new ObservableCollection<Dictionary<string, object>>();
+                foreach (var item in _taskInfoModel.coords)
+                {
+                    Dictionary<string, object> coordsdic = new Dictionary<string, object>();
+                    coordsdic.Add("id", item.id);
+                    coordsdic.Add("rowState", item.rowState);
+                    coordsdic.Add("title", item.title);
+                    coordsdic.Add("lng", item.lng);
+                    coordsdic.Add("lat", item.lat);
+                    coordsdic.Add("remarks", item.remarks);
+                    coordsdic.Add("index", item.index);
+                    coordsList.Add(coordsdic);
+                }
+
+                ObservableCollection<Dictionary<string, object>> enterprisesList = new ObservableCollection<Dictionary<string, object>>();
+                foreach (var item in _taskInfoModel.enterprise)
+                {
+                    Dictionary<string, object> enterprisesdic = new Dictionary<string, object>();
+                    enterprisesdic.Add("id", item.id);
+                    enterprisesdic.Add("rowState", item.rowState);
+                    enterprisesdic.Add("enterprise", item.enterprise);
+                    enterprisesList.Add(enterprisesdic);
+                }
+                dic.Add("enterprises", enterprisesList);
+                dic.Add("coords", coordsList);
+                dic.Add("assignments", assigmengtList);
+                taskList.Add(dic);
+                par.Add("tasks", taskList);
             }
 
             string url = App.EP360Module.url + "/api/gbm/updateincidentfollowup";
-            _followMoel.state = SW.IsToggled == true ? 7 : 8;
+            _followMoel.state = SW.IsToggled == true ? 2 : 4;
             par.Add("id", _followMoel.id);
             par.Add("rowState", _followMoel.rowState);
             par.Add("incident", _eventModel.id);
@@ -204,13 +319,31 @@ namespace AepApp.View.Gridding
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                if (res.Results == "OK")
+                if (res.Results == "\"OK\"")
                 {
                     await DisplayAlert("提示", "成功", "确定");
+                    _followMoel.rowState = "otherwise";
+                               
                 }
             }
 
         }
+
+        private async void UpdateIncidentState()
+        {
+
+            if (SW.IsToggled) return;
+             
+            string url = App.EP360Module.url + "/api/gbm/UpdateIncidentState";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("id", _eventModel.id);
+            map.Add("state", 4);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+            }
+        }
+
 
 
         private async void getTaskInfo(Guid taskId)
@@ -261,7 +394,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            DeviceUtils.phone(auditor.tel);
+            DeviceUtils.phone(auditor.telephone);
         }
 
         private void BtnMsg_Clicked(object sender, EventArgs e)
@@ -270,7 +403,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            DeviceUtils.sms(auditor.tel);
+            DeviceUtils.sms(auditor.telephone);
         }
     }
 }

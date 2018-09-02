@@ -15,8 +15,7 @@ namespace AepApp.View.Gridding
         private UserInfoModel auditor;//审核人
         private GridEventFollowModel detail;
         private GridEventFollowModel _followMoel;
-        string _eventId = "";
-        private ObservableCollection<GridTaskInfoModel> taskInfoList = new ObservableCollection<GridTaskInfoModel>();
+        private ObservableCollection<Dictionary<string, object>> taskInfoList = new ObservableCollection<Dictionary<string, object>>();
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -32,6 +31,17 @@ namespace AepApp.View.Gridding
 
         }
 
+        void showEvent(object sender,EventArgs eventArgs){
+            Navigation.PushAsync(new RegistrationEventPage(_eventModel.id.ToString()));
+
+        }
+
+        void townDisposeEvent(object sender,System.EventArgs e){
+            var dsPage = new DisposeEventPage(_eventModel);
+            Navigation.PushAsync(dsPage);
+        }
+
+
         void Handle_Clicked(object sender, System.EventArgs e)
         {
             if (_followMoel !=null)
@@ -40,20 +50,20 @@ namespace AepApp.View.Gridding
                 editContentsPage.Title = "备注";
                 Navigation.PushAsync(editContentsPage);
             }
-          
         }
         void AddEventTask(object sender, System.EventArgs e){
 
             TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage("", false, _eventModel.id.ToString(),false,"");
-            towPage.AddATask += (object taskinfo, EventArgs args) =>
+            towPage.AddATask += (object taskinfo,object taskModel1, EventArgs args) =>
             {
-                GridTaskInfoModel taskInfoModel = taskinfo as GridTaskInfoModel;
-                if(taskInfoModel !=null){
-                    taskInfoList.Add(taskInfoModel);
+                Dictionary<string, object> task = taskinfo as Dictionary<string,object>;
+                GridTaskInfoModel taskInfoModel = taskModel1 as GridTaskInfoModel;
+                if(task !=null){
+                    taskInfoList.Add(task);
                     GridEventFollowTaskModel taskModel = new GridEventFollowTaskModel
                     {
                         name = taskInfoModel.title,
-                        state = taskInfoModel.state,
+                        state = taskInfoModel.state.Value,
                     };
                     _followMoel.Tasks.Add(taskModel);
                 }
@@ -65,8 +75,8 @@ namespace AepApp.View.Gridding
         }
 
         void addEventFollowUp (object sender,System.EventArgs eventArgs){
-        
 
+            UpdateIncidentState();
             upDateIncidentfollowup();
         }
 
@@ -75,6 +85,7 @@ namespace AepApp.View.Gridding
         {
             InitializeComponent();
             _eventModel = eventModel;
+
             GetTaskDetail();
 
          
@@ -143,12 +154,12 @@ namespace AepApp.View.Gridding
             par.Add("remarks", _followMoel.Remarks);
             par.Add("level", _followMoel.level);
             par.Add("state", _followMoel.state);
-            par.Add("task", taskInfoList);
+            par.Add("tasks", taskInfoList);
             string param = JsonConvert.SerializeObject(par);
 
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK){
-                if(res.Results =="OK"){
+                if(res.Results =="\"OK\""){
                     await DisplayAlert("提示", "成功", "确定");
                 }
 
@@ -156,6 +167,22 @@ namespace AepApp.View.Gridding
             }
 
         }
+
+        private async void UpdateIncidentState()
+        {
+
+            if (SW.IsToggled) return;
+
+            string url = App.EP360Module.url + "/api/gbm/UpdateIncidentState";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("id", _eventModel.id);
+            map.Add("state", 3);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+            }
+        }
+
 
         /// <summary>
         /// 审核人

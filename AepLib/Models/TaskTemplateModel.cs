@@ -6,7 +6,7 @@ namespace AepApp.Models
 {
     public class TaskTemplateModel
     {
-        public string id { get; set; }
+        public Guid? id { get; set; }
         public string period;
         public string title { get; set; }
         public string replycontents { get; set; }

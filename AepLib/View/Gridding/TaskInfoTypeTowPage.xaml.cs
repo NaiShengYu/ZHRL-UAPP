@@ -19,7 +19,7 @@ namespace AepApp.View.Gridding
         string _eventId = "";
         bool mNeedUp = true;
         string _assignmentId = "";
-        public delegate void AddTaskToEvent(object sender, EventArgs args);
+        public delegate void AddTaskToEvent(object sender,object model, EventArgs args);
         public event AddTaskToEvent AddATask;
 
         void updata(object sender, System.EventArgs eventArgs)
@@ -73,7 +73,11 @@ namespace AepApp.View.Gridding
         //添加相关企业
         void AddEnterprise(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new GridTreeViewPage());
+            var selectEnt = new RelatedEnterprisesPage(_infoModel.enterprise);
+            selectEnt.addEnter +=() =>{
+                creatEnterpriseList();  
+            };
+            Navigation.PushAsync(selectEnt);
         }
         //添加相关位置
         void AddPosition(object sender, System.EventArgs e)
@@ -134,7 +138,7 @@ namespace AepApp.View.Gridding
                 date = _infoModel.date,
                 gridName = _infoModel.gridName,
                 assignment = _assignmentId,
-                results = @"<p> 初始化的内容 </p><p> 初始化的内容 </p>",
+                results = _infoModel.results,
             };
             if (_infoModel.staff != null)
                 record.staff = _infoModel.staff.Value;
@@ -143,7 +147,7 @@ namespace AepApp.View.Gridding
 
         void editContent(object sender, System.EventArgs e)
         {
-            EditContentsPage editContentsPage = new EditContentsPage(_infoModel, "EditContents", 2);
+            GridTaskContentsPage editContentsPage = new GridTaskContentsPage(_infoModel);
             editContentsPage.Title = "任务内容";
             Navigation.PushAsync(editContentsPage);
         }
@@ -151,18 +155,17 @@ namespace AepApp.View.Gridding
         {
             var picker = sender as Picker;
             var typeName = picker.SelectedItem as string;
-            if (typeName == "日常任务") _infoModel.type = 0;
-            if (typeName == "时间处理任务") _infoModel.type = 1;
+            _infoModel.type = ConstConvertUtils.TaskNatureString2Type(typeName);
+            _infoModel.natureName = typeName;
         }
 
         private void pickerStatud_SelectedIndexChanged(object sender, EventArgs e)
         {
             var picker = sender as Picker;
             var typeName = picker.SelectedItem as string;
-            if (typeName == "上报中") _infoModel.type = 1;
-            if (typeName == "乡级审核") _infoModel.type = 2;
-            if (typeName == "县级审核") _infoModel.type = 3;
-            if (typeName == "已处理") _infoModel.type = 4;
+            _infoModel.state = ConstConvertUtils.TaskStateString2Type(typeName);
+            _infoModel.stateName = typeName;
+
         }
 
         /// <summary>
@@ -172,7 +175,14 @@ namespace AepApp.View.Gridding
         /// <param name="e"></param>
         private void chooseTemplate(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new TaskTemplatePage());
+            TaskTemplatePage templatePage = new TaskTemplatePage();
+            templatePage.selectTemplateResult += (object s, EventArgs args) =>{
+                TaskTemplateModel model = s as TaskTemplateModel;
+                _infoModel.template = model.id;
+                _infoModel.Contents = model.contents;
+                _infoModel.templateName = model.title;
+            };
+            Navigation.PushAsync(templatePage);
         }
 
 
@@ -203,18 +213,22 @@ namespace AepApp.View.Gridding
                     date = DateTime.Now,
                     deadline = DateTime.Now,
                     staff = App.userInfo.id,
-                    state = 2,
+                    state = 1,
                     type = 1,
                     id = Guid.NewGuid(),
                     index = 2,
                     userName = App.userInfo.userName,
+                    gridName = App.gridUser.gridName,
                     coords = new ObservableCollection<Coords>(),
                     enterprise = new ObservableCollection<Enterprise>(),
                     assignments = new ObservableCollection<Assignments>(),
                 };
+                if (!string.IsNullOrEmpty(_eventId)) getEventInfo();
+
+
+                _infoModel.natureName = ConstConvertUtils.TaskNatureType2String(_infoModel.type.Value);
+                _infoModel.stateName = ConstConvertUtils.TaskStateType2String(_infoModel.state.Value);
                 BindingContext = _infoModel;
-                pickerNature.Title = "日常任务";
-                pickerStatus.Title = "上报中";
                 try
                 {
                     _infoModel.incident = new Guid(_eventId);
@@ -239,32 +253,63 @@ namespace AepApp.View.Gridding
                 try
                 {
                     string result = hTTPResponse.Results.Replace("[null]", "[]");
-                     result = result.Replace("taskassignments", "assignments");
                      result = result.Replace("taskcoords", "coords");
-
                     _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(result);
-                    try
-                    {
-                            foreach (var ass in _infoModel.assignments)
-                        {
-                            _infoModel.AssignName = _infoModel.AssignName + ass.gridName;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
+                   
+                    _infoModel.natureName = ConstConvertUtils.TaskNatureType2String(_infoModel.type.Value);
+                    _infoModel.stateName = ConstConvertUtils.TaskStateType2String(_infoModel.state.Value);
                     _infoModel.canEdit = false;
                     creatPositionList();
+
+                    if (_infoModel.taskassignments != null && _infoModel.taskassignments.Count > 0)
+                        _infoModel.AssignName = getAssignName(_infoModel.taskassignments[0], "");
+
                     GR.IsVisible = true;
                     GH.Height = 0;
                     BindingContext = _infoModel;
                     ReqGridTaskList();
                     _infoModel.enterprise = new ObservableCollection<Enterprise>();
-
+                    GetStaffInfo();
+                    GetSendUserInfo();
                     if (_infoModel.taskenterprises !=null && _infoModel.taskenterprises.Count > 0) ReqEnters();
                 }
                 catch (Exception e)
+                {
+                    await Navigation.PopAsync();
+                }
+            }
+
+        }
+
+        private string getAssignName(taskassignment currentItem,string currentName){
+               
+            if (string.IsNullOrEmpty(currentName)) currentName = currentItem.gridName;
+                else currentName = currentName +"-"+currentItem.gridName;
+
+            if(currentItem.nextLevel != null){
+                return getAssignName(currentItem.nextLevel, currentName);
+                }
+            return currentName;
+        }
+
+        //获取事件详情
+        private async void getEventInfo()
+        {
+
+            string url = App.EP360Module.url + "/api/gbm/GetIncidentDetail";
+
+            Dictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("id", _eventId);
+            string pa = JsonConvert.SerializeObject(param);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, pa, "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    var eventInfoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    _infoModel.incidentTitle = eventInfoModel.title;
+                }
+                catch (Exception ex)
                 {
                     Navigation.PopAsync();
                 }
@@ -272,10 +317,35 @@ namespace AepApp.View.Gridding
 
         }
 
+        /// <summary>
+        /// 网格部门
+        /// </summary>
+        /// <param name="staffId"></param>
+        private async void GetStaffInfo()
+        {
+            GridUserInfoModel auditor = await (App.Current as App).getStaffInfo(_infoModel.staff.Value);
+            if (auditor != null)
+            {
+                _infoModel.gridName = auditor.gridName;
+            }
+        }
+
+        /// <summary>
+        /// 发出人名称
+        /// </summary>
+        /// <param name="staffId"></param>
+        private async void GetSendUserInfo()
+        {
+            UserInfoModel auditor = await (App.Current as App).GetUserInfo(_infoModel.staff.Value);
+            if (auditor != null)
+            {
+                _infoModel.userName = auditor.userName;
+            }
+        }
         //根据id获取企业
         private async void ReqEnters(){
 
-            string url = App.environmentalQualityModel.url + "/api/mod/GetAllEnterpriseByarrid";
+            string url = App.BasicDataModule.url + "/api/mod/GetAllEnterpriseByarrid";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("items",_infoModel.taskenterprises);
             string param = JsonConvert.SerializeObject(map);
@@ -301,7 +371,9 @@ namespace AepApp.View.Gridding
             string url = App.EP360Module.url + "/api/gbm/GetTaskHandleList";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("task", _infoModel.id);
-            map.Add("staff", _infoModel.staff);
+
+            if(_infoModel.staff !=null)map.Add("staff", _infoModel.staff);
+            else map.Add("staff", "");
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == HttpStatusCode.OK)
@@ -314,6 +386,7 @@ namespace AepApp.View.Gridding
                         var recorModel = list[0];
                         _infoModel.LastRecordTime = recorModel.date;
                         _infoModel.RecordCount = list.Count;
+                        _infoModel.results = recorModel.results;
                         resultTime.Text = _infoModel.LastRecordTime.ToString("yyyy-MM-dd");
                     }else{
                         //SK.IsVisible = false;
@@ -363,9 +436,12 @@ namespace AepApp.View.Gridding
             if (string.IsNullOrEmpty(_infoModel.title))
             {
                 await DisplayAlert("提示", "请添加标题", "确定");
-
                 return;
             }
+
+
+
+
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("id", _infoModel.id);
             dic.Add("rowState", _infoModel.rowState);
@@ -380,23 +456,58 @@ namespace AepApp.View.Gridding
             dic.Add("state", _infoModel.state);
             dic.Add("index", _infoModel.index);
             dic.Add("date", _infoModel.date);
-            dic.Add("enterprise", _infoModel.enterprise);
-            dic.Add("coords", _infoModel.coords);
-            dic.Add("assignments", _infoModel.assignments);
+            ObservableCollection<Dictionary<string, object>> assigmengtList = new ObservableCollection<Dictionary<string, object>>();
+            foreach (var item in _infoModel.assignments)
+            {
+                Dictionary<string, object> assigmengtdic = new Dictionary<string, object>();
+                assigmengtdic.Add("id", item.id);
+                assigmengtdic.Add("rowState", item.rowState);
+                assigmengtdic.Add("dept", item.dept);
+                assigmengtdic.Add("staff", item.staff);
+                assigmengtdic.Add("grid", item.grid);
+                assigmengtdic.Add("type", item.type);
+                assigmengtList.Add(assigmengtdic);
+            }
 
+            ObservableCollection<Dictionary<string, object>> coordsList = new ObservableCollection<Dictionary<string, object>>();
+            foreach (var item in _infoModel.coords)
+            {
+                Dictionary<string, object> coordsdic = new Dictionary<string, object>();
+                coordsdic.Add("id", item.id);
+                coordsdic.Add("rowState", item.rowState);
+                coordsdic.Add("title", item.title);
+                coordsdic.Add("lng", item.lng);
+                coordsdic.Add("lat", item.lat);
+                coordsdic.Add("remarks", item.remarks);
+                coordsdic.Add("index", item.index);
+                coordsList.Add(coordsdic);
+            }
 
-            //if(mNeedUp ==false){
-            //    AddATask(_infoModel, new EventArgs());
-            //    Navigation.PopAsync();
-            //    return;
-            //}
+            ObservableCollection<Dictionary<string, object>> enterprisesList = new ObservableCollection<Dictionary<string, object>>();
+            foreach (var item in _infoModel.enterprise)
+            {
+                Dictionary<string, object> enterprisesdic = new Dictionary<string, object>();
+                enterprisesdic.Add("id", item.id);
+                enterprisesdic.Add("rowState", item.rowState);
+                enterprisesdic.Add("enterprise", item.enterprise);
+                enterprisesList.Add(enterprisesdic);
+            }
+            dic.Add("enterprises", enterprisesList);
+            dic.Add("coords", coordsList);
+            dic.Add("assignments", assigmengtList);
+
+            if(mNeedUp ==false){
+                AddATask(dic, _infoModel,new EventArgs());
+                await Navigation.PopAsync();
+                return;
+            }
 
             string url = App.EP360Module.url + "/api/gbm/updatetask";
             string param = JsonConvert.SerializeObject(dic);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                if (hTTPResponse.Results == "OK") _infoModel.rowState = "upd";
+                if (hTTPResponse.Results == "\"OK\"") _infoModel.rowState = "upd";
             }
 
         }
@@ -409,7 +520,7 @@ namespace AepApp.View.Gridding
         /// </summary>
         void creatEnterpriseList()
         {
-           
+            enterpriseSK.Children.Clear();
             for (int i = 0; i < _infoModel.enterprise.Count; i++)
             {
                 var po = _infoModel.enterprise[i];

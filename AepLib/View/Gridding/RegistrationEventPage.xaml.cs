@@ -20,7 +20,8 @@ namespace AepApp.View.Gridding
         private int UploadSuccessCount = 0;
         private ObservableCollection<AttachmentInfo> photoList = new ObservableCollection<AttachmentInfo>();
         private ObservableCollection<GridAttachmentUploadModel> uploadModel = new ObservableCollection<GridAttachmentUploadModel>();
-
+        GridEventInfoModel _infoModel = null;
+        string _eventId = "";
 
         private void pickerNature_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -194,8 +195,7 @@ namespace AepApp.View.Gridding
         }
 
 
-        GridEventInfoModel _infoModel = null;
-        string _eventId = "";
+
         public RegistrationEventPage(string eventId)
         {
             InitializeComponent();
@@ -229,17 +229,15 @@ namespace AepApp.View.Gridding
                     
                 }
 
-
-
                 BindingContext = _infoModel;
                 Title = "登记事件";
                 getAddressWihtLocation();
-
+                GR.IsVisible = true;
             }
 
             setPosition();
             NavigationPage.SetBackButtonTitle(this, "");
-            ToolbarItems.Add(new ToolbarItem("", "qrcode", HandleAction));
+            //ToolbarItems.Add(new ToolbarItem("", "qrcode", HandleAction));
             ST.BindingContext = photoList;
         }
 
@@ -330,25 +328,25 @@ namespace AepApp.View.Gridding
             }
 
             if (SW.IsToggled == true)
-                _infoModel.state = 4;
-            else _infoModel.state = 0;
+                _infoModel.state = 3;
+            else _infoModel.state = 2;
 
 
             string url = App.EP360Module.url + "/api/gbm/updateincident";
             parameModel parame = new parameModel
             {
-                id = _infoModel.id,
+                id = _infoModel.id.Value,
                 rowState = "add",
-                grid = _infoModel.gridcell,
+                grid = _infoModel.gridcell.Value,
                 title = _infoModel.title,
                 date = _infoModel.date,
                 handleDate = DateTime.Now,
-                contents = _infoModel.Content,
+                contents = _infoModel.contents,
                 results = _infoModel.Results,
-                type = _infoModel.type,
-                state = _infoModel.state,
-                lat = _infoModel.lat,
-                lng = _infoModel.lng,
+                type = _infoModel.type.Value,
+                state = _infoModel.state.Value,
+                lat = _infoModel.lat.Value,
+                lng = _infoModel.lng.Value,
                 addr = _infoModel.Addr,
                 staff = App.userInfo.id,
                 enterprise = _infoModel.enterprise,
@@ -360,7 +358,7 @@ namespace AepApp.View.Gridding
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
 
-                if (hTTPResponse.Results == "OK") Navigation.PopAsync();
+                if (hTTPResponse.Results == "\"OK\"")await Navigation.PopAsync();
 
 
 
@@ -385,11 +383,15 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
+                    
                     _infoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
                     _infoModel.canEdit = false;
-                    BindingContext = _infoModel;
                     getAddressWihtLocation();
-
+                    getStaffInfo();
+                    getEnterprise();
+                    BindingContext = _infoModel;
+                    bottom.Height = 0;
+                    GR.IsVisible = true;
                 }
                 catch (Exception ex)
                 {
@@ -403,28 +405,29 @@ namespace AepApp.View.Gridding
         private async void getStaffInfo()
         {
 
-            string url = App.FrameworkURL + "/api/fw/GetUserByid?id="+_infoModel.staff;
-
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.FrameworkToken);
-            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            var auditor = await (App.Current as App).GetUserInfo(_infoModel.staff.Value);
+            if (auditor != null)
             {
-                _infoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
-                BindingContext = _infoModel;
+                _infoModel.Tel = auditor.telephone;
+                _infoModel.UserName = auditor.userName;
             }
-
         }
 
         //获取相关企业名称
         private async void getEnterprise()
         {
 
-            string url = App.FrameworkURL + "/api/Modmanage/GetEnterpriseByid";
-
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "id="+_infoModel.enterprise, "GET", App.FrameworkToken);
+            string url = App.BasicDataModule.url + "/api/Modmanage/GetEnterpriseByid";
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("id", _infoModel.enterprise);
+            string par = JsonConvert.SerializeObject(dic);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, par, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                _infoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
-                BindingContext = _infoModel;
+                var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
+                if(enterpriseModel !=null){
+                    _infoModel.EnterpriseName = enterpriseModel.name;
+                }
             }
 
         }

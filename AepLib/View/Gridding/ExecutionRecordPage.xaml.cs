@@ -35,7 +35,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskResultPage(record.id, record, false));
+            Navigation.PushAsync(new TaskResultPage(record.id.Value, record, false));
             listView.SelectedItem = null;
         }
 

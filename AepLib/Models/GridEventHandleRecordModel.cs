@@ -9,10 +9,10 @@ namespace AepApp.Models
     //任务执行记录
     public class GridTaskHandleRecordModel
     {
-        public Guid id { get; set; }
+        public Guid? id { get; set; }
         public DateTime date { get; set; }
-        public Guid staff { get; set; }
-        public Guid gridcell { get; set; }
+        public Guid? staff { get; set; }
+        public Guid? gridcell { get; set; }
         public string gridName { get; set; }
         public string parentName { get; set; }
         public string results { get; set; }

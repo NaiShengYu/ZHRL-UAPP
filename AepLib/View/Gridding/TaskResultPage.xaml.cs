@@ -33,6 +33,7 @@ namespace AepApp.View.Gridding
             mIsEdit = isEdit;
             mTaskId = taskId;
             mRecord = record;
+            //mRecord.results = "<p>咯哦无聊咯</p>";
             GridOperate.IsVisible = mIsEdit;
             GetStaffInfo();
             if (!isEdit) GetRecordDetail();
@@ -81,7 +82,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            UserInfoModel user = await (App.Current as App).GetUserInfo(mRecord.staff);
+            UserInfoModel user = await (App.Current as App).GetUserInfo(mRecord.staff.Value);
             if (user != null)
             {
                 LabelStaff.Text = user.userName;

@@ -175,6 +175,7 @@ namespace AepApp.View
             //{
                 App.isSetToLogin = true;  //从设置按钮进入登入按钮
             Application.Current.MainPage = new NavigationPage(new LoginPage());
+            App.gridUser = null;//清空数据
             //Navigation.PushAsync(new LoginPage());  //自动登陆界面进去
             //}
             //else {

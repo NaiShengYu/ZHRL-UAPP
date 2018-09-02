@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AepApp.View.Gridding.TaskTemplatePage"
@@ -25,6 +25,8 @@
                         <ViewCell>
                             <Grid VerticalOptions="Center" Padding="20, 10, 0, 10">
                                 <Label StyleClass="itemtitle" HorizontalOptions="Start" VerticalOptions="Center" Text="{Binding title}"/>
+                                <Button HorizontalOptions="End" VerticalOptions="Center" Margin="10,5,25,5" BackgroundColor="#2c73a3" WidthRequest="80" HeightRequest="40" TextColor="White" Text="使用此模板" Clicked="UsingThitTemplate"/>
+
                                 <Image Source="right" HorizontalOptions="End" VerticalOptions="Center" Margin="0, 0, 10, 0"/>
                             </Grid>
                         </ViewCell>

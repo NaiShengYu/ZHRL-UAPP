@@ -7,16 +7,16 @@ namespace AepApp.Models
     {
 
         public bool canEdit { get; set; }
-        public Guid id { get; set; }
+        public Guid? id { get; set; }
         public string title { get; set; }
         public Guid? staff { get; set; }
         public DateTime date { get; set; }
-        public double lat { get; set; }
-        public double lng { get; set; }
+        public double? lat { get; set; }
+        public double? lng { get; set; }
         public string enterprise  { get; set; }
-        public int state { get; set; }
-        public int type  { get; set; }
-        public Guid gridcell { get; set; }
+        public int? state { get; set; }
+        public int? type  { get; set; }
+        public Guid? gridcell { get; set; }
         public string gridName { get; set; }
         public ObservableCollection<Followup> Followup { get; set; }
         public bool stateStatus{
@@ -34,11 +34,11 @@ namespace AepApp.Models
             set { addr = value; NotifyPropertyChanged(); }
         }
 
-        private string content;
-        public string Content
+        private string Contents;
+        public string contents
         {
-            get { return content; }
-            set {  content= value; NotifyPropertyChanged(); }
+            get { return Contents; }
+            set {  Contents= value; NotifyPropertyChanged(); }
         }
         private string results;
         public string Results
@@ -73,7 +73,7 @@ namespace AepApp.Models
         private string lnglatString;
         public string LnglatString
         {
-            get { return lng.ToString("f6") + " E, " + lng.ToString("f6") + " N"; }
+            get { return lng.Value.ToString("f6") + " E, " + lng.Value.ToString("f6") + " N"; }
             set { lnglatString = value; NotifyPropertyChanged(); }
         }
 

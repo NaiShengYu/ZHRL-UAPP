@@ -40,37 +40,42 @@ namespace AepApp.View.Gridding
                     {
                         foreach (var children1 in rootModel.children)
                         {
-                            if (rootModel.isChecked)
+                            if (children1.isChecked)
                             {
                                 Assignments s1 = new Assignments
                                 {
                                     id = Guid.NewGuid(),
                                     rowState = "add",
-                                    type = rootModel.type.Value,
+                                    type = children1.type.Value,
                                 };
-                                if (rootModel.type == 0) s1.staff = children1.id;
-                                if (rootModel.type == 1) s1.grid = children1.id;
+                                if (children1.type == 0) {
+                                    s1.staff = children1.id;
+                                    s1.grid = rootModel.id;
+                                }
+                                if (children1.type == 1) s1.grid = children1.id;
                                 taskModel.assignments.Add(s1);
                                 taskModel.AssignName = taskModel.AssignName + "  " + rootModel.name + children1.name;
 
                             }
                             else
                             {
-                                foreach (var children2 in rootModel.children)
+                                foreach (var children2 in children1.children)
                                 {
-                                    if (rootModel.isChecked)
+                                    if (children2.isChecked)
                                     {
                                         Assignments s1 = new Assignments
                                         {
                                             id = Guid.NewGuid(),
                                             rowState = "add",
-                                            type = rootModel.type.Value,
+                                            type = children1.type.Value,
                                         };
-                                        if (rootModel.type == 0) s1.staff = children2.id;
-                                        if (rootModel.type == 1) s1.grid = children2.id;
+                                        if (children2.type == 0) {
+                                            s1.staff = children2.id;
+                                            s1.grid = children1.id;
+                                        }
+                                        if (children2.type == 1) s1.grid = children2.id;
                                         taskModel.assignments.Add(s1);
                                         taskModel.AssignName = taskModel.AssignName + "  " + rootModel.name + children1.name + children2.name;
-
                                     }
                                     else
                                     {

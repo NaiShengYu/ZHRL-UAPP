@@ -12,6 +12,7 @@ namespace AepApp.Models
         public Guid? incident { get; set; }
         public Guid? previous { get; set; }
         public Guid? staff { get; set; }
+        public Guid? grid { get; set; }
         public DateTime date { get; set; }
         public int level { get; set; }
         public int state { get; set; }
