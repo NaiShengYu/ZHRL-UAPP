@@ -17,5 +17,29 @@ namespace AepApp.Tools
 
             return strText;
         }
+
+        public static bool IsImg(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                return false;
+            }
+            if (fileName.LastIndexOf(".") < 0)
+            {
+                return false;
+            }
+            string ends = fileName.Substring(fileName.LastIndexOf(".") + 1);
+            if (string.IsNullOrWhiteSpace(ends))
+            {
+                return false;
+            }
+            if (ends.ToLower().Equals("png") || ends.ToLower().Equals("jpg") || ends.ToLower().Equals("jpeg")
+                || ends.ToLower().Equals("gif"))
+            {
+                return true;
+            }
+            return false;
+
+        }
     }
 }

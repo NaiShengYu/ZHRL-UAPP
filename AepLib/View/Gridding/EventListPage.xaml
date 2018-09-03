@@ -45,17 +45,12 @@
                                         <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="3">
                                             <Setter Property="BackgroundColor" Value="#CF9000"/>
                                         </DataTrigger>
+                                        <!--虚假-->
+                                        <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="4">
+                                            <Setter Property="BackgroundColor" Value="#859000"/>
+                                        </DataTrigger>
                                     </Grid.Triggers>
-                                    <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation" TextColor="White">
-                                        <Label.Triggers>
-                                            <DataTrigger TargetType="Label" Binding="{Binding Type}" Value="1">
-                                                <Setter Property="Text" Value="污水偷排事件"/>
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Label" Binding="{Binding Type}" Value="2">
-                                                <Setter Property="Text" Value="恶臭事件"/>
-                                            </DataTrigger>
-                                        </Label.Triggers>
-                                    </Label>
+                                    <Label Text="{Binding typeDes}" VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="TailTruncation" TextColor="White"/>
                                 </Grid>
                             </Grid>
                         </ViewCell>

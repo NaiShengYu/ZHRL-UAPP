@@ -26,8 +26,9 @@ namespace AepApp.View.Gridding
         private void pickerNature_SelectedIndexChanged(object sender, EventArgs e)
         {
             var picker = sender as Picker;
+            var typeName = picker.SelectedItem as string;
             _infoModel.typeName = picker.SelectedItem as string;
-            _infoModel.type = ConstConvertUtils.GridTaskType2Int(_infoModel.typeName);
+            _infoModel.type = ConstConvertUtils.GridEventType2Int(_infoModel.typeName);
         }
 
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
@@ -239,7 +240,7 @@ namespace AepApp.View.Gridding
                 }catch(Exception ex){
                     
                 }
-                _infoModel.typeName = ConstConvertUtils.GridTaskType2String(_infoModel.type.Value);
+                _infoModel.typeName = ConstConvertUtils.GridEventType2String(_infoModel.type.Value);
 
                 BindingContext = _infoModel;
                 Title = "登记事件";
@@ -401,7 +402,7 @@ namespace AepApp.View.Gridding
                     getAddressWihtLocation();
                     getStaffInfo();
                     getEnterprise();
-                    _infoModel.typeName = ConstConvertUtils.GridTaskType2String(_infoModel.type.Value);
+                    _infoModel.typeName = ConstConvertUtils.GridEventType2String(_infoModel.type.Value);
                     BindingContext = _infoModel;
                     bottom.Height = 0;
                     GR.IsVisible = true;

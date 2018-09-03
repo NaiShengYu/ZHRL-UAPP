@@ -1,4 +1,5 @@
 ﻿using AepApp.Models;
+using AepApp.Tools;
 using AepApp.View.EnvironmentalEmergency;
 using CloudWTO.Services;
 using Newtonsoft.Json;
@@ -31,7 +32,7 @@ namespace AepApp.View.Gridding
         /// <param name="id"></param>
         private async void GetInformationDetail(string id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return;
             }
@@ -39,7 +40,7 @@ namespace AepApp.View.Gridding
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", id);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
-            if(res.StatusCode == System.Net.HttpStatusCode.OK)
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {
@@ -78,9 +79,21 @@ namespace AepApp.View.Gridding
             var g = sender as Grid;
             AttachmentInfo attach = g.BindingContext as AttachmentInfo;
             string fileName = attach.filename;
-            string url = App.EP360Module.url + "/api/gbm/GetAttachment/id?id=" + attach.id;
-            HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileName, App.EmergencyToken);
-            await Navigation.PushAsync(new ShowFilePage(fileName));
+            //string url = App.EP360Module.url + "/api/gbm/GetAttachment/" + attach.id;
+            if (!string.IsNullOrWhiteSpace(attach.url))
+            {
+                attach.url = attach.url.Replace("~", "");
+            }
+            string url = App.EP360Module.url + attach.url;
+            if (StringUtils.IsImg(fileName))
+            {
+                await Navigation.PushAsync(new ShowFilePage(url, true));
+            }
+            else
+            {
+                HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileName, App.FrameworkToken);
+                await Navigation.PushAsync(new ShowFilePage(fileName));
+            }
         }
     }
 }

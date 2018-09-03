@@ -268,6 +268,11 @@ namespace AepApp
                         case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
                 }
+                //GetModuleConfigEP360();
+                //GetModuleConfigSampling();
+                //GetModuleConfigFramework();
+                //postEmergencyReq();
+                //postEnvironmentalReq();
                 if (EP360Module != null && EP360Module.status.Equals("0")) { GetModuleConfigEP360(); App.BaseUrl = EP360Module.url; } else _isEP360 = true;
                 if (SamplingModule != null && SamplingModule.status.Equals("0")) GetModuleConfigSampling(); else _isSampling = true;
                 if (BasicDataModule != null && BasicDataModule.status.Equals("0")) GetModuleConfigFramework(); else _ISBasicData = true;

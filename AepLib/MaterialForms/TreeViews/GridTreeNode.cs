@@ -1,4 +1,5 @@
-﻿using Sample;
+﻿using AepApp.Tools;
+using Sample;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -50,13 +51,6 @@ namespace AepApp.MaterialForms.TreeViews
             set { Set("Title", ref _Title, value); }
         }
 
-        double? _Score = 0;
-        public double? Score
-        {
-            get { return _Score; }
-            set { Set("Score", ref _Score, value); }
-        }
-
         int? _Total = 0;
         public int? Total
         {
@@ -75,15 +69,16 @@ namespace AepApp.MaterialForms.TreeViews
             }
         }
 
+        public void CheckNode()
+        {
+            MessagingCenter.Send<ObservableObject, GridTreeNode>(this, SubcriberConst.MSG_TREEVIEW_NODE_CHECK, this);
+        }
 
         //选择或取消选择
-        public void CheckEvent(bool isReverse)
+        public void CheckEvent()
         {
-            if (isReverse)
-            {
-                IsChecked = !IsChecked;
-                testTreeModel.isChecked = IsChecked;
-            }
+            IsChecked = !IsChecked;
+            testTreeModel.isChecked = IsChecked;
             foreach (GridTreeNode node in Descendants)
             {
                 if (node.IsChecked == IsChecked)
@@ -122,7 +117,7 @@ namespace AepApp.MaterialForms.TreeViews
         public GridTreeNode()
         {
             ToggleIsExpandedCommand = new Command(obj => ExpandChanged());
-            ToggleIsCheckedCommand = new Command(obj => CheckEvent(true));
+            ToggleIsCheckedCommand = new Command(obj => CheckEvent());
         }
 
         public void ExpandChanged()

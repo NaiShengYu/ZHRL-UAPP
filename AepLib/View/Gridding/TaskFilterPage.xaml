@@ -53,8 +53,8 @@
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="网格"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
-                <Entry StyleClass="itemsubtitle" Text="{Binding griders}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"  
-                       Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchGrider}, Path=IsToggled}"/>
+                <Label StyleClass="itemsubtitle" Text="{Binding griders}" HorizontalOptions="End" VerticalOptions="Center"  
+                       Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchGrider}, Path=IsToggled}" VerticalTextAlignment="End"/>
                 <Switch x:Name="switchGrider"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isGriderOn}" Toggled="Switch_Toggled_Griders"/>
             </Grid>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />

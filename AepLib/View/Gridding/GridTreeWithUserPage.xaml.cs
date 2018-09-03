@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AepApp.MaterialForms.TreeViews;
 using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -14,12 +15,16 @@ namespace AepApp.View.Gridding
     {
         ObservableCollection<TestTreeModel> gridList = new ObservableCollection<TestTreeModel>();
         GridTaskInfoModel _taskModel;
+        private List<GridTreeNode> checkModelList = new List<GridTreeNode>();
+
         public GridTreeWithUserPage(GridTaskInfoModel taskModel)
         {
             InitializeComponent();
-            getGridAndUser(Guid.Parse("72a38f57-1939-40e6-8cca-2960e0d994ea"), gridList);
+            checkModelList.Clear();
+            getGridAndUser(App.gridUser.grid, gridList);
             _taskModel = taskModel;
-            ToolbarItems.Add(new ToolbarItem("确定", "", () => {
+            ToolbarItems.Add(new ToolbarItem("确定", "", () =>
+            {
                 _taskModel.assignments.Clear();
                 foreach (var rootModel in gridList)
                 {
@@ -48,7 +53,8 @@ namespace AepApp.View.Gridding
                                     rowState = "add",
                                     type = children1.type.Value,
                                 };
-                                if (children1.type == 0) {
+                                if (children1.type == 0)
+                                {
                                     s1.staff = children1.id;
                                     s1.grid = rootModel.id;
                                 }
@@ -69,7 +75,8 @@ namespace AepApp.View.Gridding
                                             rowState = "add",
                                             type = children1.type.Value,
                                         };
-                                        if (children2.type == 0) {
+                                        if (children2.type == 0)
+                                        {
                                             s1.staff = children2.id;
                                             s1.grid = children1.id;
                                         }
@@ -103,7 +110,12 @@ namespace AepApp.View.Gridding
                 testModel.isExpanded = !testModel.isChecked;
                 if (testModel.children.Count == 0) getGridAndUser(testModel.id, testModel.children);
             });
-
+            MessagingCenter.Unsubscribe<ContentView, GridTreeNode>(this, SubcriberConst.MSG_TREEVIEW_NODE_CHECK);
+            MessagingCenter.Subscribe<ContentView, GridTreeNode>(this, SubcriberConst.MSG_TREEVIEW_NODE_CHECK, async (arg1, arg2) =>
+            {
+                var node = arg2 as GridTreeNode;
+                CheckNodeMultiple(node);
+            });
         }
 
         void creatView()
@@ -125,7 +137,51 @@ namespace AepApp.View.Gridding
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<ContentView, TestTreeModel>(this, "ExapndChanged");
+            MessagingCenter.Unsubscribe<ContentView, GridTreeNode>(this, SubcriberConst.MSG_TREEVIEW_NODE_CHECK);
+        }
 
+        //选择或取消选择 -- 多选
+        public void CheckNodeMultiple(GridTreeNode nodes)
+        {
+            nodes.IsChecked = !nodes.IsChecked;
+            nodes.testTreeModel.isChecked = nodes.IsChecked;
+            foreach (GridTreeNode node in nodes.Descendants)
+            {
+                node.IsChecked = !node.IsChecked;
+                node.testTreeModel.isChecked = node.IsChecked;
+                if (node.IsChecked)
+                {
+                    checkModelList.Add(node);
+                }
+                else
+                {
+                    checkModelList.Remove(node);
+                }
+            }
+
+            GridTreeNode p = nodes.Parent as GridTreeNode;
+            while (p != null)
+            {
+                int checkedCount = 0;
+                foreach (GridTreeNode node in p.ChildNodes)
+                {
+                    if (!node.IsChecked)
+                    {
+                        p.IsChecked = false;
+                        p.testTreeModel.isChecked = p.IsChecked;
+                        checkModelList.Remove(p);
+                        break;
+                    }
+                    checkedCount++;
+                }
+                if (checkedCount == p.Children.Count)
+                {
+                    p.IsChecked = true;
+                    p.testTreeModel.isChecked = p.IsChecked;
+                    checkModelList.Add(p);
+                }
+                p = p.Parent as GridTreeNode;
+            }
         }
 
         private void CheckAll(bool check)

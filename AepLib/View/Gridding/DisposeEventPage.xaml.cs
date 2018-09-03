@@ -107,7 +107,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new SelectGridWorkerPage(_assignments));
+            Navigation.PushAsync(new SelectGridWorkerPage(_assignments, _eventModel.id));
         }
 
 

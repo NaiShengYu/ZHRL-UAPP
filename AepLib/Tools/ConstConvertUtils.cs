@@ -56,11 +56,16 @@ namespace AepApp.Tools
             {
                 return 3;
             }
+            else if ("虚假事件".Equals(status))
+            {
+                return 4;
+            }
             return 1;
         }
-        public static string GridTaskType2String(int type)
+
+        public static string GridEventType2String(int type)
         {
-            string des = "";
+            string des = "未知类型 ";
             switch (type)
             {
                 case 1:
@@ -73,7 +78,12 @@ namespace AepApp.Tools
             return des;
         }
 
-        public static int GridTaskType2Int(string type)
+        /// <summary>
+        /// 事件类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static int GridEventType2Int(string type)
         {
             if ("恶臭事件".Equals(type))
             {

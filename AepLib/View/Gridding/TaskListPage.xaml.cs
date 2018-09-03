@@ -37,7 +37,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskInfoTypeTowPage(taskM.task.ToString(),true,"",true,taskM.assignment));
+            Navigation.PushAsync(new TaskInfoTypeTowPage(taskM.task.ToString(), true, "", true, taskM.assignment));
             listView.SelectedItem = null;
         }
 
@@ -170,7 +170,6 @@ namespace AepApp.View.Gridding
             MessagingCenter.Unsubscribe<ContentPage, TaskFilterCondition>(this, SUBSCRIBE_SEARCH);
             MessagingCenter.Subscribe<ContentPage, TaskFilterCondition>(this, SUBSCRIBE_SEARCH, (arg1, arg2) =>
             {
-                //filterCondition = arg2 as TaskFilterCondition;
                 if (filterCondition.isKeyOn || filterCondition.isStatusOn || filterCondition.isTypeOn || filterCondition.isGriderOn
                 || filterCondition.isTimeOn || filterCondition.isAddressOn || filterCondition.isWatcherOn)
                 {
@@ -205,9 +204,11 @@ namespace AepApp.View.Gridding
             public string type { get; set; }
             public int TaskType
             {
-                get { return ConstConvertUtils.GridTaskType2Int(type); }
+                get { return ConstConvertUtils.GridEventType2Int(type); }
             }
-            public string griders { get; set; }
+
+            private string _griders;
+            public string griders { get { return _griders; }set { _griders = value; NotifyPropertyChanged(); } }
             public DateTime dayStart { get; set; }
             public TimeSpan timeStart { get; set; }
             public DateTime dayEnd { get; set; }

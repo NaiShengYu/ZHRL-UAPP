@@ -37,8 +37,18 @@ namespace AepApp.View
                 for (int i = 0; i < _enterList.Count; i++)
                 {
                     EnterpriseModel enter = _enterList[i];
+
+                    if(string.IsNullOrWhiteSpace(enter.lng)|| string.IsNullOrWhiteSpace(enter.lat))
+                    {
+                        continue;
+                    }
+
                     double lng = double.Parse(enter.lng);
                     double lat = double.Parse(enter.lat);
+                    if(lng <=0 || lat <= 0)
+                    {
+                        continue;
+                    }
 
                     AzmLabelView lv = new AzmLabelView(enter.name, new AzmCoord(lng, lat));
                     lv.BindingContext = enter;

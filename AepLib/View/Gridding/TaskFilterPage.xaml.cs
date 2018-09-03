@@ -69,9 +69,13 @@ namespace AepApp.View.Gridding
 
         private void Switch_Toggled_Griders(object sender, ToggledEventArgs e)
         {
-            Navigation.PushAsync(new GridTreeViewPage());
-            MessagingCenter.Unsubscribe<ContentPage, TestTreeModel>(this, "SelectGrider");
-            MessagingCenter.Subscribe<ContentPage, TestTreeModel>(this, "SelectGrider", (arg1, arg2) =>
+            if (!e.Value)
+            {
+                return;
+            }
+            Navigation.PushAsync(new GridTreeViewPage(true));
+            MessagingCenter.Unsubscribe<ContentPage, TestTreeModel>(this, SubcriberConst.MSG_SELECT_GRIDER);
+            MessagingCenter.Subscribe<ContentPage, TestTreeModel>(this, SubcriberConst.MSG_SELECT_GRIDER, (arg1, arg2) =>
             {
                 TestTreeModel node = arg2 as TestTreeModel;
                 if (node != null)
@@ -121,6 +125,7 @@ namespace AepApp.View.Gridding
             conditions.dayEnd = DatePickerEnd.Date;
             MessagingCenter.Send<ContentPage, TaskListPage.TaskFilterCondition>(this, TaskListPage.SUBSCRIBE_SEARCH, conditions);
             MessagingCenter.Unsubscribe<ContentPage, string>(this, TaskListPage.SUBSCRIBE_SEARCH);
+            MessagingCenter.Unsubscribe<ContentPage, string>(this, SubcriberConst.MSG_SELECT_GRIDER);
         }
     }
 }

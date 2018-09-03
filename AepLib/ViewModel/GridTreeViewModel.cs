@@ -33,7 +33,7 @@ namespace AepApp.ViewModel
             MyTree = new GridTreeNode
             {
                 Title = data.name,
-                Total = data.count.Value,
+                Total = data.count == null ? 0 : data.count.Value,
                 IsLeaf = data.isLeaf,
                 IsChecked = data.isChecked,
                 IsExpanded = data.isExpanded,
@@ -56,7 +56,7 @@ namespace AepApp.ViewModel
                     IsChecked = m.isChecked,
                     IsExpanded = m.isExpanded,
                     IsLeaf = m.isLeaf,
-                    Total = m.count.Value,
+                    Total = m.count == null ? 0 : m.count.Value,
                     testTreeModel = m,
                 };
                 treeNode.Children.Add(node);
