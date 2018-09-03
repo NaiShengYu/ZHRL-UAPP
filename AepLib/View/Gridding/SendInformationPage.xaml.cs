@@ -55,7 +55,7 @@ namespace AepApp.View.Gridding
             hasMore = true;
             dataList.Clear();
             if (App.gridUser == null)
-                App.gridUser = await(App.Current as App).getStaffInfo();
+                App.gridUser = await(App.Current as App).getStaffInfo(App.userInfo.id);
             ReqGridInformationList();
         }
 

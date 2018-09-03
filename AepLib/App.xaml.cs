@@ -268,11 +268,11 @@ namespace AepApp
                         case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
                 }
-                if (EP360Module != null) { GetModuleConfigEP360(); App.BaseUrl = EP360Module.url; } else _isEP360 = true;
-                if (SamplingModule != null) GetModuleConfigSampling(); else _isSampling = true;
-                if (BasicDataModule != null) GetModuleConfigFramework(); else _ISBasicData = true;
-                if (EmergencyModule != null) postEmergencyReq(); else _isEmergency = true;
-                if (environmentalQualityModel != null) postEnvironmentalReq(); else _isenvironmental = true;
+                if (EP360Module != null && EP360Module.status.Equals("0")) { GetModuleConfigEP360(); App.BaseUrl = EP360Module.url; } else _isEP360 = true;
+                if (SamplingModule != null && SamplingModule.status.Equals("0")) GetModuleConfigSampling(); else _isSampling = true;
+                if (BasicDataModule != null && BasicDataModule.status.Equals("0")) GetModuleConfigFramework(); else _ISBasicData = true;
+                if (EmergencyModule != null && EmergencyModule.status.Equals("0")) postEmergencyReq(); else _isEmergency = true;
+                if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")) postEnvironmentalReq(); else _isenvironmental = true;
 
             }
 
@@ -416,13 +416,13 @@ namespace AepApp
         /// 获取网格化登录人员信息
         /// </summary>
         /// <value>The get staff info.</value>
-        public async Task<GridUserInfoModel> getStaffInfo()
+        public async Task<GridUserInfoModel> getStaffInfo(Guid staffid)
         {
             try
             {
                 string url = App.EP360Module.url + "/api/gbm/GetStaffInfo";
-                Dictionary<string, string> dic = new Dictionary<string, string>();
-                dic.Add("id", userInfo.id.ToString());
+                Dictionary<string, object> dic = new Dictionary<string, object>();
+                dic.Add("id", staffid);
                 string param = JsonConvert.SerializeObject(dic);
                 GridUserInfoModel gridUserInfo = null;
                 HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", FrameworkToken);
@@ -608,7 +608,6 @@ namespace AepApp
             }
             finally
             {
-                //postEnvironmentalReq();
                 _isEmergency = true;
                 canGo();
             }

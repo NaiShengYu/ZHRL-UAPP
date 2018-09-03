@@ -12,11 +12,11 @@ namespace AepApp.Models
         public Guid id { get; set; }
         public string username { get; set; }
         public string mobile { get; set; }
-        public int grade { get; set; }
+        public int? grade { get; set; }
         public Guid? grid { get; set; }
         public string state { get; set; }
         public string gridName { get; set; }
-        public int gridLevel { get; set; }
+        public int? gridLevel { get; set; }
         public DateTime? registerdate { get; set; }
 
     }

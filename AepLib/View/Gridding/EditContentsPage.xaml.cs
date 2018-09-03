@@ -13,7 +13,7 @@ namespace AepApp.View.Gridding
                 if (_type == "EditResult") 
                     _EventInfoModel.Results = e.NewTextValue;
             if (_type == "EditContent")
-                    _EventInfoModel.Content = e.NewTextValue;    
+                    _EventInfoModel.contents = e.NewTextValue;    
             }
             if(_page ==2){
                 _taskInfoModel.Contents = e.NewTextValue;
@@ -45,7 +45,7 @@ namespace AepApp.View.Gridding
             if (_type == "EditResult")
                 EditText.Text = _EventInfoModel.Results;
             if (_type == "EditContent")
-                EditText.Text = _EventInfoModel.Content;     
+                EditText.Text = _EventInfoModel.contents;     
          
         }
 

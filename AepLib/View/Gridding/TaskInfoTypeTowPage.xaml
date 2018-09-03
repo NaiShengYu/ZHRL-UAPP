@@ -19,11 +19,11 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="任务性质" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="请选择" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
+                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="{Binding natureName}" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>日常任务</x:String>
-                                    <x:String>时间处理任务</x:String>
+                                    <x:String>事件任务</x:String>
                                 </x:Array>
                             </Picker.ItemsSource>
                         </views:BorderlessPicker>
@@ -59,7 +59,8 @@
                             <TapGestureRecognizer Tapped="chooseTemplate" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="模板类型" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="现场检查任务" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label Text="{Binding templateName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
@@ -74,13 +75,17 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="状态" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerStatus" Title="请选择" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatud_SelectedIndexChanged">
+                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerStatus" Title="{Binding stateName}" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatud_SelectedIndexChanged">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
-                                    <x:String>上报中</x:String>
-                                    <x:String>乡级审核</x:String>
-                                    <x:String>县级审核</x:String>
-                                    <x:String>已处理</x:String>
+                                    <x:String>未下发</x:String>
+                                    <x:String>未审核</x:String>
+                                    <x:String>已审核</x:String>
+                                    <x:String>已撤销</x:String>
+                                    <x:String>执行中</x:String>
+                                    <x:String>退回</x:String>
+                                    <x:String>任务完结</x:String>
+
                                 </x:Array>
                             </Picker.ItemsSource>
                         </views:BorderlessPicker>
@@ -91,7 +96,7 @@
                     <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                         <Label Text="相关企业" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
                         <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
-                            <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label Text="{Binding enterprise.Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
                         </Frame>
                     </Grid>
                     <StackLayout x:Name="enterpriseSK" Spacing="0" />
@@ -124,8 +129,8 @@
                         <Switch IsEnabled="{Binding canEdit}" IsToggled="true" VerticalOptions="Center" HorizontalOptions="End" Margin="10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid>
-                        <Grid.GestureRecognizers>
+                    <Grid IsEnabled="{Binding canEdit}">
+                        <Grid.GestureRecognizers >
                             <TapGestureRecognizer Tapped="choiseUser" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="指派给" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />

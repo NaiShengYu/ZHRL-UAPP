@@ -41,15 +41,16 @@ namespace AepApp.View.Gridding
                 finishLayout.IsVisible = true;
             }
 
-            if (eventM.taskList == null || eventM.taskList.Count == 0)
+            if (eventM.followup == null || eventM.followup.Count == 0)
             {
                 taskLayout.IsVisible = false;
                 gridRoot.RowDefinitions[3].Height = 0;
             }
             else
             {
+                
                 taskLayout.IsVisible = true;
-                taskListView.ItemsSource = eventM.taskList;
+                taskListView.ItemsSource = eventM.followup;
             }
 
         }
