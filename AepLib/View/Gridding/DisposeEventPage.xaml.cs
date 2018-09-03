@@ -125,31 +125,58 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    
                     var eventInfoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
-                    if(eventInfoModel.Followup.Count >0){
-                        Followup followup = eventInfoModel.Followup[0];
-                        GetFollowupDetail(Guid.Parse(followup.id));
-                    }else{
+                    if (eventInfoModel.state == 3)//事件处理完成了
+                    {
                         _followMoel = new GridEventFollowModel
                         {
                             rowState = "add",
                             id = Guid.NewGuid(),
-                            canEdit = true,
+                            canEdit = false,
                             title = _eventModel.Title,
-                            date = DateTime.Now,
+                            date = eventInfoModel.date,
                             staff = App.userInfo.id,
                             staffName = App.userInfo.userName,
                             staffTel = App.userInfo.tel,
-                            state = 4,
                             incident = _eventModel.id,
                             level = App.gridUser.gridLevel,
                             gridName = App.gridUser.gridName,
                             grid = App.gridUser.id,
-                            Tasks = new ObservableCollection<GridEventFollowTaskModel>(),
                         };
-                        GR.IsVisible = true;
                         BindingContext = _followMoel;
+                        GR.IsVisible = true;
+                        sureH.Height = 0;
+
+                    }
+                    else
+                    {
+                        if (eventInfoModel.Followup.Count > 0)
+                        {
+                            Followup followup = eventInfoModel.Followup[0];
+                            GetFollowupDetail(Guid.Parse(followup.id));
+                        }
+                        else
+                        {
+                            _followMoel = new GridEventFollowModel
+                            {
+                                rowState = "add",
+                                id = Guid.NewGuid(),
+                                canEdit = true,
+                                title = _eventModel.Title,
+                                date = DateTime.Now,
+                                staff = App.userInfo.id,
+                                staffName = App.userInfo.userName,
+                                staffTel = App.userInfo.tel,
+                                state = 4,
+                                incident = _eventModel.id,
+                                level = App.gridUser.gridLevel,
+                                gridName = App.gridUser.gridName,
+                                grid = App.gridUser.id,
+                                Tasks = new ObservableCollection<GridEventFollowTaskModel>(),
+                            };
+                            GR.IsVisible = true;
+                            BindingContext = _followMoel;
+                        }
                     }
                 }
                 catch (Exception ex)
