@@ -7,23 +7,16 @@
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
             <SearchBar Placeholder="搜索站点名称" TextChanged="Handle_TextChanged" x:Name="seach"></SearchBar>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
-            <ListView x:Name="listView" RowHeight="60" ItemSelected="Handle_ItemSelected">
+            <ListView x:Name="listView" RowHeight="60" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
                             <Grid HorizontalOptions="Fill" VerticalOptions="Center">
                                 <Label Margin="20,0,0,0" FontSize="17" TextColor="Black" Text="{Binding name}" VerticalOptions="Center"/>
-                                <local:CurvedCornersLabel Text="{Binding count}" Margin="0,0,20,0" HorizontalOptions="End"
+                                <local:CurvedCornersLabel x:Name="LabelCount" Text="{Binding count}" Margin="0,0,20,0" HorizontalOptions="End"
                                                           CurvedBackgroundColor="#c00000" TextColor="White" WidthRequest="50" HeightRequest="30" CurvedCornerRadius="15"
-                                                          VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Font="17" IsVisible="true" VerticalOptions="Center">
-                                    <Label.Triggers>
-                                          <DataTrigger TargetType="Label"
-                                              Binding="{Binding count}"
-                                              Value="0">
-                                              <Setter Property="IsVisible" Value="false" />
-                                          </DataTrigger>
-                                      </Label.Triggers>
-                                </local:CurvedCornersLabel>
+                                                          VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Font="17" VerticalOptions="Center"
+                                                          IsVisible="{Binding countIsVisible}"/>
                             </Grid>
                         </local:ExtendedViewCell>
                     </DataTemplate>

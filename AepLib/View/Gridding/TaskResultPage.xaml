@@ -17,7 +17,7 @@
                         <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <views:BorderlessDatePicker x:Name="DatePicker" Format="yyyy-MM-dd HH:mm" FontSize="16" TextColor="Gray" 
                                                     VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" 
-                                                    Date="{Binding date}"/>
+                                                    Date="{Binding date}" IsEnabled="False"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>

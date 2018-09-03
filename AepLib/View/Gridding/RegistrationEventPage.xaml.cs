@@ -27,7 +27,7 @@ namespace AepApp.View.Gridding
         {
             var picker = sender as Picker;
             var typeName = picker.SelectedItem as string;
-            _infoModel.type = ConstConvertUtils.GridTaskType2Int(typeName);
+            _infoModel.type = ConstConvertUtils.GridEventType2Int(typeName);
         }
 
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)

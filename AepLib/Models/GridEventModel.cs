@@ -37,6 +37,11 @@ namespace AepApp.Models
             set { type = value; NotifyPropertyChanged(); }
         }
 
+        public string typeDes
+        {
+            get { return ConstConvertUtils.GridEventType2String(type == null ? 0 : type.Value); }
+        }
+
         private DateTime date;
         public DateTime Date                 
         {

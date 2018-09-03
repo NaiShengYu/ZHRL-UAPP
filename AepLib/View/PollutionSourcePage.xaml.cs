@@ -17,7 +17,12 @@ namespace AepApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PollutionSourcePage : ContentPage
     {
+        private int pageIndex = 0;
+        private int totalCount;
         private string mSearchKey;
+        ObservableCollection<EnterpriseModel> idsList = new ObservableCollection<EnterpriseModel>();
+        ObservableCollection<EnterpriseModel> dataList = new ObservableCollection<EnterpriseModel>();
+
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -38,7 +43,6 @@ namespace AepApp.View
 
         private string result;
         resutlDic pollutions = null;
-        ObservableCollection<EnterpriseModel> dataList = new ObservableCollection<EnterpriseModel>();
 
         public PollutionSourcePage()
         {
@@ -57,6 +61,7 @@ namespace AepApp.View
 
         private void GetData()
         {
+            pageIndex = 0;
             GetPollutionSiteData();
         }
 
@@ -69,27 +74,42 @@ namespace AepApp.View
             //string uri = "http://dev.azuratech.com:50001/api/mod/GetAllEnterprise";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("keys", mSearchKey);
+            map.Add("pageIndex", pageIndex);
+            map.Add("pageSize", 10);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(uri, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                dataList.Clear();
+                if (pageIndex == 0)
+                {
+                    dataList.Clear();
+                }
+                idsList.Clear();
                 try
                 {
-                    List<EnterpriseModel> list = JsonConvert.DeserializeObject<List<EnterpriseModel>>(res.Results);
-                    if (list != null)
+                    pollutions = JsonConvert.DeserializeObject<resutlDic>(res.Results);
+                    if (pollutions != null)
                     {
-
-                        foreach (var item in list)
+                        totalCount = pollutions.count;
+                        List<EnterpriseModel> list = pollutions.Items;
+                        if (list != null)
                         {
-                            dataList.Add(item);
+
+                            foreach (var item in list)
+                            {
+                                dataList.Add(item);
+                                idsList.Add(item);
+                            }
+                            pageIndex++;
                         }
+                        GetPollutionSiteExtraData();
                     }
-                    GetPollutionSiteExtraData();
+
                 }
                 catch (Exception e)
                 {
                 }
             }
+
         }
 
         /// <summary>
@@ -97,17 +117,16 @@ namespace AepApp.View
         /// </summary>
         private async void GetPollutionSiteExtraData()
         {
-            if (dataList.Count == 0)
+            if (idsList.Count == 0)
             {
                 return;
             }
-            ObservableCollection<EnterpriseModel> enterprises = new ObservableCollection<EnterpriseModel>();
             string uri = App.EP360Module.url + "/api/AppEnterprise/GetEnterpriseByArrid";
             Dictionary<string, object> map = new Dictionary<string, object>();
             List<Guid> ids = new List<Guid>();
-            foreach (var item in dataList)
+            foreach (var item in idsList)
             {
-                if (item.id != null)
+                if (item.id != null && item.id != Guid.Empty)
                     ids.Add(item.id);
             }
             map.Add("items", ids);
@@ -117,32 +136,29 @@ namespace AepApp.View
                 try
                 {
                     List<EnterpriseModel> extraList = JsonConvert.DeserializeObject<List<EnterpriseModel>>(res.Results);
-                    if (extraList != null)
+                    if (extraList != null && extraList.Count > 0)
                     {
-                        extraList.Sort(delegate (EnterpriseModel x, EnterpriseModel y)
-                        {
-                            return y.count.CompareTo(x.count);
-                        });
                         foreach (var extra in extraList)
                         {
                             foreach (var d in dataList)
                             {
                                 if (d != null && extra != null && (d.id == extra.id))
                                 {
-                                    extra.name = d.name;
-                                    extra.lat = d.lat;
-                                    extra.lng = d.lng;
+                                    d.count = extra.count;
+                                    d.stvalue = extra.stvalue;
+                                    d.time = extra.time;
+                                    d.value = extra.value;
                                     continue;
                                 }
                             }
-                            enterprises.Add(extra);
                         }
                     }
                 }
                 catch (Exception e)
                 {
                 }
-                listView.ItemsSource = enterprises;
+                dataList.OrderByDescending(item => item.count);
+                listView.ItemsSource = dataList;
             }
         }
 
@@ -158,10 +174,10 @@ namespace AepApp.View
                 string uri = App.BaseUrl + "/api/AppEnterprise/GetEnterpriseList?keys=";
                 result = EasyWebRequest.sendGetHttpWebRequest(uri);
                 pollutions = JsonConvert.DeserializeObject<resutlDic>(result);
-                pollutions.Items.Sort(delegate (EnterpriseModel x, EnterpriseModel y)
-                {
-                    return y.count.CompareTo(x.count);
-                });
+                //pollutions.Items.Sort(delegate (EnterpriseModel x, EnterpriseModel y)
+                //{
+                //    return y.count.CompareTo(x.count);
+                //});
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
@@ -198,6 +214,18 @@ namespace AepApp.View
         {
             public int count { get; set; }
             public List<EnterpriseModel> Items { get; set; }
+        }
+
+        private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            EnterpriseModel item = e.Item as EnterpriseModel;
+            if (item == dataList[dataList.Count - 1] && item != null)
+            {
+                if (totalCount > dataList.Count)
+                {
+                    GetPollutionSiteData();
+                }
+            }
         }
     }
 }

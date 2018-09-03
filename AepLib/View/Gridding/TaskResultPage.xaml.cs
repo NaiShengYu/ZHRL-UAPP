@@ -95,7 +95,7 @@ namespace AepApp.View.Gridding
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", mRecord.id);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
-            if(res.StatusCode == System.Net.HttpStatusCode.OK)
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {
@@ -181,7 +181,7 @@ namespace AepApp.View.Gridding
             map.Add("id", mIsEdit ? Guid.NewGuid() : mRecord.id);
             map.Add("rowState", mIsEdit ? "add" : "");
             map.Add("task", mTaskId);
-            map.Add("date", DatePicker.Date);
+            map.Add("date", DateTime.Now);
             map.Add("staff", App.userInfo.id);
             map.Add("results", content);
             map.Add("forassignment", mRecord.assignment);
@@ -258,10 +258,14 @@ namespace AepApp.View.Gridding
                 PickSK.Children.Add(grid);
                 Console.WriteLine("图片张数：" + photoList.Count);
 
-                img.url = img.url.Replace("~", "");
+                //img.url = img.url.Replace("~", "");
+                if (isFromNetwork)
+                {
+                    img.url = "/grid/GetImage/";
+                }
                 Image button = new Image
                 {
-                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(App.EP360Module.url+img.url+img.title)) : ImageSource.FromFile(img.url) as FileImageSource,
+                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(App.EP360Module.url + img.url + img.id)) : ImageSource.FromFile(img.url) as FileImageSource,
                     HeightRequest = 80,
                     WidthRequest = 80,
                     BackgroundColor = Color.White,
