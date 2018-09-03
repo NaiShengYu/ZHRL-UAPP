@@ -4,7 +4,7 @@
              x:Class="AepApp.View.Gridding.DisposeEventTypeTowPage"
              Title="处理事件">
     <ContentPage.Content>
-        <Grid>
+        <Grid x:Name="GR" IsVisible="false">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />

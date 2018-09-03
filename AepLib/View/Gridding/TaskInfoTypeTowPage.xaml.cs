@@ -255,7 +255,6 @@ namespace AepApp.View.Gridding
                     string result = hTTPResponse.Results.Replace("[null]", "[]");
                      result = result.Replace("taskcoords", "coords");
                     _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(result);
-                   
                     _infoModel.natureName = ConstConvertUtils.TaskNatureType2String(_infoModel.type.Value);
                     _infoModel.stateName = ConstConvertUtils.TaskStateType2String(_infoModel.state.Value);
                     _infoModel.canEdit = false;
@@ -263,7 +262,7 @@ namespace AepApp.View.Gridding
 
                     if (_infoModel.taskassignments != null && _infoModel.taskassignments.Count > 0)
                         _infoModel.AssignName = getAssignName(_infoModel.taskassignments[0], "");
-
+                    DatePickerStart.Date = _infoModel.deadline.Value;
                     GR.IsVisible = true;
                     GH.Height = 0;
                     BindingContext = _infoModel;
@@ -271,6 +270,7 @@ namespace AepApp.View.Gridding
                     _infoModel.enterprise = new ObservableCollection<Enterprise>();
                     GetStaffInfo();
                     GetSendUserInfo();
+                    if (_infoModel.template != null) GetTemplateDetail();
                     if (_infoModel.taskenterprises !=null && _infoModel.taskenterprises.Count > 0) ReqEnters();
                 }
                 catch (Exception e)
@@ -280,6 +280,30 @@ namespace AepApp.View.Gridding
             }
 
         }
+        /// <summary>
+        /// 获取任务模板
+        /// </summary>
+        private async void GetTemplateDetail()
+        {
+            string url = App.EP360Module.url + "/api/gbm/GetTemplateDetail";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("id", _infoModel.template);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    TaskTemplateModel data = JsonConvert.DeserializeObject<TaskTemplateModel>(res.Results);
+                    _infoModel.templateName = data.title;
+
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+
 
         private string getAssignName(taskassignment currentItem,string currentName){
                

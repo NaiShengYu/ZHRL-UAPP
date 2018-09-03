@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using AepApp.Tools;
 
 namespace AepApp.Models
 {
@@ -19,9 +20,19 @@ namespace AepApp.Models
         public Guid? gridcell { get; set; }
         public string gridName { get; set; }
         public ObservableCollection<Followup> Followup { get; set; }
+        public ObservableCollection<AttachmentInfo> attaches { get; set; }
+
+        private string TypeName { get; set; }
+        public string typeName
+        {
+            get { return TypeName; }
+            set { TypeName = value; NotifyPropertyChanged(); }
+        }
+
+
         public bool stateStatus{
             get {
-                if (state == 4) return true;
+                if (state == 3) return true;
                 else return false;
             }
             set{}
@@ -40,6 +51,15 @@ namespace AepApp.Models
             get { return Contents; }
             set {  Contents= value; NotifyPropertyChanged(); }
         }
+
+        private string ShowContent;
+        public string showContent
+        {
+            get { return StringUtils.ReplaceHtmlTag(contents); }
+            set { ShowContent = value; NotifyPropertyChanged(); }
+        }
+
+
         private string results;
         public string Results
         {

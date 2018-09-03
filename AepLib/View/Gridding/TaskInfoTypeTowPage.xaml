@@ -69,7 +69,7 @@
                             <TapGestureRecognizer Tapped="editContent" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="内容" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label LineBreakMode="TailTruncation" Text="{Binding Contents}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding showContens}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />

@@ -14,7 +14,6 @@ namespace AepApp.View.Gridding
     {
         private UserInfoModel auditor;//审核人
         private GridEventModel _eventModel;
-        private GridEventFollowModel detail;
         private GridEventFollowModel _followMoel;
         private ObservableCollection<GridTaskInfoModel> _taskInfoList = new ObservableCollection<GridTaskInfoModel>();
        //任务模型
@@ -75,7 +74,7 @@ namespace AepApp.View.Gridding
                 rowState = "add",
                 title = eventModel.Title,
                 type = 1,
-                state = 1,
+                state = 4,
                 index = 1,
                 date = DateTime.Now,
                 deadline = DateTime.Now,

@@ -5,13 +5,19 @@ using CloudWTO.Services;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 using AepApp.Models;
+using AepApp.Tools;
+
 namespace AepApp.View.Gridding
 {
     public partial class RelatedEnterprisesPage : ContentPage
     {
+       
+
         public delegate void addEnterprise();
         public event addEnterprise addEnter;
         string searchKey = "";
+        int pageIndex = 0;
+        bool hasMore = true;
         private ObservableCollection<GridEnterpriseModel> dataList = new ObservableCollection<GridEnterpriseModel>();
         GridEventInfoModel _infoModel = null;
         ObservableCollection<Enterprise> _enterprise = null;
@@ -22,6 +28,8 @@ namespace AepApp.View.Gridding
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             searchKey = e.NewTextValue;
+            pageIndex = 0;
+            hasMore = true;
             GetAllEnterprise();
         }
 
@@ -49,11 +57,19 @@ namespace AepApp.View.Gridding
             Navigation.PopAsync();
 
         }
+
+        void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
+        {
+            GridEnterpriseModel model = e.Item as GridEnterpriseModel;
+            if(model !=null && model == dataList[dataList.Count-1])
+                GetAllEnterprise();
+        }
+
         public RelatedEnterprisesPage(){
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             GetAllEnterprise();
-
+            listView.ItemsSource = dataList;
         }
        
         public RelatedEnterprisesPage(GridEventInfoModel infoModel):this()
@@ -66,22 +82,51 @@ namespace AepApp.View.Gridding
             _enterprise = enterprise;
         }
 
-        //获取事件详情
+        //获取企业列表
         private async void GetAllEnterprise()
         {
+            if (hasMore == false) return;
 
             string url = App.BasicDataModule.url + "/api/mod/GetAllEnterprise";
-            Dictionary<string, string> param = new Dictionary<string, string>();
+            Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("keys", searchKey);
+            param.Add("pageIndex", pageIndex);
+            param.Add("pageSize", ConstantUtils.PAGE_SIZE);
+
             string Pa = JsonConvert.SerializeObject(param);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, Pa, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                dataList.Clear();
-                dataList = JsonConvert.DeserializeObject<ObservableCollection<GridEnterpriseModel>>(hTTPResponse.Results);
-                listView.ItemsSource = dataList;
+                try
+                {
+                    if (pageIndex == 0) dataList.Clear();
+                    var result = JsonConvert.DeserializeObject<resultModel>(hTTPResponse.Results);
+                    foreach (var item in result.items)
+                    {
+                        dataList.Add(item);
+                    }
+                    if (dataList.Count < result.count)
+                    {
+                        pageIndex += 1;
+                        hasMore = true;
+                    }
+                    else
+                    {
+                        hasMore = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+             
             }
 
+        }
+
+        private class resultModel{
+            public ObservableCollection<GridEnterpriseModel> items { get; set; }
+            public int? count { get; set; }
         }
 
     }

@@ -21,7 +21,7 @@
                 <Label Text="Protection System" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,50,10,0" />
                 <Image Source="user" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" VerticalOptions="End" Margin="0,80,20,30" />
                 <Frame HorizontalOptions="End" VerticalOptions="End" BackgroundColor="rgb(54, 144, 207)" Margin="0,90,10,8" Padding="10,2,10,2" BorderColor="Transparent" HasShadow="False" CornerRadius="10">
-                    <Label Text="测试用户5" TextColor="White" FontSize="12" />
+                    <Label TextColor="White" FontSize="12" x:Name="nameLab"/>
                 </Frame>
             </Grid>
             <StackLayout Grid.Row="1" BackgroundColor="White" Spacing="0" x:Name="menu1">

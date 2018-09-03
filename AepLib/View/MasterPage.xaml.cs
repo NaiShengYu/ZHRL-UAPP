@@ -18,7 +18,7 @@ namespace AepApp.View
         {
             InitializeComponent();
             _masterdetailpage = masterdetailpage;
-
+            nameLab.Text = App.userInfo.userName;
             layoutSampling.IsVisible = App.moduleConfigSampling != null;
             layoutSampling.BindingContext = App.moduleConfigSampling;
             menu1.IsVisible = App.moduleConfigSampling != null;

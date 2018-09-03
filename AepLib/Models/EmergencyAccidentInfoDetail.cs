@@ -111,10 +111,6 @@ namespace AepApp.Models
                 get { return "语音"+Length+"秒"; }
             }// 录音的时长
 
-
-          
-
-
             public string Width { get; set; }  /// 宽度(单位px)
             public string Height { get; set; } /// 高度(单位px)
             public string StoreUrl { get; set; } /// 方案存储地址

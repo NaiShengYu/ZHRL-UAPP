@@ -27,7 +27,8 @@ namespace AepApp.View.Gridding
         {
             var picker = sender as Picker;
             var typeName = picker.SelectedItem as string;
-            _infoModel.type = ConstConvertUtils.GridEventType2Int(typeName);
+            _infoModel.typeName = picker.SelectedItem as string;
+            _infoModel.type = ConstConvertUtils.GridEventType2Int(_infoModel.typeName);
         }
 
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
@@ -149,6 +150,7 @@ namespace AepApp.View.Gridding
                 Grid grid = new Grid();
                 PickSK.Children.Add(grid);
                 Console.WriteLine("图片张数：" + photoList.Count);
+                Console.WriteLine("图片地址：" + App.EP360Module.url + "/grid/GetImage/" + img.id);
                 Image button = new Image
                 {
                     Source = isFromNetwork ? ImageSource.FromUri(new Uri(img.url)) : ImageSource.FromFile(img.url) as FileImageSource,
@@ -161,6 +163,17 @@ namespace AepApp.View.Gridding
                     Aspect = Aspect.Fill,
                 };
                 grid.Children.Add(button);
+                TapGestureRecognizer tap = new TapGestureRecognizer();
+                tap.Tapped +=(s, e) =>
+                {
+                    List<string> imgSours = new List<string>();
+                    foreach (AttachmentInfo imgsss in photoList)
+                    {
+                        imgSours.Add(imgsss.url);
+                    }
+                    Navigation.PushAsync(new BrowseImagesPage(imgSours));
+                };
+                button.GestureRecognizers.Add(tap);
 
                 if (100.0 * photoList.Count > App.ScreenWidth)
                     pickSCR.ScrollToAsync(100 * photoList.Count - (App.ScreenWidth), 0, true);
@@ -220,7 +233,6 @@ namespace AepApp.View.Gridding
                     gridcell = App.gridUser.grid,
                     Tel = App.userInfo.tel,
 
-
                 };
                 try{
                     _infoModel.lat = App.currentLocation.Latitude;
@@ -228,6 +240,7 @@ namespace AepApp.View.Gridding
                 }catch(Exception ex){
                     
                 }
+                _infoModel.typeName = ConstConvertUtils.GridEventType2String(_infoModel.type.Value);
 
                 BindingContext = _infoModel;
                 Title = "登记事件";
@@ -389,13 +402,20 @@ namespace AepApp.View.Gridding
                     getAddressWihtLocation();
                     getStaffInfo();
                     getEnterprise();
+                    _infoModel.typeName = ConstConvertUtils.GridEventType2String(_infoModel.type.Value);
                     BindingContext = _infoModel;
                     bottom.Height = 0;
                     GR.IsVisible = true;
+                    foreach (var item in _infoModel.attaches)
+                    {
+                        item.url = App.EP360Module.url + "/grid/GetImage/" + item.id;
+                        photoList.Add(item);
+                    }
+                    creatPhotoView(true);
                 }
                 catch (Exception ex)
                 {
-                    Navigation.PopAsync();
+                    await Navigation.PopAsync();
                 }
             }
 
@@ -429,7 +449,6 @@ namespace AepApp.View.Gridding
                     _infoModel.EnterpriseName = enterpriseModel.name;
                 }
             }
-
         }
 
         //反地理编码

@@ -85,7 +85,7 @@ namespace AepApp.View.Gridding
                 attach.url = attach.url.Replace("~", "");
             }
             string url = App.EP360Module.url + attach.url;
-            if (StringUtils.IsImg(attach.filename))
+            if (StringUtils.IsImg(fileName))
             {
                 await Navigation.PushAsync(new ShowFilePage(url, true));
             }

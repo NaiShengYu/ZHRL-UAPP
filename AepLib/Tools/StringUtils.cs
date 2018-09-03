@@ -8,6 +8,7 @@ namespace AepApp.Tools
     {
         public static string ReplaceHtmlTag(string html, int length = 0)
         {
+            if (html == null) return "";
             string strText = System.Text.RegularExpressions.Regex.Replace(html, "<[^>]+>", "");
             strText = System.Text.RegularExpressions.Regex.Replace(strText, "&[^;]+;", "");
 
@@ -27,7 +28,12 @@ namespace AepApp.Tools
             {
                 return false;
             }
-            string ends = fileName.Substring(fileName.LastIndexOf("."), fileName.Length);
+            //int length = fileName.Length - fileName.LastIndexOf(".") - 1;
+            //if (length <= 0)
+            //{
+            //    return false;
+            //}
+            string ends = fileName.Substring(fileName.LastIndexOf(".") + 1);
             if (string.IsNullOrWhiteSpace(ends))
             {
                 return false;

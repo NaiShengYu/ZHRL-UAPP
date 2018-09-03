@@ -50,7 +50,7 @@
                     <Grid>
 
                         <Label Text="事件类型" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="请选择" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
+                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="{Binding typeName}" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>污水偷拍事件</x:String>
@@ -64,14 +64,14 @@
                     <Grid>
 
                         <Label Text="详细描述" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label LineBreakMode="TailTruncation" Text="{Binding Content}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding showContent}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                         <Button x:Name="EditContents" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="事件已自行处理" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Switch x:Name="SW" IsToggled="{Binding stateStatus}" HorizontalOptions="End" VerticalOptions="Center" Margin="10" />
+                        <Switch x:Name="SW" IsEnabled="{Binding canEdit}" IsToggled="{Binding stateStatus}" HorizontalOptions="End" VerticalOptions="Center" Margin="10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
