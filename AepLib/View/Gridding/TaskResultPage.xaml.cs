@@ -186,18 +186,28 @@ namespace AepApp.View.Gridding
             map.Add("results", content);
             map.Add("forassignment", mRecord.assignment);
             map.Add("attachments", uploadModel);
-            await DisplayAlert("imgs", JsonConvert.SerializeObject(uploadModel), "ok");
+            //await DisplayAlert("imgs", JsonConvert.SerializeObject(uploadModel), "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {
                     string result1 = res.Results;
+                    if ("OK".Equals(result1))
+                    {
+                        DependencyService.Get<IToast>().LongAlert("添加成功！");
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        DependencyService.Get<IToast>().LongAlert("添加失败，请重试！");
+
+                    }
                     await DisplayAlert("result", result1, "ok");
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("error", ex.Message, "ok");
+                    DependencyService.Get<IToast>().LongAlert("添加失败，请重试！");
                 }
             }
         }

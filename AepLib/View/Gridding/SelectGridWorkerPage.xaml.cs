@@ -18,17 +18,19 @@ namespace AepApp.View.Gridding
     public partial class SelectGridWorkerPage : ContentPage
     {
         Assignments _assignments;
+        private Guid? mTaskId;
         private int pageIndex;
         private string mSearchKey;
         private bool hasMore;
         private ObservableCollection<GridStaffModel> dataList = new ObservableCollection<GridStaffModel>();
 
-        public SelectGridWorkerPage(Assignments assignments)
+        public SelectGridWorkerPage(Assignments assignments, Guid? id)
         {
             InitializeComponent();
             SearchData();
             listView.ItemsSource = dataList;
             _assignments = assignments;
+            mTaskId = id;
         }
 
         public void OnMessageClicked(Object sender, EventArgs e)
@@ -74,13 +76,14 @@ namespace AepApp.View.Gridding
 
         private async void ReqWorksList()
         {
-            string url = App.EP360Module.url + "/api/gbm/GetGridAndParentGridStaff";
+            //string url = App.EP360Module.url + "/api/gbm/GetGridAndParentGridStaff";
+            string url = App.EP360Module.url + "/api/gbm/GetGridUnderIncident";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
             map.Add("pageSize", ConstantUtils.PAGE_SIZE);
             map.Add("searchKey", mSearchKey);
-            map.Add("grid", App.gridUser.grid);
-            //map.Add("grid", Guid.Parse("72a38f57-1939-40e6-8cca-2960e0d994ea"));
+            //map.Add("grid", App.gridUser.grid);
+            map.Add("id", mTaskId);
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)

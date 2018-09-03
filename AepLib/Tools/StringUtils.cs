@@ -28,11 +28,6 @@ namespace AepApp.Tools
             {
                 return false;
             }
-            //int length = fileName.Length - fileName.LastIndexOf(".") - 1;
-            //if (length <= 0)
-            //{
-            //    return false;
-            //}
             string ends = fileName.Substring(fileName.LastIndexOf(".") + 1);
             if (string.IsNullOrWhiteSpace(ends))
             {
