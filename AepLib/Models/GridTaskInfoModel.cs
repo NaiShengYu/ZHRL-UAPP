@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using AepApp.Tools;
 
 namespace AepApp.Models
 {
@@ -13,13 +14,18 @@ namespace AepApp.Models
         public Guid? staff { get; set; }
         public Guid? template { get; set; }
         public string title { get; set; }
-        public DateTime? deadline { get; set; }
         public double? period { get; set; }
         public int? type { get; set; }
         public int? state { get; set; }
         public int? index { get; set; }
         public DateTime date { get; set; }
 
+        private DateTime? Deadline;//任务处理期限
+        public DateTime? deadline
+        {
+            get { return Deadline; }
+            set { Deadline = value; NotifyPropertyChanged(); }
+        }
 
         private string IncidentTitle;//事件标题
         public string incidentTitle
@@ -35,6 +41,12 @@ namespace AepApp.Models
             set { UridName = value; NotifyPropertyChanged(); }
         }
 
+        private string ShowContens;//显示描述
+        public string showContens
+        {
+            get { return StringUtils.ReplaceHtmlTag(contents); }
+            set { ShowContens = value; NotifyPropertyChanged(); }
+        }
 
         private string GridName;
         public string gridName

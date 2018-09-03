@@ -74,7 +74,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public BrowseImagesPage(List<IncidentLoggingEventsBean> imgsSouce):this()
         {
             InitializeComponent();
-
+            titleLab.IsVisible = true;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
 
             ToolbarItems.Add(new ToolbarItem("", "map", () =>

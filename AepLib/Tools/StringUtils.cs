@@ -8,6 +8,7 @@ namespace AepApp.Tools
     {
         public static string ReplaceHtmlTag(string html, int length = 0)
         {
+            if (html == null) return "";
             string strText = System.Text.RegularExpressions.Regex.Replace(html, "<[^>]+>", "");
             strText = System.Text.RegularExpressions.Regex.Replace(strText, "&[^;]+;", "");
 

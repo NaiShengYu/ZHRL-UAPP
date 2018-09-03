@@ -13,7 +13,6 @@ namespace AepApp.View.Gridding
     {
         private GridEventModel _eventModel;
         private UserInfoModel auditor;//审核人
-        private GridEventFollowModel detail;
         private GridEventFollowModel _followMoel;
         private ObservableCollection<Dictionary<string, object>> taskInfoList = new ObservableCollection<Dictionary<string, object>>();
 
@@ -86,37 +85,94 @@ namespace AepApp.View.Gridding
             InitializeComponent();
             _eventModel = eventModel;
 
-            GetTaskDetail();
+            getEventInfo();
 
          
 
         }
 
+
+        //获取事件详情
+        private async void getEventInfo()
+        {
+            string url = App.EP360Module.url + "/api/gbm/GetIncidentDetail";
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("id", _eventModel.id);
+            string pa = JsonConvert.SerializeObject(param);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, pa, "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+
+                    var eventInfoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    if (eventInfoModel.Followup.Count > 0)
+                    {
+                        Followup followup = eventInfoModel.Followup[0];
+                        GetFollowupDetail(Guid.Parse(followup.id));
+                    }
+                    else
+                    {
+                        _followMoel = new GridEventFollowModel
+                        {
+                            rowState = "add",
+                            id = Guid.NewGuid(),
+                            canEdit = true,
+                            title = _eventModel.Title,
+                            date = DateTime.Now,
+                            staff = App.userInfo.id,
+                            staffName = App.userInfo.userName,
+                            staffTel = App.userInfo.tel,
+                            state = 4,
+                            incident = _eventModel.id,
+                            level = App.gridUser.gridLevel,
+                            gridName = App.gridUser.gridName,
+                            grid = App.gridUser.id,
+                            Tasks = new ObservableCollection<GridEventFollowTaskModel>(),
+                        };
+                        GR.IsVisible = true;
+                        BindingContext = _followMoel;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    
+                }
+            }
+
+        }
+
+
+
+
+
+
         /// <summary>
-        /// 事件详情
+        /// 事件跟进详情
         /// </summary>
-        private async void GetTaskDetail()
+        private async void GetFollowupDetail(Guid followId)
         {
             string url = App.EP360Module.url + "/api/gbm/GetIncidentFollowupDetail";
             Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("id", _eventModel.id);
+            map.Add("id", followId);
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {
-                    detail = JsonConvert.DeserializeObject<GridEventFollowModel>(res.Results);
-                    detail.title = _eventModel.Title;
-                    BindingContext = detail;
-                    if (detail != null)
+                    _followMoel = JsonConvert.DeserializeObject<GridEventFollowModel>(res.Results);
+                    _followMoel.title = _eventModel.Title;
+                    BindingContext = _followMoel;
+                    GR.IsVisible = true;
+                    if (_followMoel != null)
                     {
-                        if (detail.staff != null)
+                        if (_followMoel.staff != null)
                         {
-                            GetStaffInfo(detail.staff.Value);
+                            GetStaffInfo(_followMoel.staff.Value);
                         }
                     }
-                    listV.ItemsSource = detail.Tasks;
+                    listV.ItemsSource = _followMoel.Tasks;
                 }
                 catch (Exception x)
                 {
@@ -135,6 +191,8 @@ namespace AepApp.View.Gridding
                     };
                     BindingContext = _followMoel;
                     listV.ItemsSource = _followMoel.Tasks;
+                    GR.IsVisible = true;
+
                 }
 
             }
@@ -193,8 +251,8 @@ namespace AepApp.View.Gridding
             auditor = await (App.Current as App).GetUserInfo(staffId);
             if (auditor != null)
             {
-                detail.staffTel = auditor.tel;
-                detail.staffName = auditor.userName;
+                _followMoel.staffTel = auditor.tel;
+                _followMoel.staffName = auditor.userName;
             }
         }
 
