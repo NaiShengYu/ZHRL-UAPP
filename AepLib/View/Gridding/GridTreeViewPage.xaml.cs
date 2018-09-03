@@ -22,7 +22,7 @@ namespace AepApp.View.Gridding
             InitializeComponent();
 
 
-            getEventInfo();
+            getGridInfo();
            
         }
 
@@ -102,8 +102,8 @@ namespace AepApp.View.Gridding
         }
 
         ObservableCollection<TestTreeModel> gridList = new ObservableCollection<TestTreeModel>();
-        //获取事件详情
-        private async void getEventInfo()
+        //获取网格
+        private async void getGridInfo()
         {
 
             string url = App.EP360Module.url + "/api/gbm/GetGridList";

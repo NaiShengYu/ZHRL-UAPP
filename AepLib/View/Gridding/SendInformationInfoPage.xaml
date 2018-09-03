@@ -13,7 +13,7 @@
             <StackLayout Spacing="0">
                 <Grid>
                     <Label Text="类型" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
-                    <Label Text="{Binding Type}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,25,10" />
+                    <Label Text="{Binding Type}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                 </Grid>
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                 <Grid>
@@ -26,7 +26,7 @@
                     <Label x:Name="LabelAuthor" Text="" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" LineBreakMode="TailTruncation" />
                 </Grid>
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                <Label Text="信息内容" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,0,15" HorizontalOptions="Start" />
+                <Label Text="信息内容" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,0,10" HorizontalOptions="Start" />
                 <WebView x:Name="webviewContent" HeightRequest="150" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10"/>
 
                 <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
