@@ -2,26 +2,35 @@
 using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
-using Sample;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace AepApp.View.Gridding
 {
-    public partial class EventListPage : ContentPage
+    /// <summary>
+    /// 已处理事件列表
+    /// </summary>
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class HandledEventListPage : ContentPage
     {
         private string mSearchKey;
-        int pageIndex = 0;//请求页码
-        bool haveMore = true;//返回是否还有
+        int pageIndex = 0;
+        bool haveMore = true;
         private ObservableCollection<GridEventModel> dataList = new ObservableCollection<GridEventModel>();
 
-        public EventListPage()
+        public HandledEventListPage()
         {
             InitializeComponent();
             SearchData();
         }
+
 
         public void AddButtonClicked(Object sender, EventArgs e)
         {
@@ -57,7 +66,7 @@ namespace AepApp.View.Gridding
             pageIndex = 0;
             dataList.Clear();
             haveMore = true;
-            if(App.gridUser == null)
+            if (App.gridUser == null)
             {
                 App.gridUser = await (App.Current as App).getStaffInfo(App.userInfo.id);
                 if (App.gridUser == null) return;
@@ -78,9 +87,10 @@ namespace AepApp.View.Gridding
             }
         }
 
-        private async void ReqGridEventList(){
+        private async void ReqGridEventList()
+        {
 
-            string url = App.EP360Module.url+"/api/gbm/GetIncidentsByKey";
+            string url = App.EP360Module.url + "/api/gbm/GetIncidentsByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
             map.Add("pageSize", ConstantUtils.PAGE_SIZE);
@@ -94,7 +104,7 @@ namespace AepApp.View.Gridding
                 try
                 {
                     List<GridEventModel> eventList = JsonConvert.DeserializeObject<List<GridEventModel>>(hTTPResponse.Results);
-                    if(eventList != null && eventList.Count > 0)
+                    if (eventList != null && eventList.Count > 0)
                     {
                         int count = eventList.Count;
                         for (int i = 0; i < count; i++)
@@ -107,7 +117,7 @@ namespace AepApp.View.Gridding
                     {
                         haveMore = false;
                     }
-                    
+
                     listView.ItemsSource = dataList;
                 }
                 catch (Exception ex)
@@ -115,10 +125,10 @@ namespace AepApp.View.Gridding
 
                 }
 
-               
+
             }
 
         }
-        
+
     }
 }
