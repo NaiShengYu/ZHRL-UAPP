@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AepApp.Tools;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -22,6 +23,11 @@ namespace AepApp.Models
         public string staffName { get; set; }//通过staff获取后赋值
 
         public string SubTitle { get { return parentName + " - " + gridName; } }
+
+        public string dateStr
+        {
+            get { return TimeUtils.DateTime2YMDHM(date); }
+        }
 
         private Func<string, Task<string>> _evaluateJavascript;//webview调用js
         public Func<string, Task<string>> EvaluateJavascript

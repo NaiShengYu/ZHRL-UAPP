@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using AepApp.Interface;
 using AepApp.Models;
 using AepApp.Tools;
+using AepApp.View.EnvironmentalEmergency;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using Plugin.Media;
@@ -33,7 +34,6 @@ namespace AepApp.View.Gridding
             mIsEdit = isEdit;
             mTaskId = taskId;
             mRecord = record;
-            //mRecord.results = "<p>咯哦无聊咯</p>";
             GridOperate.IsVisible = mIsEdit;
             GetStaffInfo();
             if (!isEdit) GetRecordDetail();
@@ -135,7 +135,6 @@ namespace AepApp.View.Gridding
                 {
                     try
                     {
-                        //await DisplayAlert("上传结果", res.Results, "确定");
                         List<GridAttachmentResultModel> result = JsonConvert.DeserializeObject<List<GridAttachmentResultModel>>(res.Results);
                         if (result != null && result.Count > 0)
                         {
@@ -169,7 +168,7 @@ namespace AepApp.View.Gridding
         //添加记录
         private async void addResult()
         {
-            var result = await mRecord.EvaluateJavascript("javascript:getEditorValue();");
+            string result = await mRecord.EvaluateJavascript("javascript:getEditorValue();");
             string content = Regex.Unescape(result);
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -183,27 +182,25 @@ namespace AepApp.View.Gridding
             map.Add("task", mTaskId);
             map.Add("date", DateTime.Now);
             map.Add("staff", App.userInfo.id);
-            map.Add("results", content);
+            map.Add("results", content.ToString());
             map.Add("forassignment", mRecord.assignment);
             map.Add("attachments", uploadModel);
-            //await DisplayAlert("imgs", JsonConvert.SerializeObject(uploadModel), "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {
-                    string result1 = res.Results;
-                    if ("OK".Equals(result1))
+                    string status = JsonConvert.DeserializeObject<string>(res.Results);
+                    if ("OK".Equals(status))
                     {
                         DependencyService.Get<IToast>().LongAlert("添加成功！");
                         await Navigation.PopAsync();
                     }
                     else
                     {
-                        DependencyService.Get<IToast>().LongAlert("添加失败，请重试！");
+                        DependencyService.Get<IToast>().LongAlert("添加失败，请重试22！");
 
                     }
-                    await DisplayAlert("result", result1, "ok");
                 }
                 catch (Exception ex)
                 {
@@ -246,8 +243,6 @@ namespace AepApp.View.Gridding
                 });
 
                 creatPhotoView(false);
-
-
             }
 
 
@@ -262,20 +257,19 @@ namespace AepApp.View.Gridding
 
             PickSK.Children.Clear();
 
-            foreach (AttachmentInfo img in photoList)
+            foreach (AttachmentInfo attach in photoList)
             {
                 Grid grid = new Grid();
                 PickSK.Children.Add(grid);
                 Console.WriteLine("图片张数：" + photoList.Count);
 
-                //img.url = img.url.Replace("~", "");
                 if (isFromNetwork)
                 {
-                    img.url = "/grid/GetImage/";
+                    attach.url = "/grid/GetImage/";
                 }
-                Image button = new Image
+                Image img = new Image
                 {
-                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(App.EP360Module.url + img.url + img.id)) : ImageSource.FromFile(img.url) as FileImageSource,
+                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(App.EP360Module.url + attach.url + attach.id)) : ImageSource.FromFile(attach.url) as FileImageSource,
                     HeightRequest = 80,
                     WidthRequest = 80,
                     BackgroundColor = Color.White,
@@ -284,10 +278,22 @@ namespace AepApp.View.Gridding
                     HorizontalOptions = LayoutOptions.Start,
                     Aspect = Aspect.Fill,
                 };
-                grid.Children.Add(button);
+                grid.Children.Add(img);
 
                 if (100.0 * photoList.Count > App.ScreenWidth)
                     pickSCR.ScrollToAsync(100 * photoList.Count - (App.ScreenWidth), 0, true);
+
+                TapGestureRecognizer tapGesture = new TapGestureRecognizer();
+                tapGesture.Tapped += (s, e) =>
+                {
+                    List<string> imgs = new List<string>();
+                    foreach (var item in photoList)
+                    {
+                        imgs.Add(item.url);
+                    }
+                    Navigation.PushAsync(new BrowseImagesPage(imgs));
+                };
+                img.GestureRecognizers.Add(tapGesture);
 
             }
 

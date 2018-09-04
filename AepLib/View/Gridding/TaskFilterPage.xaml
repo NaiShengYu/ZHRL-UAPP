@@ -24,13 +24,6 @@
                 <views:BorderlessPicker x:Name="pickerStatus" Title="请选择" HorizontalOptions="End" VerticalOptions="Center"  
                                         Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchStatus}, Path=IsToggled}" 
                                         StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatus_SelectedIndexChanged">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>已上报</x:String>
-                            <x:String>处理中</x:String>
-                            <x:String>已处理</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
                 </views:BorderlessPicker>
                 <Switch x:Name="switchStatus" HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" Toggled="Switch_Toggled_Status" IsToggled="{Binding isStatusOn}"/>
             </Grid>
@@ -40,12 +33,6 @@
                 <views:BorderlessPicker x:Name="pickerType" Title="请选择" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Margin="100,0,80,0" 
                                         IsVisible="{Binding Source={x:Reference switchType}, Path=IsToggled}" 
                                         StyleClass="itemsubtitle" SelectedIndexChanged="pickerType_SelectedIndexChanged">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>恶臭事件</x:String>
-                            <x:String>污水偷排事件</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
                 </views:BorderlessPicker>
                 <Switch x:Name="switchType"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" 
                         IsToggled="{Binding isTypeOn}" Toggled="Switch_Toggled_Type"/>

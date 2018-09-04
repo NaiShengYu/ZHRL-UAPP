@@ -79,7 +79,6 @@ namespace AepApp.View.Gridding
             var g = sender as Grid;
             AttachmentInfo attach = g.BindingContext as AttachmentInfo;
             string fileName = attach.filename;
-            //string url = App.EP360Module.url + "/api/gbm/GetAttachment/" + attach.id;
             if (!string.IsNullOrWhiteSpace(attach.url))
             {
                 attach.url = attach.url.Replace("~", "");
@@ -91,8 +90,7 @@ namespace AepApp.View.Gridding
             }
             else
             {
-                HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileName, App.FrameworkToken);
-                await Navigation.PushAsync(new ShowFilePage(fileName));
+                Device.OpenUri(new Uri(url));
             }
         }
     }
