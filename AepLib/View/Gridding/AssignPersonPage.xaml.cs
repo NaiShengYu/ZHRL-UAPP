@@ -17,7 +17,10 @@ namespace AepApp.View.Gridding
             InitializeComponent();
 
 
+            ToolbarItems.Add(new ToolbarItem("确定","",() => {
+                Navigation.PopAsync();
 
+            }));
 
 
         }

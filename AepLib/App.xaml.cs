@@ -245,6 +245,7 @@ namespace AepApp
             App.userInfo = await getUserInfoAsync(fwtoken.access_token);//获取用户信息
             if (App.userInfo == null) return false;
 
+            _autologgedin = true;
             FrameworkToken = fwtoken.access_token;
 
             Modules = await GetModuleInfoAsync(fwtoken.access_token);

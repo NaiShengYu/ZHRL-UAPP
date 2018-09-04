@@ -87,12 +87,18 @@ namespace AepApp.View.Gridding
             string url = App.EP360Module.url + attach.url;
             if (StringUtils.IsImg(fileName))
             {
-                await Navigation.PushAsync(new ShowFilePage(url, true));
+
+                List<string> imgs = new List<string>();
+                imgs.Add(url);
+                await Navigation.PushAsync(new BrowseImagesPage(imgs));
+                //await Navigation.PushAsync(new ShowFilePage(url, true));
             }
             else
             {
-                HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileName, App.FrameworkToken);
-                await Navigation.PushAsync(new ShowFilePage(fileName));
+
+                Device.OpenUri(new Uri(url));
+                //HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileName, App.FrameworkToken);
+                //await Navigation.PushAsync(new ShowFilePage(fileName));
             }
         }
     }

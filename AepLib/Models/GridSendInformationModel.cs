@@ -34,5 +34,10 @@ namespace AepApp.Models
         public string title { get; set; }
         public string filename { get; set; }
         public bool isUploaded { get; set; }//是否已上传
+
+        public string fileLog {
+            get { return StringUtils.fileLogWithFileName(filename); }
+            set {}
+        }
     }
 }

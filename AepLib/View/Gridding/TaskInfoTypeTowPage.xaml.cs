@@ -28,6 +28,13 @@ namespace AepApp.View.Gridding
             addTask();
         }
 
+        //分派给子部门
+        void assignmentTasks(object sender,EventArgs eventArgs){
+
+
+        }
+
+
         void period_change(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             try
@@ -67,7 +74,9 @@ namespace AepApp.View.Gridding
         //指派网格员
         void choiseUser(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new GridTreeWithUserPage(_infoModel));
+            if(GridMoreSW.IsToggled)
+                Navigation.PushAsync(new GridTreeWithUserPage(_infoModel));
+            else Navigation.PushAsync(new AssignPersonPage());
         }
 
         //添加相关企业
