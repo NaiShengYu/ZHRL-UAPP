@@ -27,10 +27,10 @@ namespace AepApp.View.Gridding
         public SelectGridWorkerPage(Assignments assignments, Guid? id)
         {
             InitializeComponent();
-            SearchData();
             listView.ItemsSource = dataList;
             _assignments = assignments;
             mTaskId = id;
+            SearchData();
         }
 
         public void OnMessageClicked(Object sender, EventArgs e)

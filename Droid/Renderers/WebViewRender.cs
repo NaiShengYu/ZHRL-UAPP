@@ -13,6 +13,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Webkit;
 using Android.Widget;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -56,7 +57,9 @@ namespace AepApp.Droid.Renderers
             private Action<string> _callback;
             public void OnReceiveValue(Java.Lang.Object value)
             {
-                _callback?.Invoke(Convert.ToString(value));
+                string json = ((Java.Lang.String)value).ToString();
+                string res = JsonConvert.DeserializeObject<string>(json);
+                _callback?.Invoke(res);
             }
         }
     }

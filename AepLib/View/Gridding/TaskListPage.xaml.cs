@@ -199,12 +199,12 @@ namespace AepApp.View.Gridding
             public string status { get; set; }
             public int TaskStatus
             {
-                get { return ConstConvertUtils.GridTaskStatus2Int(status); }
+                get { return ConstConvertUtils.TaskStateString2Int(status); }
             }
             public string type { get; set; }
             public int TaskType
             {
-                get { return ConstConvertUtils.GridEventType2Int(type); }
+                get { return ConstConvertUtils.TaskNatureString2Int(type); }
             }
 
             private string _griders;

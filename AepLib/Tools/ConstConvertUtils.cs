@@ -24,7 +24,26 @@ namespace AepApp.Tools
             return des;
         }
 
-        public static string GridTaskStatus2String(int status)
+        /// <summary>
+        /// 所有的事件状态
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetAllEventStatus()
+        {
+            List<string> list = new List<string>();
+            list.Add("已上报");
+            list.Add("处理中");
+            list.Add("已处理");
+            list.Add("虚假事件");
+            return list;
+        }
+
+        /// <summary>
+        /// 事件状态
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public static string GridEventStatus2String(int status)
         {
             string des = "";
             switch (status)
@@ -38,11 +57,14 @@ namespace AepApp.Tools
                 case 3:
                     des = "已处理";
                     break;
+                case 4:
+                    des = "虚假事件";
+                    break;
             }
             return des;
         }
 
-        public static int GridTaskStatus2Int(string status)
+        public static int GridEventStatus2Int(string status)
         {
             if ("已上报".Equals(status))
             {
@@ -63,9 +85,22 @@ namespace AepApp.Tools
             return 1;
         }
 
+        /// <summary>
+        /// 所有的事件类型
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetAllEventType()
+        {
+            List<string> list = new List<string>();
+            list.Add("恶臭事件");
+            list.Add("污水偷排事件");
+            return list;
+        }
+
+
         public static string GridEventType2String(int type)
         {
-            string des = "未知类型 ";
+            string des = "未知类型";
             switch (type)
             {
                 case 1:
@@ -113,6 +148,19 @@ namespace AepApp.Tools
             return des;
         }
 
+
+        /// <summary>
+        /// 所有的任务类型
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetAllTaskType()
+        {
+            List<string> list = new List<string>();
+            list.Add("日常任务");
+            list.Add("事件任务");
+            return list;
+        }
+
         /// <summary>
         /// 任务性质int To string 
         /// </summary>
@@ -139,7 +187,7 @@ namespace AepApp.Tools
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static int TaskNatureString2Type(string nature)
+        public static int TaskNatureString2Int(string nature)
         {
             if ("日常任务".Equals(nature))
             {
@@ -152,13 +200,29 @@ namespace AepApp.Tools
             return 1;
         }
 
+        /// <summary>
+        /// 所有的任务状态
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetAllTaskState()
+        {
+            List<string> list = new List<string>();
+            list.Add("未下发");
+            list.Add("未审核");
+            list.Add("已审核");
+            list.Add("已撤销");
+            list.Add("执行中");
+            list.Add("退回");
+            list.Add("任务完结");
+            return list;
+        }
 
         /// <summary>
         /// 任务状态int To string 
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static string TaskStateType2String(int type)
+        public static string TaskState2String(int type)
         {
             string des = "未下发";
             switch (type)
@@ -191,11 +255,11 @@ namespace AepApp.Tools
         }
 
         /// <summary>
-        /// 任务性质 string To int 
+        /// 任务状态 string To int 
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static int TaskStateString2Type(string nature)
+        public static int TaskStateString2Int(string nature)
         {
             if ("未下发".Equals(nature))
             {

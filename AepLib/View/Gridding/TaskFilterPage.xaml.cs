@@ -20,11 +20,22 @@ namespace AepApp.View.Gridding
             InitializeComponent();
             conditions = filterCondition;
             BindingContext = filterCondition;
-            Init(filterCondition);
+            InitSource();
+            InitFilter(filterCondition);
         }
 
-        private void Init(TaskListPage.TaskFilterCondition conditions)
+        private void InitSource()
         {
+            List<string> status = ConstConvertUtils.GetAllTaskState();
+            pickerStatus.ItemsSource = status;
+            List<string> type = ConstConvertUtils.GetAllTaskType();
+            pickerType.ItemsSource = type;
+
+        }
+
+        private void InitFilter(TaskListPage.TaskFilterCondition conditions)
+        {
+
             if (conditions == null)
             {
                 return;

@@ -20,7 +20,7 @@ namespace AepApp.Models
         public int state { get; set; }
         public string EventStatus
         {
-            get { return ConstConvertUtils.GridTaskStatus2String(state); }
+            get { return ConstConvertUtils.GridEventStatus2String(state); }
         }
         
         private string title;

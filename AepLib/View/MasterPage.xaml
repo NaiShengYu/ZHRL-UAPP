@@ -248,6 +248,10 @@
                                 <Label  BindingContext="AepApp.View.Gridding.EventListPage"  HeightRequest="0"/>
                                 <Label Text="{Binding menuGridEventLabel}"/>
                             </Grid>
+                            <Grid StyleClass="menuitem"  IsVisible="True">
+                                <Label  BindingContext="AepApp.View.Gridding.HandledEventListPage"  HeightRequest="0"/>
+                                <Label Text="已处理事件"/>
+                            </Grid>
                             <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEventReceived}">
                                 <Label  BindingContext="AepApp.View.Gridding.ReportEventPage" HeightRequest="0"/>
                                 <Label Text="{Binding menuGridEventReceivedLabel}" />

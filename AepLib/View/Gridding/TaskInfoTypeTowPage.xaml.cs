@@ -164,7 +164,7 @@ namespace AepApp.View.Gridding
         {
             var picker = sender as Picker;
             var typeName = picker.SelectedItem as string;
-            _infoModel.type = ConstConvertUtils.TaskNatureString2Type(typeName);
+            _infoModel.type = ConstConvertUtils.TaskNatureString2Int(typeName);
             _infoModel.natureName = typeName;
         }
 
@@ -172,7 +172,7 @@ namespace AepApp.View.Gridding
         {
             var picker = sender as Picker;
             var typeName = picker.SelectedItem as string;
-            _infoModel.state = ConstConvertUtils.TaskStateString2Type(typeName);
+            _infoModel.state = ConstConvertUtils.TaskStateString2Int(typeName);
             _infoModel.stateName = typeName;
 
         }
@@ -236,7 +236,7 @@ namespace AepApp.View.Gridding
 
 
                 _infoModel.natureName = ConstConvertUtils.TaskNatureType2String(_infoModel.type.Value);
-                _infoModel.stateName = ConstConvertUtils.TaskStateType2String(_infoModel.state.Value);
+                _infoModel.stateName = ConstConvertUtils.TaskState2String(_infoModel.state.Value);
                 BindingContext = _infoModel;
                 try
                 {
@@ -265,7 +265,7 @@ namespace AepApp.View.Gridding
                      result = result.Replace("taskcoords", "coords");
                     _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(result);
                     _infoModel.natureName = ConstConvertUtils.TaskNatureType2String(_infoModel.type.Value);
-                    _infoModel.stateName = ConstConvertUtils.TaskStateType2String(_infoModel.state.Value);
+                    _infoModel.stateName = ConstConvertUtils.TaskState2String(_infoModel.state.Value);
                     _infoModel.canEdit = false;
                     creatPositionList();
 
