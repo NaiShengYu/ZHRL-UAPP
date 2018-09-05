@@ -37,6 +37,23 @@ namespace AepApp.View.Gridding
                 return;
             }
             if (App.gridUser == null) return;
+
+            //乡级
+            if(App.gridUser.gridLevel == App.GridMaxLevel -1){
+                var dsPage = new DisposeEventPage(eventM);
+                Navigation.PushAsync(dsPage);
+                listView.SelectedItem = null;
+
+            }
+            //县级
+            if (App.gridUser.gridLevel == App.GridMaxLevel - 2)
+            {
+                var dsPage = new DisposeEventTypeTowPage(eventM);
+                Navigation.PushAsync(dsPage);
+                listView.SelectedItem = null;
+            }
+           
+
             Navigation.PushAsync(new RegistrationEventPage(eventM.id.ToString()));
             listView.SelectedItem = null;
         }

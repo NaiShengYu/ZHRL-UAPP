@@ -116,7 +116,6 @@ namespace AepApp.View.Gridding
         {
 
             string url = App.EP360Module.url + "/api/gbm/GetIncidentDetail";
-
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("id", _eventModel.id);
             string pa = JsonConvert.SerializeObject(param);

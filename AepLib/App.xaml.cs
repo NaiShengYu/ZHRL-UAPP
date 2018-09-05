@@ -51,6 +51,7 @@ namespace AepApp
 
         public static UserInfoModel userInfo = null;
         public static GridUserInfoModel gridUser = null;
+        public static ObservableCollection<UserDepartmentsModel> userDepartments = null;
 
         public static ModuleConfigEP360 moduleConfigEP360 = null;
         public static ModuleConfigSampling moduleConfigSampling = null;
@@ -390,6 +391,36 @@ namespace AepApp
             }
             return null;
         }
+
+        /// <summary>
+        /// 获取用户所在部门
+        /// </summary>
+        /// <param name="staffId"></param>
+        /// <returns></returns>
+        public async Task<ObservableCollection<UserDepartmentsModel>> GetStaffDepartments(Guid staffId)
+        {
+
+            try
+            {
+                ObservableCollection<UserDepartmentsModel> departs = new ObservableCollection<UserDepartmentsModel>();
+                string url = App.BasicDataModule.url + "/api/Modmanage/GetStaffDepartments";
+                Dictionary<string, object> dic = new Dictionary<string, object>();
+                dic.Add("id", staffId);
+                string param = JsonConvert.SerializeObject(dic);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", FrameworkToken);
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    departs = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(res.Results);
+                }
+                return departs;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
 
         /// <summary>
         /// Get a list of module names and URLs from the framework server

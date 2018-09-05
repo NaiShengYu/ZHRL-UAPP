@@ -43,7 +43,7 @@
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
                             <Label Text="事件处理完毕" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                            <Switch IsEnabled="{Binding canEidt}" x:Name="SW" IsToggled="false" HorizontalOptions="End" VerticalOptions="Center" Margin="10" >
+                            <Switch IsEnabled="{Binding canEdit}" x:Name="SW" IsToggled="false" HorizontalOptions="End" VerticalOptions="Center" Margin="10" >
                                 <Switch.Triggers>
                                    <DataTrigger TargetType="Switch" Binding="{Binding state}" Value="3">
                                         <Setter Property="IsToggled" Value="true"/>

@@ -31,7 +31,7 @@ namespace AepApp.View.Gridding
         //分派给子部门
         void assignmentTasks(object sender,EventArgs eventArgs){
 
-
+            Navigation.PushAsync(new AssignPersonInfoPage(_infoModel,2,new Label()));
         }
 
 
@@ -45,7 +45,6 @@ namespace AepApp.View.Gridding
             {
 
             }
-
         }
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
@@ -74,9 +73,7 @@ namespace AepApp.View.Gridding
         //指派网格员
         void choiseUser(object sender, System.EventArgs e)
         {
-            if(GridMoreSW.IsToggled)
-                Navigation.PushAsync(new GridTreeWithUserPage(_infoModel));
-            else Navigation.PushAsync(new AssignPersonPage());
+             Navigation.PushAsync(new AssignPersonPage(_infoModel));
         }
 
         //添加相关企业
@@ -287,7 +284,6 @@ namespace AepApp.View.Gridding
                     await Navigation.PopAsync();
                 }
             }
-
         }
         /// <summary>
         /// 获取任务模板
@@ -312,7 +308,6 @@ namespace AepApp.View.Gridding
                 }
             }
         }
-
 
         private string getAssignName(taskassignment currentItem,string currentName){
                
@@ -375,6 +370,16 @@ namespace AepApp.View.Gridding
                 _infoModel.userName = auditor.userName;
             }
         }
+
+
+        private async void getApprovedUserInfo(){
+            UserInfoModel auditor = await (App.Current as App).GetUserInfo(_infoModel.staff.Value);
+            if (auditor != null)
+            {
+                _infoModel.approvedName = auditor.userName;
+            }
+        }
+
         //根据id获取企业
         private async void ReqEnters(){
 

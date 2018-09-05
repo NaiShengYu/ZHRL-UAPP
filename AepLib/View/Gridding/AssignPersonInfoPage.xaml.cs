@@ -1,15 +1,181 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
+using AepApp.Models;
+using AepApp.Tools;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using Xamarin.Forms;
+using static AepApp.ViewModel.GridTreeViewModel;
 
 namespace AepApp.View.Gridding
 {
     public partial class AssignPersonInfoPage : ContentPage
     {
+      
+
+        ObservableCollection<UserDepartmentsModel> gridList = new ObservableCollection<UserDepartmentsModel>();
+        GridTaskInfoModel _infoModel = null;
+        int _type = 1;
+        Label _titleLab = null;
+        void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
+        {
+
+        }
+
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            UserDepartmentsModel model = e.SelectedItem as UserDepartmentsModel;
+            if (model == null) return;
+
+            if(_type ==1){
+                _infoModel.assignments.Clear();
+                Assignments s1 = new Assignments
+                {
+                    id = Guid.NewGuid(),
+                    rowState = "add",
+                    type = 0,
+                    dept = model.id,
+                };
+                _infoModel.assignments.Add(s1);
+                if(!model.name.Equals("网格员"))
+                _infoModel.AssignName = model.name;
+               
+            }
+
+            if (_type ==2)
+            {
+                Assignments s1 = new Assignments
+                {
+                    id = Guid.NewGuid(),
+                    rowState = "add",
+                    type = 0,
+                    grid = model.id,
+                };
+                _infoModel.assignments.Add(s1);
+                _infoModel.AssignName = _infoModel.AssignName + "  " + model.name;
+            }
+
+            _titleLab.Text = model.name;
+            Navigation.PopAsync();
+            listView.SelectedItem = null;
+
+           
+        }
         public AssignPersonInfoPage()
         {
             InitializeComponent();
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="taskInfoModel">Task info model.</param>
+        /// <param name="type">1.表示部门，2.表示人员</param>
+        public AssignPersonInfoPage(GridTaskInfoModel taskInfoModel,int type,Label titleLab):this(){
+
+            _titleLab = titleLab;
+            _infoModel = taskInfoModel;
+            listView.ItemsSource = gridList;
+            _type = type;
+            if (type == 1){
+                gridList.Add(new UserDepartmentsModel
+                {
+                    name = "网格员",
+                });
+
+            getData();
+            }
+
+            if (type ==2)
+            {
+                reqGrid(taskInfoModel.assignments[0].id);
+            }
+        }
+
+        private async void getData()
+        {
+            if (App.userDepartments == null)
+                App.userDepartments =await (App.Current as App).GetStaffDepartments(App.userInfo.id);
+            foreach (var item in App.userDepartments)
+            {
+                reqGrid(item.id);
+            }
+        }
+
+
+        private async void reqGrid(Guid departId){
+            string url = App.EP360Module.url + "/api/Modmanage/GetStaffDepartments";
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("grid",departId);
+            string pa = JsonConvert.SerializeObject(param);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, pa, "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    var resultList = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(hTTPResponse.Results);
+                    foreach (var item in resultList)
+                    {
+                        gridList.Add(item);
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+        }
+
+        private async void reqDepartPerson(Guid departId)
+        {
+            string url = App.EP360Module.url + "/api/Modmanage/GetDepartmentUsers";
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("id", departId);
+            string pa = JsonConvert.SerializeObject(param);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, pa, "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    ObservableCollection<string> departIds = new ObservableCollection<string>();
+                    var resultList = JsonConvert.DeserializeObject<ObservableCollection<Dictionary<string,string>>>(hTTPResponse.Results);
+                    foreach (var item in resultList)
+                    {
+                        departIds.Add(item["userid"]);
+                    }
+                    reqDepartPersonTow(departIds);
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+        }
+
+        private async void reqDepartPersonTow(ObservableCollection<string> departIds)
+        {
+            string url = App.FrameworkURL + "/api/fw/GetUserByArrUseid";
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("id", departIds);
+            string pa = JsonConvert.SerializeObject(param);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, pa, "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    var resultList = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(hTTPResponse.Results);
+                    foreach (var item in resultList)
+                    {
+                        gridList.Add(item);
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+        }
+
+
+
     }
 }
