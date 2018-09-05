@@ -106,24 +106,21 @@ namespace AepApp.View.Gridding
                 {
 
                     var eventInfoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
-                    if (eventInfoModel.Followup.Count > 0)
-                    {
-                        Followup followup = eventInfoModel.Followup[0];
-                        GetFollowupDetail(Guid.Parse(followup.id));
-                    }
-                    else
+
+
+                    if (eventInfoModel.state == 3)
                     {
                         _followMoel = new GridEventFollowModel
                         {
                             rowState = "add",
                             id = Guid.NewGuid(),
-                            canEdit = true,
+                            canEdit = false,
                             title = _eventModel.Title,
-                            date = DateTime.Now,
+                            date = _eventModel.Date,
                             staff = App.userInfo.id,
                             staffName = App.userInfo.userName,
                             staffTel = App.userInfo.tel,
-                            state = 4,
+                            state = _eventModel.state,
                             incident = _eventModel.id,
                             level = App.gridUser.gridLevel,
                             gridName = App.gridUser.gridName,
@@ -132,6 +129,37 @@ namespace AepApp.View.Gridding
                         };
                         GR.IsVisible = true;
                         BindingContext = _followMoel;
+                    }
+                    else
+                    {
+                        
+                        if (eventInfoModel.Followup.Count > 0)
+                        {
+                            Followup followup = eventInfoModel.Followup[0];
+                            GetFollowupDetail(Guid.Parse(followup.id));
+                        }
+                        else
+                        {
+                            _followMoel = new GridEventFollowModel
+                            {
+                                rowState = "add",
+                                id = Guid.NewGuid(),
+                                canEdit = true,
+                                title = _eventModel.Title,
+                                date = DateTime.Now,
+                                staff = App.userInfo.id,
+                                staffName = App.userInfo.userName,
+                                staffTel = App.userInfo.tel,
+                                state = 4,
+                                incident = _eventModel.id,
+                                level = App.gridUser.gridLevel,
+                                gridName = App.gridUser.gridName,
+                                grid = App.gridUser.id,
+                                Tasks = new ObservableCollection<GridEventFollowTaskModel>(),
+                            };
+                            GR.IsVisible = true;
+                            BindingContext = _followMoel;
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -202,7 +230,7 @@ namespace AepApp.View.Gridding
         private async void upDateIncidentfollowup (){
 
             string url = App.EP360Module.url + "/api/gbm/updateincidentfollowup";
-            _followMoel.state = SW.IsToggled == true ? 4 : 1;
+            _followMoel.state = SW.IsToggled == true ? 3 : 1;
             Dictionary<string, object> par = new Dictionary<string, object>();
             par.Add("id", Guid.NewGuid());
             par.Add("rowState", "add");
@@ -229,7 +257,7 @@ namespace AepApp.View.Gridding
         private async void UpdateIncidentState()
         {
 
-            if (SW.IsToggled) return;
+            if (SW.IsToggled ==false) return;
 
             string url = App.EP360Module.url + "/api/gbm/UpdateIncidentState";
             Dictionary<string, object> map = new Dictionary<string, object>();

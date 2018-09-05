@@ -402,6 +402,7 @@ namespace AepApp.View.Gridding
                     getAddressWihtLocation();
                     getStaffInfo();
                     getEnterprise();
+                    if (_infoModel.type == null) _infoModel.type = 0;
                     _infoModel.typeName = ConstConvertUtils.GridEventType2String(_infoModel.type.Value);
                     BindingContext = _infoModel;
                     bottom.Height = 0;

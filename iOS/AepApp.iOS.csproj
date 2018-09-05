@@ -463,6 +463,32 @@
     <BundleResource Include="EditorHome.html" />
     <BundleResource Include="wangEditor.js" />
     <BundleResource Include="jquery-1.10.2.min.js" />
+    <BundleResource Include="Resources\approved.png" />
+    <BundleResource Include="Resources\avi.png" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\country.png" />
+    <BundleResource Include="Resources\county.png" />
+    <BundleResource Include="Resources\edit.png" />
+    <BundleResource Include="Resources\file.png" />
+    <BundleResource Include="Resources\finished.png" />
+    <BundleResource Include="Resources\jpg.png" />
+    <BundleResource Include="Resources\markerblue.png" />
+    <BundleResource Include="Resources\mp3.png" />
+    <BundleResource Include="Resources\mp4.png" />
+    <BundleResource Include="Resources\municipal.png" />
+    <BundleResource Include="Resources\png.png" />
+    <BundleResource Include="Resources\ppt.png" />
+    <BundleResource Include="Resources\province.png" />
+    <BundleResource Include="Resources\redcross.png" />
+    <BundleResource Include="Resources\rtf.png" />
+    <BundleResource Include="Resources\staff1.png" />
+    <BundleResource Include="Resources\staff2.png" />
+    <BundleResource Include="Resources\staff3.png" />
+    <BundleResource Include="Resources\town.png" />
+    <BundleResource Include="Resources\township.png" />
+    <BundleResource Include="Resources\txt.png" />
+    <BundleResource Include="Resources\village.png" />
+    <BundleResource Include="Resources\xls.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

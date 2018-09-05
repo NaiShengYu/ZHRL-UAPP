@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:views="clr-namespace:AepApp.MaterialForms" 
-             x:Class="AepApp.View.Gridding.TaskInfoTypeTowPage" 
-             Title="任务">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:AepApp.MaterialForms" x:Class="AepApp.View.Gridding.TaskInfoTypeTowPage" Title="任务">
     <ContentPage.Content>
         <Grid RowSpacing="0" IsVisible="false" x:Name="GR">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="50" x:Name="GH"/>
+                <RowDefinition Height="50" x:Name="GH" />
             </Grid.RowDefinitions>
             <ScrollView>
                 <StackLayout Spacing="0">
@@ -35,9 +31,33 @@
                         <Label Text="{Binding gridName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid IsVisible="false">
+                        <Grid.Triggers>
+                            <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="2">
+                                <Setter Property="IsVisible" Value="true"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="3">
+                                <Setter Property="IsVisible" Value="true"/>
+                            </DataTrigger>
+                        </Grid.Triggers>
+                        <Image HeightRequest="30" WidthRequest="30" Margin="10">
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image" Binding="{Binding state}" Value="2">
+                                    <Setter Property="Source" Value="approved.png"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding state}" Value="3">
+                                    <Setter Property="Source" Value="finished.png"/>
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Label Text="{Binding stateName}" TextColor="Black" Font="18" VerticalOptions="Center" Margin="50,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="{Binding gridName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="时间" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" Date="{Binding date,StringFormat='{0:yyyy-MM-dd}'}" TSize="15" TextColor="Gray" HasBorder="False" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" WidthRequest="120"/>
+                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" Date="{Binding date,StringFormat='{0:yyyy-MM-dd}'}" TSize="15" TextColor="Gray" HasBorder="False" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected"
+                            WidthRequest="120" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
@@ -60,7 +80,6 @@
                         </Grid.GestureRecognizers>
                         <Label Text="模板类型" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <Label Text="{Binding templateName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
-
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
@@ -85,7 +104,6 @@
                                     <x:String>执行中</x:String>
                                     <x:String>退回</x:String>
                                     <x:String>任务完结</x:String>
-
                                 </x:Array>
                             </Picker.ItemsSource>
                         </views:BorderlessPicker>
@@ -115,22 +133,23 @@
                     </Grid>
                     <Grid>
                         <Label Text="任务执行期限" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" TSize="15" TextColor="Gray" HasBorder="False" x:Name="DatePickerStart" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" WidthRequest="120"/>
+                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" TSize="15" TextColor="Gray" HasBorder="False" x:Name="DatePickerStart" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected"
+                            WidthRequest="120" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="任务周期" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessEntry TextChanged="period_change" Text="{Binding period}" HorizontalTextAlignment="End" Placeholder="填写执行周期" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,45,10" WidthRequest="120" Keyboard="Numeric"/>
+                        <views:BorderlessEntry TextChanged="period_change" Text="{Binding period}" HorizontalTextAlignment="End" Placeholder="填写执行周期" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,45,10" WidthRequest="120" Keyboard="Numeric" />
                         <Label Text="天" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="多网络指派" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10" HorizontalOptions="Start" />
-                        <Switch IsEnabled="{Binding canEdit}" IsToggled="true" VerticalOptions="Center" HorizontalOptions="End" Margin="10" />
+                        <Switch x:Name="GridMoreSW" IsEnabled="{Binding canEdit}" IsToggled="true" VerticalOptions="Center" HorizontalOptions="End" Margin="10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid IsEnabled="{Binding canEdit}">
-                        <Grid.GestureRecognizers >
+                        <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="choiseUser" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="指派给" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
@@ -147,10 +166,10 @@
                                 <TapGestureRecognizer Tapped="taskResult" NumberOfTapsRequired="1" />
                             </Grid.GestureRecognizers>
                             <Label Text="执行结果" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                            <Label x:Name="resultTime" Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" >
+                            <Label x:Name="resultTime" Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10">
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label" Binding="{Binding RecordCount}" Value="0">
-                                        <Setter Property="Text" Value="无"/>
+                                        <Setter Property="Text" Value="无" />
                                     </DataTrigger>
                                 </Label.Triggers>
                             </Label>
@@ -169,6 +188,29 @@
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     </StackLayout>
+
+                      <StackLayout x:Name="SKT">
+                        <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
+                            <Label Text="分派任务" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                        </Grid>
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="assignmentTasks" NumberOfTapsRequired="1" />
+                            </Grid.GestureRecognizers>
+                            <Label Text="子部门" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                            <Label Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding RecordCount}" Value="0">
+                                        <Setter Property="Text" Value="无" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        </Grid>
+                       
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    </StackLayout>
+                   
                 </StackLayout>
             </ScrollView>
             <Grid Grid.Row="1" BackgroundColor="#e6e6e6">

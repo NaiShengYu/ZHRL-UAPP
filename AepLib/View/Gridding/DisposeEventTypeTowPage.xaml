@@ -43,9 +43,9 @@
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
                             <Label Text="事件处理完毕" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                            <Switch x:Name="SW" IsToggled="false" HorizontalOptions="End" VerticalOptions="Center" Margin="10" >
+                            <Switch IsEnabled="{Binding canEidt}" x:Name="SW" IsToggled="false" HorizontalOptions="End" VerticalOptions="Center" Margin="10" >
                                 <Switch.Triggers>
-                                   <DataTrigger TargetType="Switch" Binding="{Binding state}" Value="4">
+                                   <DataTrigger TargetType="Switch" Binding="{Binding state}" Value="3">
                                         <Setter Property="IsToggled" Value="true"/>
                                     </DataTrigger>
                                 </Switch.Triggers>
@@ -75,15 +75,14 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <StackLayout>
-                        <Button Clicked="AddEventTask" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,0" />
+                    <StackLayout><Button IsEnabled="{Binding canEdit}" Clicked="AddEventTask" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,0" />
                         <Button Font="17" HorizontalOptions="Center" WidthRequest="140" HeightRequest="40" Margin="10,30,10,10" BackgroundColor="#2c73a3" Text="多级处理信息" TextColor="White" Clicked="townDisposeEvent"/>
                         <Button Font="17" HorizontalOptions="Center" WidthRequest="140" HeightRequest="40" Margin="10,5,10,30" BackgroundColor="#2c73a3" Text="事件内容" TextColor="White" Clicked="showEvent"/>
                     </StackLayout>
                 </ListView.Footer>
             </ListView>
             <Grid Grid.Row="1" BackgroundColor="#e6e6e6">
-                <Button Image="greentick" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="Transparent" Margin="10,5,10,5" Clicked="addEventFollowUp"/>
+                <Button IsEnabled="{Binding canEdit}" Image="greentick" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="Transparent" Margin="10,5,10,5" Clicked="addEventFollowUp"/>
             </Grid>
         </Grid>
     </ContentPage.Content>
