@@ -15,9 +15,9 @@
                 <StackLayout Spacing="0">
                     <Grid>
                         <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessDatePicker x:Name="DatePicker" FontSize="16" TextColor="Gray" 
+                        <Label x:Name="DatePicker" FontSize="16" TextColor="Gray" 
                                                     VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" 
-                                                    Date="{Binding dateStr}" IsEnabled="False"/>
+                                                    Text="{Binding dateStr}"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>

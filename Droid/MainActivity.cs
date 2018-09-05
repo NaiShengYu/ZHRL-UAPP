@@ -14,7 +14,9 @@ using System.Threading.Tasks;
 [assembly: UsesPermission(Android.Manifest.Permission.Flashlight)]
 namespace AepApp.Droid
 {
-    [Activity(Label = "环境保护", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "环境保护", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, 
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+        LaunchMode = LaunchMode.SingleTask)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)

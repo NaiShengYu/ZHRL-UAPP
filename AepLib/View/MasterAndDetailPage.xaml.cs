@@ -54,7 +54,7 @@ namespace AepApp.View
             Master = new MasterPage(this);
             Master.WidthRequest = 100;
 
-            Detail = new NavigationPage(new EventListPage());
+            Detail = new NavigationPage(new HomePagePage());
             //Detail = new NavigationPage(new DisposeEventPage(new GridEventModel
             //{
             //    Title = "午睡吹立场",

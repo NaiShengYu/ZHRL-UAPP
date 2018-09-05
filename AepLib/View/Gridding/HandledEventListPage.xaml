@@ -39,11 +39,11 @@
                                         </DataTrigger>
                                         <!--处理中-->
                                         <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="2">
-                                            <Setter Property="BackgroundColor" Value="#27A53C"/>
+                                            <Setter Property="BackgroundColor" Value="#CF9000"/>
                                         </DataTrigger>
                                         <!--已处理-->
                                         <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="3">
-                                            <Setter Property="BackgroundColor" Value="#CF9000"/>
+                                            <Setter Property="BackgroundColor" Value="#27A53C"/>
                                         </DataTrigger>
                                         <!--虚假-->
                                         <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="4">
