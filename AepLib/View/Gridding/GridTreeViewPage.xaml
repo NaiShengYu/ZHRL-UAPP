@@ -17,9 +17,9 @@
                 </StackLayout>
             </ScrollView>
             <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="200">
-                <Button x:Name="ButtonAll" BackgroundColor="Transparent" Text="全部" HorizontalOptions="Start" Clicked="Button_Clicked_CheckAll" FontSize="17" TextColor="#4A88B1" WidthRequest="80"/>
-                <Button x:Name="ButtonClear" BackgroundColor="Transparent" Text="清空" HorizontalOptions="Start" Clicked="Button_Clicked_Clear" FontSize="17" TextColor="#4A88B1" WidthRequest="80"/>
-                <Button x:Name="ButtonSave" BackgroundColor="Transparent" Text="确定" HorizontalOptions="Start" Clicked="Button_Clicked_Confirm" FontSize="17" TextColor="#4A88B1" WidthRequest="80"/>
+                <Button x:Name="ButtonAll" BackgroundColor="Transparent" Text="全部" HorizontalOptions="Center" Clicked="Button_Clicked_CheckAll" FontSize="17" TextColor="#4A88B1" WidthRequest="80"/>
+                <Button x:Name="ButtonClear" BackgroundColor="Transparent" Text="清空" HorizontalOptions="Center" Clicked="Button_Clicked_Clear" FontSize="17" TextColor="#4A88B1" WidthRequest="80"/>
+                <Button x:Name="ButtonSave" BackgroundColor="Transparent" Text="确定" HorizontalOptions="Center" Clicked="Button_Clicked_Confirm" FontSize="17" TextColor="#4A88B1" WidthRequest="80"/>
 
             </StackLayout>
         </Grid>

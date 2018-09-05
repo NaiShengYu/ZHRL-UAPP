@@ -128,7 +128,10 @@ namespace AepApp.View
                     await Navigation.PushAsync(new MasterAndDetailPage());
                     // save the credential only after successful login
                     deleteData();
-                    //Navigation.RemovePage(Navigation.NavigationStack[0]);
+                    if(Navigation.NavigationStack.Count > 1)
+                    {
+                        Navigation.RemovePage(Navigation.NavigationStack[0]);
+                    }
                 }
                 else
                 {

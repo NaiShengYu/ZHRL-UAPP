@@ -30,8 +30,8 @@
                             </Grid.GestureRecognizers>
                             <Label Text="审核人" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                             <Label x:Name="LabelAuditor" Text="{Binding staffName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,80,10" />
-                            <Button x:Name="BtnPhone" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Image="phone" Margin="10" Clicked="BtnPhone_Clicked"/>
-                            <Button x:Name="BtnMsg" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Image="text2" Margin="10,10,45,10" Clicked="BtnMsg_Clicked"/>
+                            <Button x:Name="BtnPhone" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="phone" Margin="10" Clicked="BtnPhone_Clicked"/>
+                            <Button x:Name="BtnMsg" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,10,45,10" Clicked="BtnMsg_Clicked"/>
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
@@ -75,10 +75,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <StackLayout>
-                        <Button IsEnabled="{Binding canEdit}" Clicked="AddEventTask" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,0" />
-                        <Button Font="17" HorizontalOptions="Center" WidthRequest="120" HeightRequest="40" Margin="10,30,10,10" BackgroundColor="#2c73a3" Text="多级处理信息" TextColor="White" Clicked="townDisposeEvent"/>
-                        <Button Font="17" HorizontalOptions="Center" WidthRequest="120" HeightRequest="40" Margin="10,5,10,30" BackgroundColor="#2c73a3" Text="事件内容" TextColor="White" Clicked="showEvent"/>
+                    <StackLayout><Button IsEnabled="{Binding canEdit}" Clicked="AddEventTask" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,0" />
+                        <Button Font="17" HorizontalOptions="Center" WidthRequest="140" HeightRequest="40" Margin="10,30,10,10" BackgroundColor="#2c73a3" Text="多级处理信息" TextColor="White" Clicked="townDisposeEvent"/>
+                        <Button Font="17" HorizontalOptions="Center" WidthRequest="140" HeightRequest="40" Margin="10,5,10,30" BackgroundColor="#2c73a3" Text="事件内容" TextColor="White" Clicked="showEvent"/>
                     </StackLayout>
                 </ListView.Footer>
             </ListView>

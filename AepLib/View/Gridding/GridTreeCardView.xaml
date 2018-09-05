@@ -31,13 +31,13 @@
             <!-- checkbutton -->
             <StackLayout Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Horizontal">
                 <!--<Button Image="graytick" Grid.Column="0" WidthRequest="35" HeightRequest="50" Command="{Binding ToggleIsCheckedCommand}" BackgroundColor="Transparent">-->
-                <Button x:Name="ButtonCheck" Image="graytick" Grid.Column="0" WidthRequest="35" HeightRequest="50" Clicked="ButtonCheck_Clicked" BackgroundColor="Transparent">
+                <Button x:Name="ButtonCheck" Image="graytick" Grid.Column="0" WidthRequest="25" HeightRequest="30" Clicked="ButtonCheck_Clicked" BackgroundColor="Transparent">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button" Binding="{Binding IsChecked}" Value="true">
-                            <Setter Property="Image" Value="greentick" />
+                            <Setter Property="Image" Value="chkbox_on" />
                         </DataTrigger>
                         <DataTrigger TargetType="Button" Binding="{Binding IsChecked}" Value="false">
-                            <Setter Property="Image" Value="graytick" />
+                            <Setter Property="Image" Value="chkbox_off" />
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>

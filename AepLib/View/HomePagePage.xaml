@@ -1,50 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.HomePagePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.HomePagePage"
+             BackgroundImage="back">
     <ContentPage.Content>
-        <ScrollView BackgroundColor="Blue">
+        <ScrollView>
             <StackLayout Spacing="0">
-                <Grid Margin="2" BackgroundColor="Teal" HeightRequest="180">
-                    <Grid VerticalOptions="Start" HorizontalOptions="Start" Margin="10" BackgroundColor="White" Opacity="0.5">
-                        <Label Font="21" TextColor="#356768" Margin="2" Text="网格化管理" />
-                    </Grid>
-                    <StackLayout Spacing="0" Opacity="0.5" BackgroundColor="White" WidthRequest="180" HorizontalOptions="Start" VerticalOptions="End" Margin="30,10,10,10" HeightRequest="40">
-                        <Label Font="12" Text="2018-08-12 20:22" TextColor="Black" Margin="20,3,0,0" VerticalOptions="End" />
+                <Grid Margin="2" HeightRequest="140">
+                    <Image HeightRequest="160" Source="banner_gbm" Aspect="Fill"/>
+                    <StackLayout x:Name="LayoutSendInformation" Spacing="0" Opacity="0.5" BackgroundColor="White" WidthRequest="160" 
+                                 HorizontalOptions="Start" VerticalOptions="End" Margin="30,10,10,10" HeightRequest="40" IsVisible="True">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LayoutSendInformation_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label x:Name="LabelInformationTime" Font="12" Text="2018-08-12 20:22" TextColor="Black" Margin="20,3,0,0" VerticalOptions="End" />
                         <Label Font="15" Text="上级下达信息/文件" TextColor="Black" Margin="20,0,0,3" VerticalOptions="Start" />
                     </StackLayout>
-                    <Button WidthRequest="40" HeightRequest="40" BorderRadius="20" BackgroundColor="Olive" Margin="10,10,10,10" HorizontalOptions="Start" VerticalOptions="End" />
-                    <StackLayout HorizontalOptions="End" VerticalOptions="End" Margin="10,10,10,15" WidthRequest="120" Spacing="5">
+                    <Image x:Name="ImgAlarm" WidthRequest="40" HeightRequest="40" Source="yellowexclam" HorizontalOptions="Start" VerticalOptions="End" Margin="10, 0, 0, 10"/>
+                    <StackLayout HorizontalOptions="End" VerticalOptions="End" Margin="10,10,10,15" WidthRequest="140" Spacing="5">
                         <Grid HeightRequest="30" Margin="0" HorizontalOptions="FillAndExpand">
-                            <Grid BackgroundColor="Black" Opacity="0.3" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+                            <Grid BackgroundColor="Black" Opacity="0.5" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0" Padding="3">
                                 <Label Font="13" Text="尚未完成任务" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
                             </Grid>
-                            <Button HeightRequest="30" Margin="0" WidthRequest="40" HorizontalOptions="End" VerticalOptions="Center" BorderRadius="15" BackgroundColor="#fb7c41" />
+                            <Frame CornerRadius="15" BackgroundColor="#FF7C36"  Padding="0" BorderColor="#FF7C36" Margin="80, 0, 0, 0">
+                                <Label x:Name="BtnWorkingTaskNum" WidthRequest="60" HeightRequest="30"  Margin="0" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="White" Text="23" FontSize="22" HorizontalTextAlignment="Center"/>
+                            </Frame>
                         </Grid>
                         <Grid HeightRequest="30" Margin="0" HorizontalOptions="FillAndExpand">
-                            <Grid BackgroundColor="Black" Opacity="0.3" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+                            <Grid BackgroundColor="Black" Opacity="0.5" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0" Padding="3">
                                 <Label Font="13" Text="日常任务" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
                             </Grid>
-                            <Button HeightRequest="30" Margin="0" WidthRequest="40" HorizontalOptions="End" VerticalOptions="Center" BorderRadius="15" BackgroundColor="#fb7c41" />
+                            <Frame CornerRadius="15" BackgroundColor="#FFCD36" Padding="0"  BorderColor="#FFCD36" Margin="80, 0, 0, 0">
+                                <Label x:Name="BtnRegularTaskNum" HeightRequest="60" Margin="0" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Text="23" FontSize="22" HorizontalTextAlignment="Center"/>
+                            </Frame>
                         </Grid>
                         <Grid HeightRequest="30" Margin="0" HorizontalOptions="FillAndExpand">
-                            <Grid BackgroundColor="Black" Opacity="0.3" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+                            <Grid BackgroundColor="Black" Opacity="0.5" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0" Padding="3">
                                 <Label Font="13" Text="下级上报事件" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
                             </Grid>
-                            <Button HeightRequest="30" Margin="0" WidthRequest="40" HorizontalOptions="End" VerticalOptions="Center" BorderRadius="15" BackgroundColor="#fb7c41" />
+                            <Frame CornerRadius="15" BackgroundColor="#ACE000" Padding="0"  BorderColor="#ACE000" Margin="80, 0, 0, 0">
+                                <Label x:Name="BtnReportEventNum" HeightRequest="60" Margin="0" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Text="23" FontSize="22" HorizontalTextAlignment="Center"/>
+                            </Frame>
                         </Grid>
                     </StackLayout>
                 </Grid>
-                <Grid Margin="2" BackgroundColor="Purple" HeightRequest="180">
-                    <Grid VerticalOptions="Start" HorizontalOptions="End" Margin="10" BackgroundColor="White" Opacity="0.5">
-                        <Label Font="21" TextColor="#356768" Margin="2" Text="360环境管理" />
+                <Grid Margin="2" HeightRequest="140">
+                    <Image HeightRequest="160" Source="banner_360" Aspect="Fill"/>
+                    <Image HorizontalOptions="Start" VerticalOptions="End" Margin="20,20,20,10" HeightRequest="30" WidthRequest="30" Source="factory"/>
+                    <Grid HeightRequest="25"  Margin="40,20,20,15" VerticalOptions="End" HorizontalOptions="Start">
+                        <Frame CornerRadius="12" BackgroundColor="#4E7DB8" Padding="0"  BorderColor="#4E7DB8">
+                            <Label x:Name="Btn360CompanyNum" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="25" WidthRequest="40" TextColor="White" Text="333" FontSize="18" HorizontalTextAlignment="Center"/>
+                        </Frame>
                     </Grid>
-                    <Image HorizontalOptions="Start" VerticalOptions="End" Margin="20,20,20,10" HeightRequest="25" WidthRequest="25" BackgroundColor="Black"/>
-                    <Button HorizontalOptions="Start" VerticalOptions="End" Margin="40,20,20,15" HeightRequest="25" WidthRequest="40" BorderRadius="12" BackgroundColor="#507fb6" TextColor="White" Text="333" />
-                    <Image HorizontalOptions="Start" VerticalOptions="End" Margin="90,20,20,10" HeightRequest="25" WidthRequest="25" BackgroundColor="Black"/>
-                    <Button HorizontalOptions="Start" VerticalOptions="End" Margin="110,20,20,15" HeightRequest="25" WidthRequest="40" BorderRadius="12" BackgroundColor="#b53536" TextColor="White" Text="121"/>
-                     </Grid>
-                <Grid Margin="2" BackgroundColor="Fuchsia" HeightRequest="180">
-                </Grid>
-                <Grid Margin="2" BackgroundColor="Green" HeightRequest="180">
+                    <Image HorizontalOptions="Start" VerticalOptions="End" Margin="90,20,20,10" HeightRequest="30" WidthRequest="30" Source="factoryexclam"/>
+                    <Grid HeightRequest="25"  Margin="110,20,20,15" VerticalOptions="End" HorizontalOptions="Start">
+                        <Frame CornerRadius="12" BackgroundColor="#B83232" Padding="0"  BorderColor="#B83232">
+                            <Label x:Name="Btn360AlarmNum" HorizontalOptions="Center" HeightRequest="25" WidthRequest="40" TextColor="White" Text="121" FontSize="18" HorizontalTextAlignment="Center"/>
+                        </Frame>
+                    </Grid>
                 </Grid>
             </StackLayout>
         </ScrollView>

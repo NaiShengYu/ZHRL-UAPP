@@ -625,6 +625,33 @@
   <ItemGroup>
     <BundleResource Include="Resources\jquery-1.10.2.min.js" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\banner_360.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\banner_gbm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chkbox_mixed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chkbox_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chkbox_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\factory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\factoryexclam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\yellowexclam.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

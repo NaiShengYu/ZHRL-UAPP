@@ -228,6 +228,12 @@ namespace AepApp
                _isenvironmental == true)
             {
                 MainPage = new NavigationPage(new MasterAndDetailPage());
+                _autologgedin = false;
+                _isSampling = false;
+                _isEmergency = false;
+                _ISBasicData = false;
+                _isEP360 = false;
+                _isenvironmental = false;
             }
 
         }

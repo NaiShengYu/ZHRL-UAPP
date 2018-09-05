@@ -214,7 +214,7 @@
                 </StackLayout>
             </ScrollView>
             <Grid Grid.Row="1" BackgroundColor="#e6e6e6">
-                <Button Clicked="updata" TextColor="#2c73a3" Text="确定" Font="18" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="Transparent" Margin="10,5,10,5" />
+                <Button Clicked="updata" TextColor="#2c73a3" Text="确定" Font="18" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="Transparent"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

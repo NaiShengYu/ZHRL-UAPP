@@ -46,13 +46,10 @@
 
 
     var getEditorValue = function () {
-        alert("value:" + editor.txt.html());
         return editor.txt.html();
     }
     var setEditorValue = function (val) {
-        editor.tex.clear();
         editor.txt.html(val);
-        alert("param:" + val + " result:" +  editor.txt.html());
         return editor.txt.html();
     }
     var appendEditorValue = function (val) {
