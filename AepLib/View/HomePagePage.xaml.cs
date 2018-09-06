@@ -18,6 +18,7 @@ namespace AepApp.View
         {
             InitializeComponent();
             SetUserDepartment();
+            Title = "沂水县环境保护局";
             if ("0".Equals(App.EP360Module.status))//模块功能启用
             {
                 LayoutGridStatics.IsVisible = true;
@@ -46,7 +47,7 @@ namespace AepApp.View
                     if (!string.IsNullOrWhiteSpace(item.name))
                         department += item.name;
             }
-            Title = department;
+            //Title = department;
         }
 
         /// <summary>

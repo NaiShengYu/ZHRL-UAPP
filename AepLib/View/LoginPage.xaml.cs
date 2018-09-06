@@ -70,7 +70,7 @@ namespace AepApp.View
                     item = todoItems[i];
                     if (item.isCurrent == true)
                     {
-                        site_name.Text = item.Name;
+                        //site_name.Text = item.Name;
                         //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
                     }
                 }
@@ -114,11 +114,11 @@ namespace AepApp.View
                 await DisplayAlert("提示", "密码不能为空", "确定");
                 //DependencyService.Get<Sample.IToast>().ShortAlert("密码不能为空");
             }
-            else if (siteNmae == null || siteNmae.Length == 0)
-            {
-                await DisplayAlert("提示", "请先添加站点", "确定");
-                //DependencyService.Get<Sample.IToast>().ShortAlert("请先添加站点");
-            }
+            //else if (siteNmae == null || siteNmae.Length == 0)
+            //{
+            //    await DisplayAlert("提示", "请先添加站点", "确定");
+            //    //DependencyService.Get<Sample.IToast>().ShortAlert("请先添加站点");
+            //}
             else
             {
                 deleteData();
@@ -126,13 +126,13 @@ namespace AepApp.View
 
                 if (autologin)
                 {
-                    await Navigation.PushAsync(new MasterAndDetailPage());
-                    // save the credential only after successful login
+                    //await Navigation.PushAsync(new MasterAndDetailPage());
+                    //// save the credential only after successful login
 
-                    if(Navigation.NavigationStack.Count > 1)
-                    {
-                        Navigation.RemovePage(Navigation.NavigationStack[0]);
-                    }
+                    //if(Navigation.NavigationStack.Count > 1)
+                    //{
+                    //    Navigation.RemovePage(Navigation.NavigationStack[0]);
+                    //}
                 }
                 else
                 {

@@ -19,6 +19,7 @@ namespace AepApp.Models
         public string level { get; set; }
         public string date { get; set; }
         public string assignment { get; set; }
+        public string direction { get; set; }
 
 
 
