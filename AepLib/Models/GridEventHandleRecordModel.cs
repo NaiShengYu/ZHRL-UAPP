@@ -15,6 +15,7 @@ namespace AepApp.Models
         public Guid? staff { get; set; }
         public Guid? gridcell { get; set; }
         public string gridName { get; set; }
+        public string editName { get; set; }
         public string parentName { get; set; }
         public string results { get; set; }
         public string assignment { get; set; }

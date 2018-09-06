@@ -66,7 +66,6 @@ namespace AepApp.View.Gridding
             map.Add("staff",mStaff);
             map.Add("task", mTaskId);
 
-
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == HttpStatusCode.OK)

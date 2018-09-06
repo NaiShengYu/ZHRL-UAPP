@@ -77,11 +77,11 @@ namespace AepApp.View.Gridding
         private async void ReqWorksList()
         {
             //string url = App.EP360Module.url + "/api/gbm/GetGridAndParentGridStaff";
-            string url = App.BasicDataModule.url + "/api/gbm/GetGridUnderIncident";
+            string url = App.EP360Module.url + "/api/gbm/GetGridUnderIncident";
             Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", ConstantUtils.PAGE_SIZE);
-            map.Add("searchKey", mSearchKey);
+            //map.Add("pageIndex", pageIndex);
+            //map.Add("pageSize", ConstantUtils.PAGE_SIZE);
+            //map.Add("searchKey", mSearchKey);
             //map.Add("grid", App.gridUser.grid);
             map.Add("id", mTaskId);
             string param = JsonConvert.SerializeObject(map);
@@ -113,7 +113,7 @@ namespace AepApp.View.Gridding
 
         private async void GetStaffInfo(GridStaffModel staffModel)
         {
-            UserInfoModel auditor = await (App.Current as App).GetUserInfo(staffModel.id);
+            UserInfoModel auditor = await (App.Current as App).GetUserInfo(staffModel.user.Value);
             if (auditor != null)
             {
                 staffModel.username = auditor.userName;
@@ -125,14 +125,14 @@ namespace AepApp.View.Gridding
 
         public void LoadMore(object sender, ItemVisibilityEventArgs e)
         {
-            GridStaffModel item = e.Item as GridStaffModel;
-            if (item == dataList[dataList.Count - 1] && item != null)
-            {
-                if (hasMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
-                {
-                    ReqWorksList();
-                }
-            }
+            //GridStaffModel item = e.Item as GridStaffModel;
+            //if (item == dataList[dataList.Count - 1] && item != null)
+            //{
+            //    if (hasMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
+            //    {
+            //        ReqWorksList();
+            //    }
+            //}
         }
     }
 }

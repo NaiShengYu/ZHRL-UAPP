@@ -23,5 +23,8 @@ namespace AepApp.Models
             get { return !string.IsNullOrWhiteSpace(mobile); }
         }
 
+        public Guid? user { get; set; }
+
+
     }
 }

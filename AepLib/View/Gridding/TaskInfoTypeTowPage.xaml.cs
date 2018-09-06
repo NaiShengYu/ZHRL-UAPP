@@ -158,10 +158,11 @@ namespace AepApp.View.Gridding
             }
             GridTaskHandleRecordModel record = new GridTaskHandleRecordModel
             {
-                date = _infoModel.date,
-                gridName = _infoModel.gridName,
+                date = DateTime.Now,
+                gridName = App.gridUser.gridName,
                 assignment = _assignmentId,
                 results = _infoModel.results,
+                editName = App.userInfo.userName,
             };
             if (_infoModel.staff != null)
                 record.staff = _infoModel.staff.Value;
@@ -452,7 +453,6 @@ namespace AepApp.View.Gridding
                         _infoModel.LastRecordTime = recorModel.date;
                         _infoModel.RecordCount = list.Count;
                         _infoModel.results = recorModel.results;
-                        resultTime.Text = _infoModel.LastRecordTime.ToString("yyyy-MM-dd");
                     }else{
                         //SK.IsVisible = false;
                     }

@@ -35,7 +35,11 @@ namespace AepApp.View.Gridding
             mTaskId = taskId;
             mRecord = record;
             GridOperate.IsVisible = mIsEdit;
-            GetStaffInfo();
+            if (isEdit == false)
+            {
+                GetStaffInfo();
+            }
+
             if (!isEdit) GetRecordDetail();
             else SetRecordInfo(record);
         }
@@ -193,7 +197,7 @@ namespace AepApp.View.Gridding
                     string status = JsonConvert.DeserializeObject<string>(res.Results);
                     if ("OK".Equals(status))
                     {
-                        DependencyService.Get<IToast>().LongAlert("添加成功！");
+                        //DependencyService.Get<IToast>().LongAlert("添加成功！");
                         await Navigation.PopAsync();
                     }
                     else
