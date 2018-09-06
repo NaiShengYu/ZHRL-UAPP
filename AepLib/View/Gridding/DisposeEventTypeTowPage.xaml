@@ -75,7 +75,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <StackLayout><Button IsEnabled="{Binding canEdit}" Clicked="AddEventTask" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,0" />
+                    <StackLayout><Button IsVisible="{Binding canEdit}" Clicked="AddEventTask" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,0" />
                         <Button Font="17" HorizontalOptions="Center" WidthRequest="140" HeightRequest="40" Margin="10,30,10,10" BackgroundColor="#2c73a3" Text="多级处理信息" TextColor="White" Clicked="townDisposeEvent"/>
                         <Button Font="17" HorizontalOptions="Center" WidthRequest="140" HeightRequest="40" Margin="10,5,10,30" BackgroundColor="#2c73a3" Text="事件内容" TextColor="White" Clicked="showEvent"/>
                     </StackLayout>

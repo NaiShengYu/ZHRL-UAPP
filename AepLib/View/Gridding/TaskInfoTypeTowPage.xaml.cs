@@ -150,23 +150,31 @@ namespace AepApp.View.Gridding
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">E.</param>
-        void taskResult(object sender, System.EventArgs e)
+        private async void taskResult(object sender, System.EventArgs e)
         {
             if (_infoModel == null)
             {
                 return;
             }
+
             GridTaskHandleRecordModel record = new GridTaskHandleRecordModel
             {
                 date = DateTime.Now,
-                gridName = App.gridUser.gridName,
                 assignment = _assignmentId,
                 results = _infoModel.results,
                 editName = App.userInfo.userName,
+
             };
+            if (App.gridUser !=null)
+            {
+                record.gridName = App.gridUser.gridName;
+            }
+            if (App.userDepartments != null && App.userDepartments.Count > 0)
+                record.gridName = App.userDepartments[0].name;
+
             if (_infoModel.staff != null)
                 record.staff = _infoModel.staff.Value;
-            Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute));
+            await Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute));
         }
 
         void editContent(object sender, System.EventArgs e)
@@ -283,7 +291,6 @@ namespace AepApp.View.Gridding
                     _infoModel.stateName = ConstConvertUtils.TaskState2String(_infoModel.state.Value);
                     _infoModel.canEdit = false;
                     creatPositionList();
-
                     if (_infoModel.taskassignments != null && _infoModel.taskassignments.Count > 0)
                         _infoModel.AssignName = getAssignName(_infoModel.taskassignments[0], "");
                     DatePickerStart.Date = _infoModel.deadline.Value;
@@ -291,6 +298,7 @@ namespace AepApp.View.Gridding
                     GH.Height = 0;
                     BindingContext = _infoModel;
                     ReqGridTaskList();
+                    if (_infoModel.state == 6) addTaskResulGR.IsVisible = false;
                     _infoModel.enterprise = new ObservableCollection<Enterprise>();
                     GetStaffInfo();
                     GetSendUserInfo();
