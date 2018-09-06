@@ -18,6 +18,7 @@ namespace AepApp.View.Gridding
         GridTaskInfoModel _infoModel = null;
         int _type = 1;
         Label _titleLab = null;
+        Dictionary<string, object> _subDic = null;
         void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
         {
 
@@ -30,17 +31,18 @@ namespace AepApp.View.Gridding
 
             if(_type ==1){
                 _infoModel.assignments.Clear();
-                Assignments s1 = new Assignments
-                {
-                    id = Guid.NewGuid(),
-                    rowState = "add",
-                    type = 0,
-                    dept = model.id,
-                };
-                _infoModel.assignments.Add(s1);
                 if(!model.name.Equals("网格员"))
                 _infoModel.AssignName = model.name;
-               
+                else {
+                    Assignments s1 = new Assignments
+                    {
+                        id = Guid.NewGuid(),
+                        rowState = "add",
+                        type = 0,
+                        dept = model.id,
+                    };
+                    _infoModel.assignments.Add(s1);
+                }
             }
 
             if (_type ==2)
@@ -50,12 +52,15 @@ namespace AepApp.View.Gridding
                     id = Guid.NewGuid(),
                     rowState = "add",
                     type = 0,
-                    grid = model.id,
+                    staff = model.id,
                 };
                 _infoModel.assignments.Add(s1);
                 _infoModel.AssignName = _infoModel.AssignName + "  " + model.name;
             }
 
+            if(_type == 3){
+                _subDic.Add("toDept", model.id);
+            }
             _titleLab.Text = model.name;
             Navigation.PopAsync();
             listView.SelectedItem = null;
@@ -72,7 +77,7 @@ namespace AepApp.View.Gridding
         /// 
         /// </summary>
         /// <param name="taskInfoModel">Task info model.</param>
-        /// <param name="type">1.表示部门，2.表示人员</param>
+        /// <param name="type">1.表示选择部门，2.表示选择部门人员，3.选择子部门</param>
         public AssignPersonInfoPage(GridTaskInfoModel taskInfoModel,int type,Label titleLab):this(){
 
             _titleLab = titleLab;
@@ -84,15 +89,24 @@ namespace AepApp.View.Gridding
                 {
                     name = "网格员",
                 });
-
-            getData();
+                getData();
             }
 
             if (type ==2)
             {
-                reqGrid(taskInfoModel.assignments[0].id);
+                reqDepartPerson(taskInfoModel.assignments[0].dept.Value);
             }
         }
+
+        public AssignPersonInfoPage(ObservableCollection<UserDepartmentsModel> departList, int type, Label titleLab,Dictionary<string,object> subDic):this()
+        {
+            gridList = departList;
+            _titleLab = titleLab;
+            listView.ItemsSource = gridList;
+            _type = type;
+            _subDic = subDic;
+        }
+
 
         private async void getData()
         {
@@ -104,9 +118,9 @@ namespace AepApp.View.Gridding
             }
         }
 
-
+        //获取部门名称和id
         private async void reqGrid(Guid departId){
-            string url = App.EP360Module.url + "/api/Modmanage/GetStaffDepartments";
+            string url = App.BasicDataModule.url + "/api/Modmanage/GetStaffDepartments";
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("grid",departId);
             string pa = JsonConvert.SerializeObject(param);
@@ -127,9 +141,10 @@ namespace AepApp.View.Gridding
             }
         }
 
+        //获取部门人员id
         private async void reqDepartPerson(Guid departId)
         {
-            string url = App.EP360Module.url + "/api/Modmanage/GetDepartmentUsers";
+            string url = App.BasicDataModule.url + "/api/Modmanage/GetDepartmentUsers";
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("id", departId);
             string pa = JsonConvert.SerializeObject(param);
@@ -152,9 +167,10 @@ namespace AepApp.View.Gridding
             }
         }
 
+        //获取部门人员名称
         private async void reqDepartPersonTow(ObservableCollection<string> departIds)
         {
-            string url = App.FrameworkURL + "/api/fw/GetUserByArrUseid";
+            string url = App.FrameworkURL + "/api/fw/GetUserByArrUserid";
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("id", departIds);
             string pa = JsonConvert.SerializeObject(param);
@@ -163,6 +179,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
+                    string result = hTTPResponse.Results.Replace("username", "name");
                     var resultList = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(hTTPResponse.Results);
                     foreach (var item in resultList)
                     {
@@ -174,6 +191,9 @@ namespace AepApp.View.Gridding
                 }
             }
         }
+
+
+
 
 
 
