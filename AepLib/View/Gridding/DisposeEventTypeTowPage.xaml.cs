@@ -132,8 +132,16 @@ namespace AepApp.View.Gridding
                     }
                     else
                     {
-                        
+                        bool isup = false;
                         if (eventInfoModel.Followup.Count > 0)
+                        {
+                            foreach (var item in eventInfoModel.Followup)
+                            {
+                                if (item.level == App.gridUser.gridLevel.ToString())
+                                    isup = true;
+                            }
+                        }
+                        if (isup == true)
                         {
                             Followup followup = eventInfoModel.Followup[0];
                             GetFollowupDetail(Guid.Parse(followup.id));
@@ -229,6 +237,7 @@ namespace AepApp.View.Gridding
 
         private async void upDateIncidentfollowup (){
 
+
             string url = App.EP360Module.url + "/api/gbm/updateincidentfollowup";
             _followMoel.state = SW.IsToggled == true ? 3 : 1;
             Dictionary<string, object> par = new Dictionary<string, object>();
@@ -247,6 +256,7 @@ namespace AepApp.View.Gridding
             if (res.StatusCode == System.Net.HttpStatusCode.OK){
                 if(res.Results =="\"OK\""){
                     await DisplayAlert("提示", "成功", "确定");
+                    await Navigation.PopAsync();
                 }
 
 

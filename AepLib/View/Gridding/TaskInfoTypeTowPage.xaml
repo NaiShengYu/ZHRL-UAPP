@@ -52,8 +52,9 @@
                         </Image>
                         <Label Text="{Binding stateName}" TextColor="Black" Font="18" VerticalOptions="Center" Margin="50,15,10,15" HorizontalOptions="Start" />
                         <Label Text="{Binding approvedNameAndTime}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+
+                        <BoxView VerticalOptions="End" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     </Grid>
-                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="时间" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" Date="{Binding date,StringFormat='{0:yyyy-MM-dd}'}" TSize="15" TextColor="Gray" HasBorder="False" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected"
@@ -118,7 +119,7 @@
                         </Frame>
                     </Grid>
                     <StackLayout x:Name="enterpriseSK" Spacing="0" />
-                    <Button Clicked="AddEnterprise" IsEnabled="{Binding canEdit}" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,20" />
+                    <Button Clicked="AddEnterprise" IsVisible="{Binding canEdit}" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,20" />
                     <!--                相关位置列表-->
                     <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                         <Label Text="相关位置" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
@@ -127,7 +128,7 @@
                         </Frame>
                     </Grid>
                     <StackLayout x:Name="positionSK" Spacing="0" />
-                    <Button IsEnabled="{Binding canEdit}" Clicked="AddPosition" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,20" />
+                    <Button IsVisible="{Binding canEdit}" Clicked="AddPosition" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,20" />
                     <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                         <Label Text="指派" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
                     </Grid>
@@ -165,14 +166,14 @@
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="taskResult" NumberOfTapsRequired="1" />
                             </Grid.GestureRecognizers>
-                            <Label Text="执行结果" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                            <Label x:Name="resultTime" Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10">
+                            <Label Text="添加执行结果" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                          <!--  <Label x:Name="resultTime" Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10">
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label" Binding="{Binding RecordCount}" Value="0">
                                         <Setter Property="Text" Value="无" />
                                     </DataTrigger>
                                 </Label.Triggers>
-                            </Label>
+                            </Label>-->
                             <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />

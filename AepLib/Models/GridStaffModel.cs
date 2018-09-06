@@ -19,5 +19,8 @@ namespace AepApp.Models
         public int? gridLevel { get; set; }
         public DateTime? registerdate { get; set; }
 
+        public Guid? user { get; set; }
+
+
     }
 }

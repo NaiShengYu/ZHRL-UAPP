@@ -25,7 +25,7 @@
                                         <Button HeightRequest="20" WidthRequest="20" CornerRadius="10">
                                             <Button.Triggers>
                                                 <DataTrigger TargetType="Button" Binding="{Binding direction}" Value="received">
-                                            <Setter Property="BackgroundColor" Value="#859000" />
+                                            <Setter Property="BackgroundColor" Value="#859000"/>
                                                 </DataTrigger>
                                             </Button.Triggers>
                                         </Button>
