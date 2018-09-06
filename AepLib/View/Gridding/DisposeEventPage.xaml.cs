@@ -281,7 +281,7 @@ namespace AepApp.View.Gridding
                 dic.Add("title", _taskInfoModel.title);
                 dic.Add("contents", _taskInfoModel.Contents);
                 dic.Add("deadline", _taskInfoModel.deadline);
-                dic.Add("period", _taskInfoModel.period);
+                dic.Add("period", 1);
                 dic.Add("type", _taskInfoModel.type);
                 dic.Add("state", _taskInfoModel.state);
                 dic.Add("index", _taskInfoModel.index);

@@ -66,6 +66,7 @@ namespace AepApp.View.Gridding
                     };
                     _followMoel.Tasks.Add(taskModel);
                 }
+                listV.ItemsSource = _followMoel.Tasks;
 
             };
                 

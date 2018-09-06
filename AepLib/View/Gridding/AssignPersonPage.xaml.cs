@@ -10,7 +10,11 @@ namespace AepApp.View.Gridding
         GridTaskInfoModel _taskInfomodel = null;
         void AssignPerson(object sender, System.EventArgs e)
         {
-            if(departmentLab.Text.Equals("网格员")) Navigation.PushAsync(new GridTreeWithUserPage(_taskInfomodel));
+            if (string.IsNullOrEmpty(departmentLab.Text))
+            {
+                return;
+            }
+            if(departmentLab.Text=="网格员") Navigation.PushAsync(new GridTreeWithUserPage(_taskInfomodel));
 
             else Navigation.PushAsync(new AssignPersonInfoPage(_taskInfomodel,2,personnelLab));
         }

@@ -234,12 +234,15 @@ namespace AepApp.View.Gridding
                     Tel = App.userInfo.tel,
 
                 };
+
                 try{
                     _infoModel.lat = App.currentLocation.Latitude;
                     _infoModel.lng = App.currentLocation.Longitude; 
                 }catch(Exception ex){
-                    
+                    _infoModel.lat = 29.880064;
+                    _infoModel.lng = 121.573955; 
                 }
+
                 _infoModel.typeName = ConstConvertUtils.GridEventType2String(_infoModel.type.Value);
 
                 BindingContext = _infoModel;
@@ -407,6 +410,7 @@ namespace AepApp.View.Gridding
                     BindingContext = _infoModel;
                     bottom.Height = 0;
                     GR.IsVisible = true;
+                    if (_infoModel.state == 3) SW.IsToggled = true;
                     foreach (var item in _infoModel.attaches)
                     {
                         item.url = App.EP360Module.url + "/grid/GetImage/" + item.id;

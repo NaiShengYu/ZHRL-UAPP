@@ -61,7 +61,7 @@ namespace AepApp.View.Gridding
             GridStaffModel staffModel = e.SelectedItem as GridStaffModel;
             if (staffModel == null) return;
             _assignments.StaffName = staffModel.username;
-            _assignments.staff = staffModel.id;
+            _assignments.staff = staffModel.user;
             _assignments.grid = staffModel.grid;
             Navigation.PopAsync();
        
@@ -118,6 +118,7 @@ namespace AepApp.View.Gridding
             {
                 staffModel.username = auditor.userName;
                 staffModel.mobile = auditor.telephone;
+
                 dataList.Add(staffModel);
             }
         }

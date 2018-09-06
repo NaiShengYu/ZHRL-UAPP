@@ -121,6 +121,7 @@ namespace AepApp.View
             }
             else
             {
+                deleteData();
                 bool autologin = await (App.Current as App).LoginAsync(acc, pwd);
 
                 if (autologin && (App.Current as App)._canGo)
@@ -131,9 +132,7 @@ namespace AepApp.View
                     Application.Current.MainPage = new NavigationPage(App.masterAndDetailPage);
                     App.OpenMenu(new HomePagePage());
 
-                    // save the credential only after successful login
-                    deleteData();
-                    if (Navigation.NavigationStack.Count > 1)
+                    if(Navigation.NavigationStack.Count > 1)
                     {
                         Navigation.RemovePage(Navigation.NavigationStack[0]);
                     }
@@ -148,7 +147,7 @@ namespace AepApp.View
         private void deleteData()
         {
 
-#if !(DEBUG && __IOS__)
+//#if !(DEBUG && __IOS__)
 
             //循环删除所存的数据
             IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.AppName);
@@ -165,7 +164,7 @@ namespace AepApp.View
                 count.Properties.Add("pwd", pwd);
                 AccountStore.Create().Save(count, App.AppName);
             }
-#endif
+//#endif
         }
 
     }

@@ -71,7 +71,7 @@
                                     <Setter Property="BackgroundColor" Value="#c1e0bd"></Setter>
                                 </DataTrigger>
                                 <DataTrigger TargetType="Button" Binding="{Binding Downing}" Value="true">
-                                    <Setter Property="BackgroundColor" Value="#cbfedb"></Setter>
+                                    <Setter Property="BackgroundColor" Value="#249c38"></Setter>
                                 </DataTrigger>
                             </Button.Triggers>
                         </Button>
@@ -81,7 +81,7 @@
                                     <Setter Property="BackgroundColor" Value="#ecdab9"></Setter>
                                 </DataTrigger>
                                 <DataTrigger TargetType="Button" Binding="{Binding Uping}" Value="true">
-                                    <Setter Property="BackgroundColor" Value="#eceeb9"></Setter>
+                                    <Setter Property="BackgroundColor" Value="#c78b20"></Setter>
                                 </DataTrigger>
                             </Button.Triggers>
                         </Button>
