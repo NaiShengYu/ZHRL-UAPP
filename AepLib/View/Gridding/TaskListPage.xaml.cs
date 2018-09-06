@@ -192,6 +192,12 @@ namespace AepApp.View.Gridding
             );
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<ContentPage, TaskFilterCondition>(this, SUBSCRIBE_SEARCH);
+        }
+
         //任务筛选条件
         public class TaskFilterCondition : BaseModel
         {

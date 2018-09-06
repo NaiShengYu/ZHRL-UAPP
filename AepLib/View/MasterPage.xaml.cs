@@ -71,6 +71,11 @@ namespace AepApp.View
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            if(App.gridUser == null)
+            {
+                App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(Guid.Empty));
+                return;
+            }
             if(App.gridUser.gridLevel == App.GridMaxLevel)
             {
                 App.masterAndDetailPage.Detail = new NavigationPage(new TaskExamineStaffPage(App.gridUser.grid));

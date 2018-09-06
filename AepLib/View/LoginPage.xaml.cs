@@ -124,15 +124,18 @@ namespace AepApp.View
                 deleteData();
                 bool autologin = await (App.Current as App).LoginAsync(acc, pwd);
 
-                if (autologin)
+                if (autologin && (App.Current as App)._canGo)
                 {
                     //await Navigation.PushAsync(new MasterAndDetailPage());
-                    //// save the credential only after successful login
 
-                    //if(Navigation.NavigationStack.Count > 1)
-                    //{
-                    //    Navigation.RemovePage(Navigation.NavigationStack[0]);
-                    //}
+                    if (App.masterAndDetailPage == null)
+                        App.masterAndDetailPage = new MasterAndDetailPage();
+                    Application.Current.MainPage = new NavigationPage(App.masterAndDetailPage);
+                    App.OpenMenu(new HomePagePage());
+                    if(Navigation.NavigationStack.Count > 1)
+                    {
+                        Navigation.RemovePage(Navigation.NavigationStack[0]);
+                    }
                 }
                 else
                 {
