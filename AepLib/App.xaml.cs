@@ -99,6 +99,7 @@ namespace AepApp
 
         static TodoItemDatabase database;
         public static SplashPage splashPage;
+        public static MasterAndDetailPage masterAndDetailPage;
 
         private bool _isMasterDetailPageGestureEnabled = true;
         public bool IsMasterDetailPageGestureEnabled
@@ -227,7 +228,8 @@ namespace AepApp
                _isEP360 == true &&
                _isenvironmental == true)
             {
-                MainPage = new NavigationPage(new MasterAndDetailPage());
+                masterAndDetailPage = new MasterAndDetailPage();
+                MainPage = new NavigationPage(masterAndDetailPage);
                 _autologgedin = false;
                 _isSampling = false;
                 _isEmergency = false;
@@ -706,6 +708,16 @@ namespace AepApp
                     }
                 }
             }
+        }
+
+
+        public static void OpenMenu(Page p)
+        {
+            if (p == null || App.masterAndDetailPage == null)
+            {
+                return;
+            }
+            App.masterAndDetailPage.Detail = new NavigationPage(p);
         }
 
         public static TodoItemDatabase Database

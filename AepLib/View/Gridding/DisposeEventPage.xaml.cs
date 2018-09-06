@@ -410,6 +410,8 @@ namespace AepApp.View.Gridding
             {
                 _followMoel.staffTel = auditor.tel;
                 _followMoel.staffName = auditor.userName;
+                BtnPhoneAuditor.IsVisible = !string.IsNullOrWhiteSpace(_followMoel.staffTel);
+                BtnMsgAuditor.IsVisible = !string.IsNullOrWhiteSpace(_followMoel.staffTel);
             }
         }
 

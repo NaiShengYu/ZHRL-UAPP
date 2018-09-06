@@ -22,7 +22,10 @@
                     <Image x:Name="ImgAlarm"  WidthRequest="48" Margin="5, 0, 0, 5" IsVisible="False" HeightRequest="48" Source="yellowexclam" Aspect="AspectFill" HorizontalOptions="Start" VerticalOptions="End"/>
 
                     <StackLayout HorizontalOptions="End" VerticalOptions="End" Margin="10,10,10,15" WidthRequest="140" Spacing="5">
-                        <Grid HeightRequest="30" Margin="0" HorizontalOptions="FillAndExpand">
+                        <Grid x:Name="LayoutWorkingTask" HeightRequest="30" Margin="0" HorizontalOptions="FillAndExpand">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="LayoutWorkingTask_Tapped"/>
+                            </Grid.GestureRecognizers>
                             <Grid BackgroundColor="Black" Opacity="0.5" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0" Padding="3">
                                 <Label Font="13" Text="尚未完成任务" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
                             </Grid>
@@ -30,7 +33,10 @@
                                 <Label x:Name="BtnWorkingTaskNum" WidthRequest="50" HeightRequest="30"  Margin="0" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="White" Text="0" FontSize="22" HorizontalTextAlignment="Center"/>
                             </Frame>
                         </Grid>
-                        <Grid HeightRequest="30" Margin="0" HorizontalOptions="FillAndExpand">
+                        <Grid x:Name="LayoutRegularTask" HeightRequest="30" Margin="0" HorizontalOptions="FillAndExpand">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="LayoutRegularTask_Tapped"/>
+                            </Grid.GestureRecognizers>
                             <Grid BackgroundColor="Black" Opacity="0.5" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0" Padding="3">
                                 <Label Font="13" Text="日常任务" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
                             </Grid>
@@ -38,7 +44,10 @@
                                 <Label x:Name="BtnRegularTaskNum" HeightRequest="50" Margin="0" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Text="0" FontSize="22" HorizontalTextAlignment="Center"/>
                             </Frame>
                         </Grid>
-                        <Grid HeightRequest="30" Margin="0" HorizontalOptions="FillAndExpand">
+                        <Grid x:Name="LayoutReportEvent" HeightRequest="30" Margin="0" HorizontalOptions="FillAndExpand">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="LayoutReportEvent_Tapped"/>
+                            </Grid.GestureRecognizers>
                             <Grid BackgroundColor="Black" Opacity="0.5" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0" Padding="3">
                                 <Label Font="13" Text="下级上报事件" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" />
                             </Grid>
@@ -51,13 +60,19 @@
                 <Grid x:Name="Layout360Statics" Margin="2" HeightRequest="140" IsVisible="False">
                     <Image HeightRequest="160" Source="banner_360" Aspect="Fill"/>
                     <Image HorizontalOptions="Start" VerticalOptions="End" Margin="20,20,20,10" HeightRequest="30" WidthRequest="30" Source="factory"/>
-                    <Grid HeightRequest="25"  Margin="40,20,20,15" VerticalOptions="End" HorizontalOptions="Start">
+                    <Grid x:Name="LayoutCompanyNum" HeightRequest="25"  Margin="40,20,20,15" VerticalOptions="End" HorizontalOptions="Start">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LayoutCompanyNum_Tapped"/>
+                        </Grid.GestureRecognizers>
                         <Frame CornerRadius="12" BackgroundColor="#4E7DB8" Padding="0"  BorderColor="#4E7DB8">
                             <Label x:Name="Btn360CompanyNum" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="25" WidthRequest="40" TextColor="White" Text="0" FontSize="18" HorizontalTextAlignment="Center"/>
                         </Frame>
                     </Grid>
                     <Image HorizontalOptions="Start" VerticalOptions="End" Margin="90,20,20,10" HeightRequest="30" WidthRequest="30" Source="factoryexclam"/>
-                    <Grid HeightRequest="25"  Margin="110,20,20,15" VerticalOptions="End" HorizontalOptions="Start">
+                    <Grid x:Name="LayoutCompanyAlarmNum" HeightRequest="25"  Margin="110,20,20,15" VerticalOptions="End" HorizontalOptions="Start">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LayoutCompanyAlarmNum_Tapped"/>
+                        </Grid.GestureRecognizers>
                         <Frame CornerRadius="12" BackgroundColor="#B83232" Padding="0"  BorderColor="#B83232">
                             <Label x:Name="Btn360AlarmNum" HorizontalOptions="Center" HeightRequest="25" WidthRequest="40" TextColor="White" Text="0" FontSize="18" HorizontalTextAlignment="Center"/>
                         </Frame>

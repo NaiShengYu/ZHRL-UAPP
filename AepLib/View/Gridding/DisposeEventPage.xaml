@@ -14,34 +14,34 @@
             <ScrollView>
                 <StackLayout Spacing="0">
                     <Grid>
-                        <Label Text="标题" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
+                        <Label Text="标题" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
                         <Label Text="{Binding title}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,10,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
-                        <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="时间" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                         <Label Text="{Binding date, StringFormat='{0:yyyy-MM-dd HH:mm}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
-                        <Label Text="网格/部门" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="网格/部门" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                         <Label Text="{Binding gridName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
-                        <Label Text="审核人" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="审核人" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                         <Label x:Name="LabelAuditor" Text="{Binding staffName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
-                        <Button Clicked="BtnPhone_Clicked" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0" />
-                        <Button Clicked="BtnMsg_Clicked" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0" />
+                        <Button IsVisible="False" x:Name="BtnPhoneAuditor" Clicked="BtnPhone_Clicked" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0" />
+                        <Button IsVisible="False" x:Name="BtnMsgAuditor" Clicked="BtnMsg_Clicked" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
-                        <Label Text="事件属实" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="事件属实" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                         <Switch IsEnabled="{Binding canEdit}" x:Name="SW" IsToggled="true" HorizontalOptions="End" VerticalOptions="Center" Margin="10"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
-                        <Label Text="备注" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                        <Label Text="备注" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                         <Label Text="{Binding Remarks}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                         <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked" />
@@ -83,14 +83,14 @@
                     <StackLayout IsVisible="{Binding Downing}" VerticalOptions="FillAndExpand" Spacing="0">
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid x:Name="gridWorker">
-                            <Label Text="指派网格员" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="指派网格员" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                             <Label Text="{Binding StaffName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
                             <Button x:Name="BtnPhone" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="phone" Margin="0, 0, 10, 0" Clicked="BtnPhone_Clicked" />
                             <Button x:Name="BtnMsg" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,0,50,0" Clicked="BtnMsg_Clicked" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
-                            <Label Text="复查期限" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="复查期限" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                             <views:BorderlessDatePicker Date="{Binding deadline, StringFormat='{0:yyyy-MM-dd}'}" IsEnabled="{Binding canEdit}" TSize="15" TextColor="Gray" HasBorder="False" x:Name="DatePickerStart" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,10,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" WidthRequest="120" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />

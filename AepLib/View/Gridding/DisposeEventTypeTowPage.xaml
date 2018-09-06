@@ -13,12 +13,12 @@
                 <ListView.Header>
                     <StackLayout Spacing="0">
                         <Grid>
-                            <Label Text="标题" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
+                            <Label Text="标题" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
                             <Label Text="{Binding title}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,20,10,10" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
-                            <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="时间" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                             <Label Text="{Binding date, StringFormat='{0:yyyy-MM-dd HH:mm}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
@@ -28,21 +28,21 @@
                                     Tapped="Handle_Tapped"
                                      NumberOfTapsRequired="1" />
                             </Grid.GestureRecognizers>
-                            <Label Text="审核人" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="审核人" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                             <Label x:Name="LabelAuditor" Text="{Binding staffName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,80,10" />
-                            <Button x:Name="BtnPhone" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="phone" Margin="10" Clicked="BtnPhone_Clicked"/>
-                            <Button x:Name="BtnMsg" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,10,45,10" Clicked="BtnMsg_Clicked"/>
+                            <Button IsVisible="False" x:Name="BtnPhone" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="phone" Margin="10" Clicked="BtnPhone_Clicked"/>
+                            <Button IsVisible="False" x:Name="BtnMsg" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,10,45,10" Clicked="BtnMsg_Clicked"/>
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
-                            <Label Text="备注" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="备注" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                             <Label Text="{Binding Remarks}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" LineBreakMode="TailTruncation"/>
                             <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                             <Button BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Handle_Clicked" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
-                            <Label Text="事件处理完毕" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
+                            <Label Text="事件处理完毕" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
                             <Switch IsEnabled="{Binding canEdit}" x:Name="SW" IsToggled="false" HorizontalOptions="End" VerticalOptions="Center" Margin="10" >
                                 <Switch.Triggers>
                                    <DataTrigger TargetType="Switch" Binding="{Binding state}" Value="3">
@@ -53,7 +53,7 @@
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
-                            <Label Text="分派任务" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                            <Label Text="分派任务" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
                             <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
                                 <Label Text="{Binding Tasks.Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
                             </Frame>

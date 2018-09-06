@@ -51,7 +51,7 @@ namespace AepApp.View
 
 
             App.appHunbegerPage = this;
-            Master = new MasterPage(this);
+            Master = new MasterPage();
             Master.WidthRequest = 100;
 
             Detail = new NavigationPage(new HomePagePage());
@@ -61,6 +61,7 @@ namespace AepApp.View
             //    id = Guid.NewGuid(),
             //}));
         }
+
 
     }
 }

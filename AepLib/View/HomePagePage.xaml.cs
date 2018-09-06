@@ -17,7 +17,7 @@ namespace AepApp.View
         public HomePagePage()
         {
             InitializeComponent();
-            Title = App.gridUser == null ? App.userInfo.userName : App.gridUser.gridName;
+            SetUserDepartment();
             if ("0".Equals(App.EP360Module.status))//模块功能启用
             {
                 LayoutGridStatics.IsVisible = true;
@@ -33,6 +33,20 @@ namespace AepApp.View
             GetModuleGridSendInformationStatics();
             GetModuleBasicCompanyStatics();
             GetModule360AlarmStatics();
+        }
+
+        private async void SetUserDepartment()
+        {
+            string department = "";
+            if (App.userDepartments == null)
+                App.userDepartments = await (App.Current as App).GetStaffDepartments(App.userInfo.id);
+            foreach (var item in App.userDepartments)
+            {
+                if (!string.IsNullOrWhiteSpace(item.name))
+                    if (!string.IsNullOrWhiteSpace(item.name))
+                        department += item.name;
+            }
+            Title = department;
         }
 
         /// <summary>
@@ -197,6 +211,35 @@ namespace AepApp.View
                 };
                 Navigation.PushAsync(new SendInformationInfoPage(model));
             }
+        }
+
+        private void LayoutWorkingTask_Tapped(object sender, EventArgs e)
+        {
+            App.OpenMenu(new TaskListPage());
+        }
+
+
+        private void LayoutRegularTask_Tapped(object sender, EventArgs e)
+        {
+            App.OpenMenu(new TaskListPage());
+        }
+
+
+        private void LayoutReportEvent_Tapped(object sender, EventArgs e)
+        {
+            App.OpenMenu(new EventListPage());
+        }
+
+
+        private void LayoutCompanyNum_Tapped(object sender, EventArgs e)
+        {
+            App.OpenMenu(new PollutionSourcePage());
+        }
+
+
+        private void LayoutCompanyAlarmNum_Tapped(object sender, EventArgs e)
+        {
+            App.OpenMenu(new PollutionSourcePage());
         }
 
         class InformationStaticsModel

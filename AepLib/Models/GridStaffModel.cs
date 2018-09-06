@@ -18,6 +18,10 @@ namespace AepApp.Models
         public string gridName { get; set; }
         public int? gridLevel { get; set; }
         public DateTime? registerdate { get; set; }
+        public bool hasPhone
+        {
+            get { return !string.IsNullOrWhiteSpace(mobile); }
+        }
 
     }
 }

@@ -12,12 +12,10 @@ namespace AepApp.View
     public partial class MasterPage : ContentPage
     {
         Grid lastselecteditem = null;
-        MasterAndDetailPage _masterdetailpage;
 
-        public MasterPage(MasterAndDetailPage masterdetailpage)
+        public MasterPage()
         {
             InitializeComponent();
-            _masterdetailpage = masterdetailpage;
             nameLab.Text = App.userInfo.userName;
             layoutSampling.IsVisible = App.moduleConfigSampling != null;
             layoutSampling.BindingContext = App.moduleConfigSampling;
@@ -47,9 +45,9 @@ namespace AepApp.View
                     }
                     Type pagetype = Type.GetType(t);
                     var page = new NavigationPage((Page)Activator.CreateInstance(pagetype));
-                    masterdetailpage.Detail = page;
+                    App.masterAndDetailPage.Detail = page;
                 }
-                masterdetailpage.IsPresented = false;
+                App.masterAndDetailPage.IsPresented = false;
 
             };
 
@@ -75,13 +73,13 @@ namespace AepApp.View
         {
             if(App.gridUser.gridLevel == App.GridMaxLevel)
             {
-                _masterdetailpage.Detail = new NavigationPage(new TaskExamineStaffPage(App.gridUser.grid));
+                App.masterAndDetailPage.Detail = new NavigationPage(new TaskExamineStaffPage(App.gridUser.grid));
             }
             else
             {
-                _masterdetailpage.Detail = new NavigationPage(new TaskExaminePage(App.gridUser.grid));
+                App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(App.gridUser.grid));
             }
-            _masterdetailpage.IsPresented = false;
+            App.masterAndDetailPage.IsPresented = false;
         }
     }
 }

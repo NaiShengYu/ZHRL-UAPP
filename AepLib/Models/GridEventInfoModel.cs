@@ -96,7 +96,10 @@ namespace AepApp.Models
             get { return lng.Value.ToString("f6") + " E, " + lng.Value.ToString("f6") + " N"; }
             set { lnglatString = value; NotifyPropertyChanged(); }
         }
-
+        public bool hasPhone
+        {
+            get { return !string.IsNullOrWhiteSpace(tel); }
+        }
 
     }
 
