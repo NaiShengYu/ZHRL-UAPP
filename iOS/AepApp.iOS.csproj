@@ -627,7 +627,7 @@
     <BundleResource Include="Resources\jquery-1.10.2.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\back.jpg" />
+    <BundleResource Include="Resources\bg.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\banner_360.png" />

@@ -19,23 +19,25 @@ namespace AepApp.View.Gridding
     public partial class GridTreeViewPage : ContentPage
     {
 
-        private bool isSingleSelection = false;//是否单选
+        private bool showChildrenCount = false;//是否显示子节点数目
+        private bool isSingleCheck = false;//是否单选
         ObservableCollection<TestTreeModel> gridList = new ObservableCollection<TestTreeModel>();
         private GridTreeNode lastCheckNode;
         private List<GridTreeNode> checkModelList = new List<GridTreeNode>();
 
-        public GridTreeViewPage(bool isSingle)
+        public GridTreeViewPage(bool isSingle, bool showCount)
         {
             InitializeComponent();
-            isSingleSelection = isSingle;
-            ButtonAll.IsVisible = !isSingleSelection;
+            showChildrenCount = showCount;
+            isSingleCheck = isSingle;
+            ButtonAll.IsVisible = !isSingleCheck;
             lastCheckNode = null;
             checkModelList.Clear();
             MessagingCenter.Unsubscribe<ContentView, GridTreeNode>(this, SubcriberConst.MSG_TREEVIEW_NODE_CHECK);
             MessagingCenter.Subscribe<ContentView, GridTreeNode>(this, SubcriberConst.MSG_TREEVIEW_NODE_CHECK, async (arg1, arg2) =>
             {
                 var node = arg2 as GridTreeNode;
-                if (isSingle)
+                if (isSingleCheck)
                 {
                     CheckNodeSingle(node);
                 }
@@ -54,7 +56,7 @@ namespace AepApp.View.Gridding
         {
             for (int i = 0; i < gridList.Count; i++)
             {
-                GridTreeView tree = new GridTreeView
+                GridTreeView tree = new GridTreeView(showChildrenCount)
                 {
                     HorizontalOptions = LayoutOptions.FillAndExpand,
                 };
@@ -105,7 +107,7 @@ namespace AepApp.View.Gridding
 
         void Button_Clicked_Confirm(object sender, EventArgs e)
         {
-            if (isSingleSelection)
+            if (isSingleCheck)
             {
                 //DisplayAlert("选择", lastCheckNode != null ? lastCheckNode.Title : "无", "确定");
                 MessagingCenter.Send<ContentPage, TestTreeModel>(this, 
@@ -238,7 +240,6 @@ namespace AepApp.View.Gridding
 
             string url = App.EP360Module.url + "/api/gbm/GetGridList";
             Dictionary<string, object> param = new Dictionary<string, object>();
-            //param.Add("grid", "72a38f57-1939-40e6-8cca-2960e0d994ea");
             param.Add("grid", App.gridUser.grid);
             param.Add("searchKey", "");
             string pa = JsonConvert.SerializeObject(param);

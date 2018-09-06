@@ -1,4 +1,7 @@
-﻿using CloudWTO.Services;
+﻿using AepApp.Models;
+using AepApp.Tools;
+using AepApp.View.Gridding;
+using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,6 +18,15 @@ namespace AepApp.View
         {
             InitializeComponent();
             Title = App.gridUser == null ? App.userInfo.userName : App.gridUser.gridName;
+            if ("0".Equals(App.EP360Module.status))//模块功能启用
+            {
+                LayoutGridStatics.IsVisible = true;
+                Layout360Statics.IsVisible = true;
+            }
+            else
+            {
+                return;
+            }
             GetModuleGridWorkingTaskStatics();
             GetModuleGridRegularTaskStatics();
             GetModuleGridReportTaskStatics();
@@ -34,11 +46,8 @@ namespace AepApp.View
             {
                 try
                 {
-                    string info = JsonConvert.DeserializeObject<string>(res.Results);
-                    if (info != null)
-                    {
-                        BtnWorkingTaskNum.Text = info;
-                    }
+                    int info = JsonConvert.DeserializeObject<int>(res.Results);
+                    BtnWorkingTaskNum.Text = info + "";
                 }
                 catch (Exception e)
                 {
@@ -59,11 +68,8 @@ namespace AepApp.View
             {
                 try
                 {
-                    string info = JsonConvert.DeserializeObject<string>(res.Results);
-                    if (info != null)
-                    {
-                        BtnRegularTaskNum.Text = info;
-                    }
+                    int info = JsonConvert.DeserializeObject<int>(res.Results);
+                    BtnRegularTaskNum.Text = info + "";
                 }
                 catch (Exception e)
                 {
@@ -84,11 +90,9 @@ namespace AepApp.View
             {
                 try
                 {
-                    string info = JsonConvert.DeserializeObject<string>(res.Results);
-                    if (info != null)
-                    {
-                        BtnReportEventNum.Text = info;
-                    }
+                    int info = JsonConvert.DeserializeObject<int>(res.Results);
+
+                    BtnReportEventNum.Text = info + "";
                 }
                 catch (Exception e)
                 {
@@ -111,10 +115,16 @@ namespace AepApp.View
                 try
                 {
                     info = JsonConvert.DeserializeObject<InformationStaticsModel>(res.Results);
-                    if (info != null)
+                    if (info != null && info != null && info.count > 0)
                     {
-                        //Btn360AlarmNum.Text = info;
-                        LabelInformationTime.Text = "";
+                        LayoutSendInformation.IsVisible = true;
+                        ImgAlarm.IsVisible = true;
+                        LabelInformationTime.Text = TimeUtils.DateTime2YMDHM(info.date);
+                    }
+                    else
+                    {
+                        LayoutSendInformation.IsVisible = false;
+                        ImgAlarm.IsVisible = false;
                     }
                 }
                 catch (Exception e)
@@ -136,11 +146,8 @@ namespace AepApp.View
             {
                 try
                 {
-                    string info = JsonConvert.DeserializeObject<string>(res.Results);
-                    if (info != null)
-                    {
-                        Btn360CompanyNum.Text = info;
-                    }
+                    int info = JsonConvert.DeserializeObject<int>(res.Results);
+                    Btn360CompanyNum.Text = info + "";
                 }
                 catch (Exception e)
                 {
@@ -161,11 +168,8 @@ namespace AepApp.View
             {
                 try
                 {
-                    string info = JsonConvert.DeserializeObject<string>(res.Results);
-                    if (info != null)
-                    {
-                        Btn360AlarmNum.Text = info;
-                    }
+                    int info = JsonConvert.DeserializeObject<int>(res.Results);
+                    Btn360AlarmNum.Text = info + "";
                 }
                 catch (Exception e)
                 {
@@ -176,16 +180,31 @@ namespace AepApp.View
 
         private void LayoutSendInformation_Tapped(object sender, EventArgs e)
         {
-            if (info == null)
+            if (info == null && info.count != null && info.count > 0)
             {
                 return;
             }
-
+            if (info.count > 1)
+            {
+                Navigation.PushAsync(new SendInformationPage());
+            }
+            else
+            {
+                GridSendInformationModel model = new GridSendInformationModel
+                {
+                    staff = info.staff,
+                    id = info.id.ToString(),
+                };
+                Navigation.PushAsync(new SendInformationInfoPage(model));
+            }
         }
 
         class InformationStaticsModel
         {
-
+            public Guid id;
+            public DateTime date;
+            public int? count;
+            public Guid staff;
         }
 
     }

@@ -275,11 +275,6 @@ namespace AepApp
                         case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
                 }
-                //GetModuleConfigEP360();
-                //GetModuleConfigSampling();
-                //GetModuleConfigFramework();
-                //postEmergencyReq();
-                //postEnvironmentalReq();
                 if (EP360Module != null && EP360Module.status.Equals("0")) { GetModuleConfigEP360(); App.BaseUrl = EP360Module.url; } else _isEP360 = true;
                 if (SamplingModule != null && SamplingModule.status.Equals("0")) GetModuleConfigSampling(); else _isSampling = true;
                 if (BasicDataModule != null && BasicDataModule.status.Equals("0")) GetModuleConfigFramework(); else _ISBasicData = true;
@@ -716,7 +711,7 @@ namespace AepApp
         public string id { get; set; }
         public string index { get; set; }
         public string url { get; set; }
-        public string status { get; set; }
+        public string status { get; set; }//0:模块启用 1:模块禁用
         public string initjsurl { get; set; }
         public string name { get; set; }
         public string type { get; set; }

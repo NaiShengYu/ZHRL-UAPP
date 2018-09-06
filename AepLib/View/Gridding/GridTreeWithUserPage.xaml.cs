@@ -123,7 +123,7 @@ namespace AepApp.View.Gridding
             layoutTree.Children.Clear();
             for (int i = 0; i < gridList.Count; i++)
             {
-                GridTreeView tree = new GridTreeView
+                GridTreeView tree = new GridTreeView(true)
                 {
                     HorizontalOptions = LayoutOptions.FillAndExpand,
                 };

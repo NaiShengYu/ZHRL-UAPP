@@ -80,6 +80,7 @@ namespace AepApp.ViewModel
             public int? count { get; set; }
             public int? type { get; set; }
             public string parentName { get; set; }
+            public bool showChildrenCount { get; set; }//是否显示子节点数目
 
         }
     }

@@ -29,9 +29,9 @@
                 <Button Image="empty" WidthRequest="35" HeightRequest="50" BackgroundColor="Transparent" IsVisible="{Binding IsLeaf}" />
             </StackLayout>
             <!-- checkbutton -->
-            <StackLayout Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Horizontal">
+            <StackLayout Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Horizontal" Spacing="0">
                 <!--<Button Image="graytick" Grid.Column="0" WidthRequest="35" HeightRequest="50" Command="{Binding ToggleIsCheckedCommand}" BackgroundColor="Transparent">-->
-                <Button x:Name="ButtonCheck" Image="graytick" Grid.Column="0" WidthRequest="25" HeightRequest="30" Clicked="ButtonCheck_Clicked" BackgroundColor="Transparent">
+                <Button x:Name="ButtonCheck" Image="graytick" Grid.Column="0" WidthRequest="30" HeightRequest="30" Clicked="ButtonCheck_Clicked" BackgroundColor="Transparent">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button" Binding="{Binding IsChecked}" Value="true">
                             <Setter Property="Image" Value="chkbox_on" />
@@ -44,9 +44,7 @@
             </StackLayout>
             <!-- right side -->
             <StackLayout Grid.Column="2" Orientation="Horizontal" HorizontalOptions="Start" Padding="0,10, 10, 10">
-                <Label x:Name="TitleLabel" Text="{Binding Title}" FontSize="17" TextColor="Black" VerticalOptions="Center" />
-                <Label Text="-" Font="17" TextColor="Black" VerticalOptions="Center" />
-                <Label Text="{Binding Total}" Font="17" TextColor="Black" VerticalOptions="Center" />
+                <Label x:Name="TitleLabel" Text="{Binding TitleDes}" FontSize="17" TextColor="Black" VerticalOptions="Center" />
             </StackLayout>
         </Grid>
     </ContentView.Content>

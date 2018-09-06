@@ -8,12 +8,13 @@ namespace AepApp.MaterialForms.TreeViews
     public class GridTreeView : TreeView
     {
         public GridTreeViewModel ViewModel;
+        private bool showChildrenCount = false;
 
-        public GridTreeView()
+        public GridTreeView(bool showCount)
         {
             // these properties have to be set in a specific order, letting us know that we're doing some dumb things with properties and will need to 
             // TODO: fix this later
-
+            showChildrenCount = showCount;
 
             NodeCreationFactory =
                 () => new TreeNodeView
@@ -38,6 +39,11 @@ namespace AepApp.MaterialForms.TreeViews
 
         public void SetDataSource(GridTreeViewModel.TestTreeModel data)
         {
+            if(data == null)
+            {
+                return;
+            }
+            data.showChildrenCount = showChildrenCount;
             ViewModel = new GridTreeViewModel(data);
             BindingContext = ViewModel.MyTree;
         }
