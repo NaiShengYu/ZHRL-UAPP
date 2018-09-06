@@ -22,16 +22,22 @@
                             <Label Text="{Binding date, StringFormat='{0:yyyy-MM-dd HH:mm}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                        <Grid>
+                        <Grid Margin="10">
                            <Grid.GestureRecognizers>
                                  <TapGestureRecognizer
                                     Tapped="Handle_Tapped"
                                      NumberOfTapsRequired="1" />
                             </Grid.GestureRecognizers>
-                            <Label Text="审核人" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                            <Label x:Name="LabelAuditor" Text="{Binding staffName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,80,10" />
-                            <Button IsVisible="False" x:Name="BtnPhone" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="phone" Margin="10" Clicked="BtnPhone_Clicked"/>
-                            <Button IsVisible="False" x:Name="BtnMsg" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="text2" Margin="10,10,45,10" Clicked="BtnMsg_Clicked"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="审核人" TextColor="Black" Font="18" VerticalOptions="Center" HorizontalOptions="Start" />
+                            <Label Grid.Column="1" x:Name="LabelAuditor" Text="{Binding staffName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                            <Button Grid.Column="2" IsVisible="False" x:Name="BtnPhone" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="phone" Clicked="BtnPhone_Clicked"/>
+                            <Button Grid.Column="3" IsVisible="False" x:Name="BtnMsg" HorizontalOptions="End" VerticalOptions="Center"  WidthRequest="27" HeightRequest="40" Image="text2" Clicked="BtnMsg_Clicked"/>
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>

@@ -207,7 +207,12 @@ namespace AepApp
 
             // try auto login
             _autologgedin = await LoginAsync(username, password);
-            if (_autologgedin) canGo();
+            if (_autologgedin && _canGo)
+            {
+                if (App.masterAndDetailPage == null)
+                    App.masterAndDetailPage = new MasterAndDetailPage();
+                Application.Current.MainPage = new NavigationPage(App.masterAndDetailPage);
+            }
             else MainPage = new NavigationPage(new LoginPage());
         }
 
@@ -217,6 +222,8 @@ namespace AepApp
         bool _ISBasicData = false;
         bool _isEP360 = false;
         bool _isenvironmental = false;
+
+        public bool _canGo = false;
 
         private void canGo()
         {
@@ -228,14 +235,16 @@ namespace AepApp
                _isEP360 == true &&
                _isenvironmental == true)
             {
-                masterAndDetailPage = new MasterAndDetailPage();
-                MainPage = new NavigationPage(masterAndDetailPage);
-                _autologgedin = false;
-                _isSampling = false;
-                _isEmergency = false;
-                _ISBasicData = false;
-                _isEP360 = false;
-                _isenvironmental = false;
+                _canGo = true;
+                ////if(masterAndDetailPage == null)
+                //masterAndDetailPage = new MasterAndDetailPage();
+                //MainPage = new NavigationPage(masterAndDetailPage);
+                //_autologgedin = false;
+                //_isSampling = false;
+                //_isEmergency = false;
+                //_ISBasicData = false;
+                //_isEP360 = false;
+                //_isenvironmental = false;
             }
 
         }
@@ -278,11 +287,16 @@ namespace AepApp
                         case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
                 }
-                if (EP360Module != null && EP360Module.status.Equals("0")) { GetModuleConfigEP360(); App.BaseUrl = EP360Module.url; } else _isEP360 = true;
-                if (SamplingModule != null && SamplingModule.status.Equals("0")) GetModuleConfigSampling(); else _isSampling = true;
-                if (BasicDataModule != null && BasicDataModule.status.Equals("0")) GetModuleConfigFramework(); else _ISBasicData = true;
-                if (EmergencyModule != null && EmergencyModule.status.Equals("0")) postEmergencyReq(); else _isEmergency = true;
-                if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")) postEnvironmentalReq(); else _isenvironmental = true;
+
+                List<Task> tasks = new List<Task>();
+                if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360()); App.BaseUrl = EP360Module.url; } else _isEP360 = true;
+                if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
+                if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
+                if (EmergencyModule != null && EmergencyModule.status.Equals("0")) tasks.Add(postEmergencyReq()); else _isEmergency = true;
+                if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")) tasks.Add(postEnvironmentalReq()); else _isenvironmental = true;
+
+                await Task.WhenAll(tasks.ToArray());
+
 
             }
 
@@ -524,7 +538,7 @@ namespace AepApp
         /// Get the main menu config of EP360
         /// </summary>
         /// <returns></returns>
-        private async void GetModuleConfigEP360()
+        private async Task GetModuleConfigEP360()
         {
             try
             {
@@ -558,7 +572,7 @@ namespace AepApp
         /// Get the main menu config of sampling
         /// </summary>
         /// <returns></returns>
-        private async void GetModuleConfigSampling()
+        private async Task GetModuleConfigSampling()
         {
             try
             {
@@ -592,7 +606,7 @@ namespace AepApp
         /// Get the main menu config of Framework
         /// </summary>
         /// <returns></returns>
-        private async void GetModuleConfigFramework()
+        private async Task GetModuleConfigFramework()
         {
             try
             {
@@ -624,7 +638,7 @@ namespace AepApp
         /// <summary>
         /// 环境应急需要展示的窗口
         /// </summary>
-        async void postEmergencyReq()
+        async Task postEmergencyReq()
         {
             try
             {
@@ -658,7 +672,7 @@ namespace AepApp
         /// <summary>
         /// 环境质量需要展示的窗口
         /// </summary>
-        async void postEnvironmentalReq()
+        async Task postEnvironmentalReq()
         {
             try
             {

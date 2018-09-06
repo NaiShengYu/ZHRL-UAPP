@@ -100,7 +100,7 @@ namespace AepApp.Tools
 
         public static string GridEventType2String(int type)
         {
-            string des = "未知类型";
+            string des = "恶臭事件";
             switch (type)
             {
                 case 1:

@@ -14,6 +14,7 @@ namespace AepApp.View.Gridding
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TaskFilterPage : ContentPage
     {
+        bool isAppearing = false;
         TaskListPage.TaskFilterCondition conditions;
         public TaskFilterPage(TaskListPage.TaskFilterCondition filterCondition)
         {
@@ -51,6 +52,12 @@ namespace AepApp.View.Gridding
             }
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            isAppearing = true;
+        }
+
         private void Switch_Toggled_Title(object sender, ToggledEventArgs e)
         {
 
@@ -80,7 +87,7 @@ namespace AepApp.View.Gridding
 
         private void Switch_Toggled_Griders(object sender, ToggledEventArgs e)
         {
-            if (!e.Value)
+            if (!isAppearing || !e.Value)
             {
                 return;
             }
