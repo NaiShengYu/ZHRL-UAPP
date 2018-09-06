@@ -58,6 +58,21 @@ namespace AepApp.MaterialForms.TreeViews
             set { Set("Total", ref _Total, value); }
         }
 
+        public string TitleDes
+        {
+            get
+            {
+                if (testTreeModel != null && testTreeModel.showChildrenCount)
+                {
+                    return _Title + " - " + _Total;
+                }
+                else
+                {
+                    return _Title;
+                }
+            }
+        }
+
         protected override void OnPropertyChanged(string propertyName)
         {
             base.OnPropertyChanged(propertyName);
@@ -125,10 +140,5 @@ namespace AepApp.MaterialForms.TreeViews
             IsExpanded = !IsExpanded;
         }
 
-
-        //public override string ToString()
-        //{
-        //    return string.Format("DemoTreeNode: Title={3}, Score={4}, IsExpanded={1}, IndentWidth={2} " + base.ToString(), ToggleIsExpandedCommand, IsExpanded, IndentWidth, Title);
-        //}
     }
 }

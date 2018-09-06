@@ -84,7 +84,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new GridTreeViewPage(true));
+            Navigation.PushAsync(new GridTreeViewPage(true, false));
             MessagingCenter.Unsubscribe<ContentPage, TestTreeModel>(this, SubcriberConst.MSG_SELECT_GRIDER);
             MessagingCenter.Subscribe<ContentPage, TestTreeModel>(this, SubcriberConst.MSG_SELECT_GRIDER, (arg1, arg2) =>
             {
