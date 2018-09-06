@@ -13,12 +13,14 @@ namespace AepApp.Models
         public Guid? incident { get; set; }
         public Guid? staff { get; set; }
         public Guid? template { get; set; }
+        public Guid? approvedBy { get; set; }
         public string title { get; set; }
         public double? period { get; set; }
         public int? type { get; set; }
         public int? state { get; set; }
         public int? index { get; set; }
         public DateTime date { get; set; }
+        public DateTime? approveTime { get; set; }
 
         private DateTime? Deadline;//任务处理期限
         public DateTime? deadline
@@ -40,6 +42,28 @@ namespace AepApp.Models
             get { return UridName; }
             set { UridName = value; NotifyPropertyChanged(); }
         }
+
+        private string ApprovedName;//审批人
+        public string approvedName
+        {
+            get { return ApprovedName ; }
+            set { ApprovedName = value; NotifyPropertyChanged(); }
+        }
+
+        private string ApprovedNameAndTime;//审批人
+        public string approvedNameAndTime
+        {
+            get { try
+                {
+                    return approvedName + "\n" + approveTime.Value.ToString("yyyy-MM-dd HH:mm");
+                }
+                catch (Exception ex)
+                {
+                    return "";
+                } }
+            set { ApprovedNameAndTime = value; NotifyPropertyChanged(); }
+        }
+
 
         private string ShowContens;//显示描述
         public string showContens

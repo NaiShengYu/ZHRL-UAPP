@@ -252,10 +252,10 @@
                                 <Label  BindingContext="AepApp.View.Gridding.HandledEventListPage"  HeightRequest="0"/>
                                 <Label Text="已处理事件"/>
                             </Grid>
-                            <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEventReceived}">
+                          <!--  <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEventReceived}">
                                 <Label  BindingContext="AepApp.View.Gridding.ReportEventPage" HeightRequest="0"/>
                                 <Label Text="{Binding menuGridEventReceivedLabel}" />
-                            </Grid>
+                            </Grid>-->
                             <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridInfoReceived}">
                                 <Label  BindingContext="AepApp.View.Gridding.SendInformationPage" HeightRequest="0"/>
                                 <Label Text="{Binding menuGridInfoReceivedLabel}" />

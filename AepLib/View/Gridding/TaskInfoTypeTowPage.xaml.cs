@@ -21,6 +21,9 @@ namespace AepApp.View.Gridding
         string _assignmentId = "";
         public delegate void AddTaskToEvent(object sender,object model, EventArgs args);
         public event AddTaskToEvent AddATask;
+        ObservableCollection<UserDepartmentsModel> _departMentList = new ObservableCollection<UserDepartmentsModel>();
+        string _deptId;
+        Dictionary<string, object> _assignMentDic = new Dictionary<string, object>();
 
         void updata(object sender, System.EventArgs eventArgs)
         {
@@ -31,7 +34,21 @@ namespace AepApp.View.Gridding
         //分派给子部门
         void assignmentTasks(object sender,EventArgs eventArgs){
 
-
+            Navigation.PushAsync(new AssignPersonInfoPage(_departMentList,3,subDepartLab,_assignMentDic));
+        }
+        //上传要把任务分派给哪个子部门
+        private async void TransferTaskAssignment(object sender, EventArgs eventArgs)
+        {
+            try
+            {
+                var aaa = _assignMentDic["toDept"];
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("提示", "请添加子部门", "确定");
+                return;
+            }
+            upTaskToSubDepartMent();
         }
 
 
@@ -45,7 +62,6 @@ namespace AepApp.View.Gridding
             {
 
             }
-
         }
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
@@ -74,9 +90,7 @@ namespace AepApp.View.Gridding
         //指派网格员
         void choiseUser(object sender, System.EventArgs e)
         {
-            if(GridMoreSW.IsToggled)
-                Navigation.PushAsync(new GridTreeWithUserPage(_infoModel));
-            else Navigation.PushAsync(new AssignPersonPage());
+             Navigation.PushAsync(new AssignPersonPage(_infoModel));
         }
 
         //添加相关企业
@@ -281,13 +295,22 @@ namespace AepApp.View.Gridding
                     GetSendUserInfo();
                     if (_infoModel.template != null) GetTemplateDetail();
                     if (_infoModel.taskenterprises !=null && _infoModel.taskenterprises.Count > 0) ReqEnters();
+                   //如果选择的是部门
+                    foreach (var item in _infoModel.taskassignments)
+                    {
+                        if (item.dept != null && string.IsNullOrEmpty(_deptId)){
+                            _deptId = item.dept.ToString();
+                            _assignMentDic.Add("assignment", item.id);
+                            ReqDepartMentList();
+                        }
+                    }
+
                 }
                 catch (Exception e)
                 {
                     await Navigation.PopAsync();
                 }
             }
-
         }
         /// <summary>
         /// 获取任务模板
@@ -312,7 +335,6 @@ namespace AepApp.View.Gridding
                 }
             }
         }
-
 
         private string getAssignName(taskassignment currentItem,string currentName){
                
@@ -375,6 +397,16 @@ namespace AepApp.View.Gridding
                 _infoModel.userName = auditor.userName;
             }
         }
+
+
+        private async void getApprovedUserInfo(){
+            UserInfoModel auditor = await (App.Current as App).GetUserInfo(_infoModel.staff.Value);
+            if (auditor != null)
+            {
+                _infoModel.approvedName = auditor.userName;
+            }
+        }
+
         //根据id获取企业
         private async void ReqEnters(){
 
@@ -430,7 +462,51 @@ namespace AepApp.View.Gridding
                 {
 
                 }
+            }
+        }
+        //获取部门下面的子部门
+       
+        private async void ReqDepartMentList()
+        {
+            string url = App.BasicDataModule.url + "/api/Modmanage/GetDepartmentsUnder";
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("id", _deptId);
+            string param = JsonConvert.SerializeObject(map);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                try
+                {
+                    _departMentList = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(res.Results);
+                    if (_departMentList != null && _departMentList.Count > 0)
+                        SKT.IsVisible = true;
+                }
+                catch (Exception e)
+                {
 
+                }
+            }
+        }
+
+        //把任务分派给子部门
+        private async void upTaskToSubDepartMent()
+        {
+      
+            upDepartBut.IsEnabled = false;
+            string url = App.EP360Module.url + "/api/gbm/TransferTaskAssignment";
+            string param = JsonConvert.SerializeObject(_assignMentDic);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                try
+                {
+                    if (res.Results == "\"OK\"") upDepartBut.IsVisible = false;
+                  
+                }
+                catch (Exception e)
+                {
+                    upDepartBut.IsEnabled = true;
+                }
             }
         }
 

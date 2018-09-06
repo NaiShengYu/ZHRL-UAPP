@@ -2,15 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.AssignPersonInfoPage">
     <ContentPage.Content>
         <Grid>
-            <ListView BackgroundColor="White" x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
+            <ListView BackgroundColor="White" x:Name="listView" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="Handle_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Margin="10,10,10,10" StyleClass="itemtitle" Text="{Binding name}" VerticalOptions="Center" HorizontalOptions="Center" />
-                                <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#2c73a3" Padding="2" CornerRadius="12.5" WidthRequest="20" HeightRequest="20" HasShadow="false">
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                                <Label Margin="10,10,10,10" Text="{Binding name}" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" />
+                               <!-- <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#2c73a3" Padding="2" CornerRadius="12.5" WidthRequest="20" HeightRequest="20" HasShadow="false">
                                     <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
-                                </Frame>
+                                </Frame>-->
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

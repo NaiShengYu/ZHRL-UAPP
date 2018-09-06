@@ -14,6 +14,8 @@ namespace AepApp.Models
         public string finishTime { get; set; }
         public ObservableCollection<GridTaskModel> followup { get; set; }
 
+        public string direction { get; set; }
+
         public Guid? id { get; set; }
         public Guid? grid { get; set; }
 

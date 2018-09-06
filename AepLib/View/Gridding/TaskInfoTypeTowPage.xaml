@@ -51,7 +51,7 @@
                             </Image.Triggers>
                         </Image>
                         <Label Text="{Binding stateName}" TextColor="Black" Font="18" VerticalOptions="Center" Margin="50,15,10,15" HorizontalOptions="Start" />
-                        <Label Text="{Binding gridName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label Text="{Binding approvedNameAndTime}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
@@ -139,16 +139,16 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="任务周期" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessEntry TextChanged="period_change" Text="{Binding period}" HorizontalTextAlignment="End" Placeholder="填写执行周期" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,45,10" WidthRequest="120" Keyboard="Numeric" />
+                        <views:BorderlessEntry IsEnabled="{Binding canEdit}" TextChanged="period_change" Text="{Binding period}" HorizontalTextAlignment="End" Placeholder="填写执行周期" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,45,10" WidthRequest="120" Keyboard="Numeric" />
                         <Label Text="天" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid>
+                   <!-- <Grid>
                         <Label Text="多网络指派" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10" HorizontalOptions="Start" />
                         <Switch x:Name="GridMoreSW" IsEnabled="{Binding canEdit}" IsToggled="true" VerticalOptions="Center" HorizontalOptions="End" Margin="10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid IsEnabled="{Binding canEdit}">
+                   --> <Grid IsEnabled="{Binding canEdit}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="choiseUser" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
@@ -178,7 +178,7 @@
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="ExecutionRecord" NumberOfTapsRequired="1" />
+                                <TapGestureRecognizer Tapped="ExecutionRecord" NumberOfTapsRequired="1"/>
                             </Grid.GestureRecognizers>
                             <Label Text="执行记录" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                             <Frame Margin="0,5,30,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#2c73a3" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
@@ -189,16 +189,26 @@
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     </StackLayout>
 
-                      <StackLayout x:Name="SKT">
+                      <StackLayout x:Name="SKT" IsVisible="false">
+                     <!-- <StackLayout.Triggers>
+                            <DataTrigger TargetType="StackLayout" Binding="{Binding canEdit}" Value="true">
+                                <Setter Property="IsVisible" Value="false"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="StackLayout" Binding="{Binding canEdit}" Value="false">
+                                <Setter Property="IsVisible" Value="true"/>
+                            </DataTrigger>
+                        </StackLayout.Triggers>-->
+                        
                         <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                             <Label Text="分派任务" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                            <Button x:Name="upDepartBut" Text="确认" VerticalOptions="Center" HorizontalOptions="End" Clicked="TransferTaskAssignment" BackgroundColor="#e6e6e6" Margin="0,0,10,0" WidthRequest="50"/>
                         </Grid>
                         <Grid>
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="assignmentTasks" NumberOfTapsRequired="1" />
+                                <TapGestureRecognizer Tapped="assignmentTasks" NumberOfTapsRequired="1"/>
                             </Grid.GestureRecognizers>
                             <Label Text="子部门" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                            <Label Text="{Binding LastRecordTime, StringFormat='{0:yyyy-MM-dd}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10">
+                            <Label x:Name="subDepartLab" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10">
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label" Binding="{Binding RecordCount}" Value="0">
                                         <Setter Property="Text" Value="无" />
