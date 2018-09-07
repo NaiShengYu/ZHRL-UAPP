@@ -50,7 +50,7 @@
                     <Grid>
 
                         <Label Text="事件类型" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="{Binding typeName}" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
+                        <views:BorderlessPicker XAlign="End" IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="{Binding typeName}" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>污水偷拍事件</x:String>
