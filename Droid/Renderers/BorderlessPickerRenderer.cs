@@ -57,13 +57,13 @@ namespace AepApp.Droid.Renderers
             switch (view.XAlign)
             {
                 case Xamarin.Forms.TextAlignment.Center:
-                    Control.TextAlignment = Android.Views.TextAlignment.Center;
+                    Control.Gravity = Android.Views.GravityFlags.Center;
                     break;
                 case Xamarin.Forms.TextAlignment.End:
-                    Control.TextAlignment = Android.Views.TextAlignment.TextEnd;
+                    Control.Gravity = Android.Views.GravityFlags.End;
                     break;
                 case Xamarin.Forms.TextAlignment.Start:
-                    Control.TextAlignment = Android.Views.TextAlignment.TextStart;
+                    Control.Gravity = Android.Views.GravityFlags.Start;
                     break;
             }
         }

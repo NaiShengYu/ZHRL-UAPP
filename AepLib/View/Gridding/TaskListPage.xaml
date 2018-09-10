@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Gridding.TaskListPage" Title="任务列表">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AepApp.View.Gridding.TaskListPage" 
+             Title="任务列表">
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="../main.css" />
@@ -16,12 +19,12 @@
                 </RowDefinition>
             </Grid.RowDefinitions>
             <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" SearchButtonPressed="Handle_Search" TextChanged="Handle_TextChanged"/>
-            <ListView BackgroundColor="White" x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
+            <ListView BackgroundColor="White" x:Name="listView" Grid.Row="1"  HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center">
-                                  <Label Font="17" HeightRequest="30" WidthRequest="30" TextColor="White" Margin="10" VerticalOptions="Center" HorizontalOptions="Start" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                                <Label Font="17" HeightRequest="30" WidthRequest="30" TextColor="White" Margin="10" VerticalOptions="Center" HorizontalOptions="Start" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding direction}" Value="received">
                                             <Setter Property="BackgroundColor" Value="#859000" />

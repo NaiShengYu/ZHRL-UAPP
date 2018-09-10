@@ -22,7 +22,7 @@
                             <Label Text="{Binding date, StringFormat='{0:yyyy-MM-dd HH:mm}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                        <Grid Margin="10">
+                        <Grid Margin="10" x:Name="GridAuditor">
                            <Grid.GestureRecognizers>
                                  <TapGestureRecognizer
                                     Tapped="Handle_Tapped"

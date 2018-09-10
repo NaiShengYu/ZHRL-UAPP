@@ -74,6 +74,7 @@ namespace AepApp.View
             if(App.gridUser == null)
             {
                 App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(Guid.Empty));
+                App.masterAndDetailPage.IsPresented = false;
                 return;
             }
             if(App.gridUser.gridLevel == App.GridMaxLevel)
