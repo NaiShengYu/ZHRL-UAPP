@@ -15,7 +15,9 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="任务性质" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerNature" Title="{Binding natureName}" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
+                        <views:BorderlessPicker IsEnabled="{Binding canEdit}" WidthRequest="120" TextColor="Gray" x:Name="pickerNature"
+                                                Title="{Binding natureName}" HorizontalOptions="End" VerticalOptions="Center"  XAlign="End"
+                                                Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>日常任务</x:String>
@@ -23,7 +25,7 @@
                                 </x:Array>
                             </Picker.ItemsSource>
                         </views:BorderlessPicker>
-                        <Image IsVisible="{Binding canEdit}" Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        <Image IsVisible="True" Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>

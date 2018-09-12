@@ -21,7 +21,7 @@
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <Grid>
                 <Label StyleClass="itemtitle" Text="状态" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10"/>
-                <views:BorderlessPicker x:Name="pickerStatus" Title="请选择" HorizontalOptions="End" VerticalOptions="Center"  
+                <views:BorderlessPicker x:Name="pickerStatus" Title="请选择" HorizontalOptions="End" VerticalOptions="Center" XAlign="End" 
                                         Margin="100,0,80,0" IsVisible="{Binding Source={x:Reference switchStatus}, Path=IsToggled}" 
                                         StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatus_SelectedIndexChanged">
                 </views:BorderlessPicker>
@@ -31,7 +31,7 @@
             <Grid>
                 <Label StyleClass="itemtitle" Text="任务类型"  HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="90" Margin="10,10,0,10" />
                 <views:BorderlessPicker x:Name="pickerType" Title="请选择" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  Margin="100,0,80,0" 
-                                        IsVisible="{Binding Source={x:Reference switchType}, Path=IsToggled}" 
+                                        IsVisible="{Binding Source={x:Reference switchType}, Path=IsToggled}"  XAlign="End"
                                         StyleClass="itemsubtitle" SelectedIndexChanged="pickerType_SelectedIndexChanged">
                 </views:BorderlessPicker>
                 <Switch x:Name="switchType"  HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" 
