@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AepApp.Models;
+using AepApp.Tools;
 using Xamarin.Forms;
 
 namespace AepApp.View.Gridding
@@ -47,6 +48,10 @@ namespace AepApp.View.Gridding
             if (_type == "EditContent")
                 EditText.Text = _EventInfoModel.contents;     
          
+            if (infoModel.canEdit == false)
+            {
+                EditText.Text = StringUtils.ReplaceHtmlTag(EditText.Text);
+            }
         }
 
         GridTaskInfoModel _taskInfoModel = null;

@@ -399,7 +399,6 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    
                     _infoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
                     _infoModel.canEdit = false;
                     getAddressWihtLocation();

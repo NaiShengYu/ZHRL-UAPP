@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using AepApp.View.EnvironmentalEmergency;
 using AepApp.Tools;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace AepApp.View.Gridding
 {
@@ -292,7 +293,7 @@ namespace AepApp.View.Gridding
                     _infoModel.canEdit = false;
                     creatPositionList();
                     if (_infoModel.taskassignments != null && _infoModel.taskassignments.Count > 0)
-                        _infoModel.AssignName = getAssignName(_infoModel.taskassignments[0], "");
+                        _infoModel.AssignName = await getAssignName(_infoModel.taskassignments[0], "");
                     DatePickerStart.Date = _infoModel.deadline.Value;
                     GR.IsVisible = true;
                     GH.Height = 0;
@@ -345,15 +346,19 @@ namespace AepApp.View.Gridding
             }
         }
 
-        private string getAssignName(taskassignment currentItem,string currentName){
+        private async Task<string> getAssignName(taskassignment currentItem,string currentName){
                
             if (string.IsNullOrEmpty(currentName)) currentName = currentItem.gridName;
                 else currentName = currentName +"-"+currentItem.gridName;
 
             if(currentItem.nextLevel != null){
-                return getAssignName(currentItem.nextLevel, currentName);
+                return await getAssignName(currentItem.nextLevel, currentName);
                 }
-            return currentName;
+
+            UserInfoModel auditor = await (App.Current as App).GetUserInfo(currentItem.staff.Value);
+            if (auditor != null)
+                return currentName + "-" + auditor.userName;
+            else return currentName;
         }
 
         //获取事件详情
@@ -398,13 +403,15 @@ namespace AepApp.View.Gridding
         /// 发出人名称
         /// </summary>
         /// <param name="staffId"></param>
-        private async void GetSendUserInfo()
+        private async Task<UserInfoModel> GetSendUserInfo()
         {
             UserInfoModel auditor = await (App.Current as App).GetUserInfo(_infoModel.staff.Value);
             if (auditor != null)
             {
                 _infoModel.userName = auditor.userName;
             }
+
+            return auditor;
         }
 
 
@@ -677,15 +684,15 @@ namespace AepApp.View.Gridding
                     Text = (i + 1).ToString(),
                 };
                 frame.Content = numLab;
-                Image image = new Image
-                {
-                    Source = ImageSource.FromFile("right"),
-                    Margin = new Thickness(10),
-                    HeightRequest = 20,
-                    WidthRequest = 10,
-                    VerticalOptions = LayoutOptions.Center,
-                    HorizontalOptions = LayoutOptions.End,
-                };
+                //Image image = new Image
+                //{
+                //    Source = ImageSource.FromFile("right"),
+                //    Margin = new Thickness(10),
+                //    HeightRequest = 20,
+                //    WidthRequest = 10,
+                //    VerticalOptions = LayoutOptions.Center,
+                //    HorizontalOptions = LayoutOptions.End,
+                //};
 
                 BoxView box = new BoxView
                 {
@@ -696,8 +703,11 @@ namespace AepApp.View.Gridding
                 };
                 G1.Children.Add(frame);
                 G1.Children.Add(label);
-                G1.Children.Add(image);
+                //G1.Children.Add(image);
                 G1.Children.Add(box);
+
+        
+
             }
 
 
@@ -771,6 +781,16 @@ namespace AepApp.View.Gridding
                 };
                 frame.Content = numLab;
 
+                Image image = new Image
+                {
+                    Source = ImageSource.FromFile("right"),
+                    Margin = new Thickness(10),
+                    HeightRequest = 20,
+                    WidthRequest = 10,
+                    VerticalOptions = LayoutOptions.Center,
+                    HorizontalOptions = LayoutOptions.End,
+                };
+
                 BoxView box = new BoxView
                 {
                     BackgroundColor = Color.Silver,
@@ -779,8 +799,14 @@ namespace AepApp.View.Gridding
                     VerticalOptions = LayoutOptions.End,
                 };
                 G1.Children.Add(frame);
+                G1.Children.Add(image);
                 G1.Children.Add(box);
 
+                TapGestureRecognizer tap = new TapGestureRecognizer((arg1, arg2) => {
+                    Navigation.PushAsync(new RescueSiteMapPage(po));
+                });
+                tap.BindingContext = po;
+                G1.GestureRecognizers.Add(tap);
 
             }
 
