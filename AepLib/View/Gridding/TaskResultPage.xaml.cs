@@ -25,9 +25,13 @@ namespace AepApp.View.Gridding
         private GridTaskHandleRecordModel mRecord;
         private ObservableCollection<AttachmentInfo> photoList = new ObservableCollection<AttachmentInfo>();
         private ObservableCollection<GridAttachmentUploadModel> uploadModel = new ObservableCollection<GridAttachmentUploadModel>();
+        private ObservableCollection<Enterprise> _enterprises = new ObservableCollection<Enterprise>();
+        private string _enterpriseId = "";
+        private string _enterpriseName = "";
         private int UploadSuccessCount = 0;
 
-        public TaskResultPage(Guid taskId, GridTaskHandleRecordModel record, bool isEdit)
+
+        public TaskResultPage(Guid taskId, GridTaskHandleRecordModel record, bool isEdit,ObservableCollection<Enterprise> enterprises)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
@@ -35,6 +39,20 @@ namespace AepApp.View.Gridding
             mTaskId = taskId;
             mRecord = record;
             GridOperate.IsVisible = mIsEdit;
+            _enterpriseName = record.enterpriseName;
+            if(enterprises.Count >0){
+                _enterprises = enterprises;
+                foreach (var item in _enterprises)
+                {
+                    pickerEnterprises.Items.Add(item.enterpriseName);
+                }
+                pickerEnterprises.Title = _enterprises[0].enterpriseName;
+                _enterpriseId = _enterprises[0].id.ToString();
+            }else
+            {
+                pickerEnterprises.IsEnabled = false;
+            }
+
             if (isEdit == false)
             {
                 GetStaffInfo();
@@ -42,6 +60,16 @@ namespace AepApp.View.Gridding
 
             if (!isEdit) GetRecordDetail();
             else SetRecordInfo(record);
+        }
+
+        private void pickerStatud_SelectedIndexChanged(object sender, EventArgs e)
+        { 
+            var picker = sender as Picker;
+            var typeName = picker.SelectedItem as string;
+            foreach (var item in _enterprises)
+            {
+                if (typeName == item.enterpriseName) _enterpriseId = item.id.ToString();
+            }
         }
 
         private void SetRecordInfo(GridTaskHandleRecordModel record)
@@ -73,6 +101,8 @@ namespace AepApp.View.Gridding
                 creatPhotoView(true);
             }
             BindingContext = record;
+            pickerEnterprises.Title = record.enterpriseName;
+                
             ST.BindingContext = photoList;
         }
 
@@ -104,6 +134,7 @@ namespace AepApp.View.Gridding
                 try
                 {
                     mRecord = JsonConvert.DeserializeObject<GridTaskHandleRecordModel>(res.Results);
+                    mRecord.enterpriseName = _enterpriseName;
                     SetRecordInfo(mRecord);
                 }
                 catch (Exception e)
@@ -111,6 +142,9 @@ namespace AepApp.View.Gridding
 
                 }
             }
+
+  
+
         }
 
 
@@ -189,6 +223,7 @@ namespace AepApp.View.Gridding
             map.Add("results", content.ToString());
             map.Add("forassignment", mRecord.assignment);
             map.Add("attachments", uploadModel);
+            map.Add("enterprise",_enterpriseId);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -202,7 +237,7 @@ namespace AepApp.View.Gridding
                     }
                     else
                     {
-                        DependencyService.Get<IToast>().LongAlert("添加失败，请重试22！");
+                        DependencyService.Get<IToast>().LongAlert("添加失败，请重试！");
 
                     }
                 }

@@ -175,7 +175,7 @@ namespace AepApp.View.Gridding
 
             if (_infoModel.staff != null)
                 record.staff = _infoModel.staff.Value;
-            await Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute));
+            await Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute,_infoModel.enterprise));
         }
 
         void editContent(object sender, System.EventArgs e)
@@ -434,14 +434,9 @@ namespace AepApp.View.Gridding
             if (res.StatusCode == HttpStatusCode.OK)
             {
                 string result = res.Results.Replace("name", "enterpriseName");
-
                 _infoModel.enterprise = JsonConvert.DeserializeObject<ObservableCollection<Enterprise>>(result);
-
                 creatEnterpriseList();
-
             }
-
-
         }
 
 

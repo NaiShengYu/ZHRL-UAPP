@@ -35,7 +35,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskResultPage(record.id.Value, record, false));
+            Navigation.PushAsync(new TaskResultPage(record.id.Value, record, false,new ObservableCollection<Enterprise>()));
             listView.SelectedItem = null;
         }
 
@@ -78,6 +78,8 @@ namespace AepApp.View.Gridding
                         foreach (var item in list)
                         {
                             dataList.Add(item);
+                            if(item.enterprise != null)
+                                 ReqEnters(item);
                         }
                         pageIndex++;
                     }
@@ -93,7 +95,6 @@ namespace AepApp.View.Gridding
 
             }
 
-            listView.ItemsSource = dataList;
         }
 
         public void LoadMore(object sender, ItemVisibilityEventArgs e)
@@ -107,5 +108,29 @@ namespace AepApp.View.Gridding
                 }
             }
         }
+
+
+        //根据id获取企业
+        private async void ReqEnters(GridTaskHandleRecordModel model)
+        {
+            
+            string url = App.BasicDataModule.url + "/api/Modmanage/GetEnterpriseByid";
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("id", model.enterprise);
+            string par = JsonConvert.SerializeObject(dic);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, par, "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
+                if (enterpriseModel != null)
+                {
+                    model.enterpriseName = enterpriseModel.name;
+                }
+
+                listView.ItemsSource = dataList;
+            }
+        }
+
+
     }
 }
