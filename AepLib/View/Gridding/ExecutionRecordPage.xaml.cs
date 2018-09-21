@@ -37,6 +37,7 @@ namespace AepApp.View.Gridding
             }
             Navigation.PushAsync(new TaskResultPage(record.id.Value, record, false,new ObservableCollection<Enterprise>()));
             listView.SelectedItem = null;
+            listView.ItemsSource = null;
         }
 
         public void Handle_TextChanged(Object sender, TextChangedEventArgs e)
@@ -80,6 +81,10 @@ namespace AepApp.View.Gridding
                             dataList.Add(item);
                             if(item.enterprise != null)
                                  ReqEnters(item);
+                            else{
+                                listView.ItemsSource = null;
+                                listView.ItemsSource = dataList;
+                            }
                         }
                         pageIndex++;
                     }
@@ -126,7 +131,7 @@ namespace AepApp.View.Gridding
                 {
                     model.enterpriseName = enterpriseModel.name;
                 }
-
+                listView.ItemsSource = null;
                 listView.ItemsSource = dataList;
             }
         }
