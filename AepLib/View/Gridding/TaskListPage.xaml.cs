@@ -26,6 +26,8 @@ namespace AepApp.View.Gridding
         public TaskListPage()
         {
             InitializeComponent();
+
+
             NavigationPage.SetBackButtonTitle(this, "");
             filterCondition = new TaskFilterCondition();
             SearchData();
