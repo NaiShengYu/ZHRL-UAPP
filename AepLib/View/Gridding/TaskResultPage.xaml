@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="AepApp.View.Gridding.TaskResultPage" 
-             xmlns:views="clr-namespace:AepApp.MaterialForms"
-             Title="任务执行结果">
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+x:Class="AepApp.View.Gridding.TaskResultPage" 
+xmlns:views="clr-namespace:AepApp.MaterialForms" 
+Title="任务执行结果">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="140"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="140" />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <ScrollView>
                 <StackLayout Spacing="0">
                     <Grid>
                         <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label x:Name="DatePicker" FontSize="16" TextColor="Gray" 
-                                                    VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" 
-                                                    Text="{Binding dateStr}"/>
+                        <Label x:Name="DatePicker" FontSize="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" Text="{Binding dateStr}" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
@@ -26,14 +24,19 @@
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
+                        <Label Text="企业" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <views:BorderlessPicker XAlign="End" FontSize="Medium" WidthRequest="220" TextColor="Gray" x:Name="pickerEnterprises" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatud_SelectedIndexChanged">
+                        </views:BorderlessPicker>
+                        <Image IsVisible="{Binding canEdit}" Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Grid>
                         <Label Text="执行人" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <Label x:Name="LabelStaff" Text="{Binding editName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                    <views:WebViewer x:Name="Webview" EvaluateJavascript="{Binding EvaluateJavascript, Mode=OneWayToSource}" 
-                                     HeightRequest="400" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
-                                     Margin="10,5,10,10" Navigated="Webview_Navigated"/>
+                    <views:WebViewer x:Name="Webview" EvaluateJavascript="{Binding EvaluateJavascript, Mode=OneWayToSource}" HeightRequest="400" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10" Navigated="Webview_Navigated" />
                 </StackLayout>
             </ScrollView>
             <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">
@@ -50,7 +53,7 @@
             </StackLayout>
             <Grid x:Name="GridOperate" Grid.Row="2" BackgroundColor="#e6e6e6" IsVisible="False">
                 <Button Clicked="takePhoto" Image="image" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="Transparent" />
-                <Button Font="18" Text="执行完毕" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" BackgroundColor="Transparent" TextColor="#2c73a3" Clicked="ExecutionRecord"/>
+                <Button Font="18" Text="执行完毕" HorizontalOptions="End" WidthRequest="100" VerticalOptions="Center" BackgroundColor="Transparent" TextColor="#2c73a3" Clicked="ExecutionRecord" />
             </Grid>
         </Grid>
     </ContentPage.Content>

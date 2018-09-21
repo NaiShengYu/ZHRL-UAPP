@@ -187,6 +187,47 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
         }
+
+        //从网格化任务详情进入
+        public RescueSiteMapPage(Coords coords) : this()
+        {
+            //// Marker usage sample
+            ///
+            Title = "相关位置";
+        
+            Gps gps = PositionUtil.gcj_To_Gps84(coords.lat.Value, coords.lng.Value);
+                var coord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+                ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+
+            NavLabelView cv = new NavLabelView(coords.title, coord)
+                {
+                    BackgroundColor = Color.FromHex("#f0f0f0"),
+                    Size = new Size(100, 25),
+                    Anchor = new Point(50, 25),
+                    ControlTemplate = cvt,
+                };
+
+                cv.BindingContext = cv;
+                cv.NavCommand = new Command(() => { openMapNav(coord.lat, coord.lng, coords.title); });
+
+                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), coord)
+                {
+                    BackgroundColor = Color.Transparent,
+                    CustomView = cv
+                };
+                map.Overlays.Add(mv);
+
+                map.SetCenter(12, new AzmCoord(coords.lng.Value, coords.lat.Value));
+
+
+        }
+
+
+
+
+
+
+
         //从应急事故详情进入
         public RescueSiteMapPage(ObservableCollection<IncidentLoggingEventsBean> dataList, string incidengtId) : this()
         {

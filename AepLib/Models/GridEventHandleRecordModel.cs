@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 namespace AepApp.Models
 {
     //任务执行记录
-    public class GridTaskHandleRecordModel
+    public class GridTaskHandleRecordModel :BaseModel
     {
         public Guid? id { get; set; }
         public DateTime date { get; set; }
         public Guid? staff { get; set; }
+        public Guid? enterprise { get; set; }
         public Guid? gridcell { get; set; }
         public string gridName { get; set; }
         public string editName { get; set; }
@@ -20,6 +21,14 @@ namespace AepApp.Models
         public string results { get; set; }
         public string assignment { get; set; }
         public ObservableCollection<AttachmentInfo> attachments { get; set; }
+
+        private string EnterpriseName;
+        public string enterpriseName
+        {
+            get { return EnterpriseName; }
+            set { EnterpriseName = value; NotifyPropertyChanged(); }
+        }
+
 
         public string staffName { get; set; }//通过staff获取后赋值
 

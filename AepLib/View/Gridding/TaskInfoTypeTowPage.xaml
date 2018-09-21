@@ -160,7 +160,7 @@
                         <Image IsVisible="{Binding canEdit}" Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <StackLayout x:Name="SK">
+                    <StackLayout x:Name="SK" Padding="0" Spacing="0">
                         <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                             <Label Text="执行情况" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
                         </Grid>
