@@ -59,7 +59,9 @@
                     </Grid>
                     <Grid>
                         <Label Text="时间" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" Date="{Binding date,StringFormat='{0:yyyy-MM-dd}'}" TSize="15" TextColor="Gray" HasBorder="False" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected"
+                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" Date="{Binding date,StringFormat='{0:yyyy-MM-dd}'}" TSize="15" 
+                                                    TextColor="Gray" HasBorder="False" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" 
+                                                    Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" XAlign="End"
                             WidthRequest="120" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
@@ -97,7 +99,7 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="状态" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessPicker IsEnabled="false" WidthRequest="120" TextColor="Gray" x:Name="pickerStatus" Title="{Binding stateName}" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatud_SelectedIndexChanged">
+                        <views:BorderlessPicker IsEnabled="false" WidthRequest="120" XAlign="End" TextColor="Gray" x:Name="pickerStatus" Title="{Binding stateName}" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatud_SelectedIndexChanged">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>未下发</x:String>
@@ -136,13 +138,14 @@
                     </Grid>
                     <Grid>
                         <Label Text="任务执行期限" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" TSize="15" TextColor="Gray" HasBorder="False" x:Name="DatePickerStart" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected"
-                            WidthRequest="120" />
+                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" TSize="15" TextColor="Gray" HasBorder="False" x:Name="DatePickerStart" 
+                                                    StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,25,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected"
+                            WidthRequest="120" XAlign="End" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="任务周期" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessEntry IsEnabled="{Binding canEdit}" TextChanged="period_change" Text="{Binding period}" HorizontalTextAlignment="End" Placeholder="填写执行周期" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,45,10" WidthRequest="120" Keyboard="Numeric" />
+                        <views:BorderlessEntry IsEnabled="{Binding canEdit}" XAlign="End" TextChanged="period_change" Text="{Binding period}" HorizontalTextAlignment="End" Placeholder="填写执行周期" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,45,10" WidthRequest="120" Keyboard="Numeric" />
                         <Label Text="天" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />

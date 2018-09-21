@@ -14,12 +14,12 @@ Title="任务执行结果">
             <ScrollView>
                 <StackLayout Spacing="0">
                     <Grid>
-                        <Label Text="时间" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="时间" Font="18" TextColor="Black" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <Label x:Name="DatePicker" FontSize="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" Text="{Binding dateStr}" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
-                        <Label Text="网络/部门" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="网络/部门" Font="18" TextColor="Black" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <Label Text="{Binding gridName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
@@ -31,17 +31,17 @@ Title="任务执行结果">
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
-                        <Label Text="执行人" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="执行人" Font="18" TextColor="Black" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <Label x:Name="LabelStaff" Text="{Binding editName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Label Text="执行结果" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                    <Label Text="执行结果" Font="18" TextColor="Black" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                     <views:WebViewer x:Name="Webview" EvaluateJavascript="{Binding EvaluateJavascript, Mode=OneWayToSource}" HeightRequest="400" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10" Navigated="Webview_Navigated" />
                 </StackLayout>
             </ScrollView>
             <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">
                 <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
-                    <Label Text="拍照" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
+                    <Label Text="拍照" Font="16" TextColor="Black" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
                     <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
                         <Label Text="{Binding Count}" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
                     </Frame>

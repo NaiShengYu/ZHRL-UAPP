@@ -79,7 +79,13 @@ namespace AepApp.View.Gridding
                         {
                             dataList.Add(item);
                             if(item.enterprise != null)
-                                 ReqEnters(item);
+                            {
+                                ReqEnters(item);
+                            }
+                            else
+                            {
+                                listView.ItemsSource = dataList;
+                            }
                         }
                         pageIndex++;
                     }
