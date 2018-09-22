@@ -20,6 +20,8 @@ namespace AepApp.View.Gridding
     /// </summary>
     public partial class TaskResultPage : ContentPage
     {
+        
+
         private Guid mTaskId;
         private bool mIsEdit = false;
         private GridTaskHandleRecordModel mRecord;
@@ -60,6 +62,12 @@ namespace AepApp.View.Gridding
 
             if (!isEdit) GetRecordDetail();
             else SetRecordInfo(record);
+        }
+
+        void Handle_Tapped(object sender, System.EventArgs e)
+        {
+            pickerEnterprises.Focus();
+
         }
 
         private void pickerStatud_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,7 +151,7 @@ namespace AepApp.View.Gridding
                 }
             }
 
-  
+
 
         }
 
