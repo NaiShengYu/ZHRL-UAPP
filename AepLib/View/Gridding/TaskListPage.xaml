@@ -24,7 +24,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center">
-                                <Label Font="17" HeightRequest="30" WidthRequest="30" TextColor="White" Margin="10" VerticalOptions="Center" HorizontalOptions="Start" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                                <Label Font="10" HeightRequest="15" WidthRequest="15" TextColor="White" Margin="10" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding direction}" Value="received">
                                             <Setter Property="BackgroundColor" Value="#859000" />
@@ -36,13 +36,45 @@
                                         </DataTrigger>
                                     </Label.Triggers>
                                 </Label>
-                                <StackLayout VerticalOptions="Center" Margin="60,0,150,0" Spacing="2">
+                                <StackLayout VerticalOptions="Center" Margin="45,0,120,0" Spacing="3">
                                     <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding title}" />
-                                    <Label Margin="0,0,0,8" StyleClass="itemsubtitle" Text="{Binding incidentTitle}" />
+                                    <Label Margin="0,0,0,3" StyleClass="itemsubtitle" Text="{Binding incidentTitle}" IsVisible="False"/>
+                                    <Label Margin="0,0,0,3" StyleClass="itemsubtitle" Text="{Binding lastDateDes}" FontSize="12"/>
                                 </StackLayout>
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="110" Spacing="0">
-                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center"  Text="执行期限" FontSize="12"/>
-                                    <Label StyleClass="itemsubtitle" HorizontalOptions="Center" Text="{Binding lastDate, StringFormat='{0:yyyy-MM-dd}'}" FontSize="12"/>
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="90" Spacing="3">
+                                    <Label HorizontalOptions="Center"  Text="{Binding stateDes}" FontSize="12" TextColor="#CF9000">
+                                        <Label.Triggers>
+                                            <!--已完结-->
+                                            <DataTrigger TargetType="Label" Binding="{Binding state}" Value="6">
+                                                <Setter Property="TextColor" Value="#27A53C"/>
+                                            </DataTrigger>
+                                            <!--退回-->
+                                            <DataTrigger TargetType="Label" Binding="{Binding state}" Value="5">
+                                                <Setter Property="TextColor" Value="#FF6473"/>
+                                            </DataTrigger>
+                                            <!--撤销-->
+                                            <DataTrigger TargetType="Label" Binding="{Binding state}" Value="3">
+                                                <Setter Property="TextColor" Value="#FF6473"/>
+                                            </DataTrigger>
+                                            <!--已完结-->
+                                            <DataTrigger TargetType="Label" Binding="{Binding state}" Value="4">
+                                                <Setter Property="TextColor" Value="#CF9000"/>
+                                            </DataTrigger>
+                                            <!--已审核-->
+                                            <DataTrigger TargetType="Label" Binding="{Binding state}" Value="2">
+                                                <Setter Property="TextColor" Value="#CF9000"/>
+                                            </DataTrigger>
+                                            <!--未审核-->
+                                            <DataTrigger TargetType="Label" Binding="{Binding state}" Value="1">
+                                                <Setter Property="TextColor" Value="#CF9000"/>
+                                            </DataTrigger>
+                                            <!--未下发-->
+                                            <DataTrigger TargetType="Label" Binding="{Binding state}" Value="0">
+                                                <Setter Property="TextColor" Value="#CF9000"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Label TextColor="Gray" HorizontalOptions="Center" Text="{Binding typeDes}" FontSize="12"/>
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

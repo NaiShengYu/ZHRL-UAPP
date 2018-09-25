@@ -157,11 +157,10 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-
             GridTaskHandleRecordModel record = new GridTaskHandleRecordModel
             {
                 date = DateTime.Now,
-                assignment = _assignmentId,
+                assignment = (_infoModel.staff != null && _infoModel.staff.Value == App.userInfo.id) ? _infoModel.staff.Value.ToString() : _assignmentId,
                 results = _infoModel.results,
                 editName = App.userInfo.userName,
 

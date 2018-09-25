@@ -11,7 +11,7 @@ namespace AepApp.Models
         public Guid id { get; set; }
         public string rowState { get; set; }
         public Guid? incident { get; set; }
-        public Guid? staff { get; set; }
+        public Guid? staff { get; set; }//发出人id
         public Guid? template { get; set; }
         public Guid? approvedBy { get; set; }
         public string title { get; set; }

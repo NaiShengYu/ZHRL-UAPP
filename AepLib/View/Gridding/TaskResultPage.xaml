@@ -24,7 +24,7 @@ Title="任务执行结果">
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
-                        <Label Text="企业"  Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label Text="企业"  TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <views:BorderlessPicker XAlign="End" FontSize="Medium" WidthRequest="220" TextColor="Gray" x:Name="pickerEnterprises" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatud_SelectedIndexChanged">
                         </views:BorderlessPicker>
                         <Image IsVisible="{Binding canEdit}" Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End">
@@ -41,7 +41,8 @@ Title="任务执行结果">
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Label Text="执行结果" Font="18" TextColor="Black" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                    <views:WebViewer x:Name="Webview" EvaluateJavascript="{Binding EvaluateJavascript, Mode=OneWayToSource}" HeightRequest="400" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10" Navigated="Webview_Navigated" />
+                    <views:WebViewer x:Name="Webview" EvaluateJavascript="{Binding EvaluateJavascript, Mode=OneWayToSource}" HeightRequest="400" 
+                                     VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Margin="10,5,10,10" Navigated="Webview_Navigated" />
                 </StackLayout>
             </ScrollView>
             <StackLayout x:Name="ST" Grid.Row="1" Padding="0" Spacing="0">

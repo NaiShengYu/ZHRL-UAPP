@@ -14,7 +14,7 @@ namespace AepApp.Models
         public string title { get; set; }
         private int type { get; set; }
         public string Type { get { return ConstConvertUtils.GridInformationType2String(type); } }
-        public DateTime date { get; set; }
+        public DateTime? date { get; set; }
         public string contents { get; set; }
         public string subTitle
         {
