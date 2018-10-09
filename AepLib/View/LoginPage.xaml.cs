@@ -13,6 +13,7 @@ using CloudWTO.Services;
 using AepApp.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using AepApp.Tools;
 
 namespace AepApp.View
 {
@@ -31,6 +32,13 @@ namespace AepApp.View
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetBackButtonTitle(this, "");
+            if(App.APP_TYPE == App.TYPE_YISHUI)
+            {
+                site_name.Text = AppNameConst.YISHUI;
+            }else if (App.APP_TYPE == App.TYPE_GAOXIN)
+            {
+                site_name.Text = AppNameConst.GAOXIN;
+            }
         }
 
         private void Select_site(object sender, EventArgs e)

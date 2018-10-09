@@ -238,7 +238,7 @@
                             </Grid>
                         </StackLayout>
 
-                        <StackLayout x:Name="layoutGrid" Spacing="0">
+                        <StackLayout x:Name="layoutGrid" Spacing="0" IsVisible="False">
                             <Label Text="{Binding menuGridLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             <Grid StyleClass="menuitem" IsVisible="{Binding menuGridTask}">
                                 <Label  BindingContext="AepApp.View.Gridding.TaskListPage"  HeightRequest="0"/>

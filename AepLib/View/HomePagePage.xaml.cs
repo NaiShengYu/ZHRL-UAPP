@@ -18,20 +18,40 @@ namespace AepApp.View
         {
             InitializeComponent();
             SetUserDepartment();
-            Title = "沂水县环境保护局";
-            if ("0".Equals(App.EP360Module.status))//模块功能启用
+            if (App.APP_TYPE == App.TYPE_GAOXIN)
+            {
+                Title = AppNameConst.GAOXIN;
+            }
+            else if (App.APP_TYPE == App.TYPE_YISHUI)
+            {
+                Title = AppNameConst.YISHUI;
+            }
+
+
+            if (App.APP_TYPE == App.TYPE_GAOXIN)
+            {
+                Layout360Statics.IsVisible = true;
+                GetModule360Statics();
+            }
+            else if ("0".Equals(App.EP360Module.status))//模块功能启用
             {
                 LayoutGridStatics.IsVisible = true;
                 Layout360Statics.IsVisible = true;
+                GetModuleGridStatics();
+                GetModule360Statics();
             }
-            else
-            {
-                return;
-            }
+        }
+
+        private void GetModuleGridStatics()
+        {
             GetModuleGridWorkingTaskStatics();
             GetModuleGridRegularTaskStatics();
             GetModuleGridReportTaskStatics();
             GetModuleGridSendInformationStatics();
+        }
+
+        private void GetModule360Statics()
+        {
             GetModuleBasicCompanyStatics();
             GetModule360AlarmStatics();
         }
