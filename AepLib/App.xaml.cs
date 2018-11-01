@@ -46,8 +46,8 @@ namespace AepApp
         public const string SimVisModuleID = "4C534464-AD7D-42FF-80AF-0049CDC6A9F6";
         public const string environmentalQualityID = "ED21BC68-236F-4B29-BE78-5F951AD4B054";//环保监测预警平台基础数据
 
-        //public static string FrameworkURL = "http://gx.azuratech.com:30000";
-        public static string FrameworkURL = "http://dev.azuratech.com:50000";
+        public static string FrameworkURL = "http://gx.azuratech.com:30000";
+        //public static string FrameworkURL = "http://dev.azuratech.com:50000";
 
         public static UserInfoModel userInfo = null;
         public static GridUserInfoModel gridUser = null;

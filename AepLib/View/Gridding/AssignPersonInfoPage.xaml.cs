@@ -13,7 +13,7 @@ namespace AepApp.View.Gridding
     public partial class AssignPersonInfoPage : ContentPage
     {
       
-
+      
         ObservableCollection<UserDepartmentsModel> gridList = new ObservableCollection<UserDepartmentsModel>();
         GridTaskInfoModel _infoModel = null;
         int _type = 1;
