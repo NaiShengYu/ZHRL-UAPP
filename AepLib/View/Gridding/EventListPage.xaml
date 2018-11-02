@@ -18,7 +18,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center">
-                                <Label Font="17" HeightRequest="30" WidthRequest="30" TextColor="White" Margin="10" VerticalOptions="Center" HorizontalOptions="Start" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                                <Label Font="10" HeightRequest="15" WidthRequest="15" TextColor="White" Margin="10" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding direction}" Value="received">
                                             <Setter Property="BackgroundColor" Value="#859000" />
@@ -30,7 +30,7 @@
                                         </DataTrigger>
                                     </Label.Triggers>
                                 </Label>
-                                <StackLayout VerticalOptions="Center" Margin="60,0,150,0" Spacing="2">
+                                <StackLayout VerticalOptions="Center" Margin="45,0,150,0" Spacing="2">
                                     <Label Margin="0,8,0,0" StyleClass="itemtitle" Text="{Binding Title}" />
                                     <StackLayout Margin="0,0,0,8" Orientation="Horizontal">
                                         <Label StyleClass="itemsubtitle" Text="{Binding Date, StringFormat='{0:yyyy-MM-dd}'}" />

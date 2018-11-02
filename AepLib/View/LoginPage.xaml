@@ -22,7 +22,7 @@
             
             <Grid BackgroundColor="#EFEFF4" HeightRequest="45" WidthRequest="40" RowSpacing="0" ColumnSpacing="0" Grid.Row="1" VerticalOptions="Start">
 <!--                <Label x:Name="site_name" TextColor="Black" FontSize="17" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"></Label>-->
-                <Label x:Name="site_name" Text="沂水县环境保护局" TextColor="Black" FontSize="17" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"></Label>
+                <Label x:Name="site_name" Text="" TextColor="Black" FontSize="17" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"></Label>
                 <Image HeightRequest="18" WidthRequest="15" Source="right" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"/>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Select_site"/>

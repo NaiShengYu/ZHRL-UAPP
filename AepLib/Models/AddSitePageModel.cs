@@ -9,7 +9,12 @@ namespace AepApp.Models
 {
 	public class AddSitePageModel 
 	{
-        public string id { get; set; }
-        public string name { get; set; }
+
+        public string customerName { get; set; }
+        public string appTitle { get; set; }
+        public string majorVersion { get; set; }
+        public string minorVersion { get; set; }
+        public string revision { get; set; }
+        public string date { get; set; }
     }
 }

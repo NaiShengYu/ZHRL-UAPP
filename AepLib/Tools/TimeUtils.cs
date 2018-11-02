@@ -6,13 +6,13 @@ namespace AepApp.Tools
 {
     public class TimeUtils
     {
-        public static string DateTime2YMD(DateTime time)
+        public static string DateTime2YMD(DateTime? time)
         {
             if (time == null)
             {
                 return "";
             }
-            return time.ToString("yyyy-MM-dd");
+            return time.Value.ToString("yyyy-MM-dd");
         }
 
         public static string DateTime2YMDHM(DateTime time)

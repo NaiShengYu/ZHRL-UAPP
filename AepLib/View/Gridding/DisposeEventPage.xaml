@@ -97,7 +97,10 @@
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                         <Grid>
                             <Label Text="复查期限" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                            <views:BorderlessDatePicker Date="{Binding deadline, StringFormat='{0:yyyy-MM-dd}'}" IsEnabled="{Binding canEdit}" TSize="15" TextColor="Gray" HasBorder="False" x:Name="DatePickerStart" StyleClass="itemsubtitle" HorizontalOptions="End" Margin="100,10,10,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" WidthRequest="120" />
+                            <views:BorderlessDatePicker Date="{Binding deadline, StringFormat='{0:yyyy-MM-dd}'}" IsEnabled="{Binding canEdit}" 
+                                                        TSize="15" TextColor="Gray" HasBorder="False" x:Name="DatePickerStart" StyleClass="itemsubtitle" 
+                                                        HorizontalOptions="End" Margin="100,10,10,10" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" 
+                                                        WidthRequest="120" XAlign="End"/>
                         </Grid>
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     </StackLayout>

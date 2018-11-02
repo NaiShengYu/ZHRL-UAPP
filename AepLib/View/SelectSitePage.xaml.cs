@@ -94,6 +94,14 @@ namespace AepApp.View
             //Navigation.PushAsync(new SelectSitePage());
         }
 
+        private void deleteSite(object sender,EventArgs e){
+            var item = sender as MenuItem;
+            var model = item.CommandParameter as TodoItem;
+            dataList.Remove(model);
+            App.Database.DeleteItemAsync(model);
+        }
+
+
         ObservableCollection<TodoItem> dataList = new ObservableCollection<TodoItem>();
 
         protected override async void OnAppearing()
@@ -207,6 +215,11 @@ namespace AepApp.View
             }
             //网络请求站点
             sl_add_site.IsVisible = false;
+        }
+
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            Navigation.PopAsync();
         }
     }
 }

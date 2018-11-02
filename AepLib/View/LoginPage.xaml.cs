@@ -13,6 +13,8 @@ using CloudWTO.Services;
 using AepApp.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using AepApp.Tools;
+using AepApp.AuxiliaryExtension;
 
 namespace AepApp.View
 {
@@ -31,6 +33,13 @@ namespace AepApp.View
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetBackButtonTitle(this, "");
+            if(App.APP_TYPE == App.TYPE_YISHUI)
+            {
+                site_name.Text = AppNameConst.YISHUI;
+            }else if (App.APP_TYPE == App.TYPE_GAOXIN)
+            {
+                site_name.Text = AppNameConst.GAOXIN;
+            }
         }
 
         private void Select_site(object sender, EventArgs e)
@@ -58,23 +67,21 @@ namespace AepApp.View
                 tree.WidthRequest = 130;
             }
 
-            //获取数据库的数据
-            ((App)App.Current).ResumeAtTodoId = -1;
-            List<TodoItem> todoItems = await App.Database.GetItemsAsync();
 
-            if (todoItems != null && todoItems.Count != 0)
+            //获取站点URL
+            TodoItem item = await AddSiteUtil.getCurrentSite();
+            if (item != null)
             {
-
-                for (int i = 0; i < todoItems.Count; i++)
-                {
-                    item = todoItems[i];
-                    if (item.isCurrent == true)
-                    {
-                        //site_name.Text = item.Name;
-                        //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
-                    }
-                }
+                site_name.Text = item.Name;
+                App.FrameworkURL = item.SiteAddr; //获取baseUrl
+                //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
             }
+            else
+            {
+                site_name.Text = "";
+                App.FrameworkURL = ""; //获取baseUrl
+            }
+
             //获取存储文件下的内容
             var acc = AccountStore.Create().FindAccountsForService(App.AppName).LastOrDefault();
 
@@ -114,11 +121,11 @@ namespace AepApp.View
                 await DisplayAlert("提示", "密码不能为空", "确定");
                 //DependencyService.Get<Sample.IToast>().ShortAlert("密码不能为空");
             }
-            //else if (siteNmae == null || siteNmae.Length == 0)
-            //{
-            //    await DisplayAlert("提示", "请先添加站点", "确定");
-            //    //DependencyService.Get<Sample.IToast>().ShortAlert("请先添加站点");
-            //}
+            else if (siteNmae == null || siteNmae.Length == 0)
+            {
+                await DisplayAlert("提示", "请先添加站点", "确定");
+                //DependencyService.Get<Sample.IToast>().ShortAlert("请先添加站点");
+            }
             else
             {
                 deleteData();

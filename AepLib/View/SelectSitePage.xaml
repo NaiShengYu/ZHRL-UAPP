@@ -6,10 +6,13 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
-            <ListView x:Name="HeaderList" HorizontalOptions="Fill" HasUnevenRows="True">
+            <ListView x:Name="HeaderList" HorizontalOptions="Fill" HasUnevenRows="True" ItemSelected="Handle_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
+                            <local:ExtendedViewCell.ContextActions>
+                                <MenuItem Clicked="deleteSite" CommandParameter="{Binding .}" Text="删除" IsDestructive="true"/>
+                            </local:ExtendedViewCell.ContextActions>
                             <Grid>
                                 <StackLayout VerticalOptions="Center" Spacing="0" HorizontalOptions="Start">
                                     <Label Text="{Binding Name}" Font="17" Margin="15,10,0,0" TextColor="Black" />
@@ -37,7 +40,7 @@
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="0,10,0,0" HeightRequest="40" HorizontalOptions="Center">
                     <Label Text="网址" HeightRequest="40" VerticalOptions="Center" FontSize="18" Margin="0,6,0,0" />
-                    <Entry x:Name="site_url" Placeholder="请输入网址" HeightRequest="40" WidthRequest="200" HorizontalOptions="Center" />
+                    <Entry x:Name="site_url" Placeholder="http://dev.azuratech.com:50000" HeightRequest="40" WidthRequest="200" HorizontalOptions="Center" />
                 </StackLayout>
                 <Button Text="添加" Clicked="Add_Site" BackgroundColor="#2772a5" HorizontalOptions="Center" Margin="0,10,0,0" HeightRequest="40" WidthRequest="120" TextColor="White" />
             </StackLayout>

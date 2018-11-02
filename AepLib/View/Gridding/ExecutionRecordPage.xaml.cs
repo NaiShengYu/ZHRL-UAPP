@@ -19,7 +19,7 @@ namespace AepApp.View.Gridding
         private ObservableCollection<GridTaskHandleRecordModel> dataList = new ObservableCollection<GridTaskHandleRecordModel>();
         private string mTaskId;
         private string mStaff;
-        public ExecutionRecordPage(string taskId,string staff)
+        public ExecutionRecordPage(string taskId, string staff)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
@@ -35,7 +35,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskResultPage(record.id.Value, record, false,new ObservableCollection<Enterprise>()));
+            Navigation.PushAsync(new TaskResultPage(record.id.Value, record, false, new ObservableCollection<Enterprise>()));
             listView.SelectedItem = null;
         }
 
@@ -63,7 +63,7 @@ namespace AepApp.View.Gridding
         {
             string url = App.EP360Module.url + "/api/gbm/GetTaskHandleList";
             Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("staff",mStaff);
+            map.Add("staff", mStaff);
             map.Add("task", mTaskId);
 
             string param = JsonConvert.SerializeObject(map);
@@ -78,9 +78,12 @@ namespace AepApp.View.Gridding
                         foreach (var item in list)
                         {
                             dataList.Add(item);
-                            if(item.enterprise != null)
-                                 ReqEnters(item);
-                            else{
+                            if (item.enterprise != null)
+                            {
+                                ReqEnters(item);
+                            }
+                            else
+                            {
                                 listView.ItemsSource = null;
                                 listView.ItemsSource = dataList;
                             }
@@ -117,7 +120,7 @@ namespace AepApp.View.Gridding
         //根据id获取企业
         private async void ReqEnters(GridTaskHandleRecordModel model)
         {
-            
+
             string url = App.BasicDataModule.url + "/api/Modmanage/GetEnterpriseByid";
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("id", model.enterprise);
