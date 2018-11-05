@@ -4,6 +4,9 @@ using System.Collections.ObjectModel;
 using AepApp.Models;
 using Xamarin.Forms;
 using AepApp.View.EnvironmentalEmergency;
+using CloudWTO.Services;
+using Newtonsoft.Json;
+
 namespace AepApp.View.Samples
 {
     public partial class SamplePlanInfoPage : ContentPage
@@ -77,6 +80,7 @@ namespace AepApp.View.Samples
 
         private ObservableCollection<TaskModel> dataList = new ObservableCollection<TaskModel>();
         MySamplePlanItems _samplePlanItems = null;
+        SampleBasicDataModel _basicDataModel = new SampleBasicDataModel();
         public SamplePlanInfoPage(MySamplePlanItems sampleModel)
         {
             InitializeComponent();
@@ -84,15 +88,109 @@ namespace AepApp.View.Samples
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             Title = sampleModel.name;
             this.BindingContext = sampleModel;
-
-
+            requestSamplePublicData();
             creatTask();
+        }
+
+
+        private async void requestSamplePublicData(){           
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/WaterRecord/GetDetailByPid?planid=" +_samplePlanItems.id , "GET", App.EmergencyToken);
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                SampleBasicDataModel basicDataModel = JsonConvert.DeserializeObject<SampleBasicDataModel>(hTTPResponse.Results);
+                Console.WriteLine("结果是：" + App.mySamplePlanResult);
+                //listView.ItemsSource = App.mySamplePlanResult.Items;
+                _basicDataModel = basicDataModel;
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+                _basicDataModel.sampledate = DateTime.Now;
+            }
+            basicDataSK.BindingContext = _basicDataModel;
+        }
+
+        void Handle_purposeChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            _basicDataModel.purpose = e.NewTextValue;
+        }
+        void Handle_areanameChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            _basicDataModel.areaname = e.NewTextValue;
+        }
+        void Handle_areafunctypeChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            _basicDataModel.areafunctype = e.NewTextValue;
+        }
+        void Handle_carshipChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            _basicDataModel.carship = e.NewTextValue;
+        }
+        void Handle_toolsChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            _basicDataModel.tools = e.NewTextValue;
+        }
+        void Handle_positionChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            _basicDataModel.position = e.NewTextValue;
+        }
+
+        void Handle_sampledateChanged(object sender, Xamarin.Forms.DateChangedEventArgs e)
+        {
+            _basicDataModel.sampledate = e.NewDate;   
+        
+        }
+
+        void Handle_weatherChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            _basicDataModel.weather = e.NewTextValue;
+        }
+        void Handle_temperatureChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            _basicDataModel.temperature = e.NewTextValue;
+        }
+
+        async void SaveBaiscData(object sender ,EventArgs e){
+                Dictionary<string, object> dic = new Dictionary<string, object>();
+            string url = "/Api/WaterRecord/Add";
+            dic.Add("areafunctype", _basicDataModel.areafunctype);
+            dic.Add("areaname", _basicDataModel.areaname);
+            dic.Add("carship", _basicDataModel.carship);
+            dic.Add("planid", _samplePlanItems.id);
+            dic.Add("position", _basicDataModel.position);
+            dic.Add("purpose", _basicDataModel.purpose);
+            dic.Add("sampledate", _basicDataModel.sampledate);
+            dic.Add("temperature", _basicDataModel.temperature);
+            dic.Add("tools", _basicDataModel.tools);
+            dic.Add("weather", _basicDataModel.weather);
+            //假如有信息id就更新id
+            if(!string.IsNullOrWhiteSpace(_basicDataModel.id)){
+                dic.Add("id", _basicDataModel.id);
+                url = "/Api/WaterRecord/Update";
+            }
+            string param = JsonConvert.SerializeObject(dic);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + url, param, "POST", App.EmergencyToken);
+                Console.WriteLine(hTTPResponse);
+                if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    App.mySamplePlanResult = JsonConvert.DeserializeObject<MySamplePlanResult>(hTTPResponse.Results);
+                    Console.WriteLine("结果是：" + App.mySamplePlanResult);
+                if (!string.IsNullOrWhiteSpace(_basicDataModel.id))
+                    _basicDataModel.id = hTTPResponse.Results;
+                }
+                else
+                {
+                    Console.WriteLine(hTTPResponse);
+                }
         }
 
 
 
         void creatTask()
         {
+            if (_samplePlanItems == null) return;
+            if (_samplePlanItems.tasklist == null) return;
             foreach (taskslist model in _samplePlanItems.tasklist)
             {
                 foreach (tasksAnas anas in model.taskAnas){

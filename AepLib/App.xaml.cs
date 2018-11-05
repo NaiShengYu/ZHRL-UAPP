@@ -23,6 +23,7 @@ using AepApp.ViewModel;
 using AepApp.View.Gridding;
 using AepApp.AuxiliaryExtension;
 //using AepApp.View.SecondaryFunction;
+using AepApp.View.Samples;
 
 namespace AepApp
 {
@@ -50,6 +51,7 @@ namespace AepApp
         public static string FrameworkURL = "";
         //public static string FrameworkURL = "http://gx.azuratech.com:30000";
         //public static string FrameworkURL = "http://dev.azuratech.com:50000";
+        public static string SampleURL = "http://192.168.1.128:30011";//采样模块暂时接口
 
         public static int TYPE_GAOXIN = 1;//高新区
         public static int TYPE_YISHUI = 2;//沂水
@@ -88,6 +90,7 @@ namespace AepApp
         public static string FrameworkToken = "";       // Returned by the framework server. To be used as the ONLY access token throughout the APP
         public static string EmergencyToken = "";        // used temporarily for the emergency module
         public static string EmergencyAccidentID = "";
+
 
         // needed in AccountStore for credential storing
         public static string AppName = "Aep";
@@ -134,11 +137,11 @@ namespace AepApp
             vm = new VM();
             HandleEventHandler();
             //MainPage = new HomePagePage();
-            //MainPage = new NavigationPage(splashPage);
+            MainPage = new NavigationPage(new SamplePlanPage());
 
 
-            splashPage = new SplashPage();
-            MainPage = splashPage;
+            //splashPage = new SplashPage();
+            //MainPage = splashPage;
 
             personViewModel = new TestPersonViewModel();
 
@@ -185,7 +188,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-            //return;
+            return;
 
             //if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             //{
