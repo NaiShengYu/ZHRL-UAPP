@@ -67,6 +67,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="JPush.Binding.Droid">
+      <HintPath>..\JPush.Binding.Droid\bin\Debug\JPush.Binding.Droid.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="View\Gridding\EventHandleProcessPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

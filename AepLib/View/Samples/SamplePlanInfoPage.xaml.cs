@@ -29,13 +29,9 @@ namespace AepApp.View.Samples
         /// <param name="e">E.</param>
         void selectTask(object sender, EventArgs e)
         {
-            //Button button = sender as Button;
-            //TaskModel model = button.BindingContext as TaskModel;
-            //Navigation.PushAsync(new TastInfoPage
-            //{
-            //    Title = model.name,
-            //});
-
+            Button button = sender as Button;
+            taskslist model = button.BindingContext as taskslist;
+            Navigation.PushAsync(new TastInfoPage(model.taskname, model.taskid));
         }
 
 
@@ -93,6 +89,10 @@ namespace AepApp.View.Samples
 
         void creatTask()
         {
+            if(_samplePlanItems == null || _samplePlanItems.tasklist == null)
+            {
+                return;
+            }
             foreach (taskslist model in _samplePlanItems.tasklist)
             {
                 foreach (tasksAnas anas in model.taskAnas){

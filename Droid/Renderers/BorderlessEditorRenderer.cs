@@ -37,7 +37,7 @@ namespace AepApp.Droid.Renderers
             base.OnElementPropertyChanged(sender, e);
             var view = (BorderlessEditor)Element;
 
-            if (e.PropertyName == BorderlessDatePicker.HasBorderProperty.PropertyName)
+            if (e.PropertyName == BorderlessEditor.HasBorderProperty.PropertyName)
                 SetBorder(view);
         }
 
