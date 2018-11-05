@@ -15,15 +15,15 @@ using Todo;
 
 namespace AepApp.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AddSite : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AddSite : ContentPage
+    {
         private String result;
-        
 
-        public AddSite ()
-		{
-			InitializeComponent ();          
+
+        public AddSite()
+        {
+            InitializeComponent();
             this.Title = "添加站点";
             ToolbarItems.Add(new ToolbarItem("添加", "", () =>
             {
@@ -36,83 +36,89 @@ namespace AepApp.View
                 {
                     ////CrossHud.Current.Show("加载中...");
                     //请求该站点数据
-                    reqSiteData();
+                    //reqSiteData();
                 }
                 // App.Database.SaveItemAsync();
                 //await Navigation.PopAsync(false);
 
             }));
 
-        }     
+        }
 
-        private void reqSiteData()
+        //private void reqSiteData()
+        //{
+        //    BackgroundWorker wrk = new BackgroundWorker();
+        //    wrk.DoWork += (sender1, e1) =>
+        //    {
+        //        // Console.WriteLine("添加站点");                
+        //        string[] s = this.siteAddr.Text.Split(new char[] { ':' });
+        //        string uri = this.siteAddr.Text + "/api/login/getstationName?stationurl=" + s[0];
+
+        //        //string uri = "https://"+this.siteAddr.Text+"/api/login/getstationName?stationurl="+s[0];               
+        //        result = EasyWebRequest.sendGetHttpWebRequest(uri);
+
+        //    };
+        //    wrk.RunWorkerCompleted += (sender1, e1) =>
+        //     {
+        //         bool isContainSite = false;
+        //         try
+        //         {
+        //             AddSitePageModel model = JsonConvert.DeserializeObject<AddSitePageModel>(result);
+        //             if (model.id != null)
+        //             {
+        //                 TodoItem todoItem = new TodoItem();
+        //                 todoItem.SiteId = model.id;
+        //                 todoItem.Name = model.name;
+        //                 todoItem.SiteAddr = this.siteAddr.Text;
+        //                 todoItem.isCurrent = false;
+
+        //                 if (App.todoItemList.Count != 0)
+        //                 {
+        //                     foreach (var item in App.todoItemList) //遍历站点数据
+        //                    {
+        //                         if (item.SiteAddr.Equals(todoItem.SiteAddr))
+        //                         {
+        //                             isContainSite = true;
+        //                             break;
+        //                         }
+
+        //                     }
+        //                 }
+
+        //                 if (!isContainSite)
+        //                 {
+        //                     saveData(todoItem);
+        //                    //CrossHud.Current.Dismiss();
+        //                }
+        //                 else
+        //                 {
+        //                    //CrossHud.Current.Dismiss();
+        //                    Navigation.PopAsync();
+        //                 }
+        //                //Console.WriteLine("ex:" + model);
+        //                //添加站点
+        //            }
+        //             else
+        //             {
+        //                //CrossHud.Current.Dismiss();
+        //            }
+        //         }
+        //         catch (Exception ex)
+        //         {
+        //             Console.WriteLine(ex);
+        //            //CrossHud.Current.Dismiss();
+
+        //        }
+        //     };
+        //    wrk.RunWorkerAsync();
+        //}
+
+        private void saveData(TodoItem todoItem)
         {
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                // Console.WriteLine("添加站点");                
-                string[] s = this.siteAddr.Text.Split(new char[] { ':' });
-                string uri = "https://"+this.siteAddr.Text+"/api/login/getstationName?stationurl="+s[0];               
-                result = EasyWebRequest.sendGetHttpWebRequestWithNoToken(uri); 
-
-            };
-            wrk.RunWorkerCompleted +=(sender1, e1) =>
-            {
-                bool isContainSite = false;
-                try{
-                    AddSitePageModel model = JsonConvert.DeserializeObject<AddSitePageModel>(result);
-
-                
-                if(model !=null){
-
-                TodoItem todoItem = new TodoItem();
-                todoItem.SiteId = model.id;
-                todoItem.Name = model.name;
-                todoItem.SiteAddr = this.siteAddr.Text;
-                todoItem.isCurrent = false;
-
-                if (App.todoItemList.Count != 0)
-                {
-                    foreach (var item in App.todoItemList) //遍历站点数据
-                    {
-                        if (item.SiteAddr.Equals(todoItem.SiteAddr)) {
-                            isContainSite = true;
-                            break;
-                        }
-                            
-                    }
-                }
-
-                if (!isContainSite)
-                {
-                    saveData(todoItem);
-                    //CrossHud.Current.Dismiss();
-                }
-                else {
-                            //CrossHud.Current.Dismiss();
-                    Navigation.PopAsync();
-                }
-                //Console.WriteLine("ex:" + model);
-                //添加站点
-                }else{
-                    //CrossHud.Current.Dismiss();
-                    }
-                }
-                catch(Exception ex){
-                    Console.WriteLine(ex);
-                    //CrossHud.Current.Dismiss();
-
-                }
-            };
-            wrk.RunWorkerAsync();
-        }  
-
-        private  void saveData(TodoItem todoItem)
-        {
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.DoWork += (sender1, e1) =>
-            {
-               App.Database.SaveItemAsync(todoItem);
+                App.Database.SaveItemAsync(todoItem);
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
@@ -120,14 +126,14 @@ namespace AepApp.View
             };
             wrk.RunWorkerAsync();
         }
-           
+
         private void cancel()
         {
             //CrossHud.Current.Dismiss();
         }
-        
+
         protected override bool OnBackButtonPressed()
-        {           
+        {
             return true;
         }
     }

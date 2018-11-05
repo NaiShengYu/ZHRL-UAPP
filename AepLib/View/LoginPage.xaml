@@ -24,9 +24,9 @@
 <!--                <Label x:Name="site_name" TextColor="Black" FontSize="17" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"></Label>-->
                 <Label x:Name="site_name" Text="" TextColor="Black" FontSize="17" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"></Label>
                 <Image HeightRequest="18" WidthRequest="15" Source="right" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"/>
-               <!-- <Grid.GestureRecognizers>
+                <Grid.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Select_site"/>
-                </Grid.GestureRecognizers>-->
+                </Grid.GestureRecognizers>
             </Grid>
 
             <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">

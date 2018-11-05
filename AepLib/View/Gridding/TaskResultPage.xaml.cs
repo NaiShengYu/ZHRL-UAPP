@@ -67,7 +67,6 @@ namespace AepApp.View.Gridding
         void Handle_Tapped(object sender, System.EventArgs e)
         {
             pickerEnterprises.Focus();
-
         }
 
         private void pickerStatud_SelectedIndexChanged(object sender, EventArgs e)

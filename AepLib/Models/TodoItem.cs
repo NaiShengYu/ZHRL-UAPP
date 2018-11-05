@@ -17,6 +17,12 @@ namespace Todo
         public string Name { get; set; }
         public string SiteId { get; set; }
         public string SiteAddr { get; set; }
+        public string customerName { get; set; }
+        public string appTitle { get; set; }
+        public string majorVersion { get; set; }
+        public string minorVersion { get; set; }
+        public string revision { get; set; }
+        public string date { get; set; }
 
         private bool _isCurrent = false;
         public bool isCurrent
