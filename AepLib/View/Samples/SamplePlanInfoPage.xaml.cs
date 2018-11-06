@@ -88,19 +88,20 @@ namespace AepApp.View.Samples
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             Title = sampleModel.name;
             this.BindingContext = sampleModel;
+            if (sampleModel.tasklist == null || sampleModel.tasklist.Count == 0)
+                TaskNumFrame.BackgroundColor = Color.Transparent;
             requestSamplePublicData();
             creatTask();
         }
 
 
         private async void requestSamplePublicData(){           
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/WaterRecord/GetDetailByPid?planid=" +_samplePlanItems.id , "GET", App.EmergencyToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/WaterRecord/GetDetailByPid?planid=" +_samplePlanItems.id,"" , "GET", "");
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 SampleBasicDataModel basicDataModel = JsonConvert.DeserializeObject<SampleBasicDataModel>(hTTPResponse.Results);
                 Console.WriteLine("结果是：" + App.mySamplePlanResult);
-                //listView.ItemsSource = App.mySamplePlanResult.Items;
                 _basicDataModel = basicDataModel;
             }
             else
@@ -170,12 +171,10 @@ namespace AepApp.View.Samples
                 url = "/Api/WaterRecord/Update";
             }
             string param = JsonConvert.SerializeObject(dic);
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + url, param, "POST", App.EmergencyToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + url, param, "POST", "");
                 Console.WriteLine(hTTPResponse);
                 if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    App.mySamplePlanResult = JsonConvert.DeserializeObject<MySamplePlanResult>(hTTPResponse.Results);
-                    Console.WriteLine("结果是：" + App.mySamplePlanResult);
                 if (!string.IsNullOrWhiteSpace(_basicDataModel.id))
                     _basicDataModel.id = hTTPResponse.Results;
                 }
