@@ -198,5 +198,10 @@ namespace AepApp.View.Samples
             public string factor { get; set; }
         }
 
+        private void BtnOk_Clicked(object sender, EventArgs e)
+        {
+            //测试用
+            Navigation.PushAsync(new TastInfoPage("饮用水采样2", "328e5ea3-624d-40e2-a4b1-2300b51a7114"));
+        }
     }
 }

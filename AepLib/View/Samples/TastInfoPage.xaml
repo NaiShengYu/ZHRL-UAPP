@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:AepApp.MaterialForms" x:Class="AepApp.View.Samples.TastInfoPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:AepApp.MaterialForms" 
+             xmlns:hlv="clr-namespace:HorizontalList;assembly=HorizontalList" 
+             x:Class="AepApp.View.Samples.TastInfoPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="BtnSave" Text="保存" Clicked="BtnSave_Clicked" />
+        <ToolbarItem Name="BtnSave" Text="" Clicked="BtnSave_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
@@ -10,70 +13,90 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <ScrollView Margin="0,0,0,50">
-                <StackLayout BackgroundColor="Silver" Spacing="1">
+            <ScrollView>
+                <StackLayout BackgroundColor="#E6E6E6" Spacing="1">
                     <Grid BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="地表水" Font="17" VerticalOptions="Center" />
                         <Label Margin="150,12,30,12" Text="重金属苯系物" HorizontalOptions="End" Font="16" TextColor="Gray" HeightRequest="30" VerticalTextAlignment="Center"/>
                     </Grid>
-                    <Grid BackgroundColor="Silver">
+                    <Grid BackgroundColor="#E6E6E6" Margin="0, 3, 0, 3">
                         <Label Margin="10,1,0,1" Text="样本" Font="15" VerticalOptions="Center" />
-                        <Button HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" BackgroundColor="Transparent" Image="bluetruck" />
-                        <Button HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" BackgroundColor="Transparent" Image="graymicroscrope" Margin="120,0,0,0" />
-                        <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2" TextColor="White" />
+                        <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="FilterTrans_Tapped"/>
+                            </Image.GestureRecognizers>
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image" Binding="{Binding FilterTrans}" Value="True">
+                                    <Setter Property="Source" Value="bluetruck"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding FilterTrans}" Value="False">
+                                    <Setter Property="Source" Value="graytruck"/>
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Margin="120,0,0,0" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="FilterAccept_Tapped"/>
+                            </Image.GestureRecognizers>
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image" Binding="{Binding FilterAccept}" Value="True">
+                                    <Setter Property="Source" Value="bluemicroscope"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding FilterAccept}" Value="False">
+                                    <Setter Property="Source" Value="graymicroscrope"/>
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20" CornerRadius="12.5" 
+                               Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#B9B9B9" Margin="0,0,15,0" IsVisible="{Binding HasSample}">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding SampleCount}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <!--<ScrollView HeightRequest="85" Orientation="Horizontal" BackgroundColor="#f5f6f7">
+                    <!--<hlv:HorizontalListView x:Name="lvSample" ItemsSource="{Binding samplingBottleList}"  ListOrientation="Horizontal"  HeightRequest="70" BackgroundColor="White">
+                        <hlv:HorizontalListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="70">
+                                    <Grid HeightRequest="65" WidthRequest="65">
+                                        <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Source="greentick">
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="0">
+                                                    <Setter Property="Source" Value="greentick"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="1">
+                                                    <Setter Property="Source" Value="bluetruck"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="2">
+                                                    <Setter Property="Source" Value="bluemicroscope"/>
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
+                                        <Image WidthRequest="40" HeightRequest="60" Source="bottle" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontSize="14" Text="{Binding Number}"/>
+                                    </Grid>
+                                </ViewCell>
+
+                            </DataTemplate>
+                        </hlv:HorizontalListView.ItemTemplate>
+                    </hlv:HorizontalListView>-->
+                    <ScrollView HeightRequest="85" Orientation="Horizontal" BackgroundColor="White">
                         <StackLayout x:Name="sampleBottleSK" Orientation="Horizontal" Spacing="10" Margin="10,5,10,5"/>
-                    </ScrollView>-->
-                    <RelativeLayout HeightRequest="70">
-                        <ListView x:Name="lvSample" Rotation="270" ItemsSource="{Binding samplingBottleList}" RowHeight="70" 
-                                  ItemSelected="lvSample_ItemSelected" SeparatorVisibility="None"
-                                  RelativeLayout.XConstraint = "{ConstraintExpression  Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-30}"
-                                  RelativeLayout.YConstraint = "{ConstraintExpression  Type=RelativeToParent, Property=Width, Factor=0.5, Constant=30}"
-                                  RelativeLayout.WidthConstraint ="{ConstraintExpression Type=Constant, Constant=60}"
-                                  RelativeLayout.HeightConstraint ="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ContentView  Rotation="90" Padding="1" TranslationX="70">
-                                        <Grid >
-                                            <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Source="greentick">
-                                                <Image.Triggers>
-                                                    <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="0">
-                                                        <Setter Property="Source" Value="greentick"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="1">
-                                                        <Setter Property="Source" Value="bluetruck"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="2">
-                                                        <Setter Property="Source" Value="bluemicroscope"/>
-                                                    </DataTrigger>
-                                                </Image.Triggers>
-                                            </Image>
-                                            <Image WidthRequest="40" HeightRequest="60" Source="bottle" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontSize="14" Text="{Binding Number}"/>
-                                        </Grid>
-                                    </ContentView>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-
-                    </RelativeLayout>
+                    </ScrollView>
 
                     <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="样本编号" Font="17" />
-                        <Label Margin="90,12,10,12" Text="{Binding Number}" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                        <Label Margin="110,12,30,12" Text="{Binding Number}" HorizontalOptions="End" Font="17" TextColor="Gray" />
                     </Grid>
                     <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="采样时间" Font="17" />
-                        <Label Margin="90,12,10,12" Text="{Binding Sampletime, StringFormat='{0:yyyy-MM-dd HH:mm}'}" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                        <Label Margin="150,12,30,12" Text="{Binding Sampletime, StringFormat='{0:yyyy-MM-dd HH:mm}'}" HorizontalOptions="End" Font="17" TextColor="Gray" />
                     </Grid>
                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="样本外观" Font="17" VerticalOptions="Center" />
-                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Appearance}" HorizontalOptions="End" FontSize="16" TextColor="Gray" HeightRequest="30" XAlign="End"/>
+                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Appearance}" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="Gray" HeightRequest="30" XAlign="End"/>
                     </Grid>
                     <Grid x:Name="GridLocation" BackgroundColor="White">
                         <Grid.GestureRecognizers>
@@ -81,7 +104,7 @@
                         </Grid.GestureRecognizers>
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="采样坐标" Font="17" VerticalOptions="Center" />
-                        <Label Margin="150,12,30,12" Text="129.123495E,29.938492N" HorizontalOptions="End" Font="16" TextColor="Gray" />
+                        <Label Margin="150,12,30,12" Text="" HorizontalOptions="End" Font="16" TextColor="Gray" />
                     </Grid>
                     <Grid x:Name="GridExamineItem" BackgroundColor="White">
                         <Grid.GestureRecognizers>
@@ -100,29 +123,29 @@
                         </views:BorderlessPicker>
                     </Grid>
                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="水位" Font="17" VerticalOptions="Center" />
-                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Waterlevel}" HorizontalOptions="End" FontSize="16" TextColor="Gray" XAlign="End"/>
+                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Waterlevel}" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="Gray" XAlign="End"/>
                     </Grid>
                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="潮水" Font="17" VerticalOptions="Center" />
-                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Tide}" HorizontalOptions="End" FontSize="16" TextColor="Gray" XAlign="End"/>
+                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Tide}" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="Gray" XAlign="End"/>
                     </Grid>
                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="流向" Font="17" VerticalOptions="Center" />
-                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Direction}" HorizontalOptions="End" FontSize="16" TextColor="Gray" XAlign="End"/>
+                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Direction}" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="Gray" XAlign="End"/>
                     </Grid>
                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="断面宽(m)" Font="17" VerticalOptions="Center" />
-                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Width}" HorizontalOptions="End" FontSize="16" TextColor="Gray" XAlign="End"/>
+                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Width}" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="Gray" XAlign="End"/>
                     </Grid>
                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="水深" Font="17" VerticalOptions="Center" />
-                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Depth}" HorizontalOptions="End" FontSize="16" TextColor="Gray" XAlign="End"/>
+                        <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Depth}" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="Gray" XAlign="End"/>
                     </Grid>
                     <Grid x:Name="GridFix" BackgroundColor="White">
                         <Grid.GestureRecognizers>
@@ -141,13 +164,15 @@
                         </views:BorderlessPicker>
                     </Grid>
                     <Grid BackgroundColor="White">
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="采样瓶编号" Font="17" />
-                        <Label Margin="90,12,10,12" Text="{Binding Qrcode}" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                        <Label Margin="150,12,30,12" Text="{Binding Qrcode}" HorizontalOptions="End" Font="17" TextColor="Gray" />
                     </Grid>
-                    <Grid BackgroundColor="Silver">
+                    <Grid BackgroundColor="#E6E6E6" Margin="0, 3, 0, 3">
                         <Label Margin="10,1,0,1" Text="照片" Font="15" VerticalOptions="Center" />
-                        <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2" TextColor="White" />
+                        <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20" CornerRadius="12.5" 
+                               Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#B9B9B9" Margin="0,0,15,0" IsVisible="{Binding HasPhoto}">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding PhotoCount}" TextColor="White" />
                         </Frame>
                     </Grid>
                     <ScrollView x:Name="pickSCR" Orientation="Horizontal" HeightRequest="110" BackgroundColor="White">
@@ -159,7 +184,7 @@
 
                 </StackLayout>
             </ScrollView>
-            <Grid Grid.Row="2" VerticalOptions="End" HorizontalOptions="Fill" HeightRequest="50" BackgroundColor="#e8e8e8">
+            <Grid Grid.Row="1" VerticalOptions="End" HorizontalOptions="Fill" HeightRequest="50" BackgroundColor="#e8e8e8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -167,11 +192,11 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BtnAdd" Grid.Column="0" Margin="5" Image="add" Clicked="BtnAdd_Clicked"/>
-                <Button x:Name="BtnMinus" Grid.Column="1" Margin="5" Image="minus" Clicked="BtnMinus_Clicked"/>
-                <Button x:Name="BtnScan" Grid.Column="2" Margin="5" Image="scan" Clicked="scanning"/>
-                <Button x:Name="BtnCamera" Grid.Column="3" Margin="5" Image="camera" Clicked="takePhoto"/>
-                <Button x:Name="BtnTrash" Grid.Column="4" Margin="5" Image="trashcan" Clicked="BtnTrash_Clicked"/>
+                <Button x:Name="BtnAdd" Grid.Column="0" Margin="5" Image="add" BackgroundColor="Transparent" Clicked="BtnAdd_Clicked"/>
+                <Button x:Name="BtnMinus" Grid.Column="1" Margin="5" Image="minus" BackgroundColor="Transparent" Clicked="BtnMinus_Clicked"/>
+                <Button x:Name="BtnScan" Grid.Column="2" Margin="5" Image="scan" BackgroundColor="Transparent" Clicked="scanning"/>
+                <Button x:Name="BtnCamera" Grid.Column="3" Margin="5" Image="camera" BackgroundColor="Transparent" Clicked="takePhoto"/>
+                <Button x:Name="BtnTrash" Grid.Column="4" Margin="5" Image="trashcan" BackgroundColor="Transparent" Clicked="BtnTrash_Clicked"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

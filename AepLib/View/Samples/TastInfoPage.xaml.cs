@@ -8,6 +8,7 @@ using Sample;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AepApp.View.Samples
@@ -16,10 +17,11 @@ namespace AepApp.View.Samples
     {
 
         private ObservableCollection<SampleInfoModel> samplingBottleList = new ObservableCollection<SampleInfoModel>();
-        private SampleInfoModel _currentSample;
         private ObservableCollection<string> photoList = new ObservableCollection<string>();
         private string _taskId = "";
-        private bool isEdit = false;
+        private int checkSampleIndex = -1;//当前选中样本的index
+        private int lastCheckSampleIndex = -1;//上一次选中样本的index
+        private SampleInfoModel _currentSample;//当前显示的样本
 
         public TastInfoPage(string title, string taskId)
         {
@@ -30,15 +32,267 @@ namespace AepApp.View.Samples
         }
 
         /// <summary>
+        /// 本地添加一个新样本
+        /// </summary>
+        private void AddEmptySample()
+        {
+            string taskTag = "";
+            if (!string.IsNullOrWhiteSpace(_taskId) && _taskId.Length >= 4)
+            {
+                taskTag = _taskId.Substring(_taskId.Length - 4);
+            }
+            _currentSample = new SampleInfoModel
+            {
+
+                Number = "S" + taskTag + TimeUtils.DateTime2YMDHMSNowrap(DateTime.Now),
+                Sampletime = DateTime.Now,
+            };
+
+            creatSampleItemUI(_currentSample);
+
+            samplingBottleList.Add(_currentSample);
+            checkSampleIndex = sampleBottleSK.Children.Count - 1;
+            chageUI();
+        }
+
+        private void changeToolbar()
+        {
+            ToolbarItem bar = ToolbarItems[0];
+            if (_currentSample != null)
+            {
+                if (!string.IsNullOrWhiteSpace(_currentSample.id))
+                {
+                    bar.Text = "更新样本";
+                }
+                else
+                {
+                    bar.Text = "上传样本";
+                }
+            }
+            else
+            {
+                bar.Text = "";
+            }
+        }
+
+        private void changeSampleStatusIcon()
+        {
+            if (checkSampleIndex >= 0 && sampleBottleSK.Children.Count > checkSampleIndex)
+            {
+                Grid sl = sampleBottleSK.Children[checkSampleIndex] as Grid;
+                if (sl != null)
+                {
+                    Image imgStatus = sl.Children[1] as Image;
+                    if (imgStatus != null)
+                    {
+                        imgStatus.Source = ImageSource.FromFile("greentick") as FileImageSource;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 修改UI
+        /// </summary>
+        private void chageUI()
+        {
+            if(_currentSample == null)
+            {
+                return;
+            }
+            _currentSample.SampleCount = samplingBottleList.Count;
+            _currentSample.PhotoCount = photoList.Count;
+            _currentSample.HasSample = samplingBottleList.Count > 0;
+            _currentSample.HasPhoto = photoList.Count > 0;
+            BindingContext = _currentSample;
+            changeToolbar();
+            if (lastCheckSampleIndex >= 0 && sampleBottleSK.Children.Count > lastCheckSampleIndex)
+            {
+                Grid sl = sampleBottleSK.Children[lastCheckSampleIndex] as Grid;
+                if (sl != null)
+                {
+                    sl.BackgroundColor = Color.White;
+                }
+            }
+            if (checkSampleIndex >= 0 && sampleBottleSK.Children.Count > checkSampleIndex)
+            {
+                Grid sl = sampleBottleSK.Children[checkSampleIndex] as Grid;
+                if (sl != null)
+                {
+                    sl.BackgroundColor = Color.FromHex("#E6E6E6");
+                    lastCheckSampleIndex = checkSampleIndex;
+                }
+            }
+        }
+
+        private void creatSampleItemUI(SampleInfoModel s)
+        {
+            if (s == null)
+            {
+                return;
+            }
+            Image imgBottle = new Image
+            {
+                BackgroundColor = Color.Transparent,
+                VerticalOptions = LayoutOptions.Start,
+                WidthRequest = 40,
+                HeightRequest = 45,
+                Margin = new Thickness(0, 0, 0, 0),
+                Source = ImageSource.FromFile("bottle") as FileImageSource,
+                HorizontalOptions = LayoutOptions.Center,
+            };
+
+            Label labNumber = new Label
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                FontSize = 10,
+                Text = s.Number,
+                Margin = new Thickness(0, 0, 0, 0),
+                WidthRequest = 65,
+                HorizontalTextAlignment = TextAlignment.Center,
+            };
+
+
+            StackLayout layout = new StackLayout
+            {
+                Spacing = 1,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+            };
+            layout.Children.Add(imgBottle);
+            layout.Children.Add(labNumber);
+
+            Grid gridItem = new Grid
+            {
+
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+
+            };
+            gridItem.Children.Add(layout);
+
+            string source = "";
+            if (s.Status == "1")
+            {
+                source = "greentick";
+            }
+            else if (s.Status == "2")
+            {
+                source = "bluetruck";
+            }
+            else if (s.Status == "3")
+            {
+                source = "bluemicroscope";
+            }
+            Image imgStatus = new Image
+            {
+
+                WidthRequest = 15,
+                HeightRequest = 15,
+                HorizontalOptions = LayoutOptions.End,
+                VerticalOptions = LayoutOptions.Start,
+                Aspect = Aspect.AspectFit,
+            };
+            if (!string.IsNullOrWhiteSpace(source))
+            {
+                imgStatus.Source = ImageSource.FromFile(source) as FileImageSource;
+            }
+            gridItem.Children.Add(imgStatus);
+
+            TapGestureRecognizer tgr = new TapGestureRecognizer();
+            tgr.Tapped += (a, e) =>
+            {
+                gridItem.BackgroundColor = Color.Gray;
+                Grid g = a as Grid;
+                SampleInfoModel sm = g.BindingContext as SampleInfoModel;
+                checkSampleIndex = samplingBottleList.IndexOf(sm);
+
+                _currentSample = sm;
+                chageUI();
+            };
+            gridItem.GestureRecognizers.Add(tgr);
+            gridItem.BindingContext = s;
+
+            sampleBottleSK.Children.Add(gridItem);
+        }
+
+        private void createSampleAllItemsUI()
+        {
+            sampleBottleSK.Children.Clear();
+            foreach (SampleInfoModel s in samplingBottleList)
+            {
+                creatSampleItemUI(s);
+            }
+        }
+
+        private async void deleteSample()
+        {
+            if (_currentSample == null)
+            {
+                DependencyService.Get<IToast>().ShortAlert("请先选择需要删除的样本");
+                return;
+            }
+            string sampleId = _currentSample.id;
+            int layoutIndex = samplingBottleList.IndexOf(_currentSample);
+            bool sure = await DisplayAlert("友情提示", "样本删除后不可恢复，确定继续删除吗？", "确定", "取消");
+            if (sure)
+            {
+                if (string.IsNullOrWhiteSpace(sampleId))//本地删除
+                {
+                    samplingBottleList.Remove(_currentSample);
+                    changeDataAfterDelete(layoutIndex);
+                }
+                else
+                {
+                    bool success = await deleteNetSample(sampleId);
+                    if (success)
+                    {
+                        DependencyService.Get<IToast>().ShortAlert("删除成功");
+                        samplingBottleList.Remove(_currentSample);
+                        changeDataAfterDelete(layoutIndex);
+                    }
+                    else
+                    {
+                        DependencyService.Get<IToast>().ShortAlert("删除失败，请重试~");
+                    }
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// 删除样本后修改界面数据
+        /// </summary>
+        /// <param name="layoutIndex"></param>
+        private void changeDataAfterDelete(int layoutIndex)
+        {
+            if (layoutIndex >= 0 && sampleBottleSK.Children.Count > layoutIndex)
+            {
+                sampleBottleSK.Children.RemoveAt(layoutIndex);
+            }
+            if (samplingBottleList.Count > 0)
+            {
+                _currentSample = samplingBottleList[samplingBottleList.Count - 1];
+            }
+            else
+            {
+                _currentSample = null;
+            }
+            checkSampleIndex = samplingBottleList.Count - 1;
+            chageUI();
+        }
+
+
+
+
+        /// <summary>
         /// 获取样本信息列表
         /// </summary>
         private async void getSampleListOfTask()
         {
-            string url = App.EP360Module.url + "/Api/WaterData/GetListByTid";
-            //string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/GetListByTid";
-            Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("taskid", _taskId);
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
+            //string url = App.EP360Module.url + "/Api/WaterData/GetListByTid";
+            string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/GetListByTid?taskid=" + _taskId;
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "");
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
@@ -47,8 +301,11 @@ namespace AepApp.View.Samples
                     if (list != null && list.Count > 0)
                     {
                         samplingBottleList = new ObservableCollection<SampleInfoModel>(list);
+                        createSampleAllItemsUI();
+
                         _currentSample = samplingBottleList[0];
-                        BindingContext = _currentSample;
+                        checkSampleIndex = 0;
+                        chageUI();
                     }
                 }
                 catch (Exception)
@@ -58,19 +315,22 @@ namespace AepApp.View.Samples
             }
         }
 
+
         /// <summary>
         /// 添加/修改样本
         /// </summary>
-        private async void addSample()
+        private async Task<bool> editSample()
         {
-            if (_currentSample == null)
+
+            bool isEdit = false;
+            if (!string.IsNullOrWhiteSpace(_currentSample.id))
             {
-                DependencyService.Get<IToast>().ShortAlert("请先选择需要上传的样本");
-                return;
+                isEdit = true;
             }
             CrossHud.Current.Show("样本数据上传中...");
-            string url = App.EP360Module.url + "/Api/WaterData/Add";
-            //string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/Add";
+            //string url = App.EP360Module.url + "/Api/WaterData/Add";
+            string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/Add";
+            string urlUpdate = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/Update";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("appearance", _currentSample.Appearance);
             map.Add("depth", _currentSample.Depth);
@@ -85,27 +345,36 @@ namespace AepApp.View.Samples
             map.Add("qrcode", _currentSample.Qrcode);
             map.Add("anatype", _currentSample.Anatype);
             map.Add("fixative", _currentSample.Fixative);
-            if (!string.IsNullOrWhiteSpace(_currentSample.id))
+            if (isEdit)
             {
                 map.Add("id", _currentSample.id);
             }
 
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(isEdit ? urlUpdate : url, JsonConvert.SerializeObject(map), "POST");
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {
-                    string result = JsonConvert.DeserializeObject<string>(res.Results);
-                    if (!string.IsNullOrWhiteSpace(result))
+                    if (!isEdit)
                     {
-                        _currentSample.id = result;
-                        _currentSample.Status = "1";
-                        samplingBottleList.Add(_currentSample);
+                        string result = JsonConvert.DeserializeObject<string>(res.Results);
+                        if (!string.IsNullOrWhiteSpace(result))
+                        {
+                            _currentSample.id = result;
+                            _currentSample.Status = "1";
+                        }
+                        return true;
                     }
+                    else
+                    {
+                        bool result = JsonConvert.DeserializeObject<bool>(res.Results);
+                        return result;
+                    }
+
                 }
                 catch (Exception)
                 {
-                    throw;
+                    return false;
                 }
                 finally
                 {
@@ -113,84 +382,34 @@ namespace AepApp.View.Samples
                 }
             }
             CrossHud.Current.Dismiss();
+            return false;
         }
 
-        private async void deleteSample()
-        {
-            if (_currentSample == null)
-            {
-                DependencyService.Get<IToast>().ShortAlert("请先选择需要删除的样本");
-                return;
-            }
-            string sampleId = _currentSample.id;
-            bool sure = await DisplayAlert("友情提示", "样本删除后不可恢复，确定继续删除吗？", "确定", "取消");
-            if (sure)
-            {
-                if (string.IsNullOrWhiteSpace(sampleId))//本地删除
-                {
-                    samplingBottleList.Remove(_currentSample);
-                    if (samplingBottleList.Count > 0)
-                    {
-                        lvSample.SelectedItem = samplingBottleList[samplingBottleList.Count - 1];
-                        _currentSample = lvSample.SelectedItem;
-                    }
-                    else
-                    {
-                        _currentSample = null;
-                    }
-                }
-                else
-                {
-                    deleteNetSample(sampleId);
-                }
-            }
-
-
-
-        }
 
         /// <summary>
         /// 删除样本
         /// </summary>
-        private async void deleteNetSample(string sampleId)
+        private async Task<bool> deleteNetSample(string sampleId)
         {
 
-            string url = App.EP360Module.url + "/Api/Delete?id=" + sampleId;
-            //string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/Delete?id=" + sampleId;
-
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "");
+            //string url = App.EP360Module.url + "/Api/Delete?id=" + sampleId;
+            string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/Delete?id=" + sampleId;
+            //Dictionary<string, object> map = new Dictionary<string, object>();
+            //map.Add("id", sampleId);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST");
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {
                     bool result = JsonConvert.DeserializeObject<bool>(res.Results);
-                    if (result)
-                    {
-                        DependencyService.Get<IToast>().ShortAlert("删除成功");
-
-                    }
-                    else
-                    {
-                        DependencyService.Get<IToast>().ShortAlert("删除失败，稍后重试~");
-                    }
+                    return result;
                 }
                 catch (Exception)
                 {
-                    DependencyService.Get<IToast>().ShortAlert("删除失败，稍后重试~");
+                    return false;
                 }
             }
-        }
-
-        private void InitSampleInfo()
-        {
-            _currentSample = new SampleInfoModel
-            {
-                id = new Guid().ToString(),
-                Number = "S" + TimeUtils.DateTime2YMDHMS(DateTime.Now),
-                Sampletime = DateTime.Now,
-                Appearance = "",
-            };
-            BindingContext = _currentSample;
+            return false;
         }
 
         //拍照
@@ -260,70 +479,6 @@ namespace AepApp.View.Samples
 
 
         /// <summary>
-        /// 扫码创建采样瓶
-        /// </summary>
-        void creatSamplingBottle(string barCode)
-        {
-
-            //sampleBottleSK.Children.Clear();
-            //foreach (string barCode in samplingBottleList)
-
-            //{
-            Button button = new Button
-            {
-                BackgroundColor = Color.Transparent,
-                VerticalOptions = LayoutOptions.Start,
-                WidthRequest = 40,
-                HeightRequest = 40,
-                Margin = new Thickness(0, 0, 0, 0),
-                Image = ImageSource.FromFile("bottle") as FileImageSource,
-                HorizontalOptions = LayoutOptions.Center,
-            };
-
-            Label lab3 = new Label
-            {
-                HorizontalOptions = LayoutOptions.Center,
-                FontSize = 13,
-                Text = barCode,
-                Margin = new Thickness(0, 0, 0, 0),
-                WidthRequest = 65,
-                HorizontalTextAlignment = TextAlignment.Center,
-            };
-
-
-            StackLayout layout = new StackLayout
-            {
-                Spacing = 1,
-                //BackgroundColor = Color.Black
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.Center,
-            };
-            layout.Children.Add(button);
-            layout.Children.Add(lab3);
-
-            Grid grid = new Grid
-            {
-                //BackgroundColor = Color.Blue,
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.Center,
-
-            };
-            grid.Children.Add(layout);
-
-            Button button1 = new Button
-            {
-                HorizontalOptions = LayoutOptions.Fill,
-                VerticalOptions = LayoutOptions.Fill,
-                //BackgroundColor = Color.Orange,
-            };
-            grid.Children.Add(button1);
-            //sampleBottleSK.Children.Add(grid);
-            //}
-
-
-        }
-
-        /// <summary>
         /// 根据拍照张数创建图片
         /// </summary>
         void creatPhotoView()
@@ -366,34 +521,24 @@ namespace AepApp.View.Samples
 
         }
 
+
+
+
+
+
         private void BtnAdd_Clicked(object sender, EventArgs e)
         {
-            InitSampleInfo();
-            samplingBottleList.Add(_currentSample);
-            lvSample.SelectedItem = _currentSample;
+            AddEmptySample();
         }
 
         private void BtnMinus_Clicked(object sender, EventArgs e)
         {
-
+            deleteSample();
         }
 
         private void BtnTrash_Clicked(object sender, EventArgs e)
         {
 
-        }
-
-        private void lvSample_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            SampleInfoModel sample = e.SelectedItem as SampleInfoModel;
-            if (sample == null)
-            {
-                return;
-            }
-            _currentSample = sample;
-            BindingContext = _currentSample;
-
-            //lvSample.SelectedItem = null;
         }
 
         private void GridLocation_Tapped(object sender, EventArgs e)
@@ -411,9 +556,49 @@ namespace AepApp.View.Samples
 
         }
 
-        private void BtnSave_Clicked(object sender, EventArgs e)
+        private void FilterTrans_Tapped(object sender, EventArgs e)
         {
-            addSample();
+            if(_currentSample == null)
+            {
+                return;
+            }
+            _currentSample.FilterTrans = !_currentSample.FilterTrans;
+            BindingContext = _currentSample;
+        }
+
+        private void FilterAccept_Tapped(object sender, EventArgs e)
+        {
+            if (_currentSample == null)
+            {
+                return;
+            }
+            _currentSample.FilterAccept = !_currentSample.FilterAccept;
+            BindingContext = _currentSample;
+        }
+
+        private async void BtnSave_Clicked(object sender, EventArgs e)
+        {
+            if (_currentSample == null)
+            {
+                DependencyService.Get<IToast>().ShortAlert("请先选择样本");
+                return;
+            }
+            bool isEdit = false;
+            if (!string.IsNullOrWhiteSpace(_currentSample.id))
+            {
+                isEdit = true;
+            }
+            bool success = await editSample();
+            if (success)
+            {
+                changeToolbar();
+                changeSampleStatusIcon();
+                DependencyService.Get<IToast>().ShortAlert(isEdit ? "样本信息更新成功" : "样本上传成功");
+            }
+            else
+            {
+                DependencyService.Get<IToast>().ShortAlert(isEdit ? "样本信息更新失败" : "样本上传失败");
+            }
         }
     }
 }

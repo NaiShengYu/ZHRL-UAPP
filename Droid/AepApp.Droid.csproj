@@ -61,6 +61,9 @@
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.3.1.0.697729\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
+    <Reference Include="HorizontalList, Version=1.1.5898.36970, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HorizontalListView1.1.1.1.0\lib\HorizontalList.dll</HintPath>
+    </Reference>
     <Reference Include="JPush.Binding.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\JPush.Binding.Droid\bin\Release\JPush.Binding.Droid.dll</HintPath>

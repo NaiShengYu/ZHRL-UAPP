@@ -109,7 +109,7 @@
                 </StackLayout>
             </ScrollView>
             <BoxView VerticalOptions="End" Margin="0,0,0,49" HeightRequest="1" BackgroundColor="#EDEDED" />
-            <Button VerticalOptions="End" HeightRequest="49" BackgroundColor="#EDEDED" Image="doctick" />
+            <Button x:Name="BtnOk" VerticalOptions="End" HeightRequest="49" BackgroundColor="#EDEDED" Image="doctick" Clicked="BtnOk_Clicked"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

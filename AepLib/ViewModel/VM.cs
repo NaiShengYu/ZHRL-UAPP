@@ -1,4 +1,5 @@
 ﻿using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -99,7 +100,8 @@ namespace AepApp.ViewModel
                 planTime = CurrentDay.ToString("yyyy-MM-dd"),
             };
             string param = JsonConvert.SerializeObject(parameter);
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/PagedListForPhone", param, "POST", App.EmergencyToken);
+            //HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/PagedListForPhone", param, "POST", App.EmergencyToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(ConstantUtils.SAMPLE_TEST_URL + "/Api/SamplePlan/PagedListForPhone", param, "POST", App.EmergencyToken);
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {

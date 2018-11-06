@@ -8,7 +8,7 @@ namespace AepApp.Models
     public class SampleInfoModel : BaseModel
     {
         public string id { get; set; }
-        private string status;
+        private string status;// 0未上传 1已上传 2运输中 3已接收
         public string Status { get { return status; } set { status = value; NotifyPropertyChanged(); } }
 
         private string appearance;//水样外观
@@ -40,5 +40,12 @@ namespace AepApp.Models
         public string Anatype { get { return anatype; } set { anatype = value; NotifyPropertyChanged(); } }
         private string fixative;//固定剂信息
         public string Fixative { get { return fixative; } set { fixative = value; NotifyPropertyChanged(); } }
+
+        public bool FilterTrans { get; set; }
+        public bool FilterAccept { get; set; }
+        public int SampleCount { get; set; }
+        public bool HasSample { get; set; }
+        public int PhotoCount { get; set; }
+        public bool HasPhoto { get; set; }
     }
 }
