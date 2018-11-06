@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Samples.SamplePlanInfoPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:AepApp.MaterialForms"
+             x:Class="AepApp.View.Samples.SamplePlanInfoPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="../main.css" />
@@ -100,6 +103,55 @@
                         <Label Margin="10,12,0,12" Text="质控说明" Font="17" VerticalOptions="Center" />
                         <Button x:Name="quality" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="Handle_Clicked" />
                     </Grid>
+                      <Grid BackgroundColor="#e6e6e6">
+                        <Label VerticalOptions="CenterAndExpand" Margin="10,10,0,4" Text="基础数据" Font="17" />
+                        
+                        <Button Clicked="SaveBaiscData" Text="保存" VerticalOptions="CenterAndExpand" Margin="10,10,0,4" HorizontalOptions="End" BackgroundColor="Transparent" TextColor="Black" WidthRequest="80"/>
+                    </Grid>
+                  <StackLayout x:Name="basicDataSK" Spacing="1">
+                     <!--   <Grid BackgroundColor="White">
+                        <Label Margin="10,12,0,12" Text="项目名称" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessEntry TextChanged="Handle_TextChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                    </Grid>-->
+                            <Grid BackgroundColor="White">
+                        <Label Margin="10,0,0,0" Text="监测目的" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessEntry TextChanged="Handle_purposeChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                    </Grid>
+                            <Grid BackgroundColor="White">
+                        <Label Margin="10,0,0,0" Text="水域名称" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessEntry TextChanged="Handle_areanameChanged"  Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                    </Grid>
+                            <Grid BackgroundColor="White">
+                        <Label Margin="10,0,0,0" Text="水域功能类别" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessEntry TextChanged="Handle_areafunctypeChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                    </Grid>
+                            <Grid BackgroundColor="White">
+                        <Label Margin="10,0,0,0" Text="调查船（车）" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessEntry TextChanged="Handle_carshipChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                    </Grid>
+                            <Grid BackgroundColor="White">
+                        <Label Margin="10,0,0,0" Text="采样工具" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessEntry TextChanged="Handle_toolsChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                    </Grid>
+                            <Grid BackgroundColor="White">
+                        <Label Margin="10,0,0,0" Text="采样位置及层次" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessEntry TextChanged="Handle_positionChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                    </Grid>
+                               <Grid BackgroundColor="White">
+                        <Label Margin="10,0,0,0" Text="采样日期" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessDatePicker Date="{Binding sampledate}" Format="yyyy-MM-dd" DateSelected="Handle_sampledateChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End"/>
+<!--                            <views:BorderlessEntry TextChanged="Handle_sampledateChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>-->
+                    </Grid>
+                               <Grid BackgroundColor="White">
+                        <Label Margin="10,12,0,12" Text="天气" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessEntry TextChanged="Handle_weatherChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                    </Grid>
+                               <Grid BackgroundColor="White">
+                        <Label Margin="10,0,0,0" Text="温度" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
+                        <views:BorderlessEntry TextChanged="Handle_temperatureChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                    </Grid>
+                    </StackLayout>
+  
                     <Grid BackgroundColor="#e6e6e6">
                         <Label VerticalOptions="CenterAndExpand" Margin="10,15,0,6" Text="任务" Font="17" />
                         <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">

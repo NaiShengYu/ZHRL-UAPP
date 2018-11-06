@@ -19,6 +19,8 @@ namespace AepApp.iOS.Renderers
             base.OnElementChanged(e);
             var view = e.NewElement as BorderlessEntry;
             SetBorder(view);
+            SetTextAlignment(view);
+
         }
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -28,6 +30,8 @@ namespace AepApp.iOS.Renderers
 
             if (e.PropertyName == BorderlessPicker.HasBorderProperty.PropertyName)
                 SetBorder(view);
+            if (e.PropertyName == BorderlessEntry.XAlignProperty.PropertyName)
+                SetTextAlignment(view);
         }
 
         private void SetBorder(BorderlessEntry view)
@@ -38,6 +42,28 @@ namespace AepApp.iOS.Renderers
             }
             Control.BorderStyle = view.HasBorder ? UITextBorderStyle.RoundedRect : UITextBorderStyle.None;
         }
+
+
+        private void SetTextAlignment(BorderlessEntry view)
+        {
+            if (view == null || Control == null)
+            {
+                return;
+            }
+            switch (view.XAlign)
+            {
+                case Xamarin.Forms.TextAlignment.Center:
+                    Control.TextAlignment = UITextAlignment.Center;
+                    break;
+                case Xamarin.Forms.TextAlignment.End:
+                    Control.TextAlignment = UITextAlignment.Right;
+                    break;
+                case Xamarin.Forms.TextAlignment.Start:
+                    Control.TextAlignment = UITextAlignment.Left;
+                    break;
+            }
+        }
+
 
     }
 }

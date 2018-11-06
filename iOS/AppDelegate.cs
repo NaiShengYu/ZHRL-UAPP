@@ -8,16 +8,16 @@ using OxyPlot;
 using Xamarin.Forms;
 using CoreGraphics;
 using AepApp.Models;
-using AepApp.iOS.Notification.JPush;
+//using AepApp.iOS.Notification.JPush;
 using UserNotifications;
-using JPush.Binding.iOS;
+//using JPush.Binding.iOS;
 
 namespace AepApp.iOS
 {
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
-        JPushInterface jPushRegister { get; set; }
+        //JPushInterface jPushRegister { get; set; }
 
         void HandleAction(NSNotification obj)
         {
@@ -58,11 +58,11 @@ namespace AepApp.iOS
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             LoadApplication(new App());
 
-            //注册apns远程推送
-            if (options == null) options = new NSDictionary();
-            jPushRegister = new JPushInterface();
-            jPushRegister.Register(this, options);
-            this.RegistLogin(options);
+            ////注册apns远程推送
+            //if (options == null) options = new NSDictionary();
+            //jPushRegister = new JPushInterface();
+            //jPushRegister.Register(this, options);
+            //this.RegistLogin(options);
 
             return base.FinishedLaunching(app, options);
         }
@@ -136,7 +136,7 @@ namespace AepApp.iOS
         /// <param name="deviceToken"></param>
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
-            JPUSHService.RegisterDeviceToken(deviceToken);
+            //JPUSHService.RegisterDeviceToken(deviceToken);
 
             // Get current device token
             var DeviceToken = deviceToken.Description;
