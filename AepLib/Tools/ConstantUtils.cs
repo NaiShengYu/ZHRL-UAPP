@@ -17,5 +17,7 @@ namespace AepApp.Tools
         public const string UPLOAD_GRID_BASEURL = "http://dev.azuratech.com:50015";
         //public const string UPLOAD_GRID_BASEURL = "http://192.168.2.97:50015";
         public const string UPLOAD_GRID_API = "/api/gbm/UploadAppAttachment";
+
+        public const string SAMPLE_TEST_URL = "http://192.168.1.128:30011/";
     }
 }

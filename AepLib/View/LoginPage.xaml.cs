@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using AepApp.Tools;
 using AepApp.AuxiliaryExtension;
+using AepApp.View.Samples;
 
 namespace AepApp.View
 {
@@ -45,7 +46,8 @@ namespace AepApp.View
         private void Select_site(object sender, EventArgs e)
         {
             //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
-            Navigation.PushAsync(new SelectSitePage());
+            //Navigation.PushAsync(new SelectSitePage());
+            Navigation.PushAsync(new SamplePlanPage());
         }
 
         protected override async void OnAppearing()

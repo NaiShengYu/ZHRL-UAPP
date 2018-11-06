@@ -24,6 +24,24 @@ namespace AepApp.Tools
             return time.ToString("yyyy-MM-dd HH:mm");
         }
 
+        public static string DateTime2YMDHMSNowrap(DateTime time)
+        {
+            if (time == null)
+            {
+                return "";
+            }
+            return time.ToString("yyyyMMddHHmmss");
+        }
+
+        public static string DateTime2YMDHMS(DateTime time)
+        {
+            if (time == null)
+            {
+                return "";
+            }
+            return time.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
         public static string Time2HHmm(TimeSpan time)
         {
             if(time == null)

@@ -15,5 +15,16 @@ namespace AepApp.MaterialForms
             get { return (bool)GetValue(HasBorderProperty); }
             set { SetValue(HasBorderProperty, value); }
         }
+
+
+        public static readonly BindableProperty XAlignProperty =
+           BindableProperty.Create("XAlign", typeof(TextAlignment), typeof(BorderlessPicker),
+           TextAlignment.Start);
+
+        public TextAlignment XAlign
+        {
+            get { return (TextAlignment)GetValue(XAlignProperty); }
+            set { SetValue(XAlignProperty, value); }
+        }
     }
 }
