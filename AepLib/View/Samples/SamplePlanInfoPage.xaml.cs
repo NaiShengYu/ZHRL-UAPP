@@ -175,6 +175,7 @@ namespace AepApp.View.Samples
                 Console.WriteLine(hTTPResponse);
                 if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
+                DependencyService.Get<Sample.IToast>().ShortAlert("修改成功");
                 if (!string.IsNullOrWhiteSpace(_basicDataModel.id))
                     _basicDataModel.id = hTTPResponse.Results;
                 }

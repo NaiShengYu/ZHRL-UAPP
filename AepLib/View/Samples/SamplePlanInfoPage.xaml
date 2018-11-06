@@ -80,7 +80,7 @@
                     <Grid BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="地址" Font="17" VerticalOptions="Center" />
-                        <Label Margin="150,12,30,12" Text="{Binding address}" HorizontalOptions="End" Font="16" TextColor="Gray" />
+                        <Label Margin="100,12,30,12" Text="{Binding address}" HorizontalOptions="End" Font="16" TextColor="Gray" />
                         <Button HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="GoPlanMap" />
                     </Grid>
                     <Grid BackgroundColor="White">
