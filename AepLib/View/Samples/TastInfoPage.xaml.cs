@@ -17,7 +17,7 @@ namespace AepApp.View.Samples
     {
 
         private ObservableCollection<SampleInfoModel> samplingBottleList = new ObservableCollection<SampleInfoModel>();
-        private ObservableCollection<string> photoList = new ObservableCollection<string>();
+        private ObservableCollection<SamplePhotoModel> photoList = new ObservableCollection<SamplePhotoModel>();
         private string _taskId = "";
         private int checkSampleIndex = -1;//当前选中样本的index
         private int lastCheckSampleIndex = -1;//上一次选中样本的index
@@ -438,8 +438,13 @@ namespace AepApp.View.Samples
 
             else
             {
+                SamplePhotoModel samplePhotoModel = new SamplePhotoModel
+                {
+                    photoPath = file.Path,
+                    isSelect = false,
+                };
 
-                photoList.Add(file.Path);
+                photoList.Add(samplePhotoModel);
 
                 creatPhotoView();
 
@@ -486,14 +491,14 @@ namespace AepApp.View.Samples
 
             PickSK.Children.Clear();
 
-            foreach (string path in photoList)
+            foreach (SamplePhotoModel photoModel in photoList)
             {
                 Grid grid = new Grid();
                 PickSK.Children.Add(grid);
                 Console.WriteLine("图片张数：" + photoList.Count);
                 Image button = new Image
                 {
-                    Source = ImageSource.FromFile(path) as FileImageSource,
+                    Source = ImageSource.FromFile(photoModel.photoPath) as FileImageSource,
                     HeightRequest = 80,
                     WidthRequest = 80,
                     BackgroundColor = Color.White,
@@ -504,17 +509,22 @@ namespace AepApp.View.Samples
                 };
                 grid.Children.Add(button);
 
+                var selectImg = new Image
+                {
+                    VerticalOptions = LayoutOptions.Start,
+                    HorizontalOptions = LayoutOptions.End,
+                    Aspect =Aspect.Fill,
+                    WidthRequest = 25,
+                    HeightRequest = 25,
+                    Source = photoModel.isSelect==true?ImageSource.FromFile("graytick") as FileImageSource : ImageSource.FromFile("greentick") as FileImageSource,
+                };
 
-                //Image = new Image
-                //{
-                //    VerticalOptions = LayoutOptions.Center,
-                //    HorizontalOptions = LayoutOptions.Start,
-                //    Aspect =Aspect.Fill,
-
-
-                //};
-
-
+                TapGestureRecognizer tap = new TapGestureRecognizer();
+                tap.Tapped += (object sender, EventArgs e) => {
+                    photoModel.isSelect = !photoModel.isSelect;
+                    selectImg.Source = photoModel.isSelect == true ? ImageSource.FromFile("graytick") as FileImageSource : ImageSource.FromFile("greentick") as FileImageSource;
+                };
+                selectImg.GestureRecognizers.Add(tap);
             }
 
 
@@ -538,7 +548,12 @@ namespace AepApp.View.Samples
 
         private void BtnTrash_Clicked(object sender, EventArgs e)
         {
-
+            foreach (var photoModel in photoList)
+            {
+                if (photoModel.isSelect == true)
+                    photoList.Remove(photoModel);
+            }
+            creatPhotoView();
         }
 
         private void GridLocation_Tapped(object sender, EventArgs e)
