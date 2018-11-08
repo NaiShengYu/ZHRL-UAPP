@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HorizontalListView1.1" Version="1.1.0" />
+    <PackageReference Include="AiForms.CollectionView" Version="0.3.8-pre" />
     <PackageReference Include="InTheHand.Forms" Version="1.0.2018.423" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.0.2" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
@@ -48,6 +48,7 @@
     <PackageReference Include="OxyPlot.Core" Version="1.0.0" />
     <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
     <PackageReference Include="Plugin.AudioRecorder" Version="1.0.1" />
+    <PackageReference Include="ReactiveProperty" Version="5.3.0" />
     <PackageReference Include="SkiaSharp" Version="1.60.1" />
     <PackageReference Include="SkiaSharp.Views" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.0" />
@@ -62,7 +63,7 @@
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.1" />
     <PackageReference Include="Xamarin.Auth" Version="1.6.0.1" />
     <PackageReference Include="Xamarin.Essentials" Version="0.6.0-preview" />
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms" Version="3.2.0.839982" />
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
   </ItemGroup>

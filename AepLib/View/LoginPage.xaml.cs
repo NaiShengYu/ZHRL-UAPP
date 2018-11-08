@@ -46,8 +46,7 @@ namespace AepApp.View
         private void Select_site(object sender, EventArgs e)
         {
             //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
-            //Navigation.PushAsync(new SelectSitePage());
-            Navigation.PushAsync(new SamplePlanPage());
+            Navigation.PushAsync(new SelectSitePage());
         }
 
         protected override async void OnAppearing()
