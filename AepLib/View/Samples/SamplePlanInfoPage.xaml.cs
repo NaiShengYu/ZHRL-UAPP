@@ -12,7 +12,9 @@ namespace AepApp.View.Samples
     public partial class SamplePlanInfoPage : ContentPage
     {
 
-
+        private ObservableCollection<TaskModel> dataList = new ObservableCollection<TaskModel>();
+        MySamplePlanItems _samplePlanItems = null;
+        SampleBasicDataModel _basicDataModel = new SampleBasicDataModel();
 
         /// <summary>
         /// 进入地址
@@ -73,10 +75,7 @@ namespace AepApp.View.Samples
             Navigation.PushAsync(messagepage);
 
         }
-
-        private ObservableCollection<TaskModel> dataList = new ObservableCollection<TaskModel>();
-        MySamplePlanItems _samplePlanItems = null;
-        SampleBasicDataModel _basicDataModel = new SampleBasicDataModel();
+     
         public SamplePlanInfoPage(MySamplePlanItems sampleModel)
         {
             InitializeComponent();
@@ -84,19 +83,43 @@ namespace AepApp.View.Samples
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             Title = sampleModel.name;
             this.BindingContext = sampleModel;
+            if (sampleModel.tasklist == null || sampleModel.tasklist.Count == 0)
+                TaskNumFrame.BackgroundColor = Color.Transparent;
             requestSamplePublicData();
             creatTask();
+
+            ObservableCollection<SamplePhotoModel> samplePhotoModels = new ObservableCollection<SamplePhotoModel>();
+            for (int i = 0; i < 10; i++)
+            {
+                SamplePhotoModel photoModel = new SamplePhotoModel
+                {
+                    photoPath = i.ToString(),
+                    isSelect = true,
+                };
+                if (i == 1 || i == 2 || i == 5 || i == 7 || i == 0 || i == 9)
+                    photoModel.isSelect = false;
+                samplePhotoModels.Add(photoModel);
+            }
+
+            for (int i = samplePhotoModels.Count-1; i >0; i--)
+            {
+                var photoModel = samplePhotoModels[i];
+                if (photoModel.isSelect == false)
+                    samplePhotoModels.Remove(photoModel);
+            }
+
+
+
         }
 
 
         private async void requestSamplePublicData(){           
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/WaterRecord/GetDetailByPid?planid=" +_samplePlanItems.id , "GET", App.EmergencyToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/WaterRecord/GetDetailByPid?planid=" +_samplePlanItems.id,"" , "GET", "");
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 SampleBasicDataModel basicDataModel = JsonConvert.DeserializeObject<SampleBasicDataModel>(hTTPResponse.Results);
                 Console.WriteLine("结果是：" + App.mySamplePlanResult);
-                //listView.ItemsSource = App.mySamplePlanResult.Items;
                 _basicDataModel = basicDataModel;
             }
             else
@@ -137,7 +160,6 @@ namespace AepApp.View.Samples
             _basicDataModel.sampledate = e.NewDate;   
         
         }
-
         void Handle_weatherChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             _basicDataModel.weather = e.NewTextValue;
@@ -166,12 +188,11 @@ namespace AepApp.View.Samples
                 url = "/Api/WaterRecord/Update";
             }
             string param = JsonConvert.SerializeObject(dic);
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + url, param, "POST", App.EmergencyToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + url, param, "POST", "");
                 Console.WriteLine(hTTPResponse);
                 if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    App.mySamplePlanResult = JsonConvert.DeserializeObject<MySamplePlanResult>(hTTPResponse.Results);
-                    Console.WriteLine("结果是：" + App.mySamplePlanResult);
+                DependencyService.Get<Sample.IToast>().ShortAlert("修改成功");
                 if (!string.IsNullOrWhiteSpace(_basicDataModel.id))
                     _basicDataModel.id = hTTPResponse.Results;
                 }

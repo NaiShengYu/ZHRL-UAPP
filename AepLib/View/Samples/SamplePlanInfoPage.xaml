@@ -80,7 +80,7 @@
                     <Grid BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="地址" Font="17" VerticalOptions="Center" />
-                        <Label Margin="150,12,30,12" Text="{Binding address}" HorizontalOptions="End" Font="16" TextColor="Gray" />
+                        <Label Margin="100,12,30,12" Text="{Binding address}" HorizontalOptions="End" Font="16" TextColor="Gray" />
                         <Button HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Clicked="GoPlanMap" />
                     </Grid>
                     <Grid BackgroundColor="White">
@@ -115,27 +115,27 @@
                     </Grid>-->
                             <Grid BackgroundColor="White">
                         <Label Margin="10,0,0,0" Text="监测目的" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
-                        <views:BorderlessEntry TextChanged="Handle_purposeChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                        <views:BorderlessEntry Text="{Binding purpose}" TextChanged="Handle_purposeChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
                     </Grid>
                             <Grid BackgroundColor="White">
                         <Label Margin="10,0,0,0" Text="水域名称" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
-                        <views:BorderlessEntry TextChanged="Handle_areanameChanged"  Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                        <views:BorderlessEntry Text="{Binding areaname}" TextChanged="Handle_areanameChanged"  Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
                     </Grid>
                             <Grid BackgroundColor="White">
                         <Label Margin="10,0,0,0" Text="水域功能类别" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
-                        <views:BorderlessEntry TextChanged="Handle_areafunctypeChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                        <views:BorderlessEntry Text="{Binding areafunctype}" TextChanged="Handle_areafunctypeChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
                     </Grid>
                             <Grid BackgroundColor="White">
                         <Label Margin="10,0,0,0" Text="调查船（车）" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
-                        <views:BorderlessEntry TextChanged="Handle_carshipChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                        <views:BorderlessEntry Text="{Binding carship}" TextChanged="Handle_carshipChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
                     </Grid>
                             <Grid BackgroundColor="White">
                         <Label Margin="10,0,0,0" Text="采样工具" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
-                        <views:BorderlessEntry TextChanged="Handle_toolsChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                        <views:BorderlessEntry Text="{Binding tools}" TextChanged="Handle_toolsChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
                     </Grid>
                             <Grid BackgroundColor="White">
                         <Label Margin="10,0,0,0" Text="采样位置及层次" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
-                        <views:BorderlessEntry TextChanged="Handle_positionChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                        <views:BorderlessEntry Text="{Binding position}" TextChanged="Handle_positionChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
                     </Grid>
                                <Grid BackgroundColor="White">
                         <Label Margin="10,0,0,0" Text="采样日期" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
@@ -144,18 +144,18 @@
                     </Grid>
                                <Grid BackgroundColor="White">
                         <Label Margin="10,12,0,12" Text="天气" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
-                        <views:BorderlessEntry TextChanged="Handle_weatherChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                        <views:BorderlessEntry Text="{Binding weather}" TextChanged="Handle_weatherChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
                     </Grid>
                                <Grid BackgroundColor="White">
                         <Label Margin="10,0,0,0" Text="温度" Font="17" VerticalOptions="Center" WidthRequest="100" HorizontalOptions="Start"/>
-                        <views:BorderlessEntry TextChanged="Handle_temperatureChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
+                        <views:BorderlessEntry Text="{Binding temperature}" TextChanged="Handle_temperatureChanged" Margin="110,12,10,12" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="End" Placeholder="请输入相关内容"/>
                     </Grid>
                     </StackLayout>
   
                     <Grid BackgroundColor="#e6e6e6">
                         <Label VerticalOptions="CenterAndExpand" Margin="10,15,0,6" Text="任务" Font="17" />
-                        <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="2" TextColor="White" />
+                        <Frame x:Name="TaskNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding tasklist.Count}" TextColor="White"/>
                         </Frame>
                     </Grid>
                 </StackLayout>

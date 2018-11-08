@@ -16,10 +16,8 @@ namespace AepApp.View.Samples
 {
     public partial class TastInfoPage : ContentPage
     {
-
         private ObservableCollection<SampleInfoModel> samplingBottleList { get; set; } = new ObservableCollection<SampleInfoModel>();
         private ObservableCollection<ImageModel> photoList { get; set; } = new ObservableCollection<ImageModel>();
-
         private string _taskId = "";
         private SampleInfoModel _currentSample;//当前显示的样本
         private SampleInfoModel _lastCheckSample;
