@@ -33,6 +33,18 @@ namespace AepApp.iOS
             };
             MessagingCenter.Send<ContentPage,KeyboardSizeModel>(new ContentPage(), "keyBoardFrameChanged",keyboardSizeModel);
 
+        }
+
+
+        public override void WillEnterForeground(UIApplication uiApplication)
+        {
+            base.WillEnterForeground(uiApplication);
+            uiApplication.ApplicationIconBadgeNumber = new nint(0);
+         }
+
+        public override void ProtectedDataDidBecomeAvailable(UIApplication application)
+        {
+            base.ProtectedDataDidBecomeAvailable(application);
 
         }
 

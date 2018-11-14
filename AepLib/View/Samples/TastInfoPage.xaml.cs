@@ -526,9 +526,6 @@ namespace AepApp.View.Samples
                 };
                 selectImg.GestureRecognizers.Add(tap);
             }
-
-
-
         }
 
 
@@ -548,8 +545,10 @@ namespace AepApp.View.Samples
 
         private void BtnTrash_Clicked(object sender, EventArgs e)
         {
-            foreach (var photoModel in photoList)
+            if (photoList.Count == 0) return;
+            for (int i = photoList.Count; i >=0; i--)
             {
+                var photoModel = photoList[i];
                 if (photoModel.isSelect == true)
                     photoList.Remove(photoModel);
             }

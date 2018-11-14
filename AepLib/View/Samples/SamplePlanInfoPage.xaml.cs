@@ -87,29 +87,6 @@ namespace AepApp.View.Samples
                 TaskNumFrame.BackgroundColor = Color.Transparent;
             requestSamplePublicData();
             creatTask();
-
-            ObservableCollection<SamplePhotoModel> samplePhotoModels = new ObservableCollection<SamplePhotoModel>();
-            for (int i = 0; i < 10; i++)
-            {
-                SamplePhotoModel photoModel = new SamplePhotoModel
-                {
-                    photoPath = i.ToString(),
-                    isSelect = true,
-                };
-                if (i == 1 || i == 2 || i == 5 || i == 7 || i == 0 || i == 9)
-                    photoModel.isSelect = false;
-                samplePhotoModels.Add(photoModel);
-            }
-
-            for (int i = samplePhotoModels.Count-1; i >0; i--)
-            {
-                var photoModel = samplePhotoModels[i];
-                if (photoModel.isSelect == false)
-                    samplePhotoModels.Remove(photoModel);
-            }
-
-
-
         }
 
 
