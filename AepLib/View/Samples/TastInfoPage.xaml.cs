@@ -403,6 +403,7 @@ namespace AepApp.View.Samples
         /// <param name="e"></param>
         private async void BtnTrash_Clicked(object sender, EventArgs e)
         {
+
             bool sure = await DisplayAlert("提示", "确定删除所选照片吗？", "确定", "取消");
             if (sure)
             {

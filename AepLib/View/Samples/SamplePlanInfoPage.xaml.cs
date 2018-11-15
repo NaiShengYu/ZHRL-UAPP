@@ -35,7 +35,7 @@ namespace AepApp.View.Samples
         void selectTask(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            taskslist model = button.BindingContext as taskslist;
+            tasksList model = button.BindingContext as tasksList;
             Navigation.PushAsync(new TastInfoPage(model.taskname, model.taskid));
         }
 
@@ -87,29 +87,6 @@ namespace AepApp.View.Samples
                 TaskNumFrame.BackgroundColor = Color.Transparent;
             requestSamplePublicData();
             creatTask();
-
-            ObservableCollection<SamplePhotoModel> samplePhotoModels = new ObservableCollection<SamplePhotoModel>();
-            for (int i = 0; i < 10; i++)
-            {
-                SamplePhotoModel photoModel = new SamplePhotoModel
-                {
-                    photoPath = i.ToString(),
-                    isSelect = true,
-                };
-                if (i == 1 || i == 2 || i == 5 || i == 7 || i == 0 || i == 9)
-                    photoModel.isSelect = false;
-                samplePhotoModels.Add(photoModel);
-            }
-
-            for (int i = samplePhotoModels.Count-1; i >0; i--)
-            {
-                var photoModel = samplePhotoModels[i];
-                if (photoModel.isSelect == false)
-                    samplePhotoModels.Remove(photoModel);
-            }
-
-
-
         }
 
 
@@ -210,9 +187,8 @@ namespace AepApp.View.Samples
             {
                 return;
             }
-            foreach (taskslist model in _samplePlanItems.tasklist)
+            foreach (tasksList model in _samplePlanItems.tasklist)
             {
-                foreach (tasksAnas anas in model.taskAnas){
 
                     Grid G = new Grid
                     {
@@ -262,12 +238,14 @@ namespace AepApp.View.Samples
                     G.Children.Add(sk2);
                     Label factorLab = new Label
                     {
-                        Text = anas.atname,
                         Font = Font.SystemFontOfSize(14),
                         TextColor = Color.Gray,
                     };
                     sk2.Children.Add(factorLab);
-
+                foreach (tasksAnas anas in model.taskAnas)
+                {
+                    factorLab.Text = factorLab.Text + " " + anas.atname;
+                }
                     //Frame frame = new Frame
                     //{
                     //    HorizontalOptions = LayoutOptions.End,
@@ -302,8 +280,6 @@ namespace AepApp.View.Samples
                     button.BindingContext = model;
                     G.Children.Add(button);
 
-                }
-                
             }
         }
 
