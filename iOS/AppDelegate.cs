@@ -49,6 +49,8 @@ namespace AepApp.iOS
             Rox.VideoIos.Init();
             //数据库初始化
             SQLitePCL.Batteries.Init();
+            //Popup初始化
+            Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
 
             InTheHand.Forms.Platform.iOS.InTheHandForms.Init();

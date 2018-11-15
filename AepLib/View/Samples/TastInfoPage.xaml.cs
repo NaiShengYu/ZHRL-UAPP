@@ -1,10 +1,12 @@
 ﻿using AepApp.Models;
 using AepApp.Tools;
+using AepApp.ViewModel;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using Plugin.Hud;
 using Plugin.Media;
 using Reactive.Bindings;
+using Rg.Plugins.Popup.Services;
 using Sample;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,8 @@ namespace AepApp.View.Samples
     {
         private ObservableCollection<SampleInfoModel> samplingBottleList { get; set; } = new ObservableCollection<SampleInfoModel>();
         private ObservableCollection<ImageModel> photoList { get; set; } = new ObservableCollection<ImageModel>();
+        private ObservableCollection<MultiSelectDataType> itemsFixer = new ObservableCollection<MultiSelectDataType>();
+
         private string _taskId = "";
         private SampleInfoModel _currentSample;//当前显示的样本
         private SampleInfoModel _lastCheckSample;
@@ -27,7 +31,22 @@ namespace AepApp.View.Samples
             InitializeComponent();
             Title = title;
             _taskId = taskId;
+            BindFixData();
             GetSampleListOfTask();
+        }
+
+        /// <summary>
+        /// 设置固定剂选项
+        /// </summary>
+        private void BindFixData()
+        {
+            itemsFixer = ConstConvertUtils.GetFixer();
+            MultiSelectViewModel fixVm = new MultiSelectViewModel
+            {
+                AvailableItems = itemsFixer,
+                //SelectedItems = new ObservableCollection<MultiSelectDataType>(new[] { itemsFixer[0] })
+            };
+            pickerF.BindingContext = fixVm;
         }
 
         /// <summary>
@@ -79,6 +98,7 @@ namespace AepApp.View.Samples
             lvSample.ItemsSource = samplingBottleList;
             sclv.BindingContext = _currentSample;
             LabNumSample.Text = samplingBottleList.Count + "";
+            //BindFixData();
 
             ChangeToolbar();
 
@@ -329,6 +349,7 @@ namespace AepApp.View.Samples
            {
                Console.WriteLine("采样瓶二维码结果：" + arg2);
                _currentSample.Qrcode = arg2;
+               LabelQr.Text = arg2;
            });
 
             Navigation.PushAsync(new ScanningPage
@@ -456,6 +477,7 @@ namespace AepApp.View.Samples
             else
             {
                 DependencyService.Get<IToast>().ShortAlert(isEdit ? "样本信息更新失败" : "样本上传失败");
+
             }
         }
 
@@ -469,6 +491,26 @@ namespace AepApp.View.Samples
             _currentSample = sample;
             _currentSample.SetColors(true);
             ChangeUI();
+        }
+
+        /// <summary>
+        /// 选择固定剂
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pickerF_Clicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(pickerF.PopupPage);
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            string type = LabItems.Text;
+            if (!string.IsNullOrWhiteSpace(type))
+            {
+                Navigation.PushAsync(new ViewContentPage(type));
+            }
+
         }
     }
 }

@@ -3,10 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:AepApp.MaterialForms" 
              xmlns:ai="clr-namespace:AiForms.Renderers;assembly=CollectionView"
-            x:Class="AepApp.View.Samples.TastInfoPage">
+             xmlns:xfMultiPicker="clr-namespace:XFMultiPicker"
+             xmlns:converter="clr-namespace:Converter"
+             xmlns:model="clr-namespace:AepApp.Models"
+             x:Class="AepApp.View.Samples.TastInfoPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="BtnSave" Text="" Clicked="BtnSave_Clicked" />
     </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:JoinListConverter x:Key="JoinListConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -16,10 +24,13 @@
 
             <ScrollView x:Name="sclv">
                 <StackLayout BackgroundColor="#E6E6E6" Spacing="1">
-                    <Grid BackgroundColor="White">
+                    <Grid x:Name="GridType" BackgroundColor="White">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Grid.GestureRecognizers>
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="地表水" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <Label Margin="150,12,30,12" Text="重金属苯系物" HorizontalOptions="End" Font="16" TextColor="Gray" HeightRequest="30" VerticalTextAlignment="Center"/>
+                        <Label Margin="150,12,30,12" x:Name="LabItems" Text="重金属苯系物" HorizontalOptions="End" Font="16" TextColor="Gray" HeightRequest="30" VerticalTextAlignment="Center"/>
                     </Grid>
                     <Grid BackgroundColor="#E6E6E6" Margin="0, 3, 0, 3">
                         <Label Margin="10,1,0,1" Text="样本" Font="15" VerticalOptions="Center" TextColor="Black"/>
@@ -155,20 +166,19 @@
                         </Grid.GestureRecognizers>
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="固定剂" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <views:BorderlessPicker WidthRequest="120" TextColor="Gray" x:Name="pickerFix" HorizontalOptions="End"  Margin="150,12,30,12" 
-                                                StyleClass="itemsubtitle"  XAlign="End">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>固定剂测试</x:String>
-                                    <x:String>其他</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </views:BorderlessPicker>
+                        <xfMultiPicker:MultiPickerView HorizontalOptions="EndAndExpand"  Margin="150,0,10,0" TextColor="Gray"
+                                                        x:Name="pickerF" FontSize="16"
+                                                        x:TypeArguments="model:MultiSelectDataType"
+                                                       ItemsSource="{Binding AvailableItems}"
+                                                       SelectedItems="{Binding SelectedItems}"
+                                                        Text="{Binding SelectedItems, Converter={StaticResource JoinListConverter}}" 
+                                                        Clicked="pickerF_Clicked"/>
+
                     </Grid>
                     <Grid BackgroundColor="White">
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
+                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="True"/>
                         <Label Margin="10,12,0,12" Text="采样瓶编号" Font="17"  TextColor="Black"/>
-                        <Label Margin="150,12,30,12" Text="{Binding Qrcode}" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                        <Label Margin="150,12,30,12" x:Name="LabelQr" Text="{Binding Qrcode}" HorizontalOptions="End" Font="17" TextColor="Gray" />
                     </Grid>
                     <Grid BackgroundColor="#E6E6E6" Margin="0, 3, 0, 3">
                         <Label Margin="10,1,0,1" Text="照片" Font="15" VerticalOptions="Center"  TextColor="Black"/>

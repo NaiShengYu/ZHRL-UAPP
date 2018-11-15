@@ -1,6 +1,6 @@
-﻿using System;
+﻿using AepApp.Models;
 using System.Collections.Generic;
-using System.Text;
+using System.Collections.ObjectModel;
 
 namespace AepApp.Tools
 {
@@ -292,6 +292,51 @@ namespace AepApp.Tools
             return 1;
         }
 
+        /// <summary>
+        /// 获取固定剂（采样模块）
+        /// </summary>
+        /// <returns></returns>
+        public static ObservableCollection<MultiSelectDataType> GetFixer()
+        {
+            return new ObservableCollection<MultiSelectDataType>(new[]
+            {
+                new MultiSelectDataType
+                {
+                    Id = 1,
+                    Name = "硫酸"
+                },
+                new MultiSelectDataType
+                {
+                    Id = 2,
+                    Name = "硝酸"
+                },
+                new MultiSelectDataType
+                {
+                    Id = 3,
+                    Name = "甲苯"
+                },
+                new MultiSelectDataType
+                {
+                    Id = 4,
+                    Name = "甲醛"
+                },
+                new MultiSelectDataType
+                {
+                    Id = 5,
+                    Name = "硫酸铜"
+                },
+                new MultiSelectDataType
+                {
+                    Id = 6,
+                    Name = "三氯甲烷"
+                },
+                new MultiSelectDataType
+                {
+                    Id = 7,
+                    Name = "氢氧化钠"
+                }
+            });
+        }
 
     }
 }

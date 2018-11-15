@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.ViewContentPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label x:Name="LabContent" Text=""
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="StartAndExpand" 
+                   TextColor="Black"
+                   FontSize="16"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
