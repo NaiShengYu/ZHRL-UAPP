@@ -73,7 +73,7 @@ namespace AepApp.iOS
 
             Connectivity.ConnectivityChanged += (ConnectivityChangedEventArgs e) => {
                 var access = e.NetworkAccess;
-                MessagingCenter.Send<ContentPage, NetworkAccess>(new ContentPage(), "NetworkChanged", access);
+                MessagingCenter.Send<Grid, NetworkAccess>(new Grid(), "NetworkChanged", access);
             };
 
             ////注册apns远程推送

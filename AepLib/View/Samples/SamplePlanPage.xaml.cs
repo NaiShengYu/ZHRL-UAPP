@@ -67,15 +67,6 @@ namespace AepApp.View.Samples
             App.vm.CurrentDay = DateTime.Now;
             App.vm.requestSamplePlanList();
             BindingContext = App.vm;
-
-
-            NetworkAccess access = Connectivity.NetworkAccess;
-            networkGrid.BindingContext = access;
-            MessagingCenter.Unsubscribe<ContentPage, NetworkAccess>(this, "NetworkChanged");
-            MessagingCenter.Subscribe<ContentPage, NetworkAccess>(this, "NetworkChanged", (ContentPage arg1, NetworkAccess arg2) => {
-                networkGrid.BindingContext = arg2;
-            });
-
         }
 
     

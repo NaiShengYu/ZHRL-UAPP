@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 [assembly: UsesPermission(Android.Manifest.Permission.Flashlight)]
 namespace AepApp.Droid
@@ -38,6 +40,11 @@ namespace AepApp.Droid
             InitJPush();
             StatusBar.Activity = this;//获取状态栏高度
             LoadApplication(new App());
+            //监听网络变化
+            Connectivity.ConnectivityChanged += (ConnectivityChangedEventArgs e) => {
+                var access = e.NetworkAccess;
+                MessagingCenter.Send<Grid, NetworkAccess>(new Grid(), "NetworkChanged", access);
+            };
             //Initializer.Initialize();
         }
         // Field, property, and method for Picture Picker

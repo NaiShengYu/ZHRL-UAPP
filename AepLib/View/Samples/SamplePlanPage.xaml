@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:views ="clr-namespace:AepApp.MaterialForms"
+             xmlns:netView ="clr-namespace:AepApp.Tools"
              x:Class="AepApp.View.Samples.SamplePlanPage" 
              Title="采样计划">
     <ContentPage.Resources>
@@ -10,7 +11,6 @@
             <StyleSheet Source="../main.css"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
     <ContentPage.Content>
         <Grid RowSpacing="1" BackgroundColor="#f5f6f7">
             <Grid.RowDefinitions>
@@ -19,23 +19,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
-            
-            <Grid x:Name="networkGrid" BackgroundColor="Yellow" HeightRequest="25" IsVisible="false">
-                <Grid.Triggers>
-                    <DataTrigger TargetType="Grid" Binding="{Binding .}"  Value="None">
-                        <Setter Property="IsVisible" Value="true"></Setter>
-                    </DataTrigger>
-                     <DataTrigger TargetType="Grid" Binding="{Binding .}" Value="ConstrainedInternet">
-                        <Setter Property="IsVisible" Value="true"></Setter>
-                    </DataTrigger>
-                     <DataTrigger TargetType="Grid" Binding="{Binding .}" Value="Internet">
-                        <Setter Property="IsVisible" Value="false"></Setter>
-                    </DataTrigger>
-                </Grid.Triggers>
-                
-                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="网络无法接通，现处于离线状态" Font="12"/>
-            </Grid>
-            
+            <netView:NetWorkStateGrid/>
             <Grid Grid.Row="1">
                 <Image Source="left" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" />
                 <Button VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="Transparent" WidthRequest="80" Clicked="reduceADay" />
