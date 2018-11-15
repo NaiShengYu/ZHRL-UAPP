@@ -46,7 +46,7 @@ namespace AepApp.Models
         public int status { get; set; }
         //public int status { get { return 1; } set{} }
 
-        public ObservableCollection<tasksList> tasklist { get; set; }
+        public ObservableCollection<TasksList> tasklist { get; set; }
 
         //未完成的数量
         public int unCompleteNum
@@ -58,7 +58,7 @@ namespace AepApp.Models
                 {
                     return i;
                 }
-                foreach (tasksList task in tasklist)
+                foreach (TasksList task in tasklist)
                 {
                     if (task.taskstatus == 1) i += 1;
                 }
@@ -115,7 +115,7 @@ namespace AepApp.Models
 
     }
 
-    public class tasksList : BaseModel
+    public class TasksList : BaseModel
     {
 
         public int Id { get; set; }
@@ -132,7 +132,7 @@ namespace AepApp.Models
         public string tasklabel { get; set; }
         //样本数量（数据上传模块未做暂时留参数值为0）
         public string samplecount { get; set; }
-        public ObservableCollection<tasksAnas> taskAnas { get; set; }
+        public ObservableCollection<TasksAnas> taskAnas { get; set; }
 
 
         public string tasktypeName
@@ -153,7 +153,7 @@ namespace AepApp.Models
 
     }
 
-    public class tasksAnas : INotifyPropertyChanged
+    public class TasksAnas : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

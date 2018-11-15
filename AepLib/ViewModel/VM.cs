@@ -121,7 +121,7 @@ namespace AepApp.ViewModel
 
                 foreach (MySamplePlanItems p in App.mySamplePlanResult.Items)
                 {
-                    if (p.tasklist == null) p.tasklist = new ObservableCollection<tasksList>();
+                    if (p.tasklist == null) p.tasklist = new ObservableCollection<TasksList>();
                     //p.name = "isuemg";
                     //p.address = "sjegjg";
                     var pInDb = _dbContext.Samples.FirstOrDefault(m => p.id.Equals(m.id));

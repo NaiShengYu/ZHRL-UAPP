@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-using Xamarin.Essentials;
-using System.Collections.ObjectModel;
+﻿using AepApp.Interface;
 using AepApp.Models;
-using static AepApp.Models.EmergencyAccidentInfoDetail;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
-using AepApp.Interface;
+using Xamarin.Forms;
+using static AepApp.Models.EmergencyAccidentInfoDetail;
 
 #if __IOS__
 using MapKit;//苹果地图用的
@@ -45,7 +43,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     Device.OpenUri(new Uri("baidumap://map/direction?origin=latlng:" + App.currentLocation.Latitude + "," + App.currentLocation.Longitude + "|name:我的位置&destination=latlng:" + lat + "," + lng + "|name:" + destination + "&mode=transit"));
                     break;
                 case "腾讯地图":
-                    Device.OpenUri(new Uri("qqmap://map/routeplan?from=我的位置&type=drive&tocoord="+lat+","+lng+"&to="+destination+"&coord_type=1&policy=0"));
+                    Device.OpenUri(new Uri("qqmap://map/routeplan?from=我的位置&type=drive&tocoord=" + lat + "," + lng + "&to=" + destination + "&coord_type=1&policy=0"));
                     break;
                 case "苹果地图":
 
@@ -139,11 +137,39 @@ namespace AepApp.View.EnvironmentalEmergency
 
         }
 
-        public RescueSiteMapPage(string location):this(){
-            Title = "采样位置";
 
+        /// <summary>
+        /// 添加一个位置信息
+        /// </summary>
+        /// <param name="title">页面标题</param>
+        /// <param name="locdes">位置文字描述</param>
+        /// <param name="lat"></param>
+        /// <param name="lng"></param>
+        public RescueSiteMapPage(string title, string locdes, double lat, double lng) : this()
+        {
+            Title = string.IsNullOrWhiteSpace(title) ? "位置信息" : title;
+            Gps gps = PositionUtil.gcj_To_Gps84(lat, lng);
+            var coord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+            ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
 
+            NavLabelView cv = new NavLabelView(locdes, coord)
+            {
+                BackgroundColor = Color.FromHex("#f0f0f0"),
+                Size = new Size(100, 25),
+                Anchor = new Point(50, 25),
+                ControlTemplate = cvt,
+            };
 
+            cv.BindingContext = cv;
+            cv.NavCommand = new Command(() => { openMapNav(coord.lat, coord.lng, locdes); });
+
+            AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), coord)
+            {
+                BackgroundColor = Color.Transparent,
+                CustomView = cv
+            };
+            map.Overlays.Add(mv);
+            map.SetCenter(15, new AzmCoord(lng, lat));
         }
 
 
@@ -194,38 +220,33 @@ namespace AepApp.View.EnvironmentalEmergency
             //// Marker usage sample
             ///
             Title = "相关位置";
-        
+
             Gps gps = PositionUtil.gcj_To_Gps84(coords.lat.Value, coords.lng.Value);
-                var coord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
-                ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+            var coord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+            ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
 
             NavLabelView cv = new NavLabelView(coords.title, coord)
-                {
-                    BackgroundColor = Color.FromHex("#f0f0f0"),
-                    Size = new Size(100, 25),
-                    Anchor = new Point(50, 25),
-                    ControlTemplate = cvt,
-                };
+            {
+                BackgroundColor = Color.FromHex("#f0f0f0"),
+                Size = new Size(100, 25),
+                Anchor = new Point(50, 25),
+                ControlTemplate = cvt,
+            };
 
-                cv.BindingContext = cv;
-                cv.NavCommand = new Command(() => { openMapNav(coord.lat, coord.lng, coords.title); });
+            cv.BindingContext = cv;
+            cv.NavCommand = new Command(() => { openMapNav(coord.lat, coord.lng, coords.title); });
 
-                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), coord)
-                {
-                    BackgroundColor = Color.Transparent,
-                    CustomView = cv
-                };
-                map.Overlays.Add(mv);
+            AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(24, 24), coord)
+            {
+                BackgroundColor = Color.Transparent,
+                CustomView = cv
+            };
+            map.Overlays.Add(mv);
 
-                map.SetCenter(12, new AzmCoord(coords.lng.Value, coords.lat.Value));
+            map.SetCenter(12, new AzmCoord(coords.lng.Value, coords.lat.Value));
 
 
         }
-
-
-
-
-
 
 
         //从应急事故详情进入
@@ -236,14 +257,14 @@ namespace AepApp.View.EnvironmentalEmergency
             AzmCoord coord = null;
             foreach (IncidentLoggingEventsBean item in dataList)
             {
-                if (item.TargetLat !=0 && item.TargetLng !=0)
+                if (item.TargetLat != 0 && item.TargetLng != 0)
                 {//筛选最新的一次事故中心位置
                     if (coord == null)
                     {
                         if (Convert.ToDouble(item.TargetLat) <= 90.0) coord = new AzmCoord(Convert.ToDouble(item.TargetLng), Convert.ToDouble(item.TargetLat));
                     }
                 }
-                if (item.lat != null && Convert.ToDouble(item.lat) !=0.0)
+                if (item.lat != null && Convert.ToDouble(item.lat) != 0.0)
                 {
                     //因子上传位置
                     if (item.category == "IncidentFactorMeasurementEvent")
@@ -261,7 +282,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             Console.WriteLine("lat===" + coord.lat + "lng==" + coord.lng);
             //设置target坐标//事故中心位置
-            if (coord.lat !=0.0f && coord.lng !=0.0)
+            if (coord.lat != 0.0f && coord.lng != 0.0)
             {
                 try
                 {
@@ -330,7 +351,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     BackgroundColor = Color.Transparent,
                     CustomView = cv
                 };
-                if (item ==sampleModel){
+                if (item == sampleModel)
+                {
                     mv.Source = ImageSource.FromFile("orangetarget");
                 }
                 map.Overlays.Add(mv);
@@ -367,7 +389,7 @@ namespace AepApp.View.EnvironmentalEmergency
             map.SetCenter(13, singlecoord);
         }
 
-    
+
 
         //布点位置
         private async void ReqPlanLis(string incidentId)
@@ -391,7 +413,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     NavLabelView cv = new NavLabelView(item.address, singlecoord)
                     {
                         BackgroundColor = Color.FromHex("#f0f0f0"),
-         
+
                         ControlTemplate = cvt,
                     };
 

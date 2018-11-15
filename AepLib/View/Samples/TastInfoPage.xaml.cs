@@ -1,10 +1,13 @@
 ﻿using AepApp.Models;
 using AepApp.Tools;
+using AepApp.View.EnvironmentalEmergency;
+using AepApp.ViewModel;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using Plugin.Hud;
 using Plugin.Media;
 using Reactive.Bindings;
+using Rg.Plugins.Popup.Services;
 using Sample;
 using System;
 using System.Collections.Generic;
@@ -18,17 +21,117 @@ namespace AepApp.View.Samples
     {
         private ObservableCollection<SampleInfoModel> samplingBottleList { get; set; } = new ObservableCollection<SampleInfoModel>();
         private ObservableCollection<ImageModel> photoList { get; set; } = new ObservableCollection<ImageModel>();
+        private ObservableCollection<MultiSelectDataType> itemsFixer = new ObservableCollection<MultiSelectDataType>();//固定剂
+        private ObservableCollection<MultiSelectDataType> itemsExamine = new ObservableCollection<MultiSelectDataType>();//检测项目
+
+        private MySamplePlanItems _currentPlan;
+        private TasksList _currentTask;
         private string _taskId = "";
         private SampleInfoModel _currentSample;//当前显示的样本
         private SampleInfoModel _lastCheckSample;
 
-        public TastInfoPage(string title, string taskId)
+        public TastInfoPage(MySamplePlanItems _samplePlanItems, TasksList task)
         {
             InitializeComponent();
-            Title = title;
-            _taskId = taskId;
+            _currentPlan = _samplePlanItems;
+            _currentTask = task;
+            if (task != null)
+            {
+                Title = task.taskname;
+                _taskId = task.taskid;
+            }
+            BindCommonData();
             GetSampleListOfTask();
         }
+
+        //设置计划相关内容
+        private void BindCommonData()
+        {
+            if (_currentPlan != null)
+            {
+                LabLocation.Text = _currentPlan.lng + "E," + _currentPlan.lat + "N";
+            }
+            if (_currentTask != null)
+            {
+                LabType.Text = _currentTask.tasktypeName;
+            }
+        }
+
+        /// <summary>
+        /// 设置固定剂选项
+        /// </summary>
+        private void BindFixData()
+        {
+            itemsFixer = ConstConvertUtils.GetFixer();
+            List<MultiSelectDataType> selected = new List<MultiSelectDataType>();
+            if (_currentSample != null)
+            {
+                foreach (var item in itemsFixer)
+                {
+                    string fix = _currentSample.Fixative;
+                    if (!string.IsNullOrWhiteSpace(fix) && fix.Contains(item.Name))
+                    {
+                        selected.Add(item);
+                    }
+                }
+            }
+
+            MultiSelectViewModel fixVm = new MultiSelectViewModel
+            {
+                AvailableItems = itemsFixer,
+                SelectedItems = new ObservableCollection<MultiSelectDataType>(selected),
+            };
+            pickerF.BindingContext = fixVm;
+        }
+
+        /// <summary>
+        /// 设置检测项目
+        /// </summary>
+        private void BindExamineItem()
+        {
+            itemsExamine.Clear();
+            if (_currentTask != null && _currentTask.taskAnas != null)
+            {
+                string contents = "";
+                foreach (var item in _currentTask.taskAnas)
+                {
+                    if (!string.IsNullOrWhiteSpace(item.atname))
+                    {
+                        contents += item.atname + " ";
+                        itemsExamine.Add(new MultiSelectDataType
+                        {
+                            Id = item.atid,
+                            Name = item.atname,
+                            SampleAttype = item.attype,
+                        });
+                    }
+
+                }
+                LabExamineItems.Text = contents;
+            }
+
+            List<MultiSelectDataType> selected = new List<MultiSelectDataType>();
+            if (_currentSample != null)
+            {
+                foreach (var item in itemsExamine)
+                {
+                    string fix = _currentSample.Anatype;
+                    if (!string.IsNullOrWhiteSpace(fix) && fix.Contains(item.Name))
+                    {
+                        
+                        selected.Add(item);
+                    }
+                }
+            }
+
+            MultiSelectViewModel fixVm = new MultiSelectViewModel
+            {
+                AvailableItems = itemsExamine,
+                SelectedItems = new ObservableCollection<MultiSelectDataType>(selected)
+            };
+            pickerExamine.BindingContext = fixVm;
+        }
+
 
         /// <summary>
         /// 本地添加一个新样本
@@ -80,6 +183,9 @@ namespace AepApp.View.Samples
             sclv.BindingContext = _currentSample;
             LabNumSample.Text = samplingBottleList.Count + "";
 
+            UpdateTime();
+            BindExamineItem();
+            BindFixData();
             ChangeToolbar();
 
             if (_lastCheckSample != null)
@@ -211,8 +317,9 @@ namespace AepApp.View.Samples
             map.Add("taskid", _taskId);
             map.Add("tide", _currentSample.Tide);
             map.Add("waterlevel", _currentSample.Waterlevel);
+            map.Add("width", _currentSample.Width);
             map.Add("qrcode", _currentSample.Qrcode);
-            map.Add("anatype", _currentSample.Anatype);
+            map.Add("anatype", _currentSample.Anatype);//检测项目
             map.Add("fixative", _currentSample.Fixative);
             if (isEdit)
             {
@@ -318,6 +425,14 @@ namespace AepApp.View.Samples
         /// <param name="e">E.</param>
         void Scanning(object sender, System.EventArgs e)
         {
+            ScanQr();
+        }
+
+        /// <summary>
+        /// 扫描二维码
+        /// </summary>
+        private void ScanQr()
+        {
             if (_currentSample == null)
             {
                 DependencyService.Get<IToast>().ShortAlert("请先选择需要采样的样本~");
@@ -326,19 +441,17 @@ namespace AepApp.View.Samples
             MessagingCenter.Unsubscribe<ContentPage, string>(this, "ScanningResult");
 
             MessagingCenter.Subscribe<ContentPage, string>(this, "ScanningResult", async (arg1, arg2) =>
-           {
-               Console.WriteLine("采样瓶二维码结果：" + arg2);
-               _currentSample.Qrcode = arg2;
-           });
+            {
+                Console.WriteLine("采样瓶二维码结果：" + arg2);
+                _currentSample.Qrcode = arg2;
+                LabelQr.Text = arg2;
+            });
 
             Navigation.PushAsync(new ScanningPage
             {
                 Title = "扫描采样瓶",
             });
-
         }
-
-
 
         /// <summary>
         /// 创建图片
@@ -362,6 +475,25 @@ namespace AepApp.View.Samples
                     }
                 }
             });
+        }
+
+        private void UpdateTime()
+        {
+            if (_currentSample != null)
+            {
+                if (_currentSample.Sampletime != null)
+                {
+                    DatePickerStart.Date = _currentSample.Sampletime;
+                    TimePickerStart.Time = new TimeSpan(_currentSample.Sampletime.Hour, _currentSample.Sampletime.Minute, _currentSample.Sampletime.Second);
+                }
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<ContentPage, string>(this, "ScanningResult");
+            MessagingCenter.Unsubscribe<ContentPage, ObservableCollection<MultiSelectDataType>>(this, "SelectData");
         }
 
 
@@ -400,17 +532,11 @@ namespace AepApp.View.Samples
 
         private void GridLocation_Tapped(object sender, EventArgs e)
         {
-
-        }
-
-        private void GridExamineItem_Tapped(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GridFix_Tapped(object sender, EventArgs e)
-        {
-
+            if (_currentPlan == null)
+            {
+                return;
+            }
+            Navigation.PushAsync(new RescueSiteMapPage("任务位置", _currentPlan.address, _currentPlan.lat, _currentPlan.lng));
         }
 
         private void FilterTrans_Tapped(object sender, EventArgs e)
@@ -457,6 +583,7 @@ namespace AepApp.View.Samples
             else
             {
                 DependencyService.Get<IToast>().ShortAlert(isEdit ? "样本信息更新失败" : "样本上传失败");
+
             }
         }
 
@@ -470,6 +597,105 @@ namespace AepApp.View.Samples
             _currentSample = sample;
             _currentSample.SetColors(true);
             ChangeUI();
+        }
+
+        /// <summary>
+        /// 多选
+        /// </summary>
+        /// <param name="type"></param>
+        private void SelectMultiData(int type)
+        {
+            MessagingCenter.Unsubscribe<ContentPage, ObservableCollection<MultiSelectDataType>>(this, "SelectData");
+            MessagingCenter.Subscribe<ContentPage, ObservableCollection<MultiSelectDataType>>(this, "SelectData", async (arg1, arg2) =>
+            {
+                if (_currentSample != null && arg2 != null)
+                {
+                    ObservableCollection<MultiSelectDataType> s = arg2 as ObservableCollection<MultiSelectDataType>;
+                    string contents = "";
+                    foreach (var item in s)
+                    {
+                        if (!string.IsNullOrWhiteSpace(item.Name))
+                        {
+                            contents += item.Name + ", ";
+                        }
+                    }
+                    if(type == 1)
+                    {
+                        _currentSample.Anatype = contents;
+                    }
+                    else if(type == 2)
+                    {
+                        _currentSample.Fixative = contents;
+                    }
+                }
+            });
+            if(type == 1)
+            {
+                PopupNavigation.Instance.PushAsync(pickerExamine.PopupPage);
+            }
+            else if(type == 2)
+            {
+                PopupNavigation.Instance.PushAsync(pickerF.PopupPage);
+            }
+        }
+
+        /// <summary>
+        /// 选择固定剂
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pickerF_Clicked(object sender, EventArgs e)
+        {
+            SelectMultiData(2);
+        }
+
+        /// <summary>
+        /// 选择检测项目
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pickerExamine_Clicked(object sender, EventArgs e)
+        {
+            SelectMultiData(1);
+        }
+
+        /// <summary>
+        /// 查看检测项目
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            string type = LabExamineItems.Text;
+            if (!string.IsNullOrWhiteSpace(type))
+            {
+                Navigation.PushAsync(new ViewContentPage(null, type));
+            }
+        }
+
+        /// <summary>
+        /// 扫描二维码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapGestureRecognizer_GridQr(object sender, EventArgs e)
+        {
+            ScanQr();
+        }
+
+        /// <summary>
+        /// 选择时间
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DatePickerStart_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            if (_currentSample != null)
+            {
+                DateTime t = new DateTime(e.NewDate.Year, e.NewDate.Hour, e.NewDate.Day,
+                    TimePickerStart.Time.Hours, TimePickerStart.Time.Minutes, TimePickerStart.Time.Minutes);
+                _currentSample.Sampletime = t;
+            }
         }
     }
 }
