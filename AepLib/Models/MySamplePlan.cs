@@ -15,15 +15,8 @@ namespace AepApp.Models
     }
 
 
-    public class MySamplePlanItems : INotifyPropertyChanged
+    public class MySamplePlanItems : BaseModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void NotifyPropertyChanged(string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        [Key]
         public int PlanId { get; set; }
         //采样计划ID guid
         public string id { get; set; }
@@ -53,7 +46,7 @@ namespace AepApp.Models
         public int status { get; set; }
         //public int status { get { return 1; } set{} }
 
-        public ObservableCollection<taskslist> tasklist { get; set; }
+        public ObservableCollection<tasksList> tasklist { get; set; }
 
         //未完成的数量
         public int unCompleteNum
@@ -65,7 +58,7 @@ namespace AepApp.Models
                 {
                     return i;
                 }
-                foreach (taskslist task in tasklist)
+                foreach (tasksList task in tasklist)
                 {
                     if (task.taskstatus == 1) i += 1;
                 }
@@ -122,15 +115,9 @@ namespace AepApp.Models
 
     }
 
-    public class taskslist : INotifyPropertyChanged
+    public class tasksList : BaseModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void NotifyPropertyChanged(string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        [Key]
         public int Id { get; set; }
         //子任务ID guid,（Add模式不传）
         public string taskid { get; set; }

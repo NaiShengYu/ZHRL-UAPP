@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace AepApp.Models
 {
@@ -41,11 +43,36 @@ namespace AepApp.Models
         private string fixative;//固定剂信息
         public string Fixative { get { return fixative; } set { fixative = value; NotifyPropertyChanged(); } }
 
-        public bool FilterTrans { get; set; }
-        public bool FilterAccept { get; set; }
-        public int SampleCount { get; set; }
-        public bool HasSample { get; set; }
-        public int PhotoCount { get; set; }
-        public bool HasPhoto { get; set; }
+        private bool filterTrans;
+        public bool FilterTrans { get { return filterTrans; } set { filterTrans = value; NotifyPropertyChanged(); } }
+        private bool filterAccept;
+        public bool FilterAccept { get { return filterAccept; } set { filterAccept = value; NotifyPropertyChanged(); } }
+        private int sampleCount;
+        public int SampleCount { get { return sampleCount; } set { sampleCount = value; NotifyPropertyChanged(); } }
+        public bool HasSample
+        {
+            get { return sampleCount > 0; }
+        }
+        private int photoCount;
+        public int PhotoCount { get { return photoCount; } set { photoCount = value; NotifyPropertyChanged(); } }
+        public bool HasPhoto
+        {
+            get { return photoCount > 0; }
+        }
+
+        private Color _backgroundColor;
+        public Color BackgroundColor { get { return _backgroundColor; }set { _backgroundColor = value; NotifyPropertyChanged(); } }
+
+        public void SetColors(bool isSelected)
+        {
+            if (isSelected)
+            {
+                BackgroundColor = Color.FromHex("#EDEDED");
+            }
+            else
+            {
+                BackgroundColor = Color.White;
+            }
+        }
     }
 }

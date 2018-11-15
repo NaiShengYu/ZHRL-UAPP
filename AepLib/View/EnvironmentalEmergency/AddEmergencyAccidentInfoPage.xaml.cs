@@ -20,6 +20,7 @@ using SimpleAudioForms;
 using InTheHand.Forms;
 using AepApp.Interface;
 using AepApp.Tools;
+using AepApp.AuxiliaryExtension;
 #if __IOS__
 using Foundation;
 using UIKit;
@@ -917,49 +918,53 @@ namespace AepApp.View.EnvironmentalEmergency
                     if (!string.IsNullOrWhiteSpace(model.category))
                     {
 
-                        UploadEmergencyShowModel ShowModel = new UploadEmergencyShowModel
-                        {
-                            uploadStatus = model.uploadStatus,
-                            ID = model.ID,
-                            factorId = model.factorId,
-                            factorName = model.factorName,
-                            testMethodId = model.testMethodId,
-                            testMethodName = model.testMethodName,
-                            unitId = model.unitId,
-                            unitName = model.unitName,
-                            equipmentId = model.equipmentId,
-                            equipmentName = model.equipmentName,
-                            factorValue = model.factorValue,
-                            incidentNature= model.incidentNature,
-                            lat = model.lat,
-                            lng = model.lng,
-                            index = model.index,
-                            TargetLat = model.TargetLat,
-                            TargetLng = model.TargetLng,
-                            TargetAddress = model.TargetAddress,
-                            Content = model.Content,
-                            Title = model.Title,
-                            Original = model.Original,
-                            Current = model.Current,
-                            natureString = model.natureString,
-                            StorePath = model.StorePath,
-                            imagePath = model.imagePath,
-                            VideoStorePath = model.VideoStorePath,
-                            VideoPath = model.VideoPath,
-                            width = model.width,
-                            height = model.height,
-                            storeurl = model.storeurl,
-                            reportid = model.reportid,
-                            reportname = model.reportname,
-                            Length = model.Length,
-                            direction = model.direction,
-                            speed = model.speed,
-                            creationTime = model.creationTime,
-                            creatorusername = model.creatorusername,
-                            category = model.category,
-                            datatype = model.datatype,
+                        //UploadEmergencyShowModel ShowModel = new UploadEmergencyShowModel
+                        //{
+                        //    uploadStatus = model.uploadStatus,
+                        //    ID = model.ID,
+                        //    factorId = model.factorId,
+                        //    factorName = model.factorName,
+                        //    testMethodId = model.testMethodId,
+                        //    testMethodName = model.testMethodName,
+                        //    unitId = model.unitId,
+                        //    unitName = model.unitName,
+                        //    equipmentId = model.equipmentId,
+                        //    equipmentName = model.equipmentName,
+                        //    factorValue = model.factorValue,
+                        //    incidentNature= model.incidentNature,
+                        //    lat = model.lat,
+                        //    lng = model.lng,
+                        //    index = model.index,
+                        //    TargetLat = model.TargetLat,
+                        //    TargetLng = model.TargetLng,
+                        //    TargetAddress = model.TargetAddress,
+                        //    Content = model.Content,
+                        //    Title = model.Title,
+                        //    Original = model.Original,
+                        //    Current = model.Current,
+                        //    natureString = model.natureString,
+                        //    StorePath = model.StorePath,
+                        //    imagePath = model.imagePath,
+                        //    VideoStorePath = model.VideoStorePath,
+                        //    VideoPath = model.VideoPath,
+                        //    width = model.width,
+                        //    height = model.height,
+                        //    storeurl = model.storeurl,
+                        //    reportid = model.reportid,
+                        //    reportname = model.reportname,
+                        //    Length = model.Length,
+                        //    direction = model.direction,
+                        //    speed = model.speed,
+                        //    creationTime = model.creationTime,
+                        //    creatorusername = model.creatorusername,
+                        //    category = model.category,
+                        //    datatype = model.datatype,
 
-                        };
+                        //};
+                        UploadEmergencyShowModel ShowModel = new UploadEmergencyShowModel();
+                        ShowModel = ElementMapping.Mapper(ShowModel, model);
+
+
 
                         dataList.Add(ShowModel);
                         dataListDelete.Add(ShowModel);

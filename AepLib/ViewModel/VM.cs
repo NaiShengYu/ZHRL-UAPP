@@ -1,4 +1,5 @@
-﻿using AepApp.Models;
+﻿using AepApp.AuxiliaryExtension;
+using AepApp.Models;
 using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
@@ -91,8 +92,7 @@ namespace AepApp.ViewModel
         public async void requestSamplePlanList()
         {
             _dbContext = new DatabaseContext();
-
-
+     
             samplePlanRequestDic parameter = new samplePlanRequestDic
             {
                 pageIndex = -1,
@@ -116,12 +116,20 @@ namespace AepApp.ViewModel
                 //PlanMap.Add(CurrentDay2String(), App.mySamplePlanResult.Items);
                 //Plans = PlanMap[CurrentDay2String()];
 
+            
+
+
                 foreach (MySamplePlanItems p in App.mySamplePlanResult.Items)
                 {
+                    if (p.tasklist == null) p.tasklist = new ObservableCollection<tasksList>();
+                    //p.name = "isuemg";
+                    //p.address = "sjegjg";
                     var pInDb = _dbContext.Samples.FirstOrDefault(m => p.id.Equals(m.id));
                     if (pInDb == null)
                     {
                         _dbContext.Samples.Add(p);
+                    }else{
+                        pInDb = ElementMapping.Mapper(pInDb, p);//model属性映射快速赋值
                     }
                     _dbContext.SaveChanges();
                 }

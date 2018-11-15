@@ -37,7 +37,7 @@
                     <Switch VerticalOptions="Center" HorizontalOptions="End" x:Name="remember_pwd"/>
                 </Grid>
                 <Button Text="登录" BackgroundColor="#2C73A3" TextColor="White" 
-                         WidthRequest="200" HeightRequest="50" HorizontalOptions="Center" Margin="0,20,0,0" BorderRadius="0" Clicked="Login"></Button>
+                         WidthRequest="200" HeightRequest="50" HorizontalOptions="Center" Margin="0,20,0,0" BorderRadius="0"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
