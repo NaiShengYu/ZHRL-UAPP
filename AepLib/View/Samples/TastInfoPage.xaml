@@ -29,8 +29,9 @@
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                         </Grid.GestureRecognizers>
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
-                        <Label Margin="10,12,0,12" Text="地表水" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <Label Margin="150,12,30,12" x:Name="LabItems" Text="重金属苯系物" HorizontalOptions="End" Font="16" TextColor="Gray" HeightRequest="30" VerticalTextAlignment="Center"/>
+                        <Label Margin="10,12,0,12" x:Name="LabType" Text="" Font="17" VerticalOptions="Center"  TextColor="Black"/>
+                        <Label Margin="150,12,30,12" x:Name="LabExamineItems" Text="" HorizontalOptions="End" Font="16" TextColor="Gray" 
+                               HeightRequest="30" VerticalTextAlignment="Center" LineBreakMode="TailTruncation"/>
                     </Grid>
                     <Grid BackgroundColor="#E6E6E6" Margin="0, 3, 0, 3">
                         <Label Margin="10,1,0,1" Text="样本" Font="15" VerticalOptions="Center" TextColor="Black"/>
@@ -104,7 +105,12 @@
                     <Grid BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
                         <Label Margin="10,12,0,12" Text="采样时间" Font="17"  TextColor="Black"/>
-                        <Label Margin="150,12,30,12" Text="{Binding Sampletime, StringFormat='{0:yyyy-MM-dd HH:mm}'}" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                        <StackLayout Orientation="Horizontal" Spacing="0" Margin="150,12,30,12" HorizontalOptions="End">
+                            <views:BorderlessDatePicker TSize="17" x:Name="DatePickerStart"  HorizontalOptions="Start" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" TextColor="Gray"/>
+                            <views:BorderlessTimePicker TSize="17" x:Name="TimePickerStart" HorizontalOptions="End" Format="HH:mm" Margin="10, 0, 0, 0" TextColor="Gray"/>
+                        </StackLayout>
+
+                        <Label Margin="150,12,30,12" Text="{Binding Sampletime, StringFormat='{0:yyyy-MM-dd HH:mm}'}" HorizontalOptions="End" Font="17" TextColor="Gray" IsVisible="False"/>
                     </Grid>
                     <Grid BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" IsVisible="False"/>
@@ -117,23 +123,20 @@
                         </Grid.GestureRecognizers>
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="采样坐标" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <Label Margin="150,12,30,12" Text="" HorizontalOptions="End" Font="16" TextColor="Gray" />
+                        <Label Margin="120,0,30,0" x:Name="LabLocation" Text="" HorizontalOptions="End" VerticalOptions="Center" Font="16" TextColor="Gray" />
                     </Grid>
                     <Grid x:Name="GridExamineItem" BackgroundColor="White">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="GridExamineItem_Tapped"/>
-                        </Grid.GestureRecognizers>
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="检测项目" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <views:BorderlessPicker WidthRequest="120" TextColor="Gray" x:Name="pickerItem" HorizontalOptions="End"  Margin="150,12,30,12" 
-                                                StyleClass="itemsubtitle"  XAlign="End">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>化学品</x:String>
-                                    <x:String>其他因子</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </views:BorderlessPicker>
+
+                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,10,0" TextColor="Gray"
+                                                        x:Name="pickerExamine" FontSize="17"
+                                                        x:TypeArguments="model:MultiSelectDataType"
+                                                       ItemsSource="{Binding AvailableItems}"
+                                                       SelectedItems="{Binding SelectedItems}"
+                                                        Text="{Binding SelectedItems, Converter={StaticResource JoinListConverter}}" 
+                                                        Clicked="pickerExamine_Clicked"/>
+
                     </Grid>
                     <Grid BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" IsVisible="False"/>
@@ -161,13 +164,10 @@
                         <views:BorderlessEntry Margin="150,12,30,12" Text="{Binding Depth}" HorizontalOptions="FillAndExpand" FontSize="16" TextColor="Gray" XAlign="End"/>
                     </Grid>
                     <Grid x:Name="GridFix" BackgroundColor="White">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="GridFix_Tapped"/>
-                        </Grid.GestureRecognizers>
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="固定剂" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <xfMultiPicker:MultiPickerView HorizontalOptions="EndAndExpand"  Margin="150,0,10,0" TextColor="Gray"
-                                                        x:Name="pickerF" FontSize="16"
+                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,10,0" TextColor="Gray"
+                                                        x:Name="pickerF" FontSize="17"
                                                         x:TypeArguments="model:MultiSelectDataType"
                                                        ItemsSource="{Binding AvailableItems}"
                                                        SelectedItems="{Binding SelectedItems}"
@@ -175,10 +175,13 @@
                                                         Clicked="pickerF_Clicked"/>
 
                     </Grid>
-                    <Grid BackgroundColor="White">
+                    <Grid x:Name="GridQr" BackgroundColor="White">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_GridQr"/>
+                        </Grid.GestureRecognizers>
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="True"/>
                         <Label Margin="10,12,0,12" Text="采样瓶编号" Font="17"  TextColor="Black"/>
-                        <Label Margin="150,12,30,12" x:Name="LabelQr" Text="{Binding Qrcode}" HorizontalOptions="End" Font="17" TextColor="Gray" />
+                        <Label Margin="110,12,30,12" x:Name="LabelQr" Text="{Binding Qrcode}" HorizontalOptions="End" Font="17" TextColor="Gray" />
                     </Grid>
                     <Grid BackgroundColor="#E6E6E6" Margin="0, 3, 0, 3">
                         <Label Margin="10,1,0,1" Text="照片" Font="15" VerticalOptions="Center"  TextColor="Black"/>

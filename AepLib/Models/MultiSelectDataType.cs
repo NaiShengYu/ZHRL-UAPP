@@ -8,9 +8,9 @@ namespace AepApp.Models
 {
     public class MultiSelectDataType : NameType
     {
-        private int _id;
+        private string _id;
 
-        public int Id
+        public string Id
         {
             get { return _id; }
             set
@@ -22,6 +22,17 @@ namespace AepApp.Models
         }
 
         // some more properties:
+        private string attype; //检测项目分类
+        public string SampleAttype
+        {
+            get { return attype; }
+            set
+            {
+                if (value == attype) return;
+                attype = value;
+                OnPropertyChanged();
+            }
+        }
     }
 
     // some base class

@@ -26,7 +26,6 @@ namespace XFMultiPicker
                 TextColor = Color.Black,
                 FontSize = 16,
                 Margin = new Thickness(0, 15),
-                HeightRequest = 50,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.Center
             };
@@ -85,8 +84,12 @@ namespace XFMultiPicker
         {
             _selectedItems.Clear();
             foreach (T item in GetSelection())
+            {
                 _selectedItems.Add(item);
+            }
             base.OnDisappearing();
+            MessagingCenter.Send<ContentPage, ObservableCollection<T>>(this, "SelectData", _selectedItems);
+
         }
 
         private ObservableCollection<T> GetSelection()
@@ -129,12 +132,9 @@ namespace XFMultiPicker
                 var name = new Label();
                 name.TextColor = Color.Black;
                 name.VerticalOptions = LayoutOptions.Center;
-                name.Margin = new Thickness(20, 0),
+                name.Margin = new Thickness(20, 0);
                 name.SetBinding(Label.TextProperty, new Binding("Item.Name"));
-
-                var mainSwitch = new Switch();
-                mainSwitch.SetBinding(Switch.IsToggledProperty, new Binding("IsSelected"));
-
+                
                 var rightImg = new Image
                 {
                     Source = "greentick",

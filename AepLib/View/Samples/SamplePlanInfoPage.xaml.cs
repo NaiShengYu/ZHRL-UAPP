@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using AepApp.Models;
-using Xamarin.Forms;
+﻿using AepApp.Models;
 using AepApp.View.EnvironmentalEmergency;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 namespace AepApp.View.Samples
 {
@@ -35,8 +35,8 @@ namespace AepApp.View.Samples
         void selectTask(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            tasksList model = button.BindingContext as tasksList;
-            Navigation.PushAsync(new TastInfoPage(model.taskname, model.taskid));
+            TasksList model = button.BindingContext as TasksList;
+            Navigation.PushAsync(new TastInfoPage(_samplePlanItems, model));
         }
 
 
@@ -50,22 +50,26 @@ namespace AepApp.View.Samples
             Button button = sender as Button;
             string message = "";
             string pagetitle = "";
-            if (button.StyleId =="dispose") {
+            if (button.StyleId == "dispose")
+            {
                 Console.WriteLine("预处理信息");
                 message = _samplePlanItems.pretreatment;
                 pagetitle = "预处理信息";
             }
-            if (button.StyleId =="security") {
+            if (button.StyleId == "security")
+            {
                 Console.WriteLine("安全说明");
                 message = _samplePlanItems.security;
                 pagetitle = "安全说明";
             }
-            if (button.StyleId == "remake") {
+            if (button.StyleId == "remake")
+            {
                 Console.WriteLine("备注信息");
                 message = _samplePlanItems.remarks;
                 pagetitle = "备注信息";
             }
-            if (button.StyleId == "quality") {
+            if (button.StyleId == "quality")
+            {
                 Console.WriteLine("质控说明");
                 message = _samplePlanItems.qctip;
                 pagetitle = "质控说明";
@@ -75,7 +79,7 @@ namespace AepApp.View.Samples
             Navigation.PushAsync(messagepage);
 
         }
-     
+
         public SamplePlanInfoPage(MySamplePlanItems sampleModel)
         {
             InitializeComponent();
@@ -90,8 +94,9 @@ namespace AepApp.View.Samples
         }
 
 
-        private async void requestSamplePublicData(){           
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/WaterRecord/GetDetailByPid?planid=" +_samplePlanItems.id,"" , "GET", "");
+        private async void requestSamplePublicData()
+        {
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/WaterRecord/GetDetailByPid?planid=" + _samplePlanItems.id, "", "GET", "");
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -134,8 +139,8 @@ namespace AepApp.View.Samples
 
         void Handle_sampledateChanged(object sender, Xamarin.Forms.DateChangedEventArgs e)
         {
-            _basicDataModel.sampledate = e.NewDate;   
-        
+            _basicDataModel.sampledate = e.NewDate;
+
         }
         void Handle_weatherChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
@@ -146,8 +151,9 @@ namespace AepApp.View.Samples
             _basicDataModel.temperature = e.NewTextValue;
         }
 
-        async void SaveBaiscData(object sender ,EventArgs e){
-                Dictionary<string, object> dic = new Dictionary<string, object>();
+        async void SaveBaiscData(object sender, EventArgs e)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
             string url = "/Api/WaterRecord/Add";
             dic.Add("areafunctype", _basicDataModel.areafunctype);
             dic.Add("areaname", _basicDataModel.areaname);
@@ -160,131 +166,133 @@ namespace AepApp.View.Samples
             dic.Add("tools", _basicDataModel.tools);
             dic.Add("weather", _basicDataModel.weather);
             //假如有信息id就更新id
-            if(!string.IsNullOrWhiteSpace(_basicDataModel.id)){
+            if (!string.IsNullOrWhiteSpace(_basicDataModel.id))
+            {
                 dic.Add("id", _basicDataModel.id);
                 url = "/Api/WaterRecord/Update";
             }
             string param = JsonConvert.SerializeObject(dic);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + url, param, "POST", "");
-                Console.WriteLine(hTTPResponse);
-                if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
-                {
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
                 DependencyService.Get<Sample.IToast>().ShortAlert("修改成功");
                 if (!string.IsNullOrWhiteSpace(_basicDataModel.id))
                     _basicDataModel.id = hTTPResponse.Results;
-                }
-                else
-                {
-                    Console.WriteLine(hTTPResponse);
-                }
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
         }
 
 
 
         void creatTask()
         {
-            if(_samplePlanItems == null || _samplePlanItems.tasklist == null)
+            if (_samplePlanItems == null || _samplePlanItems.tasklist == null)
             {
                 return;
             }
-            foreach (tasksList model in _samplePlanItems.tasklist)
+            foreach (TasksList model in _samplePlanItems.tasklist)
             {
 
-                    Grid G = new Grid
-                    {
-                        HeightRequest = 60,
-                        BackgroundColor = Color.White,
-                    };
-                    StackLayout sk1 = new StackLayout
-                    {
-                        VerticalOptions = LayoutOptions.Start,
-                        HorizontalOptions = LayoutOptions.Start,
-                        Margin = new Thickness(10, 8, 100, 0),
-                        Orientation = StackOrientation.Horizontal,
-                    };
-                    G.Children.Add(sk1);
-                    Label taskLab = new Label
-                    {
-                        Text = model.taskname,
-                        Font = Font.SystemFontOfSize(17),
-                    };
-
-                    Grid typeGird = new Grid
-                    {
-                        BackgroundColor = Color.FromRgb(59, 125, 169),
-                        VerticalOptions = LayoutOptions.Start,
-                        HorizontalOptions = LayoutOptions.Start,
-                        HeightRequest = 24,
-                    };
-
-                    Label typeLab = new Label
-                    {
-                        Margin = new Thickness(2, 2, 2, 2),
-                        Text = model.tasktypeName,
-                        TextColor = Color.White,
-                        Font = Font.SystemFontOfSize(14),
-                    };
-                    typeGird.Children.Add(typeLab);
-                    sk1.Children.Add(taskLab);
-                    sk1.Children.Add(typeGird);
-
-                    StackLayout sk2 = new StackLayout
-                    {
-                        VerticalOptions = LayoutOptions.End,
-                        HorizontalOptions = LayoutOptions.Start,
-                        Margin = new Thickness(10, 2, 100, 8),
-                        Orientation = StackOrientation.Horizontal,
-                    };
-                    G.Children.Add(sk2);
-                    Label factorLab = new Label
-                    {
-                        Font = Font.SystemFontOfSize(14),
-                        TextColor = Color.Gray,
-                    };
-                    sk2.Children.Add(factorLab);
-                foreach (tasksAnas anas in model.taskAnas)
+                Grid G = new Grid
                 {
-                    factorLab.Text = factorLab.Text + " " + anas.atname;
+                    HeightRequest = 60,
+                    BackgroundColor = Color.White,
+                };
+                StackLayout sk1 = new StackLayout
+                {
+                    VerticalOptions = LayoutOptions.Start,
+                    HorizontalOptions = LayoutOptions.Start,
+                    Margin = new Thickness(10, 8, 100, 0),
+                    Orientation = StackOrientation.Horizontal,
+                };
+                G.Children.Add(sk1);
+                Label taskLab = new Label
+                {
+                    Text = model.taskname,
+                    Font = Font.SystemFontOfSize(17),
+                };
+
+                Grid typeGird = new Grid
+                {
+                    BackgroundColor = Color.FromRgb(59, 125, 169),
+                    VerticalOptions = LayoutOptions.Start,
+                    HorizontalOptions = LayoutOptions.Start,
+                    HeightRequest = 24,
+                };
+
+                Label typeLab = new Label
+                {
+                    Margin = new Thickness(2, 2, 2, 2),
+                    Text = model.tasktypeName,
+                    TextColor = Color.White,
+                    Font = Font.SystemFontOfSize(14),
+                };
+                typeGird.Children.Add(typeLab);
+                sk1.Children.Add(taskLab);
+                sk1.Children.Add(typeGird);
+
+                StackLayout sk2 = new StackLayout
+                {
+                    VerticalOptions = LayoutOptions.End,
+                    HorizontalOptions = LayoutOptions.Start,
+                    Margin = new Thickness(10, 2, 100, 8),
+                    Orientation = StackOrientation.Horizontal,
+                };
+                G.Children.Add(sk2);
+                Label factorLab = new Label
+                {
+                    Font = Font.SystemFontOfSize(14),
+                    TextColor = Color.Gray,
+                };
+                sk2.Children.Add(factorLab);
+                foreach (TasksAnas anas in model.taskAnas)
+                {
+                    factorLab.Text += anas.atname + " ";
                 }
-                    //Frame frame = new Frame
-                    //{
-                    //    HorizontalOptions = LayoutOptions.End,
-                    //    VerticalOptions = LayoutOptions.Center,
-                    //    WidthRequest = 25,
-                    //    HeightRequest = 25,
-                    //    CornerRadius = (float)12.5,
-                    //    BackgroundColor = Color.FromRgb(190, 190, 190),
-                    //    Margin = new Thickness(0, 0, 15, 0),
-                    //    Padding = new Thickness(0, 0, 0, 0),
-                    //    IsClippedToBounds = true,
-                    //};
-                    //Label numLab = new Label
-                    //{
-                    //    Text = model.taskAnas.Count.ToString(),
-                    //    VerticalOptions = LayoutOptions.Center,
-                    //    HorizontalOptions = LayoutOptions.Center,
-                    //    TextColor = Color.White,
+                //Frame frame = new Frame
+                //{
+                //    HorizontalOptions = LayoutOptions.End,
+                //    VerticalOptions = LayoutOptions.Center,
+                //    WidthRequest = 25,
+                //    HeightRequest = 25,
+                //    CornerRadius = (float)12.5,
+                //    BackgroundColor = Color.FromRgb(190, 190, 190),
+                //    Margin = new Thickness(0, 0, 15, 0),
+                //    Padding = new Thickness(0, 0, 0, 0),
+                //    IsClippedToBounds = true,
+                //};
+                //Label numLab = new Label
+                //{
+                //    Text = model.taskAnas.Count.ToString(),
+                //    VerticalOptions = LayoutOptions.Center,
+                //    HorizontalOptions = LayoutOptions.Center,
+                //    TextColor = Color.White,
 
-                    //};
-                    //if (model.taskAnas.Count.ToString() == "0") frame.IsVisible = false;
-                    //frame.Content = numLab;
-                    //G.Children.Add(frame);
-                    SD.Children.Add(G);
+                //};
+                //if (model.taskAnas.Count.ToString() == "0") frame.IsVisible = false;
+                //frame.Content = numLab;
+                //G.Children.Add(frame);
+                SD.Children.Add(G);
 
-                    Button button = new Button
-                    {
-                        VerticalOptions = LayoutOptions.FillAndExpand,
-                        HorizontalOptions = LayoutOptions.FillAndExpand,
-                    };
-                    button.Clicked += selectTask;
-                    button.BindingContext = model;
-                    G.Children.Add(button);
+                Button button = new Button
+                {
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                };
+                button.Clicked += selectTask;
+                button.BindingContext = model;
+                G.Children.Add(button);
 
             }
         }
 
 
-        private class TaskModel{
+        private class TaskModel
+        {
             public string name { get; set; }
             public string num { get; set; }
             public string type { get; set; }
@@ -293,8 +301,7 @@ namespace AepApp.View.Samples
 
         private void BtnOk_Clicked(object sender, EventArgs e)
         {
-            //测试用
-            Navigation.PushAsync(new TastInfoPage("饮用水采样2", "328e5ea3-624d-40e2-a4b1-2300b51a7114"));
+
         }
     }
 }
