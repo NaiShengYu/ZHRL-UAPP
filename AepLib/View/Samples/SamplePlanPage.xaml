@@ -14,11 +14,29 @@
     <ContentPage.Content>
         <Grid RowSpacing="1" BackgroundColor="#f5f6f7">
             <Grid.RowDefinitions>
+                <RowDefinition Height= "Auto"/>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
-            <Grid>
+            
+            <Grid x:Name="networkGrid" BackgroundColor="Yellow" HeightRequest="25" IsVisible="false">
+                <Grid.Triggers>
+                    <DataTrigger TargetType="Grid" Binding="{Binding .}"  Value="None">
+                        <Setter Property="IsVisible" Value="true"></Setter>
+                    </DataTrigger>
+                     <DataTrigger TargetType="Grid" Binding="{Binding .}" Value="ConstrainedInternet">
+                        <Setter Property="IsVisible" Value="true"></Setter>
+                    </DataTrigger>
+                     <DataTrigger TargetType="Grid" Binding="{Binding .}" Value="Internet">
+                        <Setter Property="IsVisible" Value="false"></Setter>
+                    </DataTrigger>
+                </Grid.Triggers>
+                
+                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="网络无法接通，现处于离线状态" Font="12"/>
+            </Grid>
+            
+            <Grid Grid.Row="1">
                 <Image Source="left" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" />
                 <Button VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="Transparent" WidthRequest="80" Clicked="reduceADay" />
                 <views:BorderlessDatePicker x:Name="datePicker"  VerticalOptions="Center" HorizontalOptions="Center" Format="yyyy-MM-dd" 
@@ -28,7 +46,7 @@
                 <Image Source="right" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" />
                 <Button VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Transparent" WidthRequest="80" Clicked="addADay" />
             </Grid>
-            <ListView Grid.Row="1" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemsSource="{Binding Plans}">
+            <ListView Grid.Row="2" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemsSource="{Binding Plans}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -77,7 +95,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Grid Grid.Row="2" BackgroundColor="#e6e6e6">
+            <Grid Grid.Row="3" BackgroundColor="#e6e6e6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />

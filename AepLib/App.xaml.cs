@@ -24,6 +24,7 @@ using AepApp.View.Gridding;
 using AepApp.AuxiliaryExtension;
 //using AepApp.View.SecondaryFunction;
 using AepApp.View.Samples;
+using Xamarin.Essentials;
 
 namespace AepApp
 {
@@ -126,6 +127,13 @@ namespace AepApp
         }
 
 
+        //private NetworkAccess _NetworkState = Connectivity.NetworkAccess;
+        //public NetworkAccess NetworkState {
+        //    get { return _NetworkState; }
+        //    set { _NetworkState = value; NotifyPropertyChanged("NetworkState"); }
+        //}
+
+
         private TodoItem item;
         private Account acc;
 
@@ -150,7 +158,11 @@ namespace AepApp
 
             //MainPage = new NavigationPage(new SendInformationPage());
             //aaaa();
+
+
+
         }
+
 
         //使用后删除错误数据
         async void aaaa()
