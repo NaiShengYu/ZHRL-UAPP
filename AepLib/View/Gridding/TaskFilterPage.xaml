@@ -55,7 +55,7 @@
                     <Image Grid.Row="1" HorizontalOptions="Center" Source="left" Margin="4"/>
                     <StackLayout Grid.Row="2" Orientation="Horizontal" Spacing="0">
                         <views:BorderlessDatePicker TSize="15" x:Name="DatePickerEnd"  StyleClass="itemsubtitle" HorizontalOptions="Start" Format="yyyy-MM-dd" DateSelected="DatePickerEnd_DateSelected"/>
-                        <views:BorderlessTimePicker TSize="15" x:Name="TimePickerEnd"  StyleClass="itemsubtitle" HorizontalOptions="End" Format="HH:mm" Margin="10, 0, 0, 0"/>
+                        <views:BorderlessTimePicker TSize="15" x:Name="TimePickerEnd" StyleClass="itemsubtitle" HorizontalOptions="End" Format="HH:mm" Margin="10, 0, 0, 0" />
                     </StackLayout>
                 </Grid>
                 <Switch x:Name="switchTime" HorizontalOptions="End" VerticalOptions="Center" Margin="10, 0, 10, 0" IsToggled="{Binding isTimeOn}" Toggled="Switch_Toggled_Time"/>

@@ -22,6 +22,15 @@ namespace AepApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TestOxyPage : ContentPage, INotifyPropertyChanged
     {
+        void Handle_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+        
+        
+        
+        
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void NotifyPropertyChanged(string propertyName = "")
