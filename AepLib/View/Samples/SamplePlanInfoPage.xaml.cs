@@ -253,29 +253,29 @@ namespace AepApp.View.Samples
                 {
                     factorLab.Text += anas.atname + " ";
                 }
-                //Frame frame = new Frame
-                //{
-                //    HorizontalOptions = LayoutOptions.End,
-                //    VerticalOptions = LayoutOptions.Center,
-                //    WidthRequest = 25,
-                //    HeightRequest = 25,
-                //    CornerRadius = (float)12.5,
-                //    BackgroundColor = Color.FromRgb(190, 190, 190),
-                //    Margin = new Thickness(0, 0, 15, 0),
-                //    Padding = new Thickness(0, 0, 0, 0),
-                //    IsClippedToBounds = true,
-                //};
-                //Label numLab = new Label
-                //{
-                //    Text = model.taskAnas.Count.ToString(),
-                //    VerticalOptions = LayoutOptions.Center,
-                //    HorizontalOptions = LayoutOptions.Center,
-                //    TextColor = Color.White,
+                Frame frame = new Frame
+                {
+                    HorizontalOptions = LayoutOptions.End,
+                    VerticalOptions = LayoutOptions.Center,
+                    WidthRequest = 25,
+                    HeightRequest = 25,
+                    CornerRadius = (float)12.5,
+                    BackgroundColor = Color.FromRgb(190, 190, 190),
+                    Margin = new Thickness(0, 0, 15, 0),
+                    Padding = new Thickness(0, 0, 0, 0),
+                    IsClippedToBounds = true,
+                };
+                Label numLab = new Label
+                {
+                    Text = model.samplecount,
+                    VerticalOptions = LayoutOptions.Center,
+                    HorizontalOptions = LayoutOptions.Center,
+                    TextColor = Color.White,
 
-                //};
-                //if (model.taskAnas.Count.ToString() == "0") frame.IsVisible = false;
-                //frame.Content = numLab;
-                //G.Children.Add(frame);
+                };
+                if (model.samplecount == "0") frame.IsVisible = false;
+                frame.Content = numLab;
+                G.Children.Add(frame);
                 SD.Children.Add(G);
 
                 Button button = new Button

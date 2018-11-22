@@ -18,7 +18,8 @@ using Android.App;
 [assembly: UsesFeature("android.hardware.location", Required = false)]
 [assembly: UsesFeature("android.hardware.location.gps", Required = false)]
 [assembly: UsesFeature("android.hardware.location.network", Required = false)]
-
+//网络状态判断
+[assembly: UsesPermission(Android.Manifest.Permission.AccessNetworkState)]
 //使用MediaPlugin拍照
 [assembly: UsesFeature("android.hardware.camera", Required = false)]
 [assembly: UsesFeature("android.hardware.camera.autofocus", Required = false)]

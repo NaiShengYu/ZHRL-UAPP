@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 [assembly: UsesPermission(Android.Manifest.Permission.Flashlight)]
 namespace AepApp.Droid
@@ -29,8 +31,12 @@ namespace AepApp.Droid
             App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
 
             base.OnCreate(bundle);
+<<<<<<< HEAD
+            Xamarin.Essentials.Platform.Init(this, bundle);
+=======
 
             Rg.Plugins.Popup.Popup.Init(this, bundle);
+>>>>>>> e1bde91ca1ae51cb254d3b34a77e42eea55f9a4a
             global::Xamarin.Forms.Forms.Init(this, bundle);
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
@@ -39,6 +45,11 @@ namespace AepApp.Droid
             InitJPush();
             StatusBar.Activity = this;//获取状态栏高度
             LoadApplication(new App());
+            //监听网络变化
+            Connectivity.ConnectivityChanged += (ConnectivityChangedEventArgs e) => {
+                var access = e.NetworkAccess;
+                MessagingCenter.Send<Grid, NetworkAccess>(new Grid(), "NetworkChanged", access);
+            };
             //Initializer.Initialize();
         }
         // Field, property, and method for Picture Picker
@@ -71,6 +82,8 @@ namespace AepApp.Droid
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
         }
 
 

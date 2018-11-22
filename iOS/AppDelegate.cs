@@ -10,6 +10,7 @@ using CoreGraphics;
 using AepApp.Models;
 //using AepApp.iOS.Notification.JPush;
 using UserNotifications;
+using Xamarin.Essentials;
 //using JPush.Binding.iOS;
 
 namespace AepApp.iOS
@@ -72,6 +73,11 @@ namespace AepApp.iOS
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             LoadApplication(new App());
 
+            Connectivity.ConnectivityChanged += (ConnectivityChangedEventArgs e) => {
+                var access = e.NetworkAccess;
+                MessagingCenter.Send<Grid, NetworkAccess>(new Grid(), "NetworkChanged", access);
+            };
+
             ////注册apns远程推送
             //if (options == null) options = new NSDictionary();
             //jPushRegister = new JPushInterface();
@@ -80,6 +86,7 @@ namespace AepApp.iOS
 
             return base.FinishedLaunching(app, options);
         }
+
 
         public void StartTimer(TimeSpan interval, Func<bool> callback)
         {

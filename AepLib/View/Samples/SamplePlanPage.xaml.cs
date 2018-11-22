@@ -5,6 +5,8 @@ using Xamarin.Forms;
 using AepApp.Models;
 using Newtonsoft.Json;
 using CloudWTO.Services;
+using Xamarin.Essentials;
+using AepApp.AuxiliaryExtension;
 
 namespace AepApp.View.Samples
 {
@@ -64,11 +66,13 @@ namespace AepApp.View.Samples
             //timeLab.Text = currentDay.ToString("yyyy-MM-dd");
             App.vm.CurrentDay = DateTime.Now;
             App.vm.requestSamplePlanList();
-
             BindingContext = App.vm;
-
         }
-        
-   
+
+    
+
+      
+
+
     }
 }
