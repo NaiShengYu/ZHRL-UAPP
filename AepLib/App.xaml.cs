@@ -47,7 +47,7 @@ namespace AepApp
         public const string EP360ModuleID = "C105368C-7AF6-49C8-AED3-6A0C7A9E3F7B";
         public const string SamplingModuleID = "65B3E603-4493-44CA-953A-685513B01298";
         public const string SimVisModuleID = "4C534464-AD7D-42FF-80AF-0049CDC6A9F6";
-        public const string environmentalQualityID = "ED21BC68-236F-4B29-BE78-5F951AD4B054";//环保监测预警平台基础数据
+        public const string environmentalQualityID = "3DB80834-1FAA-4062-AAC9-3FAB6B390B4D";//环保监测预警平台基础数据
 
         public static string FrameworkURL = "";
         //public static string FrameworkURL = "http://gx.azuratech.com:30000";
@@ -145,12 +145,11 @@ namespace AepApp
             vm = new VM();
             HandleEventHandler();
             //MainPage = new HomePagePage();
-            MainPage = new NavigationPage(new SamplePlanPage());
+            //MainPage = new NavigationPage(new SamplePlanPage());
 
 
-            //splashPage = new SplashPage();
-            //MainPage = splashPage;
-
+            splashPage = new SplashPage();
+            MainPage = splashPage;
             personViewModel = new TestPersonViewModel();
 
 
@@ -200,7 +199,7 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-            return;
+            //return;
 
             //if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             //{
@@ -318,11 +317,11 @@ namespace AepApp
                 }
 
                 List<Task> tasks = new List<Task>();
-                if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360()); App.BaseUrl = EP360Module.url; } else _isEP360 = true;
+                if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360());  } else _isEP360 = true;
                 if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
                 if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
                 if (EmergencyModule != null && EmergencyModule.status.Equals("0")) tasks.Add(postEmergencyReq()); else _isEmergency = true;
-                if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")) tasks.Add(postEnvironmentalReq()); else _isenvironmental = true;
+                if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")){ tasks.Add(postEnvironmentalReq());App.BaseUrl = environmentalQualityModel.url;}  else _isenvironmental = true;
 
                 await Task.WhenAll(tasks.ToArray());
 
@@ -705,7 +704,7 @@ namespace AepApp
         {
             try
             {
-                string url = App.environmentalQualityModel.url + "/api/mod/custconfig";
+                string url = "http://sx.azuratech.com:32017" + "/api/mod/custconfig";
                 HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
 
                 if (hTTPResponse.StatusCode == HttpStatusCode.OK)

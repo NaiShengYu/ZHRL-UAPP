@@ -230,7 +230,8 @@ namespace AepApp.View.Gridding
             map.Add("results", content.ToString());
             map.Add("forassignment", mRecord.assignment);
             map.Add("attachments", uploadModel);
-            map.Add("enterprise",_enterpriseId);
+            if(!string.IsNullOrWhiteSpace(_enterpriseId))
+                map.Add("enterprise",_enterpriseId);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {

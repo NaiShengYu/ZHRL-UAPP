@@ -26,7 +26,7 @@ namespace XFMultiPicker
                 TextColor = Color.Black,
                 FontSize = 16,
                 Margin = new Thickness(0, 15),
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Center
             };
             _listView = new ListView

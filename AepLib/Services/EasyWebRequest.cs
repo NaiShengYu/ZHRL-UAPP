@@ -37,7 +37,7 @@ namespace CloudWTO.Services
             ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             //req.Host = "example.com";
-            req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + App.token);//给请求添加权限
+            req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + App.FrameworkToken);//给请求添加权限
             req.ContentType = "application/json";
             req.Method = "GET";
             HttpWebResponse res;
@@ -69,7 +69,7 @@ namespace CloudWTO.Services
                 Console.WriteLine("请求参数：" + param);
                 ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-                if (token != null)
+                if (!string.IsNullOrWhiteSpace(token))
                 {
                     req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);//给请求添加权限
                 }
@@ -114,10 +114,10 @@ namespace CloudWTO.Services
             catch (Exception ex)
             {
                 result = ex == null ? "" : ex.Message;
-                Console.WriteLine("错误信息：" + ex +"错误的URL"+url);
+                Console.WriteLine("错误信息：====" + ex +"错误的URL"+url);
                 return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
             }
-            Console.WriteLine("ex:" + result);
+            Console.WriteLine(url + "===ex:" + result);
 
             return new HTTPResponse { Results = result, StatusCode = res.StatusCode };
         }
@@ -163,7 +163,7 @@ namespace CloudWTO.Services
                 result = ex.Message;
                 return new HTTPResponse { Results = result, StatusCode = HttpStatusCode.ExpectationFailed };
             }
-            Console.WriteLine("ex:" + result);
+            Console.WriteLine(url + "===ex:" + result);
 
             return new HTTPResponse { Results = result, StatusCode = res.StatusCode };
 

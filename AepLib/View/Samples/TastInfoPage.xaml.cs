@@ -631,11 +631,11 @@ namespace AepApp.View.Samples
             });
             if(type == 1)
             {
-                PopupNavigation.Instance.PushAsync(pickerExamine.PopupPage);
+                //PopupNavigation.Instance.PushAsync(pickerExamine.PopupPage);
             }
             else if(type == 2)
             {
-                PopupNavigation.Instance.PushAsync(pickerF.PopupPage);
+                //PopupNavigation.Instance.PushAsync(pickerF.PopupPage);
             }
         }
 
@@ -692,7 +692,7 @@ namespace AepApp.View.Samples
         {
             if (_currentSample != null)
             {
-                DateTime t = new DateTime(e.NewDate.Year, e.NewDate.Hour, e.NewDate.Day,
+                DateTime t = new DateTime(e.NewDate.Year, e.NewDate.Month, e.NewDate.Day,
                     TimePickerStart.Time.Hours, TimePickerStart.Time.Minutes, TimePickerStart.Time.Minutes);
                 _currentSample.Sampletime = t;
             }

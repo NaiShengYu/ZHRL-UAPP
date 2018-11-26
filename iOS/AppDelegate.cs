@@ -71,6 +71,10 @@ namespace AepApp.iOS
             OxyPlot.Xamarin.Forms.Platform.iOS.PlotViewRenderer.Init();
             //扫描
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
+
+            //collectionView横向
+            AiForms.Renderers.iOS.CollectionViewInit.Init(); 
+
             LoadApplication(new App());
 
             Connectivity.ConnectivityChanged += (ConnectivityChangedEventArgs e) => {
