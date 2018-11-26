@@ -118,7 +118,7 @@ namespace AepApp.View.Samples
                     string fix = _currentSample.Anatype;
                     if (!string.IsNullOrWhiteSpace(fix) && fix.Contains(item.Name))
                     {
-                        
+
                         selected.Add(item);
                     }
                 }
@@ -146,7 +146,8 @@ namespace AepApp.View.Samples
             _currentSample = new SampleInfoModel
             {
                 Number = "S" + taskTag + TimeUtils.DateTime2YMDHMSNowrap(DateTime.Now),
-                Sampletime = DateTime.Now,
+                Sampletime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+                DateTime.Now.TimeOfDay.Hours, DateTime.Now.TimeOfDay.Minutes, DateTime.Now.TimeOfDay.Seconds),
             };
 
             samplingBottleList.Add(_currentSample);
@@ -484,7 +485,7 @@ namespace AepApp.View.Samples
                 if (_currentSample.Sampletime != null)
                 {
                     DatePickerStart.Date = _currentSample.Sampletime;
-                    TimePickerStart.Time = new TimeSpan(_currentSample.Sampletime.Hour, _currentSample.Sampletime.Minute, _currentSample.Sampletime.Second);
+                    TimePickerStart.Time = new TimeSpan(_currentSample.Sampletime.TimeOfDay.Hours, _currentSample.Sampletime.TimeOfDay.Minutes, _currentSample.Sampletime.TimeOfDay.Seconds);
                 }
             }
         }
@@ -619,21 +620,21 @@ namespace AepApp.View.Samples
                             contents += item.Name + ", ";
                         }
                     }
-                    if(type == 1)
+                    if (type == 1)
                     {
                         _currentSample.Anatype = contents;
                     }
-                    else if(type == 2)
+                    else if (type == 2)
                     {
                         _currentSample.Fixative = contents;
                     }
                 }
             });
-            if(type == 1)
+            if (type == 1)
             {
                 //PopupNavigation.Instance.PushAsync(pickerExamine.PopupPage);
             }
-            else if(type == 2)
+            else if (type == 2)
             {
                 //PopupNavigation.Instance.PushAsync(pickerF.PopupPage);
             }
@@ -684,17 +685,45 @@ namespace AepApp.View.Samples
         }
 
         /// <summary>
-        /// 选择时间
+        /// 选择日期
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DatePickerStart_DateSelected(object sender, DateChangedEventArgs e)
         {
+
             if (_currentSample != null)
             {
-                DateTime t = new DateTime(e.NewDate.Year, e.NewDate.Month, e.NewDate.Day,
-                    TimePickerStart.Time.Hours, TimePickerStart.Time.Minutes, TimePickerStart.Time.Minutes);
+                DateTime t = new DateTime(e.NewDate.Year, e.NewDate.Month, e.NewDate.Day,TimePickerStart.Time.Hours, TimePickerStart.Time.Minutes, TimePickerStart.Time.Seconds);
                 _currentSample.Sampletime = t;
+            }
+        }
+
+        /// <summary>
+        /// 选择时间
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimePickerStart_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == TimePicker.TimeProperty.PropertyName)
+            {
+                TimePicker tp = sender as TimePicker;
+                if (_currentSample != null)
+                {
+
+
+                    DateTime t = new DateTime(_currentSample.Sampletime.Year, _currentSample.Sampletime.Month, _currentSample.Sampletime.Day,
+                        tp.Time.Hours, tp.Time.Minutes, tp.Time.Seconds);
+                    _currentSample.Sampletime = t;
+
+
+
+
+
+
+
+                }
             }
         }
     }

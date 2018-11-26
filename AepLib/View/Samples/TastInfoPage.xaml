@@ -107,7 +107,7 @@
                         <Label Margin="10,12,0,12" Text="采样时间" Font="17"  TextColor="Black"/>
                         <StackLayout Orientation="Horizontal" Spacing="0" Margin="150,12,30,12" HorizontalOptions="End">
                             <views:BorderlessDatePicker TSize="17" x:Name="DatePickerStart"  HorizontalOptions="Start" Format="yyyy-MM-dd" DateSelected="DatePickerStart_DateSelected" TextColor="Gray"/>
-                            <views:BorderlessTimePicker TSize="17" x:Name="TimePickerStart" HorizontalOptions="End" Format="HH:mm" Margin="10, 0, 0, 0" TextColor="Gray"/>
+                            <views:BorderlessTimePicker TSize="17" x:Name="TimePickerStart" HorizontalOptions="End" Format="HH:mm" Margin="10, 0, 0, 0" TextColor="Gray"  PropertyChanged="TimePickerStart_PropertyChanged"/>
                         </StackLayout>
 
                         <Label Margin="150,12,30,12" Text="{Binding Sampletime, StringFormat='{0:yyyy-MM-dd HH:mm}'}" HorizontalOptions="End" Font="17" TextColor="Gray" IsVisible="False"/>
@@ -123,7 +123,7 @@
                         </Grid.GestureRecognizers>
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="采样坐标" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <Label Margin="120,0,30,0" x:Name="LabLocation" Text="" HorizontalOptions="End" VerticalOptions="Center" Font="16" TextColor="Gray" />
+                        <Label Margin="120,0,30,0" x:Name="LabLocation" Text="" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Font="16" TextColor="Gray" HorizontalTextAlignment="End"/>
                     </Grid>
                     <Grid x:Name="GridExamineItem" BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
