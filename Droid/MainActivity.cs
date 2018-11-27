@@ -31,12 +31,8 @@ namespace AepApp.Droid
             App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
 
             base.OnCreate(bundle);
-<<<<<<< HEAD
             Xamarin.Essentials.Platform.Init(this, bundle);
-=======
-
             Rg.Plugins.Popup.Popup.Init(this, bundle);
->>>>>>> e1bde91ca1ae51cb254d3b34a77e42eea55f9a4a
             global::Xamarin.Forms.Forms.Init(this, bundle);
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
