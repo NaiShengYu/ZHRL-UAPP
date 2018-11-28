@@ -4,8 +4,6 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>AepApp</string>
-	<key>CFBundleName</key>
-	<string>AepApp</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.AepApp</string>
 	<key>CFBundleShortVersionString</key>
@@ -74,5 +72,7 @@
 		<string>baidumap</string>
 		<string>qqmap</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>沂水展示</string>
 </dict>
 </plist>

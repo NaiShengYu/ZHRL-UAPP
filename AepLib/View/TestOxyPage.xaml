@@ -28,7 +28,7 @@
             <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel2"/>
             <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel1"/>
         </StackLayout>-->
-        <StackLayout>
+  <!--      <StackLayout>
             <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="Connect SignalR" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnConnectSignalR"/>
             <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="Send SignalR Msg" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnSendSignalR"/>
 
@@ -57,6 +57,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </StackLayout>-->
+        
+        
+        <TimePicker HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" PropertyChanged="Handle_PropertyChanged" />
     </ContentPage.Content>
 </ContentPage>

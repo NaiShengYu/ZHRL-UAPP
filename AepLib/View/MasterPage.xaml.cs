@@ -23,15 +23,15 @@ namespace AepApp.View
             menu1.BindingContext = App.moduleConfigSampling;
             layoutEP.IsVisible = App.moduleConfigEP360 != null;
             layoutEP.BindingContext = App.moduleConfigEP360;
-            if(App.APP_TYPE == App.TYPE_GAOXIN)
-            {
-                layoutGrid.IsVisible = false;
-            }
-            else
-            {
+            //if(App.APP_TYPE == App.TYPE_GAOXIN)
+            //{
+            //    layoutGrid.IsVisible = false;
+            //}
+            //else
+            //{
                 layoutGrid.IsVisible = App.moduleConfigEP360 != null;
                 layoutGrid.BindingContext = App.moduleConfigEP360;
-            }
+            //}
             menu3.BindingContext = App.moduleConfigFramework;
             EmegencyLat.BindingContext = App.moduleConfigEmergency;
             menu2.BindingContext = App.moduleConfigENVQ;

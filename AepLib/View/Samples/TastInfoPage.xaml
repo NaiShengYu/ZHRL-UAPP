@@ -89,7 +89,7 @@
                                             </Image.Triggers>
                                         </Image>
                                         <Image WidthRequest="45" HeightRequest="55" Source="bottle" HorizontalOptions="Center" VerticalOptions="Start"/>
-                                        <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontSize="10" Text="{Binding Number}"/>
+                                        <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontSize="10" Text="{Binding Number}" HorizontalTextAlignment="Center"/>
                                     </Grid>
                                 </ai:ContentCell>
 
@@ -129,7 +129,7 @@
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="检测项目" Font="17" VerticalOptions="Center"  TextColor="Black"/>
 
-                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,10,0" TextColor="Gray"
+                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,30,0" TextColor="Gray"
                                                         x:Name="pickerExamine" FontSize="17"
                                                         x:TypeArguments="model:MultiSelectDataType"
                                                        ItemsSource="{Binding AvailableItems}"
@@ -166,7 +166,7 @@
                     <Grid x:Name="GridFix" BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="固定剂" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,10,0" TextColor="Gray"
+                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,30,0" TextColor="Gray"
                                                         x:Name="pickerF" FontSize="17"
                                                         x:TypeArguments="model:MultiSelectDataType"
                                                        ItemsSource="{Binding AvailableItems}"

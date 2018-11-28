@@ -21,21 +21,21 @@
                 <Label Text="Protection System" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,50,10,0" />
                 <Image Source="user" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" VerticalOptions="End" Margin="0,80,20,30" />
                 <Frame HorizontalOptions="End" VerticalOptions="End" BackgroundColor="rgb(54, 144, 207)" Margin="0,90,10,8" Padding="10,2,10,2" BorderColor="Transparent" HasShadow="False" CornerRadius="10">
-                    <Label TextColor="White" FontSize="12" x:Name="nameLab"/>
+                    <Label TextColor="White" FontSize="12" x:Name="nameLab" />
                 </Frame>
             </Grid>
             <StackLayout Grid.Row="1" BackgroundColor="White" Spacing="0" x:Name="menu1">
                 <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                 <Grid IsVisible="{Binding menuSampleCarry}">
-                    <Label  BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0"/>
+                    <Label BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0" />
                     <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                 </Grid>
                 <Grid IsVisible="{Binding menuSampleReceive}">
-                    <Label BindingContext="AepApp.View.Samples.TransportSamplesPage"  HeightRequest="0"/>
+                    <Label BindingContext="AepApp.View.Samples.TransportSamplesPage" HeightRequest="0" />
                     <Label Text="{Binding menuSampleReceiveLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                 </Grid>
                 <Grid IsVisible="{Binding menuSampleTask}">
-                    <Label BindingContext="AepApp.View.Samples.SamplePlanPage"  HeightRequest="0"/>
+                    <Label BindingContext="AepApp.View.Samples.SamplePlanPage" HeightRequest="0" />
                     <Label Text="{Binding menuSampleTaskLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                 </Grid>
             </StackLayout>
@@ -45,14 +45,13 @@
                     <Label Text="{Binding menuEnvironmentalLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                         IsVisible="false">
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding showEmeSummary}" Value="true">
-                                <Setter Property="IsVisible" Value="true">
-                                </Setter>
+                            <DataTrigger TargetType="Label" Binding="{Binding showEnvSummary}" Value="true">
+                                <Setter Property="IsVisible" Value="true"/>
                             </DataTrigger>
                         </Label.Triggers>
                     </Label>
                     <Grid StyleClass="menuitem" IsVisible="false">
-                        <Grid.Triggers>
+                         <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding menuAir}" Value="true">
                                 <Setter Property="IsVisible" Value="true">
                                 </Setter>
@@ -214,69 +213,70 @@
                             <Label Text="{Binding menuChemicalLabel}">
                             </Label>
                         </Grid>
-
                         <StackLayout x:Name="layoutEP" Spacing="0">
-                            <Label Text="{Binding menu360Label}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding menu360Label}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             <Grid StyleClass="menuitem" IsVisible="{Binding menuPollutionSrc}">
-                                <Label  BindingContext="AepApp.View.PollutionSourcePage" HeightRequest="0"/>
+                                <Label BindingContext="AepApp.View.PollutionSourcePage" HeightRequest="0" />
                                 <Label Text="{Binding menuPollutionSrcLabel}" />
                             </Grid>
                         </StackLayout>
                         <StackLayout x:Name="layoutSampling" Spacing="0">
-                            <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             <Grid IsVisible="{Binding menuSampleCarry}">
-                                <Label  BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0"/>
-                                <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
+                                <Label BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0" />
+                                <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                             </Grid>
                             <Grid IsVisible="{Binding menuSampleReceive}">
-                                <Label BindingContext="AepApp.View.Samples.TransportSamplesPage"  HeightRequest="0"/>
-                                <Label Text="{Binding menuSampleReceiveLabel}"  Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
+                                <Label BindingContext="AepApp.View.Samples.TransportSamplesPage" HeightRequest="0" />
+                                <Label Text="{Binding menuSampleReceiveLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                             </Grid>
-                            <Grid  IsVisible="{Binding menuSampleTask}">
-                                <Label  BindingContext="AepApp.View.Samples.SamplePlanPage" HeightRequest="0"/>
-                                <Label Text="{Binding menuSampleTaskLabel}"  Margin="35,5,0,5" FontSize="19" TextColor="Black"/>
+                            <Grid IsVisible="{Binding menuSampleTask}">
+                                <Label BindingContext="AepApp.View.Samples.SamplePlanPage" HeightRequest="0" />
+                                <Label Text="{Binding menuSampleTaskLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                             </Grid>
                         </StackLayout>
-
                         <StackLayout x:Name="layoutGrid" Spacing="0" IsVisible="False">
-                            <Label Text="{Binding menuGridLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <!--                            text = 网格化管理-->
+                            <Label Text="{Binding menuGridLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                            <!--                            text = 任务列表-->
                             <Grid StyleClass="menuitem" IsVisible="{Binding menuGridTask}">
-                                <Label  BindingContext="AepApp.View.Gridding.TaskListPage"  HeightRequest="0"/>
-                                <Label Text="{Binding menuGridTaskLabel}"/>
+                                <Label BindingContext="AepApp.View.Gridding.TaskListPage" HeightRequest="0" />
+                                <Label Text="{Binding menuGridTaskLabel}" />
                             </Grid>
-                            <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEvent}">
-                                <Label  BindingContext="AepApp.View.Gridding.EventListPage"  HeightRequest="0"/>
-                                <Label Text="{Binding menuGridEventLabel}"/>
+                            <!--                            test = 事件列表-->
+                            <Grid StyleClass="menuitem" IsVisible="{Binding menuGridEvent}">
+                                <Label BindingContext="AepApp.View.Gridding.EventListPage" HeightRequest="0" />
+                                <Label Text="{Binding menuGridEventLabel}" />
                             </Grid>
-                            <Grid StyleClass="menuitem"  IsVisible="True">
-                                <Label  BindingContext="AepApp.View.Gridding.HandledEventListPage"  HeightRequest="0"/>
-                                <Label Text="已处理事件"/>
+                            <Grid StyleClass="menuitem" IsVisible="True">
+                                <Label BindingContext="AepApp.View.Gridding.HandledEventListPage" HeightRequest="0" />
+                                <Label Text="已处理事件" />
                             </Grid>
-                          <!--  <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEventReceived}">
+                            <!--  <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridEventReceived}">
                                 <Label  BindingContext="AepApp.View.Gridding.ReportEventPage" HeightRequest="0"/>
                                 <Label Text="{Binding menuGridEventReceivedLabel}" />
                             </Grid>-->
-                            <Grid StyleClass="menuitem"  IsVisible="{Binding menuGridInfoReceived}">
-                                <Label  BindingContext="AepApp.View.Gridding.SendInformationPage" HeightRequest="0"/>
+                            <!--                            上级下发事件-->
+                            <Grid StyleClass="menuitem" IsVisible="{Binding menuGridInfoReceived}">
+                                <Label BindingContext="AepApp.View.Gridding.SendInformationPage" HeightRequest="0" />
                                 <Label Text="{Binding menuGridInfoReceivedLabel}" />
                             </Grid>
-                            <Grid x:Name="gridAssessment" StyleClass="menuitem"  IsVisible="True">
+                            <Grid x:Name="gridAssessment" StyleClass="menuitem" IsVisible="True">
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                                 </Grid.GestureRecognizers>
                                 <Label Text="考核" />
                             </Grid>
                         </StackLayout>
                     </StackLayout>
-                </StackLayout>                
+                </StackLayout>
             </ScrollView>
-            <StackLayout  Grid.Row="3" BackgroundColor="White" Spacing="0" x:Name="menu3">
+            <StackLayout Grid.Row="3" BackgroundColor="White" Spacing="0" x:Name="menu3">
                 <Grid IsVisible="False">
-                    <Label  BindingContext="AepApp.View.ScanLoginPage" HeightRequest="0"/>
-                    <Label Text="扫码登录"  Margin="35,10,0,10" FontSize="19" TextColor="Black"/>
+                    <Label BindingContext="AepApp.View.ScanLoginPage" HeightRequest="0" />
+                    <Label Text="扫码登录" Margin="35,10,0,10" FontSize="19" TextColor="Black" />
                 </Grid>
                 <Grid>
-
                     <Label Text="设置" BindingContext="AepApp.View.SelectSitePage" Margin="35,10,0,10" FontSize="19" TextColor="Black" />
                 </Grid>
             </StackLayout>

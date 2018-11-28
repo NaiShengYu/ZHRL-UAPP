@@ -38,7 +38,7 @@ namespace AepApp.Droid
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
             //百度地图配置
             //Xamarin.FormsBaiduMaps.Init(null);
-            InitJPush();
+            InitJPush(this);
             StatusBar.Activity = this;//获取状态栏高度
             LoadApplication(new App());
             //监听网络变化
@@ -111,11 +111,11 @@ namespace AepApp.Droid
         /// <summary>
         /// init JPush
         /// </summary>
-        private void InitJPush()
+        private void InitJPush(Context context)
         {
             JPushInterface.SetDebugMode(true);
-            JPushInterface.Init(Application.Context);
-            JPushInterface.SetAlias(Application.Context, 0, "alias_test");
+            JPushInterface.Init(context);
+            JPushInterface.SetAlias(context, 0, "alias_test");
 
             BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(this);
             builder.StatusBarDrawable = Resource.Drawable.jpush_notification_icon;

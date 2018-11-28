@@ -3,7 +3,6 @@ using AepApp.Models;
 using AepApp.Tools;
 using AepApp.ViewModels;
 using CloudWTO.Services;
-using Microsoft.AspNetCore.SignalR.Client;
 using Plugin.Media;
 using SimpleAudioForms;
 using System;
@@ -22,6 +21,29 @@ namespace AepApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TestOxyPage : ContentPage, INotifyPropertyChanged
     {
+
+        async Task aaaaaa()
+        {
+
+            string url = "http://sx.azuratech.com:32017" + "/api/mod/custconfig";
+            //string result = await EasyWebRequest.testPostNetWork(url);
+
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url,"","POST","","json");
+
+
+        }
+
+
+
+        void Handle_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+        
+        
+        
+        
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void NotifyPropertyChanged(string propertyName = "")
@@ -176,78 +198,14 @@ namespace AepApp.View
             InitializeComponent();
 
 
-            List<TestPersonViewModel.Person> list = new List<TestPersonViewModel.Person>();
-            for (int i = 0; i < 4; i++)
-            {
-                TestPersonViewModel.Person p = new TestPersonViewModel.Person();
-                p.Name = "name" + i;
-                p.Age = (20 + i).ToString();
-                list.Add(p);
-            }
-            App.personViewModel.SavePersons(list);
 
-            BindingContext = App.personViewModel;
+            aaaaaa();
 
-
-
-
-
-
-            //// Declare string for application temp path and tack on the file extension
-
-
-            ////var source = new file("ppp.mp4");
-            //var path = Path.Combine(Environment.CurrentDirectory, "app_icon_ios-2.doc");
-            ////var path = Path.Combine(Environment.CurrentDirectory, "app_logo11111.png");
-
-            //MV.Source = new Uri(path);
-            //PostupLoadVideoSending(path);
-
-
-            //var data = new OxyDataPageModle().AreaModel;
-            //abc.Model = data;
-        }
-
-        HubConnection connection;
-        public async void OnConnectSignalR(object sender, EventArgs e)
-        {
-            connection = new HubConnectionBuilder()
-                .WithUrl("http://gx.azuratech.com:30021/signalr-loggingEventHub")
-                .Build();
-            connection.On<string, string>("ReceiveMessage", (user, message) =>
-            {
-                DisplayAlert("connect", message, "ok");
-
-            });
-            try
-            {
-                await connection.StartAsync();
-
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("error", ex.Message, "ok");
-            }
-        }
-
-        public async void OnSendSignalR(object sender, EventArgs e)
-        {
-            try
-            {
-                await connection.InvokeAsync("SendMessage", "hello ", "world");
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("error", ex.Message, "ok");
-            }
-        }
-
-        private async void PostupLoadVideoSending(string path)
-        {
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(path, ".mp4", ConstantUtils.UPLOAD_EMERGENCY_BASEURL, ConstantUtils.UPLOAD_EMERGENCY_API);
-
+         
         }
 
 
-    }
+       
+
+        }
 }

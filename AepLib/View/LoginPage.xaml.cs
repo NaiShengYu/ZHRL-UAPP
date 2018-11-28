@@ -152,6 +152,12 @@ namespace AepApp.View
             }
         }
 
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            Login();
+        
+        }
+
         private void deleteData()
         {
 
