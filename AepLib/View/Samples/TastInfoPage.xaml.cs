@@ -711,18 +711,9 @@ namespace AepApp.View.Samples
                 TimePicker tp = sender as TimePicker;
                 if (_currentSample != null)
                 {
-
-
                     DateTime t = new DateTime(_currentSample.Sampletime.Year, _currentSample.Sampletime.Month, _currentSample.Sampletime.Day,
                         tp.Time.Hours, tp.Time.Minutes, tp.Time.Seconds);
                     _currentSample.Sampletime = t;
-
-
-
-
-
-
-
                 }
             }
         }

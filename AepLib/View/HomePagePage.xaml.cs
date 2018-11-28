@@ -18,28 +18,10 @@ namespace AepApp.View
         {
             InitializeComponent();
             SetUserDepartment();
-            if (App.APP_TYPE == App.TYPE_GAOXIN)
-            {
-                Title = AppNameConst.GAOXIN;
-            }
-            else if (App.APP_TYPE == App.TYPE_YISHUI)
-            {
-                Title = AppNameConst.YISHUI;
-            }
+            Title = App.siteName;
+            GetModuleGridStatics();
+            GetModule360Statics();
 
-
-            if (App.APP_TYPE == App.TYPE_GAOXIN)
-            {
-                Layout360Statics.IsVisible = true;
-                GetModule360Statics();
-            }
-            else if ("0".Equals(App.EP360Module.status))//模块功能启用
-            {
-                LayoutGridStatics.IsVisible = true;
-                Layout360Statics.IsVisible = true;
-                GetModuleGridStatics();
-                GetModule360Statics();
-            }
         }
 
         private void GetModuleGridStatics()

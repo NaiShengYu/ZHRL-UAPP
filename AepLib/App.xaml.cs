@@ -49,14 +49,15 @@ namespace AepApp
         public const string SimVisModuleID = "4C534464-AD7D-42FF-80AF-0049CDC6A9F6";
         public const string environmentalQualityID = "3DB80834-1FAA-4062-AAC9-3FAB6B390B4D";//环保监测预警平台基础数据
 
+        public static string siteName = "";
         public static string FrameworkURL = "";
         //public static string FrameworkURL = "http://gx.azuratech.com:30000";
         //public static string FrameworkURL = "http://dev.azuratech.com:50000";
         public static string SampleURL = "http://192.168.1.128:30011";//采样模块暂时接口
 
-        public static int TYPE_GAOXIN = 1;//高新区
-        public static int TYPE_YISHUI = 2;//沂水
-        public static int APP_TYPE = TYPE_GAOXIN;
+        //public static int TYPE_GAOXIN = 1;//高新区
+        //public static int TYPE_YISHUI = 2;//沂水
+        //public static int APP_TYPE = TYPE_GAOXIN;
 
         public static UserInfoModel userInfo = null;
         public static GridUserInfoModel gridUser = null;
