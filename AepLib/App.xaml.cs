@@ -245,12 +245,12 @@ namespace AepApp
             else MainPage = new NavigationPage(new LoginPage());
         }
 
-        bool _autologgedin = false;
-        bool _isSampling = false;
-        bool _isEmergency = false;
-        bool _ISBasicData = false;
-        bool _isEP360 = false;
-        bool _isenvironmental = false;
+        public static bool _autologgedin = false;
+        public static bool _isSampling = false;
+        public static bool _isEmergency = false;
+        public static bool _ISBasicData = false;
+        public static bool _isEP360 = false;
+        public static bool _isenvironmental = false;
 
         public bool _canGo = false;
 
