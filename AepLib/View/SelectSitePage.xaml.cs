@@ -183,7 +183,33 @@ namespace AepApp.View
             //{
                 App.isSetToLogin = true;  //从设置按钮进入登入按钮
             Application.Current.MainPage = new NavigationPage(new LoginPage());
+
+   
+
+
             App.gridUser = null;//清空数据
+            App.EP360Module = null;
+            App.SamplingModule = null;
+            App.BasicDataModule = null;
+            App.EmergencyModule = null;
+            App.environmentalQualityModel = null;
+            App.moduleConfigEmergency = null;
+            App.moduleConfigSampling = null;
+            App.moduleConfigEP360 = null;
+            App.moduleConfigFramework = null;
+            App.moduleConfigEmergency = null;
+            App.moduleConfigENVQ = null;
+            App.moduleConfigEmergency = null;
+            App.moduleConfigEmergency = null;
+
+            App.userInfo = null;
+            App._autologgedin = false;
+            App._isSampling = false;
+            App._isEmergency = false;
+            App._ISBasicData = false;
+            App._isEP360 = false;
+            App._isenvironmental = false;
+          
             //Navigation.PushAsync(new LoginPage());  //自动登陆界面进去
             //}
             //else {

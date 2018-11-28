@@ -131,6 +131,9 @@ namespace AepApp.View
                     //await Navigation.PushAsync(new MasterAndDetailPage());
                     //为了切换不同的账户，也显示不同的列表
 
+
+                    if (App.masterAndDetailPage != null)
+                        App.masterAndDetailPage = null;
                     App.masterAndDetailPage = new MasterAndDetailPage();
                     Application.Current.MainPage = new NavigationPage(App.masterAndDetailPage);
                     App.OpenMenu(new HomePagePage());
