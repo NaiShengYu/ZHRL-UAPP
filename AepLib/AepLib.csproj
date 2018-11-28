@@ -15,6 +15,9 @@
     <EmbeddedResource Include="msyh.ttc" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Tools\AppNameConst.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Page1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

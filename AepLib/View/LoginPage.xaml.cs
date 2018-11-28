@@ -34,13 +34,6 @@ namespace AepApp.View
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetBackButtonTitle(this, "");
-            if(App.APP_TYPE == App.TYPE_YISHUI)
-            {
-                site_name.Text = AppNameConst.YISHUI;
-            }else if (App.APP_TYPE == App.TYPE_GAOXIN)
-            {
-                site_name.Text = AppNameConst.GAOXIN;
-            }
         }
 
         private void Select_site(object sender, EventArgs e)
@@ -76,6 +69,7 @@ namespace AepApp.View
                 site_name.Text = item.Name;
                 App.FrameworkURL = item.SiteAddr; //获取baseUrl
                 //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
+                App.siteName = item.customerName;
             }
             else
             {
@@ -135,9 +129,9 @@ namespace AepApp.View
                 if (autologin && (App.Current as App)._canGo)
                 {
                     //await Navigation.PushAsync(new MasterAndDetailPage());
+                    //为了切换不同的账户，也显示不同的列表
 
-                    if (App.masterAndDetailPage == null)
-                        App.masterAndDetailPage = new MasterAndDetailPage();
+                    App.masterAndDetailPage = new MasterAndDetailPage();
                     Application.Current.MainPage = new NavigationPage(App.masterAndDetailPage);
                     App.OpenMenu(new HomePagePage());
                     if(Navigation.NavigationStack.Count > 1)
