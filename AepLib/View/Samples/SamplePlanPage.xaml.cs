@@ -54,6 +54,7 @@ namespace AepApp.View.Samples
         {
             if (e.SelectedItem == null) return;
             MySamplePlanItems item = e.SelectedItem as MySamplePlanItems;
+            item = App.vm.selectSamplePlanWithItem(item);
             Navigation.PushAsync(new SamplePlanInfoPage(item));
             listView.SelectedItem = null;
         }

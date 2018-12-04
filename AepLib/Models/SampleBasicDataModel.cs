@@ -5,6 +5,8 @@ namespace AepApp.Models
     {
         //公共信息ID guid
         public string id { get; set; }
+        //公共信息ID guid
+        public string basicDataModelID { get; set; }
         //水域功能类别 string 
         public string areafunctype { get; set; }
         //水域名称 string

@@ -9,9 +9,7 @@ namespace AepApp.Models
 
     public class MySamplePlanResult
     {
-
         public ObservableCollection<MySamplePlanItems> Items { get; set; }
-
     }
 
 
@@ -48,6 +46,7 @@ namespace AepApp.Models
 
         public ObservableCollection<TasksList> tasklist { get; set; }
 
+        public SampleBasicDataModel basicDataModel { get; set; }
         //未完成的数量
         public int unCompleteNum
         {
