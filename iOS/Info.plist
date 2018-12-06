@@ -9,11 +9,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>9.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -49,20 +49,20 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>是否允许获取您的当前位置信息</string>
+	<string>为了更好的导航到正确的任务位置，请允许获取您的当前位置信息</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>This app needs access to the camera to take photos.</string>
+	<string>为了上传您工作照片，请允许使用相机</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs access to photos.</string>
+	<string>为了上传您工作照片，请允许使用照片库</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app needs access to microphone.</string>
+	<string>为了上传您的语音，请允许使用麦克风</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This app needs access to the photo gallery.</string>
+	<string>为了可以把您工作照片，请允许使用照片库</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImage-1.launchimage</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -73,6 +73,14 @@
 		<string>qqmap</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>沂水展示</string>
+	<string>环保监管</string>
+	<key>NSContactsUsageDescription</key>
+	<string>为了快速的联系您的好友，请允许使用联系人</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>为了快速选择任务时间，请允许使用日历</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>为了可以上传播放您的工作录像，请允许使用媒体库</string>
+	<key>NSSiriUsageDescription</key>
+	<string>为了播放语音，请允许使用siri</string>
 </dict>
 </plist>

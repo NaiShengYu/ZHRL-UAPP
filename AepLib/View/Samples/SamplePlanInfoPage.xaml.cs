@@ -105,11 +105,7 @@ namespace AepApp.View.Samples
                 if(basicDataModel !=null)
                     _samplePlanItems.basicDataModel = basicDataModel;
             }
-            else
-            {
-                Console.WriteLine(hTTPResponse);
-                _samplePlanItems.basicDataModel.sampledate = DateTime.Now;
-            }
+           
             basicDataSK.BindingContext = _samplePlanItems.basicDataModel;
         }
 
@@ -181,8 +177,11 @@ namespace AepApp.View.Samples
                 if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     DependencyService.Get<Sample.IToast>().ShortAlert("修改成功");
-                    if (string.IsNullOrWhiteSpace(_samplePlanItems.basicDataModel.basicDataModelID))
-                        _samplePlanItems.basicDataModel.basicDataModelID = hTTPResponse.Results;
+                    if (string.IsNullOrWhiteSpace(_samplePlanItems.basicDataModel.basicDataModelID)){
+                        string result = JsonConvert.DeserializeObject<string>(hTTPResponse.Results);
+                        _samplePlanItems.basicDataModel.basicDataModelID = result;
+
+                    }
                 }
                 else
                 {
