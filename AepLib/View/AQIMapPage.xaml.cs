@@ -233,11 +233,14 @@ namespace AepApp.View
                 parameter.refIds = new string[sites.Count];
                 for (int i = 0; i < sites.Count; i++) parameter.refIds[i] = sites[i].StationId;
                 string param = JsonConvert.SerializeObject(parameter);
-                String result = EasyWebRequest.sendPOSTHttpWebWithTokenRequest(uri, param);
+                String result = EasyWebRequest.sendPOSTHttpWebWithTokenRequest(uri, param);//尝试过用SendHTTPRequestAsync函数，但是会卡死
                 details = JsonConvert.DeserializeObject<List<AirDetailModels.FacValsDetails>>(result);
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
+
+                if (details == null) return;
+
                 foreach (var d in details)
                 {
                     AirPageModels.AirInfo site = idsitedict[d.refId];

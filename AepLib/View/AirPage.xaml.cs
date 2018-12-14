@@ -32,9 +32,7 @@ namespace AepApp.View
             this.Title = "环境空气站";
             ToolbarItems.Add(new ToolbarItem("", "map.png", () =>
             {
-                //Navigation.PushAsync(new MapPage());
                 Navigation.PushAsync(new AQIMapPage(sendPages));
-                //Navigation.PushAsync(new MapPage2(sendPages));
             }));
 
                 //请求网络数据
@@ -42,29 +40,17 @@ namespace AepApp.View
             ReqAirSiteData();       
         }
 
-        private void ReqAirSiteData()
+        async void ReqAirSiteData()
         {
-            //api/FactorData/GetLastAQIValsForPhone
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.DoWork += (sender1, e1) =>
-            {
+           
                 string uri = App.BaseUrl + "/api/FactorData/GetLastAQIValsForPhone";
-                result = EasyWebRequest.sendGetHttpWebRequest(uri);
-            };
-            wrk.RunWorkerCompleted += (sender1, e1) =>
-            {
-
+                HTTPResponse hTTPResponse =await EasyWebRequest.SendHTTPRequestAsync(uri, "", "GET", "", "json");
                 try{
-                    airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(result);
+                    airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(hTTPResponse.Results);
                     SortAQI();
                     listView.ItemsSource = dataList;
                 }catch{
-                    
                 }
-              
-                CrossHud.Current.Dismiss();
-            };
-            wrk.RunWorkerAsync();
         }
 
         private void SortAQI()
