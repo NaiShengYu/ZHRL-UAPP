@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AepApp.Droid", "Droid\AepAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JPush.Binding.Droid", "JPush.Binding.Droid\JPush.Binding.Droid.csproj", "{83390823-B6C8-4089-B357-4B4760C19291}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AepLib", "AepLib\AepLib.csproj", "{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AepLib", "AepLib\AepLib.csproj", "{AB4FED17-66A7-42D7-A7F7-FE7190221D1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JPush.Binding.iOS", "JPush.Binding.iOS\JPush.Binding.iOS.csproj", "{8FEC2B2A-2922-479C-BBC6-554C1C9BDB1C}"
 EndProject
@@ -29,7 +29,6 @@ Global
 		{7F633CD2-4EA6-4EAF-88AF-9B5AECAE000F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{7F633CD2-4EA6-4EAF-88AF-9B5AECAE000F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{7F633CD2-4EA6-4EAF-88AF-9B5AECAE000F}.Release|Any CPU.ActiveCfg = Release|iPhone
-		{7F633CD2-4EA6-4EAF-88AF-9B5AECAE000F}.Release|Any CPU.Build.0 = Release|iPhone
 		{7F633CD2-4EA6-4EAF-88AF-9B5AECAE000F}.Release|iPhone.ActiveCfg = Release|iPhone
 		{7F633CD2-4EA6-4EAF-88AF-9B5AECAE000F}.Release|iPhone.Build.0 = Release|iPhone
 		{7F633CD2-4EA6-4EAF-88AF-9B5AECAE000F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
@@ -79,7 +78,6 @@ Global
 		{8FEC2B2A-2922-479C-BBC6-554C1C9BDB1C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{8FEC2B2A-2922-479C-BBC6-554C1C9BDB1C}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{8FEC2B2A-2922-479C-BBC6-554C1C9BDB1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FEC2B2A-2922-479C-BBC6-554C1C9BDB1C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8FEC2B2A-2922-479C-BBC6-554C1C9BDB1C}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{8FEC2B2A-2922-479C-BBC6-554C1C9BDB1C}.Release|iPhone.Build.0 = Release|Any CPU
 		{8FEC2B2A-2922-479C-BBC6-554C1C9BDB1C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU

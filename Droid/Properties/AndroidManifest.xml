@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.zhrl.AepApp" android:installLocation="auto" android:versionCode="5" android:versionName="1.2.2">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.zhrl.AepApp" android:installLocation="auto" android:versionCode="5" android:versionName="1.0">
 	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="环境保护" android:icon="@drawable/icon">
+	<application android:label="环保监管" android:icon="@drawable/icon">
 		<service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"></service>
 		<meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="5Y9VMLaHObhBLUWOP2s6LgDGW5nKdxFR" />
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
