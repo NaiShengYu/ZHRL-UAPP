@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AepApp.View.AirDetailPage"         
@@ -26,8 +26,8 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                    <Button Text="24小时" Clicked="Hours" BackgroundColor="Gray" x:Name="hours"/>
-                    <Button Text="30天" Clicked="Days" BackgroundColor="White" x:Name="days"/>
+                    <Button Text=" 24小时 " Clicked="Hours" BackgroundColor="Gray" x:Name="hours"/>
+                    <Button Text=" 30天 " Clicked="Days" BackgroundColor="White" x:Name="days"/>
                 </StackLayout>
                 <oxy:PlotView x:Name="oxyPlot" HeightRequest="250" 
                             />

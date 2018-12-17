@@ -94,12 +94,14 @@ namespace AepApp.View
 
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            if (listView.SelectedItem == null) return;
             AirPageModels.AirInfo airInfo =  e.SelectedItem as AirPageModels.AirInfo;
             if (airInfo.info != null)
             {
                 Navigation.PushAsync(new AirDetailPage(airInfo));
                 //DependencyService.Get<Sample.IToast>().ShortAlert("(　o=^•ェ•)o　┏━┓");
             }
+            listView.SelectedItem = null;
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
