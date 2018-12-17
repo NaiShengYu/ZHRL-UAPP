@@ -25,7 +25,7 @@
                 </Frame>
             </Grid>
             <StackLayout Grid.Row="1" BackgroundColor="White" Spacing="0" x:Name="menu1">
-                <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+              <!--  <Label Text="我的" TextColor="White" BackgroundColor="rgb(224,159,78)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                 <Grid IsVisible="{Binding menuSampleCarry}">
                     <Label BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0" />
                     <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
@@ -37,7 +37,7 @@
                 <Grid IsVisible="{Binding menuSampleTask}">
                     <Label BindingContext="AepApp.View.Samples.SamplePlanPage" HeightRequest="0" />
                     <Label Text="{Binding menuSampleTaskLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
-                </Grid>
+                </Grid>-->
             </StackLayout>
             <!--<BoxView BackgroundColor="#D6D6D6" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="1"/>-->
             <ScrollView Grid.Row="2" BackgroundColor="White">
@@ -58,10 +58,10 @@
                             </DataTrigger>
                         </Grid.Triggers>
                         <Label BindingContext="AepApp.View.AirPage" HeightRequest="0" BackgroundColor="Transparent" />
-                        <!--                            空气质量-->
+<!--                                                  空气质量-->
                         <Label Text="{Binding menuAirLabel}" />
                     </Grid>
-                    <Grid StyleClass="menuitem" IsVisible="false">
+                 <!--   <Grid StyleClass="menuitem" IsVisible="false">
                         <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding menuWater}" Value="true">
                                 <Setter Property="IsVisible" Value="true">
@@ -69,10 +69,10 @@
                             </DataTrigger>
                         </Grid.Triggers>
                         <Label BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" HeightRequest="0" BackgroundColor="Transparent" />
-                        <!--                            Text="水环境质量"-->
+                                                    Text="水环境质量"
                         <Label Text="{Binding menuWaterLabel}" />
-                    </Grid>
-                    <Grid StyleClass="menuitem" IsVisible="false">
+                    </Grid>-->
+                   <!-- <Grid StyleClass="menuitem" IsVisible="false">
                         <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding menuVOC}" Value="true">
                                 <Setter Property="IsVisible" Value="true">
@@ -80,10 +80,10 @@
                             </DataTrigger>
                         </Grid.Triggers>
                         <Label BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" HeightRequest="0" BackgroundColor="Transparent" />
-                        <!--                            Text="VOCs环境质量"-->
+                                                  Text="VOCs环境质量"
                         <Label Text="{Binding menuVOCLabel}" />
-                    </Grid>
-                    <Grid StyleClass="menuitem" IsVisible="false">
+                    </Grid>-->
+               <!--     <Grid StyleClass="menuitem" IsVisible="false">
                         <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding menuStandards}" Value="true">
                                 <Setter Property="IsVisible" Value="true">
@@ -91,9 +91,9 @@
                             </DataTrigger>
                         </Grid.Triggers>
                         <Label BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" HeightRequest="0" BackgroundColor="Transparent" />
-                        <!--                            Text="环境质量标准"-->
+                                                   Text="环境质量标准"
                         <Label Text="{Binding menuStandardsLabel}" />
-                    </Grid>
+                    </Grid>-->
                     <StackLayout Spacing="0" x:Name="EmegencyLat">
                         <!--                        环境应急-->
                         <Label Text="{Binding menuEmegencyLabel}" IsVisible="false" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center"
@@ -221,7 +221,7 @@
                             </Grid>
                         </StackLayout>
                         <StackLayout x:Name="layoutSampling" Spacing="0">
-                            <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                          <!--  <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             <Grid IsVisible="{Binding menuSampleCarry}">
                                 <Label BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0" />
                                 <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
@@ -233,7 +233,7 @@
                             <Grid IsVisible="{Binding menuSampleTask}">
                                 <Label BindingContext="AepApp.View.Samples.SamplePlanPage" HeightRequest="0" />
                                 <Label Text="{Binding menuSampleTaskLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
-                            </Grid>
+                            </Grid>-->
                         </StackLayout>
                         <StackLayout x:Name="layoutGrid" Spacing="0" IsVisible="False">
                             <!--                            text = 网格化管理-->

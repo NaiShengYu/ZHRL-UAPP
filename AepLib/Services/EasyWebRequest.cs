@@ -254,7 +254,8 @@ namespace CloudWTO.Services
                 byte[] bs = Encoding.GetEncoding("UTF-8").GetBytes(param);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
                 req.ContentType = "application/json";
-                req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + App.token);//给请求添加权限
+                if(!string.IsNullOrWhiteSpace(App.token))
+                    req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + App.token);//给请求添加权限
                 req.ContentLength = bs.Length;
                 req.Method = "POST";
                 //req.ContentType = "application/x-www-form-urlencoded";               

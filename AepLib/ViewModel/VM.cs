@@ -125,10 +125,16 @@ namespace AepApp.ViewModel
                     //p.name = "isuemg";
                     //p.address = "sjegjg";
                     var pInDb = _dbContext.Samples.FirstOrDefault(m => p.id.Equals(m.id));
+                    p.basicDataModel = new SampleBasicDataModel
+                    {
+                        sampledate = DateTime.Now,
+                    };
                     if (pInDb == null)
                     {
                         _dbContext.Samples.Add(p);
                     }else{
+                        if (pInDb.basicDataModel != null)
+                            p.basicDataModel = pInDb.basicDataModel;
                         pInDb = ElementMapping.Mapper(pInDb, p);//model属性映射快速赋值
                     }
                     _dbContext.SaveChanges();
@@ -147,6 +153,17 @@ namespace AepApp.ViewModel
                 .ToList();
             Plans = new ObservableCollection<MySamplePlanItems>(plist);
 
+        }
+
+        public void saveDataWithModel(MySamplePlanItems item){
+            var pIndb = _dbContext.Samples.FirstOrDefault(m => item.id.Equals(m.id));
+            pIndb = ElementMapping.Mapper(pIndb, item);//model属性映射快速赋值
+            _dbContext.SaveChanges();
+        }
+
+        public MySamplePlanItems selectSamplePlanWithItem(MySamplePlanItems item){
+            var pIndb = _dbContext.Samples.FirstOrDefault(m => item.id.Equals(m.id));
+            return pIndb;
         }
 
 

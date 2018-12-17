@@ -12,19 +12,22 @@ namespace AepApp.iOS
     public class EntryExtRenderer_iOS : EntryRenderer
     {
         public EntryExtRenderer_iOS() { }
+        
 
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
-            if ((Control != null) && (e.NewElement != null))
+            if ((Control != null) && (e.NewElement != null) && (e.NewElement as EntryExt) != null) {
                 try
                 {
+                    Console.WriteLine($"....{(e.NewElement as EntryExt).ReturnKeyType.ToString()}");
                     Control.ReturnKeyType = (e.NewElement as EntryExt).ReturnKeyType.GetValueFromDescription();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("ex:" + ex);
-                }       
+                }
+                       }       
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
