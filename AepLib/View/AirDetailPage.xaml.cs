@@ -126,6 +126,7 @@ namespace AepApp.View
         {
             AirDetailModels.Factors factorInfo = e.SelectedItem as AirDetailModels.Factors;
             //DependencyService.Get<Sample.IToast>().ShortAlert("" + factorInfo.FacValueDetails.val);
+            if (factorInfo.FacValueDetails == null) return;
             curFacId = factorInfo.FacValueDetails.refId;
             //获取图表数据
             if (isHours)
