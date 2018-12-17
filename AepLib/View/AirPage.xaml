@@ -41,6 +41,7 @@
             </Grid>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
             <ListView x:Name="listView" ItemTemplate="{StaticResource aqi}"  ItemSelected="listView_ItemSelected"/>
+            
             <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand"  HorizontalOptions="Center">
                 <Button Text="PM2.5排序" Margin="0,0,45,0" Clicked="PMSort"/>
                 <Button Text="AQI排序" Margin="45,0,0,0" Clicked="AQIsort"/>

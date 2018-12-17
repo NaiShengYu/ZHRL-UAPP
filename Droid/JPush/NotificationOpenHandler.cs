@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-//using CN.Jpush.Android.Api;
+using CN.Jpush.Android.Api;
 
 namespace AepApp.Droid.JPush
 {

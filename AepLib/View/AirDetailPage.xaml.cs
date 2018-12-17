@@ -216,6 +216,11 @@ namespace AepApp.View
                 MinorGridlineStyle = LineStyle.None, //次网格样式
                
             };
+            if (datas.Count == 0)
+            {
+                dtx.Minimum = DateTimeAxis.ToDouble(DateTime.Now.AddDays(-24));
+                dtx.Maximum = DateTimeAxis.ToDouble(DateTime.Now);
+            }
             //设置y轴(线性轴)
             LinearAxis ylx = new LinearAxis()
             {
@@ -251,14 +256,20 @@ namespace AepApp.View
             int num = datas.Count;
             // 设置X轴设置(时间轴)
             DateTimeAxis dtx = new DateTimeAxis() {
-                StringFormat = "yyyy-MM-dd",               
-                Position = AxisPosition.Bottom,             
+                StringFormat = "yyyy-MM-dd",
+                Position = AxisPosition.Bottom,
                 //Title = "Year",               
                 MinorIntervalType = DateTimeIntervalType.Days,
                 IntervalType = DateTimeIntervalType.Days, //间隔类型（天数）
                 MajorGridlineStyle = LineStyle.Solid, //主网格样式
                 MinorGridlineStyle = LineStyle.None, //次网格样式
+               
             };
+            if(datas.Count == 0)
+            {
+                dtx.Minimum = DateTimeAxis.ToDouble(DateTime.Now.AddDays(-30));
+                dtx.Maximum = DateTimeAxis.ToDouble(DateTime.Now);
+            }
             //设置y轴(线性轴)
             LinearAxis ylx = new LinearAxis() {
                 IsPanEnabled = false,
