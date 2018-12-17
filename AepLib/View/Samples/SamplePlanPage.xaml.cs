@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using CloudWTO.Services;
 using Xamarin.Essentials;
 using AepApp.AuxiliaryExtension;
+using AepApp.Tools;
 
 namespace AepApp.View.Samples
 {

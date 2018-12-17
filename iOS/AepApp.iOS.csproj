@@ -372,7 +372,9 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\app_icon_ios.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\app_icon_ios.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tab_about.png" />

@@ -6,6 +6,7 @@ namespace AepApp.Tools
 {
     public class NetWorkStateGrid : Grid
     {
+
         public NetWorkStateGrid()
         {
             BackgroundColor = Color.Yellow;
@@ -33,5 +34,6 @@ namespace AepApp.Tools
                 IsVisible = true;
             else IsVisible = false;
         }
+
     }
 }

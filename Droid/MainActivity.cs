@@ -3,7 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using CN.Jpush.Android.Api;
+//using CN.Jpush.Android.Api;
 using OxyPlot;
 using Plugin.CurrentActivity;
 using System;
@@ -16,7 +16,7 @@ using Xamarin.Forms;
 [assembly: UsesPermission(Android.Manifest.Permission.Flashlight)]
 namespace AepApp.Droid
 {
-    [Activity(Label = "环境保护", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, 
+    [Activity(Label = "环保监管", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
         LaunchMode = LaunchMode.SingleTask)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
@@ -113,13 +113,13 @@ namespace AepApp.Droid
         /// </summary>
         private void InitJPush(Context context)
         {
-            JPushInterface.SetDebugMode(true);
-            JPushInterface.Init(context);
-            JPushInterface.SetAlias(context, 0, "alias_test");
+            //JPushInterface.SetDebugMode(true);
+            //JPushInterface.Init(context);
+            //JPushInterface.SetAlias(context, 0, "alias_test");
 
-            BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(this);
-            builder.StatusBarDrawable = Resource.Drawable.jpush_notification_icon;
-            JPushInterface.SetPushNotificationBuilder(new Java.Lang.Integer(1), builder);
+            //BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(this);
+            //builder.StatusBarDrawable = Resource.Drawable.jpush_notification_icon;
+            //JPushInterface.SetPushNotificationBuilder(new Java.Lang.Integer(1), builder);
         }
 
 
@@ -127,14 +127,14 @@ namespace AepApp.Droid
         {
             base.OnResume();
 
-            JPushInterface.OnResume(this);
+            //JPushInterface.OnResume(this);
         }
 
         protected override void OnPause()
         {
             base.OnPause();
 
-            JPushInterface.OnPause(this);
+            //JPushInterface.OnPause(this);
         }
     }
 

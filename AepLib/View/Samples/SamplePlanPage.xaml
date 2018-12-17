@@ -19,7 +19,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
-            <netView:NetWorkStateGrid/>
+            <netView:NetWorkStateGrid x:Name="GridNet"/>
             <Grid Grid.Row="1">
                 <Image Source="left" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" />
                 <Button VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="Transparent" WidthRequest="80" Clicked="reduceADay" />
