@@ -221,12 +221,8 @@
                             </Grid>
                         </StackLayout>
                         <StackLayout x:Name="layoutSampling" Spacing="0">
-<<<<<<< HEAD
-                            <!--  <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-=======
                             <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
->>>>>>> 0dac8414cef2c7528e1758cf6ee7890ec4516111
-                            <Grid IsVisible="{Binding menuSampleCarry}">
+                           <Grid IsVisible="{Binding menuSampleCarry}">
                                 <Label BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0" />
                                 <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
                             </Grid>

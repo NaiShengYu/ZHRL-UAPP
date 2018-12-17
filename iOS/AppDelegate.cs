@@ -64,6 +64,7 @@ namespace AepApp.iOS
             SQLitePCL.Batteries.Init();
             //Popup初始化
             Rg.Plugins.Popup.Popup.Init();
+            Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
 
             InTheHand.Forms.Platform.iOS.InTheHandForms.Init();
