@@ -6,6 +6,7 @@ using AepApp.View.EnvironmentalEmergency;
 //using AepApp.View.SecondaryFunction;
 using Xamarin.Forms.PlatformConfiguration;
 using AepApp.View.Gridding;
+using Sample;
 
 namespace AepApp.View
 {
@@ -16,25 +17,26 @@ namespace AepApp.View
         public MasterPage()
         {
             InitializeComponent();
-            nameLab.Text = App.userInfo.userName;
-            layoutSampling.IsVisible = App.moduleConfigSampling != null;
-            layoutSampling.BindingContext = App.moduleConfigSampling;
-            menu1.IsVisible = App.moduleConfigSampling != null;
-            menu1.BindingContext = App.moduleConfigSampling;
-            layoutEP.IsVisible = App.moduleConfigEP360 != null;
-            layoutEP.BindingContext = App.moduleConfigEP360;
-            //if(App.APP_TYPE == App.TYPE_GAOXIN)
-            //{
-            //    layoutGrid.IsVisible = false;
-            //}
-            //else
-            //{
+
+            try
+            {
+                nameLab.Text = App.userInfo.userName;
+                layoutSampling.IsVisible = App.moduleConfigSampling != null;
+                layoutSampling.BindingContext = App.moduleConfigSampling;
+                menu1.IsVisible = App.moduleConfigSampling != null;
+                menu1.BindingContext = App.moduleConfigSampling;
+                layoutEP.IsVisible = App.moduleConfigEP360 != null;
+                layoutEP.BindingContext = App.moduleConfigEP360;
                 layoutGrid.IsVisible = App.moduleConfigEP360 != null;
                 layoutGrid.BindingContext = App.moduleConfigEP360;
-            //}
-            menu3.BindingContext = App.moduleConfigFramework;
-            EmegencyLat.BindingContext = App.moduleConfigEmergency;
-            menu2.BindingContext = App.moduleConfigENVQ;
+                menu3.BindingContext = App.moduleConfigFramework;
+                EmegencyLat.BindingContext = App.moduleConfigEmergency;
+                menu2.BindingContext = App.moduleConfigENVQ;
+            }
+            catch (Exception ex)
+            {
+                DependencyService.Get<IToast>().ShortAlert("public MasterPage()错误：" + ex.Message);
+            }
 
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) =>

@@ -15,6 +15,8 @@ using AepApp.Models;
 using Newtonsoft.Json;
 
 using AepApp.View.Gridding;
+using Sample;
+
 namespace AepApp.View
 {
     public partial class MasterAndDetailPage : MasterDetailPage
@@ -49,12 +51,20 @@ namespace AepApp.View
         {
             InitializeComponent();
 
+            try
+            {
+                App.appHunbegerPage = this;
+                Master = new MasterPage();
+                Master.WidthRequest = 100;
 
-            App.appHunbegerPage = this;
-            Master = new MasterPage();
-            Master.WidthRequest = 100;
+                Detail = new NavigationPage(new HomePagePage());
+            }
+            catch (Exception ex)
+            {
+                DependencyService.Get<IToast>().ShortAlert("MasterAndDetailPage错误：" + ex.Message);
 
-            Detail = new NavigationPage(new HomePagePage());
+            }
+
             //Detail = new NavigationPage(new DisposeEventPage(new GridEventModel
             //{
             //    Title = "午睡吹立场",
