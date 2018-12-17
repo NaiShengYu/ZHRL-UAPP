@@ -19,8 +19,8 @@ namespace AepApp.View.Samples
 {
     public partial class TastInfoPage : ContentPage
     {
-        private ObservableCollection<SampleInfoModel> samplingBottleList { get; set; } = new ObservableCollection<SampleInfoModel>();
-        private ObservableCollection<ImageModel> photoList { get; set; } = new ObservableCollection<ImageModel>();
+        private ObservableCollection<SampleInfoModel> samplingBottleList = new ObservableCollection<SampleInfoModel>();
+        private ObservableCollection<ImageModel> photoList = new ObservableCollection<ImageModel>();
         private ObservableCollection<MultiSelectDataType> itemsFixer = new ObservableCollection<MultiSelectDataType>();//固定剂
         private ObservableCollection<MultiSelectDataType> itemsExamine = new ObservableCollection<MultiSelectDataType>();//检测项目
 
@@ -180,7 +180,9 @@ namespace AepApp.View.Samples
         /// </summary>
         private void ChangeUI()
         {
-            lvSample.ItemsSource = samplingBottleList;
+            //这个判断的作用是iOS中如果samplingBottleList的count从0变成1，lvSample会崩溃
+            if(samplingBottleList.Count >0)
+                lvSample.ItemsSource = samplingBottleList;
             sclv.BindingContext = _currentSample;
             LabNumSample.Text = samplingBottleList.Count + "";
 
@@ -237,6 +239,9 @@ namespace AepApp.View.Samples
             {
                 if (string.IsNullOrWhiteSpace(sampleId))//本地删除
                 {
+                    //这个判断的作用是iOS中如果samplingBottleList的count从1变成0，lvSample会崩溃
+                    if(samplingBottleList.Count==1)
+                         lvSample.ItemsSource = null;
                     samplingBottleList.Remove(_currentSample);
                     ChangeUIAfterDelete(checkIndex);
                 }
@@ -246,8 +251,10 @@ namespace AepApp.View.Samples
                     if (success)
                     {
                         DependencyService.Get<IToast>().ShortAlert("删除成功");
-                        samplingBottleList.Remove(_currentSample);
-                        ChangeUIAfterDelete(checkIndex);
+                    if(samplingBottleList.Count==1)
+                        lvSample.ItemsSource = null;
+                    samplingBottleList.Remove(_currentSample);                     
+                    ChangeUIAfterDelete(checkIndex);
                     }
                     else
                     {
@@ -519,6 +526,7 @@ namespace AepApp.View.Samples
             bool sure = await DisplayAlert("提示", "确定删除所选照片吗？", "确定", "取消");
             if (sure)
             {
+                lvPhoto.ItemsSource = null;
                 for (int i = 0; i < photoList.Count; i++)
                 {
                     if (photoList[i].Status == 2)
@@ -527,6 +535,7 @@ namespace AepApp.View.Samples
                         i--;
                     }
                 }
+                lvPhoto.ItemsSource = photoList;
                 LabNumPhoto.Text = photoList.Count + "";
             }
         }
