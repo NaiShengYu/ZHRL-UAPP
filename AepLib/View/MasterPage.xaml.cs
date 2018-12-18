@@ -96,5 +96,25 @@ namespace AepApp.View
             }
             App.masterAndDetailPage.IsPresented = false;
         }
+        /// <summary>
+        /// 增加事件
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
+        private async void TapGestureRegistrationEventPage_Tapped(object sender, EventArgs e)
+        {
+            if (App.gridUser == null)
+            {
+                App.gridUser = await(App.Current as App).getStaffInfo(App.userInfo.id);
+                if (App.gridUser == null)
+                {
+                    DependencyService.Get<IToast>().ShortAlert("获取网格员信息失败，无法增加事件");
+                    return;
+                }
+            }
+          await Navigation.PushAsync(new RegistrationEventPage(""));
+         
+        }
+
     }
 }

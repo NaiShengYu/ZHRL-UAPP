@@ -233,6 +233,7 @@ namespace AepApp
             {
                 App.FrameworkURL = item.SiteAddr; //获取baseUrl
                 //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
+                App.siteName = item.customerName;
             }
 
             // try auto login
