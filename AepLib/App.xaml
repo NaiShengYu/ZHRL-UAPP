@@ -42,7 +42,7 @@
                                     </Image.Triggers>
                                 </Image>
                             </StackLayout>
-                            <Label Text="{Binding NatureString}" Margin="10,30,55,8" />
+                            <Label Text="{Binding NatureShowString}" Margin="10,30,55,8" />
                         </Grid>
                     </Grid>
                 </ViewCell>

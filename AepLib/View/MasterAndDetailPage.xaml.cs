@@ -62,7 +62,6 @@ namespace AepApp.View
             catch (Exception ex)
             {
                 DependencyService.Get<IToast>().ShortAlert("MasterAndDetailPage错误：" + ex.Message);
-
             }
 
             //Detail = new NavigationPage(new DisposeEventPage(new GridEventModel

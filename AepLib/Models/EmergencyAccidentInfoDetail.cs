@@ -168,7 +168,7 @@ namespace AepApp.Models
                     return "事发地点定位" + locString + "。";
                 }
             }
-            public string NatureString
+            public string NatureShowString
             {
                 get
                 {
