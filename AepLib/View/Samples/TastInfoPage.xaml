@@ -18,84 +18,117 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <ScrollView x:Name="sclv">
-                <StackLayout BackgroundColor="#E6E6E6" Spacing="1">
-                    <Grid x:Name="GridType" BackgroundColor="White">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                        </Grid.GestureRecognizers>
-                        <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
-                        <Label Margin="10,12,0,12" x:Name="LabType" Text="" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <Label Margin="150,12,30,12" x:Name="LabExamineItems" Text="" HorizontalOptions="End" Font="16" TextColor="Gray" 
+            <StackLayout Spacing="0">
+                <Grid x:Name="GridType" BackgroundColor="White">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Grid.GestureRecognizers>
+                    <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
+                    <Label Margin="10,12,0,12" x:Name="LabType" Text="" Font="17" VerticalOptions="Center"  TextColor="Black"/>
+                    <Label Margin="150,12,30,12" x:Name="LabExamineItems" Text="" HorizontalOptions="End" Font="16" TextColor="Gray" 
                                HeightRequest="30" VerticalTextAlignment="Center" LineBreakMode="TailTruncation"/>
-                    </Grid>
-                    <Grid BackgroundColor="#E6E6E6" Margin="0, 3, 0, 3">
-                        <Label Margin="10,1,0,1" Text="样本" Font="15" VerticalOptions="Center" TextColor="Black"/>
-                        <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Aspect="AspectFit" Source="graytruck">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="FilterTrans_Tapped"/>
-                            </Image.GestureRecognizers>
-                            <Image.Triggers>
-                                <DataTrigger TargetType="Image" Binding="{Binding FilterTrans}" Value="true">
-                                    <Setter Property="Source" Value="bluetruck"/>
-                                </DataTrigger>
-                                <DataTrigger TargetType="Image" Binding="{Binding FilterTrans}" Value="false">
-                                    <Setter Property="Source" Value="graytruck"/>
-                                </DataTrigger>
-                            </Image.Triggers>
-                        </Image>
-                        <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Margin="120,0,0,0" Aspect="AspectFit" Source="graymicroscrope">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="FilterAccept_Tapped"/>
-                            </Image.GestureRecognizers>
-                            <Image.Triggers>
-                                <DataTrigger TargetType="Image" Binding="{Binding FilterAccept}" Value="true">
-                                    <Setter Property="Source" Value="bluemicroscope"/>
-                                </DataTrigger>
-                                <DataTrigger TargetType="Image" Binding="{Binding FilterAccept}" Value="false">
-                                    <Setter Property="Source" Value="graymicroscrope"/>
-                                </DataTrigger>
-                            </Image.Triggers>
-                        </Image>
-                        <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20" CornerRadius="12.5" 
+                </Grid>
+                <Grid BackgroundColor="#E6E6E6" Margin="0, 3, 0, 3">
+                    <Label Margin="10,1,0,1" Text="样本" Font="15" VerticalOptions="Center" TextColor="Black"/>
+                    <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Aspect="AspectFit" Source="graytruck">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FilterTrans_Tapped"/>
+                        </Image.GestureRecognizers>
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding FilterTrans}" Value="true">
+                                <Setter Property="Source" Value="bluetruck"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Image" Binding="{Binding FilterTrans}" Value="false">
+                                <Setter Property="Source" Value="graytruck"/>
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25" Margin="120,0,0,0" Aspect="AspectFit" Source="graymicroscrope">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FilterAccept_Tapped"/>
+                        </Image.GestureRecognizers>
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding FilterAccept}" Value="true">
+                                <Setter Property="Source" Value="bluemicroscope"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Image" Binding="{Binding FilterAccept}" Value="false">
+                                <Setter Property="Source" Value="graymicroscrope"/>
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20" CornerRadius="12.5" 
                                Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#B9B9B9" Margin="0,0,15,0" IsVisible="True">
-                            <Label x:Name="LabNumSample" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White" />
-                        </Frame>
-                    </Grid>
-                    <ai:HCollectionView  x:Name="lvSample"   BackgroundColor="White" Spacing="5" ColumnWidth="80"
-                                 HeightRequest="85" ItemSelected="lvSample_ItemSelected">
-                        <x:Arguments>
-                            <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
-                        </x:Arguments>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ai:ContentCell>
-                                    <Grid BackgroundColor="{Binding BackgroundColor}" Margin="5">
-                                        <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Margin="4">
-                                            <Image.Triggers>
-                                                <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="1">
-                                                    <Setter Property="Source" Value="greentick"/>
-                                                </DataTrigger>
-                                                <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="2">
-                                                    <Setter Property="Source" Value="bluetruck"/>
-                                                </DataTrigger>
-                                                <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="3">
-                                                    <Setter Property="Source" Value="bluemicroscope"/>
-                                                </DataTrigger>
-                                            </Image.Triggers>
-                                        </Image>
-                                        <Image WidthRequest="45" HeightRequest="55" Source="bottle" HorizontalOptions="Center" VerticalOptions="Start"/>
-                                        <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontSize="10" Text="{Binding Number}" HorizontalTextAlignment="Center"/>
-                                    </Grid>
-                                </ai:ContentCell>
+                        <Label x:Name="LabNumSample" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White" />
+                    </Frame>
+                </Grid>
 
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ai:HCollectionView>
+                <CollectionView x:Name="lvSampleN" ItemsLayout="{x:Static ListItemsLayout.HorizontalList}" 
+                                HeightRequest="70">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid BackgroundColor="{Binding BackgroundColor}" WidthRequest="60" HeightRequest="65" Padding="3">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="lvSample_ItemTapped"/>
+                                </Grid.GestureRecognizers>
+                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Margin="4">
+                                    <Image.Triggers>
+                                        <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="1">
+                                            <Setter Property="Source" Value="greentick"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="2">
+                                            <Setter Property="Source" Value="bluetruck"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="3">
+                                            <Setter Property="Source" Value="bluemicroscope"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                                <Image WidthRequest="35" HeightRequest="40" Source="bottle" HorizontalOptions="Center" VerticalOptions="Start"/>
+                                <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontSize="8" Text="{Binding Number}" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+                <ai:HCollectionView  x:Name="lvSample"   BackgroundColor="White" Spacing="5" ColumnWidth="65"
+                                 HeightRequest="60" ItemSelected="lvSample_ItemSelected" IsVisible="False">
+                    <x:Arguments>
+                        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                    </x:Arguments>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ai:ContentCell>
+                                <Grid BackgroundColor="{Binding BackgroundColor}" Margin="5">
+                                    <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Margin="4">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="1">
+                                                <Setter Property="Source" Value="greentick"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="2">
+                                                <Setter Property="Source" Value="bluetruck"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="3">
+                                                <Setter Property="Source" Value="bluemicroscope"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <Image WidthRequest="45" HeightRequest="55" Source="bottle" HorizontalOptions="Center" VerticalOptions="Start"/>
+                                    <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontSize="10" Text="{Binding Number}" HorizontalTextAlignment="Center"/>
+                                </Grid>
+                            </ai:ContentCell>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ai:HCollectionView>
+            </StackLayout>
+
+            <ScrollView x:Name="sclv" Grid.Row="1">
+                <StackLayout BackgroundColor="#E6E6E6" Spacing="1">
 
                     <Grid BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0"  IsVisible="False"/>
@@ -214,7 +247,7 @@
                     </ai:HCollectionView>
                 </StackLayout>
             </ScrollView>
-            <Grid Grid.Row="1" VerticalOptions="End" HorizontalOptions="Fill" HeightRequest="50" BackgroundColor="#e8e8e8">
+            <Grid Grid.Row="2" VerticalOptions="End" HorizontalOptions="Fill" HeightRequest="50" BackgroundColor="#e8e8e8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />

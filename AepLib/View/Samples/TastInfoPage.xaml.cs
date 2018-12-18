@@ -19,8 +19,9 @@ namespace AepApp.View.Samples
 {
     public partial class TastInfoPage : ContentPage
     {
+
         private ObservableCollection<SampleInfoModel> samplingBottleList = new ObservableCollection<SampleInfoModel>();
-        private ObservableCollection<ImageModel> photoList = new ObservableCollection<ImageModel>();
+        private ObservableCollection<ImageModel> photoList  = new ObservableCollection<ImageModel>();
         private ObservableCollection<MultiSelectDataType> itemsFixer = new ObservableCollection<MultiSelectDataType>();//固定剂
         private ObservableCollection<MultiSelectDataType> itemsExamine = new ObservableCollection<MultiSelectDataType>();//检测项目
 
@@ -29,6 +30,7 @@ namespace AepApp.View.Samples
         private string _taskId = "";
         private SampleInfoModel _currentSample;//当前显示的样本
         private SampleInfoModel _lastCheckSample;
+        private int updateSampleCount = 0;
 
         public TastInfoPage(MySamplePlanItems _samplePlanItems, TasksList task)
         {
@@ -165,7 +167,7 @@ namespace AepApp.View.Samples
                 }
                 else
                 {
-                    bar.Text = "上传样本";
+                    bar.Text = "更新样本";
                 }
             }
             else
@@ -180,9 +182,10 @@ namespace AepApp.View.Samples
         /// </summary>
         private void ChangeUI()
         {
-            //这个判断的作用是iOS中如果samplingBottleList的count从0变成1，lvSample会崩溃
-            if(samplingBottleList.Count >0)
+            if(samplingBottleList.Count>0){
+                lvSampleN.ItemsSource = samplingBottleList;
                 lvSample.ItemsSource = samplingBottleList;
+            }
             sclv.BindingContext = _currentSample;
             LabNumSample.Text = samplingBottleList.Count + "";
 
@@ -302,15 +305,15 @@ namespace AepApp.View.Samples
         /// <summary>
         /// 添加/修改样本
         /// </summary>
-        private async Task<bool> EditSample()
+        private async Task<bool> EditSample(SampleInfoModel _currentSample)
         {
 
             bool isEdit = false;
-            if (!string.IsNullOrWhiteSpace(_currentSample.id))
+            if (_currentSample !=  null && !string.IsNullOrWhiteSpace(_currentSample.id))
             {
                 isEdit = true;
             }
-            CrossHud.Current.Show("样本数据上传中...");
+            //CrossHud.Current.Show("样本数据上传中...");
             //string url = App.EP360Module.url + "/Api/WaterData/Add";
             string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/Add";
             string urlUpdate = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/Update";
@@ -352,6 +355,10 @@ namespace AepApp.View.Samples
                     else
                     {
                         bool result = JsonConvert.DeserializeObject<bool>(res.Results);
+                        if (result)
+                        {
+                            _currentSample.Status = "1";
+                        }
                         return result;
                     }
 
@@ -362,10 +369,16 @@ namespace AepApp.View.Samples
                 }
                 finally
                 {
-                    CrossHud.Current.Dismiss();
+                    if (updateSampleCount == samplingBottleList.Count)
+                    {
+                        CrossHud.Current.Dismiss();
+                    }
                 }
             }
-            CrossHud.Current.Dismiss();
+            if(updateSampleCount == samplingBottleList.Count)
+            {
+                CrossHud.Current.Dismiss();
+            }
             return false;
         }
 
@@ -571,30 +584,39 @@ namespace AepApp.View.Samples
 
         private async void BtnSave_Clicked(object sender, EventArgs e)
         {
-            if (_currentSample == null)
+            updateSampleCount = 0;
+            CrossHud.Current.Show("样本数据上传中...");
+            foreach (var item in samplingBottleList)
             {
-                DependencyService.Get<IToast>().ShortAlert("请先选择样本");
-                return;
+                updateSampleCount++;
+                await EditSample(item);
             }
-            bool isEdit = false;
-            if (!string.IsNullOrWhiteSpace(_currentSample.id))
-            {
-                isEdit = true;
-            }
-            bool success = await EditSample();
-            if (success)
-            {
-                ChangeToolbar();
-                int index = samplingBottleList.IndexOf(_currentSample);
-                samplingBottleList[index].Status = "1";
-                ChangeUI();
-                DependencyService.Get<IToast>().ShortAlert(isEdit ? "样本信息更新成功" : "样本上传成功");
-            }
-            else
-            {
-                DependencyService.Get<IToast>().ShortAlert(isEdit ? "样本信息更新失败" : "样本上传失败");
 
-            }
+
+            //if (_currentSample == null)
+            //{
+            //    DependencyService.Get<IToast>().ShortAlert("请先选择样本");
+            //    return;
+            //}
+            //bool isEdit = false;
+            //if (!string.IsNullOrWhiteSpace(_currentSample.id))
+            //{
+            //    isEdit = true;
+            //}
+            //bool success = await EditSample(_currentSample);
+            //if (success)
+            //{
+            //    ChangeToolbar();
+            //    int index = samplingBottleList.IndexOf(_currentSample);
+            //    samplingBottleList[index].Status = "1";
+            //    ChangeUI();
+            //    DependencyService.Get<IToast>().ShortAlert(isEdit ? "样本信息更新成功" : "样本上传成功");
+            //}
+            //else
+            //{
+            //    DependencyService.Get<IToast>().ShortAlert(isEdit ? "样本信息更新失败" : "样本上传失败");
+
+            //}
         }
 
         private void lvSample_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -691,6 +713,22 @@ namespace AepApp.View.Samples
         private void TapGestureRecognizer_GridQr(object sender, EventArgs e)
         {
             ScanQr();
+        }
+
+        private void lvSample_ItemTapped(object sender, EventArgs e)
+        {
+            Grid g = sender as Grid;
+            SampleInfoModel sample = g.BindingContext as SampleInfoModel;
+            if(sample != null)
+            {
+                if (_lastCheckSample != null)
+                {
+                    _lastCheckSample.SetColors(false);
+                }
+                _currentSample = sample;
+                _currentSample.SetColors(true);
+                ChangeUI();
+            }
         }
 
         /// <summary>
