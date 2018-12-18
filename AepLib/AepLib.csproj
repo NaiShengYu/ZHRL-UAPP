@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AiForms.CollectionView" Version="0.3.8-pre" />
+    <PackageReference Include="AiForms.CollectionView" Version="0.3.10-pre" />
     <PackageReference Include="InTheHand.Forms" Version="1.0.2018.423" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.1.0" />

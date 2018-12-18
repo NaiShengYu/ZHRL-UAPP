@@ -59,10 +59,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CollectionView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AiForms.CollectionView.0.3.8-pre\lib\MonoAndroid\CollectionView.dll</HintPath>
+      <HintPath>..\packages\AiForms.CollectionView.0.3.10-pre\lib\MonoAndroid\CollectionView.dll</HintPath>
     </Reference>
     <Reference Include="CollectionView.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AiForms.CollectionView.0.3.8-pre\lib\MonoAndroid\CollectionView.Droid.dll</HintPath>
+      <HintPath>..\packages\AiForms.CollectionView.0.3.10-pre\lib\MonoAndroid\CollectionView.Droid.dll</HintPath>
     </Reference>
     <Reference Include="FastAndroidCamera, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FastAndroidCamera.2.0.0\lib\MonoAndroid403\FastAndroidCamera.dll</HintPath>

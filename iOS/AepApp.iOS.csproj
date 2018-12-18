@@ -85,10 +85,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CollectionView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AiForms.CollectionView.0.3.8-pre\lib\Xamarin.iOS10\CollectionView.dll</HintPath>
+      <HintPath>..\packages\AiForms.CollectionView.0.3.10-pre\lib\Xamarin.iOS10\CollectionView.dll</HintPath>
     </Reference>
-    <Reference Include="CollectionView.iOS, Version=1.0.6876.24830, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AiForms.CollectionView.0.3.8-pre\lib\Xamarin.iOS10\CollectionView.iOS.dll</HintPath>
+    <Reference Include="CollectionView.iOS, Version=1.0.6912.17716, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AiForms.CollectionView.0.3.10-pre\lib\Xamarin.iOS10\CollectionView.iOS.dll</HintPath>
     </Reference>
     <Reference Include="MaterialComponents, Version=1.0.6836.23950, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.iOS.MaterialComponents.60.1.0\lib\Xamarin.iOS\MaterialComponents.dll</HintPath>

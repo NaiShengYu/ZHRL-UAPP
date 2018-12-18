@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using Plugin.Hud;
 using Plugin.Media;
 using Reactive.Bindings;
-using Rg.Plugins.Popup.Services;
 using Sample;
 using System;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace AepApp.View.Samples
     {
 
         private ObservableCollection<SampleInfoModel> samplingBottleList = new ObservableCollection<SampleInfoModel>();
-        private ObservableCollection<ImageModel> photoList  = new ObservableCollection<ImageModel>();
+        private ObservableCollection<ImageModel> photoList = new ObservableCollection<ImageModel>();
         private ObservableCollection<MultiSelectDataType> itemsFixer = new ObservableCollection<MultiSelectDataType>();//固定剂
         private ObservableCollection<MultiSelectDataType> itemsExamine = new ObservableCollection<MultiSelectDataType>();//检测项目
 
@@ -43,7 +42,7 @@ namespace AepApp.View.Samples
                 _taskId = task.taskid;
             }
             lvSampleN.ItemsSource = samplingBottleList;
-            lvSample.ItemsSource = samplingBottleList;
+            lvPhotoN.ItemsSource = photoList;
 
             BindCommonData();
             GetSampleListOfTask();
@@ -243,8 +242,8 @@ namespace AepApp.View.Samples
                 if (string.IsNullOrWhiteSpace(sampleId))//本地删除
                 {
                     //这个判断的作用是iOS中如果samplingBottleList的count从1变成0，lvSample会崩溃
-                    if(samplingBottleList.Count==1)
-                         lvSample.ItemsSource = null;
+                    //if (samplingBottleList.Count == 1)
+                        //lvSampleN.ItemsSource = null;
                     samplingBottleList.Remove(_currentSample);
                     ChangeUIAfterDelete(checkIndex);
                 }
@@ -254,10 +253,10 @@ namespace AepApp.View.Samples
                     if (success)
                     {
                         DependencyService.Get<IToast>().ShortAlert("删除成功");
-                    if(samplingBottleList.Count==1)
-                        lvSample.ItemsSource = null;
-                    samplingBottleList.Remove(_currentSample);                     
-                    ChangeUIAfterDelete(checkIndex);
+                        //if (samplingBottleList.Count == 1)
+                            //lvSampleN.ItemsSource = null;
+                        samplingBottleList.Remove(_currentSample);
+                        ChangeUIAfterDelete(checkIndex);
                     }
                     else
                     {
@@ -309,7 +308,7 @@ namespace AepApp.View.Samples
         {
 
             bool isEdit = false;
-            if (_currentSample !=  null && !string.IsNullOrWhiteSpace(_currentSample.id))
+            if (_currentSample != null && !string.IsNullOrWhiteSpace(_currentSample.id))
             {
                 isEdit = true;
             }
@@ -375,7 +374,7 @@ namespace AepApp.View.Samples
                     }
                 }
             }
-            if(updateSampleCount == samplingBottleList.Count)
+            if (updateSampleCount == samplingBottleList.Count)
             {
                 CrossHud.Current.Dismiss();
             }
@@ -480,22 +479,6 @@ namespace AepApp.View.Samples
         void creatPhotoView()
         {
             LabNumPhoto.Text = photoList.Count + "";
-            lvPhoto.ItemsSource = photoList;
-            lvPhoto.ItemLongTapCommand = new Command((obj) =>
-            {
-                ImageModel img = obj as ImageModel;
-                if (img != null)
-                {
-                    if (photoList[photoList.IndexOf(img)].Status == 2)
-                    {
-                        photoList[photoList.IndexOf(img)].Status = 0;
-                    }
-                    else
-                    {
-                        photoList[photoList.IndexOf(img)].Status = 2;
-                    }
-                }
-            });
         }
 
         private void UpdateTime()
@@ -513,7 +496,7 @@ namespace AepApp.View.Samples
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            MessagingCenter.Unsubscribe<ContentPage, string>(this, "ScanningResult");
+            //MessagingCenter.Unsubscribe<ContentPage, string>(this, "ScanningResult");
             MessagingCenter.Unsubscribe<ContentPage, ObservableCollection<MultiSelectDataType>>(this, "SelectData");
         }
 
@@ -539,7 +522,6 @@ namespace AepApp.View.Samples
             bool sure = await DisplayAlert("提示", "确定删除所选照片吗？", "确定", "取消");
             if (sure)
             {
-                lvPhoto.ItemsSource = null;
                 for (int i = 0; i < photoList.Count; i++)
                 {
                     if (photoList[i].Status == 2)
@@ -548,7 +530,6 @@ namespace AepApp.View.Samples
                         i--;
                     }
                 }
-                lvPhoto.ItemsSource = photoList;
                 LabNumPhoto.Text = photoList.Count + "";
             }
         }
@@ -719,7 +700,7 @@ namespace AepApp.View.Samples
         {
             Grid g = sender as Grid;
             SampleInfoModel sample = g.BindingContext as SampleInfoModel;
-            if(sample != null)
+            if (sample != null)
             {
                 if (_lastCheckSample != null)
                 {
@@ -728,6 +709,28 @@ namespace AepApp.View.Samples
                 _currentSample = sample;
                 _currentSample.SetColors(true);
                 ChangeUI();
+            }
+        }
+
+        private void img_ItemTapped(object sender, EventArgs e)
+        {
+            Image img = sender as Image;
+            if (img == null)
+            {
+                return;
+            }
+            ImageModel model = img.BindingContext as ImageModel;
+            if (model == null)
+            {
+                return;
+            }
+            if (photoList[photoList.IndexOf(model)].Status == 2)
+            {
+                photoList[photoList.IndexOf(model)].Status = 0;
+            }
+            else
+            {
+                photoList[photoList.IndexOf(model)].Status = 2;
             }
         }
 
@@ -741,7 +744,7 @@ namespace AepApp.View.Samples
 
             if (_currentSample != null)
             {
-                DateTime t = new DateTime(e.NewDate.Year, e.NewDate.Month, e.NewDate.Day,TimePickerStart.Time.Hours, TimePickerStart.Time.Minutes, TimePickerStart.Time.Seconds);
+                DateTime t = new DateTime(e.NewDate.Year, e.NewDate.Month, e.NewDate.Day, TimePickerStart.Time.Hours, TimePickerStart.Time.Minutes, TimePickerStart.Time.Seconds);
                 _currentSample.Sampletime = t;
             }
         }
