@@ -25,6 +25,7 @@ using AepApp.AuxiliaryExtension;
 //using AepApp.View.SecondaryFunction;
 using AepApp.View.Samples;
 using Xamarin.Essentials;
+using Sample;
 
 namespace AepApp
 {
@@ -304,8 +305,10 @@ namespace AepApp
             }
             else
             {
-                foreach (ModuleInfo mi in Modules)
-                {
+
+                  try {
+                    foreach (ModuleInfo mi in Modules)
+                    {
                     switch (mi.id.ToUpper())
                     {
                         case EmergencyModuleID: EmergencyModule = mi; break;
@@ -315,16 +318,23 @@ namespace AepApp
                         case SimVisModuleID: SimVisModule = mi; break;
                         case environmentalQualityID: environmentalQualityModel = mi; break;
                     }
-                }
-
-                List<Task> tasks = new List<Task>();
+                       }
+                   } catch (Exception ex) {
+                     DependencyService.Get<IToast>().ShortAlert("mi.id.ToUpper错误："+ex.Message);
+                    }
+                try {
+                     List<Task> tasks = new List<Task>();
                 if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360());  } else _isEP360 = true;
                 if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
                 if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
                 if (EmergencyModule != null && EmergencyModule.status.Equals("0")) tasks.Add(postEmergencyReq()); else _isEmergency = true;
                 if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")){ tasks.Add(postEnvironmentalReq());App.BaseUrl = environmentalQualityModel.url;}  else _isenvironmental = true;
-
                 await Task.WhenAll(tasks.ToArray());
+                } catch (Exception ex) {
+                     DependencyService.Get<IToast>().ShortAlert("Task.WhenAll错误："+ex.Message);
+                }
+
+               
 
 
             }

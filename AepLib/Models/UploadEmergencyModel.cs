@@ -28,6 +28,7 @@ namespace AepApp.Models
             {
                 return "已添加关键化学品\"" + factorName + "\"";
             }
+            set { }
         }
         public string testMethodId { get; set; }/// 测试方法编号
         public string testMethodName { get; set; } /// 测试方法名称
@@ -43,6 +44,7 @@ namespace AepApp.Models
             {
                 return factorName + testMethodName + "的化验结果为" + factorValue + unitName;
             }
+            set { }
         }
         public double? lat { get; set; }   /// 纬度
         public double? lng { get; set; } /// 经度
@@ -58,6 +60,7 @@ namespace AepApp.Models
             {
                 return Content;
             }
+            set { }
         }
         public string Original { get; set; } /// 原始名称
         public string Current { get; set; } /// 当前名称
@@ -74,6 +77,7 @@ namespace AepApp.Models
         public string VoiceLenth
         {
             get { return "语音" + Length + "秒"; }
+            set { }
         }// 录音的时长
 
 
@@ -93,6 +97,7 @@ namespace AepApp.Models
             {
                 return "风速:" + speed + "m/s," + "风向" + direction + "度";
             }
+            set { }
         }
         public DateTime creationTime { get; set; }
         public string creatorusername { get; set; }
@@ -143,8 +148,12 @@ namespace AepApp.Models
         {
             get
             {
-                return TargetLng.Value.ToString("0.0#####") + " E, " + TargetLat.Value.ToString("0.0#####") + " N";
+                if (TargetLat != null && TargetLng != null)
+                    return TargetLng.Value.ToString("0.0#####") + " E, " + TargetLat.Value.ToString("0.0#####") + " N";
+                //else return "121.658237 E,29.897719 N";
+                else return "";
             }
+            set { }
         }
 
         public string centerLocString
@@ -153,6 +162,7 @@ namespace AepApp.Models
             {
                 return "事发地点定位" + locString + "。";
             }
+            set { }
         }
         public string NatureString
         {
@@ -160,6 +170,7 @@ namespace AepApp.Models
             {
                 return "事故已被定性为" + NatureName + "。";
             }
+            set { }
         }
     
         //// command that launchs the map view and put an marker on the location
