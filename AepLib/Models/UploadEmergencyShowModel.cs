@@ -164,7 +164,7 @@ namespace AepApp.Models
             }
             set { }
         }
-        public string NatureString
+        public string NatureShowString
         {
             get
             {
