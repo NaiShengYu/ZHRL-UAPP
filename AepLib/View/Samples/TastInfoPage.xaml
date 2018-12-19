@@ -71,7 +71,7 @@
                                 HeightRequest="65">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid BackgroundColor="{Binding BackgroundColor}" WidthRequest="65" HeightRequest="65" Padding="5">
+                            <Grid BackgroundColor="{Binding BackgroundColor}" WidthRequest="65" HeightRequest="70" Padding="5">
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="lvSample_ItemTapped"/>
                                 </Grid.GestureRecognizers>
@@ -88,7 +88,7 @@
                                         </DataTrigger>
                                     </Image.Triggers>
                                 </Image>
-                                <Image WidthRequest="35" HeightRequest="40" Source="bottle" HorizontalOptions="Center" VerticalOptions="Start"/>
+                                <Image WidthRequest="30" HeightRequest="35" Source="bottle" HorizontalOptions="Center" VerticalOptions="Start"/>
                                 <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontSize="8" Text="{Binding Number}" HorizontalTextAlignment="Center"/>
                             </Grid>
                         </DataTemplate>
@@ -169,7 +169,7 @@
                     <Grid x:Name="GridFix" BackgroundColor="White">
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="固定剂" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,30,0" TextColor="Gray"
+                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,10,0" TextColor="Gray"
                                                         x:Name="pickerF" FontSize="17"
                                                         x:TypeArguments="model:MultiSelectDataType"
                                                        ItemsSource="{Binding AvailableItems}"
@@ -199,7 +199,7 @@
                             <DataTemplate>
                                 <Grid WidthRequest="70" HeightRequest="80">
                                     <Image WidthRequest="60" HeightRequest="60" Source="{Binding Url}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
-                                    <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit" Margin="0, 3, 8, 0">
+                                    <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit" Margin="0, 3, 0, 0">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="img_ItemTapped"/>
                                         </Image.GestureRecognizers>
