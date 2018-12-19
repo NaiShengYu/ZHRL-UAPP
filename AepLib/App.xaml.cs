@@ -71,11 +71,11 @@ namespace AepApp
         public static ModuleConfigENVQ moduleConfigENVQ = null;//环境质量需要展示的内容
 
         public List<ModuleInfo> Modules = null;
-        public static ModuleInfo EmergencyModule = null;
+        public static ModuleInfo EmergencyModule = null;//应急
         public static ModuleInfo BasicDataModule = null;
         public static ModuleInfo EP360Module = null;
-        public static ModuleInfo SamplingModule = null;
-        public static ModuleInfo SimVisModule = null;
+        public static ModuleInfo SamplingModule = null;//采样
+        public static ModuleInfo SimVisModule = null;//
         public static ModuleInfo environmentalQualityModel = null;
 
         public static TestPersonViewModel personViewModel = null;
@@ -325,7 +325,11 @@ namespace AepApp
                     }
                 try {
                      List<Task> tasks = new List<Task>();
-                if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360());  } else _isEP360 = true;
+                    EP360Module = null;
+                    environmentalQualityModel = null;
+                    SamplingModule = null;
+                    //EP360Module = null;
+                    if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360());  } else _isEP360 = true;
                 if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
                 if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
                 if (EmergencyModule != null && EmergencyModule.status.Equals("0")) tasks.Add(postEmergencyReq()); else _isEmergency = true;

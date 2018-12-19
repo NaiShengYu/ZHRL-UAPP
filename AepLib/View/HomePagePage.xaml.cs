@@ -19,8 +19,15 @@ namespace AepApp.View
             InitializeComponent();
             SetUserDepartment();
             Title = App.siteName;
-            GetModuleGridStatics();
-            GetModule360Statics();
+
+            if(App.EP360Module != null)
+            {
+                GetModule360Statics();
+                GetModuleGridStatics();
+                Layout360Statics.IsVisible = App.moduleConfigEP360 != null;
+                LayoutGridStatics.IsVisible = App.moduleConfigEP360 != null;
+            }
+
 
         }
 

@@ -7,6 +7,7 @@ using Plugin.Media;
 using SimpleAudioForms;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -193,19 +194,47 @@ namespace AepApp.View
         }
 
         TestModel _model = null;
+        List<string> _dddd = new List<string>();
+        List<string> _bbbb = new List<string>();
+
+       //MonkeysViewModel _monkeyModel = new MonkeysViewModel();
         public TestOxyPage()
         {
             InitializeComponent();
 
 
+            ////_dddd.Add("");
+            //_dddd.Add("bbbb");
+            //_dddd.Add("cccc");
+            ////dddd.Add("dddd");
+            ////BindingContext = _dddd;
+            //ssss.ItemsSource = _dddd;
 
-            aaaaaa();
+            //BindingContext = _monkeyModel;
 
-         
+
+
         }
 
+        void Handle_Clicked_1(object sender, System.EventArgs e)
+        {
+            if (_bbbb.Count > 0)
+                _bbbb.Remove(_bbbb[0]);
+        }
 
-       
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+
+            //_monkeyModel.Monkeys.Add(new Monkey
+            //{
+            //    Name = "Capuchin Monkey",
+            //    Location = "Central & South America",
+            //    Details = "The capuchin monkeys are New World monkeys of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.",
+            //    ImageUrl = "http://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/200px-Capuchin_Costa_Rica.jpg"
+            //});
+
+
 
         }
+    }
 }

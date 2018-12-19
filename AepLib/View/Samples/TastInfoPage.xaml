@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
+        <Grid  x:Name="sclv">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -29,8 +29,8 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                     </Grid.GestureRecognizers>
                     <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
-                    <Label Margin="10,12,0,12" x:Name="LabType" Text="" Font="17" VerticalOptions="Center"  TextColor="Black"/>
-                    <Label Margin="150,12,30,12" x:Name="LabExamineItems" Text="" HorizontalOptions="End" Font="16" TextColor="Gray" 
+                    <Label Margin="10,8,0,8" x:Name="LabType" Text="" Font="17" VerticalOptions="Center"  TextColor="Black"/>
+                    <Label Margin="150,8,30,8" x:Name="LabExamineItems" Text="" HorizontalOptions="End" Font="16" TextColor="Gray" 
                                HeightRequest="30" VerticalTextAlignment="Center" LineBreakMode="TailTruncation"/>
                 </Grid>
                 <Grid BackgroundColor="#E6E6E6" Margin="0, 3, 0, 3">
@@ -68,10 +68,10 @@
                 </Grid>
 
                 <CollectionView x:Name="lvSampleN" ItemsLayout="{x:Static ListItemsLayout.HorizontalList}" 
-                                HeightRequest="70">
+                                HeightRequest="65" BackgroundColor="Maroon">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid BackgroundColor="{Binding BackgroundColor}" WidthRequest="60" HeightRequest="65" Padding="3">
+                            <Grid BackgroundColor="{Binding BackgroundColor}" WidthRequest="65" HeightRequest="65" Padding="5">
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="lvSample_ItemTapped"/>
                                 </Grid.GestureRecognizers>
@@ -94,40 +94,10 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                
-                <ai:HCollectionView  x:Name="lvSample"   BackgroundColor="White" Spacing="5" ColumnWidth="65"
-                                 HeightRequest="60" ItemSelected="lvSample_ItemSelected" IsVisible="False">
-                    <x:Arguments>
-                        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
-                    </x:Arguments>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ai:ContentCell>
-                                <Grid BackgroundColor="{Binding BackgroundColor}" Margin="5">
-                                    <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Margin="4">
-                                        <Image.Triggers>
-                                            <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="1">
-                                                <Setter Property="Source" Value="greentick"/>
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="2">
-                                                <Setter Property="Source" Value="bluetruck"/>
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="3">
-                                                <Setter Property="Source" Value="bluemicroscope"/>
-                                            </DataTrigger>
-                                        </Image.Triggers>
-                                    </Image>
-                                    <Image WidthRequest="45" HeightRequest="55" Source="bottle" HorizontalOptions="Center" VerticalOptions="Start"/>
-                                    <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontSize="10" Text="{Binding Number}" HorizontalTextAlignment="Center"/>
-                                </Grid>
-                            </ai:ContentCell>
 
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ai:HCollectionView>
             </StackLayout>
 
-            <ScrollView x:Name="sclv" Grid.Row="1">
+            <ScrollView Grid.Row="1">
                 <StackLayout BackgroundColor="#E6E6E6" Spacing="1">
 
                     <Grid BackgroundColor="White">
@@ -162,7 +132,7 @@
                         <Image VerticalOptions="Center" HorizontalOptions="End" WidthRequest="10" HeightRequest="20" Source="right" Margin="0,0,10,0" />
                         <Label Margin="10,12,0,12" Text="检测项目" Font="17" VerticalOptions="Center"  TextColor="Black"/>
 
-                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,30,0" TextColor="Gray"
+                        <xfMultiPicker:MultiPickerView HeightRequest="40" HorizontalOptions="EndAndExpand"  Margin="100,0,10,0" TextColor="Gray"
                                                         x:Name="pickerExamine" FontSize="17"
                                                         x:TypeArguments="model:MultiSelectDataType"
                                                        ItemsSource="{Binding AvailableItems}"
@@ -223,28 +193,30 @@
                             <Label x:Name="LabNumPhoto" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ai:HCollectionView  x:Name="lvPhoto"  BackgroundColor="White" Spacing="5" ColumnWidth="90" HeightRequest="100" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ai:ContentCell>
-                                    <Grid>
-                                        <Image WidthRequest="70" HeightRequest="70" Source="{Binding Url}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
-                                        <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit">
-                                            <Image.Triggers>
-                                                <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="1">
-                                                    <Setter Property="Source" Value="greentick"/>
-                                                </DataTrigger>
-                                                <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="2">
-                                                    <Setter Property="Source" Value="greentick"/>
-                                                </DataTrigger>
-                                            </Image.Triggers>
-                                        </Image>
-                                    </Grid>
-                                </ai:ContentCell>
 
+                    <CollectionView x:Name="lvPhotoN" BackgroundColor="White" HeightRequest="80" ItemsLayout="{x:Static ListItemsLayout.HorizontalList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid WidthRequest="70" HeightRequest="80">
+                                    <Image WidthRequest="60" HeightRequest="60" Source="{Binding Url}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+                                    <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit" Margin="0, 3, 8, 0">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="img_ItemTapped"/>
+                                        </Image.GestureRecognizers>
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="0">
+                                                <Setter Property="Source" Value="graytick"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Status}" Value="2">
+                                                <Setter Property="Source" Value="greentick"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ai:HCollectionView>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
                 </StackLayout>
             </ScrollView>
             <Grid Grid.Row="2" VerticalOptions="End" HorizontalOptions="Fill" HeightRequest="50" BackgroundColor="#e8e8e8">
