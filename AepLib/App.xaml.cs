@@ -328,8 +328,8 @@ namespace AepApp
                     EP360Module = null;
                     environmentalQualityModel = null;
                     SamplingModule = null;
-                    //EP360Module = null;
-                    if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360());  } else _isEP360 = true;
+                    BasicDataModule = null;
+                if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360());  } else _isEP360 = true;
                 if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
                 if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
                 if (EmergencyModule != null && EmergencyModule.status.Equals("0")) tasks.Add(postEmergencyReq()); else _isEmergency = true;
@@ -460,7 +460,6 @@ namespace AepApp
         /// <returns></returns>
         public async Task<ObservableCollection<UserDepartmentsModel>> GetStaffDepartments(Guid staffId)
         {
-
             try
             {
                 ObservableCollection<UserDepartmentsModel> departs = new ObservableCollection<UserDepartmentsModel>();

@@ -130,6 +130,8 @@ namespace AepApp.View
                 if (autologin && (App.Current as App)._canGo)
                 {
 
+                    DependencyService.Get<IToast>().LongAlert("可以登录：模块信息" + "\nEmergencyModule=" + App.EmergencyModule+ "\nBasicDataModule="+App.BasicDataModule+ "\nEP360Module=" + App.EP360Module+ "\nSamplingModule=" + App.SamplingModule+ "\nSimVisModule=" + App.SimVisModule+ "\nenvironmentalQualityModel=" + App.environmentalQualityModel);
+
                     try {
                          //await Navigation.PushAsync(new MasterAndDetailPage());
                     //为了切换不同的账户，也显示不同的列表
@@ -145,7 +147,6 @@ namespace AepApp.View
                     } catch (Exception ex) {
                     DependencyService.Get<IToast>().ShortAlert("登录失败错误："+ex.Message);
                     }
-                   
                 }
                 else
                 {
