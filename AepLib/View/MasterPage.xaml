@@ -46,7 +46,7 @@
                         IsVisible="false">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Binding="{Binding showEnvSummary}" Value="true">
-                                <Setter Property="IsVisible" Value="true"/>
+                                <Setter Property="IsVisible" Value="true" />
                             </DataTrigger>
                         </Label.Triggers>
                     </Label>
@@ -221,7 +221,7 @@
                             </Grid>
                         </StackLayout>
                         <StackLayout x:Name="layoutSampling" Spacing="0">
-                            <!--<Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                            <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             <Grid IsVisible="{Binding menuSampleCarry}">
                                 <Label BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0" />
                                 <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
@@ -233,7 +233,7 @@
                             <Grid IsVisible="{Binding menuSampleTask}">
                                 <Label BindingContext="AepApp.View.Samples.SamplePlanPage" HeightRequest="0" />
                                 <Label Text="{Binding menuSampleTaskLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
-                            </Grid>-->
+                            </Grid>
                         </StackLayout>
                         <StackLayout x:Name="layoutGrid" Spacing="0" IsVisible="False">
                             <!--                            text = 网格化管理-->
@@ -261,11 +261,19 @@
                                 <Label BindingContext="AepApp.View.Gridding.SendInformationPage" HeightRequest="0" />
                                 <Label Text="{Binding menuGridInfoReceivedLabel}" />
                             </Grid>
-                            <Grid x:Name="gridAssessment" StyleClass="menuitem" IsVisible="True">
+                            <!--                            增加事件-->
+                            <Grid StyleClass="menuitem" IsVisible="{Binding showAddIncident}">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRegistrationEventPage_Tapped" />
+                                </Grid.GestureRecognizers>
+                                <Label Text="{Binding menuAddIncidentLabel}" />
+                            </Grid>
+                            <!--                            任务考核-->
+                            <Grid x:Name="gridAssessment" StyleClass="menuitem" IsVisible="{Binding menuGridInfoAssessment}">
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                                 </Grid.GestureRecognizers>
-                                <Label Text="考核" />
+                                <Label Text="{Binding menuGridInfoAssessmentLabel}" />
                             </Grid>
                         </StackLayout>
                     </StackLayout>

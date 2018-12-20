@@ -5,61 +5,60 @@
              xmlns:forms="clr-namespace:InTheHand.Forms;assembly=InTheHand.Forms" 
              xmlns:roxv="clr-namespace:Rox;assembly=Rox.Xamarin.Video.Portable">
     <ContentPage.Content>
-        <!-- <StackLayout>
-            <Button Text="开始录音" BackgroundColor="Olive" Clicked="StartRecordVoice" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
-            <Button Text="停止录音" BackgroundColor="Maroon" Clicked="StopRecordVoice" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
-            <Button BackgroundColor="Fuchsia" Clicked="Handle_Clicked" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" HeightRequest="100" />
-                   <roxv:VideoView AutoPlay="false" x:Name="MV" LoopPlay="false" FullScreen="true" ShowController="true" VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="300"/>
-            <forms:MediaElement HorizontalOptions="Fill" BackgroundColor="Green" VerticalOptions="Center" HeightRequest="180" x:Name="MV" IsLooping="false" AreTransportControlsEnabled="false" AutoPlay="false" />
-        </StackLayout>
-        -->
-
-
-        <!--   <StackLayout>
-
-            <Label  Margin="30" Text="{Binding tsetModelTitle}" HorizontalTextAlignment="Center"/>
-
-                        <Label Margin="30" Text="{Binding secondModel.secondTitle}" HorizontalTextAlignment="Center"/>
-
-                        <Label Margin="30" Text="{Binding secondModel.thirdModel.thirdTitle}" HorizontalTextAlignment="Center"/>
+        
+         <StackLayout Margin="20,35,20,20">
+            
+               <Button Text="增加" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Clicked="Handle_Clicked"/>
+            <Button Text="减少" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="End" VerticalOptions="End" Clicked="Handle_Clicked_1"/>
 
             
-            <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel3"/>
-            <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel2"/>
-            <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="点我" HorizontalOptions="Center" VerticalOptions=" Center" Clicked="changeModel1"/>
-        </StackLayout>-->
-  <!--      <StackLayout>
-            <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="Connect SignalR" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnConnectSignalR"/>
-            <Button BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Text="Send SignalR Msg" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnSendSignalR"/>
+        <CollectionView ItemsSource="{Binding Monkeys}"
+                        ItemsLayout="{x:Static ListItemsLayout.HorizontalList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="140" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.RowSpan="2" 
+                               Source="{Binding ImageUrl}" 
+                               Aspect="AspectFill"
+                               HeightRequest="60" 
+                               WidthRequest="60" />
+                        <Label Grid.Column="1" 
+                               Text="{Binding Name}" 
+                               FontAttributes="Bold"
+                               LineBreakMode="TailTruncation" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1" 
+                               Text="{Binding Location}"
+                               LineBreakMode="TailTruncation"
+                               FontAttributes="Italic" 
+                               VerticalOptions="End" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+     <!-- <Grid>
+            <Button Text="增加" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Clicked="Handle_Clicked"/>
+            <Button Text="减少" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="End" VerticalOptions="End" Clicked="Handle_Clicked_1"/>
 
-            <ListView ItemsSource="{Binding AllPersons}"
-                  
-                  HasUnevenRows="True"
-                  BackgroundColor="#f5f5f5">
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-
-                            <StackLayout BackgroundColor="White" Orientation="Horizontal" VerticalOptions="Center">
-
-                                <Label 
-                                   Text="{Binding Name}"
-                                   FontSize="Medium"
-                                   Margin="4"
-                                   FontAttributes="Bold" />
-
-                                <Label Text="{Binding Age}"
-                                       FontSize="Small" />
-                            </StackLayout>
-
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>-->
-        
-        
-        <TimePicker HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" PropertyChanged="Handle_PropertyChanged" />
+            <CollectionView BackgroundColor="Fuchsia" x:Name="ssss" HeightRequest="120" HorizontalOptions="Fill" VerticalOptions="Center" ItemsLayout="{x:Static ListItemsLayout.HorizontalList}">
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid WidthRequest="100" HeightRequest="100">
+                        <Label WidthRequest="100" HeightRequest="100" BackgroundColor="Olive" Text="{Binding .}" HorizontalOptions="Start" VerticalOptions="Fill"/>                        
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        </Grid>-->
     </ContentPage.Content>
 </ContentPage>

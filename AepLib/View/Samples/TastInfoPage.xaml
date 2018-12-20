@@ -68,7 +68,7 @@
                 </Grid>
 
                 <CollectionView x:Name="lvSampleN" ItemsLayout="{x:Static ListItemsLayout.HorizontalList}" 
-                                HeightRequest="65">
+                                HeightRequest="65" BackgroundColor="Maroon">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid BackgroundColor="{Binding BackgroundColor}" WidthRequest="65" HeightRequest="70" Padding="5">

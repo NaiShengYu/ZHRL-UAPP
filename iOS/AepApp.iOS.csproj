@@ -526,7 +526,7 @@
     <Compile Include="Services\AudioService.cs" />
     <Compile Include="Services\RecordVoice.cs" />
     <Compile Include="Services\OpenApp.cs" />
-    <Compile Include="Services\DatabaseService.cs" />
+    <Compile Include="Services\FileService.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Notification\JPush\JPushInterface.cs" />
     <Compile Include="Notification\JPush\JPushRegisterEntity.cs" />

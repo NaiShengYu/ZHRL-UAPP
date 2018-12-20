@@ -19,8 +19,15 @@ namespace AepApp.View
             InitializeComponent();
             SetUserDepartment();
             Title = App.siteName;
-            GetModuleGridStatics();
-            GetModule360Statics();
+
+            if(App.EP360Module != null)
+            {
+                GetModule360Statics();
+                GetModuleGridStatics();
+                Layout360Statics.IsVisible = App.moduleConfigEP360 != null;
+                LayoutGridStatics.IsVisible = App.moduleConfigEP360 != null;
+            }
+
 
         }
 
@@ -43,7 +50,11 @@ namespace AepApp.View
             string department = "";
             if (App.userDepartments == null)
                 App.userDepartments = await (App.Current as App).GetStaffDepartments(App.userInfo.id);
-            foreach (var item in App.userDepartments)
+            if (App.userDepartments == null)
+            {
+                return;
+            }
+                foreach (var item in App.userDepartments)
             {
                 if (!string.IsNullOrWhiteSpace(item.name))
                     if (!string.IsNullOrWhiteSpace(item.name))

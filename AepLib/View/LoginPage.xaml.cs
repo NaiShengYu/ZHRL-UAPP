@@ -1,22 +1,12 @@
-﻿using System;
+﻿using AepApp.AuxiliaryExtension;
+using AepApp.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Todo;
 using Xamarin.Auth;
 using Xamarin.Forms;
-using Plugin.Hud;
 using Xamarin.Forms.Xaml;
-using Todo;
-using System.ComponentModel;
-using CloudWTO.Services;
-using AepApp.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using AepApp.Tools;
-using AepApp.AuxiliaryExtension;
-using AepApp.View.Samples;
-using Sample;
 
 namespace AepApp.View
 {
@@ -130,22 +120,29 @@ namespace AepApp.View
                 if (autologin && (App.Current as App)._canGo)
                 {
 
-                    try {
-                         //await Navigation.PushAsync(new MasterAndDetailPage());
-                    //为了切换不同的账户，也显示不同的列表
-                    if (App.masterAndDetailPage != null)
-                        App.masterAndDetailPage = null;
-                    App.masterAndDetailPage = new MasterAndDetailPage();
-                    Application.Current.MainPage = new NavigationPage(App.masterAndDetailPage);
-                    App.OpenMenu(new HomePagePage());
-                    if(Navigation.NavigationStack.Count > 1)
+                    try
                     {
-                        Navigation.RemovePage(Navigation.NavigationStack[0]);
+                        //await Navigation.PushAsync(new MasterAndDetailPage());
+                        //为了切换不同的账户，也显示不同的列表
+                        if (App.masterAndDetailPage != null)
+                            App.masterAndDetailPage = null;
+                        App.masterAndDetailPage = new MasterAndDetailPage();
+                        Application.Current.MainPage = new NavigationPage(App.masterAndDetailPage);
+                        App.OpenMenu(new HomePagePage());
+                        if (Navigation.NavigationStack.Count > 1)
+                        {
+                            Navigation.RemovePage(Navigation.NavigationStack[0]);
+                        }
                     }
-                    } catch (Exception ex) {
-                    DependencyService.Get<IToast>().ShortAlert("登录失败错误："+ex.Message);
+                    catch (Exception ex)
+                    {
+                        if (ex != null)
+                        {
+                            FileUtils.SaveLogFile("登录失败错误：" + ex.ToString());
+                        }
+                        //DependencyService.Get<IToast>().ShortAlert("登录失败错误："+ex.Message);
                     }
-                   
+
                 }
                 else
                 {
@@ -157,13 +154,13 @@ namespace AepApp.View
         void Handle_Clicked(object sender, System.EventArgs e)
         {
             Login();
-        
+
         }
 
         private void deleteData()
         {
 
-//#if !(DEBUG && __IOS__)
+            //#if !(DEBUG && __IOS__)
 
             //循环删除所存的数据
             IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.AppName);
@@ -180,7 +177,7 @@ namespace AepApp.View
                 count.Properties.Add("pwd", pwd);
                 AccountStore.Create().Save(count, App.AppName);
             }
-//#endif
+            //#endif
         }
 
     }

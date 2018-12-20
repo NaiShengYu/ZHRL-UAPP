@@ -41,8 +41,6 @@ namespace AepApp.View.Samples
                 Title = task.taskname;
                 _taskId = task.taskid;
             }
-            lvSampleN.ItemsSource = samplingBottleList;
-            lvPhotoN.ItemsSource = photoList;
 
             BindCommonData();
             GetSampleListOfTask();
@@ -184,8 +182,10 @@ namespace AepApp.View.Samples
         /// </summary>
         private void ChangeUI()
         {
+            if(samplingBottleList.Count>0){
+                lvSampleN.ItemsSource = samplingBottleList;
+            }
             sclv.BindingContext = _currentSample;
-
             LabNumSample.Text = samplingBottleList.Count + "";
 
             UpdateTime();
@@ -478,6 +478,8 @@ namespace AepApp.View.Samples
         void creatPhotoView()
         {
             LabNumPhoto.Text = photoList.Count + "";
+            if(photoList.Count >0)
+                lvPhotoN.ItemsSource = photoList;
         }
 
         private void UpdateTime()

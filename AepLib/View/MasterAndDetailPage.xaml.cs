@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 
 using AepApp.View.Gridding;
 using Sample;
+using AepApp.Tools;
 
 namespace AepApp.View
 {
@@ -61,7 +62,11 @@ namespace AepApp.View
             }
             catch (Exception ex)
             {
-                DependencyService.Get<IToast>().ShortAlert("MasterAndDetailPage错误：" + ex.Message);
+                if (ex != null)
+                {
+                    FileUtils.SaveLogFile("MasterAndDetailPage错误：" + ex.ToString());
+                }
+                //DependencyService.Get<IToast>().ShortAlert("MasterAndDetailPage错误：" + ex.Message);
             }
 
             //Detail = new NavigationPage(new DisposeEventPage(new GridEventModel

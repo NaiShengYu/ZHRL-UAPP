@@ -12,14 +12,19 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-[assembly: Xamarin.Forms.Dependency(typeof(DatabaseService))]
+[assembly: Xamarin.Forms.Dependency(typeof(FileService))]
 namespace AepApp.Droid.Services
 {
-    class DatabaseService : IDatabaseService
+    class FileService : IFileService
     {
         public string GetDbPath()
         {
             return Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "UappDB.db");
+        }
+
+        public string GetExtrnalStoragePath()
+        {
+            return Android.OS.Environment.ExternalStorageDirectory.Path;
         }
     }
 }

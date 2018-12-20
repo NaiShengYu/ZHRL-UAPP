@@ -4,8 +4,9 @@ using System.Text;
 
 namespace AepApp.Services
 {
-    public interface IDatabaseService
+    public interface IFileService
     {
         string GetDbPath();
+        String GetExtrnalStoragePath();
     }
 }
