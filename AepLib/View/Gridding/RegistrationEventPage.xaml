@@ -31,9 +31,9 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="地址" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label Text="{Binding Addr}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
-                        <Image IsVisible="{Binding canEdit}" Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
-                        <Button IsEnabled="{Binding canEdit}" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                        <Label Text="{Binding Addr}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
+                      <!--  <Image IsVisible="{Binding canEdit}" Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                        <Button IsEnabled="{Binding canEdit}" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" />-->
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>

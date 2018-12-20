@@ -66,10 +66,6 @@
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.4.0.0.8055-pre1\lib\MonoAndroid81\FormsViewGroup.dll</HintPath>
     </Reference>
-    <Reference Include="JPush.Binding.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\JPush.Binding.Droid\bin\Release\JPush.Binding.Droid.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNetCore.Connections.Abstractions, Version=2.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Connections.Abstractions.2.1.2\lib\netstandard2.0\Microsoft.AspNetCore.Connections.Abstractions.dll</HintPath>
     </Reference>
@@ -705,6 +701,10 @@
     <ProjectReference Include="..\AepLib\AepLib.csproj">
       <Project>{ab4fed17-66a7-42d7-a7f7-fe7190221d1c}</Project>
       <Name>AepLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JPush.Binding.Droid\JPush.Binding.Droid.csproj">
+      <Project>{83390823-B6C8-4089-B357-4B4760C19291}</Project>
+      <Name>JPush.Binding.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

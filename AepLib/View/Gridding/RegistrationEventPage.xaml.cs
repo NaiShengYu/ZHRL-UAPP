@@ -375,10 +375,8 @@ namespace AepApp.View.Gridding
             {
 
                 if (hTTPResponse.Results == "\"OK\"")await Navigation.PopAsync();
-
-
-
-            }
+            }else
+                DependencyService.Get<IToast>().ShortAlert("添加失败请联系管理员");
 
         }
 
@@ -448,10 +446,19 @@ namespace AepApp.View.Gridding
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, par, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
-                if(enterpriseModel !=null){
-                    _infoModel.EnterpriseName = enterpriseModel.name;
+                try
+                {
+                    var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
+                    if (enterpriseModel != null)
+                    {
+                        _infoModel.EnterpriseName = enterpriseModel.name;
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("getEnterprise解析失败");
+                }
+
             }
         }
 

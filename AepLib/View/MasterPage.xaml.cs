@@ -112,8 +112,8 @@ namespace AepApp.View
                     return;
                 }
             }
-          await Navigation.PushAsync(new RegistrationEventPage(""));
-         
+            App.masterAndDetailPage.Detail = new NavigationPage(new RegistrationEventPage(""));
+            App.masterAndDetailPage.IsPresented = false;
         }
 
     }

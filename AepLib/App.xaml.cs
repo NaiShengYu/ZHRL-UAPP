@@ -325,10 +325,10 @@ namespace AepApp
                     }
                 try {
                      List<Task> tasks = new List<Task>();
-                    EP360Module = null;
-                    environmentalQualityModel = null;
-                    SamplingModule = null;
-                    BasicDataModule = null;
+                    //EP360Module = null;
+                    //environmentalQualityModel = null;
+                    //SamplingModule = null;
+                    //BasicDataModule = null;
                 if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360());  } else _isEP360 = true;
                 if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
                 if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
