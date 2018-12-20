@@ -119,19 +119,21 @@ namespace AepApp.View
 
                 if (autologin && (App.Current as App)._canGo)
                 {
-
                     try
                     {
-                        //await Navigation.PushAsync(new MasterAndDetailPage());
-                        //为了切换不同的账户，也显示不同的列表
-                        if (App.masterAndDetailPage != null)
-                            App.masterAndDetailPage = null;
-                        App.masterAndDetailPage = new MasterAndDetailPage();
-                        Application.Current.MainPage = new NavigationPage(App.masterAndDetailPage);
-                        App.OpenMenu(new HomePagePage());
                         if (Navigation.NavigationStack.Count > 1)
                         {
-                            Navigation.RemovePage(Navigation.NavigationStack[0]);
+                            //await Navigation.PushAsync(new MasterAndDetailPage());
+                            //为了切换不同的账户，也显示不同的列表
+                            if (App.masterAndDetailPage != null)
+                                App.masterAndDetailPage = null;
+                            App.masterAndDetailPage = new MasterAndDetailPage();
+                            Application.Current.MainPage = new NavigationPage(App.masterAndDetailPage);
+                            App.OpenMenu(new HomePagePage());
+                            if (Navigation.NavigationStack.Count > 1)
+                            {
+                                Navigation.RemovePage(Navigation.NavigationStack[0]);
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -142,7 +144,6 @@ namespace AepApp.View
                         }
                         //DependencyService.Get<IToast>().ShortAlert("登录失败错误："+ex.Message);
                     }
-
                 }
                 else
                 {

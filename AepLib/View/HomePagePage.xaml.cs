@@ -50,11 +50,8 @@ namespace AepApp.View
             string department = "";
             if (App.userDepartments == null)
                 App.userDepartments = await (App.Current as App).GetStaffDepartments(App.userInfo.id);
-            if (App.userDepartments == null)
-            {
-                return;
-            }
-                foreach (var item in App.userDepartments)
+            if (App.userDepartments == null) return;
+            foreach (var item in App.userDepartments)
             {
                 if (!string.IsNullOrWhiteSpace(item.name))
                     if (!string.IsNullOrWhiteSpace(item.name))

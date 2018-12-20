@@ -483,7 +483,6 @@ namespace AepApp
         /// <returns></returns>
         public async Task<ObservableCollection<UserDepartmentsModel>> GetStaffDepartments(Guid staffId)
         {
-
             try
             {
                 ObservableCollection<UserDepartmentsModel> departs = new ObservableCollection<UserDepartmentsModel>();
