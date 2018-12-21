@@ -23,7 +23,7 @@ namespace AepApp.ViewModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var dbPath = DependencyService.Get<IDatabaseService>().GetDbPath();
+            var dbPath = DependencyService.Get<IFileService>().GetDbPath();
             optionsBuilder.UseSqlite($"Filename={dbPath}");
         }
 

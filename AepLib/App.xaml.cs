@@ -1,31 +1,24 @@
+using AepApp.AuxiliaryExtension;
+using AepApp.Interface;
+using AepApp.Models;
+//using AepApp.View.SecondaryFunction;
+using AepApp.Tools;
+using AepApp.View;
+using AepApp.ViewModel;
+using AepApp.ViewModels;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using AepApp.Interface;
-using AepApp.View;
-using Todo;
-using Xamarin.Forms;
-using Newtonsoft.Json;
-
-using AepApp.View.Monitor;
 using System.Collections.ObjectModel;
-using Xamarin.Auth;
-using System.Linq;
 using System.ComponentModel;
-using AepApp.Models;
-using CloudWTO.Services;
-using System.Threading.Tasks;
+using System.Linq;
 using System.Net;
-using AepApp.View.EnvironmentalEmergency;
+using System.Threading.Tasks;
+using Todo;
+using Xamarin.Auth;
 using Xamarin.Essentials;
-using AepApp.ViewModels;
-using AepApp.ViewModel;
-using AepApp.View.Gridding;
-using AepApp.AuxiliaryExtension;
-//using AepApp.View.SecondaryFunction;
-using AepApp.View.Samples;
-using Xamarin.Essentials;
-using Sample;
+using Xamarin.Forms;
 
 namespace AepApp
 {
@@ -160,9 +153,25 @@ namespace AepApp
             //MainPage = new NavigationPage(new SendInformationPage());
             //aaaa();
 
-
+            AppDomain.CurrentDomain.UnhandledException += HandleUnhandledException;
 
         }
+
+        protected void HandleUnhandledException(object sender, UnhandledExceptionEventArgs args)
+        {
+            if (args == null || args.ExceptionObject == null)
+            {
+                return;
+            }
+            Exception e = (Exception)args.ExceptionObject;
+            // log won't be available, because dalvik is destroying the process
+            //Log.Debug (logTag, "MyHandler caught : " + e.Message);
+            // instead, your err handling code shoudl be run:
+            String content = args.ExceptionObject.ToString();
+            Console.WriteLine(content);
+            FileUtils.SaveLogFile(content);
+        }
+
 
 
         //使用后删除错误数据
@@ -307,39 +316,53 @@ namespace AepApp
             else
             {
 
-                  try {
+                try
+                {
                     foreach (ModuleInfo mi in Modules)
                     {
-                    switch (mi.id.ToUpper())
+                        switch (mi.id.ToUpper())
+                        {
+                            case EmergencyModuleID: EmergencyModule = mi; break;
+                            case BasicDataModuleID: BasicDataModule = mi; break;
+                            case EP360ModuleID: EP360Module = mi; break;
+                            case SamplingModuleID: SamplingModule = mi; break;
+                            case SimVisModuleID: SimVisModule = mi; break;
+                            case environmentalQualityID: environmentalQualityModel = mi; break;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex != null)
                     {
-                        case EmergencyModuleID: EmergencyModule = mi; break;
-                        case BasicDataModuleID: BasicDataModule = mi; break;
-                        case EP360ModuleID: EP360Module = mi; break;
-                        case SamplingModuleID: SamplingModule = mi; break;
-                        case SimVisModuleID: SimVisModule = mi; break;
-                        case environmentalQualityID: environmentalQualityModel = mi; break;
+                        FileUtils.SaveLogFile("mi.id.ToUpper错误：" + ex.ToString());
                     }
-                       }
-                   } catch (Exception ex) {
-                     DependencyService.Get<IToast>().ShortAlert("mi.id.ToUpper错误："+ex.Message);
-                    }
-                try {
-                     List<Task> tasks = new List<Task>();
+                    //DependencyService.Get<IToast>().ShortAlert("mi.id.ToUpper错误："+ex.Message);
+                }
+                try
+                {
+                    List<Task> tasks = new List<Task>();
                     //EP360Module = null;
                     //environmentalQualityModel = null;
                     //SamplingModule = null;
                     //BasicDataModule = null;
-                if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360());  } else _isEP360 = true;
-                if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
-                if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
-                if (EmergencyModule != null && EmergencyModule.status.Equals("0")) tasks.Add(postEmergencyReq()); else _isEmergency = true;
-                if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")){ tasks.Add(postEnvironmentalReq());App.BaseUrl = environmentalQualityModel.url;}  else _isenvironmental = true;
-                await Task.WhenAll(tasks.ToArray());
-                } catch (Exception ex) {
-                     DependencyService.Get<IToast>().ShortAlert("Task.WhenAll错误："+ex.Message);
+                    if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360()); } else _isEP360 = true;
+                    if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
+                    if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
+                    if (EmergencyModule != null && EmergencyModule.status.Equals("0")) tasks.Add(postEmergencyReq()); else _isEmergency = true;
+                    if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")) { tasks.Add(postEnvironmentalReq()); App.BaseUrl = environmentalQualityModel.url; } else _isenvironmental = true;
+                    await Task.WhenAll(tasks.ToArray());
+                }
+                catch (Exception ex)
+                {
+                    if (ex != null)
+                    {
+                        FileUtils.SaveLogFile("Task.WhenAll错误：" + ex.ToString());
+                    }
+                   
                 }
 
-               
+
 
 
             }
@@ -500,6 +523,7 @@ namespace AepApp
                     modules = new List<ModuleInfo>();
                     modules = JsonConvert.DeserializeObject<List<ModuleInfo>>(res.Results);
                 }
+                FileUtils.SaveLogFile(res.Results);
                 return modules;
             }
             catch
@@ -508,6 +532,15 @@ namespace AepApp
             }
         }
 
+        //侧滑删除
+        void deleteUnUploadData(object sender, System.EventArgs e){
+
+            MenuItem item = sender as MenuItem;
+            UploadEmergencyShowModel showModel = item.CommandParameter as UploadEmergencyShowModel;
+            if (showModel == null) return;
+            MessagingCenter.Send<ContentPage, UploadEmergencyShowModel>(new ContentPage() , "deleteUnUploadData", showModel);
+                    
+        }
 
         /// <summary>
         /// 获取网格化登录人员信息

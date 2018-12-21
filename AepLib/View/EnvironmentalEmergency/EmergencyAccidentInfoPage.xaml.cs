@@ -294,7 +294,9 @@ namespace AepApp.View.EnvironmentalEmergency
                         try
                         {
                             EmergencyAccidentInfoDetail.IncidentLoggingEventsBean item = list[i];
-                            list[i].PlayVoiceCommand = new Command( () => {DependencyService.Get<IAudio>().PlayNetFile(item.VoicePath); });
+                            list[i].PlayVoiceCommand = new Command( () => {
+                            DependencyService.Get<IAudio>().PlayNetFile(item.VoicePath); 
+                            });
                         }
                         catch (Exception ex)
                         {
@@ -467,7 +469,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     case "IncidentPictureSendingEvent": return PictureSendingDT;
                     case "IncidentReportGenerationEvent": return ReportGenerationDT;
                     case "IncidentWindDataSendingEvent": return WindDataDT;
-                        case "IncidentPlanGenerationEvent": return PlanGenerationDT;
+                    case "IncidentPlanGenerationEvent": return PlanGenerationDT;
                     case "IncidentVideoSendingEvent": return VideoDT;
                     case "IncidentVoiceSendingEvent": return VoiceDT;
                 }

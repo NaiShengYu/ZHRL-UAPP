@@ -464,7 +464,6 @@ namespace AepApp.View.Samples
             {
                 Console.WriteLine("采样瓶二维码结果：" + arg2);
                 _currentSample.Qrcode = arg2;
-                LabelQr.Text = arg2;
             });
 
             Navigation.PushAsync(new ScanningPage

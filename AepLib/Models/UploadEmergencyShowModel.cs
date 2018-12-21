@@ -105,12 +105,21 @@ namespace AepApp.Models
 
 
         private bool _isNew = true;
-
         public bool isNew
         {
             get { return _isNew; }
             set { _isNew = value; NotifyPropertyChanged("isNew"); }
         }
+
+        public bool isEdit { get; set; }
+         public string editTitle { 
+            get{
+                    if(isEdit ==false)return "";
+                     else return "删除";
+                }
+            set { }
+           } //侧滑删除名称
+
 
         private string _uploadStatus = "hasUploaded";
 

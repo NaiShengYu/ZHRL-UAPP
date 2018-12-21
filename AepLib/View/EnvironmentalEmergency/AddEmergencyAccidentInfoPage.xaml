@@ -16,6 +16,7 @@
                 </Grid.RowDefinitions>
                 <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" ItemSelected="Handle_ItemSelected"
                            ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}">
+                 
                    <!--<ListView.GestureRecognizers>
                          <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
                     </ListView.GestureRecognizers>-->

@@ -59,7 +59,9 @@ namespace SimpleAudioForms.iOS
                 audioPlayer.Play();
                 Debug.WriteLine("数据长度：" + audioPlayer.Data.Length / 1024);
    
-            }catch(Exception ex){}
+            }catch(Exception ex){
+            
+            }
         }
 
         #region IAudio
