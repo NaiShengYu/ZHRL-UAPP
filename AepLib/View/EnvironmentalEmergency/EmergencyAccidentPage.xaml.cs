@@ -79,6 +79,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             InitializeComponent();
             ReqEmergencyAccidentInfo(searchKey, "", 0, 10);
+            NavigationPage.SetBackButtonTitle(this, "");
 
         }
 

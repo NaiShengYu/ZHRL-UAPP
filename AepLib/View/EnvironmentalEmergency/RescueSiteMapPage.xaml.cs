@@ -395,7 +395,7 @@ namespace AepApp.View.EnvironmentalEmergency
         private async void ReqPlanLis(string incidentId)
         {
             //string url = App.BasicDataModule.url + DetailUrl.ChemicalList;
-            string url = "http://gx.azuratech.com:30011/api/Sampleplan/GetPlanListByProid" + "?Proid=" + incidentId;
+            string url = App.SamplingModule.url+"/api/Sampleplan/GetPlanListByProid" + "?Proid=" + incidentId;
             Console.WriteLine(url);
 
             //string param = "keyword=" + "" + "&pageIndex=" + pagrIndex + "&pageSize=" + pageSize;
