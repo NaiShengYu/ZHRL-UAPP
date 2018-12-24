@@ -696,7 +696,6 @@ namespace AepApp.View.EnvironmentalEmergency
                     lng = emergencyModel.lng,
                     isEdit = true,
                     creatorusername = App.userInfo.userName,
-
                 };
 
                 AzmCoord center = new AzmCoord(Convert.ToDouble(emergencyModel.lng), Convert.ToDouble(emergencyModel.lat));
@@ -962,9 +961,22 @@ namespace AepApp.View.EnvironmentalEmergency
             //删除不要的错误的数据
             MessagingCenter.Subscribe<ContentPage, UploadEmergencyShowModel>(this, "deleteUnUploadData", (ContentPage arg1, UploadEmergencyShowModel arg2) => {
                 var i = dataListDelete.IndexOf(arg2);
-                App.Database.DeleteEmergencyAsync(saveList[i]);
-                saveList.Remove(saveList[i]);
-                dataListDelete.Remove(arg2);
+                try
+                {
+                    App.Database.DeleteEmergencyAsync(saveList[i]);
+                }
+                catch (Exception ex)
+                {
+                }
+                try
+                {
+                    dataListDelete.Remove(arg2);
+                    saveList.Remove(saveList[i]);
+                }
+                catch (Exception ex)
+                {
+
+                }
                 dataList.Remove(arg2);
               
             });
@@ -975,6 +987,8 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 List<UploadEmergencyModel> dataList2 = await App.Database.GetEmergencyAsync();
                 int count = dataList2.Count;
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+
                 foreach (UploadEmergencyModel model in dataList2)
                 {
                     if (!string.IsNullOrWhiteSpace(model.category))
@@ -990,6 +1004,7 @@ namespace AepApp.View.EnvironmentalEmergency
                             unitId = model.unitId,
                             unitName = model.unitName,
                             equipmentId = model.equipmentId,
+                            emergencyid = model.emergencyid,
                             equipmentName = model.equipmentName,
                             factorValue = model.factorValue,
                             incidentNature= model.incidentNature,
@@ -1008,6 +1023,8 @@ namespace AepApp.View.EnvironmentalEmergency
                             imagePath = model.imagePath,
                             VideoStorePath = model.VideoStorePath,
                             VideoPath = model.VideoPath,
+                            VoicePath = model.VoicePath,
+                            VoiceStorePath = model.VoiceStorePath,
                             width = model.width,
                             height = model.height,
                             storeurl = model.storeurl,
@@ -1024,7 +1041,7 @@ namespace AepApp.View.EnvironmentalEmergency
                         };
                         //UploadEmergencyShowModel ShowModel = new UploadEmergencyShowModel();
                         //ShowModel = ElementMapping.Mapper(ShowModel, model);
-                        ShowModel.isEdit = true;
+                         ShowModel.isEdit = true;
 
                         dataList.Add(ShowModel);
                         dataListDelete.Add(ShowModel);
@@ -1037,13 +1054,11 @@ namespace AepApp.View.EnvironmentalEmergency
                         }
                         else if (cagy == "IncidentPictureSendingEvent")
                         {
-                            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                             ShowModel.StorePath = path + ShowModel.StorePath;
                             ShowModel.imagePath = path + ShowModel.imagePath;
                         }
                         else if (cagy == "IncidentVoiceSendingEvent")
                         {
-                            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                             ShowModel.VoicePath = path + ShowModel.VoicePath;
                             ShowModel.VoiceStorePath = path + ShowModel.VoiceStorePath;
                             try
@@ -1061,7 +1076,6 @@ namespace AepApp.View.EnvironmentalEmergency
                         }
                         else if (cagy == "IncidentVideoSendingEvent")
                         {
-                            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                             ShowModel.VideoPath = path + ShowModel.StorePath;
                             ShowModel.VideoStorePath = path + ShowModel.imagePath;
                         }
