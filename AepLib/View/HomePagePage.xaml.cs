@@ -17,6 +17,7 @@ namespace AepApp.View
         public HomePagePage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");
             SetUserDepartment();
             Title = App.siteName;
 
@@ -27,8 +28,6 @@ namespace AepApp.View
                 Layout360Statics.IsVisible = App.moduleConfigEP360 != null;
                 LayoutGridStatics.IsVisible = App.moduleConfigEP360 != null;
             }
-
-
         }
 
         private void GetModuleGridStatics()

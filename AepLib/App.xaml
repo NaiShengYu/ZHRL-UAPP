@@ -31,7 +31,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -62,7 +62,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -101,7 +101,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -136,7 +136,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -176,7 +176,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -218,7 +218,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -258,7 +258,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -299,7 +299,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -342,7 +342,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -375,7 +375,7 @@
                                     <StackLayout Orientation="Horizontal" Spacing="0">
                                         <Label TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
                                         <Label TextColor="White" Text=" / " />
-                                        <Label TextColor="White" Text="{Binding creatorUserName}"  />
+                                        <Label TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">

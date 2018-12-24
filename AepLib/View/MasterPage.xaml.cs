@@ -58,8 +58,9 @@ namespace AepApp.View
                         return;
                     }
                     Type pagetype = Type.GetType(t);
-                    var page = new NavigationPage((Page)Activator.CreateInstance(pagetype));
-                    App.masterAndDetailPage.Detail = page;
+                    var page = (Page)Activator.CreateInstance(pagetype);
+                    Navigation.PushAsync(page);
+
                 }
                 App.masterAndDetailPage.IsPresented = false;
 
@@ -87,17 +88,23 @@ namespace AepApp.View
         {
             if(App.gridUser == null)
             {
-                App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(Guid.Empty));
+                //App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(Guid.Empty));
+                 Navigation.PushAsync(new TaskExaminePage(Guid.Empty));
+
                 App.masterAndDetailPage.IsPresented = false;
                 return;
             }
             if(App.gridUser.gridLevel == App.GridMaxLevel)
             {
-                App.masterAndDetailPage.Detail = new NavigationPage(new TaskExamineStaffPage(App.gridUser.grid));
+                //App.masterAndDetailPage.Detail = new NavigationPage(new TaskExamineStaffPage(App.gridUser.grid));
+                Navigation.PushAsync(new TaskExamineStaffPage(App.gridUser.grid));
+
             }
             else
             {
-                App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(App.gridUser.grid));
+                //App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(App.gridUser.grid));
+                Navigation.PushAsync(new TaskExaminePage(App.gridUser.grid));
+
             }
             App.masterAndDetailPage.IsPresented = false;
         }
@@ -117,7 +124,7 @@ namespace AepApp.View
                     return;
                 }
             }
-            App.masterAndDetailPage.Detail = new NavigationPage(new RegistrationEventPage(""));
+            await Navigation.PushAsync(new RegistrationEventPage(""));
             App.masterAndDetailPage.IsPresented = false;
         }
 

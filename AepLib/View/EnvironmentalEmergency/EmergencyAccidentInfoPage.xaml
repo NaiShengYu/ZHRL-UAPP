@@ -71,7 +71,7 @@
              
             </Grid>
             <StackLayout BackgroundColor="#e8e8e8" Orientation="Horizontal" Spacing="0" Grid.Row="2">
-                <Button x:Name="select_All" Clicked="selectAll" FontSize="15" Text="全部" TextColor="#2772a5" VerticalOptions="Center"  BackgroundColor="Transparent"  WidthRequest="50" HeightRequest="45" Margin="0,0,0,0"/>
+                <Button x:Name="select_All" Clicked="selectAll" FontSize="15" Text="全部" TextColor="#2772a5" VerticalOptions="Center"  BackgroundColor="Transparent"  WidthRequest="60" HeightRequest="45" Margin="0,0,0,0"/>
                 <Button x:Name="select_Text" Clicked="selectText" Image="text"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
                 <Button x:Name="select_Image" Clicked="selectImage" Image="image" VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
                 <Button x:Name="select_Data" Clicked="selectData" Image="data"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
