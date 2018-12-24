@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using AepApp.View.EnvironmentalEmergency;
+using AepApp.View.EnvironmentalQuality;
 //using AepApp.View.SecondaryFunction;
 using Xamarin.Forms.PlatformConfiguration;
 using AepApp.View.Gridding;

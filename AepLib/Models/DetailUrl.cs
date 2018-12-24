@@ -39,5 +39,12 @@ namespace AepApp.Models
 
         //获取关键污染物
         public static string GetIncidentFactors = "/api/services/app/IncidentFactor/GetIncidentFactorsByIncidentId";
+
+
+        //环境质量
+        //获取VOC站点列表
+        public static string GetVOCSite = "/Api/location/PagedList";
+
+
     }
 }

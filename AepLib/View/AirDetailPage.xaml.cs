@@ -58,7 +58,7 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                string uri = App.BaseUrl + "/api/location/GetFactors?id="+ airInfo.StationId;
+                string uri = App.environmentalQualityModel.url + "/api/location/GetFactors?id="+ airInfo.StationId;
                 result = EasyWebRequest.sendGetHttpWebRequest(uri);
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
@@ -96,7 +96,7 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                string uri = App.BaseUrl + "/api/FactorData/GetLastRefFacVals";
+                string uri = App.environmentalQualityModel.url + "/api/FactorData/GetLastRefFacVals";
                 AirDetailModels.FacValsParam parameter = new AirDetailModels.FacValsParam();
                 parameter.facId =factor.id ;
                 parameter.fromType = 0;
@@ -160,7 +160,7 @@ namespace AepApp.View
             string eDH = eDay + " " + eHours;
             string lsDay = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
             string sDH = lsDay + " " + eHours;
-            string url = App.BaseUrl + "/api/FactorData/GetFactVal?refId=" + curRefId + "&fromType=0&vType=0&dataType=0&facId="
+            string url = App.environmentalQualityModel.url + "/api/FactorData/GetFactVal?refId=" + curRefId + "&fromType=0&vType=0&dataType=0&facId="
                 + curFacId + "&dType=H" + "&eDate=" + eDH + "&sDate=" + sDH;
             //请求图表数据
             ReqFactVal(url, eDH, sDH);
@@ -169,7 +169,7 @@ namespace AepApp.View
         {
             string eDH = DateTime.Now.ToString("yyyy-MM-dd");
             string sDH = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
-            string url = App.BaseUrl + "/api/FactorData/GetFactVal?refId=" + curRefId + "&fromType=0&vType=0&dataType=0&facId="
+            string url = App.environmentalQualityModel.url + "/api/FactorData/GetFactVal?refId=" + curRefId + "&fromType=0&vType=0&dataType=0&facId="
                 + curFacId + "&dType=D" + "&eDate=" + eDH + "&sDate=" + sDH;
             //请求图表数据
             ReqFactVal(url, eDH + " 00:00", sDH + " 00:00");

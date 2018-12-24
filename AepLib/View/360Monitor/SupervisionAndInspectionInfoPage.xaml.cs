@@ -106,7 +106,7 @@ namespace AepApp.View.Monitor
             try
             {
                 var id = float.Parse(_spection.ID);
-                string url = App.BaseUrl + "/api/AppEnterprise/GetMonidataPollutionDetail?id=" + (int)id;
+                string url = App.environmentalQualityModel.url + "/api/AppEnterprise/GetMonidataPollutionDetail?id=" + (int)id;
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);

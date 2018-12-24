@@ -171,7 +171,7 @@ namespace AepApp.View
             wrk.DoWork += (sender1, e1) =>
             {
                 //CrossHud.Current.Show("请求中...");
-                string uri = App.BaseUrl + "/api/AppEnterprise/GetEnterpriseList?keys=";
+                string uri = App.environmentalQualityModel.url + "/api/AppEnterprise/GetEnterpriseList?keys=";
                 result = EasyWebRequest.sendGetHttpWebRequest(uri);
                 pollutions = JsonConvert.DeserializeObject<resutlDic>(result);
                 //pollutions.Items.Sort(delegate (EnterpriseModel x, EnterpriseModel y)

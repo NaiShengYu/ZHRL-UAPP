@@ -170,7 +170,7 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                string uri = App.BaseUrl + "/api/location/GetFactors?id=" + value.stationId;
+                string uri = App.environmentalQualityModel.url + "/api/location/GetFactors?id=" + value.stationId;
                 result = EasyWebRequest.sendGetHttpWebRequest(uri);
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
@@ -211,7 +211,7 @@ namespace AepApp.View
             BackgroundWorker wrk = new BackgroundWorker();
             wrk.DoWork += (sender1, e1) =>
             {
-                string uri = App.BaseUrl + "/api/FactorData/GetLastRefFacVals";
+                string uri = App.environmentalQualityModel.url + "/api/FactorData/GetLastRefFacVals";
                 AirDetailModels.FacValsParam parameter = new AirDetailModels.FacValsParam();
                 switch (valueName)
                 {

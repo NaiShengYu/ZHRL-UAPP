@@ -93,7 +93,6 @@ namespace AepApp
         public static string SiteData = "site";
 
         ///////////////////////////
-        public static string BaseUrl = "";  // old app url (360)
         public static string token = "";    // old app token
         public static bool isDeleteInfo = false;
         public static bool isAutoLogin = false;
@@ -350,7 +349,7 @@ namespace AepApp
                     if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
                     if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
                     if (EmergencyModule != null && EmergencyModule.status.Equals("0")) tasks.Add(postEmergencyReq()); else _isEmergency = true;
-                    if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")) { tasks.Add(postEnvironmentalReq()); App.BaseUrl = environmentalQualityModel.url; } else _isenvironmental = true;
+                    if (environmentalQualityModel != null && environmentalQualityModel.status.Equals("0")) { tasks.Add(postEnvironmentalReq()); } else _isenvironmental = true;
                     await Task.WhenAll(tasks.ToArray());
                 }
                 catch (Exception ex)

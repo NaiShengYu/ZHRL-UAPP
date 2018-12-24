@@ -70,7 +70,7 @@ namespace AepApp.View.Monitor
         {
             try
             {
-                string url = App.BaseUrl + "/api/AppEnterprise/GetPollutePermit?id=" + _ent.id + "&pageindx=1&pageSize=10";
+                string url = App.environmentalQualityModel.url + "/api/AppEnterprise/GetPollutePermit?id=" + _ent.id + "&pageindx=1&pageSize=10";
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);

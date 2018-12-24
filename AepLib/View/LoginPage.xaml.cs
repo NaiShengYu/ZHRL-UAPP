@@ -59,7 +59,7 @@ namespace AepApp.View
             {
                 site_name.Text = item.Name;
                 App.FrameworkURL = item.SiteAddr; //获取baseUrl
-                //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
+                //App.environmentalQualityModel.url = "https://" + item.SiteAddr; //获取baseUrl
                 App.siteName = item.customerName;
             }
             else

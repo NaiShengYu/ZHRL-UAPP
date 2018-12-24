@@ -42,8 +42,7 @@ namespace AepApp.View
 
         async void ReqAirSiteData()
         {
-           
-                string uri = App.BaseUrl + "/api/FactorData/GetLastAQIValsForPhone";
+                string uri = App.environmentalQualityModel.url + "/api/FactorData/GetLastAQIValsForPhone";
                 HTTPResponse hTTPResponse =await EasyWebRequest.SendHTTPRequestAsync(uri, "", "GET", "", "json");
                 try{
                     airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(hTTPResponse.Results);

@@ -77,7 +77,7 @@ namespace AepApp.View.Monitor
         {
             try
             {
-                string url = App.BaseUrl + "/api/AppEnterprise/GetPunishmentEnter?id=" + _ent.id + "&pageindx=" + _page + "&pageSize=10";
+                string url = App.environmentalQualityModel.url + "/api/AppEnterprise/GetPunishmentEnter?id=" + _ent.id + "&pageindx=" + _page + "&pageSize=10";
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);

@@ -9,9 +9,7 @@
          <StackLayout Margin="20,35,20,20">
             
                <Button Text="增加" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Clicked="Handle_Clicked"/>
-            <Button Text="减少" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="End" VerticalOptions="End" Clicked="Handle_Clicked_1"/>
-
-            
+            <Button Text="减少" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="End" VerticalOptions="End" Clicked="Handle_Clicked_1"/>            
         <CollectionView ItemsSource="{Binding Monkeys}"
                         ItemsLayout="{x:Static ListItemsLayout.HorizontalList}">
             <CollectionView.ItemTemplate>

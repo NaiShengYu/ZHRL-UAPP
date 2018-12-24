@@ -72,17 +72,17 @@
                                                     Text="水环境质量"
                         <Label Text="{Binding menuWaterLabel}" />
                     </Grid>-->
-                    <!-- <Grid StyleClass="menuitem" IsVisible="false">
+                     <Grid StyleClass="menuitem" IsVisible="false">
                         <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding menuVOC}" Value="true">
                                 <Setter Property="IsVisible" Value="true">
                                 </Setter>
                             </DataTrigger>
                         </Grid.Triggers>
-                        <Label BindingContext="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" HeightRequest="0" BackgroundColor="Transparent" />
-                                                  Text="VOCs环境质量"
+                        <Label BindingContext="AepApp.View.EnvironmentalQuality.VOCSiteListPage" HeightRequest="0" BackgroundColor="Transparent" />
+<!--                                                  Text="VOCs环境质量"-->
                         <Label Text="{Binding menuVOCLabel}" />
-                    </Grid>-->
+                    </Grid>
                     <!--     <Grid StyleClass="menuitem" IsVisible="false">
                         <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding menuStandards}" Value="true">

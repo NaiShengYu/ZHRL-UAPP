@@ -116,4 +116,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\EnvironmentalQuality\" />
+  </ItemGroup>
 </Project>
