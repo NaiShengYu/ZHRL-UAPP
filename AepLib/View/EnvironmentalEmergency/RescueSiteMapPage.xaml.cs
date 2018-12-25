@@ -406,9 +406,9 @@ namespace AepApp.View.EnvironmentalEmergency
                 List<BuDianItem> list = JsonConvert.DeserializeObject<List<BuDianItem>>(hTTPResponse.Results);
                 foreach (BuDianItem item in list)
                 {
-                    Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
+                    //Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
 
-                    AzmCoord singlecoord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+                    AzmCoord singlecoord = new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat));
                     ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
                     NavLabelView cv = new NavLabelView(item.address, singlecoord)
                     {
