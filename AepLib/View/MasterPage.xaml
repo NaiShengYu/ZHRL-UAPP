@@ -57,7 +57,7 @@
                                 </Setter>
                             </DataTrigger>
                         </Grid.Triggers>
-                        <Label BindingContext="AepApp.View.AirPage" HeightRequest="0" BackgroundColor="Transparent" />
+                        <Label BindingContext="AepApp.View.EnvironmentalQuality.AirPage" HeightRequest="0" BackgroundColor="Transparent" />
                         <!--                                                  空气质量-->
                         <Label Text="{Binding menuAirLabel}" />
                     </Grid>

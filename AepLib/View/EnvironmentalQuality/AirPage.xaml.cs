@@ -15,7 +15,7 @@ using Xamarin.Forms.Xaml;
 
 
 
-namespace AepApp.View
+namespace AepApp.View.EnvironmentalQuality
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AirPage : ContentPage

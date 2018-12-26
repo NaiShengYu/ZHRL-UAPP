@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.EnvironmentalQuality.VOCDetailPage">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+                <ListView x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="45">
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Label HorizontalOptions="Start" Text="{Binding name}" FontSize="16" TextColor="Black" VerticalOptions="CenterAndExpand"  Margin="20,0,0,0"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -21,6 +21,9 @@
     <Compile Update="Page1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\EnvironmentalQuality\VOCDetailPage.xaml.cs">
+      <DependentUpon>VOCDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\Gridding\GridTreeViewPage.xaml.cs">
       <DependentUpon>GridTreeViewPage.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="View\EnvironmentalQuality\VOCChartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\Gridding\EventHandleProcessPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -109,14 +115,11 @@
     <EmbeddedResource Update="View\Gridding\GridTreeViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\ScanLoginPage.xaml">
+    <EmbeddedResource Update="View\Common\ScanLoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\ViewContentPage.xaml">
+    <EmbeddedResource Update="View\Common\ViewContentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\EnvironmentalQuality\" />
   </ItemGroup>
 </Project>

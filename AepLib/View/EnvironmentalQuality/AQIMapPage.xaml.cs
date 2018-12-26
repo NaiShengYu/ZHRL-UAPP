@@ -14,7 +14,7 @@ using Xamarin.Forms;
 //using Xamarin.Forms.BaiduMaps;
 using Xamarin.Forms.Xaml;
 
-namespace AepApp.View
+namespace AepApp.View.EnvironmentalQuality
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AQIMapPage : ContentPage
