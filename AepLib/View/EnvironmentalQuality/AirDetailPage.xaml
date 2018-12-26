@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AepApp.View.AirDetailPage"         
-             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
-             xmlns:chart="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
+             x:Class="AepApp.View.EnvironmentalQuality.AirDetailPage"         
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
     
     <ContentPage.Content>
         <ScrollView>
@@ -29,8 +28,7 @@
                     <Button Text=" 24小时 " Clicked="Hours" BackgroundColor="Gray" x:Name="hours"/>
                     <Button Text=" 30天 " Clicked="Days" BackgroundColor="White" x:Name="days"/>
                 </StackLayout>
-                <oxy:PlotView x:Name="oxyPlot" HeightRequest="250" 
-                            />
+                <oxy:PlotView x:Name="oxyPlot" HeightRequest="250" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

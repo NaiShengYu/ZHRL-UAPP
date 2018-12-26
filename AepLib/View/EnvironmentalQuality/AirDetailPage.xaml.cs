@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AepApp.View
+namespace AepApp.View.EnvironmentalQuality
 {
     //代码binding
     //Binding b = new Binding("AQIInfo.AQILevel");
@@ -213,7 +213,7 @@ namespace AepApp.View
                 //Title = "Year",               
                 MinorIntervalType = DateTimeIntervalType.Days,
                 IntervalType = DateTimeIntervalType.Days, //间隔类型（天数）
-                MajorGridlineStyle = LineStyle.Solid, //主网格样式
+                MajorGridlineStyle = LineStyle.DashDot, //主网格样式
                 MinorGridlineStyle = LineStyle.None, //次网格样式
               
             };
@@ -262,7 +262,7 @@ namespace AepApp.View
                 //Title = "Year",               
                 MinorIntervalType = DateTimeIntervalType.Days,
                 IntervalType = DateTimeIntervalType.Days, //间隔类型（天数）
-                MajorGridlineStyle = LineStyle.Solid, //主网格样式
+                MajorGridlineStyle = LineStyle.DashDot, //主网格样式
                 MinorGridlineStyle = LineStyle.None, //次网格样式
                
             };

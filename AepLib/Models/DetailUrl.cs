@@ -44,6 +44,10 @@ namespace AepApp.Models
         //环境质量
         //获取VOC站点列表
         public static string GetVOCSite = "/Api/location/PagedList";
+        //获取VOC站点因子
+        public static string GetVOCSiteFactor = "/Api/location/GetFactorListSortedPost";
+        //获取VOC因子数据
+        public static string GetVOCFactorData = "/Api/FactorData/GetFactValPost";
 
 
     }

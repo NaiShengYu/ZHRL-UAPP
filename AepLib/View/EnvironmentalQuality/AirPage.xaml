@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AepApp.View.AirPage">
+             x:Class="AepApp.View.EnvironmentalQuality.AirPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="aqi">
                 <ViewCell Height="45">
                     <Grid VerticalOptions="Center">
-                        <Label HorizontalOptions="Start" VerticalOptions="Center"  Text="{Binding Rank}"  Margin="5,0,0,0" WidthRequest="30" FontSize="12" HorizontalTextAlignment="Center" />
-                        <Label HorizontalOptions="Start"  VerticalOptions="Center"  Text="{Binding StationName}" Margin="40,0,0,0" Font="12"/>
+                        <Label HorizontalOptions="Start" VerticalOptions="Center"  Text="{Binding Rank}"  Margin="5,0,0,0" WidthRequest="30" 
+                               FontSize="14" HorizontalTextAlignment="Center" TextColor="Black"/>
+                        <Label HorizontalOptions="Start"  VerticalOptions="Center"  Text="{Binding StationName}" Margin="40,0,0,0" 
+                               Font="12" TextColor="Black"/>
                         <Label HorizontalOptions="Start" Font="14"  VerticalOptions="Center"  Text="{Binding info.facName}" Margin="120,0,0,0"  WidthRequest="100" HorizontalTextAlignment="Center"/>
                         <Label HorizontalOptions="Fill"  Font="14" VerticalOptions="Center"  Text="{Binding info.AQI}"  Margin="230,0,30,0" HorizontalTextAlignment="Center"/>
                         <Image HorizontalOptions="End"   VerticalOptions="Center"   WidthRequest="10" HeightRequest="12" Source="right.png" Margin="0,0,10,0"/>
@@ -19,7 +21,7 @@
                 <ViewCell Height="45">
                     <Grid VerticalOptions="Center">
                         <Label HorizontalOptions="Start" VerticalOptions="Center" Text="{Binding Rank}"  Margin="5,0,0,0" WidthRequest="30" FontSize="12" HorizontalTextAlignment="Center" />
-                        <Label HorizontalOptions="Start"  VerticalOptions="Center" Text="{Binding StationName}" Margin="40,0,0,0" Font="12"/>
+                        <Label HorizontalOptions="Start"  VerticalOptions="Center" Text="{Binding StationName}" Margin="40,0,0,0" Font="12" TextColor="Black"/>
                         <Label HorizontalOptions="Start" Font="14"  VerticalOptions="Center" Text="{Binding info.facName}" Margin="120,0,0,0" WidthRequest="100" HorizontalTextAlignment="Center"/>
                         <Label HorizontalOptions="Fill"  Font="14" VerticalOptions="Center" Text="{Binding info.PM25}"  Margin="230,0,30,0" HorizontalTextAlignment="Center"/>
                         <Image HorizontalOptions="End"   VerticalOptions="Center" WidthRequest="10" HeightRequest="12" Source="right.png" Margin="0,0,10,0"/>

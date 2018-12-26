@@ -38,10 +38,12 @@ namespace AepApp.View.EnvironmentalQuality
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
+            if (listView.SelectedItem == null) return;
             VOCSiteListModel item = e.SelectedItem as VOCSiteListModel;
             if (item == null)
                 return;
-
+            Navigation.PushAsync(new VOCDetailPage(item));
+            listView.SelectedItem = null;
 
         }
 
