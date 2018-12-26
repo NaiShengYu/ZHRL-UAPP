@@ -29,9 +29,18 @@ namespace AepApp.View
                 menu1.BindingContext = App.moduleConfigSampling;
                 layoutEP.IsVisible = App.moduleConfigEP360 != null;
                 layoutEP.BindingContext = App.moduleConfigEP360;
-                layoutGrid.IsVisible = App.moduleConfigEP360 != null;
+                //LayoutBasicData.IsVisible = App.
+
+                try
+                {
+                    layoutGrid.IsVisible = App.moduleConfigEP360.menuGridTask;
+                }
+                catch (Exception ex)
+                {
+                }
+                if (App.moduleConfigBasicData != null) LayoutBasicData.IsVisible = App.moduleConfigBasicData.showEmeSummary;
+                LayoutBasicData.BindingContext = App.moduleConfigBasicData;
                 layoutGrid.BindingContext = App.moduleConfigEP360;
-                menu3.BindingContext = App.moduleConfigFramework;
                 EmegencyLat.BindingContext = App.moduleConfigEmergency;
                 menu2.BindingContext = App.moduleConfigENVQ;
             }
@@ -67,7 +76,7 @@ namespace AepApp.View
 
             };
 
-            StackLayout[] menus = new StackLayout[7] { menu1, menu2, menu3, layoutEP, layoutSampling, layoutGrid, EmegencyLat };
+            StackLayout[] menus = new StackLayout[8] { menu1, menu2, menu3, layoutEP, layoutSampling, layoutGrid, EmegencyLat,LayoutBasicData };
 
             foreach (var menu in menus)
             {

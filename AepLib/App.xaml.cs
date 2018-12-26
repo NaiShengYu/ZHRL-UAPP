@@ -59,9 +59,9 @@ namespace AepApp
 
         public static ModuleConfigEP360 moduleConfigEP360 = null;
         public static ModuleConfigSampling moduleConfigSampling = null;
-        public static ModuleConfigFramework moduleConfigFramework = null;
         public static ModuleConfigEmergency moduleConfigEmergency = null;//应急模块需要展示的内容
         public static ModuleConfigENVQ moduleConfigENVQ = null;//环境质量需要展示的内容
+        public static ModuleConfigBasicData moduleConfigBasicData = null;
 
         public List<ModuleInfo> Modules = null;
         public static ModuleInfo EmergencyModule = null;//应急
@@ -341,10 +341,7 @@ namespace AepApp
                 try
                 {
                     List<Task> tasks = new List<Task>();
-                    //EP360Module = null;
-                    //environmentalQualityModel = null;
-                    //SamplingModule = null;
-                    //BasicDataModule = null;
+               
                     if (EP360Module != null && EP360Module.status.Equals("0")) { tasks.Add(GetModuleConfigEP360()); } else _isEP360 = true;
                     if (SamplingModule != null && SamplingModule.status.Equals("0")) tasks.Add(GetModuleConfigSampling()); else _isSampling = true;
                     if (BasicDataModule != null && BasicDataModule.status.Equals("0")) tasks.Add(GetModuleConfigFramework()); else _ISBasicData = true;
@@ -610,7 +607,7 @@ namespace AepApp
 
 
         /// <summary>
-        /// Get the main menu config of EP360
+        /// 获取360模块
         /// </summary>
         /// <returns></returns>
         private async Task GetModuleConfigEP360()
@@ -644,7 +641,7 @@ namespace AepApp
         }
 
         /// <summary>
-        /// Get the main menu config of sampling
+        /// 获取采样模块
         /// </summary>
         /// <returns></returns>
         private async Task GetModuleConfigSampling()
@@ -678,7 +675,7 @@ namespace AepApp
         }
 
         /// <summary>
-        /// Get the main menu config of Framework
+        /// 获取基础数据模块
         /// </summary>
         /// <returns></returns>
         private async Task GetModuleConfigFramework()
@@ -688,14 +685,12 @@ namespace AepApp
                 string url = App.BasicDataModule.url + "/api/mod/custconfig";
                 ConvertedTokenReqStruct parameter = new ConvertedTokenReqStruct
                 {
-
                 };
                 string param = JsonConvert.SerializeObject(parameter);
                 HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", App.FrameworkToken);
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
-                    moduleConfigFramework = JsonConvert.DeserializeObject<ModuleConfigFramework>(res.Results);
-
+                    moduleConfigBasicData = JsonConvert.DeserializeObject<ModuleConfigBasicData>(res.Results);
                 }
 
             }
@@ -724,9 +719,6 @@ namespace AepApp
                 {
                     Console.WriteLine(hTTPResponse.Results);
                     var emergency = JsonConvert.DeserializeObject<ModuleConfigEmergency>(hTTPResponse.Results);
-                    //emergency.showEmeSummary = false;
-                    //emergency.menuPastIncident = false;
-                    //emergency.menuDutyRoster = false;
                     App.moduleConfigEmergency = emergency;
                 }
 
@@ -751,7 +743,7 @@ namespace AepApp
         {
             try
             {
-                string url = "http://sx.azuratech.com:32017" + "/api/mod/custconfig";
+                string url = environmentalQualityModel.url + "/api/mod/custconfig";
                 HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", "");
 
                 if (hTTPResponse.StatusCode == HttpStatusCode.OK)

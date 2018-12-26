@@ -90,5 +90,10 @@ namespace AepApp.Models
             get;
             set;
         }
+        public bool menuChangjie { get; set; }
+        public string menuChangjieLabel { get; set; }
+        public bool menuPaikou { get; set; }
+        public string menuPaikouLabel { get; set; }
+
     }
 }

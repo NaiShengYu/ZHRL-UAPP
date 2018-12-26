@@ -25,8 +25,11 @@ namespace AepApp.View
             {
                 GetModule360Statics();
                 GetModuleGridStatics();
-                Layout360Statics.IsVisible = App.moduleConfigEP360 != null;
-                LayoutGridStatics.IsVisible = App.moduleConfigEP360 != null;
+            }
+            if (App.moduleConfigEP360 !=null)
+            {
+                Layout360Statics.IsVisible = App.moduleConfigEP360.menuPollutionSrc;
+                LayoutGridStatics.IsVisible = App.moduleConfigEP360.menuGridTask;
             }
         }
 

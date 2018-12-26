@@ -196,7 +196,7 @@ namespace AepApp.View
             App.moduleConfigEmergency = null;
             App.moduleConfigSampling = null;
             App.moduleConfigEP360 = null;
-            App.moduleConfigFramework = null;
+            App.moduleConfigBasicData = null;
             App.moduleConfigEmergency = null;
             App.moduleConfigENVQ = null;
             App.moduleConfigEmergency = null;
