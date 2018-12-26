@@ -21,6 +21,7 @@ namespace AepApp.View.EnvironmentalQuality
             if (string.IsNullOrWhiteSpace(_searchKey))
             {
                 _isEnd = false;
+                _pageIndex = 0;
                 ReqVOCSite();
             }
         }
@@ -28,6 +29,7 @@ namespace AepApp.View.EnvironmentalQuality
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
             _isEnd = false;
+            _pageIndex = 0;
             dataList.Clear();
             ReqVOCSite();
         }
@@ -60,11 +62,11 @@ namespace AepApp.View.EnvironmentalQuality
             this.Title = "VOC";
             ToolbarItems.Add(new ToolbarItem("", "map.png", () =>
             {
-                //Navigation.PushAsync(new AQIMapPage(sendPages));
+                Navigation.PushAsync(new VOCMapPage(dataList));
             }));
 
             ReqVOCSite();
-
+            listView.ItemsSource = dataList;
         }
 
 
@@ -97,7 +99,7 @@ namespace AepApp.View.EnvironmentalQuality
                     }
                     if (dataList.Count >= result.Totals) _isEnd = true;
                     else _isEnd = false;
-                    listView.ItemsSource = dataList;
+
                 }
                 catch (Exception ex)
                 {

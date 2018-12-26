@@ -208,14 +208,14 @@ namespace AepApp.View
             // 设置X轴设置(时间轴)
             DateTimeAxis dtx = new DateTimeAxis()
             {
-                StringFormat = "yyyy-MM-dd HH:00:00",
+                StringFormat = "yyyy-MM-dd HH",
                 Position = AxisPosition.Bottom,
                 //Title = "Year",               
                 MinorIntervalType = DateTimeIntervalType.Days,
                 IntervalType = DateTimeIntervalType.Days, //间隔类型（天数）
                 MajorGridlineStyle = LineStyle.Solid, //主网格样式
                 MinorGridlineStyle = LineStyle.None, //次网格样式
-               
+              
             };
             if (datas.Count == 0)
             {

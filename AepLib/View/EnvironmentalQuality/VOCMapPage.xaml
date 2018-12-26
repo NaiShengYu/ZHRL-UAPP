@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.EnvironmentalQuality.VOCMapPage"
+             xmlns:m="clr-namespace:AepApp.View">
+    <ContentPage.Content>
+        <Grid>
+            <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="0,0,0,0" IsZoomButtonVisible="false"/>
+            <Button BackgroundColor="Transparent" Clicked="zoomin" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,105" WidthRequest="55" HeightRequest="55" Image="zoomin"/>
+            <Button BackgroundColor="Transparent" Clicked="zoomout" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,40" WidthRequest="55" HeightRequest="55" Image="zoomout"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

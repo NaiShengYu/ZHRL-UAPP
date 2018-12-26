@@ -417,9 +417,6 @@ namespace AepApp.View.EnvironmentalEmergency
                         ControlTemplate = cvt,
                     };
 
-
-
-
                     cv.BindingContext = cv;
                     var s = cv.Measure(100.0, 1000.0);
 

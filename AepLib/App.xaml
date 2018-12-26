@@ -403,7 +403,7 @@
                     <Grid Margin="10,3,10,3">
                         <Grid x:Name="pic" VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
                             <Grid HorizontalOptions="Start"  Margin="10,35,0,10"  VerticalOptions="Start"  WidthRequest="{Binding VoiceWight}">
-                                <Label Text="{Binding VoiceLenth}"  TextColor="Black"  HorizontalOptions="End" VerticalOptions="Center"/>
+                                <Label Text="{Binding VoiceLenth}"  TextColor="Black"  HorizontalOptions="Start" VerticalOptions="Center"/>
                             </Grid>
 
                                <Image Source="play" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">

@@ -11,7 +11,7 @@
                     <DataTemplate>
                         <ViewCell>
                            <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
-                        <Label HorizontalOptions="Start" VerticalOptions="Center" Text="{Binding name}"  Margin="10,10,10,10"  FontSize="17" HorizontalTextAlignment="Center"/>
+                          <Label HorizontalOptions="Fill" VerticalOptions="Center" Text="{Binding name}"  Margin="10,10,10,10"  FontSize="17" VerticalTextAlignment="Center"/>
                           </Grid>
                         </ViewCell>
                     </DataTemplate>

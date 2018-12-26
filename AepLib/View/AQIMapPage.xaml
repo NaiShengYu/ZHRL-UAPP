@@ -1,7 +1,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-              xmlns:m="clr-namespace:AepApp.View" Title = "AQI分布情况"
+              xmlns:m="clr-namespace:AepApp.View" 
+             Title = "AQI分布情况"
           x:Class="AepApp.View.AQIMapPage">
     <ContentPage.Content>
         <Grid>
