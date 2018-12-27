@@ -24,53 +24,24 @@ namespace AepApp.View.EnvironmentalQuality
         public VOCDetailPage(VOCSiteListModel siteInfo,int type)
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");
             _type = type;
             this.Title = siteInfo.name;
             this.siteInfo = siteInfo;
             siteId = siteInfo.id;
-            if(_type ==1) ReqSiteFactors();
-            else ReqSiteFactors1();
+            ReqSiteFactors();
         }
 
         private async void ReqSiteFactors()
         {
-            string url = App.environmentalQualityModel.url + DetailUrl.GetVOCSiteFactor;
+            string url = "";
+            if (_type == 1) url = App.environmentalQualityModel.url + DetailUrl.GetVOCSiteFactor;
+            else url = App.EP360Module.url + DetailUrl.GetPaiKouAndChangJieSiteFactor;
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", siteId);
             string param = JsonConvert.SerializeObject(map);
 
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
-            if (res.StatusCode == HttpStatusCode.OK)
-            {
-                try
-                {
-                    List<Factors> list = JsonConvert.DeserializeObject<List<Factors>>(res.Results);
-                    if (list != null && list.Count > 0)
-                    {
-                        factors.Clear();
-                        foreach (var item in list)
-                        {
-                            factors.Add(item);
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-            listView.ItemsSource = factors;
-        }
-
-
-        private async void ReqSiteFactors1()
-        {
-            string url = App.EP360Module.url + DetailUrl.GetPaiKouAndChangJieSiteFactor;
-            Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("id", siteId);
-            string param = JsonConvert.SerializeObject(map);
-
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST",App.FrameworkToken);
             if (res.StatusCode == HttpStatusCode.OK)
             {
                 try

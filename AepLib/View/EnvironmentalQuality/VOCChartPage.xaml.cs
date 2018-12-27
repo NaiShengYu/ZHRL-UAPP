@@ -26,6 +26,7 @@ namespace AepApp.View.EnvironmentalQuality
         public VOCChartPage(string siteId, Factors factorInfo,int type)
         {
             InitializeComponent();
+            _type = type;
             NavigationPage.SetBackButtonTitle(this, "");
             factor = factorInfo;
             this.siteId = siteId;
@@ -43,7 +44,7 @@ namespace AepApp.View.EnvironmentalQuality
         {
             string url = "";
             if(_type ==1) url = App.environmentalQualityModel.url + DetailUrl.GetVOCFactorData;
-            else url = url = App.EP360Module.url + DetailUrl.GetPaiKouAndChangJieFactorData;
+            else  url = App.EP360Module.url + DetailUrl.GetPaiKouAndChangJieFactorData;
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("refId", siteId);
             map.Add("fromType", 0);
