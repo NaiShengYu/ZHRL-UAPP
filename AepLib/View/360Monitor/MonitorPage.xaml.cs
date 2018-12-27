@@ -91,7 +91,7 @@ namespace AepApp.View.Monitor
         {
             try
             {
-                string url = App.environmentalQualityModel.url + "/api/AppEnterprise/GetUndoneProject?id=" + _ent.id ;
+                string url = App.EP360Module.url + "/api/AppEnterprise/GetUndoneProject?id=" + _ent.id ;
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);

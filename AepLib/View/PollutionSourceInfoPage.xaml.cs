@@ -102,7 +102,7 @@ namespace AepApp.View
             wrk.DoWork += (sender1, e1) =>
             {
                 //CrossHud.Current.Show("请求中...");
-                string uri = App.environmentalQualityModel.url + "/api/AppEnterprise/GetPortOnlinelast?id=" + _enterprise.id;
+                string uri = App.EP360Module.url + "/api/AppEnterprise/GetPortOnlinelast?id=" + _enterprise.id;
                 var result = EasyWebRequest.sendGetHttpWebRequest(uri);
                 try
                 {
@@ -129,7 +129,7 @@ namespace AepApp.View
             wrk.DoWork += (sender1, e1) =>
             {           
                 //CrossHud.Current.Show("请求中...");
-                string uri = App.environmentalQualityModel.url + "/api/AppEnterprise/GetPortFactorList?fid=" + _currentFactor.id + "&type="+_is30Select  + "&id=" + _currentPort.id;
+                string uri = App.EP360Module.url + "/api/AppEnterprise/GetPortFactorList?fid=" + _currentFactor.id + "&type="+_is30Select  + "&id=" + _currentPort.id;
                 var result = EasyWebRequest.sendGetHttpWebRequest(uri);
 
                 try

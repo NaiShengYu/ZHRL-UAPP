@@ -44,7 +44,7 @@ namespace AepApp.View.EnvironmentalQuality
             VOCSiteListModel item = e.SelectedItem as VOCSiteListModel;
             if (item == null)
                 return;
-            Navigation.PushAsync(new VOCDetailPage(item));
+            Navigation.PushAsync(new VOCDetailPage(item,2));
             listView.SelectedItem = null;
 
         }
@@ -63,9 +63,11 @@ namespace AepApp.View.EnvironmentalQuality
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-            this.Title = "VOC";
+            this.Title = App.moduleConfigENVQ.menuChangjieLabel;
             ToolbarItems.Add(new ToolbarItem("", "map.png", () =>
             {
+                var mapVC = new VOCMapPage(dataList);
+                mapVC.Title = App.moduleConfigENVQ.menuChangjieLabel;
                 Navigation.PushAsync(new VOCMapPage(dataList));
             }));
 
@@ -79,14 +81,12 @@ namespace AepApp.View.EnvironmentalQuality
         {
 
             if (_isEnd == true) return;//如果满了就不要请求了
-
-            string url = App.environmentalQualityModel.url + DetailUrl.GetVOCSite;
+            string url = App.EP360Module.url + DetailUrl.GetChangJieSite;
             Dictionary<string, object> dic = new Dictionary<string, object>();
-            dic.Add("searchKey", _searchKey);
+            dic.Add("keyword", _searchKey);
             dic.Add("pageIndex", _pageIndex);
             dic.Add("pageSize", 20);
-            dic.Add("type", 3);
-            dic.Add("subtype", 0);
+            dic.Add("subtype", 3);
             string param = JsonConvert.SerializeObject(dic);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)

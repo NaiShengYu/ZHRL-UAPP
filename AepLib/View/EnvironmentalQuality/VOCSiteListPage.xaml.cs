@@ -42,7 +42,7 @@ namespace AepApp.View.EnvironmentalQuality
             VOCSiteListModel item = e.SelectedItem as VOCSiteListModel;
             if (item == null)
                 return;
-            Navigation.PushAsync(new VOCDetailPage(item));
+            Navigation.PushAsync(new VOCDetailPage(item,1));
             listView.SelectedItem = null;
 
         }
@@ -61,9 +61,11 @@ namespace AepApp.View.EnvironmentalQuality
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-            this.Title = "VOC";
+            this.Title = App.moduleConfigENVQ.menuVOCLabel;
             ToolbarItems.Add(new ToolbarItem("", "map.png", () =>
             {
+                var mapVC = new VOCMapPage(dataList);
+                mapVC.Title = App.moduleConfigENVQ.menuVOCLabel;
                 Navigation.PushAsync(new VOCMapPage(dataList));
             }));
 

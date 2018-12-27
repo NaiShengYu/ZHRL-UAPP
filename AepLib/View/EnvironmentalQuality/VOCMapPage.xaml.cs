@@ -29,7 +29,6 @@ namespace AepApp.View.EnvironmentalQuality
         public VOCMapPage(ObservableCollection<VOCSiteListModel> dataList)
         {
             InitializeComponent();
-            Title = "VOC地点";
             NavigationPage.SetBackButtonTitle(this, "");
 
             //var site = dataList[0];
@@ -44,8 +43,9 @@ namespace AepApp.View.EnvironmentalQuality
                 if (Convert.ToDouble(site.lng) < 90 || Convert.ToDouble(site.lat) <= 0) continue;
 
                 AzmLabelView lv = new AzmLabelView(site.name, new AzmCoord(Convert.ToDouble(site.lng), Convert.ToDouble(site.lat)))
-                    {
-                        BackgroundColor = Color.FromHex("#4169E1"),
+                {
+                    BackgroundColor = Color.FromHex("#4169E1"),
+                    BindingContext = site,
                     };
                 lv.OnTapped += Lv_OnTapped;
                     map.Overlays.Add(lv);
@@ -82,7 +82,16 @@ namespace AepApp.View.EnvironmentalQuality
 
         void Lv_OnTapped(object sender, EventArgs e)
         {
+            AzmLabelView lv = sender as AzmLabelView;
+            VOCSiteListModel item = lv.BindingContext as VOCSiteListModel;
+            if (item == null)
+                return;
 
+            int type = 0;
+            if (Title == App.moduleConfigENVQ.menuVOCLabel) type = 1;
+            else if (Title == App.moduleConfigENVQ.menuChangjieLabel) type = 2;
+            else type = 3;
+            Navigation.PushAsync(new VOCDetailPage(item,type));
         }
 
     }

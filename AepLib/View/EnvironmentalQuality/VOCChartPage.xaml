@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:AepApp.MaterialForms" 
@@ -23,10 +23,10 @@
             </Grid>
             <StackLayout Margin="10, 10, 0, 0" Spacing="8" Orientation="Horizontal">
                 <Label Text="选择时间" TextColor="Black" FontSize="16" VerticalOptions="End"/>
-                <DatePicker x:Name="PickerStart" WidthRequest="80" TextColor="Black" Format="yyyy-MM-dd" FontSize="14" 
+                <DatePicker x:Name="PickerStart" WidthRequest="90" TextColor="Black" Format="yyyy-MM-dd" FontSize="14" 
                             DateSelected="DatePickerStart_DateSelected" VerticalOptions="End"/>
                 <Label Text="至" TextColor="Black" FontSize="16" VerticalOptions="End"/>
-                <DatePicker x:Name="PickerEnd" WidthRequest="80" TextColor="Black" Format="yyyy-MM-dd" FontSize="14" 
+                <DatePicker x:Name="PickerEnd" WidthRequest="90" TextColor="Black" Format="yyyy-MM-dd" FontSize="14" 
                             DateSelected="DatePickerEnd_DateSelected" VerticalOptions="End"/>
             </StackLayout>
             <Button x:Name="BtnSearch" WidthRequest="60" HeightRequest="40" Text="筛选" TextColor="White" BackgroundColor="Blue" 
