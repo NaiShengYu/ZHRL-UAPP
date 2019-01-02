@@ -9,17 +9,17 @@
             <Label Text="{Binding name}" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" TextColor="White"
                    VerticalTextAlignment="Center" Margin="10,0,0,0" FontSize="17"/>
 
-            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" RowHeight="65" ItemAppearing="Handle_ItemAppearing" Margin="0,45,0,0">
+            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" HasUnevenRows="true" ItemAppearing="Handle_ItemAppearing" Margin="0,45,0,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">
-                            <Grid VerticalOptions="Center" Margin="10,0,10,0">
+                            <Grid VerticalOptions="Center" Margin="10,10,10,10">
                                 <StackLayout HorizontalOptions="Start" Margin="0,0,100,0">
-                                    <Label FontSize="17" TextColor="Black" Text="{Binding PROJECT_NAME}" LineBreakMode="NoWrap" />
+                                    <Label FontSize="17" TextColor="Black" Text="{Binding PROJECT_NAME}" />
                                     <Label FontSize="15" Text="{Binding ENV_CREATE_TIME, StringFormat='{0:yyyy-MM-dd HH:mm}'}" />
                                 </StackLayout>
                                 <BoxView WidthRequest="70" Margin="0,0,15,0" BackgroundColor="#2d7efb" HorizontalOptions="End" HeightRequest="25" VerticalOptions="Center"/>
-                                <Label FontSize="13" WidthRequest="70" Margin="0,0,15,0" TextColor="White" Text="{Binding stateName}" HorizontalOptions="End" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                                <Label FontSize="13" WidthRequest="70" Margin="0,0,15,0" TextColor="White" Text="{Binding project_status}" HorizontalOptions="End" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
                                 <Image Source="right.png" HorizontalOptions="End">
                                     <Image.Triggers>
                                         <DataTrigger TargetType="Image"

@@ -5,9 +5,6 @@ namespace AepApp.Models
     {
         public float? value { get; set; }
         public string dt { get; set; }
-
-
-
-
+        public DateTime date { get; set; }
     }
 }

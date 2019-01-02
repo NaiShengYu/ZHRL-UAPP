@@ -96,59 +96,60 @@ namespace AepApp.View
         }
 
         //获取站点所有排口及排口下的因子
-        private void factorData()
+       private async void factorData()
         {
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.DoWork += (sender1, e1) =>
-            {
+            //BackgroundWorker wrk = new BackgroundWorker();
+            //wrk.DoWork += (sender1, e1) =>
+            //{
                 //CrossHud.Current.Show("请求中...");
                 string uri = App.EP360Module.url + "/api/AppEnterprise/GetPortOnlinelast?id=" + _enterprise.id;
-                var result = EasyWebRequest.sendGetHttpWebRequest(uri);
+                HTTPResponse response =await EasyWebRequest.SendHTTPRequestAsync(uri, "", "GET", App.FrameworkToken);
                 try
                 {
-                    group = JsonConvert.DeserializeObject<ObservableCollection<ProjectApprovalInfoDischargePort>>(result);
-                }
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    group = JsonConvert.DeserializeObject<ObservableCollection<ProjectApprovalInfoDischargePort>>(response.Results);
+            }
                 catch
                 {
 
                 }
 
-            };
-            wrk.RunWorkerCompleted += (sender1, e1) =>
-            {
+            //};
+            //wrk.RunWorkerCompleted += (sender1, e1) =>
+            //{
                 CrossHud.Current.Dismiss();
                 CreatView();               
-            };
-            wrk.RunWorkerAsync();
+            //};
+            //wrk.RunWorkerAsync();
         }
 
         //获取24小时或者30天数据
-        void haveHistoryData()
+       async void haveHistoryData()
         {
-            BackgroundWorker wrk = new BackgroundWorker();
-            wrk.DoWork += (sender1, e1) =>
-            {           
+            //BackgroundWorker wrk = new BackgroundWorker();
+            //wrk.DoWork += (sender1, e1) =>
+            //{           
                 //CrossHud.Current.Show("请求中...");
                 string uri = App.EP360Module.url + "/api/AppEnterprise/GetPortFactorList?fid=" + _currentFactor.id + "&type="+_is30Select  + "&id=" + _currentPort.id;
-                var result = EasyWebRequest.sendGetHttpWebRequest(uri);
-
+                HTTPResponse response = await EasyWebRequest.SendHTTPRequestAsync(uri, "", "GET", App.FrameworkToken);
                 try
                 {
-                    _chartData = JsonConvert.DeserializeObject<ObservableCollection<FactorForDateData>>(result);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    _chartData = JsonConvert.DeserializeObject<ObservableCollection<FactorForDateData>>(response.Results);
                 }
                 catch(Exception ex)
                 {
                     Console.WriteLine("错误提示：" + ex);
                 }
 
-            };
-            wrk.RunWorkerCompleted += (sender1, e1) =>
-            {
+            //};
+            //wrk.RunWorkerCompleted += (sender1, e1) =>
+            //{
 
                 ProcessingData();
                 CrossHud.Current.Dismiss();
-            };
-            wrk.RunWorkerAsync();
+            //};
+            //wrk.RunWorkerAsync();
 
 
 
@@ -292,18 +293,21 @@ namespace AepApp.View
             for (int i = 0; i < num; i++)
             {
                 para = _chartData[i];
-                string value = para.dt.Replace("T", " ");
-                DateTime dt;
+                // DateTime dt;
+                //var value = para.dt;
+                //value = value.Replace("T", " ");
                 if(_is30Select ==false){
-                    dt = DateTime.ParseExact(value, "yyyy-MM-dd HH", CultureInfo.CurrentCulture);
-                }else{
-                    dt = DateTime.ParseExact(value, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
+                    dtx.IntervalType = DateTimeIntervalType.Hours; //间隔类型（小时）
+                    dtx.MinorIntervalType = DateTimeIntervalType.Hours; //间隔类型（小时）
+                   }
+                else{
+                    dtx.IntervalType = DateTimeIntervalType.Days; //间隔类型（天数）
+                    dtx.MinorIntervalType = DateTimeIntervalType.Days; //间隔类型（天数）
                 }
-                double abc = DateTimeAxis.ToDouble(dt);
-                    lineSeries.Points.Add(new DataPoint(abc, para.value.Value));
-
-                    min = Math.Min(para.value.Value, min);//设置Y轴最小值
-                    max = Math.Max(para.value.Value, max);//设置Y轴最大值
+                double abc = DateTimeAxis.ToDouble(para.date);
+                lineSeries.Points.Add(new DataPoint(abc, para.value.Value));
+                min = Math.Min(para.value.Value, min);//设置Y轴最小值
+                max = Math.Max(para.value.Value, max);//设置Y轴最大值
 
             }
             ylx.Minimum = min - (max - min) * 0.05;

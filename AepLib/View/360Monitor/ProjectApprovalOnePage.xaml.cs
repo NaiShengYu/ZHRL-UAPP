@@ -21,10 +21,8 @@ namespace AepApp.View.Monitor
             var selectItem = e.SelectedItem as ProjectApproval;
             if (selectItem == null)
                 return;
-            if (selectItem.FileData.Count == 0) return;
             Navigation.PushAsync(new ProjectApprovalInfoPage(selectItem, _ent));
             listV.SelectedItem = null;
-
         }
 
 
@@ -53,7 +51,7 @@ namespace AepApp.View.Monitor
             set { _ent = value; }
         }
 
-        int _page = 1;//当前页数
+        int _page = 0;//当前页数
         bool _haveMore = true;//判断是否有更多的数据
         ObservableCollection<ProjectApproval> dataList = new ObservableCollection<ProjectApproval>();
 
@@ -83,7 +81,7 @@ namespace AepApp.View.Monitor
         {
             try
             {
-                string url = App.EP360Module.url + "/api/AppEnterprise/GetApprovalList?id=" + _ent.id + "&pageindx=" + _page + "&pageSize=10";
+                string url = App.EP360Module.url + "/api/AppEnterprise/GetApprovalList?id=" + _ent.id + "&pageindx=" + _page + "&pageSize=20";
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);
