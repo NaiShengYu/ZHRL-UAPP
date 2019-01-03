@@ -45,7 +45,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            if (App.gridUser == null) return;
+            //if (App.gridUser == null) return;
             Navigation.PushAsync(new RegistrationEventPage(eventM.id.ToString()));
             listView.SelectedItem = null;
         }
@@ -69,7 +69,8 @@ namespace AepApp.View.Gridding
             if (App.gridUser == null)
             {
                 App.gridUser = await (App.Current as App).getStaffInfo(App.userInfo.id);
-                if (App.gridUser == null) return;
+                if (App.gridUser == null) addButGR.Height = 0;
+
             }
             ReqGridEventList();
         }
@@ -89,7 +90,6 @@ namespace AepApp.View.Gridding
 
         private async void ReqGridEventList()
         {
-
             string url = App.EP360Module.url + "/api/gbm/GetHandledIncidentsByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);

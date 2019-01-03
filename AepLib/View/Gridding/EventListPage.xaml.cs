@@ -20,6 +20,7 @@ namespace AepApp.View.Gridding
         public EventListPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");
             SearchData();
         }
 
