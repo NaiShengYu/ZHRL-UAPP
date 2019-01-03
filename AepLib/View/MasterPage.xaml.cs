@@ -69,8 +69,9 @@ namespace AepApp.View
                     }
                     Type pagetype = Type.GetType(t);
                     var page = (Page)Activator.CreateInstance(pagetype);
+                    NavigationPage.SetBackButtonTitle(page, "");
                     Navigation.PushAsync(page);
-
+                   
                 }
                 App.masterAndDetailPage.IsPresented = false;
 

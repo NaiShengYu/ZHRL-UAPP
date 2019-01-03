@@ -12,7 +12,7 @@ namespace AepApp.View.Gridding
 {
     public partial class EventListPage : ContentPage
     {
-        private string mSearchKey;
+        private string mSearchKey = "";
         int pageIndex = 0;//请求页码
         bool haveMore = true;//返回是否还有
         private ObservableCollection<GridEventModel> dataList = new ObservableCollection<GridEventModel>();
@@ -36,27 +36,30 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            if (App.gridUser == null) return;
-            if(eventM.direction == "received"){
-                //乡级
-                if (App.gridUser.gridLevel == App.GridMaxLevel - 1)
-                {
-                    var dsPage = new DisposeEventPage(eventM);
-                    Navigation.PushAsync(dsPage);
-                    listView.SelectedItem = null;
-
-                }
-                //县级
-                if (App.gridUser.gridLevel == App.GridMaxLevel - 2)
-                {
-                    var dsPage = new DisposeEventTypeTowPage(eventM);
-                    Navigation.PushAsync(dsPage);
-                    listView.SelectedItem = null;
-                }
-            }
-            if(eventM.direction == "issued") 
+            if (App.gridUser == null)
                 Navigation.PushAsync(new RegistrationEventPage(eventM.id.ToString()));
-
+            else
+            {
+                if (eventM.direction == "received")
+                {
+                    //乡级
+                    if (App.gridUser.gridLevel == App.GridMaxLevel - 1)
+                    {
+                        var dsPage = new DisposeEventPage(eventM);
+                        Navigation.PushAsync(dsPage);
+                        listView.SelectedItem = null;
+                    }
+                    //县级
+                    if (App.gridUser.gridLevel == App.GridMaxLevel - 2)
+                    {
+                        var dsPage = new DisposeEventTypeTowPage(eventM);
+                        Navigation.PushAsync(dsPage);
+                        listView.SelectedItem = null;
+                    }
+                }
+                if (eventM.direction == "issued")
+                    Navigation.PushAsync(new RegistrationEventPage(eventM.id.ToString()));
+            }
             listView.SelectedItem = null;
         }
 
@@ -81,7 +84,7 @@ namespace AepApp.View.Gridding
                 App.gridUser = await (App.Current as App).getStaffInfo(App.userInfo.id);
                 if (App.gridUser == null) {
                     addButGR.Height = 0;
-                    return;
+                    //return;
                 }
             }
             ReqGridEventList();
@@ -107,7 +110,8 @@ namespace AepApp.View.Gridding
             map.Add("pageIndex", pageIndex);
             map.Add("pageSize", ConstantUtils.PAGE_SIZE);
             map.Add("searchKey", mSearchKey);
-            map.Add("grid", App.gridUser.grid);
+            if(App.gridUser !=null)
+                map.Add("grid", App.gridUser.grid);
             string param = JsonConvert.SerializeObject(map);
 
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
