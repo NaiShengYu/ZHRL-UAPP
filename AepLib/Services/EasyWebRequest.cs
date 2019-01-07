@@ -33,7 +33,6 @@ namespace CloudWTO.Services
         private ErrCall callBack;
         public static string sendGetHttpWebRequest(string url)
         {
-
             ServicePointManager.ServerCertificateValidationCallback = MyCertHandler;
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             //req.Host = "example.com";

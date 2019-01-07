@@ -49,7 +49,7 @@ namespace AepApp.View.Monitor
 
         }
 
-        int _page = 1;//当前页数
+        int _page = 0;//当前页数
         bool _haveMore = true;//判断是否有更多的数据
         ObservableCollection<ElectroniPcunishMentList> dataList = new ObservableCollection<ElectroniPcunishMentList>();
 
@@ -77,7 +77,7 @@ namespace AepApp.View.Monitor
         {
             try
             {
-                string url = App.EP360Module.url + "/api/AppEnterprise/GetPunishmentEnter?id=" + _ent.id + "&pageindx=" + _page + "&pageSize=10";
+                string url = App.EP360Module.url + "/api/AppEnterprise/GetPunishmentEnter?id=" + _ent.id + "&pageindx=" + _page + "&pageSize=20";
                 Console.WriteLine("请求接口：" + url);
                 string result = EasyWebRequest.sendGetHttpWebRequest(url);
                 Console.WriteLine("请求结果：" + result);

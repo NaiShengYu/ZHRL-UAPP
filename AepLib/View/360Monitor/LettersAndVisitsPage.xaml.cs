@@ -51,7 +51,7 @@ namespace AepApp.View.Monitor
 
         }
 
-        int _page = 1;//当前页数
+        int _page = 0;//当前页数
         bool _haveMore = true;//判断是否有更多的数据
         ObservableCollection<LettersAndVisits> dataList = new ObservableCollection<LettersAndVisits>();
 

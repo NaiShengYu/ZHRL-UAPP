@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.EnvironmentalQuality.StenchSiteListPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
+            <SearchBar Placeholder="搜索站点名称" TextChanged="SearchBar_TextChanged" SearchButtonPressed="Handle_SearchButtonPressed" x:Name="searchbar"></SearchBar>
+            <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
+            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="Handle_ItemAppearing">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                           <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
+                          <Label TextColor="Black" HorizontalOptions="Fill" VerticalOptions="Center" Text="{Binding name}"  Margin="10,10,10,10"  FontSize="17" VerticalTextAlignment="Center"/>
+                          </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AepApp.View.Gridding.HandledEventListPage"
@@ -15,7 +15,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="50" x:Name="addButGR"/>
             </Grid.RowDefinitions>
             <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_Search"/>
             <ListView x:Name="listView" Grid.Row="1" HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
