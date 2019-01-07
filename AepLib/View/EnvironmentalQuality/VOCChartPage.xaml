@@ -8,7 +8,7 @@
         <StackLayout>
             <Grid Margin="10">
                 <Label Text="选择类型" TextColor="Black" FontSize="16" VerticalOptions="Center"/>
-                <views:BorderlessPicker WidthRequest="60" TextColor="Black" x:Name="pickerType"  FontSize="16" XAlign="End"
+                <views:BorderlessPicker WidthRequest="60" TextColor="Gray" x:Name="pickerType"  FontSize="16" XAlign="End"
                                                 SelectedIndexChanged="pickerType_SelectedIndexChanged" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -24,13 +24,13 @@
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <StackLayout Margin="10" Orientation="Horizontal">
                 <Label Text="开始时间" TextColor="Black" FontSize="16" VerticalOptions="Center"/>
-                <views:BorderlessDatePicker x:Name="PickerStart" HorizontalOptions="EndAndExpand" TextColor="Black" Format="yyyy-MM-dd" FontSize="14" 
+                <views:BorderlessDatePicker x:Name="PickerStart" HorizontalOptions="EndAndExpand" TextColor="Gray" Format="yyyy-MM-dd" FontSize="14" 
                             DateSelected="DatePickerStart_DateSelected" VerticalOptions="Center" XAlign="End"/>
             </StackLayout>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
             <StackLayout Margin="10" Orientation="Horizontal">
                 <Label Text="结束时间" TextColor="Black" FontSize="16" VerticalOptions="Center"/>
-                <views:BorderlessDatePicker x:Name="PickerEnd" WidthRequest="90" TextColor="Black" Format="yyyy-MM-dd" FontSize="14" 
+                <views:BorderlessDatePicker x:Name="PickerEnd" HorizontalOptions="EndAndExpand" TextColor="Gray" Format="yyyy-MM-dd" FontSize="14" 
                             DateSelected="DatePickerEnd_DateSelected" VerticalOptions="Center" XAlign="End"/>
             </StackLayout>
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />

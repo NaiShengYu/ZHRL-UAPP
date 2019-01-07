@@ -23,9 +23,12 @@ namespace AepApp.View.EnvironmentalQuality
         private DateTime endTime;
         private string filterType = "D";
         private int _type = 0;
-        public VOCChartPage(string siteId, Factors factorInfo,int type)
+        private bool isFirst = true;
+
+        public VOCChartPage(string siteId, Factors factorInfo, int type)
         {
             InitializeComponent();
+            _type = type;
             NavigationPage.SetBackButtonTitle(this, "");
             factor = factorInfo;
             this.siteId = siteId;
@@ -36,14 +39,18 @@ namespace AepApp.View.EnvironmentalQuality
             PickerEnd.Date = endTime;
             pickerType.Title = "请选择类型";
             pickerType.SelectedIndex = 0;
-            GetFactorData();
         }
 
         private async void GetFactorData()
         {
+            if (isFirst)
+            {
+                isFirst = false;
+                return;
+            }
             string url = "";
-            if(_type ==1) url = App.environmentalQualityModel.url + DetailUrl.GetVOCFactorData;
-            else url = url = App.EP360Module.url + DetailUrl.GetPaiKouAndChangJieFactorData;
+            if (_type == 1) url = App.environmentalQualityModel.url + DetailUrl.GetVOCFactorData;
+            else url = App.EP360Module.url + DetailUrl.GetPaiKouAndChangJieFactorData;
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("refId", siteId);
             map.Add("fromType", 0);
@@ -55,7 +62,7 @@ namespace AepApp.View.EnvironmentalQuality
             map.Add("dataType", 0);//0：单因子 1：因子组
             string param = JsonConvert.SerializeObject(map);
 
-            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST",App.FrameworkToken);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == HttpStatusCode.OK)
             {
                 try
