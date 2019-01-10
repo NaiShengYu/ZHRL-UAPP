@@ -1,4 +1,5 @@
-﻿using AepApp.Models;
+﻿using AepApp.Interface;
+using AepApp.Models;
 using AepApp.Tools;
 using AepApp.View.Gridding;
 using CloudWTO.Services;
@@ -31,6 +32,31 @@ namespace AepApp.View
                 Layout360Statics.IsVisible = App.moduleConfigEP360.menuPollutionSrc;
                 LayoutGridStatics.IsVisible = App.moduleConfigEP360.menuGridTask;
             }
+
+
+
+        }
+
+
+        async void VersionComparison()
+        {
+              string versions = DependencyService.Get<IOpenApp>().GetVersion();
+            var alert =await DisplayAlert("Alert", "You have been alerted", "OK","Cancel");
+            if(alert == true)
+            {
+                if(Device.RuntimePlatform == Device.iOS)
+                    Device.OpenUri(new Uri(""));
+
+
+            }
+
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            VersionComparison();
         }
 
         private void GetModuleGridStatics()

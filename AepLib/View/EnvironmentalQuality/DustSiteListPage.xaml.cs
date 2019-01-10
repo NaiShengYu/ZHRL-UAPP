@@ -103,7 +103,7 @@ namespace AepApp.View.EnvironmentalQuality
                     }
                     if (dataList.Count >= result.Totals) _isEnd = true;
                     else _isEnd = false;
-                    if (total != 0) Title = App.moduleConfigENVQ.menuDustLabel + "（" + total + ")";
+                    if (total != 0) Title = App.moduleConfigENVQ.menuDustLabel + "（" + total + "）";
                     else Title = App.moduleConfigENVQ.menuDustLabel;
                 }
                 catch (Exception ex)

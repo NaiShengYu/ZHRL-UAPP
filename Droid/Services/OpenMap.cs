@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AepApp.Droid.Services;
 using AepApp.Interface;
+using Android.App;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(OpenMap))]
@@ -25,6 +26,15 @@ namespace AepApp.Droid.Services
             }
 
             return maps;
+        }
+
+
+        //获取APP当前版本信息
+        public string GetVersion()
+        {
+            var activity = Xamarin.Forms.Forms.Context as Activity;
+            return activity.PackageManager.GetPackageInfo(activity.PackageName, 0).VersionName;
+          
         }
     }
 }

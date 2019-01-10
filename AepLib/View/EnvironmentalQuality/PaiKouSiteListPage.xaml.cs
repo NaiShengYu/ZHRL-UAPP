@@ -100,7 +100,7 @@ namespace AepApp.View.EnvironmentalQuality
                     }
                     if (dataList.Count >= result.Totals) _isEnd = true;
                     else _isEnd = false;
-                    if (total != 0) Title = App.moduleConfigENVQ.menuPaikouLabel + "（" + total + ")";
+                    if (total != 0) Title = App.moduleConfigENVQ.menuPaikouLabel + "（" + total + "）";
                     else Title = App.moduleConfigENVQ.menuPaikouLabel;
                 }
                 catch (Exception ex)

@@ -75,7 +75,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 {
                     dataList.Add(list[i]);
                 }
-                if (total != 0) Title = "设备（" + total + ")";
+                if (total != 0) Title = "设备（" + total + "）";
                 else Title = "设备";
                 listView.ItemsSource = dataList;
             }

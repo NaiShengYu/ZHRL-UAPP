@@ -52,5 +52,14 @@ namespace AepApp.iOS.Services
             aaa.Add("苹果地图");
             return aaa;
         }
+
+        //获取APP当前版本信息
+        public string GetVersion()
+        {
+            return NSBundle.MainBundle.InfoDictionary["CFBundleShortVersionString"].ToString();
+        }
+
+
+
     }
 }
