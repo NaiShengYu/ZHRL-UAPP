@@ -112,6 +112,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 {
                     dataList.Add(list[i]);
                 }
+                if (total != 0) Title = "化学品（" + total + ")";
+                else Title = "化学品";
                 listView.ItemsSource = dataList;
             }
         }

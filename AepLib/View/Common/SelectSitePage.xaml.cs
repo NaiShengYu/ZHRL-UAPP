@@ -184,9 +184,6 @@ namespace AepApp.View
                 App.isSetToLogin = true;  //从设置按钮进入登入按钮
             Application.Current.MainPage = new NavigationPage(new LoginPage());
 
-   
-
-
             App.gridUser = null;//清空数据
             App.EP360Module = null;
             App.SamplingModule = null;
@@ -245,7 +242,11 @@ namespace AepApp.View
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            Navigation.PopAsync();
+           
+            if (App.userInfo !=null) 
+                Logout(new object(),new EventArgs());
+            else 
+                Navigation.PopAsync();
         }
     }
 }

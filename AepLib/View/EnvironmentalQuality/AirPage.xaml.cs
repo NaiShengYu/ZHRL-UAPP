@@ -34,7 +34,7 @@ namespace AepApp.View.EnvironmentalQuality
             {
                 Navigation.PushAsync(new AQIMapPage(sendPages));
             }));
-
+             
                 //请求网络数据
             //CrossHud.Current.Show("加载中...");
             ReqAirSiteData();       
@@ -47,8 +47,10 @@ namespace AepApp.View.EnvironmentalQuality
                 try{
                     airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(hTTPResponse.Results);
                     SortAQI();
-                    listView.ItemsSource = dataList;
-                }catch{
+                listView.ItemsSource = dataList;
+            }
+            catch
+            {
                 }
         }
 
@@ -61,6 +63,8 @@ namespace AepApp.View.EnvironmentalQuality
                 airPages[i].Rank = (i + 1) + "";               
                 if (airPages[i].info != null) {
                     AirPageModels.AirInfo info = airPages[i];
+                    info.showLab = info.info.AQI;
+                    info.facName = info.info.facName;
                     sendPages.Add(info);
                 }
             }
@@ -72,6 +76,12 @@ namespace AepApp.View.EnvironmentalQuality
             for (int i = 0; i < airPages.Count; i++)
             {
                 airPages[i].Rank = (i + 1) + "";
+                if (airPages[i].info != null)
+                {
+                    AirPageModels.AirInfo info = airPages[i];
+                    info.showLab = info.info.PM25;
+                    info.facName = info.info.facName;
+                }
 
             }
             getCurrentData("");
@@ -81,14 +91,12 @@ namespace AepApp.View.EnvironmentalQuality
         {
             UnitName.Text = "PM2.5(μg/m³)";
             SortPM();
-            listView.ItemTemplate = this.Resources["pm25"] as DataTemplate;
         }
 
         private void AQIsort(object sender, EventArgs e)
         {
             UnitName.Text = "AQI";
             SortAQI();
-            listView.ItemTemplate = this.Resources["aqi"] as DataTemplate;
         }
 
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -118,10 +126,8 @@ namespace AepApp.View.EnvironmentalQuality
                 {
                     dataList.Add(airPages[i]);
                 }
-            }            
+            }
         }
     }
-
- 
 
 }

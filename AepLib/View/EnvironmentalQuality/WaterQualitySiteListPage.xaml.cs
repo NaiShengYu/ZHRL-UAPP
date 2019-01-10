@@ -104,7 +104,8 @@ namespace AepApp.View.EnvironmentalQuality
                     }
                     if (dataList.Count >= result.Totals) _isEnd = true;
                     else _isEnd = false;
-
+                    if (total != 0) Title = App.moduleConfigENVQ.menuWaterLabel + "（" + total + ")";
+                    else Title = App.moduleConfigENVQ.menuWaterLabel;
                 }
                 catch (Exception ex)
                 {

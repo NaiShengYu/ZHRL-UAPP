@@ -19,7 +19,7 @@ namespace AepApp.View
         public MasterPage()
         {
             InitializeComponent();
-
+            NavigationPage.SetBackButtonTitle(this, "");
             try
             {
                 nameLab.Text = App.userInfo.userName;

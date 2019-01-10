@@ -16,8 +16,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid VerticalOptions="Center">
-                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="0">
+                            <Grid VerticalOptions="Center" Margin="0,10,0,10">
+                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="4">
                                     <Label StyleClass="itemtitle" Text="{Binding chinesename}" />
                                     <Label StyleClass="itemsubtitlesmall" Text="{Binding elname}">
                                         <Label.Triggers>
