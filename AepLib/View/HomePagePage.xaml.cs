@@ -56,7 +56,7 @@ namespace AepApp.View
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            VersionComparison();
+            //VersionComparison();
         }
 
         private void GetModuleGridStatics()
