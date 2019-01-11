@@ -21,6 +21,13 @@ namespace AepApp.Models
             public string unitId { get; set; }
             public string unitName { get; set; }
 
+            private string Val = "";
+            public string val
+            {
+                get { return Val; }
+                set { Val = value; NotifyPropertyChanged(); }
+            }
+
         }
 
         public class Charts : BaseModel

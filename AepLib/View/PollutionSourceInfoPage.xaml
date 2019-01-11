@@ -21,6 +21,7 @@
                 </ListView.ItemTemplate>
             </ListView>-->
             <StackLayout Grid.Row="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Orientation="Horizontal">
+                <Button x:Name="massagebut" Text="基础信息" Font="18" BackgroundColor="Silver" Clicked="Handle_360" />
                 <Button x:Name="_360But" Text="360监控" WidthRequest="120" Font="18" BackgroundColor="Silver" Clicked="Handle_360" />
                 <Button x:Name="_24But" Text="24小时" WidthRequest="80" Font="18" BackgroundColor="rgb(34,145,224)" Clicked="Handle_24Hour" />
                 <Button x:Name="_30But" Text="30天" WidthRequest="80" Font="18" BackgroundColor="Silver" Clicked="Handle_30day" />

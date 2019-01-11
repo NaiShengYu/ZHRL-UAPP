@@ -46,6 +46,8 @@ namespace AepApp.Models
         public static string GetVOCSite = "/Api/location/PagedList";
         //获取VOC站点因子
         public static string GetVOCSiteFactor = "/Api/location/GetFactorListSortedPost";
+        //获取VOC站点因子最新值
+        public static string GetVOCSiteFactorLatestValue = "/Api/FactorData/GetLastFacValsPost";
         //获取VOC因子数据
         public static string GetVOCFactorData = "/Api/FactorData/GetFactValPost";
         //获取厂界、排口VOC站点列表
@@ -53,6 +55,8 @@ namespace AepApp.Models
 
         //获取厂界、排口VOC站点因子
         public static string GetPaiKouAndChangJieSiteFactor = "/api/pdo/GetLocationFactors";
+        //获取厂界、排口VOC站点因子
+        public static string GetPaiKouAndChangJieSiteFactorLatestValue = "/api/pdo/GetLocationFactorLatestValues";
 
         //获取厂界、排口VOC因子数据
         public static string GetPaiKouAndChangJieFactorData = "/api/pdo/GetData";

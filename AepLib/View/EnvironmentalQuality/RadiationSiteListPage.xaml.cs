@@ -86,7 +86,7 @@ namespace AepApp.View.EnvironmentalQuality
             dic.Add("pageIndex", _pageIndex);
             dic.Add("pageSize", 20);
             dic.Add("type", 3);
-            dic.Add("subtype", 8);
+            dic.Add("subType", 8);
             string param = JsonConvert.SerializeObject(dic);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)

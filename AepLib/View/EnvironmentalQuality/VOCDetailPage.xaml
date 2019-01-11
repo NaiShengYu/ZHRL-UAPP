@@ -4,20 +4,23 @@
              x:Class="AepApp.View.EnvironmentalQuality.VOCDetailPage">
 
     <ContentPage.Content>
-        <ScrollView>
             <StackLayout Orientation="Vertical">
+              <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="45" BackgroundColor="Silver">
+                                    <Label HorizontalOptions="Start" Text="因子名" FontSize="18" TextColor="Black" VerticalOptions="CenterAndExpand"  Margin="20,0,0,0"/>
+                                    <Label HorizontalOptions="End" Text="最新值" FontSize="18" TextColor="Black" VerticalOptions="CenterAndExpand"  Margin="20,0,20,0"/>
+                                </Grid>
                 <ListView x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="45">
                                 <Grid RowSpacing="0" ColumnSpacing="0">
                                     <Label HorizontalOptions="Start" Text="{Binding name}" FontSize="16" TextColor="Black" VerticalOptions="CenterAndExpand"  Margin="20,0,0,0"/>
+                                    <Label HorizontalOptions="End" Text="{Binding val}" FontSize="16" TextColor="Black" VerticalOptions="CenterAndExpand"  Margin="20,0,20,0"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

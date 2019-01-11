@@ -71,7 +71,6 @@ namespace AepApp.View
         private async void GetPollutionSiteData()
         {
             string uri = App.BasicDataModule.url + "/api/mod/GetAllEnterprise";
-            //string uri = "http://dev.azuratech.com:50001/api/mod/GetAllEnterprise";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("keys", mSearchKey);
             map.Add("pageIndex", pageIndex);

@@ -29,7 +29,7 @@ namespace AepApp.View.EnvironmentalQuality
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-            this.Title = "环境空气站";
+            this.Title = "环境质量";
             ToolbarItems.Add(new ToolbarItem("", "map.png", () =>
             {
                 Navigation.PushAsync(new AQIMapPage(sendPages));
@@ -48,6 +48,10 @@ namespace AepApp.View.EnvironmentalQuality
                     airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(hTTPResponse.Results);
                     SortAQI();
                 listView.ItemsSource = dataList;
+                if (dataList.Count != 0)
+                    Title = "环境质量（" + dataList.Count + "）";
+                else
+                    Title = "环境质量";
             }
             catch
             {

@@ -54,7 +54,7 @@ namespace AepApp.View
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            VersionComparison();
+            //VersionComparison();
         }
 
         private void GetModuleGridStatics()
@@ -252,31 +252,31 @@ namespace AepApp.View
 
         private void LayoutWorkingTask_Tapped(object sender, EventArgs e)
         {
-            App.OpenMenu(new TaskListPage());
+            Navigation.PushAsync(new TaskListPage());
         }
 
 
         private void LayoutRegularTask_Tapped(object sender, EventArgs e)
         {
-            App.OpenMenu(new TaskListPage());
+            Navigation.PushAsync(new TaskListPage());
         }
 
 
         private void LayoutReportEvent_Tapped(object sender, EventArgs e)
         {
-            App.OpenMenu(new EventListPage());
+            Navigation.PushAsync(new EventListPage());
         }
 
 
         private void LayoutCompanyNum_Tapped(object sender, EventArgs e)
         {
-            App.OpenMenu(new PollutionSourcePage());
+            Navigation.PushAsync(new PollutionSourcePage());
         }
 
 
         private void LayoutCompanyAlarmNum_Tapped(object sender, EventArgs e)
         {
-            App.OpenMenu(new PollutionSourcePage());
+            Navigation.PushAsync(new PollutionSourcePage());
         }
 
         class InformationStaticsModel

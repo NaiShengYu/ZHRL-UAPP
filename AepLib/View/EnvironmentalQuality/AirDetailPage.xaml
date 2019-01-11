@@ -7,9 +7,9 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical">
-                <Grid BackgroundColor="#EFEFF4" HeightRequest="40" HorizontalOptions="Fill" RowSpacing="0" ColumnSpacing="0">
+                <Grid BackgroundColor="#EFEFF4" HorizontalOptions="Fill" RowSpacing="0" ColumnSpacing="0">
                     <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
-                    <Label x:Name="health" HorizontalOptions="Start" Margin="70,0,0,0" VerticalTextAlignment="Center"/>
+                    <Label x:Name="health" HorizontalOptions="Start" Margin="70,10,0,10" VerticalTextAlignment="Center"/>
                 </Grid>
                 <ListView x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start" >
                     <ListView.ItemTemplate>

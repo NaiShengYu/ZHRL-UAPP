@@ -19,6 +19,7 @@ namespace AepApp.Models
             public String englishname { get; set; }
             public string elname {
                 get {
+                    if (englishname == null) return "";
                     string[] strs = englishname.Replace("<BR>", "\n").Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     if (strs.Length == 0) return null;
                     return strs[0];

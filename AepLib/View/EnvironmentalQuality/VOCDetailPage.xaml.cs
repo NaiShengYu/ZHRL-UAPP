@@ -21,7 +21,7 @@ namespace AepApp.View.EnvironmentalQuality
         ObservableCollection<Factors> factors = new ObservableCollection<Factors>();
 
         int _type = 0;//1环境VOCs，2VOCs厂界，3VOCs排口
-        public VOCDetailPage(VOCSiteListModel siteInfo,int type)
+        public VOCDetailPage(VOCSiteListModel siteInfo, int type)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
@@ -62,15 +62,62 @@ namespace AepApp.View.EnvironmentalQuality
                 }
             }
             listView.ItemsSource = factors;
+            ReqSiteFactorsLatestValue();
         }
+
+        private async void ReqSiteFactorsLatestValue()
+        {
+            string url = "";
+            if (_type == 1) url = App.environmentalQualityModel.url + DetailUrl.GetVOCSiteFactorLatestValue;
+            else url = App.EP360Module.url + DetailUrl.GetPaiKouAndChangJieSiteFactorLatestValue;
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("refId", siteId);
+            map.Add("fromType", "0");
+            string param = JsonConvert.SerializeObject(map);
+
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                try
+                {
+                    List<FactorLatestValue> list = JsonConvert.DeserializeObject<List<FactorLatestValue>>(res.Results);
+                    if (list != null && list.Count > 0)
+                    {
+                        foreach (var item in list)
+                        {
+                            foreach (var factor in factors)
+                            {
+                                if (item.id == factor.id)
+                                    factor.val = item.val;
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+
+
 
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (listView.SelectedItem == null) return;
             Factors factorInfo = e.SelectedItem as Factors;
             if (factorInfo == null) return;
-            Navigation.PushAsync(new VOCChartPage(siteId, factorInfo,_type));
+            Navigation.PushAsync(new VOCChartPage(siteId, factorInfo, _type));
             listView.SelectedItem = null;
+        }
+
+
+        private class FactorLatestValue
+        {
+            public string id { get; set; }//因子ID
+            public string val { get; set; }//因子ID
+
+
         }
     }
 }

@@ -39,7 +39,7 @@ namespace AepApp.View.EnvironmentalQuality
             InitializeComponent();
             this.Title = airInfo.StationName;
             level.Text = airInfo.info.AQIInfo.AQILevel;
-            health.Text = airInfo.info.AQIInfo.Health;
+            health.Text ="当前空气AQI为"+airInfo.info.AQI+"环境质量为"+airInfo.info.AQIInfo.AQIClass+"。" + airInfo.info.AQIInfo.Health;
             curRefId = airInfo.StationId;
             curFacId = airInfo.info.facId;
             //CrossHud.Current.Show("");

@@ -92,13 +92,13 @@ namespace AepApp.View.EnvironmentalQuality
                 {
                     _pageIndex += 1;
                     var result = JsonConvert.DeserializeObject<VOCSiteResult>(hTTPResponse.Results);
-                    var total = result.Totals;
+                    var total = result.count;
                     List<VOCSiteListModel> list = result.Items;
                     foreach (var item in list)
                     {
                         dataList.Add(item);
                     }
-                    if (dataList.Count >= result.Totals) _isEnd = true;
+                    if (dataList.Count >= result.count) _isEnd = true;
                     else _isEnd = false;
                     if (total != 0) Title = App.moduleConfigENVQ.menuPaikouLabel + "（" + total + "）";
                     else Title = App.moduleConfigENVQ.menuPaikouLabel;
@@ -113,7 +113,7 @@ namespace AepApp.View.EnvironmentalQuality
 
         internal class VOCSiteResult
         {
-            public int Totals { get; set; }
+            public int count { get; set; }
             public List<VOCSiteListModel> Items = new List<VOCSiteListModel>();
         }
 
