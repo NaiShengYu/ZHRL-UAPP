@@ -45,12 +45,10 @@ namespace AepApp.View
             if(alert == true)
             {
                 if(Device.RuntimePlatform == Device.iOS)
-                    Device.OpenUri(new Uri(""));
-
-
+                    Device.OpenUri(new Uri("https://itunes.apple.com/cn/app/%E7%8E%AF%E4%BF%9D%E7%9B%91%E7%AE%A1-%E5%85%A8%E6%96%B0%E7%89%88%E6%9C%AC/id1445804624?mt=8"));
+                if (Device.RuntimePlatform == Device.Android)
+                    Device.OpenUri(new Uri("https://www.pgyer.com/ai2Y"));
             }
-
-
         }
 
         protected override void OnAppearing()
