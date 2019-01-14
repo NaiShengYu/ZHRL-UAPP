@@ -114,13 +114,5 @@ namespace AepApp.View.EnvironmentalQuality
 
             }
         }
-
-        internal class VOCSiteResult
-        {
-            public int Totals { get; set; }
-            public List<VOCSiteListModel> Items = new List<VOCSiteListModel>();
-        }
-
-
     }
 }

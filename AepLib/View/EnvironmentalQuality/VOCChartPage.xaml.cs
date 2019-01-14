@@ -33,7 +33,7 @@ namespace AepApp.View.EnvironmentalQuality
             factor = factorInfo;
             this.siteId = siteId;
             Title = factor.name;
-            startTime = DateTime.Now.Date.AddDays(-30); ;
+            startTime = DateTime.Now.Date.AddDays(-1); ;
             endTime = DateTime.Now;
             PickerStart.Date = startTime;
             PickerEnd.Date = endTime;
@@ -121,17 +121,17 @@ namespace AepApp.View.EnvironmentalQuality
             if ("Y" == filterType)
             {
                 timeFormat = "yyyy";
-                dit = DateTimeIntervalType.Years;
+                //dit = DateTimeIntervalType.Years;
             }
             else if ("M" == filterType)
             {
                 timeFormat = "yyyy-MM";
-                dit = DateTimeIntervalType.Months;
+                //dit = DateTimeIntervalType.Months;
             }
             else if ("H" == filterType)
             {
                 timeFormat = "yy-MM-dd HH";
-                dit = DateTimeIntervalType.Hours;
+                //dit = DateTimeIntervalType.Hours;
             }
 
             DateTimeAxis dtx = new DateTimeAxis()
@@ -141,12 +141,12 @@ namespace AepApp.View.EnvironmentalQuality
                 MinorIntervalType = dit,
                 IntervalType = dit,
                 MajorGridlineStyle = LineStyle.DashDot, //主网格样式
-                MinorGridlineStyle = LineStyle.None, //次网格样式
+                MinorGridlineStyle = LineStyle.DashDashDot, //次网格样式
 
             };
             if (datas.Count == 0)
             {
-                dtx.Minimum = DateTimeAxis.ToDouble(DateTime.Now.AddDays(-30));
+                dtx.Minimum = DateTimeAxis.ToDouble(DateTime.Now.AddDays(-1));
                 dtx.Maximum = DateTimeAxis.ToDouble(DateTime.Now);
             }
             LinearAxis ylx = new LinearAxis()

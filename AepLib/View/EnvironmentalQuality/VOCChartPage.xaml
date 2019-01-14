@@ -8,14 +8,14 @@
         <StackLayout>
             <Grid Margin="10">
                 <Label Text="选择类型" TextColor="Black" FontSize="16" VerticalOptions="Center"/>
-                <views:BorderlessPicker WidthRequest="60" TextColor="Gray" x:Name="pickerType"  FontSize="16" XAlign="End"
+                <views:BorderlessPicker WidthRequest="100" TextColor="Gray" x:Name="pickerType"  FontSize="16" XAlign="End"
                                                 SelectedIndexChanged="pickerType_SelectedIndexChanged" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
+                            <x:String>小时均值</x:String>
                             <x:String>日均值</x:String>
                             <x:String>月均值</x:String>
                             <x:String>年均值</x:String>
-                            <x:String>小时均值</x:String>
                             <x:String>原始值</x:String>
                         </x:Array>
                     </Picker.ItemsSource>

@@ -1,6 +1,7 @@
 ﻿using AepApp.Interface;
 using AepApp.Models;
 using AepApp.Tools;
+using AepApp.View.EnvironmentalQuality;
 using AepApp.View.Gridding;
 using CloudWTO.Services;
 using Newtonsoft.Json;
@@ -21,18 +22,30 @@ namespace AepApp.View
             NavigationPage.SetBackButtonTitle(this, "");
             SetUserDepartment();
             Title = App.siteName;
-
-            if(App.EP360Module != null)
+            //360,网格化
+            if (App.EP360Module != null)
             {
                 GetModule360Statics();
                 GetModuleGridStatics();
             }
-            if (App.moduleConfigEP360 !=null)
+            if (App.moduleConfigEP360 != null)
             {
                 Layout360Statics.IsVisible = App.moduleConfigEP360.menuPollutionSrc;
                 LayoutGridStatics.IsVisible = App.moduleConfigEP360.menuGridTask;
             }
 
+            //环境质量
+            if (App.environmentalQualityModel != null)
+            {
+                GetEnvironmentQualityStatics();
+            }
+            if(App.moduleConfigENVQ != null)
+            {
+                LayoutEnvironmentStatics.IsVisible = App.moduleConfigENVQ.showEnvSummary;
+                LayoutEnvironmentAir.IsVisible = App.moduleConfigENVQ.menuAir;
+                LayoutEnvironmentVOC.IsVisible = App.moduleConfigENVQ.menuVOC;
+                LayoutEnvironmentWater.IsVisible = App.moduleConfigENVQ.menuWater;
+            }
 
 
         }
@@ -40,11 +53,11 @@ namespace AepApp.View
 
         async void VersionComparison()
         {
-              string versions = DependencyService.Get<IOpenApp>().GetVersion();
-            var alert =await DisplayAlert("Alert", "You have been alerted", "OK","Cancel");
-            if(alert == true)
+            string versions = DependencyService.Get<IOpenApp>().GetVersion();
+            var alert = await DisplayAlert("Alert", "You have been alerted", "OK", "Cancel");
+            if (alert == true)
             {
-                if(Device.RuntimePlatform == Device.iOS)
+                if (Device.RuntimePlatform == Device.iOS)
                     Device.OpenUri(new Uri("https://itunes.apple.com/cn/app/%E7%8E%AF%E4%BF%9D%E7%9B%91%E7%AE%A1-%E5%85%A8%E6%96%B0%E7%89%88%E6%9C%AC/id1445804624?mt=8"));
                 if (Device.RuntimePlatform == Device.Android)
                     Device.OpenUri(new Uri("https://www.pgyer.com/ai2Y"));
@@ -57,6 +70,9 @@ namespace AepApp.View
             //VersionComparison();
         }
 
+        /// <summary>
+        /// 网格化模块统计数据
+        /// </summary>
         private void GetModuleGridStatics()
         {
             GetModuleGridWorkingTaskStatics();
@@ -65,10 +81,21 @@ namespace AepApp.View
             GetModuleGridSendInformationStatics();
         }
 
+        /// <summary>
+        /// 360模块统计数据
+        /// </summary>
         private void GetModule360Statics()
         {
             GetModuleBasicCompanyStatics();
             GetModule360AlarmStatics();
+        }
+
+        /// <summary>
+        /// 环境质量模块统计数据
+        /// </summary>
+        private void GetEnvironmentQualityStatics()
+        {
+            GetModelEnvironmentQualityStatics();
         }
 
         private async void SetUserDepartment()
@@ -229,6 +256,52 @@ namespace AepApp.View
             }
         }
 
+        /// <summary>
+        /// 环境质量模块 - 报警数据统计
+        /// </summary>
+        private async void GetModelEnvironmentQualityStatics()
+        {
+            string url = App.environmentalQualityModel.url + DetailUrl.GetVOCSite;
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("pageIndex", -1);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(dic), "POST", App.FrameworkToken);
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    var result = JsonConvert.DeserializeObject<VOCSiteResult>(res.Results);
+                    List<VOCSiteListModel> list = result.Items;
+                    int countAir = 0;
+                    int countVocs = 0;
+                    int countWater = 0;
+                    foreach (var item in list)
+                    {
+                        string subtype = item.subtype;
+                        if ("0".Equals(subtype))
+                        {
+                            countVocs++;
+                        }
+                        else if ("3".Equals(subtype))
+                        {
+                            countAir++;
+                        }
+                        else if ("9".Equals(subtype))
+                        {
+                            countWater++;
+                        }
+                    }
+                    BtnEnvironmentAirNum.Text = countAir + "";
+                    BtnEnvironmentVOCNum.Text = countVocs + "";
+                    BtnEnvironmentWaterNum.Text = countWater + "";
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+
+
         private void LayoutSendInformation_Tapped(object sender, EventArgs e)
         {
             if (info == null && info.count != null && info.count > 0)
@@ -279,6 +352,23 @@ namespace AepApp.View
             Navigation.PushAsync(new PollutionSourcePage());
         }
 
+
+        private void LayoutEnvironmentAir_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AirPage());
+        }
+
+
+        private void LayoutEnvironmentVOC_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new VOCSiteListPage());
+        }
+
+
+        private void LayoutEnvironmentWater_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new WaterQualitySiteListPage());
+        }
         class InformationStaticsModel
         {
             public Guid id;
