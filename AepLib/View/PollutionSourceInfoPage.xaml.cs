@@ -274,7 +274,7 @@ namespace AepApp.View
             }
             else
             {
-                dtx.StringFormat = "yyyy-MM-dd";
+                dtx.StringFormat = "yy-MM-dd";
             }
 
             //设置y轴(线性轴)
