@@ -52,12 +52,10 @@ namespace AepApp.Models
         public static string GetVOCFactorData = "/Api/FactorData/GetFactValPost";
         //获取厂界、排口VOC站点列表
         public static string GetChangJieSite = "/api/pdo/GetLocationList";
-
         //获取厂界、排口VOC站点因子
         public static string GetPaiKouAndChangJieSiteFactor = "/api/pdo/GetLocationFactors";
         //获取厂界、排口VOC站点因子
         public static string GetPaiKouAndChangJieSiteFactorLatestValue = "/api/pdo/GetLocationFactorLatestValues";
-
         //获取厂界、排口VOC因子数据
         public static string GetPaiKouAndChangJieFactorData = "/api/pdo/GetData";
     }
