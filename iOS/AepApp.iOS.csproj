@@ -502,6 +502,7 @@
     <BundleResource Include="Resources\txt.png" />
     <BundleResource Include="Resources\village.png" />
     <BundleResource Include="Resources\xls.png" />
+    <BundleResource Include="Resources\banner_envq.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -667,9 +668,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\yellowexclam.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\banner_envq.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

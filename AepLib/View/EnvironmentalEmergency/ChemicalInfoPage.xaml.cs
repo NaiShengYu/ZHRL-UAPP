@@ -23,6 +23,11 @@ namespace AepApp.View.EnvironmentalEmergency
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             this.Title = name;
             ReqChemicalDetail(id);
+            ToolbarItems.Add(new ToolbarItem("环境标准", "", () =>
+            {
+                Navigation.PushAsync(new ChemicalStandardPage(id));
+            }));
+
         }
 
         public static string ReplaceSubscript(Match match)
@@ -50,12 +55,10 @@ namespace AepApp.View.EnvironmentalEmergency
         private async void ReqChemicalDetail(string id)
         {
             string url = App.BasicDataModule.url + DetailUrl.ChemicalInfo;
-            ChemicalInfoStruct parameter = new ChemicalInfoStruct
-            {
-                chemid = id
-            };
-            string param = JsonConvert.SerializeObject(parameter);
-            //string param = "keyword=" + "" + "&pageIndex=" + pagrIndex + "&pageSize=" + pageSize;
+
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("chemid", id);
+            string param = JsonConvert.SerializeObject(dic);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -69,9 +72,5 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
-        internal class ChemicalInfoStruct
-        {
-            public string chemid { get; set; }
-        }
     }
 }

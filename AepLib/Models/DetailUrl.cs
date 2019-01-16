@@ -32,6 +32,8 @@ namespace AepApp.Models
         public static string ChemicalList = "/api/mod/GetChemicalBykey";
         //获取化学品详细信息
         public static string ChemicalInfo = "/api/mod/GetChemical";
+        //获取化学品环境标准
+        public static string ChemicalStandards = "/api/mod/GetStandards";
         //获取设备列表
         public static string EquipmentList = "/api/mod/GetEquipmentList";
         //获取设备详情
