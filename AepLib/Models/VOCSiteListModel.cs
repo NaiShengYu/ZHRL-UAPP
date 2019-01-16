@@ -15,7 +15,7 @@ namespace AepApp.Models
         public string radius { get; set; }
         public string type { get; set; }
         public string refid { get; set; }
-        public string subtype { get; set; }
+        public string subtype { get; set; }//0： 固定代表VOC点位  3：表示常规空气  9：表示地表水
         public string areacode { get; set; }
         public string isauto { get; set; }
         public string timesplit { get; set; }

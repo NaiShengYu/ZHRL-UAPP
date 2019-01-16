@@ -78,6 +78,39 @@
                         </Frame>
                     </Grid>
                 </Grid>
+                <Grid x:Name="LayoutEnvironmentStatics" Margin="2" HeightRequest="200" IsVisible="false" Padding="10">
+                    <Image HeightRequest="200" Source="banner_envq" Aspect="Fill"/>
+                    <StackLayout Spacing="0" Orientation="Horizontal" x:Name="LayoutEnvironmentAir" HeightRequest="25"  VerticalOptions="Start" HorizontalOptions="Start" IsVisible="False">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LayoutEnvironmentAir_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <Frame CornerRadius="12" BackgroundColor="#1B437C" Padding="0"  BorderColor="#1B437C">
+                            <Label x:Name="BtnEnvironmentAirNum" HorizontalOptions="Center" VerticalOptions="Fill" HeightRequest="25" WidthRequest="40" 
+                                   TextColor="White" Text="0" FontSize="18" HorizontalTextAlignment="Center"/>
+                        </Frame>
+                        <Label TextColor="White" FontSize="14" Margin="-10, 0, 0, 0" VerticalOptions="Center" Text="环境空气站  " BackgroundColor="#072B4F" WidthRequest="100" HorizontalTextAlignment="End"/>
+                    </StackLayout>
+                    <StackLayout Spacing="0" Orientation="Horizontal" x:Name="LayoutEnvironmentVOC" HeightRequest="25"  VerticalOptions="Start" HorizontalOptions="End" IsVisible="False">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LayoutEnvironmentVOC_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label TextColor="White" FontSize="14" Margin="0,0, -10, 0" VerticalOptions="Center" Text=" 环境VOCs自动站  " BackgroundColor="#072B4F" WidthRequest="130"/>
+                        <Frame CornerRadius="12" BackgroundColor="#1B437C" Padding="0"  BorderColor="#1B437C">
+                            <Label x:Name="BtnEnvironmentVOCNum" HorizontalOptions="Center" VerticalOptions="Fill" HeightRequest="25" WidthRequest="40" 
+                                   TextColor="White" Text="0" FontSize="18" HorizontalTextAlignment="Center"/>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Spacing="0" Orientation="Horizontal" x:Name="LayoutEnvironmentWater" HeightRequest="25"  VerticalOptions="End" HorizontalOptions="End" IsVisible="False">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LayoutEnvironmentWater_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label TextColor="White" FontSize="14" Margin="0, 0, -10, 0" VerticalOptions="Center" Text="环境水自动站  " BackgroundColor="#072B4F" WidthRequest="110"/>
+                        <Frame CornerRadius="12" BackgroundColor="#067A77" Padding="0"  BorderColor="#067A77">
+                            <Label x:Name="BtnEnvironmentWaterNum" HorizontalOptions="Center" VerticalOptions="Fill"  WidthRequest="40" 
+                                   TextColor="White" Text="0" FontSize="18" HorizontalTextAlignment="Center"/>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
