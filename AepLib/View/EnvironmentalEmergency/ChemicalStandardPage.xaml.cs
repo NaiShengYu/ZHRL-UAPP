@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using Sample;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
@@ -30,7 +31,8 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 dataList = JsonConvert.DeserializeObject<ObservableCollection<ChemicalStandardModel>>(hTTPResponse.Results);
-                listView.ItemsSource = dataList;
+               if(dataList ==null ||dataList.Count ==0) DependencyService.Get<IToast>().ShortAlert("无数据");
+               else listView.ItemsSource = dataList;
             }
         }
 

@@ -29,8 +29,26 @@
                     <Grid>
                         <Label StyleClass="itemlabel" Text="英文名称" VerticalOptions="Center" HorizontalOptions="Start" />
                         <Label StyleClass="itemvalue" Text="{Binding elnameA}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
-                        <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center" />
-                        <Button BindingContext="{Binding elname}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked" />
+                        <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center">
+                             <Image.Triggers>
+                                 <DataTrigger TargetType="Image" Binding="{Binding elname}" Value="">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                                 <DataTrigger TargetType="Image" Binding="{Binding elname}" Value="null">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Button BindingContext="{Binding elname}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked">
+                              <Button.Triggers>
+                                 <DataTrigger TargetType="Button" Binding="{Binding elname}" Value="">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                                 <DataTrigger TargetType="Button" Binding="{Binding elname}" Value="null">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
                     </Grid>
                     <BoxView StyleClass="sep" />
                     <Grid StyleClass="valueitem" >
@@ -61,8 +79,26 @@
                     <Grid>
                         <Label StyleClass="itemlabel"  Text="应用范围" VerticalOptions="Center" HorizontalOptions="Start" />
                         <Label StyleClass="itemvalue" Text="{Binding applicationA}"  VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
-                        <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center" />
-                        <Button BindingContext="{Binding application}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked" />
+                        <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center">
+                             <Image.Triggers>
+                                 <DataTrigger TargetType="Image" Binding="{Binding application}" Value="">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                                 <DataTrigger TargetType="Image" Binding="{Binding application}" Value="null">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Button BindingContext="{Binding application}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked">
+                            <Button.Triggers>
+                                 <DataTrigger TargetType="Button" Binding="{Binding application}" Value="">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                                 <DataTrigger TargetType="Button" Binding="{Binding application}" Value="null">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
                     </Grid>
                     <BoxView StyleClass="sep" />
                     <Grid StyleClass="valueitem" >
@@ -93,8 +129,26 @@
                     <Grid>
                         <Label StyleClass="itemlabel"  Text="环境影响" VerticalOptions="Center" HorizontalOptions="Start" />
                         <Label StyleClass="itemvalue" Text="{Binding env_impactA}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
-                        <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center" />
-                        <Button BindingContext="{Binding env_impact}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked" />
+                        <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center">
+                             <Image.Triggers>
+                                 <DataTrigger TargetType="Image" Binding="{Binding env_impact}" Value="">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                                 <DataTrigger TargetType="Image" Binding="{Binding env_impact}" Value="null">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Button BindingContext="{Binding env_impact}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked">  
+                            <Button.Triggers>
+                                 <DataTrigger TargetType="Button" Binding="{Binding env_impact}" Value="">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                                 <DataTrigger TargetType="Button" Binding="{Binding env_impact}" Value="null">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
                     </Grid>
                     <BoxView StyleClass="sep" />
                     <Grid StyleClass="valueitem" >
@@ -115,8 +169,26 @@
                     <Grid>
                         <Label StyleClass="itemlabel" Text="应变方法" VerticalOptions="Center" HorizontalOptions="Start" />
                         <Label StyleClass="itemvalue" Text="{Binding responseA}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
-                        <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center" />
-                        <Button BindingContext="{Binding response}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked" />
+                        <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center">
+                             <Image.Triggers>
+                                 <DataTrigger TargetType="Image" Binding="{Binding response}" Value="">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                                 <DataTrigger TargetType="Image" Binding="{Binding response}" Value="null">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Button BindingContext="{Binding response}" BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="Handle_Clicked">
+                              <Button.Triggers>
+                                 <DataTrigger TargetType="Button" Binding="{Binding response}" Value="">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                                 <DataTrigger TargetType="Button" Binding="{Binding response}" Value="null">
+                                    <Setter Property="IsVisible" Value="false"></Setter>
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
                     </Grid>
                     <BoxView StyleClass="sep" />
                     <Grid StyleClass="valueitem" >

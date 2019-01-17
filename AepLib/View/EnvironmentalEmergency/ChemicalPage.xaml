@@ -12,14 +12,14 @@
     <ContentPage.Content>
           <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
             <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" SearchButtonPressed="Handle_SearchButtonPressed" StyleClass="sbar" />
-            <ListView x:Name="listView" HasUnevenRows="true" StyleClass="mainlist" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
+            <ListView x:Name="listView" RowHeight="60" StyleClass="mainlist" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid VerticalOptions="Center" Margin="0,10,0,10">
                                 <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="4">
                                     <Label Font="17" TextColor="Black" Text="{Binding chinesename}" />
-                                    <Label Font="12" TextColor="Gray" Text="{Binding elname}" MaxLines="2">
+                                    <Label Font="12" TextColor="Gray" Text="{Binding elname}" MaxLines="1">
                                        <!-- <Label.Triggers>
                                             <DataTrigger TargetType="Label" Binding="{Binding elname}" Value="" >
                                                 <Setter Property="IsVisible" Value="false" />
