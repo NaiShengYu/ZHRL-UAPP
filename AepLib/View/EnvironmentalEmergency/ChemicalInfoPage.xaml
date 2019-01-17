@@ -28,7 +28,7 @@
                     <BoxView StyleClass="sep" />
                     <Grid>
                         <Label StyleClass="itemlabel" Text="英文名称" VerticalOptions="Center" HorizontalOptions="Start" />
-                        <Label StyleClass="itemvalue" Text="{Binding elnameA}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                        <Label StyleClass="itemvalue" Text="{Binding elnameA}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" Margin="10,10,20,10"/>
                         <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center">
                              <Image.Triggers>
                                  <DataTrigger TargetType="Image" Binding="{Binding elname}" Value="">
@@ -78,7 +78,7 @@
                     <BoxView StyleClass="sep" />
                     <Grid>
                         <Label StyleClass="itemlabel"  Text="应用范围" VerticalOptions="Center" HorizontalOptions="Start" />
-                        <Label StyleClass="itemvalue" Text="{Binding applicationA}"  VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                        <Label StyleClass="itemvalue" Text="{Binding applicationA}"  VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" Margin="10,10,20,10"/>
                         <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center">
                              <Image.Triggers>
                                  <DataTrigger TargetType="Image" Binding="{Binding application}" Value="">
@@ -128,7 +128,7 @@
                     <BoxView StyleClass="sep" />
                     <Grid>
                         <Label StyleClass="itemlabel"  Text="环境影响" VerticalOptions="Center" HorizontalOptions="Start" />
-                        <Label StyleClass="itemvalue" Text="{Binding env_impactA}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                        <Label StyleClass="itemvalue" Text="{Binding env_impactA}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" Margin="10,10,20,10"/>
                         <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center">
                              <Image.Triggers>
                                  <DataTrigger TargetType="Image" Binding="{Binding env_impact}" Value="">
@@ -168,7 +168,7 @@
                     <BoxView StyleClass="sep" />
                     <Grid>
                         <Label StyleClass="itemlabel" Text="应变方法" VerticalOptions="Center" HorizontalOptions="Start" />
-                        <Label StyleClass="itemvalue" Text="{Binding responseA}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" />
+                        <Label StyleClass="itemvalue" Text="{Binding responseA}" VerticalOptions="Center" HorizontalTextAlignment="End" HorizontalOptions="End" Margin="10,10,20,10"/>
                         <Image Source="right" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="Center">
                              <Image.Triggers>
                                  <DataTrigger TargetType="Image" Binding="{Binding response}" Value="">

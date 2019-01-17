@@ -92,7 +92,7 @@
                             <Label x:Name="BtnEnvironmentVOCNum" HorizontalOptions="Center" VerticalOptions="Fill" HeightRequest="25" WidthRequest="40" TextColor="White" Text="0" FontSize="18" HorizontalTextAlignment="Center" />
                         </Frame>
                     </StackLayout>
-   <StackLayout Margin="0,10,10,10" Spacing="0" Orientation="Horizontal" x:Name="LayoutEnvironmentWater" HeightRequest="25"  VerticalOptions="End" HorizontalOptions="End" IsVisible="False">
+                    <StackLayout Margin="0,10,10,10" Spacing="0" Orientation="Horizontal" x:Name="LayoutEnvironmentWater" HeightRequest="25"  VerticalOptions="End" HorizontalOptions="End" IsVisible="False">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="LayoutEnvironmentWater_Tapped" />
                         </StackLayout.GestureRecognizers>

@@ -63,7 +63,7 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);
-                hTTPResponse.Results = hTTPResponse.Results.Replace("null", "");
+                hTTPResponse.Results = hTTPResponse.Results.Replace("null","\"\"");
                 ChemicalInfoPageModel.ChemicalInfoPageModelBean chemicalInfo = new ChemicalInfoPageModel.ChemicalInfoPageModelBean();
                 chemicalInfo = JsonConvert.DeserializeObject<ChemicalInfoPageModel.ChemicalInfoPageModelBean>(hTTPResponse.Results);
 
