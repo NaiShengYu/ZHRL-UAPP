@@ -74,7 +74,7 @@
                 </Grid>
                 <Grid x:Name="LayoutEnvironmentStatics" Margin="2" HeightRequest="160" IsVisible="false">
                     <Image HeightRequest="160" Source="banner_envq" Aspect="Fill" />
-                    <Grid Margin="0,10,10,10" x:Name="LayoutEnvironmentAir" HeightRequest="25" VerticalOptions="Start" HorizontalOptions="Start" IsVisible="False">
+                    <Grid Margin="10,10,10,10" x:Name="LayoutEnvironmentAir" HeightRequest="25" VerticalOptions="Start" HorizontalOptions="Start" IsVisible="False">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="LayoutEnvironmentAir_Tapped" />
                         </Grid.GestureRecognizers>
