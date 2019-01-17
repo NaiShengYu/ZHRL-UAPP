@@ -60,5 +60,8 @@ namespace AepApp.Models
         public static string GetPaiKouAndChangJieSiteFactorLatestValue = "/api/pdo/GetLocationFactorLatestValues";
         //获取厂界、排口VOC因子数据
         public static string GetPaiKouAndChangJieFactorData = "/api/pdo/GetData";
+        //获取离线站点列表
+        public static string GetOfflineSite = "/Api/FactorData/CheckAllStationConn";
+
     }
 }

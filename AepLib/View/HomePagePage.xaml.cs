@@ -15,6 +15,11 @@ namespace AepApp.View
     public partial class HomePagePage : ContentPage
     {
         private InformationStaticsModel info;
+        private int totalAirSites = 0;//空气站总数
+        private int offlineAirSites = 0;//离线空气站数
+        private int totalVocSites = 0;//voc站点总数
+        private int offlineVocSites = 0;//离线voc站点数
+        private int totalWaterSites = 0;
 
         public HomePagePage()
         {
@@ -96,6 +101,7 @@ namespace AepApp.View
         private void GetEnvironmentQualityStatics()
         {
             GetModelEnvironmentQualityStatics();
+            GetModelEnvironmentOfflineSite();
         }
 
         private async void SetUserDepartment()
@@ -291,9 +297,47 @@ namespace AepApp.View
                             countWater++;
                         }
                     }
-                    BtnEnvironmentAirNum.Text = countAir + "";
-                    BtnEnvironmentVOCNum.Text = countVocs + "";
-                    BtnEnvironmentWaterNum.Text = countWater + "";
+                    totalAirSites = countAir;
+                    totalVocSites = countVocs;
+                    totalWaterSites = countWater;
+                    setSiteCount();
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+        /// <summary>
+        /// 环境质量模块 - 离线站点数据统计
+        /// </summary>
+        private async void GetModelEnvironmentOfflineSite()
+        {
+            string url = App.environmentalQualityModel.url + DetailUrl.GetOfflineSite;
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(dic), "POST", App.FrameworkToken);
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    List<OfflineSiteModel> list = JsonConvert.DeserializeObject<List<OfflineSiteModel>>(res.Results);
+                    int countAir = 0;
+                    int countVocs = 0;
+                    foreach (var item in list)
+                    {
+                        int subtype = item.subtype;
+                        if (subtype == 0)
+                        {
+                            countVocs++;
+                        }
+                        else if (subtype == 3)
+                        {
+                            countAir++;
+                        }
+                    }
+                    offlineAirSites = countAir;
+                    offlineVocSites = countVocs;
+                    setSiteCount();
                 }
                 catch (Exception e)
                 {
@@ -302,6 +346,31 @@ namespace AepApp.View
             }
         }
 
+        /// <summary>
+        /// 设置站点在线数/总数
+        /// </summary>
+        private void setSiteCount()
+        {
+            string airCount = totalAirSites + "";
+            string vocCount = totalVocSites + "";
+            if (totalAirSites > 0)
+            {
+                if (offlineAirSites > 0 && offlineAirSites <= totalAirSites)
+                {
+                    airCount = (totalAirSites - offlineAirSites) + "/" + totalAirSites;
+                }
+                BtnEnvironmentAirNum.Text = airCount;
+            }
+            if (totalVocSites > 0)
+            {
+                if (offlineVocSites > 0 && offlineVocSites <= totalVocSites)
+                {
+                    vocCount = (totalVocSites - offlineVocSites) + "/" + totalVocSites;
+                }
+                BtnEnvironmentVOCNum.Text = vocCount;
+            }
+            BtnEnvironmentWaterNum.Text = totalWaterSites + "";
+        }
 
         private void LayoutSendInformation_Tapped(object sender, EventArgs e)
         {
