@@ -7,7 +7,6 @@
             <StyleSheet Source="../main.css" />
         </ResourceDictionary>
     </ContentPage.Resources>
-
     <ContentPage.Content>
         <StackLayout Spacing="1">
             <ScrollView StyleClass="mainlist">

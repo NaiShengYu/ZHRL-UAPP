@@ -39,7 +39,7 @@ namespace AepApp.View
             {
                 GetEnvironmentQualityStatics();
             }
-            if(App.moduleConfigENVQ != null)
+            if (App.moduleConfigENVQ != null)
             {
                 LayoutEnvironmentStatics.IsVisible = App.moduleConfigENVQ.showEnvSummary;
                 LayoutEnvironmentAir.IsVisible = App.moduleConfigENVQ.menuAir;

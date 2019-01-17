@@ -84,7 +84,7 @@ namespace AepApp.View.EnvironmentalQuality
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("searchKey", _searchKey);
             dic.Add("pageIndex", _pageIndex);
-            dic.Add("pageSize", 20);
+            dic.Add("pageSize", 20); 
             dic.Add("type", 3);
             dic.Add("subType", 0);
             string param = JsonConvert.SerializeObject(dic);

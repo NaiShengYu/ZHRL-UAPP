@@ -16,6 +16,7 @@ using System.Globalization;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
+using AepApp.View.Common;
 namespace AepApp.View
 {
     public partial class PollutionSourceInfoPage : ContentPage
@@ -32,6 +33,11 @@ namespace AepApp.View
                 _30But.BackgroundColor = Color.Silver;
                 haveHistoryData();
             }
+
+        }
+        void Handle_Infomation(object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new EnterpriseInformationPage(_enterprise));
 
         }
         //进入360监控界面
@@ -66,7 +72,6 @@ namespace AepApp.View
             _currentStack = tup.Item3;
             _currentStack.BackgroundColor = Color.FromRgb(242, 242, 242);
             haveHistoryData();
-
         }
 
         EnterpriseModel _enterprise = null;

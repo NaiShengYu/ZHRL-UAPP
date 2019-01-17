@@ -78,7 +78,8 @@ namespace AepApp.View.EnvironmentalEmergency
             InitializeComponent();
             _type = type;
             NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
-            ReqChemicalList("", Index, 10);         
+            ReqChemicalList("", Index, 10);
+            listView.ItemsSource = dataList;
         }
 
         public ChemicalPage():this(1){
@@ -114,7 +115,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 if (total != 0) Title = "化学品（" + total + "）";
                 else Title = "化学品";
-                listView.ItemsSource = dataList;
+
             }
         }
 

@@ -32,6 +32,8 @@ namespace AepApp.Models
         public static string ChemicalList = "/api/mod/GetChemicalBykey";
         //获取化学品详细信息
         public static string ChemicalInfo = "/api/mod/GetChemical";
+        //获取化学品环境标准
+        public static string ChemicalStandards = "/api/mod/GetStandards";
         //获取设备列表
         public static string EquipmentList = "/api/mod/GetEquipmentList";
         //获取设备详情
@@ -52,12 +54,10 @@ namespace AepApp.Models
         public static string GetVOCFactorData = "/Api/FactorData/GetFactValPost";
         //获取厂界、排口VOC站点列表
         public static string GetChangJieSite = "/api/pdo/GetLocationList";
-
         //获取厂界、排口VOC站点因子
         public static string GetPaiKouAndChangJieSiteFactor = "/api/pdo/GetLocationFactors";
         //获取厂界、排口VOC站点因子
         public static string GetPaiKouAndChangJieSiteFactorLatestValue = "/api/pdo/GetLocationFactorLatestValues";
-
         //获取厂界、排口VOC因子数据
         public static string GetPaiKouAndChangJieFactorData = "/api/pdo/GetData";
     }

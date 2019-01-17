@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.Common.EnterpriseInformationPage" Title="企业信息">
+    <ContentPage.Content>
+        <Grid>
+                <ScrollView x:Name="sv" Margin="0,0,0,0">
+                <StackLayout Spacing="0" BackgroundColor="White">
+                    <Grid BackgroundColor="White" Margin="0,10,0,10" MinimumHeightRequest="50">
+                        <Label Text="名称" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Center" TextColor="Black" />
+                        <Label Text="{Binding name}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill" VerticalOptions="Start" HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                   <Grid BackgroundColor="White" Margin="0,10,0,10" MinimumHeightRequest="50">
+                        <Label Text="地址" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Start" TextColor="Black" />
+                        <Label Text="{Binding fullAddress}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill" VerticalOptions="Start" HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                     <Grid BackgroundColor="White" Margin="0,10,0,10" MinimumHeightRequest="50">
+                        <Label Text="法人" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Start" TextColor="Black" />
+                        <Label Text="{Binding legal}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill" VerticalOptions="Start" HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                    <Grid BackgroundColor="White" Margin="0,10,0,10" MinimumHeightRequest="50">
+                        <Label Text="联系人" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Start" TextColor="Black" />
+                        <Label Text="{Binding contacts}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill" VerticalOptions="Start" HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                    <Grid BackgroundColor="White" Margin="0,10,0,10" >
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_CallPhone" NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                        <Label Text="联系电话" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Start" TextColor="Black" />
+                        <Label Text="{Binding contactstelephone}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill" VerticalOptions="Start" HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                        <Grid BackgroundColor="White" Margin="0,10,0,10" >
+                        <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_CallMobile" NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                        <Label Text="企业电话" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Start" TextColor="Black" />
+                        <Label Text="{Binding contactsmobile}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill" VerticalOptions="Start" HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+                    <Grid BackgroundColor="White" Margin="0,10,0,10" >
+                        <Label Text="企业邮箱" Font="17" Margin="15,0,0,0" WidthRequest="100" VerticalOptions="Start" TextColor="Black" />
+                        <Label Text="{Binding contactsemail}" Font="17" Margin="127,0,10,0" HorizontalOptions="Fill" VerticalOptions="Start" HorizontalTextAlignment="End"/>
+                    </Grid>
+                    <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
+         
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

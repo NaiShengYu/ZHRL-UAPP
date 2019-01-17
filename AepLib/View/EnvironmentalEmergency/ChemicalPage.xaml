@@ -18,19 +18,19 @@
                         <ViewCell>
                             <Grid VerticalOptions="Center" Margin="0,10,0,10">
                                 <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="4">
-                                    <Label StyleClass="itemtitle" Text="{Binding chinesename}" />
-                                    <Label StyleClass="itemsubtitlesmall" Text="{Binding elname}">
-                                        <Label.Triggers>
+                                    <Label Font="17" TextColor="Black" Text="{Binding chinesename}" />
+                                    <Label Font="12" TextColor="Gray" Text="{Binding elname}" MaxLines="2">
+                                       <!-- <Label.Triggers>
                                             <DataTrigger TargetType="Label" Binding="{Binding elname}" Value="" >
                                                 <Setter Property="IsVisible" Value="false" />
                                             </DataTrigger>
-                                        </Label.Triggers>
+                                        </Label.Triggers>-->
                                     </Label>
                                 </StackLayout>
                                 <Grid VerticalOptions="Center" HorizontalOptions="End" WidthRequest="70" Margin="0,0,10,0" BackgroundColor="rgb(48, 116, 163)">
                                     <StackLayout VerticalOptions="Center" Spacing="0">
-                                        <Label StyleClass="itemsubtitlesmall" TextColor="White" Text="CAS 编号" HorizontalOptions="Center" />
-                                        <Label StyleClass="itemsubtitlesmall" TextColor="White" Text="{Binding cas}" HorizontalOptions="Center"/>
+                                        <Label Font="12" TextColor="White" Text="CAS 编号" HorizontalOptions="Center" />
+                                        <Label Font="12" TextColor="White" Text="{Binding cas}" HorizontalOptions="Center"/>
                                     </StackLayout>
                                 </Grid>
                             </Grid>
