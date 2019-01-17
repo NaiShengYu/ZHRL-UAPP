@@ -264,6 +264,7 @@ namespace AepApp.View
             string url = App.environmentalQualityModel.url + DetailUrl.GetVOCSite;
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("pageIndex", -1);
+            dic.Add("type", 3);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(dic), "POST", App.FrameworkToken);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
