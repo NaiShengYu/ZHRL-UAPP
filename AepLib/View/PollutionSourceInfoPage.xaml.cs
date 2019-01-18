@@ -301,15 +301,18 @@ namespace AepApp.View
                 // DateTime dt;
                 //var value = para.dt;
                 //value = value.Replace("T", " ");
-                if(_is30Select ==false){
+                double abc = 0;
+                if (_is30Select ==false){
                     dtx.IntervalType = DateTimeIntervalType.Hours; //间隔类型（小时）
                     dtx.MinorIntervalType = DateTimeIntervalType.Hours; //间隔类型（小时）
-                   }
+                    abc = DateTimeAxis.ToDouble(para.date);
+                }
                 else{
                     dtx.IntervalType = DateTimeIntervalType.Days; //间隔类型（天数）
                     dtx.MinorIntervalType = DateTimeIntervalType.Days; //间隔类型（天数）
+                    abc = DateTimeAxis.ToDouble(Convert.ToDateTime(para.dt));
                 }
-                double abc = DateTimeAxis.ToDouble(para.date);
+
                 lineSeries.Points.Add(new DataPoint(abc, para.value.Value));
                 min = Math.Min(para.value.Value, min);//设置Y轴最小值
                 max = Math.Max(para.value.Value, max);//设置Y轴最大值

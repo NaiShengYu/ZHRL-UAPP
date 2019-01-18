@@ -5,31 +5,66 @@
              xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
     
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Orientation="Vertical">
-                <Grid BackgroundColor="#EFEFF4" HorizontalOptions="Fill" RowSpacing="0" ColumnSpacing="0">
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+                 <Grid BackgroundColor="#EFEFF4" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
                     <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
-                    <Label x:Name="health" HorizontalOptions="Start" Margin="70,10,0,10" VerticalTextAlignment="Center"/>
+                    <Label x:Name="health" HorizontalOptions="Start" VerticalOptions="Fill" Margin="70,10,0,10" VerticalTextAlignment="Center"/>
                 </Grid>
-                <ListView x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start" >
+                <ListView Grid.Row="1" x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start">
+              <!--  <ListView.Header>
+                     <Grid BackgroundColor="#EFEFF4" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+                    <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
+                    <Label x:Name="health" HorizontalOptions="Start" VerticalOptions="Fill" Margin="70,10,0,10" VerticalTextAlignment="Center"/>
+                </Grid>
+                </ListView.Header>-->
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="45">
                                 <Grid RowSpacing="0" ColumnSpacing="0">
-                                    <Label HorizontalOptions="Start" Text="{Binding gasName}" VerticalOptions="Center"  Margin="20,0,0,0"/>
-                                    <Label HorizontalOptions="End" Text="{Binding FacValueDetails.val, StringFormat='{0:0.00}'}" Margin="0,0,55,0" VerticalOptions="Center"/>
-                                    <Label HorizontalOptions="End"  WidthRequest="50" Text="{Binding unit}" VerticalOptions="Center"/>
+                                    <Label HorizontalOptions="Start" Text="{Binding name}" VerticalOptions="Center"  Margin="20,0,0,0"/>
+                                    <Label HorizontalOptions="End" Text="{Binding val, StringFormat='{0:0.00}'}" Margin="0,0,55,0" VerticalOptions="Center"/>
+                                    <Label HorizontalOptions="End"  WidthRequest="50" Text="{Binding unitName}" VerticalOptions="Center"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+            
+        </Grid>
+        
+            <!--<StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal" BackgroundColor="#EFEFF4" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                    <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
+                    <Label x:Name="health" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Margin="10,10,0,10" VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <ListView x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start">
+                <ListView.Header>
+                     <Grid BackgroundColor="#EFEFF4" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+                    <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
+                    <Label x:Name="health" HorizontalOptions="Start" VerticalOptions="Fill" Margin="70,10,0,10" VerticalTextAlignment="Center"/>
+                </Grid>
+                </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="45">
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+                                    <Label HorizontalOptions="Start" Text="{Binding name}" VerticalOptions="Center"  Margin="20,0,0,0"/>
+                                    <Label HorizontalOptions="End" Text="{Binding val, StringFormat='{0:0.00}'}" Margin="0,0,55,0" VerticalOptions="Center"/>
+                                    <Label HorizontalOptions="End"  WidthRequest="50" Text="{Binding unitName}" VerticalOptions="Center"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+              <!--  <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                     <Button Text=" 24小时 " Clicked="Hours" BackgroundColor="Gray" x:Name="hours"/>
                     <Button Text=" 30天 " Clicked="Days" BackgroundColor="White" x:Name="days"/>
                 </StackLayout>
-                <oxy:PlotView x:Name="oxyPlot" HeightRequest="250" />
-            </StackLayout>
-        </ScrollView>
+                <oxy:PlotView x:Name="oxyPlot" HeightRequest="250" />-->
+<!--            </StackLayout>-->
     </ContentPage.Content>
 </ContentPage>

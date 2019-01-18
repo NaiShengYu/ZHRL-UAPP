@@ -47,7 +47,7 @@ namespace AepApp.View
         public PollutionSourcePage()
         {
             InitializeComponent();
-            this.Title = "污染源在线";
+            this.Title = App.moduleConfigEP360.menuPollutionSrcLabel;
             //ReqPollutionSiteData();
             GetData();
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
@@ -102,6 +102,8 @@ namespace AepApp.View
                         }
                         GetPollutionSiteExtraData();
                     }
+                    if (totalCount != 0) Title = App.moduleConfigEP360.menuPollutionSrcLabel + "（" + totalCount + "）";
+                    else Title = App.moduleConfigEP360.menuPollutionSrcLabel;
 
                 }
                 catch (Exception e)

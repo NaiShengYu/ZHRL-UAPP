@@ -27,10 +27,10 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Button HorizontalOptions="End" Grid.Column="0" x:Name="massagebut" Text="企业信息" Font="18" BackgroundColor="Silver" Clicked="Handle_Infomation" />
-                <Button HorizontalOptions="End" Grid.Column="1" x:Name="_360But" Text="360监控" WidthRequest="80" Font="18" BackgroundColor="Silver" Clicked="Handle_360" />
-                <Button HorizontalOptions="End" Grid.Column="2" x:Name="_24But" Text="24小时" WidthRequest="80" Font="18" BackgroundColor="rgb(34,145,224)" Clicked="Handle_24Hour" />
-                <Button HorizontalOptions="End" Grid.Column="3" x:Name="_30But" Text="30天" WidthRequest="60" Font="18" BackgroundColor="Silver" Clicked="Handle_30day" />
+                <Button HorizontalOptions="End" Grid.Column="0" x:Name="massagebut" Text="企业信息" Font="16" BackgroundColor="Silver" Clicked="Handle_Infomation" />
+                <Button HorizontalOptions="End" Grid.Column="1" x:Name="_360But" Text="360监控" WidthRequest="80" Font="16" BackgroundColor="Silver" Clicked="Handle_360" />
+                <Button HorizontalOptions="End" Grid.Column="2" x:Name="_24But" Text="24小时" WidthRequest="80" Font="16" BackgroundColor="rgb(34,145,224)" Clicked="Handle_24Hour" />
+                <Button HorizontalOptions="End" Grid.Column="3" x:Name="_30But" Text="30天" WidthRequest="60" Font="16" BackgroundColor="Silver" Clicked="Handle_30day" />
             </Grid>
            <StackLayout Grid.Row="2">
                 <chart:PlotView x:Name="pView" HeightRequest="240" BackgroundColor="Silver">
