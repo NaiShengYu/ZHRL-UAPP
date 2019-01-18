@@ -19,7 +19,7 @@
                 <Label Grid.Column="3" HorizontalOptions="FillAndExpand"   x:Name="UnitName" Text="AQI" Margin="0,0,0,0"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
             </Grid>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
-            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="listView_ItemSelected">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" HasUnevenRows="true" ItemSelected="listView_ItemSelected">
                 <ListView.ItemTemplate>
                  <DataTemplate>
                 <ViewCell >

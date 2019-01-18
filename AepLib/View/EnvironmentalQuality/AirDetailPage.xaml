@@ -14,7 +14,7 @@
                     <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
                     <Label x:Name="health" HorizontalOptions="Start" VerticalOptions="Fill" Margin="70,10,0,10" VerticalTextAlignment="Center"/>
                 </Grid>
-                <ListView Grid.Row="1" x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start">
+                <ListView CachingStrategy="RecycleElementAndDataTemplate" Grid.Row="1" x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start">
               <!--  <ListView.Header>
                      <Grid BackgroundColor="#EFEFF4" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
                     <Label x:Name="level" VerticalOptions="Center" WidthRequest="50" BackgroundColor="Orange" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="10,0,0,0"/>
