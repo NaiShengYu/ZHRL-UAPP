@@ -15440,8 +15440,8 @@ namespace AepApp.Droid
 			// aapt resource value: 0x7f0c000e
 			public const int CardView_Light = 2131492878;
 			
-			// aapt resource value: 0x7f0c0192
-			public const int MyDialogStyle = 2131493266;
+			// aapt resource value: 0x7f0c0193
+			public const int MyDialogStyle = 2131493267;
 			
 			// aapt resource value: 0x7f0c018f
 			public const int MyTheme = 2131493263;
@@ -16126,6 +16126,9 @@ namespace AepApp.Droid
 			
 			// aapt resource value: 0x7f0c000a
 			public const int Widget_MediaRouter_MediaRouteButton = 2131492874;
+			
+			// aapt resource value: 0x7f0c0192
+			public const int noPaddingButtonStyle = 2131493266;
 			
 			static Style()
 			{
