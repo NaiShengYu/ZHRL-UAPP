@@ -9,7 +9,7 @@
                     <DataTemplate>
                         <ViewCell>
                            <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
-                          <Label TextColor="Black" HorizontalOptions="Fill" VerticalOptions="Center" Text="{Binding name}"  Margin="10,10,10,10"  FontSize="17" VerticalTextAlignment="Center"/>
+                          <Label TextColor="Black" HorizontalOptions="Fill" VerticalOptions="Center" Text="{Binding name}" Margin="10,15,10,15"  FontSize="17" VerticalTextAlignment="Center"/>
                           </Grid>
                         </ViewCell>
                     </DataTemplate>

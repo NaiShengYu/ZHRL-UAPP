@@ -95,7 +95,8 @@ namespace AepApp.Models
         public bool menuPaikou { get; set; }
         public string menuPaikouLabel { get; set; }
         public bool menuRadiation { get; set; }
-        public string menuRadiationLabel { get; set; }
-
+        public string menuRadiationLabel { get; set; }//辐射
+        public bool menuQyStench { get; set; }
+        public string menuQyStenchLabel { get; set; }
     }
 }

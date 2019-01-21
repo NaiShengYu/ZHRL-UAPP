@@ -21,7 +21,7 @@
                                       </Label.Triggers>
                         </Label>
                         <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
-                        <Button Margin="0" Clicked="Handle_Clicked1"/>
+                        <Button BackgroundColor="Transparent" Margin="0" Clicked="Handle_Clicked1"/>
                     </Grid>
                     <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
                    <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
@@ -36,7 +36,7 @@
                                       </Label.Triggers>
                         </Label>
                         <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
-                        <Button Margin="0" Clicked="Handle_Clicked2"/>
+                        <Button BackgroundColor="Transparent" Margin="0" Clicked="Handle_Clicked2"/>
                     </Grid>
                     <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
                     <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
@@ -51,7 +51,7 @@
                                       </Label.Triggers>
                         </Label>
                             <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
-                        <Button Margin="0" Clicked="Handle_Clicked3"/>
+                        <Button BackgroundColor="Transparent" Margin="0" Clicked="Handle_Clicked3"/>
                     </Grid>
                     <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
                     <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
@@ -66,7 +66,7 @@
                                       </Label.Triggers>
                         </Label>
                         <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
-                        <Button Margin="0" Clicked="Handle_Clicked4"/>
+                        <Button BackgroundColor="Transparent" Margin="0" Clicked="Handle_Clicked4"/>
                     </Grid>
                     <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
                     <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
@@ -81,7 +81,7 @@
                                       </Label.Triggers>
                         </Label>
                         <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
-                        <Button Margin="0" Clicked="Handle_Clicked5"/>
+                        <Button BackgroundColor="Transparent" Margin="0" Clicked="Handle_Clicked5"/>
                     </Grid>
                     <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
                     <Grid BackgroundColor="White" Margin="0,0,0,0" HeightRequest="55">
@@ -96,7 +96,7 @@
                                       </Label.Triggers>
                         </Label>
                         <Image Source="right.png" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="13" HeightRequest="13" Margin="0,0,10,0"/>
-                        <Button Margin="0" Clicked="Handle_Clicked6"/>
+                        <Button BackgroundColor="Transparent" Margin="0" Clicked="Handle_Clicked6"/>
                     </Grid>
                     <BoxView BackgroundColor="#f0f0f0" HeightRequest="1" HorizontalOptions="Fill" />
                 </StackLayout>

@@ -7,6 +7,7 @@ using AepApp.Models;
 using CloudWTO.Services;
 using Plugin.Hud;
 using Newtonsoft.Json;
+using Sample;
 #if __MOBILE__
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -54,6 +55,8 @@ namespace AepApp.View.Monitor
             };
             wrk.RunWorkerCompleted += (sender, e) => {
                 listV.ItemsSource = dataList;
+                if (dataList == null || dataList.Count == 0) DependencyService.Get<IToast>().ShortAlert("无数据");
+
             };
             wrk.RunWorkerAsync();
 
@@ -77,6 +80,7 @@ namespace AepApp.View.Monitor
             {
                 CrossHud.Current.ShowError(message: ex.Message, timeout: new TimeSpan(0, 0, 5));
             }
+
         }
 
     }

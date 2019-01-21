@@ -17,6 +17,8 @@ using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using AepApp.View.Common;
+using Sample;
+
 namespace AepApp.View
 {
     public partial class PollutionSourceInfoPage : ContentPage
@@ -77,7 +79,7 @@ namespace AepApp.View
         EnterpriseModel _enterprise = null;
         //因子24小时、30天数据
         ObservableCollection<FactorForDateData> _chartData = null;
-        ObservableCollection<ProjectApprovalInfoDischargePort> group = new ObservableCollection<ProjectApprovalInfoDischargePort>();
+        ObservableCollection<ProjectApprovalInfoDischargePort> _group = new ObservableCollection<ProjectApprovalInfoDischargePort>();
         bool _is24Select = true;
         bool _is30Select = false;
         //当前排口
@@ -112,7 +114,7 @@ namespace AepApp.View
                 try
                 {
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    group = JsonConvert.DeserializeObject<ObservableCollection<ProjectApprovalInfoDischargePort>>(response.Results);
+                    _group = JsonConvert.DeserializeObject<ObservableCollection<ProjectApprovalInfoDischargePort>>(response.Results);
             }
                 catch
                 {
@@ -123,7 +125,8 @@ namespace AepApp.View
             //wrk.RunWorkerCompleted += (sender1, e1) =>
             //{
                 CrossHud.Current.Dismiss();
-                CreatView();               
+            if (_group == null || _group.Count == 0) DependencyService.Get<IToast>().ShortAlert("无污染因子数据");
+            CreatView();               
             //};
             //wrk.RunWorkerAsync();
         }
@@ -134,7 +137,8 @@ namespace AepApp.View
             //BackgroundWorker wrk = new BackgroundWorker();
             //wrk.DoWork += (sender1, e1) =>
             //{           
-                //CrossHud.Current.Show("请求中...");
+            //CrossHud.Current.Show("请求中...");
+            if (_currentFactor == null) return;
                 string uri = App.EP360Module.url + "/api/AppEnterprise/GetPortFactorList?fid=" + _currentFactor.id + "&type="+_is30Select  + "&id=" + _currentPort.id;
                 HTTPResponse response = await EasyWebRequest.SendHTTPRequestAsync(uri, "", "GET", App.FrameworkToken);
                 try
@@ -151,7 +155,10 @@ namespace AepApp.View
             //wrk.RunWorkerCompleted += (sender1, e1) =>
             //{
 
-                ProcessingData();
+            if (_chartData == null || _chartData.Count == 0)
+            if(_is30Select) DependencyService.Get<IToast>().ShortAlert("无30天数据");
+            else DependencyService.Get<IToast>().ShortAlert("无24小时数据");
+            ProcessingData();
                 CrossHud.Current.Dismiss();
             //};
             //wrk.RunWorkerAsync();
@@ -172,9 +179,9 @@ namespace AepApp.View
             var layout = new StackLayout(){
                 Spacing = 1,
             };
-            for (int i = 0; i < group.Count;i ++){
+            for (int i = 0; i < _group.Count;i ++){
 
-                ProjectApprovalInfoDischargePort port = group[i];
+                ProjectApprovalInfoDischargePort port = _group[i];
 
                 Label header = new Label
                 {
@@ -306,14 +313,12 @@ namespace AepApp.View
                 if (_is30Select ==false){
                     dtx.IntervalType = DateTimeIntervalType.Hours; //间隔类型（小时）
                     dtx.MinorIntervalType = DateTimeIntervalType.Hours; //间隔类型（小时）
-                    abc = DateTimeAxis.ToDouble(para.date);
                 }
                 else{
                     dtx.IntervalType = DateTimeIntervalType.Days; //间隔类型（天数）
                     dtx.MinorIntervalType = DateTimeIntervalType.Days; //间隔类型（天数）
-                    abc = DateTimeAxis.ToDouble(Convert.ToDateTime(para.dt));
                 }
-
+                abc = DateTimeAxis.ToDouble(para.date);
                 lineSeries.Points.Add(new DataPoint(abc, para.value.Value));
                 min = Math.Min(para.value.Value, min);//设置Y轴最小值
                 max = Math.Max(para.value.Value, max);//设置Y轴最大值

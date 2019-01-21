@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AepApp.Models;
@@ -9,9 +8,8 @@ using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalQuality
 {
-    public partial class PaiKouSiteListPage : ContentPage
+    public partial class StenchQySiteListPage : ContentPage
     {
-
 
         string _searchKey = "";
         int _pageIndex = 0;
@@ -35,13 +33,16 @@ namespace AepApp.View.EnvironmentalQuality
             dataList.Clear();
             ReqVOCSite();
         }
+
+
+
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             if (listView.SelectedItem == null) return;
             VOCSiteListModel item = e.SelectedItem as VOCSiteListModel;
             if (item == null)
                 return;
-            Navigation.PushAsync(new VOCDetailPage(item,2));
+            Navigation.PushAsync(new VOCDetailPage(item, 2));
             listView.SelectedItem = null;
 
         }
@@ -55,18 +56,19 @@ namespace AepApp.View.EnvironmentalQuality
             }
 
         }
-
-        public PaiKouSiteListPage()
+        //恶臭
+        public StenchQySiteListPage()
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
-            this.Title = App.moduleConfigENVQ.menuPaikouLabel;
+            this.Title = App.moduleConfigENVQ.menuQyStenchLabel;
             ToolbarItems.Add(new ToolbarItem("", "map.png", () =>
             {
                 var mapVC = new VOCMapPage(dataList);
-                mapVC.Title = App.moduleConfigENVQ.menuPaikouLabel;
+                mapVC.Title = App.moduleConfigENVQ.menuStenchLabel;
                 Navigation.PushAsync(new VOCMapPage(dataList));
             }));
+
             ReqVOCSite();
             listView.ItemsSource = dataList;
         }
@@ -77,13 +79,13 @@ namespace AepApp.View.EnvironmentalQuality
         {
 
             if (_isEnd == true) return;//如果满了就不要请求了
+            string url = "";
             Dictionary<string, object> dic = new Dictionary<string, object>();
-
-            string url = App.EP360Module.url + DetailUrl.GetChangJieSite;
-            dic.Add("keyword", _searchKey);
+            url = App.EP360Module.url + DetailUrl.GetChangJieSite;
+            dic.Add("subtype", 5);
+            dic.Add("keyword", _searchKey);          
             dic.Add("pageIndex", _pageIndex);
             dic.Add("pageSize", 20);
-            dic.Add("subtype", 4);
             string param = JsonConvert.SerializeObject(dic);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
@@ -92,16 +94,16 @@ namespace AepApp.View.EnvironmentalQuality
                 {
                     _pageIndex += 1;
                     var result = JsonConvert.DeserializeObject<VOCSiteResult>(hTTPResponse.Results);
-                    var total = result.count;
+                    var total = result.Totals;
                     List<VOCSiteListModel> list = result.Items;
                     foreach (var item in list)
                     {
                         dataList.Add(item);
                     }
-                    if (dataList.Count >= result.count) _isEnd = true;
+                    if (dataList.Count >= result.Totals) _isEnd = true;
                     else _isEnd = false;
-                    if (total != 0) Title = App.moduleConfigENVQ.menuPaikouLabel + "（" + total + "）";
-                    else Title = App.moduleConfigENVQ.menuPaikouLabel;
+                    if (total != 0) Title = App.moduleConfigENVQ.menuQyStenchLabel + "（" + total + "）";
+                    else Title = App.moduleConfigENVQ.menuQyStenchLabel;
                 }
                 catch (Exception ex)
                 {
@@ -110,7 +112,7 @@ namespace AepApp.View.EnvironmentalQuality
 
             }
         }
-        
+
 
     }
 }

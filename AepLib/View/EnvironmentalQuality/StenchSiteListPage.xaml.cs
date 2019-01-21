@@ -77,16 +77,15 @@ namespace AepApp.View.EnvironmentalQuality
 
         private async void ReqVOCSite()
         {
-
             if (_isEnd == true) return;//如果满了就不要请求了
-
-            string url = App.environmentalQualityModel.url + DetailUrl.GetVOCSite;
-            Dictionary<string, object> dic = new Dictionary<string, object>();
+            string url = "";
+            Dictionary<string, object> dic = new Dictionary<string, object>();          
+            url = App.environmentalQualityModel.url + DetailUrl.GetVOCSite;
+            dic.Add("type", 3);
+            dic.Add("subType", 5);
             dic.Add("searchKey", _searchKey);
             dic.Add("pageIndex", _pageIndex);
             dic.Add("pageSize", 20);
-            dic.Add("type", 3);
-            dic.Add("subType", 5);
             string param = JsonConvert.SerializeObject(dic);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
@@ -104,7 +103,7 @@ namespace AepApp.View.EnvironmentalQuality
                     if (dataList.Count >= result.Totals) _isEnd = true;
                     else _isEnd = false;
                     if (total != 0) Title = App.moduleConfigENVQ.menuStenchLabel + "（" + total + "）";
-                    else Title = App.moduleConfigENVQ.menuStandardsLabel;
+                    else Title = App.moduleConfigENVQ.menuStenchLabel;
                 }
                 catch (Exception ex)
                 {

@@ -95,17 +95,7 @@
                         <!--                                                  辐射-->
                         <Label Text="{Binding menuRadiationLabel}" />
                     </Grid>
-                      <Grid StyleClass="menuitem" IsVisible="false">
-                        <Grid.Triggers>
-                            <DataTrigger TargetType="Grid" Binding="{Binding menuStench}" Value="true">
-                                <Setter Property="IsVisible" Value="true">
-                                </Setter>
-                            </DataTrigger>
-                        </Grid.Triggers>
-                        <Label BindingContext="AepApp.View.EnvironmentalQuality.StenchSiteListPage" HeightRequest="0" BackgroundColor="Transparent" />
-                        <!--                                                  恶臭-->
-                        <Label Text="{Binding menuStenchLabel}" />
-                    </Grid>
+                     
                       <Grid StyleClass="menuitem" IsVisible="false">
                         <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding menuDustLabel}" Value="true">
@@ -119,6 +109,17 @@
                     </Grid>
                      <Grid StyleClass="menuitem" IsVisible="false">
                         <Grid.Triggers>
+                            <DataTrigger TargetType="Grid" Binding="{Binding menuStench}" Value="true">
+                                <Setter Property="IsVisible" Value="true">
+                                </Setter>
+                            </DataTrigger>
+                        </Grid.Triggers>
+                        <Label BindingContext="AepApp.View.EnvironmentalQuality.StenchSiteListPage" HeightRequest="0" BackgroundColor="Transparent" />
+                        <!--                                                  恶臭-->
+                        <Label Text="{Binding menuStenchLabel}" />
+                    </Grid>
+                     <Grid StyleClass="menuitem" IsVisible="false">
+                        <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding menuVOC}" Value="true">
                                 <Setter Property="IsVisible" Value="true">
                                 </Setter>
@@ -127,6 +128,17 @@
                         <Label BindingContext="AepApp.View.EnvironmentalQuality.VOCSiteListPage" HeightRequest="0" BackgroundColor="Transparent" />
 <!--                                                  Text="环境VOCs"-->
                         <Label Text="{Binding menuVOCLabel}" />
+                    </Grid>
+                     <Grid StyleClass="menuitem" IsVisible="false">
+                        <Grid.Triggers>
+                            <DataTrigger TargetType="Grid" Binding="{Binding menuQyStench}" Value="true">
+                                <Setter Property="IsVisible" Value="true">
+                                </Setter>
+                            </DataTrigger>
+                        </Grid.Triggers>
+                        <Label BindingContext="AepApp.View.EnvironmentalQuality.StenchQySiteListPage" HeightRequest="0" BackgroundColor="Transparent" />
+                        <!--                                                  VOCs恶臭-->
+                        <Label Text="{Binding menuQyStenchLabel}" />
                     </Grid>
                      <Grid StyleClass="menuitem" IsVisible="false">
                         <Grid.Triggers>

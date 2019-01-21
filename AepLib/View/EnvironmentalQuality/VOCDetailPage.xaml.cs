@@ -20,7 +20,7 @@ namespace AepApp.View.EnvironmentalQuality
         private string siteId; //站点ID
         ObservableCollection<Factors> factors = new ObservableCollection<Factors>();
 
-        int _type = 0;//1环境VOCs，2VOCs厂界，3VOCs排口
+        int _type = 0;//1环境VOCs，邵峰倪黎腾负责  2。排口厂界张东明负责
         public VOCDetailPage(VOCSiteListModel siteInfo, int type)
         {
             InitializeComponent();
