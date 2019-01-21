@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.zhrl.AepApp" android:installLocation="auto" android:versionCode="12" android:versionName="1.0.7">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.zhrl.AepApp" android:installLocation="auto" android:versionCode="13" android:versionName="1.0.7">
 	<uses-sdk android:minSdkVersion="15" />
 	<application android:label="环保监管" android:icon="@drawable/icon">
 		<service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"></service>
