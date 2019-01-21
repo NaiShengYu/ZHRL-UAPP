@@ -7,7 +7,7 @@
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
             <SearchBar Placeholder="搜索站点名称" TextChanged="Handle_TextChanged" x:Name="seach"></SearchBar>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1"></BoxView>
-            <ListView x:Name="listView" RowHeight="60" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
+            <ListView x:Name="listView" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="60" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">

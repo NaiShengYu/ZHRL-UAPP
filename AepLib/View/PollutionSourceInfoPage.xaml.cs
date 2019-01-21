@@ -215,6 +215,7 @@ namespace AepApp.View
                         HorizontalOptions = LayoutOptions.StartAndExpand,
                         Margin = new Thickness(0),
                         BorderRadius = 0,
+                        BackgroundColor = Color.Transparent,
                         TextColor = Color.Black,
                     };
 

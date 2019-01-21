@@ -12,7 +12,7 @@
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Margin="10" VerticalOptions="Center" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="标准名称" />
+                                    <Label Grid.Column="0" Margin="10" VerticalOptions="Center" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="标准名称" TextColor="Black"/>
                                     <Label Grid.Column="1" Margin="10" VerticalOptions="Center" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding name}" />
                                 </Grid>
                                  <Grid>
@@ -20,7 +20,7 @@
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Margin="10" VerticalOptions="Center" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="来源" />
+                                    <Label Grid.Column="0" Margin="10" VerticalOptions="Center" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="来源"  TextColor="Black"/>
                                     <Label Grid.Column="1" Margin="10" VerticalOptions="Center" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding source}" />
                                 </Grid>
                                  <Grid>
@@ -28,7 +28,7 @@
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Margin="10" VerticalOptions="Center" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="标准数值" />
+                                    <Label Grid.Column="0" Margin="10" VerticalOptions="Center" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="标准数值"  TextColor="Black"/>
                                     <Label Grid.Column="1" Margin="10" VerticalOptions="Center" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding allValue}" />
                                 </Grid>
                             </StackLayout>
