@@ -17,6 +17,7 @@ using Newtonsoft.Json.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using System.Threading;
 
 namespace AepApp.View
 {
@@ -106,34 +107,18 @@ namespace AepApp.View
             this.BindingContext = this;
         }
 
-        double startScale = 1;
-        double currScale = 1;
         AzmCoord centerBeforePinch;
-        int nLevelBeforePinch;
         int nPrevLevel;
-        double fLevelBeforePinch;
-        float tileSizeBeforePinch;
 
         private void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
         {
             if (e.Status== GestureStatus.Started)
             {
-
-                startScale = 1;
-                centerBeforePinch = GetCoordFromXY(flevel, this.center);
-                nLevelBeforePinch = nlevel;
-                fLevelBeforePinch = flevel;
-                tileSizeBeforePinch = tilesize;
+                centerBeforePinch = GetCoordFromXY(nlevel, this.center);
                 nPrevLevel = nlevel;
             }
             if (e.Status== GestureStatus.Running)
             {
-
-
-
-
-
-                currScale = e.Scale;
                 flevel += Math.Log(e.Scale) / Math.Log(2.0);
                 flevel = Math.Max(Math.Min(flevel, 18), 4);
                 nlevel = (int)Math.Round(flevel);
@@ -160,11 +145,62 @@ namespace AepApp.View
 
                 tilesize = fixedTileSize * (float)Math.Pow(2.0, flevel - nlevel);
 
+
+                int sx = (int)Math.Floor(center.X - (double)mapwidth / tilesize / 2);
+                int ex = (int)Math.Floor(center.X + (double)mapwidth / tilesize / 2);
+                int sy = (int)Math.Floor(center.Y - (double)mapheight / tilesize / 2);
+                int ey = (int)Math.Floor(center.Y + (double)mapheight / tilesize / 2);
+
+                xrange = new Tuple<int, int>(sx, ex);
+                yrange = new Tuple<int, int>(sy, ey);
+
                 vpminx = center.X - (double)mapwidth / tilesize / 2;
                 vpmaxy = center.Y + (double)mapheight / tilesize / 2;
 
 
+                if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
+                {
+                    foreach (object v in tile.Children)
+                    {
+                        if (v is Image)
+                        {
+                            Image img = v as Image;
+                            if (satimgidxdict.ContainsKey(img))
+                            {
+                                Tuple<int, int, int> idx = satimgidxdict[img];
+                                img.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((idx.Item2 - vpminx) * tilesize, (vpmaxy - idx.Item3 - 1) * tilesize, tilesize, tilesize));
+                            }
+                        }
+                    }
+                }
 
+                if (_maptype == AzmMapType.Hybrid)
+                {
+                    foreach (object v in tile.Children)
+                    {
+                        if (v is Image)
+                        {
+                            Image img = v as Image;
+                            if (roadimgidxdict.ContainsKey(img))
+                            {
+                                Tuple<int, int, int> idx = roadimgidxdict[img];
+                                img.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((idx.Item2 - vpminx) * tilesize, (vpmaxy - idx.Item3 - 1) * tilesize, tilesize, tilesize));
+                            }
+                        }
+                    }
+                }
+
+                foreach (object v in overlayviews.Children)
+                {
+                    if (v is AzmOverlayView)
+                    {
+                        AzmOverlayView ov = v as AzmOverlayView;
+                        Gps g = PositionUtil.gps84_To_Gcj02(ov.Coord.lat, ov.Coord.lng);
+                        Point p = GetXYFromCoord(nlevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                        //Point p = GetXYFromCoord(level, ov.Coord);
+                        ov.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - ov.Anchor.X, (vpmaxy - p.Y) * tilesize - ov.Anchor.Y, ov.Size.Width, ov.Size.Height));
+                    }
+                }
 
                 if (_maptype == AzmMapType.Normal) can.InvalidateSurface();
             }
@@ -313,112 +349,191 @@ namespace AepApp.View
 
         public void InvalidateSurface()
         {
+            DateTime now = DateTime.Now;
+            if ((now - lastPaintTime).TotalMilliseconds < 20) return;
             can.InvalidateSurface();
         }
 
         private void ReloadTile()
         {
             // remove all tile
-            idxvectordict.Clear();
-            vectoridxdict.Clear();
+            //idxvectordict.Clear();
+            //vectoridxdict.Clear();
 
-            if (_maptype == AzmMapType.Satellite || _maptype== AzmMapType.Hybrid)
+            //if (_maptype == AzmMapType.Satellite || _maptype== AzmMapType.Hybrid)
+            //{
+            //    List<Image> dellist = new List<Image>();
+            //    foreach (var img in satimgidxdict)
+            //    {
+            //        dellist.Add(img.Key);
+            //    }
+            //    foreach (var img in dellist)
+            //    {
+            //        var t = satimgidxdict[img];
+            //        string key = t.Item1.ToString() + "_" + t.Item2.ToString() + "_" + t.Item3.ToString();
+
+            //        idxsatimgdict.Remove(key);
+            //        satimgidxdict.Remove(img);
+            //        tile.Children.Remove(img);
+            //    }
+            //    satimgidxdict.Clear();
+            //    idxsatimgdict.Clear();
+
+
+            //    dellist.Clear();
+            //    foreach (var img in roadimgidxdict)
+            //    {
+            //        dellist.Add(img.Key);
+            //    }
+            //    foreach (var img in dellist)
+            //    {
+            //        var t = roadimgidxdict[img];
+            //        string key = t.Item1.ToString() + "_" + t.Item2.ToString() + "_" + t.Item3.ToString();
+
+            //        idxroadimgdict.Remove(key);
+            //        roadimgidxdict.Remove(img);
+            //        tile.Children.Remove(img);
+            //    }
+            //    roadimgidxdict.Clear();
+            //    idxroadimgdict.Clear();
+
+            //}
+
+            AzmCoord c = GetCoordFromXY(nlevel, this.center);
+            ReloadTileRangeForLevel(nlevel, c, tilesize);
+            ReloadTileRangeForLevel(nlevel + 1, c, tilesize / 2.0f);
+            ReloadTileRangeForLevel(nlevel - 1, c, tilesize * 2.0f);
+
+            //// add tile, current level
+            //for (var y = yrange.Item1; y <= yrange.Item2; y++)
+            //{
+            //    for (var x = xrange.Item1; x <= xrange.Item2; x++)
+            //    {
+            //        int xb = x >> 4;
+            //        int yb = y >> 4;
+
+            //        if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
+            //        {
+            //            string url = null;
+            //            url = string.Format("http://p2.map.gtimg.com/sateTiles/{0}/{1}/{2}/{3}_{4}.jpg?version=229", nlevel, xb, yb, x, y);
+
+            //            Image img = new Image();
+            //            img.Source = new UriImageSource
+            //            {
+            //                Uri = new Uri(url),
+            //                CachingEnabled = true,
+            //                CacheValidity = new TimeSpan(5, 0, 0, 0)
+            //            };
+            //            img.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((x - vpminx) * tilesize, (vpmaxy - y - 1) * tilesize, tilesize, tilesize));
+            //            img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
+            //            tile.Children.Insert(0, img);
+
+            //            satimgidxdict.Add(img, new Tuple<int, int, int>(nlevel, x, y));
+            //            idxsatimgdict.Add(nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
+            //        }
+
+            //        if (_maptype == AzmMapType.Hybrid)
+            //        {
+            //            string url = null;
+
+            //            url = string.Format("http://rt3.map.gtimg.com/tile?z={0}&x={1}&y={2}&styleid=2&version=274", nlevel, x, y);
+
+
+            //            Image img = new Image();
+            //            img.Source = new UriImageSource
+            //            {
+            //                Uri = new Uri(url),
+            //                CachingEnabled = true,
+            //                CacheValidity = new TimeSpan(5, 0, 0, 0)
+            //            };
+            //            img.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((x - vpminx) * tilesize, (vpmaxy - y - 1) * tilesize, tilesize, tilesize));
+            //            img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
+            //            tile.Children.Add(img);
+
+            //            roadimgidxdict.Add(img, new Tuple<int, int, int>(nlevel, x, y));
+            //            idxroadimgdict.Add(nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
+            //        }
+
+            //        if (_maptype == AzmMapType.Normal)
+            //        {
+            //            LoadTileVectors(nlevel, x, y, 0, false);
+            //        }
+
+            //    }
+            //}
+        }
+
+
+        private void ReloadTileRangeForLevel(int level, AzmCoord center, float tsize)
+        {
+            Point cp = GetXYFromCoord(level, center);
+            int sx = (int)Math.Floor(cp.X - (double)mapwidth / tsize / 2);
+            int ex = (int)Math.Floor(cp.X + (double)mapwidth / tsize / 2);
+            int sy = (int)Math.Floor(cp.Y - (double)mapheight / tsize / 2);
+            int ey = (int)Math.Floor(cp.Y + (double)mapheight / tsize / 2);
+
+            for (var y = sy; y <= ey; y++)
             {
-                List<Image> dellist = new List<Image>();
-                foreach (var img in satimgidxdict)
-                {
-                    dellist.Add(img.Key);
-                }
-                foreach (var img in dellist)
-                {
-                    var t = satimgidxdict[img];
-                    string key = t.Item1.ToString() + "_" + t.Item2.ToString() + "_" + t.Item3.ToString();
-
-                    idxsatimgdict.Remove(key);
-                    satimgidxdict.Remove(img);
-                    tile.Children.Remove(img);
-                }
-                satimgidxdict.Clear();
-                idxsatimgdict.Clear();
-
-
-                dellist.Clear();
-                foreach (var img in roadimgidxdict)
-                {
-                    dellist.Add(img.Key);
-                }
-                foreach (var img in dellist)
-                {
-                    var t = roadimgidxdict[img];
-                    string key = t.Item1.ToString() + "_" + t.Item2.ToString() + "_" + t.Item3.ToString();
-
-                    idxroadimgdict.Remove(key);
-                    roadimgidxdict.Remove(img);
-                    tile.Children.Remove(img);
-                }
-                roadimgidxdict.Clear();
-                idxroadimgdict.Clear();
-
-            }
-
-            // add tile
-            for (var y = yrange.Item1; y <= yrange.Item2; y++)
-            {
-                for (var x = xrange.Item1; x <= xrange.Item2; x++)
+                for (var x = sx; x <= ex; x++)
                 {
                     int xb = x >> 4;
                     int yb = y >> 4;
 
                     if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
                     {
-                        string url = null;
-                        url = string.Format("http://p2.map.gtimg.com/sateTiles/{0}/{1}/{2}/{3}_{4}.jpg?version=229", nlevel, xb, yb, x, y);
-
-                        Image img = new Image();
-                        img.Source = new UriImageSource
+                        string key = level.ToString() + "_" + x.ToString() + "_" + y.ToString();
+                        if (!idxsatimgdict.ContainsKey(key))
                         {
-                            Uri = new Uri(url),
-                            CachingEnabled = true,
-                            CacheValidity = new TimeSpan(5, 0, 0, 0)
-                        };
-                        img.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((x - vpminx) * tilesize, (vpmaxy - y - 1) * tilesize, tilesize, tilesize));
-                        img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
-                        tile.Children.Insert(0, img);
+                            string url = null;
+                            url = string.Format("http://p2.map.gtimg.com/sateTiles/{0}/{1}/{2}/{3}_{4}.jpg?version=229", level, xb, yb, x, y);
 
-                        satimgidxdict.Add(img, new Tuple<int, int, int>(nlevel, x, y));
-                        idxsatimgdict.Add(nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
+                            Image img = new Image();
+                            img.Source = new UriImageSource
+                            {
+                                Uri = new Uri(url),
+                                CachingEnabled = true,
+                                CacheValidity = new TimeSpan(5, 0, 0, 0)
+                            };
+                            img.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((x - vpminx) * tilesize, (vpmaxy - y - 1) * tilesize, tilesize, tilesize));
+                            img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
+                            tile.Children.Insert(0, img);
+
+                            satimgidxdict.Add(img, new Tuple<int, int, int>(level, x, y));
+                            idxsatimgdict.Add(key, img);
+                        }
                     }
 
                     if (_maptype == AzmMapType.Hybrid)
                     {
-                        string url = null;
-                        
-                        url = string.Format("http://rt3.map.gtimg.com/tile?z={0}&x={1}&y={2}&styleid=2&version=274", nlevel, x, y);
-                        
+                        string key = level.ToString() + "_" + x.ToString() + "_" + y.ToString();
 
-                        Image img = new Image();
-                        img.Source = new UriImageSource
+                        if (!idxroadimgdict.ContainsKey(key))
                         {
-                            Uri = new Uri(url),
-                            CachingEnabled = true,
-                            CacheValidity = new TimeSpan(5, 0, 0, 0)
-                        };
-                        img.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((x - vpminx) * tilesize, (vpmaxy - y - 1) * tilesize, tilesize, tilesize));
-                        img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
-                        tile.Children.Add(img);
+                            string url = string.Format("http://rt3.map.gtimg.com/tile?z={0}&x={1}&y={2}&styleid=2&version=274", level, x, y);
 
-                        roadimgidxdict.Add(img, new Tuple<int, int, int>(nlevel, x, y));
-                        idxroadimgdict.Add(nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
+                            Image img = new Image();
+                            img.Source = new UriImageSource
+                            {
+                                Uri = new Uri(url),
+                                CachingEnabled = true,
+                                CacheValidity = new TimeSpan(5, 0, 0, 0)
+                            };
+                            img.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((x - vpminx) * tilesize, (vpmaxy - y - 1) * tilesize, tilesize, tilesize));
+                            img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
+                            tile.Children.Add(img);
+
+                            roadimgidxdict.Add(img, new Tuple<int, int, int>(level, x, y));
+                            idxroadimgdict.Add(key, img);
+                        }
                     }
 
                     if (_maptype == AzmMapType.Normal)
                     {
-                        LoadTileVectors(nlevel, x, y);
+                        LoadTileVectors(level, x, y, 0, false);
                     }
 
                 }
             }
-
         }
 
         private void Deserialization_Error<ErrorEventArgs>(object sender, ErrorEventArgs e)
@@ -427,7 +542,7 @@ namespace AepApp.View
             int a = 0;
         }
 
-        private void LoadTileVectors(int level, int x, int y, int retrycount=0)
+        private void LoadTileVectors(int level, int x, int y, int retrycount = 0, bool refresh = true)
         {
             bool load = false;
             TileVector tp = null;
@@ -449,7 +564,7 @@ namespace AepApp.View
                 WebRequest request = WebRequest.Create(uri);
                 int clevel = level;
 
-                request.BeginGetResponse((IAsyncResult arg) =>
+                request.BeginGetResponse(async (IAsyncResult arg) =>
                 {
                     if (clevel != level) return;
 
@@ -463,11 +578,11 @@ namespace AepApp.View
 
                             using (StreamReader sr = new StreamReader(memStream))
                             {
-                                string value = sr.ReadToEnd();
+                                string value = await sr.ReadToEndAsync();
 
                                 /// IMPORTANT NOTE!!
                                 /// Sometimes, the JSON results retrieved from the Tencent Map URL has some missing characters,
-                                /// which will cause the following statement to trigger exception. DO NOT try to fix the JSON string.
+                                /// which cause the following statement to trigger exception. DO NOT try to fix the JSON string.
                                 /// Simply reload will usually give the correct result.
                                 JObject obj = JsonConvert.DeserializeObject(value) as JObject;
 
@@ -534,11 +649,14 @@ namespace AepApp.View
                         if (retrycount<5) LoadTileVectors(level, x, y, retrycount+1);
                     }
 
-                    Device.BeginInvokeOnMainThread(() => can.InvalidateSurface());
+                    if (refresh) Device.BeginInvokeOnMainThread(() => InvalidateSurface());
 
                 }, null);
             }
         }
+
+
+
 
         double backupx = 0;
         double backupy = 0;
@@ -619,7 +737,7 @@ namespace AepApp.View
                     {
                         AzmOverlayView ov = v as AzmOverlayView;
                         Gps g = PositionUtil.gps84_To_Gcj02(ov.Coord.lat, ov.Coord.lng);
-                        Point p = GetXYFromCoord(flevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                        Point p = GetXYFromCoord(nlevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
                         //Point p = GetXYFromCoord(level, ov.Coord);
                         ov.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - ov.Anchor.X, (vpmaxy - p.Y) * tilesize - ov.Anchor.Y, ov.Size.Width, ov.Size.Height));
                     }
@@ -967,9 +1085,13 @@ namespace AepApp.View
             //        canvas.DrawText(level.ToString()+", "+x.ToString()+", "+y.ToString(), (float)r.Left * (float)xf, (float)r.Top * (float)yf + 15.0f*(float)yf, TileVector.textpaint);
             //    }
             //}
-
+            lastPaintTime = DateTime.Now;
         }
+
+
+        private DateTime lastPaintTime = DateTime.MinValue;
     }
+
 
     public class Gps
     {
