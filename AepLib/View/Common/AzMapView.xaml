@@ -44,8 +44,9 @@
             <Label IsVisible="{Binding IsDebugLabelVisible}" x:Name="lbllevel" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" />
             <Label IsVisible="{Binding IsDebugLabelVisible}" x:Name="lblcx" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="60,0,0,0" />
             <Label IsVisible="{Binding IsDebugLabelVisible}" x:Name="lblcy" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="120,0,0,0"/>
-            <Label IsVisible="{Binding IsDebugLabelVisible}" x:Name="lblcc" WidthRequest="200" VerticalOptions="Start" Text="{Binding CenterCoord, StringFormat='{0}'}"
+            <Label IsVisible="{Binding IsDebugLabelVisible}" x:Name="lblcc" WidthRequest="150" VerticalOptions="Start" Text="{Binding CenterCoord, StringFormat='{0}'}"
                    HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black" Margin="180,0,0,0"/>
+            <Label IsVisible="{Binding IsDebugLabelVisible}" x:Name="lblflevel" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Yellow" BackgroundColor="Black"  Margin="340,0,0,0" />
 
             <Image Opacity="1.0" WidthRequest="50" HeightRequest="50" Source="zoomin.png" VerticalOptions="End" 
                    HorizontalOptions="End" Margin="0,0,65,10" IsVisible="{Binding IsZoomButtonVisible}">
