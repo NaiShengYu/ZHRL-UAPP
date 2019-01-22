@@ -3,11 +3,12 @@ namespace AepApp.Models
 {
     public class DailyRegulation
     {
-        public DateTime SUPERVISEDATE { get; set; }
-        public string SUPERVISOR { get; set; }
-        public string CONTEXT { get; set; }
-        public string IMPROVECONTEXT { get; set; }
-        public string RN { get; set; }
+        public DateTime starttime { get; set; }
+        public string code { get; set; }
+        public string rummager { get; set; }
+        public string remark { get; set; }
+        public string type { get; set; }
+        public string id { get; set; }
 
         //public string SUPERVISEDATEInfo
         //{

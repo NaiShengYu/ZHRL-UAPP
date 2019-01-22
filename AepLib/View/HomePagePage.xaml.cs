@@ -52,6 +52,10 @@ namespace AepApp.View
                 LayoutEnvironmentWater.IsVisible = App.moduleConfigENVQ.menuWater;
             }
 
+            //防止背景图变型
+            LayoutGridStatics.HeightRequest = App.ScreenWidth * 400 / 1000;
+            Layout360Statics.HeightRequest = App.ScreenWidth * 400 / 1000;
+            LayoutEnvironmentStatics.HeightRequest = App.ScreenWidth * 528 / 1000;
 
         }
 

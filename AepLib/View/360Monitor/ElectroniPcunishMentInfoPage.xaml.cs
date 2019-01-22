@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using AepApp.Models;
 using CloudWTO.Services;
 using Plugin.Hud;
+using Sample;
 #if __MOBILE__
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -31,7 +32,8 @@ namespace AepApp.View.Monitor
             this.BindingContext = Enterprise;
             NavigationPage.SetBackButtonTitle(this, "");
             this.Title = electroniPcunish.title;
-
+            if(electroniPcunish.items == null || electroniPcunish.items.Count ==0)
+                DependencyService.Get<IToast>().ShortAlert("无数据");
             listV.ItemsSource = electroniPcunish.items;
         }
     }

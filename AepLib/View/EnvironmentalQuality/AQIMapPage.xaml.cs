@@ -82,31 +82,38 @@ namespace AepApp.View.EnvironmentalQuality
 
                 AzmLabelView lv = new AzmLabelView(s.StationName + "\n" + value.ToString("0.0") + unit, new AzmCoord(s.StationLng, s.StationLat))
                 {
-                    BackgroundColor = Color.FromHex("#4169E1")
+                    BackgroundColor = Color.FromHex("#4169E1"),
+                    TextColor = Color.White,
                 };
                 if (finalValue <= 50)
                 {
                     lv.BackgroundColor = Color.FromHex("#37b83b");
+                    lv.TextColor = Color.White;
                 }
                 else if (finalValue <= 100)
                 {
                     lv.BackgroundColor = Color.FromHex("#d8d646");
+                    lv.TextColor = Color.Black;
                 }
                 else if (finalValue <= 150)
                 {
                     lv.BackgroundColor = Color.FromHex("#d4831b");
+                    lv.TextColor = Color.White;
                 }
                 else if (finalValue <= 200)
                 {
                     lv.BackgroundColor = Color.FromHex("#b8373a");
+                    lv.TextColor = Color.White;
                 }
                 else if (finalValue <= 300)
                 {
                     lv.BackgroundColor = Color.FromHex("#b8377f");
+                    lv.TextColor = Color.White;
                 }
                 else
                 {
                     lv.BackgroundColor = Color.FromHex("#79191d");
+                    lv.TextColor = Color.White;
                 }
                 map.Overlays.Add(lv);
                 labels.Add(lv);

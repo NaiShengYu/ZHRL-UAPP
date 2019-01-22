@@ -29,7 +29,7 @@ namespace AepApp.View.Monitor
             var selectItem = e.SelectedItem as DailyRegulation;
             if (selectItem == null)
                 return;
-            Navigation.PushAsync(new DailyRegulationInfoPage(selectItem, _ent));
+            //Navigation.PushAsync(new DailyRegulationInfoPage(selectItem, _ent));
             listV.SelectedItem = null;
         }
 
@@ -94,6 +94,8 @@ namespace AepApp.View.Monitor
                 for (int i = 0; i < list.items.Count; i++)
                 {
                     DailyRegulation item = list.items[i];
+                    item.remark = "佛为UR魔界的水平陪人加沃尔umvosajerouewjfvnsijruwerapwjerp金佛王二UN真的浪费uvluerububowejb";
+
                     dataList.Add(item);
                 }
 
