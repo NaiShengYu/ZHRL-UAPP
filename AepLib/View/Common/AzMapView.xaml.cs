@@ -357,52 +357,52 @@ namespace AepApp.View
         private void ReloadTile()
         {
             // remove all tile
-            //idxvectordict.Clear();
-            //vectoridxdict.Clear();
+            idxvectordict.Clear();
+            vectoridxdict.Clear();
 
-            //if (_maptype == AzmMapType.Satellite || _maptype== AzmMapType.Hybrid)
-            //{
-            //    List<Image> dellist = new List<Image>();
-            //    foreach (var img in satimgidxdict)
-            //    {
-            //        dellist.Add(img.Key);
-            //    }
-            //    foreach (var img in dellist)
-            //    {
-            //        var t = satimgidxdict[img];
-            //        string key = t.Item1.ToString() + "_" + t.Item2.ToString() + "_" + t.Item3.ToString();
+            if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
+            {
+                List<Image> dellist = new List<Image>();
+                foreach (var img in satimgidxdict)
+                {
+                    dellist.Add(img.Key);
+                }
+                foreach (var img in dellist)
+                {
+                    var t = satimgidxdict[img];
+                    string key = t.Item1.ToString() + "_" + t.Item2.ToString() + "_" + t.Item3.ToString();
 
-            //        idxsatimgdict.Remove(key);
-            //        satimgidxdict.Remove(img);
-            //        tile.Children.Remove(img);
-            //    }
-            //    satimgidxdict.Clear();
-            //    idxsatimgdict.Clear();
+                    idxsatimgdict.Remove(key);
+                    satimgidxdict.Remove(img);
+                    tile.Children.Remove(img);
+                }
+                satimgidxdict.Clear();
+                idxsatimgdict.Clear();
 
 
-            //    dellist.Clear();
-            //    foreach (var img in roadimgidxdict)
-            //    {
-            //        dellist.Add(img.Key);
-            //    }
-            //    foreach (var img in dellist)
-            //    {
-            //        var t = roadimgidxdict[img];
-            //        string key = t.Item1.ToString() + "_" + t.Item2.ToString() + "_" + t.Item3.ToString();
+                dellist.Clear();
+                foreach (var img in roadimgidxdict)
+                {
+                    dellist.Add(img.Key);
+                }
+                foreach (var img in dellist)
+                {
+                    var t = roadimgidxdict[img];
+                    string key = t.Item1.ToString() + "_" + t.Item2.ToString() + "_" + t.Item3.ToString();
 
-            //        idxroadimgdict.Remove(key);
-            //        roadimgidxdict.Remove(img);
-            //        tile.Children.Remove(img);
-            //    }
-            //    roadimgidxdict.Clear();
-            //    idxroadimgdict.Clear();
+                    idxroadimgdict.Remove(key);
+                    roadimgidxdict.Remove(img);
+                    tile.Children.Remove(img);
+                }
+                roadimgidxdict.Clear();
+                idxroadimgdict.Clear();
 
-            //}
+            }
 
             AzmCoord c = GetCoordFromXY(nlevel, this.center);
             ReloadTileRangeForLevel(nlevel, c, tilesize);
-            ReloadTileRangeForLevel(nlevel + 1, c, tilesize / 2.0f);
-            ReloadTileRangeForLevel(nlevel - 1, c, tilesize * 2.0f);
+            //ReloadTileRangeForLevel(nlevel + 1, c, tilesize / 2.0f);
+            //ReloadTileRangeForLevel(nlevel - 1, c, tilesize * 2.0f);
 
             //// add tile, current level
             //for (var y = yrange.Item1; y <= yrange.Item2; y++)
