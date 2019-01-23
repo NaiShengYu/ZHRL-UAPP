@@ -23,6 +23,8 @@ namespace AepApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AzMapView : ContentView
     {
+        const float maxlat = 85.051128779806592377796715521925f;
+
         public delegate void CenterCoordChangedEventHandler(object sender, CenterCoordChangedEventArg e);
         public event CenterCoordChangedEventHandler CenterCoordChanged;
 
@@ -31,7 +33,8 @@ namespace AepApp.View
         public static AzmCoord Beijing = new AzmCoord(116.4074, 39.9042);
 
         // Just some random initial level and center position
-        int level = 17;
+        int nlevel = 17;
+        double flevel = 17.0;
         Point center = new Point(109824, 76940);
         Tuple<int, int> xrange = new Tuple<int, int>(109824, 109829);
         Tuple<int, int> yrange = new Tuple<int, int>(76940, 76947);
@@ -51,7 +54,8 @@ namespace AepApp.View
         int mapwidth = 1;
         int mapheight = 1;
 
-        const int tilesize = 192;
+        const float fixedTileSize = 192.0f;
+        float tilesize = 192.0f;
 
         double vpminx = 0;
         double vpmaxy = 0;
@@ -95,7 +99,79 @@ namespace AepApp.View
 
             SetCenter(8, new AzmCoord(116.4074, 39.9042));  // beijing
 
+            var pinch = new PinchGestureRecognizer();
+            pinch.PinchUpdated += OnPinchUpdated;
+            GestureRecognizers.Add(pinch);
+
             this.BindingContext = this;
+        }
+
+        double startScale = 1;
+        double currScale = 1;
+        AzmCoord centerBeforePinch;
+        int nLevelBeforePinch;
+        int nPrevLevel;
+        double fLevelBeforePinch;
+        float tileSizeBeforePinch;
+
+        private void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
+        {
+            if (e.Status== GestureStatus.Started)
+            {
+
+                startScale = 1;
+                centerBeforePinch = GetCoordFromXY(nlevel, this.center);
+                nLevelBeforePinch = nlevel;
+                fLevelBeforePinch = flevel;
+                tileSizeBeforePinch = tilesize;
+                nPrevLevel = nlevel;
+            }
+            if (e.Status== GestureStatus.Running)
+            {
+
+
+
+
+
+                currScale = e.Scale;
+                flevel += Math.Log(e.Scale) / Math.Log(2.0);
+                flevel = Math.Max(Math.Min(flevel, 18), 4);
+                nlevel = (int)Math.Round(flevel);
+
+
+                if (nlevel != nPrevLevel)
+                {
+                    center = GetXYFromCoord(nlevel, centerBeforePinch);
+                    UpdateRanges();
+                    backupx = center.X;
+                    backupy = center.Y;
+                    backupxrange = new Tuple<int, int>(xrange.Item1, xrange.Item2);
+                    backupyrange = new Tuple<int, int>(yrange.Item1, yrange.Item2);
+                    nPrevLevel = nlevel;
+                }
+
+
+                //center = GetXYFromCoord(nlevel, centerBeforePinch);
+                lbllevel.Text = ((int)nlevel).ToString();
+                lblflevel.Text = flevel.ToString("0.00");
+                lblcx.Text = ((int)center.X).ToString();
+                lblcy.Text = ((int)center.Y).ToString();
+
+
+                tilesize = fixedTileSize * (float)Math.Pow(2.0, flevel - nlevel);
+
+                vpminx = center.X - (double)mapwidth / tilesize / 2;
+                vpmaxy = center.Y + (double)mapheight / tilesize / 2;
+
+
+
+
+                if (_maptype == AzmMapType.Normal) can.InvalidateSurface();
+            }
+            if (e.Status== GestureStatus.Completed)
+            {
+
+            }
         }
 
         private bool _iszoombuttonvisible = true;
@@ -146,7 +222,8 @@ namespace AepApp.View
             vpminx = center.X - (double)mapwidth / tilesize / 2;
             vpmaxy = center.Y + (double)mapheight / tilesize / 2;
 
-            lbllevel.Text = ((int)level).ToString();
+            lbllevel.Text = ((int)nlevel).ToString();
+            lblflevel.Text = flevel.ToString("0.00");
             lblcx.Text = ((int)center.X).ToString();
             lblcy.Text = ((int)center.Y).ToString();
 
@@ -159,7 +236,7 @@ namespace AepApp.View
                 {
                     AzmOverlayView ov = v as AzmOverlayView;
                     Gps g = PositionUtil.gps84_To_Gcj02(ov.Coord.lat, ov.Coord.lng);
-                    Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                    Point p = GetXYFromCoord(flevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
                     //Point p = GetXYFromCoord(level, ov.Coord);
                     ov.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - ov.Anchor.X, (vpmaxy - p.Y) * tilesize - ov.Anchor.Y, ov.Size.Width, ov.Size.Height));
                 }
@@ -174,29 +251,31 @@ namespace AepApp.View
             UpdateRanges();
         }
 
-        private AzmCoord GetCoordFromXY(int level, Point p)
-        {
-            //const float maxlat = 85.051128779806592377796715521925f;
+        //private AzmCoord GetCoordFromXY(int level, Point p) => GetCoordFromXY((double)level, p);
 
-            double n = Math.Pow(2.0, (double)level);
+        private AzmCoord GetCoordFromXY(double level, Point p)
+        {
+            double n = Math.Pow(2.0, level);
             double lng = p.X / n * 360.0 - 180.0;
             double lat = Math.Atan(Math.Exp((p.Y / n - 0.5) * Math.PI * 2)) / Math.PI * 360.0 - 90.0;
             return new AzmCoord(lng, lat);
         }
 
-        private Point GetXYFromCoord(int level, AzmCoord coord)
-        {
-            //const float maxlat = 85.051128779806592377796715521925f;
+        //private Point GetXYFromCoord(int level, AzmCoord coord) => GetXYFromCoord((double)level, coord);
 
-            double n = Math.Pow(2.0, (double)level);
+        private Point GetXYFromCoord(double level, AzmCoord coord)
+        {
+            double n = Math.Pow(2.0, level);
             double x = (coord.lng + 180.0) / 360.0 * n;
             double y = (Math.Log(Math.Tan((coord.lat + 90.0) / 360.0 * Math.PI)) / 2.0 / Math.PI + 0.5) * n;
             return new Point(x, y);
         }
 
-        private double GetUnitPerMeterFromCoord(int level, AzmCoord coord)
+
+
+        private double GetUnitPerMeterFromCoord(double level, AzmCoord coord)
         {
-            double n = Math.Pow(2.0, (double)level);
+            double n = Math.Pow(2.0, level);
             double ia = (coord.lat + 90.0) / 360.0 * Math.PI;
             double udy = n / 720.0 / Math.Sin(ia) / Math.Cos(ia);
             double lr = 6371000.0 * 2.0 * Math.PI / 360.0; // * Math.Cos(coord.lat / 180.0 * Math.PI);
@@ -209,7 +288,7 @@ namespace AepApp.View
 
             Gps g = PositionUtil.gps84_To_Gcj02(_center.lat,_center.lng);
             try{
-                Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                Point p = GetXYFromCoord(flevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
                 _center = new AzmCoord(g.getWgLon(), g.getWgLat());
             }catch(Exception ex){}
 
@@ -221,8 +300,9 @@ namespace AepApp.View
             if (_center.lng > 180.0) { SetCenter(11, Beijing); return; }
             if (_center.lat < -85.051128779806592377796715521925) { SetCenter(11, Beijing); return; }
             if (_center.lat > 85.051128779806592377796715521925) { SetCenter(11, Beijing); return; }
-            level = _level;
-            center = GetXYFromCoord(level, _center);
+            nlevel = _level;
+            flevel = _level;
+            center = GetXYFromCoord(nlevel, _center);
             CenterCoord = _center;
             UpdateRanges();
             backupx = center.X;
@@ -292,7 +372,7 @@ namespace AepApp.View
                     if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
                     {
                         string url = null;
-                        url = string.Format("http://p2.map.gtimg.com/sateTiles/{0}/{1}/{2}/{3}_{4}.jpg?version=229", level, xb, yb, x, y);
+                        url = string.Format("http://p2.map.gtimg.com/sateTiles/{0}/{1}/{2}/{3}_{4}.jpg?version=229", nlevel, xb, yb, x, y);
 
                         Image img = new Image();
                         img.Source = new UriImageSource
@@ -305,15 +385,15 @@ namespace AepApp.View
                         img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
                         tile.Children.Insert(0, img);
 
-                        satimgidxdict.Add(img, new Tuple<int, int, int>(level, x, y));
-                        idxsatimgdict.Add(level.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
+                        satimgidxdict.Add(img, new Tuple<int, int, int>(nlevel, x, y));
+                        idxsatimgdict.Add(nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
                     }
 
                     if (_maptype == AzmMapType.Hybrid)
                     {
                         string url = null;
                         
-                        url = string.Format("http://rt3.map.gtimg.com/tile?z={0}&x={1}&y={2}&styleid=2&version=274", level, x, y);
+                        url = string.Format("http://rt3.map.gtimg.com/tile?z={0}&x={1}&y={2}&styleid=2&version=274", nlevel, x, y);
                         
 
                         Image img = new Image();
@@ -327,13 +407,13 @@ namespace AepApp.View
                         img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
                         tile.Children.Add(img);
 
-                        roadimgidxdict.Add(img, new Tuple<int, int, int>(level, x, y));
-                        idxroadimgdict.Add(level.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
+                        roadimgidxdict.Add(img, new Tuple<int, int, int>(nlevel, x, y));
+                        idxroadimgdict.Add(nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
                     }
 
                     if (_maptype == AzmMapType.Normal)
                     {
-                        LoadTileVectors(level, x, y);
+                        LoadTileVectors(nlevel, x, y);
                     }
 
                 }
@@ -472,7 +552,7 @@ namespace AepApp.View
                 backupy = center.Y;
                 backupxrange = new Tuple<int, int>(xrange.Item1, xrange.Item2);
                 backupyrange = new Tuple<int, int>(yrange.Item1, yrange.Item2);
-                Console.Write(level.ToString());
+                Console.Write(nlevel.ToString());
                 Console.Write(": ");
                 Console.Write(center.X.ToString());
                 Console.Write("==== ");
@@ -485,7 +565,8 @@ namespace AepApp.View
                 double newx = backupx - e.TotalX / tilesize;
                 double newy = backupy + e.TotalY / tilesize;
                 center = new Point(newx, newy);
-                lbllevel.Text = ((int)level).ToString();
+                lbllevel.Text = ((int)nlevel).ToString();
+                lblflevel.Text = flevel.ToString("0.00");
                 lblcx.Text = ((int)center.X).ToString();
                 lblcy.Text = ((int)center.Y).ToString();
                 vpminx = center.X - (double)mapwidth / tilesize / 2;
@@ -499,7 +580,7 @@ namespace AepApp.View
                 xrange = new Tuple<int, int>(sx, ex);
                 yrange = new Tuple<int, int>(sy, ey);
 
-                CenterCoord = GetCoordFromXY(level, center);
+                CenterCoord = GetCoordFromXY(nlevel, center);
 
                 if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
                 {
@@ -538,7 +619,7 @@ namespace AepApp.View
                     {
                         AzmOverlayView ov = v as AzmOverlayView;
                         Gps g = PositionUtil.gps84_To_Gcj02(ov.Coord.lat, ov.Coord.lng);
-                        Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                        Point p = GetXYFromCoord(flevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
                         //Point p = GetXYFromCoord(level, ov.Coord);
                         ov.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - ov.Anchor.X, (vpmaxy - p.Y) * tilesize - ov.Anchor.Y, ov.Size.Width, ov.Size.Height));
                     }
@@ -550,14 +631,14 @@ namespace AepApp.View
                     {
                         int xb = x >> 4;
                         int yb = y >> 4;
-                        string key = level.ToString() + "_" + x.ToString() + "_" + y.ToString();
+                        string key = nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString();
 
                         if (_maptype == AzmMapType.Satellite || _maptype == AzmMapType.Hybrid)
                         {
                             if (!idxsatimgdict.ContainsKey(key))
                             {
                                 string url = null;
-                                url = string.Format("http://p2.map.gtimg.com/sateTiles/{0}/{1}/{2}/{3}_{4}.jpg?version=229", level, xb, yb, x, y);
+                                url = string.Format("http://p2.map.gtimg.com/sateTiles/{0}/{1}/{2}/{3}_{4}.jpg?version=229", nlevel, xb, yb, x, y);
 
                                 Image img = new Image();
                                 img.Source = new UriImageSource
@@ -570,8 +651,8 @@ namespace AepApp.View
                                 img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
                                 tile.Children.Insert(0, img);
 
-                                satimgidxdict.Add(img, new Tuple<int, int, int>(level, x, y));
-                                idxsatimgdict.Add(level.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
+                                satimgidxdict.Add(img, new Tuple<int, int, int>(nlevel, x, y));
+                                idxsatimgdict.Add(nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
                             }
                         }
 
@@ -580,7 +661,7 @@ namespace AepApp.View
                             if (!idxroadimgdict.ContainsKey(key))
                             {
                                 string url = null;
-                                url = string.Format("http://rt3.map.gtimg.com/tile?z={0}&x={1}&y={2}&styleid=2&version=274", level, x, y);
+                                url = string.Format("http://rt3.map.gtimg.com/tile?z={0}&x={1}&y={2}&styleid=2&version=274", nlevel, x, y);
                                 
                                 Image img = new Image();
                                 img.Source = new UriImageSource
@@ -593,8 +674,8 @@ namespace AepApp.View
                                 img.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
                                 tile.Children.Add(img);
 
-                                roadimgidxdict.Add(img, new Tuple<int, int, int>(level, x, y));
-                                idxroadimgdict.Add(level.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
+                                roadimgidxdict.Add(img, new Tuple<int, int, int>(nlevel, x, y));
+                                idxroadimgdict.Add(nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString(), img);
                             }
                         }
 
@@ -602,7 +683,7 @@ namespace AepApp.View
                         {
                             if (!idxvectordict.ContainsKey(key))
                             {
-                                LoadTileVectors(level, x, y);
+                                LoadTileVectors(nlevel, x, y);
                             }
                         }
                     }
@@ -614,7 +695,7 @@ namespace AepApp.View
 
                     foreach (var img in satimgidxdict)
                     {
-                        if (img.Value.Item1 != level) dellist.Add(img.Key);
+                        if (img.Value.Item1 != nlevel) dellist.Add(img.Key);
                         else
                         {
                             if (img.Value.Item2 < vpminx - 1 || img.Value.Item2 > vpminx + mapwidth / tilesize + 1)
@@ -645,10 +726,11 @@ namespace AepApp.View
 
         private void zoomin_Clicked(object sender, EventArgs e)
         {
-            if (level == 18) return;
-            AzmCoord cc = GetCoordFromXY(level, this.center);
-            level++;
-            center = GetXYFromCoord(level, cc);
+            if (nlevel == 18) return;
+            AzmCoord cc = GetCoordFromXY(nlevel, this.center);
+            nlevel++;
+            flevel = nlevel;
+            center = GetXYFromCoord(nlevel, cc);
             UpdateRanges();
             backupx = center.X;
             backupy = center.Y;
@@ -659,10 +741,11 @@ namespace AepApp.View
 
         private void zoomout_Clicked(object sender, EventArgs e)
         {
-            if (level == 4) return;
-            AzmCoord cc = GetCoordFromXY(level, this.center);
-            level--;
-            center = GetXYFromCoord(level, cc);
+            if (nlevel == 4) return;
+            AzmCoord cc = GetCoordFromXY(nlevel, this.center);
+            nlevel--;
+            flevel = nlevel;
+            center = GetXYFromCoord(nlevel, cc);
             UpdateRanges();
             backupx = center.X;
             backupy = center.Y;
@@ -740,7 +823,7 @@ namespace AepApp.View
 
                     Gps g = PositionUtil.gps84_To_Gcj02(o.Coord.lat, o.Coord.lng);
                     if (g == null) continue;
-                    Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                    Point p = GetXYFromCoord(flevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
 
                     o.SetValue(AbsoluteLayout.LayoutBoundsProperty, new Rectangle((p.X - vpminx) * tilesize - o.Anchor.X, (vpmaxy - p.Y) * tilesize - o.Anchor.Y, o.Size.Width, o.Size.Height));
                     o.SetValue(AbsoluteLayout.LayoutFlagsProperty, AbsoluteLayoutFlags.None);
@@ -781,7 +864,7 @@ namespace AepApp.View
                 {
                     Rectangle r = new Rectangle((x - vpminx) * tilesize, (vpmaxy - y - 1) * tilesize, tilesize, tilesize);
 
-                    string idx = level.ToString() + "_" + x.ToString() + "_" + y.ToString();
+                    string idx = nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString();
                     if (idxvectordict.ContainsKey(idx))
                     {
                         TileVector tp = idxvectordict[idx];
@@ -796,7 +879,7 @@ namespace AepApp.View
                 {
                     Rectangle r = new Rectangle((x - vpminx) * tilesize, (vpmaxy - y - 1) * tilesize, tilesize, tilesize);
 
-                    string idx = level.ToString() + "_" + x.ToString() + "_" + y.ToString();
+                    string idx = nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString();
                     if (idxvectordict.ContainsKey(idx))
                     {
                         TileVector tp = idxvectordict[idx];
@@ -810,7 +893,7 @@ namespace AepApp.View
                 {
                     Rectangle r = new Rectangle((x - vpminx) * tilesize, (vpmaxy - y - 1) * tilesize, tilesize, tilesize);
 
-                    string idx = level.ToString() + "_" + x.ToString() + "_" + y.ToString();
+                    string idx = nlevel.ToString() + "_" + x.ToString() + "_" + y.ToString();
                     if (idxvectordict.ContainsKey(idx))
                     {
                         TileVector tp = idxvectordict[idx];
@@ -827,9 +910,9 @@ namespace AepApp.View
                 {
                     continue;
                 }
-                Point p = GetXYFromCoord(level, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                Point p = GetXYFromCoord(flevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
                 //Point p = GetXYFromCoord(level, so.Coord);
-                double upm = GetUnitPerMeterFromCoord(level, so.Coord);
+                double upm = GetUnitPerMeterFromCoord(flevel, so.Coord);
                 if (so is AzmEllipseView) {
                     AzmEllipseView ell = so as AzmEllipseView;
 
