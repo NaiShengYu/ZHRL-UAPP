@@ -5,9 +5,8 @@
           x:Class="AepApp.View.EnvironmentalQuality.AQIMapPage">
     <ContentPage.Content>
         <Grid>
-            <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="0,0,0,45"
-                         
-            IsZoomButtonVisible="True" IsDebugLabelVisible="True"/>
+
+            <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="0,0,0,45" IsZoomButtonVisible="False" />
             <Grid VerticalOptions="EndAndExpand" BackgroundColor="#4169E1" HeightRequest="45">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
