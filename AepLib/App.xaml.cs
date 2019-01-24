@@ -410,6 +410,10 @@ namespace AepApp
             try
             {
                 string url = FrameworkURL + "/token";
+                //Dictionary<string, object> map = new Dictionary<string, object>();
+                //map.Add("username", username);
+                //map.Add("password", password);
+                //map.Add("grant_type", "password");
                 HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "username=" + username + "&password=" + password + "&grant_type=password", "POST", null);
                 FrameworkToken ft = null;
                 if (res.StatusCode == HttpStatusCode.OK)

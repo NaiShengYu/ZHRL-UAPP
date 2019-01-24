@@ -37,6 +37,8 @@ namespace CloudWTO.Services
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             //req.Host = "example.com";
             req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + App.FrameworkToken);//给请求添加权限
+            //req.Headers.Add()
+            //req.CookieContainer.Add();
             req.ContentType = "application/json";
             req.Method = "GET";
             HttpWebResponse res;

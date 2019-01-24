@@ -2609,7 +2609,10 @@ namespace AepApp.View
                         case 262797: col = Color.FromHex("#8ebfe4").ToSKColor(); textsize = 8; break;
 
                             
-                        default: col = Color.Magenta.ToSKColor(); suf = " " + t.key.ToString();
+                        default:
+#if DEBUG
+                            col = Color.Magenta.ToSKColor(); suf = " " + t.key.ToString();
+#endif
                             Console.WriteLine("%%%%%%% " + t.key);
                             break;
                     }
@@ -3115,7 +3118,9 @@ namespace AepApp.View
                             effect = SKPathEffect.CreateDash(new float[] { 2, 2 }, 4); break;
 
                         default:
+#if DEBUG
                             col = Color.Magenta.ToSKColor(); points = true;
+#endif
                             Console.WriteLine("++++++ " + p.Item1.ToString());
                             break;
                     }
