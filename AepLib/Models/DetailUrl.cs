@@ -44,6 +44,8 @@ namespace AepApp.Models
 
 
         //环境质量
+        //获取地表水站点列表
+        public static string GetWaterSite = "/Api/Section/PagedListWithLastGrade";
         //获取VOC站点列表
         public static string GetVOCSite = "/Api/location/PagedList";
         //获取VOC站点因子
