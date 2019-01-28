@@ -6,8 +6,6 @@
     <ContentPage.Content>
         <Grid>
             <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="0,0,0,0" IsZoomButtonVisible="false"/>
-            <Button BackgroundColor="Transparent" Clicked="zoomin" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,105" WidthRequest="55" HeightRequest="55" Image="zoomin"/>
-            <Button BackgroundColor="Transparent" Clicked="zoomout" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,40" WidthRequest="55" HeightRequest="55" Image="zoomout"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

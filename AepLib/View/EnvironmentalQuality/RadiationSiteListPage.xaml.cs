@@ -66,7 +66,7 @@ namespace AepApp.View.EnvironmentalQuality
             {
                 var mapVC = new VOCMapPage(dataList);
                 mapVC.Title = App.moduleConfigENVQ.menuRadiationLabel;
-                Navigation.PushAsync(new VOCMapPage(dataList));
+                Navigation.PushAsync(mapVC);
             }));
 
             ReqVOCSite();

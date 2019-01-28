@@ -65,7 +65,7 @@ namespace AepApp.View.EnvironmentalQuality
             {
                 var mapVC = new VOCMapPage(dataList);
                 mapVC.Title = App.moduleConfigENVQ.menuPaikouLabel;
-                Navigation.PushAsync(new VOCMapPage(dataList));
+                Navigation.PushAsync(mapVC);
             }));
             ReqVOCSite();
             listView.ItemsSource = dataList;
