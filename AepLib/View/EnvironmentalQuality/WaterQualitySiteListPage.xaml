@@ -9,10 +9,10 @@
             <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="70" />
                 </Grid.ColumnDefinitions>
-                <Label TextColor="Black" HorizontalOptions="Fill" VerticalOptions="Center" Text="站点名称" Margin="10,15,10,15" FontSize="17" VerticalTextAlignment="Center" />
-                <Label Grid.Column="1" TextColor="Black" HorizontalOptions="Fill" VerticalOptions="Center" Text="水质级别" Margin="10,15,10,15" FontSize="17" VerticalTextAlignment="Center" />
+                <Label TextColor="Black" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" Text="站点名称" Margin="10,15,10,15" FontSize="17" VerticalTextAlignment="Center" />
+                <Label Grid.Column="1" TextColor="Black" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" Text="水质级别" Margin="10,15,10,15" FontSize="17" VerticalTextAlignment="Center" />
             </Grid>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1">
             </BoxView>

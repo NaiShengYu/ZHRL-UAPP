@@ -11,22 +11,6 @@ namespace AepApp.View.EnvironmentalQuality
     {
         private bool firsttime = true;
 
-
-
-
-        //地图放大
-        void zoomout(object sender, System.EventArgs e)
-        {
-            map.ZoomOut();
-
-
-        }
-        //地图缩小
-        void zoomin(object sender, System.EventArgs e)
-        {
-            map.ZoomIn();
-        }
-
         public VOCMapPage()
         {
             InitializeComponent();
@@ -50,7 +34,7 @@ namespace AepApp.View.EnvironmentalQuality
                 AzmLabelView lv = new AzmLabelView(site.basic.stname, new AzmCoord(Convert.ToDouble(site.basic.lng), Convert.ToDouble(site.basic.lat)))
                 {
                     BackgroundColor = Color.FromHex("#4169E1"),
-                    BindingContext = site,
+                    BindingContext = site.basic,
                 };
                 lv.OnTapped += Lv_OnTapped;
                 map.Overlays.Add(lv);
@@ -119,14 +103,19 @@ namespace AepApp.View.EnvironmentalQuality
         {
             AzmLabelView lv = sender as AzmLabelView;
             VOCSiteListModel item = lv.BindingContext as VOCSiteListModel;
-            if (item == null)
-                return;
 
             int type = 0;
-            if (Title == App.moduleConfigENVQ.menuVOCLabel) type = 1;
-            else if (Title == App.moduleConfigENVQ.menuChangjieLabel) type = 2;
-            else type = 3;
-            Navigation.PushAsync(new VOCDetailPage(item,type));
+            if (Title == App.moduleConfigENVQ.menuChangjieLabel || Title == App.moduleConfigENVQ.menuPaikouLabel || Title == App.moduleConfigENVQ.menuQyStenchLabel) type = 2;
+            else type = 1;
+            if (item != null)
+            {
+                Navigation.PushAsync(new VOCDetailPage(item, type));
+            }
+            else
+            {
+                WaterQualityBasic item1 = lv.BindingContext as WaterQualityBasic;
+                Navigation.PushAsync(new VOCDetailPage(item1, type));
+            }
         }
 
     }
