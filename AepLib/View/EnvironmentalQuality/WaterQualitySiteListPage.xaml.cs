@@ -14,7 +14,7 @@ namespace AepApp.View.EnvironmentalQuality
 
         string _searchKey = "";
         int _pageIndex = 0;
-        private ObservableCollection<VOCSiteListModel> dataList = new ObservableCollection<VOCSiteListModel>();
+        private ObservableCollection<WaterQualityItem> dataList = new ObservableCollection<WaterQualityItem>();
         bool _isEnd = false;
         void SearchBar_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
@@ -40,17 +40,17 @@ namespace AepApp.View.EnvironmentalQuality
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             if (listView.SelectedItem == null) return;
-            VOCSiteListModel item = e.SelectedItem as VOCSiteListModel;
+            WaterQualityItem item = e.SelectedItem as WaterQualityItem;
             if (item == null)
                 return;
-            Navigation.PushAsync(new VOCDetailPage(item, 1));
+            Navigation.PushAsync(new VOCDetailPage(item.basic, 1));
             listView.SelectedItem = null;
 
         }
 
         void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
         {
-            VOCSiteListModel item = e.Item as VOCSiteListModel;
+            WaterQualityItem item = e.Item as WaterQualityItem;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
                 if (_isEnd == false) ReqVOCSite();
@@ -67,9 +67,8 @@ namespace AepApp.View.EnvironmentalQuality
             {
                 var mapVC = new VOCMapPage(dataList);
                 mapVC.Title = App.moduleConfigENVQ.menuWaterLabel;
-                Navigation.PushAsync(new VOCMapPage(dataList));
+                Navigation.PushAsync(mapVC);
             }));
-
             ReqVOCSite();
             listView.ItemsSource = dataList;
         }
@@ -81,13 +80,11 @@ namespace AepApp.View.EnvironmentalQuality
 
             if (_isEnd == true) return;//如果满了就不要请求了
 
-            string url = App.environmentalQualityModel.url + DetailUrl.GetVOCSite;
+            string url = App.environmentalQualityModel.url + DetailUrl.GetWaterSite;
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("searchKey", _searchKey);
             dic.Add("pageIndex", _pageIndex);
             dic.Add("pageSize", 20);
-            dic.Add("type", 3);
-            dic.Add("subType", 9);
             string param = JsonConvert.SerializeObject(dic);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
@@ -95,9 +92,9 @@ namespace AepApp.View.EnvironmentalQuality
                 try
                 {
                     _pageIndex += 1;
-                    var result = JsonConvert.DeserializeObject<VOCSiteResult>(hTTPResponse.Results);
+                    var result = JsonConvert.DeserializeObject<WaterQualitySiteModel>(hTTPResponse.Results);
                     var total = result.Totals;
-                    List<VOCSiteListModel> list = result.Items;
+                    List<WaterQualityItem> list = result.Items;
                     foreach (var item in list)
                     {
                         dataList.Add(item);

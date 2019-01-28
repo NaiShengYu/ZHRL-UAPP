@@ -16,18 +16,30 @@ namespace AepApp.View.EnvironmentalQuality
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VOCDetailPage : ContentPage
     {
-        private VOCSiteListModel siteInfo;
         private string siteId; //站点ID
         ObservableCollection<Factors> factors = new ObservableCollection<Factors>();
 
         int _type = 0;//1环境VOCs，邵峰倪黎腾负责  2。排口厂界张东明负责
-        public VOCDetailPage(VOCSiteListModel siteInfo, int type)
+        public VOCDetailPage()
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
+
+
+        }
+
+        public VOCDetailPage(WaterQualityBasic siteInfo, int type) : this()
+        {
             _type = type;
             this.Title = siteInfo.name;
-            this.siteInfo = siteInfo;
+            siteId = siteInfo.id;
+            ReqSiteFactors();
+        }
+
+        public VOCDetailPage(VOCSiteListModel siteInfo, int type):this()
+        {
+            _type = type;
+            this.Title = siteInfo.name;
             siteId = siteInfo.id;
             ReqSiteFactors();
         }

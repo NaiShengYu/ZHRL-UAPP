@@ -26,10 +26,56 @@ namespace AepApp.View.EnvironmentalQuality
         {
             map.ZoomIn();
         }
-        public VOCMapPage(ObservableCollection<VOCSiteListModel> dataList)
+
+        public VOCMapPage()
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
+        }
+
+        public VOCMapPage(ObservableCollection<WaterQualityItem> dataList) : this()
+        {
+
+            //var site = dataList[0];
+            //BackgroundWorker wrk = new BackgroundWorker();
+            //wrk.DoWork += (sender, e) => {
+            double x = 0;
+            double y = 0;
+            int cnt = 0;
+            for (int i = 0; i < dataList.Count; i++)
+            {
+                var site = dataList[i];
+                if (Convert.ToDouble(site.basic.lng) < 90 || Convert.ToDouble(site.basic.lat) <= 0) continue;
+
+                AzmLabelView lv = new AzmLabelView(site.basic.stname, new AzmCoord(Convert.ToDouble(site.basic.lng), Convert.ToDouble(site.basic.lat)))
+                {
+                    BackgroundColor = Color.FromHex("#4169E1"),
+                    BindingContext = site,
+                };
+                lv.OnTapped += Lv_OnTapped;
+                map.Overlays.Add(lv);
+                map.SetCenter(13, new AzmCoord(Convert.ToDouble(site.basic.lng), Convert.ToDouble(site.basic.lat)));
+                if (firsttime)
+                {
+                    x += Convert.ToDouble(site.basic.lng);
+                    y += Convert.ToDouble(site.basic.lat);
+                    cnt++;
+                }
+            }
+            if (firsttime)
+            {
+                if (cnt > 0)
+                {
+                    x /= cnt;
+                    y /= cnt;
+                    map.SetCenter(11, new AzmCoord(x, y));
+                }
+                firsttime = false;
+            }
+        }
+
+        public VOCMapPage(ObservableCollection<VOCSiteListModel> dataList):this()
+        {
 
             //var site = dataList[0];
             //BackgroundWorker wrk = new BackgroundWorker();
@@ -66,18 +112,7 @@ namespace AepApp.View.EnvironmentalQuality
                         map.SetCenter(11, new AzmCoord(x, y));
                     }
                     firsttime = false;
-                }
-
-            //};
-            //wrk.RunWorkerCompleted += (sender, e) => {
-
-
-            //};
-            //wrk.RunWorkerAsync();
-
-
-
-
+                }   
         }
 
         void Lv_OnTapped(object sender, EventArgs e)
