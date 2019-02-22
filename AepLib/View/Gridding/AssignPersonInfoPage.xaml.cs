@@ -26,6 +26,7 @@ namespace AepApp.View.Gridding
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
+            _subDic = null;
             UserDepartmentsModel model = e.SelectedItem as UserDepartmentsModel;
             if (model == null) return;
 

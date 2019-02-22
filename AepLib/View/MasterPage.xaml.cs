@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-using AepApp.View.EnvironmentalEmergency;
-using AepApp.View.EnvironmentalQuality;
+using AepApp.Tools;
 //using AepApp.View.SecondaryFunction;
-using Xamarin.Forms.PlatformConfiguration;
 using AepApp.View.Gridding;
 using Sample;
-using AepApp.Tools;
+using System;
+using Xamarin.Forms;
 
 namespace AepApp.View
 {
@@ -63,7 +58,7 @@ namespace AepApp.View
                 if (lastselecteditem.Children[0].BindingContext != null)
                 {
                     string t = lastselecteditem.Children[0].BindingContext as string;
-                    if(t == null)
+                    if (t == null)
                     {
                         return;
                     }
@@ -71,13 +66,13 @@ namespace AepApp.View
                     var page = (Page)Activator.CreateInstance(pagetype);
                     NavigationPage.SetBackButtonTitle(page, "");
                     Navigation.PushAsync(page);
-                   
+
                 }
                 App.masterAndDetailPage.IsPresented = false;
 
             };
 
-            StackLayout[] menus = new StackLayout[8] { menu1, menu2, menu3, layoutEP, layoutSampling, layoutGrid, EmegencyLat,LayoutBasicData };
+            StackLayout[] menus = new StackLayout[8] { menu1, menu2, menu3, layoutEP, layoutSampling, layoutGrid, EmegencyLat, LayoutBasicData };
 
             foreach (var menu in menus)
             {
@@ -95,26 +90,30 @@ namespace AepApp.View
 
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            if(App.gridUser == null)
+            if (App.gridUser == null)
             {
-                //App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(Guid.Empty));
-                 Navigation.PushAsync(new TaskExaminePage(Guid.Empty));
-
-                App.masterAndDetailPage.IsPresented = false;
-                return;
+                App.gridUser = await (App.Current as App).getStaffInfo(App.userInfo.id);
             }
-            if(App.gridUser.gridLevel == App.GridMaxLevel)
+            if (App.gridUser == null)
+            {
+                if (App.gridUser == null)
+                {
+                    DependencyService.Get<IToast>().ShortAlert("获取网格员信息失败，无法查看");
+                    return;
+                }
+            }
+            if (App.gridUser.gridLevel == App.GridMaxLevel)
             {
                 //App.masterAndDetailPage.Detail = new NavigationPage(new TaskExamineStaffPage(App.gridUser.grid));
-                Navigation.PushAsync(new TaskExamineStaffPage(App.gridUser.grid));
+                await Navigation.PushAsync(new TaskExamineStaffPage(App.gridUser.grid));
 
             }
             else
             {
                 //App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(App.gridUser.grid));
-                Navigation.PushAsync(new TaskExaminePage(App.gridUser.grid));
+                await Navigation.PushAsync(new TaskExaminePage(App.gridUser.grid));
 
             }
             App.masterAndDetailPage.IsPresented = false;
@@ -128,7 +127,7 @@ namespace AepApp.View
         {
             if (App.gridUser == null)
             {
-                App.gridUser = await(App.Current as App).getStaffInfo(App.userInfo.id);
+                App.gridUser = await (App.Current as App).getStaffInfo(App.userInfo.id);
                 //if (App.gridUser == null)
                 //{
                 //    DependencyService.Get<IToast>().ShortAlert("获取网格员信息失败，无法增加事件");

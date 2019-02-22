@@ -21,6 +21,8 @@ namespace AepApp.View
         private int offlineVocSites = 0;//离线voc站点数
         private int totalWaterSites = 0;
 
+        public static List<GridCellModel> gridCells = new List<GridCellModel>();
+
         public HomePagePage()
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace AepApp.View
             //360,网格化
             if (App.EP360Module != null)
             {
+                GetGridCell();
                 GetModule360Statics();
                 GetModuleGridStatics();
             }
@@ -77,6 +80,30 @@ namespace AepApp.View
         {
             base.OnAppearing();
             //VersionComparison();
+        }
+
+        /// <summary>
+        /// 获取网格化级别配置
+        /// </summary>
+        private async void GetGridCell()
+        {
+            string url = App.EP360Module.url + "/api/mod/GridCellConfig";
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", App.FrameworkToken);
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                try
+                {
+                    List<GridCellModel> list = JsonConvert.DeserializeObject<List<GridCellModel>>(res.Results);
+                    if (list != null && list.Count > 0)
+                    {
+                        HomePagePage.gridCells = list;
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
         }
 
         /// <summary>

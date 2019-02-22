@@ -3,9 +3,6 @@ using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -30,7 +27,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            if(taskExamine.gridLevel == App.GridMaxLevel)
+            if (taskExamine.gridLevel == App.GridMaxLevel)
             {
                 Navigation.PushAsync(new TaskExamineStaffPage(taskExamine.grid));
             }
@@ -57,6 +54,7 @@ namespace AepApp.View.Gridding
                     BindingContext = model;
                     if (model != null)
                     {
+
                         ListView.ItemsSource = model.children;
                     }
                 }

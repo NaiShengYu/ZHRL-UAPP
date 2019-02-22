@@ -1,4 +1,5 @@
 ﻿using AepApp.Models;
+using AepApp.View;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -9,18 +10,28 @@ namespace AepApp.Tools
         public static string GridLevel2String(int level)
         {
             string des = "";
-            switch (level)
+            if(HomePagePage.gridCells != null)
             {
-                case 1:
-                    des = "调度中心";
-                    break;
-                case 2:
-                    des = "乡级网格";
-                    break;
-                case 3:
-                    des = "村级网格";
-                    break;
+                foreach (var item in HomePagePage.gridCells)
+                {
+                    if(item.id == level)
+                    {
+                        return item.name;
+                    }
+                }
             }
+            //switch (level)
+            //{
+            //    case 1:
+            //        des = "调度中心";
+            //        break;
+            //    case 2:
+            //        des = "乡级网格";
+            //        break;
+            //    case 3:
+            //        des = "村级网格";
+            //        break;
+            //}
             return des;
         }
 
