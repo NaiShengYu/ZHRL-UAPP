@@ -190,7 +190,7 @@ namespace AepApp.View.Gridding
         {
             string url = App.FrameworkURL + "/api/fw/GetUserByArrUserid";
             Dictionary<string, object> param = new Dictionary<string, object>();
-            param.Add("items[]", departIds);
+            param.Add("items", departIds);
             string pa = JsonConvert.SerializeObject(param);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, pa, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
@@ -198,7 +198,7 @@ namespace AepApp.View.Gridding
                 try
                 {
                     string result = hTTPResponse.Results.Replace("username", "name");
-                    var resultList = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(hTTPResponse.Results);
+                    var resultList = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(result);
                     foreach (var item in resultList)
                     {
                         gridList.Add(item);
