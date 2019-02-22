@@ -6,7 +6,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
-            <ListView x:Name="HeaderList" HorizontalOptions="Fill" HasUnevenRows="True" ItemSelected="Handle_ItemSelected">
+            <ListView x:Name="HeaderList" CachingStrategy="RecycleElementAndDataTemplate" HorizontalOptions="Fill" HasUnevenRows="True" ItemSelected="Handle_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">

@@ -2704,7 +2704,15 @@ namespace AepApp.View
                                 SKPaint bp = new SKPaint();
                                 bp.IsAntialias = true;
                                 SKBitmap bm = iconcache[icon];
-                                can.DrawBitmap(bm, new SKRect(- 9, - 9, 9, 9), bp);
+
+                            try
+                            {
+                                can.DrawBitmap(bm, new SKRect(-9, -9, 9, 9), bp);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("can.DrawBitmap(bm, new SKRect(-9, -9, 9, 9), bp);出现了错误");
+                            }
                                 
                             //设置出站口文字
                             if(subwayexitids.Contains(t.key)){

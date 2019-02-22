@@ -86,6 +86,7 @@
                             <Image WidthRequest="45" HeightRequest="45" Source="video" />
                             <Label Text="视频" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" />
                         </StackLayout>
+                        
                         <Button Clicked="recordVideo" Margin="10,0,10,0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
                         <StackLayout Spacing="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
                             <Image WidthRequest="45" HeightRequest="45" Source="data" />

@@ -292,7 +292,18 @@ namespace AepApp.View.Gridding
                     _infoModel.canEdit = false;
                     creatPositionList();
                     if (_infoModel.taskassignments != null && _infoModel.taskassignments.Count > 0)
-                        _infoModel.AssignName = await getAssignName(_infoModel.taskassignments[0], "");
+                    { 
+                     for (int i = 0; i < _infoModel.taskassignments.Count; i++) {
+                            if (i ==0) {
+                                _infoModel.AssignName = await getAssignName(_infoModel.taskassignments[i], "");
+                            }
+                            else { 
+                            _infoModel.AssignName =_infoModel.AssignName +"\n"+ await getAssignName(_infoModel.taskassignments[i], "");
+                            }
+                             
+                         }                
+                    }
+                        
                     DatePickerStart.Date = _infoModel.deadline.Value;
                     GR.IsVisible = true;
                     GH.Height = 0;

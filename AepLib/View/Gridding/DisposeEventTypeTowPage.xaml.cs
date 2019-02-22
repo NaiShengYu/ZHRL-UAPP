@@ -18,11 +18,12 @@ namespace AepApp.View.Gridding
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            Followup task = e.SelectedItem as Followup;
+            GridEventFollowTaskModel task = e.SelectedItem as GridEventFollowTaskModel;
             if (task == null) return;
-            Navigation.PushAsync(new TaskInfoPage());
-            listV.SelectedItem = null;
+            TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage(task.id.ToString(), false, _followMoel.id.ToString(),false,"");
 
+            Navigation.PushAsync(towPage);
+            listV.SelectedItem = null;
         }
 
         void Handle_Tapped(object sender, System.EventArgs e)
@@ -107,8 +108,6 @@ namespace AepApp.View.Gridding
                 {
 
                     var eventInfoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
-
-
                     if (eventInfoModel.state == 3)
                     {
                         _followMoel = new GridEventFollowModel
