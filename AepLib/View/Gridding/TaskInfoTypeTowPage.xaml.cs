@@ -569,9 +569,6 @@ namespace AepApp.View.Gridding
                 return;
             }
 
-
-
-
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("id", _infoModel.id);
             dic.Add("rowState", _infoModel.rowState);

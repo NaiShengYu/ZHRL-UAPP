@@ -31,10 +31,8 @@ namespace AepApp.View.Gridding
 
             if(_type ==1){
                 _infoModel.assignments.Clear();
-                if(!model.name.Equals("网格员"))
-                _infoModel.AssignName = model.name;
-                else {
-                    Assignments s1 = new Assignments
+                _infoModel.AssignName = "";
+                Assignments s1 = new Assignments
                     {
                         id = Guid.NewGuid(),
                         rowState = "add",
@@ -42,7 +40,6 @@ namespace AepApp.View.Gridding
                         dept = model.id,
                     };
                     _infoModel.assignments.Add(s1);
-                }
             }
 
             if (_type ==2)
@@ -110,19 +107,39 @@ namespace AepApp.View.Gridding
 
         private async void getData()
         {
-            if (App.userDepartments == null)
-                App.userDepartments =await (App.Current as App).GetStaffDepartments(App.userInfo.id);
-            foreach (var item in App.userDepartments)
-            {
-                reqGrid(item.id);
-            }
+                App.allDepartments =await (App.Current as App).GetDepartmentTree();
+            getSubDeptsItems(App.allDepartments);
+            //foreach (var item in App.allDepartments)
+            //{
+            //    reqGrid(item.id);
+            //    foreach (var item1 in item.subDepts)
+            //    {
+            //        reqGrid(item.id);
+            //    }
+            //}
         }
+
+        private async void getSubDeptsItems(ObservableCollection<GridAllDepartmentsModel> SubDepts)
+        {
+            foreach (var item in SubDepts)
+            {
+                UserDepartmentsModel model = new UserDepartmentsModel
+                {
+                    id = item.id,
+                    name = item.name
+                };
+                gridList.Add(model);
+                getSubDeptsItems(item.subDepts);
+            }
+
+        }
+
 
         //获取部门名称和id
         private async void reqGrid(Guid departId){
             string url = App.BasicDataModule.url + "/api/Modmanage/GetStaffDepartments";
             Dictionary<string, object> param = new Dictionary<string, object>();
-            param.Add("grid",departId);
+            param.Add("id",departId);
             string pa = JsonConvert.SerializeObject(param);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, pa, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
@@ -172,7 +189,7 @@ namespace AepApp.View.Gridding
         {
             string url = App.FrameworkURL + "/api/fw/GetUserByArrUserid";
             Dictionary<string, object> param = new Dictionary<string, object>();
-            param.Add("id", departIds);
+            param.Add("items[]", departIds);
             string pa = JsonConvert.SerializeObject(param);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, pa, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)

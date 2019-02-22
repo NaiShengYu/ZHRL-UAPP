@@ -56,6 +56,7 @@ namespace AepApp
         public static UserInfoModel userInfo = null;
         public static GridUserInfoModel gridUser = null;
         public static ObservableCollection<UserDepartmentsModel> userDepartments = null;
+        public static ObservableCollection<GridAllDepartmentsModel> allDepartments = null;
 
         public static ModuleConfigEP360 moduleConfigEP360 = null;
         public static ModuleConfigSampling moduleConfigSampling = null;
@@ -479,6 +480,34 @@ namespace AepApp
                 return user;
             }
             return null;
+        }
+
+
+
+        /// <summary>
+        /// 获取所有部门
+        /// </summary>
+        ///
+        /// <returns></returns>
+        public async Task<ObservableCollection<GridAllDepartmentsModel>> GetDepartmentTree()
+        {
+            try
+            {
+                ObservableCollection<GridAllDepartmentsModel> departs = new ObservableCollection<GridAllDepartmentsModel>();
+                string url = App.BasicDataModule.url + "/api/Modmanage/GetDepartmentTree";
+               
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST", FrameworkToken);
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    departs = JsonConvert.DeserializeObject<ObservableCollection<GridAllDepartmentsModel>>(res.Results);
+                }
+                return departs;
+            }
+            catch
+            {
+                return null;
+            }
+
         }
 
         /// <summary>

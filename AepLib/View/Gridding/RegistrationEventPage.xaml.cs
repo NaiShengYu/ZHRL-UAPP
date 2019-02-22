@@ -230,12 +230,17 @@ namespace AepApp.View.Gridding
                     state = 4,
                     type = 2,
                     id = Guid.NewGuid(),
-                    gridcell = App.gridUser.grid,
                     Tel = App.userInfo.tel,
 
                 };
+                if (App.gridUser!=null)
+                    _infoModel.gridcell = App.gridUser.grid;
 
-                try{
+
+
+
+                try
+                {
                     _infoModel.lat = App.currentLocation.Latitude;
                     _infoModel.lng = App.currentLocation.Longitude; 
                 }catch(Exception ex){
@@ -353,7 +358,6 @@ namespace AepApp.View.Gridding
             {
                 id = _infoModel.id.Value,
                 rowState = "add",
-                grid = _infoModel.gridcell.Value,
                 title = _infoModel.title,
                 date = _infoModel.date,
                 handleDate = DateTime.Now,
@@ -368,6 +372,9 @@ namespace AepApp.View.Gridding
                 enterprise = _infoModel.enterprise,
                 attachments = uploadModel,
             };
+            if (_infoModel.gridcell != null)
+                parame.grid = _infoModel.gridcell.Value;
+
             string param = JsonConvert.SerializeObject(parame);
 
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);

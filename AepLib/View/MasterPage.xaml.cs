@@ -129,11 +129,11 @@ namespace AepApp.View
             if (App.gridUser == null)
             {
                 App.gridUser = await(App.Current as App).getStaffInfo(App.userInfo.id);
-                if (App.gridUser == null)
-                {
-                    DependencyService.Get<IToast>().ShortAlert("获取网格员信息失败，无法增加事件");
-                    return;
-                }
+                //if (App.gridUser == null)
+                //{
+                //    DependencyService.Get<IToast>().ShortAlert("获取网格员信息失败，无法增加事件");
+                //    return;
+                //}
             }
             await Navigation.PushAsync(new RegistrationEventPage(""));
             App.masterAndDetailPage.IsPresented = false;
