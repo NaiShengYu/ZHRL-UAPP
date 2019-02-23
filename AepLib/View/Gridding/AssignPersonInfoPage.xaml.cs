@@ -26,7 +26,6 @@ namespace AepApp.View.Gridding
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-            _subDic = null;
             UserDepartmentsModel model = e.SelectedItem as UserDepartmentsModel;
             if (model == null) return;
 
@@ -57,6 +56,7 @@ namespace AepApp.View.Gridding
             }
 
             if(_type == 3){
+                _subDic.Remove("toDept");
                 _subDic.Add("toDept", model.id);
             }
             _titleLab.Text = model.name;
