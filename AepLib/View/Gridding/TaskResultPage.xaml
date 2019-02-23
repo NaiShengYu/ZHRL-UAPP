@@ -24,14 +24,14 @@ Title="任务执行结果">
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Handle_Tapped">
+                            </TapGestureRecognizer>
+                        </Grid.GestureRecognizers>
                         <Label Text="企业"  TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <views:BorderlessPicker XAlign="End" FontSize="Medium" WidthRequest="220" TextColor="Gray" x:Name="pickerEnterprises" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatud_SelectedIndexChanged">
                         </views:BorderlessPicker>
                         <Image IsVisible="{Binding canEdit}" Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Handle_Tapped">
-                                </TapGestureRecognizer>
-                            </Image.GestureRecognizers>
                         </Image>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />

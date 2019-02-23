@@ -60,7 +60,10 @@ namespace AepApp.View.Gridding
                 GetStaffInfo();
             }
 
-            if (!isEdit) GetRecordDetail();
+            if (!isEdit)
+            {
+                GetRecordDetail();
+            }
             else SetRecordInfo(record);
         }
 
@@ -111,6 +114,7 @@ namespace AepApp.View.Gridding
             pickerEnterprises.Title = record.enterpriseName;
                 
             ST.BindingContext = photoList;
+            GetStaffGridInfo();
         }
 
         /// <summary>
@@ -127,6 +131,20 @@ namespace AepApp.View.Gridding
             if (user != null)
             {
                 LabelStaff.Text = user.userName;
+            }
+        }
+
+        /// <summary>
+        /// 获取执行人部门信息
+        /// </summary>
+        private async void GetStaffGridInfo()
+        {
+            ObservableCollection<UserDepartmentsModel> departs = await (App.Current as App).GetStaffDepartments(mRecord.staff.Value);
+
+            if (departs != null && departs.Count > 0)
+            {
+                mRecord.gridName = departs[0].name;
+                BindingContext = mRecord;
             }
         }
 

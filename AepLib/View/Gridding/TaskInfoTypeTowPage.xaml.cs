@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Xamarin.Forms;
-using AepApp.Models;
+﻿using AepApp.Models;
+using AepApp.Tools;
+using AepApp.View.EnvironmentalEmergency;
 using CloudWTO.Services;
 using Newtonsoft.Json;
-using AepApp.View.EnvironmentalEmergency;
-using AepApp.Tools;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace AepApp.View.Gridding
 {
@@ -20,7 +20,7 @@ namespace AepApp.View.Gridding
         string _eventId = "";
         bool mNeedUp = true;
         string _assignmentId = "";
-        public delegate void AddTaskToEvent(object sender,object model, EventArgs args);
+        public delegate void AddTaskToEvent(object sender, object model, EventArgs args);
         public event AddTaskToEvent AddATask;
         ObservableCollection<UserDepartmentsModel> _departMentList = new ObservableCollection<UserDepartmentsModel>();
         string _deptId;
@@ -33,9 +33,10 @@ namespace AepApp.View.Gridding
         }
 
         //分派给子部门
-        void assignmentTasks(object sender,EventArgs eventArgs){
+        void assignmentTasks(object sender, EventArgs eventArgs)
+        {
 
-            Navigation.PushAsync(new AssignPersonInfoPage(_departMentList,3,subDepartLab,_assignMentDic));
+            Navigation.PushAsync(new AssignPersonInfoPage(_departMentList, 3, subDepartLab, _assignMentDic));
         }
         //上传要把任务分派给哪个子部门
         private async void TransferTaskAssignment(object sender, EventArgs eventArgs)
@@ -80,7 +81,7 @@ namespace AepApp.View.Gridding
         /// <param name="e">E.</param>
         void ExecutionRecord(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new ExecutionRecordPage(_infoModel.id.ToString(),_infoModel.staff.ToString()));
+            Navigation.PushAsync(new ExecutionRecordPage(_infoModel.id.ToString(), _infoModel.staff.ToString()));
         }
 
         //选择事件
@@ -91,15 +92,16 @@ namespace AepApp.View.Gridding
         //指派网格员
         void choiseUser(object sender, System.EventArgs e)
         {
-             Navigation.PushAsync(new AssignPersonPage(_infoModel));
+            Navigation.PushAsync(new AssignPersonPage(_infoModel));
         }
 
         //添加相关企业
         void AddEnterprise(object sender, System.EventArgs e)
         {
             var selectEnt = new RelatedEnterprisesPage(_infoModel.enterprise);
-            selectEnt.addEnter +=() =>{
-                creatEnterpriseList();  
+            selectEnt.addEnter += () =>
+            {
+                creatEnterpriseList();
             };
             Navigation.PushAsync(selectEnt);
         }
@@ -165,16 +167,20 @@ namespace AepApp.View.Gridding
                 editName = App.userInfo.userName,
 
             };
-            if (App.gridUser !=null)
+            if (App.gridUser != null)
             {
                 record.gridName = App.gridUser.gridName;
+            }
+            if (App.userDepartments == null)
+            {
+                App.userDepartments = await (App.Current as App).GetStaffDepartments(App.userInfo.id);
             }
             if (App.userDepartments != null && App.userDepartments.Count > 0)
                 record.gridName = App.userDepartments[0].name;
 
             if (_infoModel.staff != null)
                 record.staff = _infoModel.staff.Value;
-            await Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute,_infoModel.enterprise));
+            await Navigation.PushAsync(new TaskResultPage(_infoModel.id, record, mNeedExcute, _infoModel.enterprise));
         }
 
         void editContent(object sender, System.EventArgs e)
@@ -208,7 +214,8 @@ namespace AepApp.View.Gridding
         private void chooseTemplate(object sender, EventArgs e)
         {
             TaskTemplatePage templatePage = new TaskTemplatePage();
-            templatePage.selectTemplateResult += (object s, EventArgs args) =>{
+            templatePage.selectTemplateResult += (object s, EventArgs args) =>
+            {
                 TaskTemplateModel model = s as TaskTemplateModel;
                 _infoModel.template = model.id;
                 _infoModel.Contents = model.contents;
@@ -222,7 +229,7 @@ namespace AepApp.View.Gridding
         /// <param name="taskId"></param>
         /// <param name="needExcute">是否需要执行记录 true：可以添加执行结果 false：只能查看执行结果</param>
         ///  <param name="needUp">是否需要上传任务 true：可以上传 false：将任务提交到上一级</param>
-        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId, bool needUp,string assignmentId)
+        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId, bool needUp, string assignmentId)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
@@ -285,25 +292,28 @@ namespace AepApp.View.Gridding
                 try
                 {
                     string result = hTTPResponse.Results.Replace("[null]", "[]");
-                     result = result.Replace("taskcoords", "coords");
+                    result = result.Replace("taskcoords", "coords");
                     _infoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(result);
                     _infoModel.natureName = ConstConvertUtils.TaskNatureType2String(_infoModel.type.Value);
                     _infoModel.stateName = ConstConvertUtils.TaskState2String(_infoModel.state.Value);
                     _infoModel.canEdit = false;
                     creatPositionList();
                     if (_infoModel.taskassignments != null && _infoModel.taskassignments.Count > 0)
-                    { 
-                     for (int i = 0; i < _infoModel.taskassignments.Count; i++) {
-                            if (i ==0) {
+                    {
+                        for (int i = 0; i < _infoModel.taskassignments.Count; i++)
+                        {
+                            if (i == 0)
+                            {
                                 _infoModel.AssignName = await getAssignName(_infoModel.taskassignments[i], "");
                             }
-                            else { 
-                            _infoModel.AssignName =_infoModel.AssignName +"\n"+ await getAssignName(_infoModel.taskassignments[i], "");
+                            else
+                            {
+                                _infoModel.AssignName = _infoModel.AssignName + "\n" + await getAssignName(_infoModel.taskassignments[i], "");
                             }
-                             
-                         }                
+
+                        }
                     }
-                        
+
                     DatePickerStart.Date = _infoModel.deadline.Value;
                     GR.IsVisible = true;
                     GH.Height = 0;
@@ -314,11 +324,12 @@ namespace AepApp.View.Gridding
                     GetStaffInfo();
                     GetSendUserInfo();
                     if (_infoModel.template != null) GetTemplateDetail();
-                    if (_infoModel.taskenterprises !=null && _infoModel.taskenterprises.Count > 0) ReqEnters();
-                   //如果选择的是部门
+                    if (_infoModel.taskenterprises != null && _infoModel.taskenterprises.Count > 0) ReqEnters();
+                    //如果选择的是部门
                     foreach (var item in _infoModel.taskassignments)
                     {
-                        if (item.dept != null && string.IsNullOrEmpty(_deptId)){
+                        if (item.dept != null && string.IsNullOrEmpty(_deptId))
+                        {
                             _deptId = item.dept.ToString();
                             _assignMentDic.Add("assignment", item.id);
                             ReqDepartMentList();
@@ -356,14 +367,15 @@ namespace AepApp.View.Gridding
             }
         }
 
-        private async Task<string> getAssignName(taskassignment currentItem,string currentName){
-               
+        private async Task<string> getAssignName(taskassignment currentItem, string currentName)
+        {
             if (string.IsNullOrEmpty(currentName)) currentName = currentItem.gridName;
-                else currentName = currentName +"-"+currentItem.gridName;
+            else currentName = string.IsNullOrWhiteSpace(currentName) ? currentItem.gridName : (currentName + "-" + currentItem.gridName);
 
-            if(currentItem.nextLevel != null){
+            if (currentItem.nextLevel != null)
+            {
                 return await getAssignName(currentItem.nextLevel, currentName);
-                }
+            }
 
             if (currentItem.staff == null) return currentName;
             UserInfoModel auditor = await (App.Current as App).GetUserInfo(currentItem.staff.Value);
@@ -426,7 +438,8 @@ namespace AepApp.View.Gridding
         }
 
 
-        private async void getApprovedUserInfo(){
+        private async void getApprovedUserInfo()
+        {
             UserInfoModel auditor = await (App.Current as App).GetUserInfo(_infoModel.staff.Value);
             if (auditor != null)
             {
@@ -435,11 +448,12 @@ namespace AepApp.View.Gridding
         }
 
         //根据id获取企业
-        private async void ReqEnters(){
+        private async void ReqEnters()
+        {
 
             string url = App.BasicDataModule.url + "/api/mod/GetAllEnterpriseByarrid";
             Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("items",_infoModel.taskenterprises);
+            map.Add("items", _infoModel.taskenterprises);
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
             if (res.StatusCode == HttpStatusCode.OK)
@@ -459,7 +473,7 @@ namespace AepApp.View.Gridding
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("task", _infoModel.id);
 
-            if(_infoModel.staff !=null)map.Add("staff", _infoModel.staff);
+            if (_infoModel.staff != null) map.Add("staff", _infoModel.staff);
             else map.Add("staff", "");
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
@@ -474,7 +488,9 @@ namespace AepApp.View.Gridding
                         _infoModel.LastRecordTime = recorModel.date;
                         _infoModel.RecordCount = list.Count;
                         _infoModel.results = recorModel.results;
-                    }else{
+                    }
+                    else
+                    {
                         //SK.IsVisible = false;
                     }
 
@@ -486,7 +502,7 @@ namespace AepApp.View.Gridding
             }
         }
         //获取部门下面的子部门
-       
+
         private async void ReqDepartMentList()
         {
             string url = App.BasicDataModule.url + "/api/Modmanage/GetDepartmentsUnder";
@@ -512,7 +528,7 @@ namespace AepApp.View.Gridding
         //把任务分派给子部门
         private async void upTaskToSubDepartMent()
         {
-      
+
             upDepartBut.IsEnabled = false;
             string url = App.EP360Module.url + "/api/gbm/TransferTaskAssignment";
             string param = JsonConvert.SerializeObject(_assignMentDic);
@@ -522,7 +538,7 @@ namespace AepApp.View.Gridding
                 try
                 {
                     if (res.Results == "\"OK\"") upDepartBut.IsVisible = false;
-                  
+
                 }
                 catch (Exception e)
                 {
@@ -623,8 +639,9 @@ namespace AepApp.View.Gridding
             dic.Add("coords", coordsList);
             dic.Add("assignments", assigmengtList);
 
-            if(mNeedUp ==false){
-                AddATask(dic, _infoModel,new EventArgs());
+            if (mNeedUp == false)
+            {
+                AddATask(dic, _infoModel, new EventArgs());
                 await Navigation.PopAsync();
                 return;
             }
@@ -651,7 +668,7 @@ namespace AepApp.View.Gridding
             for (int i = 0; i < _infoModel.enterprise.Count; i++)
             {
                 var po = _infoModel.enterprise[i];
-            
+
                 Grid G1 = new Grid
                 {
                     //BackgroundColor = Color.Blue,
@@ -709,7 +726,7 @@ namespace AepApp.View.Gridding
                 //G1.Children.Add(image);
                 G1.Children.Add(box);
 
-        
+
 
             }
 
@@ -805,7 +822,8 @@ namespace AepApp.View.Gridding
                 G1.Children.Add(image);
                 G1.Children.Add(box);
 
-                TapGestureRecognizer tap = new TapGestureRecognizer((arg1, arg2) => {
+                TapGestureRecognizer tap = new TapGestureRecognizer((arg1, arg2) =>
+                {
                     Navigation.PushAsync(new RescueSiteMapPage(po));
                 });
                 tap.BindingContext = po;
