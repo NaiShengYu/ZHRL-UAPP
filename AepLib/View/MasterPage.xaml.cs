@@ -95,9 +95,14 @@ namespace AepApp.View
 
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            if(App.gridUser == null)
+
+            if (App.gridUser == null)
+            {
+                App.gridUser = await(App.Current as App).getStaffInfo(App.userInfo.id);
+            }
+            if (App.gridUser == null)
             {
                 //App.masterAndDetailPage.Detail = new NavigationPage(new TaskExaminePage(Guid.Empty));
                  Navigation.PushAsync(new TaskExaminePage(Guid.Empty));

@@ -2699,21 +2699,12 @@ namespace AepApp.View
 
                         if (iconcache.ContainsKey(icon))
                         {
-                            //if (iconcache[icon] != null)
-                            //{
+                            if (iconcache[icon] != null)
+                            {
                                 SKPaint bp = new SKPaint();
                                 bp.IsAntialias = true;
                                 SKBitmap bm = iconcache[icon];
-
-                            try
-                            {
                                 can.DrawBitmap(bm, new SKRect(-9, -9, 9, 9), bp);
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine("can.DrawBitmap(bm, new SKRect(-9, -9, 9, 9), bp);出现了错误");
-                            }
-                                
                             //设置出站口文字
                             if(subwayexitids.Contains(t.key)){
                                 for (int i = 0; i < t.strings.Count; i++)
@@ -2723,11 +2714,8 @@ namespace AepApp.View
                                     textpaint.StrokeWidth = 1.0f;
                                     can.DrawText(t.strings[i] + suf, -tw / 2, textpaint.TextSize / 2-1, textpaint);
                                 }
-                               
-
-
                             }
-                            //}
+                            }
                         }
                         else
                         {
