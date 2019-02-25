@@ -12,9 +12,13 @@ namespace AepApp.Models
         public double? lng { get; set; }
 
         public string address { get{
-                try {
-                    return lat.Value.ToString("f6") +", "+ lng.Value.ToString("f6");
-                } catch (Exception ex) {
+
+                try
+                {
+                    return lat.Value.ToString("f6") + ", " + lng.Value.ToString("f6");
+                }
+                catch (Exception)
+                {
                     return "";
                 }
             } set{} }

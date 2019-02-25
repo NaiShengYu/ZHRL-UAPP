@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
+using System.Threading.Tasks;
 using AepApp.Models;
 using AepApp.Tools;
 using CloudWTO.Services;
@@ -77,6 +78,7 @@ namespace AepApp.View.Gridding
                     {
                         foreach (var item in list)
                         {
+                            item.SubTitle = item.parentName + " - " + item.gridName;
                             dataList.Add(item);
                             if (item.enterprise != null)
                             {
@@ -86,6 +88,7 @@ namespace AepApp.View.Gridding
                             {
                                 listView.ItemsSource = null;
                                 listView.ItemsSource = dataList;
+                                GetSubTitle();
                             }
                         }
                         pageIndex++;
@@ -116,6 +119,58 @@ namespace AepApp.View.Gridding
             }
         }
 
+        private async void GetSubTitle()
+        {
+            if(dataList == null)
+            {
+                return;
+            }
+            if (App.gridUser == null)
+            {
+                foreach (var item in dataList)
+                {
+                    try
+                    {
+                        string sub = await GetStaffGridInfo(item.staff.Value) + " - " + await GetStaffInfo(item.staff.Value);
+                        item.SubTitle = sub;
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
+                    
+                }
+                BindingContext = dataList;
+            }
+        }
+
+        /// <summary>
+        /// 获取执行人信息
+        /// </summary>
+        /// <param name="record"></param>
+        private async Task<string> GetStaffInfo(Guid s)
+        {        
+            UserInfoModel user = await (App.Current as App).GetUserInfo(s);
+            if (user != null)
+            {
+                return user.userName;
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// 获取执行人部门信息
+        /// </summary>
+        private async Task<string> GetStaffGridInfo(Guid s)
+        {
+            ObservableCollection<UserDepartmentsModel> departs = await (App.Current as App).GetStaffDepartments(s);
+
+            if (departs != null && departs.Count > 0)
+            {
+                return departs[0].name;
+            }
+            return "";
+        }
 
         //根据id获取企业
         private async void ReqEnters(GridTaskHandleRecordModel model)
@@ -135,6 +190,7 @@ namespace AepApp.View.Gridding
                 }
                 listView.ItemsSource = null;
                 listView.ItemsSource = dataList;
+                GetSubTitle();
             }
         }
 

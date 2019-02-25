@@ -1,21 +1,20 @@
 ﻿using AepApp.Tools;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AepApp.Models
 {
     //任务执行记录
-    public class GridTaskHandleRecordModel :BaseModel
+    public class GridTaskHandleRecordModel : BaseModel
     {
         public Guid? id { get; set; }
         public DateTime date { get; set; }
         public Guid? staff { get; set; }
         public Guid? enterprise { get; set; }
         public Guid? gridcell { get; set; }
-        public string gridName { get; set; }
+        private string gName;
+        public string gridName { get { return gName; } set { gName = value; NotifyPropertyChanged(); } }
         public string editName { get; set; }
         public string parentName { get; set; }
         public string results { get; set; }
@@ -32,7 +31,9 @@ namespace AepApp.Models
 
         public string staffName { get; set; }//通过staff获取后赋值
 
-        public string SubTitle { get { return parentName + " - " + gridName; } }
+        //public string SubTitle { get { return parentName + " - " + gridName; }set { } }
+        private string subTitle;
+        public string SubTitle { get { return subTitle; } set { subTitle = value; NotifyPropertyChanged(); } }
 
         public string dateStr
         {
