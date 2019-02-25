@@ -163,7 +163,6 @@ namespace AepApp.View.Gridding
                 assignment = (_infoModel.staff != null && _infoModel.staff.Value == App.userInfo.id) ? _infoModel.staff.Value.ToString() : _assignmentId,
                 results = _infoModel.results,
                 editName = App.userInfo.userName,
-
             };
             if (App.gridUser !=null)
             {
@@ -566,6 +565,12 @@ namespace AepApp.View.Gridding
             if (string.IsNullOrEmpty(_infoModel.title))
             {
                 await DisplayAlert("提示", "请添加标题", "确定");
+                return;
+            }
+
+            if (_infoModel.assignments.Count ==0)
+            {
+                await DisplayAlert("提示", "请选择任务执行人", "确定");
                 return;
             }
 

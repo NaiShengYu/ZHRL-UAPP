@@ -7,7 +7,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ListView HasUnevenRows="true" x:Name="listV1" Grid.Column="0" ItemSelected="Handle_ItemSelected" SeparatorVisibility="None">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" HasUnevenRows="true" x:Name="listV1" Grid.Column="0" ItemSelected="Handle_ItemSelected" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -22,7 +22,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView HasUnevenRows="true" x:Name="listV2" Grid.Column="1" ItemSelected="Handle_ItemSelected_1" SeparatorVisibility="None">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" HasUnevenRows="true" x:Name="listV2" Grid.Column="1" ItemSelected="Handle_ItemSelected_1" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -37,7 +37,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView HasUnevenRows="true" x:Name="listV3" Grid.Column="2" SeparatorVisibility="None">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" HasUnevenRows="true" x:Name="listV3" Grid.Column="2" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

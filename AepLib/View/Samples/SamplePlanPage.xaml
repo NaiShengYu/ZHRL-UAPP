@@ -30,7 +30,7 @@
                 <Image Source="right" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,10,0" />
                 <Button VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Transparent" WidthRequest="80" Clicked="addADay" />
             </Grid>
-            <ListView Grid.Row="2" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemsSource="{Binding Plans}">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" Grid.Row="2" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemsSource="{Binding Plans}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

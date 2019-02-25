@@ -9,7 +9,7 @@
                                     <Label HorizontalOptions="Start" Text="因子名" FontSize="18" TextColor="Black" VerticalOptions="CenterAndExpand"  Margin="20,0,0,0"/>
                                     <Label HorizontalOptions="End" Text="最新值" FontSize="18" TextColor="Black" VerticalOptions="CenterAndExpand"  Margin="20,0,20,0"/>
                                 </Grid>
-                <ListView x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start" >
+                <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" ItemSelected="listView_ItemSelected" VerticalOptions="Start" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="45">

@@ -14,7 +14,7 @@
                     <RowDefinition x:Name="bbbb" Height="150" />
                     <RowDefinition x:Name="cccc" Height="55" />
                 </Grid.RowDefinitions>
-                <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" ItemSelected="Handle_ItemSelected"
+                <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" ItemSelected="Handle_ItemSelected"
                            ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}">
                  
                    <!--<ListView.GestureRecognizers>

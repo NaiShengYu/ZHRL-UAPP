@@ -19,7 +19,7 @@
                 </RowDefinition>
             </Grid.RowDefinitions>
             <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" SearchButtonPressed="Handle_Search" TextChanged="Handle_TextChanged"/>
-            <ListView BackgroundColor="White" x:Name="listView" Grid.Row="1"  HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" BackgroundColor="White" x:Name="listView" Grid.Row="1"  HasUnevenRows="True" ItemSelected="Handle_ItemSelected" ItemAppearing="LoadMore" Refreshing="Handle_Refreshing" IsPullToRefreshEnabled="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

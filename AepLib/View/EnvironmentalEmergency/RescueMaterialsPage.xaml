@@ -11,7 +11,7 @@
 
     <ContentPage.Content>
          <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <ListView x:Name="listView" RowHeight="55" StyleClass="mainlist" ItemSelected="Handle_ItemSelected">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" RowHeight="55" StyleClass="mainlist" ItemSelected="Handle_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

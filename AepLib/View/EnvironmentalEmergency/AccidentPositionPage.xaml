@@ -35,7 +35,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
              <SearchBar Grid.Row="0" Placeholder="搜索" x:Name="seach" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_SearchButtonPressed" StyleClass="sbar" BackgroundColor="White"/>
-            <ListView Grid.Row="1" x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" >
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" Grid.Row="1" x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" >
                 <ListView.GestureRecognizers>
 <!--                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>-->
                  </ListView.GestureRecognizers>

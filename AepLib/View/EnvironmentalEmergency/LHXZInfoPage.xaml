@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.EnvironmentalEmergency.LHXZInfoPage">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
                 <ListView.Header>
                     <StackLayout HeightRequest="35" BackgroundColor="#dbdbdb">
                         <Label Margin="15,0,0,0" VerticalOptions="CenterAndExpand" Text="样本位置" />

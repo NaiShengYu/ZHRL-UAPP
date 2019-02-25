@@ -12,6 +12,8 @@ namespace AepApp.View.Gridding
 {
     public partial class EventListPage : ContentPage
     {
+
+
         private string mSearchKey = "";
         int pageIndex = 0;//请求页码
         bool haveMore = true;//返回是否还有
@@ -68,7 +70,10 @@ namespace AepApp.View.Gridding
             mSearchKey = e.NewTextValue;
             SearchData();
         }
-
+        void Handle_Refreshing(object sender, System.EventArgs e)
+        {
+            SearchData();
+        }
         public void Handle_Search(Object sender, EventArgs e)
         {
             SearchData();
@@ -115,7 +120,8 @@ namespace AepApp.View.Gridding
             string param = JsonConvert.SerializeObject(map);
 
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
-            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            listView.IsRefreshing = false;
+              if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {

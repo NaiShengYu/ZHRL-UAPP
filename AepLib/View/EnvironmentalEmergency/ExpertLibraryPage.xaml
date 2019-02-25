@@ -13,7 +13,7 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
             <SearchBar Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" SearchButtonPressed="Handle_SearchButtonPressed" StyleClass="sbar" />
-            <ListView x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing" >
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

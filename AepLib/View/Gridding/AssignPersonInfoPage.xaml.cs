@@ -41,7 +41,6 @@ namespace AepApp.View.Gridding
                     };
                     _infoModel.assignments.Add(s1);
             }
-
             if (_type ==2)
             {
                 Assignments s1 = new Assignments
@@ -56,6 +55,7 @@ namespace AepApp.View.Gridding
             }
 
             if(_type == 3){
+                _subDic.Remove("toDept");
                 _subDic.Add("toDept", model.id);
             }
             _titleLab.Text = model.name;

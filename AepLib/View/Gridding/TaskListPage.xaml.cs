@@ -121,6 +121,7 @@ namespace AepApp.View.Gridding
             string param = JsonConvert.SerializeObject(map);
             //await DisplayAlert("param", param, "ok");
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
+            listView.IsRefreshing = false;
             if (res.StatusCode == HttpStatusCode.OK)
             {
                 try
@@ -141,12 +142,16 @@ namespace AepApp.View.Gridding
                 }
                 catch (Exception e)
                 {
-
                 }
 
             }
 
             listView.ItemsSource = dataList;
+        }
+
+        void Handle_Refreshing(object sender, System.EventArgs e)
+        {
+            SearchData();
         }
 
         public void LoadMore(object sender, ItemVisibilityEventArgs e)

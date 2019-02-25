@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AepApp.View.EnvironmentalEmergency.ChemicalStandardPage" Title="环境标准">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <ListView x:Name="listView" HasUnevenRows="true" StyleClass="mainlist" IsTabStop="true">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" HasUnevenRows="true" StyleClass="mainlist" IsTabStop="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

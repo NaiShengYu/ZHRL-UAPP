@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AepApp.View.Gridding.EventHandleProcessPage"
@@ -40,7 +40,7 @@
             </StackLayout>
             <StackLayout x:Name="taskLayout" Grid.Row="3" HorizontalOptions="Center"  Spacing="0"  IsVisible="False">
                 <Image HorizontalOptions="Center" Source="tri_white"/>
-                <ListView x:Name="taskListView" BackgroundColor="#f0f0f0" Margin="20, 5, 20, 5" HasUnevenRows="True" SeparatorVisibility="None" ItemSelected="Handle_TaskItem">
+                <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="taskListView" BackgroundColor="#f0f0f0" Margin="20, 5, 20, 5" HasUnevenRows="True" SeparatorVisibility="None" ItemSelected="Handle_TaskItem">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

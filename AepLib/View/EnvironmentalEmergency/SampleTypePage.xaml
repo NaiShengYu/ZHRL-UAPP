@@ -5,7 +5,7 @@
              Title="样本类型">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
-            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" RowHeight="55">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" RowHeight="55">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

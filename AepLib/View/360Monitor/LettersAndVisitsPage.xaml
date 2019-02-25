@@ -10,7 +10,7 @@
             <Label Text="{Binding name}" HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="45" TextColor="White"
                    VerticalTextAlignment="Center" Margin="10,0,0,0" FontSize="17"/>
 
-            <ListView x:Name="listV" ItemSelected="Handle_ItemSelected" ItemAppearing="Handle_ItemAppearing" Margin="0,45,0,0" HasUnevenRows="True">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listV" ItemSelected="Handle_ItemSelected" ItemAppearing="Handle_ItemAppearing" Margin="0,45,0,0" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">

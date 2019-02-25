@@ -9,7 +9,7 @@
             </SearchBar>
             <BoxView BackgroundColor="#CDC9C9" HeightRequest="1">
             </BoxView>
-            <ListView x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

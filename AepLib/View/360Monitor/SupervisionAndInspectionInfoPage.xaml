@@ -21,7 +21,7 @@
                 </Grid>
 
                 <Grid Margin="0,45,0,0">
-                    <ListView x:Name="listV" RowHeight="50">
+                    <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listV" RowHeight="50">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">

@@ -9,7 +9,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <ListView HasUnevenRows="true" x:Name="listV" SeparatorVisibility="None" ItemSelected="Handle_ItemSelected">
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" HasUnevenRows="true" x:Name="listV" SeparatorVisibility="None" ItemSelected="Handle_ItemSelected">
                 <ListView.Header>
                     <StackLayout Spacing="0">
                         <Grid>

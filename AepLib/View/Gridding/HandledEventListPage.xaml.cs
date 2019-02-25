@@ -59,7 +59,10 @@ namespace AepApp.View.Gridding
         {
             SearchData();
         }
-
+         public void Handle_Refreshing(Object sender, EventArgs e)
+        {
+            SearchData();
+        }
         private async void SearchData()
         {
             pageIndex = 0;
@@ -97,7 +100,9 @@ namespace AepApp.View.Gridding
             string param = JsonConvert.SerializeObject(map);
 
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
-            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            listView.IsRefreshing = false;
+
+           if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try
                 {

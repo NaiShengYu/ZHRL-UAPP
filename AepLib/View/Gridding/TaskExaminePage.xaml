@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AepApp.View.Gridding.TaskExaminePage"
@@ -9,7 +9,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ListView x:Name="ListView" HasUnevenRows="True" SeparatorVisibility="Default" ItemSelected="ListView_ItemSelected" BackgroundColor="#fafafa">
+        <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="ListView" HasUnevenRows="True" SeparatorVisibility="Default" ItemSelected="ListView_ItemSelected" BackgroundColor="#fafafa">
             <ListView.Header>
                 <StackLayout Spacing="0">
                     <StackLayout Spacing="0">
