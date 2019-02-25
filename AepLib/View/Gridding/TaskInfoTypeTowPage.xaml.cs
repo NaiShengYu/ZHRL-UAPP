@@ -3,6 +3,7 @@ using AepApp.Tools;
 using AepApp.View.EnvironmentalEmergency;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using Sample;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -167,6 +168,10 @@ namespace AepApp.View.Gridding
                 editName = App.userInfo.userName,
 
             };
+            if (App.gridUser != null)
+            {
+                App.gridUser = await (App.Current as App).getStaffInfo(App.userInfo.id);
+            }
             if (App.gridUser != null)
             {
                 record.gridName = App.gridUser.gridName;
@@ -477,11 +482,14 @@ namespace AepApp.View.Gridding
             else map.Add("staff", "");
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
+
             if (res.StatusCode == HttpStatusCode.OK)
             {
                 try
                 {
                     List<GridTaskHandleRecordModel> list = JsonConvert.DeserializeObject<List<GridTaskHandleRecordModel>>(res.Results);
+                    //DependencyService.Get<IToast>().ShortAlert( "请求结果：" + res.Results);
+
                     if (list != null && list.Count > 0)
                     {
                         var recorModel = list[0];
@@ -497,6 +505,7 @@ namespace AepApp.View.Gridding
                 }
                 catch (Exception e)
                 {
+                    DependencyService.Get<IToast>().ShortAlert(e +"\n\n" +res.Results);
 
                 }
             }

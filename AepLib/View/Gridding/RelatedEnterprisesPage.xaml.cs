@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Xamarin.Forms;
 using AepApp.Models;
 using AepApp.Tools;
+using Sample;
 
 namespace AepApp.View.Gridding
 {
@@ -94,7 +95,10 @@ namespace AepApp.View.Gridding
             param.Add("pageSize", ConstantUtils.PAGE_SIZE);
 
             string Pa = JsonConvert.SerializeObject(param);
+
+            
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, Pa, "POST", App.FrameworkToken);
+            //DependencyService.Get<IToast>().ShortAlert("请求url:" + url + "\n请求参数：" + Pa + "\n请求结果："+hTTPResponse.Results);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 try

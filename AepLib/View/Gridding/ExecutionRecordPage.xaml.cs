@@ -129,8 +129,16 @@ namespace AepApp.View.Gridding
             {
                 foreach (var item in dataList)
                 {
-                    string sub = await GetStaffGridInfo(item.staff.Value) + " - "  + await GetStaffInfo(item.staff.Value);
-                    item.SubTitle = sub;
+                    try
+                    {
+                        string sub = await GetStaffGridInfo(item.staff.Value) + " - " + await GetStaffInfo(item.staff.Value);
+                        item.SubTitle = sub;
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
+                    
                 }
                 BindingContext = dataList;
             }

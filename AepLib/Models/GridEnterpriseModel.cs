@@ -8,11 +8,18 @@ namespace AepApp.Models
 
         public string id { get; set; }
         public string name { get; set; }
-        public double lat { get; set; }
-        public double lng { get; set; }
+        public double? lat { get; set; }
+        public double? lng { get; set; }
 
         public string address { get{
-                return lat.ToString("f6") +", "+ lng.ToString("f6");
+                try
+                {
+                    return lat.Value.ToString("f6") + ", " + lng.Value.ToString("f6");
+                }
+                catch (Exception)
+                {
+                    return "";
+                }
             } set{} }
 
     }
