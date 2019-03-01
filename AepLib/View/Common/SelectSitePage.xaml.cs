@@ -242,11 +242,18 @@ namespace AepApp.View
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-           
-            if (App.userInfo !=null) 
-                Logout(new object(),new EventArgs());
-            else 
-                Navigation.PopAsync();
+          //第一次进入
+            if(Navigation.NavigationStack.Count == 1)
+            {
+                App.Current.MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                if (App.userInfo != null)
+                    Logout(new object(), new EventArgs());
+                else
+                    Navigation.PopAsync();
+            }
         }
     }
 }

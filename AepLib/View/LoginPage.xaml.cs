@@ -39,7 +39,7 @@ namespace AepApp.View
             {
                 lab1.FontSize = 20;
                 lab2.FontSize = 17;
-                lab3.FontSize = 17;
+                //lab3.FontSize = 17;
                 tree.HeightRequest = 100;
                 tree.WidthRequest = 100;
             }
@@ -47,7 +47,7 @@ namespace AepApp.View
             {
                 lab1.FontSize = 22;
                 lab2.FontSize = 19;
-                lab3.FontSize = 19;
+                //lab3.FontSize = 19;
                 tree.HeightRequest = 130;
                 tree.WidthRequest = 130;
             }
@@ -61,6 +61,12 @@ namespace AepApp.View
                 App.FrameworkURL = item.SiteAddr; //获取baseUrl
                 //App.environmentalQualityModel.url = "https://" + item.SiteAddr; //获取baseUrl
                 App.siteName = item.customerName;
+                item.appCNname = string.IsNullOrWhiteSpace(item.appCNname) ? "瑞蓝智慧环保系统" : item.appCNname;
+                item.applogo = string.IsNullOrWhiteSpace(item.applogo) ? "tree" : item.applogo;
+                item.appEnname = string.IsNullOrWhiteSpace(item.appEnname) ? "Azura Environmental Protection Platform" : item.appEnname;
+                tree.Source = ImageSource.FromFile(item.applogo);
+                lab1.Text = item.appCNname;
+                lab2.Text = item.appEnname;
             }
             else
             {

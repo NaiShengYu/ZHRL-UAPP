@@ -63,6 +63,9 @@ namespace AepApp.AuxiliaryExtension
                     todoItem.minorVersion = model.minorVersion;
                     todoItem.revision = model.revision;
                     todoItem.date = model.date;
+                    todoItem.appCNname = string.IsNullOrWhiteSpace(model.appCNname) ? "瑞蓝智慧环保系统" : model.appCNname;
+                    todoItem.applogo = string.IsNullOrWhiteSpace(model.applogo) ? "tree" : model.applogo;
+                    todoItem.appEnname = string.IsNullOrWhiteSpace(model.appEnname) ? "Azura Environmental Protection Platform" : model.appEnname;
 
                     todoItem.SiteAddr = siteUrl;
                     todoItem.isCurrent = true;

@@ -95,7 +95,9 @@ namespace AepApp.View.Samples
 
         private async void requestSamplePublicData()
         {
+
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/WaterRecord/GetDetailByPid?planid=" + _samplePlanItems.id, "", "GET", "");
+            //HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/WaterRecord/GetDetailByPid?planid=" + _samplePlanItems.id, "", "GET", "");
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -172,7 +174,9 @@ namespace AepApp.View.Samples
                     url = "/Api/WaterRecord/Update";
                 }
                 string param = JsonConvert.SerializeObject(dic);
+
                 HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + url, param, "POST", "");
+                //HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + url, param, "POST", "");
                 Console.WriteLine(hTTPResponse);
                 if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {

@@ -23,6 +23,9 @@ namespace Todo
         public string minorVersion { get; set; }
         public string revision { get; set; }
         public string date { get; set; }
+        public string appCNname { get; set; }
+        public string applogo { get; set; }
+        public string appEnname { get; set; }
 
         private bool _isCurrent = false;
         public bool isCurrent

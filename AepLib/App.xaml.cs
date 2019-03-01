@@ -30,7 +30,6 @@ namespace AepApp
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         //最底层网格员
         public static int GridMaxLevel = 3;
         public static UploadEmergencyShowModel LastNatureAccidentModel = null;
@@ -142,7 +141,6 @@ namespace AepApp
             //MainPage = new HomePagePage();
             //MainPage = new NavigationPage(new SamplePlanPage());
 
-
             splashPage = new SplashPage();
             MainPage = splashPage;
             personViewModel = new TestPersonViewModel();
@@ -221,6 +219,22 @@ namespace AepApp
             //}
 
             //return;
+            //获取站点URL
+            TodoItem item = await AddSiteUtil.getCurrentSite();
+            if(item == null)
+            {
+                MainPage = new NavigationPage(new SelectSitePage());
+                return;
+            }
+            if (item != null)
+            {
+                App.FrameworkURL = item.SiteAddr; //获取baseUrl
+                //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
+                App.siteName = item.customerName;
+            }
+
+
+
             //获取存储的账号密码
             acc = (await AccountStore.Create().FindAccountsForServiceAsync(App.AppName)).LastOrDefault();
 
@@ -234,15 +248,6 @@ namespace AepApp
 
             string password = acc.Properties["pwd"];
             string username = acc.Username;
-
-            //获取站点URL
-            TodoItem item = await AddSiteUtil.getCurrentSite();
-            if (item != null)
-            {
-                App.FrameworkURL = item.SiteAddr; //获取baseUrl
-                //App.BaseUrl = "https://" + item.SiteAddr; //获取baseUrl
-                App.siteName = item.customerName;
-            }
 
             // try auto login
             _autologgedin = await LoginAsync(username, password);

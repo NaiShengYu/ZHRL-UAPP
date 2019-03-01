@@ -1,8 +1,10 @@
+using AepApp.AuxiliaryExtension;
 using AepApp.Tools;
 //using AepApp.View.SecondaryFunction;
 using AepApp.View.Gridding;
 using Sample;
 using System;
+using Todo;
 using Xamarin.Forms;
 
 namespace AepApp.View
@@ -14,6 +16,9 @@ namespace AepApp.View
         public MasterPage()
         {
             InitializeComponent();
+
+            setAppLogo();
+
             NavigationPage.SetBackButtonTitle(this, "");
             try
             {
@@ -90,12 +95,30 @@ namespace AepApp.View
 
         }
 
+        /// <summary>
+        /// 设置Applogo
+        /// </summary>
+        private async void setAppLogo()
+        {
+            //获取站点URL
+            TodoItem item = await AddSiteUtil.getCurrentSite();
+            if (item != null)
+            {
+                item.appCNname = string.IsNullOrWhiteSpace(item.appCNname) ? "瑞蓝智慧环保系统" : item.appCNname;
+                item.applogo = string.IsNullOrWhiteSpace(item.applogo) ? "tree" : item.applogo;
+                item.appEnname = string.IsNullOrWhiteSpace(item.appEnname) ? "Azura Environmental Protection Platform" : item.appEnname;
+                tree.Source = ImageSource.FromFile(item.applogo);
+                lab1.Text = item.appCNname;
+                lab2.Text = item.appEnname;
+            }
+        }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (App.gridUser == null)
                 App.gridUser = await(App.Current as App).getStaffInfo(App.userInfo.id);
                 if (App.gridUser == null)
                 {
+                    
                     DependencyService.Get<IToast>().ShortAlert("获取网格员信息失败，无法查看");
                     return;
                 }
