@@ -16,8 +16,10 @@
             <!--<StackLayout Spacing="1">-->
             <Grid BackgroundColor="rgb(48, 116, 163)" Grid.Row="0">
                 <Image x:Name="tree" Source="tree" HeightRequest="80" WidthRequest="80" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,0" />
-                <Label x:Name="lab1" Text="瑞蓝智慧环保系统" FontSize="20" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,12,10,0" />
-                <Label x:Name="lab2" Text="Azura Environmental  Protection Platform" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,35,10,0" />
+               <StackLayout Margin="10,20,10,10" HorizontalOptions="End" Spacing="1">
+               <Label x:Name="lab1" Text="瑞蓝智慧环保系统" FontSize="20" TextColor="White" HorizontalOptions="End" VerticalOptions="Center" />
+                <Label x:Name="lab2" Text="Azura Environmental  Protection Platform" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                </StackLayout>
 <!--                <Label Text="Protection System" FontSize="14" TextColor="White" HorizontalOptions="End" VerticalOptions="Start" Margin="0,50,10,0" />
 -->                <Image Source="user" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" VerticalOptions="End" Margin="0,80,20,30" />
                 <Frame HorizontalOptions="End" VerticalOptions="End" BackgroundColor="rgb(54, 144, 207)" Margin="0,90,10,8" Padding="10,2,10,2" BorderColor="Transparent" HasShadow="False" CornerRadius="10">

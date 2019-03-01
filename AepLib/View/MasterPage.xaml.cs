@@ -104,9 +104,12 @@ namespace AepApp.View
             TodoItem item = await AddSiteUtil.getCurrentSite();
             if (item != null)
             {
+                if (!string.IsNullOrWhiteSpace(item.appCNname))
+                    item.appEnname = string.IsNullOrWhiteSpace(item.appEnname) ? "" : item.appEnname;
+                else
+                    item.appEnname = string.IsNullOrWhiteSpace(item.appEnname) ? "Azura Environmental Protection Platform" : item.appEnname;
                 item.appCNname = string.IsNullOrWhiteSpace(item.appCNname) ? "瑞蓝智慧环保系统" : item.appCNname;
                 item.applogo = string.IsNullOrWhiteSpace(item.applogo) ? "tree" : item.applogo;
-                item.appEnname = string.IsNullOrWhiteSpace(item.appEnname) ? "Azura Environmental Protection Platform" : item.appEnname;
                 tree.Source = ImageSource.FromFile(item.applogo);
                 lab1.Text = item.appCNname;
                 lab2.Text = item.appEnname;
