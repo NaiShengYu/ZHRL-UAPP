@@ -282,7 +282,7 @@
                             </Grid>
                         </StackLayout>
                         <StackLayout x:Name="layoutSampling" Spacing="0">
-                         <!--   <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                            <Label Text="{Binding menuSampleLabel}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,5" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             <Grid IsVisible="{Binding menuSampleCarry}">
                                 <Label BindingContext="AepApp.View.Samples.CollectionSamplesPage" HeightRequest="0" />
                                 <Label Text="{Binding menuSampleCarryLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
@@ -294,7 +294,7 @@
                             <Grid IsVisible="{Binding menuSampleTask}">
                                 <Label BindingContext="AepApp.View.Samples.SamplePlanPage" HeightRequest="0" />
                                 <Label Text="{Binding menuSampleTaskLabel}" Margin="35,5,0,5" FontSize="19" TextColor="Black" />
-                            </Grid>-->
+                            </Grid>
                         </StackLayout>
                         <StackLayout x:Name="layoutGrid" Spacing="0" IsVisible="False">
                             <!--                            text = 网格化管理-->
