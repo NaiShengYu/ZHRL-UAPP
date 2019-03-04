@@ -61,7 +61,7 @@ namespace AepApp.AuxiliaryExtension
                     todoItem.appTitle = model.appTitle;
                     todoItem.majorVersion = model.majorVersion;
                     todoItem.minorVersion = model.minorVersion;
-                    todoItem.revision = model.revision;
+                     todoItem.revision = model.revision;
                     todoItem.date = model.date;
                     todoItem.appCNname = string.IsNullOrWhiteSpace(model.appCNname) ? "瑞蓝智慧环保系统" : model.appCNname;
                     todoItem.applogo = string.IsNullOrWhiteSpace(model.applogo) ? "tree" : model.applogo;
