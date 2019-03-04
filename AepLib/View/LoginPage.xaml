@@ -10,13 +10,11 @@
             </Grid.RowDefinitions>
             <BoxView HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="#2D7EFB"/>
             <Image x:Name="tree" Source="tree" HeightRequest="160" WidthRequest="160" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,-1"/>
-            <StackLayout Orientation="Horizontal" >
-                <StackLayout Spacing="0" Margin="40" HorizontalOptions="Start" VerticalOptions="Center">
-                    <Label x:Name="lab1"  TextColor="White" FontSize="23" Text="瑞蓝智慧环保系统"  HorizontalOptions="Start" ></Label>
+                <StackLayout x:Name="titleSK" Spacing="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="40, 40, 160, 40">
+                    <Label x:Name="lab1"  TextColor="White" FontSize="23" Text="瑞蓝智慧环保系统"></Label>
                     <Label x:Name="lab2" TextColor="White" FontSize="20" Text="Azura Environmental Protection Platform"  ></Label>
 <!--                    <Label x:Name="lab3" TextColor="White" FontSize="20" Text="Protection Platform"></Label>-->
                 </StackLayout>
-            </StackLayout>
             
             <Grid BackgroundColor="#EFEFF4" HeightRequest="45" WidthRequest="40" RowSpacing="0" ColumnSpacing="0" Grid.Row="1" VerticalOptions="Start">
 <!--                <Label x:Name="site_name" TextColor="Black" FontSize="17" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"></Label>-->
