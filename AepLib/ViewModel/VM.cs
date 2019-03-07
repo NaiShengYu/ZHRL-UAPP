@@ -92,17 +92,18 @@ namespace AepApp.ViewModel
         public async void requestSamplePlanList()
         {
             _dbContext = new DatabaseContext();
-     
+
             samplePlanRequestDic parameter = new samplePlanRequestDic
             {
                 pageIndex = -1,
                 searchKey = "",
                 planTime = CurrentDay.ToString("yyyy-MM-dd"),
+                cUser = App.userInfo.id,
             };
             string param = JsonConvert.SerializeObject(parameter);
 
-             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/SamplePlan/PagedListForPhone", param, "POST", App.EmergencyToken);
- //HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/PagedListForPhone", param, "POST", App.EmergencyToken);
+             //HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/SamplePlan/PagedListForPhone", param, "POST", App.EmergencyToken);
+             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/PagedListForPhone", param, "POST", App.EmergencyToken);
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -171,6 +172,7 @@ namespace AepApp.ViewModel
         {
             public string searchKey { get; set; }
             public string planTime { get; set; }
+            public Guid cUser { get; set; }
             public int pageIndex { get; set; }
         }
 

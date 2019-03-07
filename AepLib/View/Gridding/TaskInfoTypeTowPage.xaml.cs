@@ -167,7 +167,7 @@ namespace AepApp.View.Gridding
                 results = _infoModel.results,
                 editName = App.userInfo.userName,
             };
-            if (App.gridUser != null)
+            if (App.gridUser == null)
             {
                 App.gridUser = await (App.Current as App).getStaffInfo(App.userInfo.id);
             }

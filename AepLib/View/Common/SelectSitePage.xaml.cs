@@ -198,6 +198,7 @@ namespace AepApp.View
             App.moduleConfigENVQ = null;
             App.moduleConfigEmergency = null;
             App.moduleConfigEmergency = null;
+            App.userDepartments = null;
 
             App.userInfo = null;
             App._autologgedin = false;
@@ -206,7 +207,6 @@ namespace AepApp.View
             App._ISBasicData = false;
             App._isEP360 = false;
             App._isenvironmental = false;
-          
             //Navigation.PushAsync(new LoginPage());  //自动登陆界面进去
             //}
             //else {
