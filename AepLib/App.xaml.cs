@@ -290,10 +290,7 @@ namespace AepApp
                 //_isEP360 = false;
                 //_isenvironmental = false;
             }
-
         }
-
-
         /// <summary>
         /// Login server with provided username and password
         /// </summary>

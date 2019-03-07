@@ -1,6 +1,5 @@
 ﻿using AepApp.AuxiliaryExtension;
 using AepApp.Models;
-using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -8,7 +7,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 
 namespace AepApp.ViewModel
 {
@@ -93,17 +91,13 @@ namespace AepApp.ViewModel
         {
             _dbContext = new DatabaseContext();
 
-            samplePlanRequestDic parameter = new samplePlanRequestDic
-            {
-                pageIndex = -1,
-                searchKey = "",
-                planTime = CurrentDay.ToString("yyyy-MM-dd"),
-                cUser = App.userInfo.id,
-            };
-            string param = JsonConvert.SerializeObject(parameter);
-
-             //HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/SamplePlan/PagedListForPhone", param, "POST", App.EmergencyToken);
-             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/PagedListForPhone", param, "POST", App.EmergencyToken);
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("pageIndex", -1);
+            param.Add("searchKey", "");
+            param.Add("planTime", CurrentDay.ToString("yyyy-MM-dd"));
+            param.Add("cUser", App.userInfo.id);
+            //HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SampleURL + "/Api/SamplePlan/PagedListForPhone", JsonConvert.SerializeObject(param), "POST", App.EmergencyToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/PagedListForPhone", JsonConvert.SerializeObject(param), "POST", App.EmergencyToken);
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -117,7 +111,7 @@ namespace AepApp.ViewModel
                 //PlanMap.Add(CurrentDay2String(), App.mySamplePlanResult.Items);
                 //Plans = PlanMap[CurrentDay2String()];
 
-            
+
 
 
                 foreach (MySamplePlanItems p in App.mySamplePlanResult.Items)
@@ -133,7 +127,9 @@ namespace AepApp.ViewModel
                     if (pInDb == null)
                     {
                         _dbContext.Samples.Add(p);
-                    }else{
+                    }
+                    else
+                    {
                         if (pInDb.basicDataModel != null)
                             p.basicDataModel = pInDb.basicDataModel;
                         pInDb = ElementMapping.Mapper(pInDb, p);//model属性映射快速赋值
@@ -156,24 +152,17 @@ namespace AepApp.ViewModel
 
         }
 
-        public void saveDataWithModel(MySamplePlanItems item){
+        public void saveDataWithModel(MySamplePlanItems item)
+        {
             var pIndb = _dbContext.Samples.FirstOrDefault(m => item.id.Equals(m.id));
             pIndb = ElementMapping.Mapper(pIndb, item);//model属性映射快速赋值
             _dbContext.SaveChanges();
         }
 
-        public MySamplePlanItems selectSamplePlanWithItem(MySamplePlanItems item){
+        public MySamplePlanItems selectSamplePlanWithItem(MySamplePlanItems item)
+        {
             var pIndb = _dbContext.Samples.FirstOrDefault(m => item.id.Equals(m.id));
             return pIndb;
-        }
-
-
-        internal class samplePlanRequestDic
-        {
-            public string searchKey { get; set; }
-            public string planTime { get; set; }
-            public Guid cUser { get; set; }
-            public int pageIndex { get; set; }
         }
 
     }
