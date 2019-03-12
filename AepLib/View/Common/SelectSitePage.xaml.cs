@@ -4,10 +4,7 @@ using Plugin.Hud;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Todo;
 using Xamarin.Auth;
 using Xamarin.Forms;
@@ -36,13 +33,14 @@ namespace AepApp.View
 
             //键盘高度改变
             MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
-            MessagingCenter.Subscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged", (ContentPage arg1, KeyboardSizeModel arg2) => {
+            MessagingCenter.Subscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged", (ContentPage arg1, KeyboardSizeModel arg2) =>
+            {
 
                 Console.WriteLine(arg2.Height);
                 Console.WriteLine(arg2.Wight);
                 if (arg2.Y != App.ScreenHeight)
                 {
-                    sl_add_site.TranslationY = -arg2.Height+60;
+                    sl_add_site.TranslationY = -arg2.Height + 60;
                 }
                 else
                 {
@@ -94,7 +92,8 @@ namespace AepApp.View
             //Navigation.PushAsync(new SelectSitePage());
         }
 
-        private void deleteSite(object sender,EventArgs e){
+        private void deleteSite(object sender, EventArgs e)
+        {
             var item = sender as MenuItem;
             var model = item.CommandParameter as TodoItem;
             dataList.Remove(model);
@@ -124,7 +123,7 @@ namespace AepApp.View
         }
 
         internal void SaveData(TodoItem todoItem)
-        {         
+        {
             for (int i = 0; i < dataList.Count; i++)
             {
                 TodoItem todoitem = dataList[i];
@@ -136,7 +135,7 @@ namespace AepApp.View
                 }
             }
             dataList.Add(todoItem);
-            App.Database.SaveItemAsync(todoItem);        
+            App.Database.SaveItemAsync(todoItem);
             //收起列表
             CloseAddSitePage(false);
         }
@@ -150,7 +149,8 @@ namespace AepApp.View
             HideCrossHud();
             sl_add_site.IsVisible = false;
         }
-        public void HideCrossHud() {
+        public void HideCrossHud()
+        {
             CrossHud.Current.Dismiss();
         }
         private void Show_Add_Site(object sender, EventArgs e)
@@ -164,8 +164,8 @@ namespace AepApp.View
             sl_add_site.IsVisible = false;
         }
         private async void Delete_Info(object sender, EventArgs e)
-        {         
-            bool answer = await  DisplayAlert("提示", "是否删除个人账号信息", "确定", "取消");
+        {
+            bool answer = await DisplayAlert("提示", "是否删除个人账号信息", "确定", "取消");
             if (answer)
             {
                 //循环删除所存的数据
@@ -179,6 +179,10 @@ namespace AepApp.View
         }
         private void Logout(object sender, EventArgs e)
         {
+            if (Navigation.NavigationStack.Count == 1)
+            {
+                return;
+            }
             //if (App.isAutoLogin)
             //{
             App.isSetToLogin = true;  //从设置按钮进入登入按钮
@@ -234,7 +238,7 @@ namespace AepApp.View
             else
             {
                 //CrossHud.Current.Show("加载中...");
-                addSiteUtil.reqSiteInfo(siteName, siteUrl,dataList);
+                addSiteUtil.reqSiteInfo(siteName, siteUrl, dataList);
             }
             //网络请求站点
             sl_add_site.IsVisible = false;
@@ -242,8 +246,8 @@ namespace AepApp.View
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
-          //第一次进入
-            if(Navigation.NavigationStack.Count == 1)
+            //第一次进入
+            if (Navigation.NavigationStack.Count == 1)
             {
                 App.Current.MainPage = new NavigationPage(new LoginPage());
             }
