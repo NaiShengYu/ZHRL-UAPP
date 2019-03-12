@@ -40,7 +40,18 @@ namespace AepApp.View.EnvironmentalQuality
             pickerType.Title = "请选择类型";
             pickerType.SelectedIndex = 0;
         }
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            Charts task = e.SelectedItem as Charts;
+            if (task == null) return;
+            listView.SelectedItem = null;
+        }
 
+
+        void Handle_ScrollToRequested(object sender, Xamarin.Forms.ScrollToRequestedEventArgs e)
+        {
+            Console.WriteLine(e.ScrollX);
+        }
         private async void GetFactorData()
         {
             if (isFirst)
@@ -71,11 +82,13 @@ namespace AepApp.View.EnvironmentalQuality
                     if (list != null)
                     {
                         DrawOxy(list);
-                    }
+                        listView.ItemsSource = list;
+                    }else
+                        listView.ItemsSource = null;
                 }
                 catch (Exception e)
                 {
-
+                    listView.ItemsSource = null;
                 }
             }
         }
@@ -159,7 +172,7 @@ namespace AepApp.View.EnvironmentalQuality
             for (int i = 0; i < num; i++)
             {
                 Charts para = datas[i];
-                string value = para.date.Replace("T", " ");
+                string value = para.date.ToString().Replace("T", " ");
                 DateTime dt = Convert.ToDateTime(value);
                 double abc = DateTimeAxis.ToDouble(dt);
                 lineSeries.Points.Add(new DataPoint(abc, para.val));
@@ -171,6 +184,8 @@ namespace AepApp.View.EnvironmentalQuality
             oxyPlot.Model = plotModel;
 
         }
+
+      
 
         private void BtnSearch_Clicked(object sender, EventArgs e)
         {

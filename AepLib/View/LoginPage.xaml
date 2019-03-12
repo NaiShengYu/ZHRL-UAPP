@@ -9,10 +9,10 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <BoxView HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="#2D7EFB"/>
-            <Image x:Name="tree" Source="tree" HeightRequest="160" WidthRequest="160" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,-1"/>
-                <StackLayout x:Name="titleSK" Spacing="5" VerticalOptions="Center" Margin="40, 40, 200, 40" HorizontalOptions="End">
+            <Image Aspect="AspectFit" x:Name="tree" Source="tree" HeightRequest="140" WidthRequest="140" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,-1"/>
+                <StackLayout x:Name="titleSK" Spacing="5" VerticalOptions="Center" Margin="40, 40, 170, 40" >
                     <Label x:Name="lab1"  TextColor="White" FontSize="23" Text="瑞蓝智慧环保系统" HorizontalOptions="End"></Label>
-                    <Label x:Name="lab2" TextColor="White" FontSize="20" Text="Azura Environmental Protection Platform" HorizontalOptions="End"></Label>
+                    <Label x:Name="lab2" TextColor="White" FontSize="20" Text="Azura Environmental Protection Platform" HorizontalOptions="End" HorizontalTextAlignment="End"></Label>
 <!--                    <Label x:Name="lab3" TextColor="White" FontSize="20" Text="Protection Platform"></Label>-->
                 </StackLayout>
             

@@ -181,7 +181,7 @@ namespace AepApp.View
         {
             //if (App.isAutoLogin)
             //{
-                App.isSetToLogin = true;  //从设置按钮进入登入按钮
+            App.isSetToLogin = true;  //从设置按钮进入登入按钮
             Application.Current.MainPage = new NavigationPage(new LoginPage());
 
             App.gridUser = null;//清空数据

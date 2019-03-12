@@ -25,7 +25,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="70" />
                                 </Grid.ColumnDefinitions>
-                                <Label TextColor="Black" HorizontalOptions="Fill" VerticalOptions="Center" Text="{Binding basic.stname}" Margin="10,15,10,15" FontSize="17" VerticalTextAlignment="Center" />
+                                <Label TextColor="Black" HorizontalOptions="Fill" VerticalOptions="Center" Text="{Binding basic.name}" Margin="10,15,10,15" FontSize="17" VerticalTextAlignment="Center" />
                                 <Label BackgroundColor="{Binding currentlevel.showColor}" Grid.Column="1" TextColor="Black" HorizontalOptions="Fill" VerticalOptions="Fill" Text="{Binding currentlevel.grade.name}" Margin="1,10,10,10" FontSize="17" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
                                     <!--<Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding currentlevel.color}" Value="null">

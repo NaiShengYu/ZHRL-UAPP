@@ -40,11 +40,10 @@ namespace AepApp.View
                 lab1.FontSize = 20;
                 lab2.FontSize = 17;
 
-                tree.HeightRequest = 100;
-                tree.WidthRequest = 100;
+                tree.HeightRequest = 90;
+                tree.WidthRequest = 90;
                 titleSK.Margin = new Thickness(40, 40, 90, 40);
-                lab2.Margin = new Thickness(0, 0, 30, 0);
-
+                lab2.Margin = new Thickness(0, 0, 20, 0);
             }
             else if (App.ScreenWidth < 400)
             {
@@ -53,8 +52,7 @@ namespace AepApp.View
                 //lab3.FontSize = 19;
                 tree.HeightRequest = 130;
                 tree.WidthRequest = 130;
-                titleSK.Margin = new Thickness(40, 40, 120, 40);
-                lab2.Margin = new Thickness(0, 0, 30, 0);
+                titleSK.Margin = new Thickness(40, 40, 150, 40);
 
             }
 

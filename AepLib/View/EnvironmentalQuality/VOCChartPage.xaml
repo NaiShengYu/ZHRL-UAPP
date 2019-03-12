@@ -1,42 +1,61 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:AepApp.MaterialForms" 
-             x:Class="AepApp.View.EnvironmentalQuality.VOCChartPage"         
-             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:AepApp.MaterialForms" x:Class="AepApp.View.EnvironmentalQuality.VOCChartPage" xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
     <ContentPage.Content>
-        <StackLayout>
-            <Grid Margin="10">
-                <Label Text="选择类型" TextColor="Black" FontSize="16" VerticalOptions="Center"/>
-                <views:BorderlessPicker WidthRequest="100" TextColor="Gray" x:Name="pickerType"  FontSize="16" XAlign="End"
-                                                SelectedIndexChanged="pickerType_SelectedIndexChanged" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>小时均值</x:String>
-                            <x:String>日均值</x:String>
-                            <x:String>月均值</x:String>
-                            <x:String>年均值</x:String>
-                            <x:String>原始值</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </views:BorderlessPicker>
-            </Grid>
-            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-            <StackLayout Margin="10" Orientation="Horizontal">
-                <Label Text="开始时间" TextColor="Black" FontSize="16" VerticalOptions="Center"/>
-                <views:BorderlessDatePicker x:Name="PickerStart" HorizontalOptions="EndAndExpand" TextColor="Gray" Format="yyyy-MM-dd" FontSize="14" 
-                            DateSelected="DatePickerStart_DateSelected" VerticalOptions="Center" XAlign="End"/>
-            </StackLayout>
-            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-            <StackLayout Margin="10" Orientation="Horizontal">
-                <Label Text="结束时间" TextColor="Black" FontSize="16" VerticalOptions="Center"/>
-                <views:BorderlessDatePicker x:Name="PickerEnd" HorizontalOptions="EndAndExpand" TextColor="Gray" Format="yyyy-MM-dd" FontSize="14" 
-                            DateSelected="DatePickerEnd_DateSelected" VerticalOptions="Center" XAlign="End"/>
-            </StackLayout>
-            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-            <Button x:Name="BtnSearch" WidthRequest="60" HeightRequest="40" Text="筛选" TextColor="White" BackgroundColor="Blue" 
-                    Clicked="BtnSearch_Clicked" IsVisible="False"/>
-            <oxy:PlotView x:Name="oxyPlot" HeightRequest="250" Margin="0, 5, 0, 0"/>
-        </StackLayout>
+            <ListView ScrollToRequested="Handle_ScrollToRequested" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" x:Name="listView" ItemSelected="Handle_ItemSelected">
+            <ListView.Header>
+                <StackLayout>
+                    <Grid Margin="10">
+                        <Label Text="选择类型" TextColor="Black" FontSize="16" VerticalOptions="Center" />
+                        <views:BorderlessPicker WidthRequest="100" TextColor="Gray" x:Name="pickerType" FontSize="16" XAlign="End" SelectedIndexChanged="pickerType_SelectedIndexChanged" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>小时均值</x:String>
+                                    <x:String>日均值</x:String>
+                                    <x:String>月均值</x:String>
+                                    <x:String>年均值</x:String>
+                                    <x:String>原始值</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </views:BorderlessPicker>
+                    </Grid>
+
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <StackLayout Margin="10" Orientation="Horizontal">
+                        <Label Text="开始时间" TextColor="Black" FontSize="16" VerticalOptions="Center" />
+                        <views:BorderlessDatePicker x:Name="PickerStart" HorizontalOptions="EndAndExpand" TextColor="Gray" Format="yyyy-MM-dd" FontSize="14" DateSelected="DatePickerStart_DateSelected" VerticalOptions="Center" XAlign="End" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <StackLayout Margin="10" Orientation="Horizontal">
+                        <Label Text="结束时间" TextColor="Black" FontSize="16" VerticalOptions="Center" />
+                        <views:BorderlessDatePicker x:Name="PickerEnd" HorizontalOptions="EndAndExpand" TextColor="Gray" Format="yyyy-MM-dd" FontSize="14" DateSelected="DatePickerEnd_DateSelected" VerticalOptions="Center" XAlign="End" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                    <Button x:Name="BtnSearch" WidthRequest="60" HeightRequest="40" Text="筛选" TextColor="White" BackgroundColor="Blue" Clicked="BtnSearch_Clicked" IsVisible="False" />
+                    <oxy:PlotView x:Name="oxyPlot" HeightRequest="250" Margin="0, 5, 0, 0" />
+                    <Grid BackgroundColor="Silver">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="日期" HorizontalOptions="Start" VerticalOptions="Center" FontSize="17" TextColor="Black" Margin="10" />
+                            <Label Text="数值" HorizontalOptions="End" VerticalOptions="Center" FontSize="17" TextColor="Black" Margin="10" Grid.Column="1"/>
+                        </Grid>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding date,StringFormat='{0:yyyy-MM-dd HH}'}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="17" TextColor="Black" Margin="10" />
+                            <Label Text="{Binding val}" HorizontalOptions="End" VerticalOptions="Center" FontSize="17" TextColor="Black" Margin="10" Grid.Column="1"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
