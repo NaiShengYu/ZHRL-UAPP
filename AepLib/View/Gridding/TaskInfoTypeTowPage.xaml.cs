@@ -504,7 +504,7 @@ namespace AepApp.View.Gridding
                 }
                 catch (Exception e)
                 {
-                    DependencyService.Get<IToast>().ShortAlert(e +"\n\n" +res.Results);
+                    DependencyService.Get<IToast>().ShortAlert("任务执行记录失败："+e +"\n\n" +res.Results);
 
                 }
             }

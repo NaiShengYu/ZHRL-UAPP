@@ -18,8 +18,6 @@
 	<array>
 		<integer>1</integer>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -63,8 +61,6 @@
 	<string>为了上传您的语音，请允许使用麦克风</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>为了可以把您工作照片，请允许使用照片库</string>
-	<key>XSLaunchImageAssets</key>
-	<string>Assets.xcassets/LaunchImage-1.launchimage</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>comgooglemaps</string>
@@ -82,5 +78,7 @@
 	<string>为了可以上传播放您的工作录像，请允许使用媒体库</string>
 	<key>NSSiriUsageDescription</key>
 	<string>为了播放语音，请允许使用siri</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

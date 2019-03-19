@@ -13,7 +13,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                                <StackLayout VerticalOptions="Center" Margin="20,0,100,0" Spacing="0">
+                                <StackLayout VerticalOptions="Center" Spacing="0">
                                     <Label Text="{Binding name}" Font="18" Margin="10,10,10,5"/>
                                     <Label TextColor="Gray" Text="{Binding address}" Font="16" Margin="10,0,10,10"/>
                                 </StackLayout>
