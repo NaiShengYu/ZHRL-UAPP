@@ -21,7 +21,6 @@ namespace AepApp.View.Gridding
             GridEventFollowTaskModel task = e.SelectedItem as GridEventFollowTaskModel;
             if (task == null) return;
             TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage(task.id.ToString(), false, _followMoel.id.ToString(),false,"");
-
             Navigation.PushAsync(towPage);
             listV.SelectedItem = null;
         }
