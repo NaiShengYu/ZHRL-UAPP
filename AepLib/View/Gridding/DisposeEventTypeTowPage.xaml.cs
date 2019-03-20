@@ -266,7 +266,6 @@ namespace AepApp.View.Gridding
 
         private async void UpdateIncidentState()
         {
-
             int a =  SW.IsToggled == true ? 3 : 1;
             string url = App.EP360Module.url + "/api/gbm/UpdateIncidentState";
             Dictionary<string, object> map = new Dictionary<string, object>();
