@@ -15,7 +15,6 @@ namespace AepApp.View.Gridding
                 return;
             }
             if(departmentLab.Text=="网格员") Navigation.PushAsync(new GridTreeWithUserPage(_taskInfomodel));
-
             else Navigation.PushAsync(new AssignPersonInfoPage(_taskInfomodel,2,personnelLab));
         }
 

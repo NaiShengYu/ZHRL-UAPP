@@ -50,8 +50,12 @@ namespace AepApp.View.Gridding
                     type = 0,
                     staff = model.id,
                 };
+                if (_infoModel.assignments.Count >1)
+                {
+                    _infoModel.assignments.RemoveAt(1);
+                }
                 _infoModel.assignments.Add(s1);
-                _infoModel.AssignName = _infoModel.AssignName + "  " + model.name;
+                _infoModel.AssignName = model.name;
             }
 
             if(_type == 3){
