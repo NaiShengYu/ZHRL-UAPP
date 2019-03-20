@@ -94,7 +94,6 @@ namespace AepApp.View.EnvironmentalQuality
                         info.showLab = 0;
                         info.facName = "";
                     }
-
                 }
 
             }
