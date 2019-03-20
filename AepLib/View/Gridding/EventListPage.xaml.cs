@@ -87,10 +87,10 @@ namespace AepApp.View.Gridding
             if(App.gridUser == null)
             {
                 App.gridUser = await (App.Current as App).getStaffInfo(App.userInfo.id);
-                //if (App.gridUser == null) {
-                //    addButGR.Height = 0;
-                //    //return;
-                //}
+                if (App.gridUser == null) {
+                    addButGR.Height = 0;
+                    //return;
+                }
             }
             ReqGridEventList();
         }
