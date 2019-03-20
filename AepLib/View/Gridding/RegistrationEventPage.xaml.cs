@@ -236,9 +236,6 @@ namespace AepApp.View.Gridding
                 if (App.gridUser!=null)
                     _infoModel.gridcell = App.gridUser.grid;
 
-
-
-
                 try
                 {
                     _infoModel.lat = App.currentLocation.Latitude;

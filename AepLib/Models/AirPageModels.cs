@@ -42,7 +42,7 @@ namespace AepApp.Models
             public string facId { get; set; }
             public string facName { get; set; }
             public double AQI { get; set; }
-            public double PM25 { get; set; }
+            public string PM25 { get; set; }
             public AQI_INFO AQIInfo { get; set; }
         }
         public class AQI_INFO

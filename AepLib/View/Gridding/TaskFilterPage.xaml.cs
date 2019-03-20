@@ -1,4 +1,5 @@
 ﻿using AepApp.Tools;
+using Sample;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,13 +86,23 @@ namespace AepApp.View.Gridding
             return;
         }
 
-        private void Switch_Toggled_Griders(object sender, ToggledEventArgs e)
+        private async void Switch_Toggled_Griders(object sender, ToggledEventArgs e)
         {
             if (!isAppearing || !e.Value)
             {
                 return;
             }
-            Navigation.PushAsync(new GridTreeViewPage(true, false));
+            //不在网格员内，不能添加事件
+            if (App.gridUser == null)
+            {
+                App.gridUser = await(App.Current as App).getStaffInfo(App.userInfo.id);
+                if (App.gridUser == null)
+                {
+                    DependencyService.Get<IToast>().ShortAlert("不属于网格内，无法选择网格员");
+                    return;
+                }
+            }
+           await Navigation.PushAsync(new GridTreeViewPage(true, false));
             MessagingCenter.Unsubscribe<ContentPage, TestTreeModel>(this, SubcriberConst.MSG_SELECT_GRIDER);
             MessagingCenter.Subscribe<ContentPage, TestTreeModel>(this, SubcriberConst.MSG_SELECT_GRIDER, (arg1, arg2) =>
             {

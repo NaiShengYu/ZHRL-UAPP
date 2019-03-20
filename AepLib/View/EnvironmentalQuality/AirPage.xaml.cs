@@ -21,6 +21,7 @@ namespace AepApp.View.EnvironmentalQuality
     public partial class AirPage : ContentPage
     {
         private string result;
+        string serchKey = "";
         ObservableCollection<AirPageModels.AirInfo> dataList = new ObservableCollection<AirPageModels.AirInfo>();
         private List<AirPageModels.AirInfo> airPages = new List<AirPageModels.AirInfo>();
         private List<AirPageModels.AirInfo> sendPages = new List<AirPageModels.AirInfo>(); //将有数据的信息传入地图界面使用
@@ -53,8 +54,9 @@ namespace AepApp.View.EnvironmentalQuality
                 else
                     Title = App.moduleConfigENVQ.menuAirLabel;
             }
-            catch
+            catch(Exception e)
             {
+              
                 }
         }
 
@@ -72,23 +74,45 @@ namespace AepApp.View.EnvironmentalQuality
                     sendPages.Add(info);
                 }
             }
-            getCurrentData("");
+            getCurrentData(serchKey);
         }
         private void SortPM()
         {
-            airPages.Sort((a, b) => { if (a.info == null) return 1; else if (b.info == null) return -1; else return -a.info.PM25.CompareTo(b.info.PM25); });
+            airPages.Sort((a, b) => { if (a.info == null || a.info.PM25 =="null") return 1; else if (b.info == null || b.info.PM25 == "null") return -1; else  return -a.info.PM25.CompareTo(b.info.PM25);});
             for (int i = 0; i < airPages.Count; i++)
             {
                 airPages[i].Rank = (i + 1) + "";
                 if (airPages[i].info != null)
                 {
                     AirPageModels.AirInfo info = airPages[i];
-                    info.showLab = info.info.PM25;
-                    info.facName = info.info.facName;
+                    if (info.info.PM25 !="null"){
+                        info.showLab = Convert.ToDouble(info.info.PM25);
+                        info.facName = info.info.facName;
+                    }
+                    else
+                    {
+                        info.showLab = 0;
+                        info.facName = "";
+                    }
                 }
 
             }
-            getCurrentData("");
+            int num = airPages.Count();
+            dataList.Clear();
+            for (int i = 0; i < num; i++)
+            {
+                if (airPages[i].StationName.Contains(serchKey))//数据匹配
+                {
+                    if (airPages[i].info.PM25 != "null")
+                    {
+                        dataList.Add(airPages[i]);
+                        airPages[i].Rank = dataList.Count.ToString();
+
+                    }
+                }
+            }
+
+
         }
 
         private void PMSort(object sender, EventArgs e)
@@ -117,8 +141,8 @@ namespace AepApp.View.EnvironmentalQuality
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var search = sender as SearchBar;            
-            getCurrentData(e.NewTextValue);
+            serchKey = e.NewTextValue;
+            getCurrentData(serchKey);
         }
         private void getCurrentData(String value)
         {
