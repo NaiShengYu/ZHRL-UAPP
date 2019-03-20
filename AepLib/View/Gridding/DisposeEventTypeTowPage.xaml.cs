@@ -238,6 +238,7 @@ namespace AepApp.View.Gridding
 
 
             string url = App.EP360Module.url + "/api/gbm/updateincidentfollowup";
+            //3表示处理完毕，1表示没处理
             _followMoel.state = SW.IsToggled == true ? 3 : 1;
             Dictionary<string, object> par = new Dictionary<string, object>();
             par.Add("id", Guid.NewGuid());
@@ -266,12 +267,11 @@ namespace AepApp.View.Gridding
         private async void UpdateIncidentState()
         {
 
-            if (SW.IsToggled ==false) return;
-
+            int a =  SW.IsToggled == true ? 2 : 4;
             string url = App.EP360Module.url + "/api/gbm/UpdateIncidentState";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", _eventModel.id);
-            map.Add("state", 3);
+            map.Add("state", a);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {

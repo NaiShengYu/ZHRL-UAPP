@@ -270,8 +270,6 @@ namespace AepApp.View.Gridding
                 }
 
                 ObservableCollection<Dictionary<string, object>> assigmengtList = new ObservableCollection<Dictionary<string, object>>();
-
-
                 Dictionary<string, object> dic = new Dictionary<string, object>();
                 dic.Add("id", _taskInfoModel.id);
                 dic.Add("rowState", _taskInfoModel.rowState);
@@ -330,6 +328,7 @@ namespace AepApp.View.Gridding
             }
 
             string url = App.EP360Module.url + "/api/gbm/updateincidentfollowup";
+            //2属实，4虚假
             _followMoel.state = SW.IsToggled == true ? 2 : 4;
             par.Add("id", _followMoel.id);
             par.Add("rowState", _followMoel.rowState);
@@ -356,13 +355,12 @@ namespace AepApp.View.Gridding
 
         private async void UpdateIncidentState()
         {
-
-            if (SW.IsToggled) return;
-             
+        
+           int a =  SW.IsToggled == true ? 2 : 4;
             string url = App.EP360Module.url + "/api/gbm/UpdateIncidentState";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("id", _eventModel.id);
-            map.Add("state", 4);
+            map.Add("state", a);
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(map), "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
