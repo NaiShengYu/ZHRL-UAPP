@@ -4,6 +4,7 @@ using AepApp.Models;
 //using AepApp.View.SecondaryFunction;
 using AepApp.Tools;
 using AepApp.View;
+using AepApp.View.EnvironmentalEmergency;
 using AepApp.ViewModel;
 using AepApp.ViewModels;
 using CloudWTO.Services;
@@ -207,7 +208,10 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-            //return;
+             
+            MainPage = new AddPlacementPage();
+
+            return;
 
             //if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             //{
