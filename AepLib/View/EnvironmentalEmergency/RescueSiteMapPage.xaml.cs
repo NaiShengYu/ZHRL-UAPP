@@ -266,7 +266,12 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 List<BuDianItem> list = JsonConvert.DeserializeObject<List<BuDianItem>>(hTTPResponse.Results);
-                //lvPlanList
+                if (list != null && list.Count > 0)
+                {
+                    lvPlanList.IsVisible = true;
+                    ObservableCollection<BuDianItem> o = new ObservableCollection<BuDianItem>(list);
+                    lvPlanList.ItemsSource = o;
+                }
                 foreach (BuDianItem item in list)
                 {
                     //Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
@@ -338,6 +343,17 @@ namespace AepApp.View.EnvironmentalEmergency
             public string name { set; get; }
             public double? lng { set; get; }
             public double? lat { set; get; }
+        }
+
+        //点击布点计划
+        private async void lvPlanList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            BuDianItem bu = e.SelectedItem as BuDianItem;
+            if(bu == null)
+            {
+                return;
+            }
+            await DisplayActionSheet("点击", "取消", "click " + bu.name);
         }
     }
 }
