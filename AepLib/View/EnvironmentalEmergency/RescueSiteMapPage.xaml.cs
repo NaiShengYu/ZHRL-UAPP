@@ -1,5 +1,6 @@
 ﻿using AepApp.Interface;
 using AepApp.Models;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
@@ -243,7 +244,7 @@ namespace AepApp.View.EnvironmentalEmergency
             };
             map.Overlays.Add(mv);
 
-            map.SetCenter(12, new AzmCoord(coords.lng.Value, coords.lat.Value));
+            map.SetCenter(12, StringUtils.nullable2Coord(coords.lng, coords.lat));
 
 
         }

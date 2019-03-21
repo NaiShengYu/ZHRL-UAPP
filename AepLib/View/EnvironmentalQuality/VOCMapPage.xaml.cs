@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using AepApp.Models;
+using AepApp.Tools;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalQuality
@@ -29,6 +30,8 @@ namespace AepApp.View.EnvironmentalQuality
             for (int i = 0; i < dataList.Count; i++)
             {
                 var site = dataList[i];
+                if (site == null || site.basic == null) continue;
+                if (string.IsNullOrWhiteSpace(site.basic.lng) || string.IsNullOrWhiteSpace(site.basic.lat)) continue;
                 if (Convert.ToDouble(site.basic.lng) < 90 || Convert.ToDouble(site.basic.lat) <= 0) continue;
 
                 AzmLabelView lv = new AzmLabelView(site.basic.stname, new AzmCoord(Convert.ToDouble(site.basic.lng), Convert.ToDouble(site.basic.lat)))
@@ -70,20 +73,21 @@ namespace AepApp.View.EnvironmentalQuality
             for (int i = 0 ; i< dataList.Count; i++)
                 {
                 var site = dataList[i];
+                if (site == null || string.IsNullOrWhiteSpace(site.lng) || string.IsNullOrWhiteSpace(site.lat)) continue;
                 if (Convert.ToDouble(site.lng) < 90 || Convert.ToDouble(site.lat) <= 0) continue;
 
-                AzmLabelView lv = new AzmLabelView(site.name, new AzmCoord(Convert.ToDouble(site.lng), Convert.ToDouble(site.lat)))
+                AzmLabelView lv = new AzmLabelView(site.name, StringUtils.string2Coord(site.lng, site.lat))
                 {
                     BackgroundColor = Color.FromHex("#4169E1"),
                     BindingContext = site,
                     };
                 lv.OnTapped += Lv_OnTapped;
                     map.Overlays.Add(lv);
-                    map.SetCenter(13,new AzmCoord(Convert.ToDouble(site.lng), Convert.ToDouble(site.lat)));
+                    map.SetCenter(13, StringUtils.string2Coord(site.lng, site.lat));
                     if (firsttime)
                     {
-                        x += Convert.ToDouble(site.lng);
-                        y += Convert.ToDouble(site.lat);
+                        x += StringUtils.string2Double(site.lng);
+                        y += StringUtils.string2Double(site.lat);
                         cnt++;
                     }
                 }
