@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AepApp.View.EnvironmentalEmergency.SampleItemsListPage"
+             Title="采样检测项目">
+    <ContentPage.Content>
+        <Grid RowSpacing="1" BackgroundColor="#fafafa">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <SearchBar x:Name="search" Placeholder="搜索" StyleClass="sbar" SearchButtonPressed="Handle_Search" TextChanged="Handle_TextChanged"/>
+            <ListView CachingStrategy="RecycleElementAndDataTemplate" BackgroundColor="White" x:Name="listView" Grid.Row="1"  HasUnevenRows="True" ItemSelected="Handle_ItemSelected" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Spacing="0" Margin="10">
+                                <Label HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="18" Text="{Binding name}"/>
+                                <Label HorizontalOptions="FillAndExpand" TextColor="Gray" FontSize="14" MaxLines="1" LineBreakMode="TailTruncation" 
+                                       Margin="0, 5, 0, 0" Text="{Binding allFactor}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -24,32 +24,10 @@
 
     <ContentPage.Content>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
             <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White" IsZoomButtonVisible="false"/>
             <!--     <Button BackgroundColor="Transparent" Clicked="zoomin" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,105" WidthRequest="55" HeightRequest="55" Image="zoomin"/>
             <Button BackgroundColor="Transparent" Clicked="zoomout" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,40" WidthRequest="55" HeightRequest="55" Image="zoomout"/>
        -->
-            <ListView x:Name="lvPlanList" Grid.Row="1" HasUnevenRows="True" HeightRequest="200" IsVisible="False" SeparatorVisibility="Default" SeparatorColor="Gray" ItemSelected="lvPlanList_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid HeightRequest="45" VerticalOptions="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Label LineBreakMode="TailTruncation" TextColor="Black" FontSize="14" Text="{Binding name}" MaxLines="1" VerticalOptions="Center" Margin="10, 0, 0, 0"/>
-                                <Label Grid.Column="1" LineBreakMode="TailTruncation" TextColor="#888888" FontSize="14" Text="{Binding address}" MaxLines="2" VerticalOptions="Center" HorizontalOptions="End"/>
-                                <Image Grid.Column="2"  Source="right"  Margin="10" HeightRequest="20" WidthRequest="10" VerticalOptions="Center"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -223,7 +223,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (dataList.Count != 0)
                     
-                    Navigation.PushAsync(new RescueSiteMapPage(dataList,id));
+                    Navigation.PushAsync(new EmergencyMapPage(dataList,id));
             }));
          
         }
