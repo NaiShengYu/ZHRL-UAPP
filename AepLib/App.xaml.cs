@@ -208,10 +208,10 @@ namespace AepApp
         protected async override void OnStart()
         {
             base.OnStart();
-             
-            MainPage = new AddPlacementPage();
 
-            return;
+            //MainPage = new NavigationPage(new EditContentPage("检查大队", true, ""));
+
+            //return;
 
             //if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             //{

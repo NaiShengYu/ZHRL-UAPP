@@ -41,6 +41,8 @@ namespace AepApp.Models
 
         //获取关键污染物
         public static string GetIncidentFactors = "/api/services/app/IncidentFactor/GetIncidentFactorsByIncidentId";
+        //获取人员列表
+        public static string PersonList = "/api/fw/GetUserBykey";
 
 
         //环境质量

@@ -28,11 +28,11 @@
                     <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
 
-                <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" 
+                <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" 
                           ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}" BackgroundColor="#fafafa"
                           ItemSelected="Handle_ItemSelected" ItemAppearing="Handle_ItemAppearing">
                </ListView>
-                <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="rightListV" HasUnevenRows="true" Grid.Column="1" BackgroundColor="#fafafa" SeparatorColor="Transparent" IsPullToRefreshEnabled="false" >
+                <ListView x:Name="rightListV" HasUnevenRows="true" Grid.Column="1" BackgroundColor="#fafafa" SeparatorColor="Transparent" IsPullToRefreshEnabled="false" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <local:ExtendedViewCell SelectedBackgroundColor="#f0f0f0">

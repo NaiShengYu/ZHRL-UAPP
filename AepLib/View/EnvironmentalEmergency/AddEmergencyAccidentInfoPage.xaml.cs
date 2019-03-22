@@ -917,27 +917,17 @@ namespace AepApp.View.EnvironmentalEmergency
             saveList.Add(emergencyModel);
             listView.ScrollTo(ShowModel, ScrollToPosition.End, true);
         }
+        async void AddPlacement(object sender, System.EventArgs e)
+        {
+           await Navigation.PushAsync(new AddPlacementPage());
+
+        }
 
         public AddEmergencyAccidentInfoPage(string id)
         {
             InitializeComponent();
 
-            //键盘高度改变
-            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
-            MessagingCenter.Subscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged", (ContentPage arg1, KeyboardSizeModel arg2) => {
-               
-                Console.WriteLine(arg2.Height);
-                Console.WriteLine(arg2.Wight);
-                if (arg2.Y != App.ScreenHeight)
-                {
-                    cccc.Height = 55 - (206 - arg2.Height);
-                }
-                else
-                {
-                    cccc.Height = 55;
-                }
-            });
-
+          
             emergencyId = id;
 
             //进入上传数据界面先清空contaminantsList
@@ -951,13 +941,30 @@ namespace AepApp.View.EnvironmentalEmergency
             base.OnDisappearing();
             DependencyService.Get<IAudio>().stopPlay();
             MessagingCenter.Unsubscribe<ContentPage, UploadEmergencyShowModel>(this, "deleteUnUploadData");
-
+            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
         }
 
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            //键盘高度改变
+            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
+            MessagingCenter.Subscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged", (ContentPage arg1, KeyboardSizeModel arg2) => {
+
+                Console.WriteLine(arg2.Height);
+                Console.WriteLine(arg2.Wight);
+                if (arg2.Y != App.ScreenHeight)
+                {
+                    cccc.Height = 55 - (206 - arg2.Height);
+                }
+                else
+                {
+                    cccc.Height = 55;
+                }
+            });
+
+
             //删除不要的错误的数据
             MessagingCenter.Subscribe<ContentPage, UploadEmergencyShowModel>(this, "deleteUnUploadData", (ContentPage arg1, UploadEmergencyShowModel arg2) => {
                 var i = dataListDelete.IndexOf(arg2);

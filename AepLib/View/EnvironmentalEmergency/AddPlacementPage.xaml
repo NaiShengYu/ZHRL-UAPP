@@ -10,11 +10,15 @@
                 <StackLayout Spacing="1" BackgroundColor="Silver">
                     <Grid BackgroundColor="White">
                         <Label Text="布点名称" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,25,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessEntry Placeholder="输入任务标题" HorizontalOptions="End" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding title}" VerticalOptions="Center" Margin="100,15,10,5" TextColor="Gray" TextChanged="Handle_TextChanged" HeightRequest="30" />
+                        <views:BorderlessEntry Placeholder="输入任务标题" XAlign="End" HorizontalOptions="Fill" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding name}" VerticalOptions="Center" Margin="120,15,10,5" TextColor="Gray" TextChanged="Handle_TextChanged" HeightRequest="30" />
+                    </Grid>
+                    <Grid BackgroundColor="White">
+                        <Label Text="预计执行时间" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,25,10,15" HorizontalOptions="Start" />
+                        <views:BorderlessDatePicker Date="{Binding plantime, StringFormat='{0:yyyy-MM-dd}'}" Format="yyyy-MM-dd" DateSelected="Handle_DateSelected" XAlign="End" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="130,15,10,5"/>
                     </Grid>
                     <Grid BackgroundColor="White">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="editContent" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="Handle_editAddress" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="地址" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
                         <Label LineBreakMode="TailTruncation" Text="{Binding showContens}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
@@ -22,31 +26,40 @@
                     </Grid>
                     <Grid BackgroundColor="White">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="editContent" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="Handle_editSample" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="样品预处理" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label LineBreakMode="TailTruncation" Text="{Binding showContens}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding pretreatment}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <Grid BackgroundColor="White">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="editContent" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="Handle_editQuality" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
-                        <Label Text="指控说明" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label LineBreakMode="TailTruncation" Text="{Binding showContens}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label Text="质控说明" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding qctip}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <Grid BackgroundColor="White">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="editContent" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="Handle_editSafety" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
-                        <Label Text="安全与防护" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label LineBreakMode="TailTruncation" Text="{Binding showContens}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label Text="安全说明" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding security}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
+                    <Grid BackgroundColor="White">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Handle_editRemarks" NumberOfTapsRequired="1" />
+                        </Grid.GestureRecognizers>
+                        <Label Text="备注信息" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding remarks}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    
                     <Grid BackgroundColor="Silver">
                         <Label VerticalOptions="CenterAndExpand" Margin="10,5,0,5" Text="相关人员" Font="17" />
-                        <Frame x:Name="PersonNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
+                        <Frame x:Name="PersonNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0" IsClippedToBounds="true" BackgroundColor="Gray" Margin="0,0,15,0">
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
                         </Frame>
                     </Grid>
@@ -58,7 +71,7 @@
                                         <MenuItem Clicked="Handle_DeletPerson" Text="删除" IsDestructive="true" />
                                     </ViewCell.ContextActions>
                                     <Grid>
-                                        <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="10,10,10,10" Font="17" TextColor="Black" Text="{Binding .}" />
+                                        <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="10,10,10,10" Font="17" TextColor="Black" Text="{Binding staffname}" />
                                         <BoxView BackgroundColor="Silver" HeightRequest="0.5" HorizontalOptions="Fill" VerticalOptions="EndAndExpand" />
                                     </Grid>
                                 </ViewCell>
@@ -74,7 +87,7 @@
                     </StackLayout>
                     <Grid BackgroundColor="Silver">
                         <Label VerticalOptions="CenterAndExpand" Margin="10,5,0,5" Text="相关设备" Font="17" />
-                        <Frame x:Name="equipmentNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
+                        <Frame x:Name="equipmentNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="Gray" Margin="0,0,15,0">
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
                         </Frame>
                     </Grid>
@@ -86,7 +99,7 @@
                                         <MenuItem Clicked="Handle_DeletEquipment" Text="删除" IsDestructive="true" />
                                     </ViewCell.ContextActions>
                                     <Grid>
-                                        <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="10,10,10,10" Font="17" TextColor="Black" Text="{Binding .}" />
+                                        <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="10,10,10,10" Font="17" TextColor="Black" Text="{Binding equipname}" />
                                         <BoxView BackgroundColor="Silver" HeightRequest="0.5" HorizontalOptions="Fill" VerticalOptions="EndAndExpand" />
                                     </Grid>
                                 </ViewCell>
@@ -102,7 +115,7 @@
                     </StackLayout>
                     <Grid BackgroundColor="Silver">
                         <Label VerticalOptions="CenterAndExpand" Margin="10,5,0,5" Text="任务" Font="17" />
-                        <Frame x:Name="taskNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
+                        <Frame x:Name="taskNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="Gray" Margin="0,0,15,0">
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
                         </Frame>
                     </Grid>
