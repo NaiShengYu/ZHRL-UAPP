@@ -1,14 +1,13 @@
 
-using System;
-using System.Collections.Generic;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using Xamarin.Forms;
-using Xamarin.Essentials;
-using CloudWTO.Services;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Newtonsoft.Json;
-using System.Text.RegularExpressions;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
@@ -65,20 +64,23 @@ namespace AepApp.View.EnvironmentalEmergency
             searchBar.TranslationY = -App.ScreenHeight;
         }
 
-        public AzmMarkerView aaa =null;
+        public AzmMarkerView aaa = null;
         async void HandleEventHandler()
         {
 
             try
             {
                 Location location;
-                if(Device.RuntimePlatform == Device.iOS){
+                if (Device.RuntimePlatform == Device.iOS)
+                {
                     location = await Geolocation.GetLastKnownLocationAsync();
-                }else{
+                }
+                else
+                {
                     var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                     location = await Geolocation.GetLocationAsync(request);
                 }
-               
+
                 App.currentLocation = location;
                 if (location != null)
                 {
@@ -104,8 +106,6 @@ namespace AepApp.View.EnvironmentalEmergency
         void zoomout(object sender, System.EventArgs e)
         {
             map.ZoomOut();
-
-
         }
         //地图缩小
         void zoomin(object sender, System.EventArgs e)
@@ -164,20 +164,6 @@ namespace AepApp.View.EnvironmentalEmergency
 
         ObservableCollection<poisModel> dataList = new ObservableCollection<poisModel>();
 
-        //public AccidentPositionPage()
-        //{
-        //    InitializeComponent();
-        //    HandleEventHandler();
-        //    searchBar.Margin = new Thickness(0, 0, 0, -App.ScreenHeight);
-        //    searchBar.HeightRequest = App.ScreenHeight -150;
-
-        //    NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
-
-        //    listView.ItemsSource = dataList;
-        //    map2Center(null, null);
-        //}
-
-
         public AccidentPositionPage(string lng, string lat)
         {
             InitializeComponent();
@@ -202,7 +188,12 @@ namespace AepApp.View.EnvironmentalEmergency
 
             HandleEventHandler();
         }
-        
+
+        public AccidentPositionPage(string lng, string lat, string title) : this(lng, lat)
+        {
+            Title = title;
+        }
+
 
         protected override void OnDisappearing()
         {

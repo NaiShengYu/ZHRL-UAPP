@@ -17,8 +17,8 @@ namespace AepApp.Models
         {
             public String code { get; set; }
             public String name { get; set; }
-            public double lat { get; set; }
-            public double lng { get; set; }
+            public double? lat { get; set; }
+            public double? lng { get; set; }
             public String province { get; set; }
             public String city { get; set; }
             public String district { get; set; }

@@ -551,8 +551,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 };
                 try
                 {
-                    emergencyModel.lat = Convert.ToDouble(item.lat);
-                    emergencyModel.lng = Convert.ToDouble(item.lng);
+                    emergencyModel.lat = StringUtils.string2Double(item.lat);
+                    emergencyModel.lng = StringUtils.string2Double(item.lng);
                 }
                 catch (Exception)
                 {

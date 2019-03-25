@@ -8,6 +8,7 @@ using System.Net;
 using Xamarin.Forms;
 using SimpleAudioForms;
 using static AepApp.Models.EmergencyAccidentInfoDetail;
+using AepApp.Tools;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
@@ -222,7 +223,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (dataList.Count != 0)
                     
-                    Navigation.PushAsync(new RescueSiteMapPage(dataList,id));
+                    Navigation.PushAsync(new EmergencyMapPage(dataList,id));
             }));
          
         }
@@ -261,18 +262,18 @@ namespace AepApp.View.EnvironmentalEmergency
 
                     if (cagy == "IncidentLocationSendingEvent")
                     {
-                        AzmCoord center=new AzmCoord(list[i].TargetLng.Value, list[i].TargetLat.Value);
+                        AzmCoord center=new AzmCoord(list[i].TargetLng == null ? 0 : list[i].TargetLng.Value, list[i].TargetLat == null ? 0 : list[i].TargetLat.Value);
                         list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("事故中心点", center)); });
                     }
                     else if (cagy == "IncidentFactorMeasurementEvent")
                     {
-                        AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
+                        AzmCoord center = StringUtils.string2Coord(list[i].lng, list[i].lat);
                         list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("数据位置", center)); });
                     }
                     else if (cagy == "IncidentMessageSendingEvent")
                     {
                         try{
-                            AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
+                            AzmCoord center = StringUtils.string2Coord(list[i].lng, list[i].lat);
                             list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("文字信息发出位置", center)); });
                         }catch(Exception ex){
                         }
@@ -281,7 +282,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     {
                         try
                         {
-                            AzmCoord center = new AzmCoord(double.Parse(list[i].lng), double.Parse(list[i].lat));
+                            AzmCoord center = StringUtils.string2Coord(list[i].lng, list[i].lat);
                             list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("风速风向发出位置", center)); });
                         }
                         catch (Exception ex)

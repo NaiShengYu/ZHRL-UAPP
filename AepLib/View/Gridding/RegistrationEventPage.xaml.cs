@@ -61,7 +61,7 @@ namespace AepApp.View.Gridding
         void EventPositon(object sender, System.EventArgs e)
         {
             AccidentPositionPage page;
-            if (_infoModel.lat == 0.0 || _infoModel.lng == 0.0)
+            if (_infoModel.lat == null || _infoModel.lat == 0.0 || _infoModel.lng == null || _infoModel.lng == 0.0)
             {
                 page = new AccidentPositionPage(null, null);
             }
@@ -75,7 +75,7 @@ namespace AepApp.View.Gridding
             MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", (s, arg) =>
             {
                 var pos = arg as string;
-                if (pos == null)
+                if (string.IsNullOrWhiteSpace(pos))
                 {
                     return;
                 }
@@ -362,8 +362,8 @@ namespace AepApp.View.Gridding
                 results = _infoModel.Results,
                 type = _infoModel.type.Value,
                 state = _infoModel.state.Value,
-                lat = _infoModel.lat.Value,
-                lng = _infoModel.lng.Value,
+                lat = _infoModel.lat == null ? 0 : _infoModel.lat.Value,
+                lng = _infoModel.lng == null ? 0 : _infoModel.lng.Value,
                 addr = _infoModel.Addr,
                 staff = App.userInfo.id,
                 enterprise = _infoModel.enterprise,

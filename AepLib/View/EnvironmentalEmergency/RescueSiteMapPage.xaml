@@ -2,9 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.RescueSiteMapPage"
-                          xmlns:m="clr-namespace:AepApp.View"
+             xmlns:m="clr-namespace:AepApp.View"
              Title="地图位置">
-
     <ContentView.Resources>
         <ResourceDictionary>
             <ControlTemplate x:Key="labelwithnavtemp">
@@ -26,8 +25,9 @@
     <ContentPage.Content>
         <Grid>
             <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White" IsZoomButtonVisible="false"/>
-        <!--     <Button BackgroundColor="Transparent" Clicked="zoomin" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,105" WidthRequest="55" HeightRequest="55" Image="zoomin"/>
+            <!--     <Button BackgroundColor="Transparent" Clicked="zoomin" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,105" WidthRequest="55" HeightRequest="55" Image="zoomin"/>
             <Button BackgroundColor="Transparent" Clicked="zoomout" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,40" WidthRequest="55" HeightRequest="55" Image="zoomout"/>
-       --> </Grid>
+       -->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

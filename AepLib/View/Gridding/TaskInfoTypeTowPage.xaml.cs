@@ -124,7 +124,7 @@ namespace AepApp.View.Gridding
             MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", (s, arg) =>
             {
                 var pos = arg as string;
-                if (pos == null)
+                if (string.IsNullOrWhiteSpace(pos))
                 {
                     return;
                 }

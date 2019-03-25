@@ -4,11 +4,6 @@
              xmlns:local="clr-namespace:AepApp.View"
              xmlns:eme="clr-namespace:AepApp.View.EnvironmentalEmergency"
              x:Class="AepApp.View.EnvironmentalEmergency.EmergencyAccidentInfoPage">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="1">
             <Grid.RowDefinitions>
