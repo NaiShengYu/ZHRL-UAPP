@@ -43,7 +43,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Label LineBreakMode="TailTruncation" TextColor="Black" FontSize="14" Text="{Binding name}" MaxLines="1" VerticalOptions="Center" Margin="10, 0, 0, 0"/>
+                                <Grid  Margin="10, 0, 0, 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label LineBreakMode="TailTruncation" TextColor="Black" FontSize="14" Text="{Binding name}" MaxLines="1" VerticalOptions="Center"/>
+                                    <Image Grid.Column="1"  Source="orangetarget"  Margin="10" HeightRequest="20" WidthRequest="20" VerticalOptions="Center" IsVisible="{Binding selected}"/>
+                                </Grid>
                                 <Label Grid.Column="1" LineBreakMode="TailTruncation" TextColor="#888888" FontSize="14" Text="{Binding address}" MaxLines="2" VerticalOptions="Center" HorizontalOptions="End"/>
                                 <Image Grid.Column="2"  Source="right"  Margin="10" HeightRequest="20" WidthRequest="10" VerticalOptions="Center"/>
                             </Grid>
