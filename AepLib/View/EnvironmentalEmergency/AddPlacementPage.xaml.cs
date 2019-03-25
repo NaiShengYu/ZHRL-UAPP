@@ -2,18 +2,32 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AepApp.Models;
+using CloudWTO.Services;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AddPlacementPage : ContentPage
     {
-        ObservableCollection<string> _task = new ObservableCollection<string>();
-
-        AddPlacementModel _placementModel = new AddPlacementModel();
-        
-        void Handle_Clicked(object sender, System.EventArgs e)
+        AddPlacementModel _placementModel;
+        string _projectId = "";
+       async void Handle_updata(object sender, System.EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(_placementModel.name))
+            {
+                await DisplayAlert("提示", "布点名称不能为空", "确定");
+                //DependencyService.Get<Sample.IToast>().ShortAlert("布点名称不能为空");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(_placementModel.address))
+            {
+                await DisplayAlert("提示", "布点位置不能为空", "确定");
+                //DependencyService.Get<Sample.IToast>().ShortAlert("布点名称不能为空");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(_placementModel.id)) addPlacement();
+            else updatePlacement();
         }
 
         //采样计划名称
@@ -22,8 +36,33 @@ namespace AepApp.View.EnvironmentalEmergency
             _placementModel.name = e.NewTextValue;
         }
         //编辑地址
-        void Handle_editAddress(object sender, System.EventArgs e)
+       async void Handle_editAddress(object sender, System.EventArgs e)
         {
+            AccidentPositionPage page;
+            if (string.IsNullOrWhiteSpace(_placementModel.lat) || string.IsNullOrWhiteSpace(_placementModel.lng))
+            {
+                page = new AccidentPositionPage(null, null);
+            }
+            else
+            {
+                page = new AccidentPositionPage(_placementModel.lng, _placementModel.lat);
+            }
+            page.Title = "布点位置";
+           await Navigation.PushAsync(page);
+            page.SavePosition += (arg, arg1) =>
+
+            {
+                var pos = arg as string;
+                if (string.IsNullOrWhiteSpace(pos))
+                {
+                    return;
+                }
+                string[] p = pos.Replace("E", "").Replace("N", "").Replace("W", "").Replace("S", "").Split(",".ToCharArray());
+
+                _placementModel.lng = p[0];
+                _placementModel.lat = p[1];
+                getAddressWihtLocation();
+            };
         }
         //选择时间
         void Handle_DateSelected(object sender, Xamarin.Forms.DateChangedEventArgs e)
@@ -34,7 +73,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //样品预处理
         void Handle_editSample(object sender, System.EventArgs e)
         {
-            EditContentPage page = new EditContentPage("样品预处理",true, _placementModel.pretreatment);
+            EditContentPage page = new EditContentPage("样品预处理",_placementModel.canEdit, _placementModel.pretreatment);
             page.result += (object result, EventArgs even) => {
                 _placementModel.pretreatment = result as string;
             };
@@ -44,7 +83,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //质控说明
         void Handle_editQuality(object sender, System.EventArgs e)
         {
-            EditContentPage page = new EditContentPage("质控说明", true, _placementModel.qctip);
+            EditContentPage page = new EditContentPage("质控说明", _placementModel.canEdit, _placementModel.qctip);
             page.result += (object result, EventArgs even) => {
                 _placementModel.qctip = result as string;
             };
@@ -53,7 +92,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //备注信息
         void Handle_editRemarks(object sender, System.EventArgs e)
         {
-            EditContentPage page = new EditContentPage("备注信息", true,_placementModel.remarks);
+            EditContentPage page = new EditContentPage("备注信息", _placementModel.canEdit, _placementModel.remarks);
             page.result += (object result, EventArgs even) => {
                 _placementModel.remarks = result as string;
             };
@@ -62,7 +101,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //安全说明
         void Handle_editSafety(object sender, System.EventArgs e)
         {
-            EditContentPage page = new EditContentPage("安全说明", true, _placementModel.security);
+            EditContentPage page = new EditContentPage("安全说明", _placementModel.canEdit, _placementModel.security);
             page.result += (object result, EventArgs even) => {
                 _placementModel.security = result as string;
             };
@@ -120,33 +159,213 @@ namespace AepApp.View.EnvironmentalEmergency
         }
         void Handle_AddTask(object sender, System.EventArgs e)
         {
-            _task.Add("瓶式深水采样器");
+            //_task.Add("瓶式深水采样器");
         }
         void Handle_DeletTask(object sender, System.EventArgs e)
         {
             MenuItem item = sender as MenuItem;
-            _task.Remove(item.BindingContext as string);
+            //_task.Remove(item.BindingContext as string);
+        }
+        //反地理编码
+        private async void getAddressWihtLocation()
+        {
+            string param = "";
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync("https://apis.map.qq.com/ws/geocoder/v1/?location=" + Convert.ToDouble(_placementModel.lat) + "," + Convert.ToDouble(_placementModel.lng) + "&key=72NBZ-3YWK2-XV3U7-CM7OL-MKPMK-DRF2B", param, "GET", "");
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                Dictionary<string, object> dic = JsonConvert.DeserializeObject<Dictionary<string, object>>(hTTPResponse.Results);
+                Dictionary<string, object> resultDic = JsonConvert.DeserializeObject<Dictionary<string, object>>(dic["result"].ToString());
+                try
+                {
+                    _placementModel.address = resultDic["address"].ToString();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
+        }
+        public AddPlacementPage() {
+            InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
+            Title = "布点详情";
+        }
+
+        public AddPlacementPage(string planId) : this() {
+            getPlacement(planId);
+        
         }
 
 
-        public AddPlacementPage()
+        public AddPlacementPage(string projectId,string lat,string lng):this()
         {
-            InitializeComponent();
-            _placementModel.plantime =DateTime.Now;
-            _placementModel.staffs = new ObservableCollection<AddPlacement_Staff>();
-            _placementModel.equips = new ObservableCollection<AddPlacement_Equipment>();
-            _placementModel.tasks = new ObservableCollection<AddPlacement_Task>();
+
+            _placementModel = new AddPlacementModel
+            {
+                canEdit = true,
+                createtime = DateTime.Now,
+                plantime = DateTime.Now,
+                flag = "",
+                staffs = new ObservableCollection<AddPlacement_Staff>(),
+                equips = new ObservableCollection<AddPlacement_Equipment>(),
+                tasklist = new ObservableCollection<AddPlacement_Task>(),
+            };
+            if (!string.IsNullOrWhiteSpace(lat) && !string.IsNullOrWhiteSpace(lng)) {
+                _placementModel.lat = lat;
+                _placementModel.lng = lng;
+                getAddressWihtLocation();
+            }
+            bottomH.Height = 50;
             BindingContext = _placementModel;
             personLV.ItemsSource = _placementModel.staffs;
             PersonNumFrame.BindingContext = _placementModel.staffs;
             equipmentLV.ItemsSource = _placementModel.equips;
             equipmentNumFrame.BindingContext = _placementModel.equips;
-            taskLV.ItemsSource = _task;
-            taskNumFrame.BindingContext = _task;
+            taskLV.ItemsSource = _placementModel.tasklist;
+            taskNumFrame.BindingContext = _placementModel.tasklist;
+
+            _projectId = projectId;
+        }
+
+        async void getPlacement(string planid)
+        {
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/GetDetail?id="+ planid, "", "GET", App.EmergencyToken);
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                _placementModel= JsonConvert.DeserializeObject<AddPlacementModel>(hTTPResponse.Results);
+                _placementModel.canEdit = false;
+                BindingContext = _placementModel;
+                personLV.ItemsSource = _placementModel.staffs;
+                PersonNumFrame.BindingContext = _placementModel.staffs;
+                equipmentLV.ItemsSource = _placementModel.equips;
+                equipmentNumFrame.BindingContext = _placementModel.equips;
+                taskLV.ItemsSource = _placementModel.tasklist;
+                taskNumFrame.BindingContext = _placementModel.tasklist;
+                _placementModel.canEdit = false;
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
+
         }
 
 
+            async void addPlacement() {
+            Dictionary<object, object> param = new Dictionary<object, object>();
+            param.Add("flag", _placementModel.flag);
+            param.Add("name", _placementModel.name);
+            param.Add("projectid", _projectId);
+            param.Add("plantime", _placementModel.plantime);
+            param.Add("createtime", _placementModel.createtime);
+            param.Add("lng", _placementModel.lng);
+            param.Add("lat", _placementModel.lat);
+            param.Add("address", _placementModel.address);
+            param.Add("pretreatment", _placementModel.pretreatment);
+            param.Add("security", _placementModel.security);
+            param.Add("remarks", _placementModel.remarks);
+            param.Add("qctip", _placementModel.qctip);
+            param.Add("type", 1);
+            string parameter = JsonConvert.SerializeObject(param);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/Add", parameter, "POST", App.EmergencyToken);
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+               string planId = JsonConvert.DeserializeObject<string>(hTTPResponse.Results);
+                _placementModel.id = planId;
+                updatePlacement();
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
 
-     
+        }
+
+
+        async void updatePlacement()
+        {
+            Dictionary<object, object> param = new Dictionary<object, object>();
+            param.Add("flag", "Edit");
+            param.Add("id", _placementModel.id);
+            param.Add("name", _placementModel.name);
+            param.Add("plantime", _placementModel.plantime);
+            param.Add("createtime", _placementModel.createtime);
+            param.Add("lng", _placementModel.lng);
+            param.Add("lat", _placementModel.lat);
+            param.Add("address", _placementModel.address);
+            param.Add("pretreatment", _placementModel.pretreatment);
+            param.Add("security", _placementModel.security);
+            param.Add("remarks", _placementModel.remarks);
+            param.Add("qctip", _placementModel.qctip);
+            List<Dictionary<object, object>> staffs = new List<Dictionary<object, object>>();
+            foreach (AddPlacement_Staff item in _placementModel.staffs)
+            {
+                Dictionary<object, object> staff = new Dictionary<object, object>();
+                staff.Add("staffid", item.staffid);
+                staff.Add("staffname", item.staffname);
+                staffs.Add(staff);
+            }
+            param.Add("staffs", staffs);
+            List<Dictionary<object, object>> equips = new List<Dictionary<object, object>>();
+            foreach (AddPlacement_Equipment item in _placementModel.equips)
+            {
+                Dictionary<object, object> equip = new Dictionary<object, object>();
+                equip.Add("equipid", item.equipid);
+                equip.Add("equipname", item.equipname);
+                equips.Add(equip);
+            }
+            param.Add("equips", equips);
+            List<Dictionary<object, object>> tasklist = new List<Dictionary<object, object>>();
+            foreach (AddPlacement_Task item in _placementModel.tasklist)
+            {
+                Dictionary<object, object> task = new Dictionary<object, object>();
+                task.Add("flag", item.flag);
+                task.Add("taskid", item.taskid);
+                task.Add("taskname", item.taskname);
+                task.Add("tasktype", item.tasktype);
+                task.Add("taskstatus", item.taskstatus);
+                task.Add("taskindex", item.taskindex);
+                List<Dictionary<object, object>> Analysistypes = new List<Dictionary<object, object>>();
+                foreach (AddPlacement_Analysist item1 in item.taskAnas)
+                {
+                    Dictionary<object, object> Analysistype = new Dictionary<object, object>();
+                    task.Add("atid", item1.atid);
+                    task.Add("attype", item1.attype);
+                    Analysistypes.Add(Analysistype);
+                }
+                task.Add("taskAnas", Analysistypes);
+                tasklist.Add(task);
+            }
+            param.Add("tasklist", tasklist);
+            List<Dictionary<object, object>> PlanLists = new List<Dictionary<object, object>>();
+            Dictionary<object, object> plan = new Dictionary<object, object>();
+            PlanLists.Add(param);
+            plan.Add("PlanLists", PlanLists);
+            string parameter = JsonConvert.SerializeObject(plan);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/UpdateAll", parameter, "POST", App.EmergencyToken);
+            Console.WriteLine(hTTPResponse);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                bool success = JsonConvert.DeserializeObject<bool>(hTTPResponse.Results);
+                if (success == true)
+                   await Navigation.PopAsync();
+                else
+                    await DisplayAlert("提示", "添加失败", "确定");
+            }
+            else
+            {
+                Console.WriteLine(hTTPResponse);
+            }
+
+        }
+
+
     }
 }

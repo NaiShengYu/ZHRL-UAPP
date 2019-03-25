@@ -4,7 +4,7 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="0" x:Name="bottomH"/>
             </Grid.RowDefinitions>
             <ScrollView>
                 <StackLayout Spacing="1" BackgroundColor="Silver">
@@ -14,14 +14,14 @@
                     </Grid>
                     <Grid BackgroundColor="White">
                         <Label Text="预计执行时间" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,25,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessDatePicker Date="{Binding plantime, StringFormat='{0:yyyy-MM-dd}'}" Format="yyyy-MM-dd" DateSelected="Handle_DateSelected" XAlign="End" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="130,15,10,5"/>
+                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" Date="{Binding plantime, StringFormat='{0:yyyy-MM-dd}'}" Format="yyyy-MM-dd" DateSelected="Handle_DateSelected" XAlign="End" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="130,15,10,5"/>
                     </Grid>
-                    <Grid BackgroundColor="White">
+                    <Grid BackgroundColor="White" IsEnabled="{Binding canEidt}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Handle_editAddress" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="地址" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label LineBreakMode="TailTruncation" Text="{Binding showContens}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding address}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <Grid BackgroundColor="White">
@@ -29,7 +29,7 @@
                             <TapGestureRecognizer Tapped="Handle_editSample" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
                         <Label Text="样品预处理" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label LineBreakMode="TailTruncation" Text="{Binding pretreatment}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding pretreatment}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="120,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
                     <Grid BackgroundColor="White">
@@ -63,12 +63,12 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView x:Name="personLV" HeightRequest="180" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
+                    <ListView x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.ContextActions>
-                                        <MenuItem Clicked="Handle_DeletPerson" Text="删除" IsDestructive="true" />
+                                        <MenuItem IsEnabled="{Binding canEdit}" Clicked="Handle_DeletPerson" Text="删除" IsDestructive="true" />
                                     </ViewCell.ContextActions>
                                     <Grid>
                                         <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="10,10,10,10" Font="17" TextColor="Black" Text="{Binding staffname}" />
@@ -78,7 +78,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
+                    <StackLayout IsVisible="{Binding canEdit}" Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Handle_AddPerson" NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>
@@ -91,12 +91,12 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView x:Name="equipmentLV" HeightRequest="180" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
+                    <ListView x:Name="equipmentLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.ContextActions>
-                                        <MenuItem Clicked="Handle_DeletEquipment" Text="删除" IsDestructive="true" />
+                                        <MenuItem IsEnabled="{Binding canEdit}" Clicked="Handle_DeletEquipment" Text="删除" IsDestructive="true" />
                                     </ViewCell.ContextActions>
                                     <Grid>
                                         <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="10,10,10,10" Font="17" TextColor="Black" Text="{Binding equipname}" />
@@ -106,7 +106,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
+                    <StackLayout IsVisible="{Binding canEdit}" Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Handle_AddEquipment" NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>
@@ -119,12 +119,12 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView x:Name="taskLV" HeightRequest="180" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="50" SeparatorVisibility="None">
+                    <ListView x:Name="taskLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="50" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.ContextActions>
-                                        <MenuItem Clicked="Handle_DeletTask" Text="删除" IsDestructive="true" />
+                                        <MenuItem IsEnabled="{Binding canEdit}" Clicked="Handle_DeletTask" Text="删除" IsDestructive="true" />
                                     </ViewCell.ContextActions>
                                     <Grid>
                                         <Grid>
@@ -149,7 +149,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
+                    <StackLayout IsVisible="{Binding canEdit}" Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Handle_AddTask" NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>
@@ -158,7 +158,7 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-            <Button Grid.Row="1" x:Name="BtnOk" VerticalOptions="End" HeightRequest="49" BackgroundColor="#EDEDED" Image="doctick" Clicked="Handle_Clicked" />
+            <Button IsVisible="{Binding canEdit}" Grid.Row="1" x:Name="BtnOk" VerticalOptions="End" HeightRequest="49" BackgroundColor="#EDEDED" Image="doctick" Clicked="Handle_updata" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

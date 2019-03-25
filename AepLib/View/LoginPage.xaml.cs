@@ -111,17 +111,17 @@ namespace AepApp.View
             acc = account.Text;
             pwd = password.Text;
             siteNmae = site_name.Text;
-            if (acc == null || acc.Length == 0)
+            if (string.IsNullOrWhiteSpace(acc))
             {
                 await DisplayAlert("提示", "账号不能为空", "确定");
                 //DependencyService.Get<Sample.IToast>().ShortAlert("账号不能为空");
             }
-            else if (pwd == null || pwd.Length == 0)
+            else if (string.IsNullOrWhiteSpace(pwd))
             {
                 await DisplayAlert("提示", "密码不能为空", "确定");
                 //DependencyService.Get<Sample.IToast>().ShortAlert("密码不能为空");
             }
-            else if (siteNmae == null || siteNmae.Length == 0)
+            else if (string.IsNullOrWhiteSpace(siteNmae))
             {
                 await DisplayAlert("提示", "请先添加站点", "确定");
                 //DependencyService.Get<Sample.IToast>().ShortAlert("请先添加站点");

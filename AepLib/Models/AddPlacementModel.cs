@@ -13,7 +13,7 @@ namespace AepApp.Models
         public string lng { get; set; }
         public string lat { get; set; }
 
-        private string Type;
+        public bool canEdit { get; set; }
 
 
         private string Address;
@@ -48,7 +48,7 @@ namespace AepApp.Models
         }
         public ObservableCollection<AddPlacement_Staff> staffs { get; set; }
         public ObservableCollection<AddPlacement_Equipment> equips { get; set; }
-        public ObservableCollection<AddPlacement_Task> tasks { get; set; }
+        public ObservableCollection<AddPlacement_Task> tasklist { get; set; }
 
     }
 
@@ -69,10 +69,10 @@ namespace AepApp.Models
         public string flag { get; set; }
         public string taskid { get; set; }
         public string taskname { get; set; }
-        public string type { get; set; }
-        public string status { get; set; }
-        public string index { get; set; }
-        public ObservableCollection<AddPlacement_Analysist> Analysistypes { get; set; }
+        public string tasktype { get; set; }
+        public string taskstatus { get; set; }
+        public string taskindex { get; set; }
+        public ObservableCollection<AddPlacement_Analysist> taskAnas { get; set; }
     }
     public class AddPlacement_Analysist : BaseModel
     {

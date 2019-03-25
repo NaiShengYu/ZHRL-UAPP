@@ -71,8 +71,8 @@ namespace AepApp.View.Gridding
             }
             page.Title = "事件位置";
             Navigation.PushAsync(page);
-            MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
-            MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", (s, arg) =>
+            page.SavePosition += (arg, arg1) =>
+
             {
                 var pos = arg as string;
                 if (string.IsNullOrWhiteSpace(pos))
@@ -86,7 +86,7 @@ namespace AepApp.View.Gridding
                 setPosition();
                 labelLngLat.Text = _infoModel.LnglatString;
                 getAddressWihtLocation();
-            });
+            };
         }
 
         //相关企业
