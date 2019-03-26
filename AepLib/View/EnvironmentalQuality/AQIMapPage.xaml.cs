@@ -131,7 +131,7 @@ namespace AepApp.View.EnvironmentalQuality
                 {
                     x /= cnt;
                     y /= cnt;
-                    map.SetCenter(11, new AzmCoord(x, y));
+                    map.SetCenter(11, new AzmCoord(x, y), false);
                 }
                 firsttime = false;
             }

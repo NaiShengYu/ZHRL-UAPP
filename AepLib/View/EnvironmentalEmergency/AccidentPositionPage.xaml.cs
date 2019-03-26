@@ -49,7 +49,7 @@ namespace AepApp.View.EnvironmentalEmergency
             var item = e.SelectedItem as poisModel;
             if (item == null)
                 return;
-            map.SetCenter(12, new AzmCoord(Convert.ToDouble(item.lon), Convert.ToDouble(item.lat)));
+            map.SetCenter(12, new AzmCoord(Convert.ToDouble(item.lon), Convert.ToDouble(item.lat)), true);
             //map.CenterCoord = new AzmCoord(Convert.ToDouble(item.lon), Convert.ToDouble(item.lat));
             listView.SelectedItem = null;
             searchBar.TranslationY = 0;
@@ -86,7 +86,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 App.currentLocation = location;
                 if (location != null)
                 {
-                    map.SetCenter(12, new AzmCoord(location.Longitude, location.Latitude));
+                    map.SetCenter(12, new AzmCoord(location.Longitude, location.Latitude), false);
                     if (aaa != null)
                     {
                         return;
@@ -178,12 +178,12 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (App.currentLocation != null)
                 {
-                    map.SetCenter(12, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude));
+                    map.SetCenter(12, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude), false);
                 }
             }
             else
             {
-                map.SetCenter(12, new AzmCoord(Convert.ToDouble(lng), Convert.ToDouble(lat)));
+                map.SetCenter(12, new AzmCoord(Convert.ToDouble(lng), Convert.ToDouble(lat)), false);
             }
 
             HandleEventHandler();

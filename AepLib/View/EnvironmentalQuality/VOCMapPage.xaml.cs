@@ -41,7 +41,7 @@ namespace AepApp.View.EnvironmentalQuality
                 };
                 lv.OnTapped += Lv_OnTapped;
                 map.Overlays.Add(lv);
-                map.SetCenter(13, new AzmCoord(Convert.ToDouble(site.basic.lng), Convert.ToDouble(site.basic.lat)));
+                map.SetCenter(13, new AzmCoord(Convert.ToDouble(site.basic.lng), Convert.ToDouble(site.basic.lat)), false);
                 if (firsttime)
                 {
                     x += Convert.ToDouble(site.basic.lng);
@@ -55,7 +55,7 @@ namespace AepApp.View.EnvironmentalQuality
                 {
                     x /= cnt;
                     y /= cnt;
-                    map.SetCenter(11, new AzmCoord(x, y));
+                    map.SetCenter(11, new AzmCoord(x, y), false);
                 }
                 firsttime = false;
             }
@@ -83,7 +83,7 @@ namespace AepApp.View.EnvironmentalQuality
                     };
                 lv.OnTapped += Lv_OnTapped;
                     map.Overlays.Add(lv);
-                    map.SetCenter(13, StringUtils.string2Coord(site.lng, site.lat));
+                    map.SetCenter(13, StringUtils.string2Coord(site.lng, site.lat), false);
                     if (firsttime)
                     {
                         x += StringUtils.string2Double(site.lng);
@@ -97,7 +97,7 @@ namespace AepApp.View.EnvironmentalQuality
                     {
                         x /= cnt;
                         y /= cnt;
-                        map.SetCenter(11, new AzmCoord(x, y));
+                        map.SetCenter(11, new AzmCoord(x, y), false);
                     }
                     firsttime = false;
                 }   

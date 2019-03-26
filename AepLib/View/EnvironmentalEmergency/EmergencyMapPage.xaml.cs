@@ -86,7 +86,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 currentMarker = new AzmMarkerView(ImageSource.FromFile("loc2.png"), new Size(30, 30), singlecoord);
                 map.Overlays.Add(currentMarker);
-                map.SetCenter(12, singlecoord);
+                map.SetCenter(12, singlecoord, false);
             }
             catch (Exception ex)
             {
@@ -155,7 +155,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     fivekmcir.DashArray = new float[2] { 10.0f, 10.0f };
                     map.ShapeOverlays.Add(fivekmcir);
 
-                    map.SetCenter(13, coord);
+                    map.SetCenter(13, coord, false);
                 }
                 catch (Exception ex)
                 {

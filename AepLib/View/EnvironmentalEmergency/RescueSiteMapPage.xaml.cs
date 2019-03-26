@@ -92,7 +92,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 currentMarker = new AzmMarkerView(ImageSource.FromFile("loc2.png"), new Size(30, 30), singlecoord);
                 map.Overlays.Add(currentMarker);
-                map.SetCenter(12, singlecoord);
+                map.SetCenter(12, singlecoord, false);
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             Title = string.IsNullOrWhiteSpace(title) ? "位置信息" : title;
             AddOverLays(lat, lng, locdes);
-            map.SetCenter(15, new AzmCoord(lng, lat));
+            map.SetCenter(15, new AzmCoord(lng, lat), false);
         }
 
         //从敏感源进入
@@ -128,7 +128,7 @@ namespace AepApp.View.EnvironmentalEmergency
             }
             if (App.currentLocation != null)
             {
-                map.SetCenter(12, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude));
+                map.SetCenter(12, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude), false);
             }
         }
 
@@ -137,7 +137,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             Title = "相关位置";
             AddOverLays(coords.lat.Value, coords.lng.Value, coords.title);
-            map.SetCenter(12, StringUtils.nullable2Coord(coords.lng, coords.lat));
+            map.SetCenter(12, StringUtils.nullable2Coord(coords.lng, coords.lat), false);
         }
 
         //从采样计划进入
@@ -178,7 +178,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             Title = title;
             AddOverLays(singlecoord, title, 30);
-            map.SetCenter(13, singlecoord);
+            map.SetCenter(13, singlecoord, false);
         }
 
         private void AddOverLays(AzmCoord coord, string overlayName, int imgSize)

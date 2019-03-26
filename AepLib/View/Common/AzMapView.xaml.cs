@@ -98,7 +98,7 @@ namespace AepApp.View
 
             MapType = AzmMapType.Normal;
 
-            SetCenter(8, new AzmCoord(116.4074, 39.9042));  // beijing
+            SetCenter(8, new AzmCoord(116.4074, 39.9042),false);  // beijing
 
             var pinch = new PinchGestureRecognizer();
             pinch.PinchUpdated += OnPinchUpdated;
@@ -318,24 +318,27 @@ namespace AepApp.View
             return udy / lr;
         }
 
-        public void SetCenter(int _level, AzmCoord _center)
+        public void SetCenter(int _level, AzmCoord _center,bool isNeedChange)
         {
-            
+            if (isNeedChange ==true)
+            {
+                Gps g = PositionUtil.gps84_To_Gcj02(_center.lat, _center.lng);
+                try
+                {
+                    Point p = GetXYFromCoord(flevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
+                    _center = new AzmCoord(g.getWgLon(), g.getWgLat());
+                }
+                catch (Exception ex) { }
+            }
 
-            Gps g = PositionUtil.gps84_To_Gcj02(_center.lat,_center.lng);
-            try{
-                Point p = GetXYFromCoord(flevel, new AzmCoord(g.getWgLon(), g.getWgLat()));
-                _center = new AzmCoord(g.getWgLon(), g.getWgLat());
-            }catch(Exception ex){}
-
-            if (_level < 4) { SetCenter(11, Beijing); return; }
-            if (_level > 18) { SetCenter(11, Beijing); return; }
-            if (double.IsNaN(_center.lng)) { SetCenter(11, Beijing); return; }
-            if (double.IsNaN(_center.lat)) { SetCenter(11, Beijing); return; }
-            if (_center.lng < -180.0) { SetCenter(11, Beijing); return; }
-            if (_center.lng > 180.0) { SetCenter(11, Beijing); return; }
-            if (_center.lat < -85.051128779806592377796715521925) { SetCenter(11, Beijing); return; }
-            if (_center.lat > 85.051128779806592377796715521925) { SetCenter(11, Beijing); return; }
+            if (_level < 4) { SetCenter(11, Beijing,isNeedChange); return; }
+            if (_level > 18) { SetCenter(11, Beijing, isNeedChange); return; }
+            if (double.IsNaN(_center.lng)) { SetCenter(11, Beijing, isNeedChange); return; }
+            if (double.IsNaN(_center.lat)) { SetCenter(11, Beijing, isNeedChange); return; }
+            if (_center.lng < -180.0) { SetCenter(11, Beijing, isNeedChange); return; }
+            if (_center.lng > 180.0) { SetCenter(11, Beijing, isNeedChange); return; }
+            if (_center.lat < -85.051128779806592377796715521925) { SetCenter(11, Beijing, isNeedChange); return; }
+            if (_center.lat > 85.051128779806592377796715521925) { SetCenter(11, Beijing, isNeedChange); return; }
             nlevel = _level;
             flevel = _level;
             center = GetXYFromCoord(nlevel, _center);
