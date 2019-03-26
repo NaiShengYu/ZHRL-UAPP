@@ -3494,7 +3494,7 @@ namespace AepApp.View
             base.Detached();
             this.GestureRecognizers.Clear();
 
-            if (Label != null)
+            if (Label != null && MapView != null && MapView.Overlays != null)
             {
                 MapView.Overlays.Remove(Label);
                 Label = null;

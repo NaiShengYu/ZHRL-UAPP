@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using AepApp.Models;
+﻿using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
@@ -12,7 +12,7 @@ namespace AepApp.View.EnvironmentalEmergency
     {
         AddPlacementModel _placementModel;
         string _projectId = "";
-       async void Handle_updata(object sender, System.EventArgs e)
+        async void Handle_updata(object sender, System.EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(_placementModel.name))
             {
@@ -36,7 +36,7 @@ namespace AepApp.View.EnvironmentalEmergency
             _placementModel.name = e.NewTextValue;
         }
         //编辑地址
-       async void Handle_editAddress(object sender, System.EventArgs e)
+        async void Handle_editAddress(object sender, System.EventArgs e)
         {
             AccidentPositionPage page;
             if (string.IsNullOrWhiteSpace(_placementModel.lat) || string.IsNullOrWhiteSpace(_placementModel.lng))
@@ -48,7 +48,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 page = new AccidentPositionPage(_placementModel.lng, _placementModel.lat);
             }
             page.Title = "布点位置";
-           await Navigation.PushAsync(page);
+            await Navigation.PushAsync(page);
             page.SavePosition += (arg, arg1) =>
 
             {
@@ -68,13 +68,14 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_DateSelected(object sender, Xamarin.Forms.DateChangedEventArgs e)
         {
             DateTime dateTime = e.NewDate;
-            _placementModel.plantime = dateTime;  
+            _placementModel.plantime = dateTime;
         }
         //样品预处理
         void Handle_editSample(object sender, System.EventArgs e)
         {
-            EditContentPage page = new EditContentPage("样品预处理",_placementModel.canEdit, _placementModel.pretreatment);
-            page.result += (object result, EventArgs even) => {
+            EditContentPage page = new EditContentPage("样品预处理", _placementModel.canEdit, _placementModel.pretreatment);
+            page.result += (object result, EventArgs even) =>
+            {
                 _placementModel.pretreatment = result as string;
             };
             Navigation.PushAsync(page);
@@ -84,7 +85,8 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_editQuality(object sender, System.EventArgs e)
         {
             EditContentPage page = new EditContentPage("质控说明", _placementModel.canEdit, _placementModel.qctip);
-            page.result += (object result, EventArgs even) => {
+            page.result += (object result, EventArgs even) =>
+            {
                 _placementModel.qctip = result as string;
             };
             Navigation.PushAsync(page);
@@ -93,7 +95,8 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_editRemarks(object sender, System.EventArgs e)
         {
             EditContentPage page = new EditContentPage("备注信息", _placementModel.canEdit, _placementModel.remarks);
-            page.result += (object result, EventArgs even) => {
+            page.result += (object result, EventArgs even) =>
+            {
                 _placementModel.remarks = result as string;
             };
             Navigation.PushAsync(page);
@@ -102,7 +105,8 @@ namespace AepApp.View.EnvironmentalEmergency
         void Handle_editSafety(object sender, System.EventArgs e)
         {
             EditContentPage page = new EditContentPage("安全说明", _placementModel.canEdit, _placementModel.security);
-            page.result += (object result, EventArgs even) => {
+            page.result += (object result, EventArgs even) =>
+            {
                 _placementModel.security = result as string;
             };
             Navigation.PushAsync(page);
@@ -112,7 +116,8 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             PersonListPage page = new PersonListPage();
             bool isSame = false;
-            page.SamplePerson += (object equipment, EventArgs even) => {
+            page.SamplePerson += (object equipment, EventArgs even) =>
+            {
                 AddPlacement_Staff result = equipment as AddPlacement_Staff;
                 foreach (AddPlacement_Staff item in _placementModel.staffs)
                 {
@@ -137,17 +142,18 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             EquipmentPage page = new EquipmentPage(true);
             bool isSame = false;
-            page.SampleEquipment += (object equipment, EventArgs even) => {
+            page.SampleEquipment += (object equipment, EventArgs even) =>
+            {
                 AddPlacement_Equipment result = equipment as AddPlacement_Equipment;
                 foreach (AddPlacement_Equipment item in _placementModel.equips)
                 {
-                    if(item.equipid == result.equipid)
+                    if (item.equipid == result.equipid)
                     {
                         isSame = true;
                         break;
                     }
                 }
-                if (isSame ==false)
+                if (isSame == false)
                     _placementModel.equips.Add(result);
             };
             Navigation.PushAsync(page);
@@ -157,9 +163,18 @@ namespace AepApp.View.EnvironmentalEmergency
             MenuItem item = sender as MenuItem;
             _placementModel.equips.Remove(item.BindingContext as AddPlacement_Equipment);
         }
+
+        //添加任务
         void Handle_AddTask(object sender, System.EventArgs e)
         {
-            //_task.Add("瓶式深水采样器");
+            EmergencyAddTaskPage taskPage = new EmergencyAddTaskPage();
+            taskPage.SaveTask += (arg, args) =>
+            {
+                AddPlacement_Task t = arg as AddPlacement_Task;
+                if (t == null) return;
+                _placementModel.tasklist.Add(t);
+            };
+            Navigation.PushAsync(taskPage);
         }
         void Handle_DeletTask(object sender, System.EventArgs e)
         {
@@ -190,19 +205,21 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse);
             }
         }
-        public AddPlacementPage() {
+        public AddPlacementPage()
+        {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             Title = "布点详情";
         }
 
-        public AddPlacementPage(string planId) : this() {
+        public AddPlacementPage(string planId) : this()
+        {
             getPlacement(planId);
-        
+
         }
 
 
-        public AddPlacementPage(string projectId,string lat,string lng):this()
+        public AddPlacementPage(string projectId, string lat, string lng) : this()
         {
 
             _placementModel = new AddPlacementModel
@@ -215,7 +232,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 equips = new ObservableCollection<AddPlacement_Equipment>(),
                 tasklist = new ObservableCollection<AddPlacement_Task>(),
             };
-            if (!string.IsNullOrWhiteSpace(lat) && !string.IsNullOrWhiteSpace(lng)) {
+            if (!string.IsNullOrWhiteSpace(lat) && !string.IsNullOrWhiteSpace(lng))
+            {
                 _placementModel.lat = lat;
                 _placementModel.lng = lng;
                 getAddressWihtLocation();
@@ -234,11 +252,11 @@ namespace AepApp.View.EnvironmentalEmergency
 
         async void getPlacement(string planid)
         {
-            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/GetDetail?id="+ planid, "", "GET", App.EmergencyToken);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(App.SamplingModule.url + "/Api/SamplePlan/GetDetail?id=" + planid, "", "GET", App.EmergencyToken);
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                _placementModel= JsonConvert.DeserializeObject<AddPlacementModel>(hTTPResponse.Results);
+                _placementModel = JsonConvert.DeserializeObject<AddPlacementModel>(hTTPResponse.Results);
                 _placementModel.canEdit = false;
                 BindingContext = _placementModel;
                 personLV.ItemsSource = _placementModel.staffs;
@@ -257,7 +275,8 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 
 
-            async void addPlacement() {
+        async void addPlacement()
+        {
             Dictionary<object, object> param = new Dictionary<object, object>();
             param.Add("flag", _placementModel.flag);
             param.Add("name", _placementModel.name);
@@ -277,7 +296,7 @@ namespace AepApp.View.EnvironmentalEmergency
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-               string planId = JsonConvert.DeserializeObject<string>(hTTPResponse.Results);
+                string planId = JsonConvert.DeserializeObject<string>(hTTPResponse.Results);
                 _placementModel.id = planId;
                 updatePlacement();
             }
@@ -355,7 +374,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 bool success = JsonConvert.DeserializeObject<bool>(hTTPResponse.Results);
                 if (success == true)
-                   await Navigation.PopAsync();
+                    await Navigation.PopAsync();
                 else
                     await DisplayAlert("提示", "添加失败", "确定");
             }

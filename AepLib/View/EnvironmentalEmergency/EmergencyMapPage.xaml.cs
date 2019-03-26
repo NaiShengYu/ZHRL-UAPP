@@ -15,7 +15,10 @@ namespace AepApp.View.EnvironmentalEmergency
     public partial class EmergencyMapPage : ContentPage
     {
         AzmMarkerView currentMarker;
+        List<BuDianItem> list = new List<BuDianItem>();
+        ObservableCollection<BuDianItem> sources = new ObservableCollection<BuDianItem>();
         string _incidengtId = "";
+
         async void openMapNav(double lat, double lng, string destination)
         {
             List<string> aaa = DependencyService.Get<IOpenApp>().JudgeCanOpenAPP();
@@ -171,56 +174,132 @@ namespace AepApp.View.EnvironmentalEmergency
         //应急布点位置/采样计划
         private async void ReqPlanLis(string incidentId)
         {
-            //string url = App.BasicDataModule.url + DetailUrl.ChemicalList;
             string url = App.SamplingModule.url + "/api/Sampleplan/GetPlanListByProid" + "?Proid=" + incidentId;
             Console.WriteLine(url);
 
-            //string param = "keyword=" + "" + "&pageIndex=" + pagrIndex + "&pageSize=" + pageSize;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, null, "GET", null);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);
-                List<BuDianItem> list = JsonConvert.DeserializeObject<List<BuDianItem>>(hTTPResponse.Results);
+                list = JsonConvert.DeserializeObject<List<BuDianItem>>(hTTPResponse.Results);
                 if (list != null && list.Count > 0)
                 {
                     lvPlanList.IsVisible = true;
-                    ObservableCollection<BuDianItem> o = new ObservableCollection<BuDianItem>(list);
-                    lvPlanList.ItemsSource = o;
+                    sources = new ObservableCollection<BuDianItem>(list);
+                    lvPlanList.ItemsSource = sources;
                 }
-                foreach (BuDianItem item in list)
+                else
                 {
-                    //Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
-                    AzmCoord singlecoord = new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat));
-                    ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
-                    NavLabelView cv = new NavLabelView(item.name, singlecoord)
-                    {
-                        BackgroundColor = Color.FromHex("#f0f0f0"),
-
-                        ControlTemplate = cvt,
-                    };
-
-                    cv.BindingContext = cv;
-                    var s = cv.Measure(100.0, 1000.0);
-
-                    cv.NavCommand = new Command(() => { openMapNav(singlecoord.lat, singlecoord.lng, item.address); });
-                    AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("bluetarget"), new Size(30, 30), singlecoord)
-                    {
-                        BackgroundColor = Color.Transparent,
-                        CustomView = cv
-                    };
-                    map.Overlays.Add(mv);
+                    lvPlanList.IsVisible = false;
                 }
+                AddOverlays();
+            }
+        }
+
+        //地图上添加点位图层
+        private void AddOverlays()
+        {
+            if (list == null || list.Count == 0)
+            {
+                return;
+            }
+            foreach (BuDianItem item in list)
+            {
+                //Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
+                AzmCoord singlecoord = new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat));
+                ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+                NavLabelView cv = new NavLabelView(item.name, singlecoord)
+                {
+                    BackgroundColor = Color.FromHex("#f0f0f0"),
+                    ControlTemplate = cvt,
+                };
+
+                cv.BindingContext = cv;
+                var s = cv.Measure(100.0, 1000.0);
+
+                cv.NavCommand = new Command(() => { openMapNav(singlecoord.lat, singlecoord.lng, item.address); });
+                AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("bluetarget"), new Size(30, 30), singlecoord)
+                {
+                    BackgroundColor = Color.Transparent,
+                    CustomView = cv
+                };
+                mv.BindingContext = item;
+                TapGestureRecognizer tap = new TapGestureRecognizer();
+                tap.Tapped += MarkerIcon_Tapped;
+                mv.GestureRecognizers.Add(tap);
+                map.Overlays.Add(mv);
+            }
+        }
+
+        private AzmMarkerView mLastClickMv;
+        private BuDianItem dianSelect = null;
+
+        //点位点击
+        private void MarkerIcon_Tapped(object sender, EventArgs e)
+        {
+            AzmMarkerView mv = sender as AzmMarkerView;
+            if (mv == null) return;
+            BuDianItem dian = mv.BindingContext as BuDianItem;
+            if (mv == mLastClickMv)//取消选中
+            {
+                mv.Source = ImageSource.FromFile("bluetarget");
+                selectItem(dian, true);
+                mLastClickMv = null;
+            }
+            else//选中
+            {
+                mv.Source = ImageSource.FromFile("orangetarget");
+                if (mLastClickMv != null)
+                {
+                    mLastClickMv.Source = ImageSource.FromFile("bluetarget");
+                }
+                selectItem(dian, false);
+                mLastClickMv = mv;
+            }
+        }
+
+        //选中/取消列表中的点位
+        private void selectItem(BuDianItem dian, bool isCancel)
+        {
+            if (dian == null) return;
+            if (list == null || list.Count == 0) return;
+            if (dian.lat == null) return;
+            foreach (var item in list)
+            {
+                if (item.lat != null && item.lat.Value == dian.lat.Value)
+                {
+                    item.selected = !isCancel;
+                    if (!isCancel)
+                    {
+                        dianSelect = item;
+                    }
+                }
+                else
+                {
+                    item.selected = false;
+                }
+            }
+            if (isCancel)
+            {
+                dianSelect = null;
+            }
+            sources = new ObservableCollection<BuDianItem>(list);
+            lvPlanList.ItemsSource = sources;
+            if (dianSelect != null)
+            {
+                lvPlanList.ScrollTo(dianSelect, ScrollToPosition.MakeVisible, true);
             }
         }
 
 
         internal class BuDianItem
         {
+            public string id { set; get; }
             public string address { set; get; }
             public string name { set; get; }
             public double? lng { set; get; }
             public double? lat { set; get; }
-            public string id { get; set; }
+            public bool selected { set; get; }
         }
 
         //点击布点计划
@@ -231,19 +310,15 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 return;
             }
-            //await DisplayActionSheet("点击" + bu.name, "取消", "确定");
-
+            lvPlanList.SelectedItem = null;
             await Navigation.PushAsync(new AddPlacementPage(bu.id));
-
-
-
         }
 
         private async void BtnAdd_Clicked(object sender, EventArgs e)
         {
             AccidentPositionPage page = new AccidentPositionPage(null, null, "布点位置");
             page.Title = "布点位置";
-            page.SavePosition += (arg2, arg1) => 
+            page.SavePosition += (arg2, arg1) =>
             {
                 var aaa = arg2 as string;
                 aaa = aaa.Replace("E", "");
@@ -261,9 +336,56 @@ namespace AepApp.View.EnvironmentalEmergency
             await Navigation.PushAsync(page);
         }
 
-        private void BtnDelete_Clicked(object sender, EventArgs e)
+        //删除点位
+        private async void BtnDelete_Clicked(object sender, EventArgs e)
         {
-
+            if (dianSelect == null)
+            {
+                await DisplayAlert("提示", "请先在地图上点击要删除的点位", "确定");
+                return;
+            }
+            var sure = await DisplayAlert("提示", "确定删除该点位吗？", "确定", "取消");
+            if (!sure)
+            {
+                return;
+            }
+            string url = App.SamplingModule.url + "/api/SamplePlan/UpdateAll";
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("flag", "Del");
+            dic.Add("id", dianSelect.id);
+            List<Dictionary<string, object>> l = new List<Dictionary<string, object>>();
+            l.Add(dic);
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("PlanLists", l);
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(param), "POST", App.FrameworkToken);
+            if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                bool res = JsonConvert.DeserializeObject<Boolean>(hTTPResponse.Results);
+                if (res)
+                {
+                    await DisplayAlert("提示", "删除成功", "确定");
+                    if (list != null)
+                    {
+                        list.Remove(dianSelect);
+                        sources = new ObservableCollection<BuDianItem>(list);
+                        lvPlanList.ItemsSource = sources;
+                    }
+                    if (mLastClickMv != null)
+                    {
+                        mLastClickMv.Detached();
+                    }
+                    //if (map != null && map.Overlays != null && mLastClickMv != null)
+                    //{
+                    //    map.Overlays.Remove(mLastClickMv);
+                    //}
+                    dianSelect = null;
+                    mLastClickMv = null;
+                }
+                else
+                {
+                    await DisplayAlert("提示", "删除失败", "确定");
+                }
+            }
         }
 
         private void BtnBack_Clicked(object sender, EventArgs e)
@@ -271,9 +393,5 @@ namespace AepApp.View.EnvironmentalEmergency
             Navigation.PushAsync(new EmergencyAddTaskPage());
         }
 
-        private void DeletePlan()
-        {
-
-        }
     }
 }
