@@ -66,10 +66,7 @@
                     <ListView x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <ViewCell.ContextActions>
-                                        <MenuItem IsEnabled="{Binding canEdit}" Clicked="Handle_DeletPerson" Text="删除" IsDestructive="true" />
-                                    </ViewCell.ContextActions>
+                                <ViewCell BindingContextChanged="PersonBindingChanged">
                                     <Grid>
                                         <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="10,10,10,10" Font="17" TextColor="Black" Text="{Binding staffname}" />
                                         <BoxView BackgroundColor="Silver" HeightRequest="0.5" HorizontalOptions="Fill" VerticalOptions="EndAndExpand" />
@@ -94,10 +91,8 @@
                     <ListView x:Name="equipmentLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <ViewCell.ContextActions>
-                                        <MenuItem IsEnabled="{Binding canEdit}" Clicked="Handle_DeletEquipment" Text="删除" IsDestructive="true" />
-                                    </ViewCell.ContextActions>
+                                <ViewCell BindingContextChanged="EquipmentBindingChanged">
+                                    
                                     <Grid>
                                         <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="10,10,10,10" Font="17" TextColor="Black" Text="{Binding equipname}" />
                                         <BoxView BackgroundColor="Silver" HeightRequest="0.5" HorizontalOptions="Fill" VerticalOptions="EndAndExpand" />
@@ -119,13 +114,11 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView x:Name="taskLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="50" SeparatorVisibility="None">
+                    <ListView x:Name="taskLV" ItemSelected="Handle_TaskSelected" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="50" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <ViewCell.ContextActions>
-                                        <MenuItem IsEnabled="{Binding canEdit}" Clicked="Handle_DeletTask" Text="删除" IsDestructive="true" />
-                                    </ViewCell.ContextActions>
+                                <ViewCell BindingContextChanged="taskBindingChanged">
+                                    
                                     <Grid>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -134,13 +127,13 @@
                                             </Grid.ColumnDefinitions>
                                             <StackLayout Spacing="3">
                                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,5,0,0">
-                                                    <Label Text="重金属，苯系物" TextColor="Black" Font="17" HorizontalOptions="Start" VerticalOptions="Center" />
-                                                    <Label Text="地表水" TextColor="White" Font="15" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="rgb(45,126, 251)" />
+                                                    <Label Text="{Binding taskname}" TextColor="Black" Font="17" HorizontalOptions="Start" VerticalOptions="Center" />
+                                                    <Label Text="{Binding taskTypeDes}" TextColor="White" Font="15" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="rgb(45,126, 251)" />
                                                 </StackLayout>
-                                                <Label Margin="10,0,0,5" Text="重金属，苯系物" TextColor="Gray" Font="14" HorizontalOptions="Start" VerticalOptions="Center" />
+                                                <Label Margin="10,0,0,5" Text="{Binding factorName}" TextColor="Gray" Font="14" HorizontalOptions="Start" VerticalOptions="Center" />
                                             </StackLayout>
                                             <Frame Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#c1c1c1" Margin="0,0,15,0">
-                                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding taskAnas.Count}" TextColor="White" />
                                             </Frame>
                                         </Grid>
                                         <BoxView BackgroundColor="Silver" HeightRequest="0.5" HorizontalOptions="Fill" VerticalOptions="EndAndExpand" />

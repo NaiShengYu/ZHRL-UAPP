@@ -115,6 +115,22 @@ namespace AepApp.Models
         public string taskindex { get; set; }
         public ObservableCollection<AddPlacement_Analysist> taskAnas { get; set; }
         public bool canEdit { get; set; }
+        public string factorName
+        {
+            get
+            {
+                string aa = "";
+                foreach (AddPlacement_Analysist item in taskAnas)
+                {
+                    if (string.IsNullOrWhiteSpace(aa))
+                        aa = item.atname;
+                    else
+                        aa = aa + "," + item.atname;
+                }
+                return aa;
+            }
+            set { }
+        }
     }
     public class AddPlacement_Analysist : BaseModel
     {

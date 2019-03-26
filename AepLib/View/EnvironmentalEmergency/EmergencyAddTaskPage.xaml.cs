@@ -26,6 +26,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 pickerType.SelectedIndex = 0;
                 mTask.taskindex = "0";
                 mTask.canEdit = true;
+                mTask.flag = "Add";
+                mTask.taskstatus = "0";
             }
             BindingContext = mTask;
         }
@@ -88,6 +90,20 @@ namespace AepApp.View.EnvironmentalEmergency
             });
         }
 
+        void taskBindingChanged(object sender, System.EventArgs e)
+        {
+            ViewCell cell = sender as ViewCell;
+            if (cell ==null)
+            {
+                return;
+            }
+            if (mTask.canEdit == true)
+            {
+                var deletTaskAction = new MenuItem { Text = "删除", IsDestructive = true };
+                deletTaskAction.Clicked += Del_Clicked;
+                cell.ContextActions.Add(deletTaskAction);
+            }
+        }
 
         private void pickerType_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AepApp.View.EnvironmentalEmergency.EmergencyAddTaskPage"
@@ -38,18 +38,15 @@
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                 <Grid BackgroundColor="#E6E6E6">
                     <Label Text="检测项目" TextColor="Black" Font="18" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" HeightRequest="50" Margin="10,0,0,0" VerticalTextAlignment="Center" />
-                    <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20" CornerRadius="12.5" 
+                    <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" 
                                Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#B9B9B9" IsVisible="True" Margin="0, 0, 10, 0">
-                        <Label x:Name="LbNum" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White" />
+                        <Label x:Name="LbNum" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White" Font="14"/>
                     </Frame>
                 </Grid>
-                <ListView x:Name="LvItems" HasUnevenRows="True" SeparatorColor="#e6e6e6" SeparatorVisibility="Default">
+                <ListView x:Name="LvItems" CachingStrategy="RecycleElementAndDataTemplate" HasUnevenRows="True" SeparatorColor="#e6e6e6" SeparatorVisibility="Default">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <ViewCell.ContextActions>
-                                    <MenuItem x:Name="Del" Text="删除" Clicked="Del_Clicked" IsDestructive="true"/>
-                                </ViewCell.ContextActions>
+                            <ViewCell BindingContextChanged="taskBindingChanged">
                                 <Label TextColor="Black" FontSize="18" Margin="10" HorizontalOptions="StartAndExpand" Text="{Binding atname}"/>
                             </ViewCell>
                         </DataTemplate>

@@ -38,6 +38,10 @@ namespace AepApp.View.EnvironmentalEmergency
         //编辑地址
         async void Handle_editAddress(object sender, System.EventArgs e)
         {
+            if (_placementModel.canEdit ==false)
+            {
+                return;
+            }
             AccidentPositionPage page;
             if (string.IsNullOrWhiteSpace(_placementModel.lat) || string.IsNullOrWhiteSpace(_placementModel.lng))
             {
@@ -132,6 +136,16 @@ namespace AepApp.View.EnvironmentalEmergency
             };
             Navigation.PushAsync(page);
         }
+        void PersonBindingChanged(object sender, System.EventArgs e)
+        {
+            ViewCell cell = sender as ViewCell;
+            if (_placementModel.canEdit == true)
+            {
+                var deletPersonAction = new MenuItem { Text = "删除", IsDestructive = true };
+                deletPersonAction.Clicked += Handle_DeletPerson;
+                cell.ContextActions.Add(deletPersonAction);
+            }
+        }
         void Handle_DeletPerson(object sender, System.EventArgs e)
         {
             MenuItem item = sender as MenuItem;
@@ -158,6 +172,17 @@ namespace AepApp.View.EnvironmentalEmergency
             };
             Navigation.PushAsync(page);
         }
+      
+        void EquipmentBindingChanged(object sender, System.EventArgs e)
+        {
+            ViewCell cell = sender as ViewCell;
+            if (_placementModel.canEdit == true)
+            {
+                var deletEquipmentAction = new MenuItem { Text = "删除", IsDestructive = true };
+                deletEquipmentAction.Clicked += Handle_DeletEquipment;
+                cell.ContextActions.Add(deletEquipmentAction);
+            }
+        }
         void Handle_DeletEquipment(object sender, System.EventArgs e)
         {
             MenuItem item = sender as MenuItem;
@@ -176,10 +201,33 @@ namespace AepApp.View.EnvironmentalEmergency
             };
             Navigation.PushAsync(taskPage);
         }
+
+        void Handle_TaskSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            AddPlacement_Task item = e.SelectedItem as AddPlacement_Task;
+            if (item == null)
+                return;
+
+            EmergencyAddTaskPage taskPage = new EmergencyAddTaskPage(item);
+            Navigation.PushAsync(taskPage);
+            taskLV.SelectedItem = null;
+
+
+        }
+        void taskBindingChanged(object sender, System.EventArgs e)
+        {
+            ViewCell cell = sender as ViewCell;
+            if (_placementModel.canEdit == true)
+            {
+                var deletTaskAction = new MenuItem { Text = "删除", IsDestructive = true };
+                deletTaskAction.Clicked += Handle_DeletTask;
+                cell.ContextActions.Add(deletTaskAction);
+            }
+        }
         void Handle_DeletTask(object sender, System.EventArgs e)
         {
             MenuItem item = sender as MenuItem;
-            //_task.Remove(item.BindingContext as string);
+            _placementModel.tasklist.Remove(item.BindingContext as AddPlacement_Task);
         }
         //反地理编码
         private async void getAddressWihtLocation()
@@ -355,8 +403,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 foreach (AddPlacement_Analysist item1 in item.taskAnas)
                 {
                     Dictionary<object, object> Analysistype = new Dictionary<object, object>();
-                    task.Add("atid", item1.atid);
-                    task.Add("attype", item1.attype);
+                    Analysistype.Add("atid", item1.atid);
+                    Analysistype.Add("attype", item1.attype);
                     Analysistypes.Add(Analysistype);
                 }
                 task.Add("taskAnas", Analysistypes);
