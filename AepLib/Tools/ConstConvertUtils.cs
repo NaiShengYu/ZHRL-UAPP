@@ -10,11 +10,11 @@ namespace AepApp.Tools
         public static string GridLevel2String(int level)
         {
             string des = "";
-            if(HomePagePage.gridCells != null)
+            if (HomePagePage.gridCells != null)
             {
                 foreach (var item in HomePagePage.gridCells)
                 {
-                    if(item.id == level)
+                    if (item.id == level)
                     {
                         return item.name;
                     }
@@ -347,6 +347,43 @@ namespace AepApp.Tools
                     Name = "氢氧化钠"
                 }
             });
+        }
+
+        public static int getTaskTypeCode(string typeDes)
+        {
+            if ("地表水".Equals(typeDes))
+            {
+                return 0;
+            }
+            else if ("废水".Equals(typeDes))
+            {
+                return 1;
+            }
+            else if ("饮用水".Equals(typeDes))
+            {
+                return 2;
+            }
+            else if ("废气".Equals(typeDes))
+            {
+                return 3;
+            }
+            else if ("环境空气".Equals(typeDes))
+            {
+                return 4;
+            }
+            else if ("室内空气".Equals(typeDes))
+            {
+                return 5;
+            }
+            else if ("农业用地".Equals(typeDes))
+            {
+                return 6;
+            }
+            else if ("工业用地".Equals(typeDes))
+            {
+                return 7;
+            }
+            return 0;
         }
 
     }

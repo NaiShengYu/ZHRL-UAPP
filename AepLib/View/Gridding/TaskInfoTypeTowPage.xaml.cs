@@ -119,9 +119,7 @@ namespace AepApp.View.Gridding
             //    page = new AccidentPositionPage(_infoModel.lng.ToString(), _infoModel.lat.ToString());
             //}
             page.Title = "任务位置";
-            Navigation.PushAsync(page);
-            MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
-            MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", (s, arg) =>
+            page.SavePosition += (arg, arg1) =>
             {
                 var pos = arg as string;
                 if (string.IsNullOrWhiteSpace(pos))
@@ -135,7 +133,7 @@ namespace AepApp.View.Gridding
                 {
                     lng = Convert.ToDouble(p[0]),
                     lat = Convert.ToDouble(p[1]),
-                    remarks = arg,
+                    remarks = pos,
                     id = Guid.NewGuid(),
                     rowState = "add",
                     index = _infoModel.coords.Count + 1,
@@ -144,7 +142,8 @@ namespace AepApp.View.Gridding
 
 
                 getAddressWihtLocation(coords);
-            });
+            };
+            Navigation.PushAsync(page);
 
         }
 

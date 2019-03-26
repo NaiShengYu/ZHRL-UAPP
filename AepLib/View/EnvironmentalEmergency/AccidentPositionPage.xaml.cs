@@ -14,6 +14,8 @@ namespace AepApp.View.EnvironmentalEmergency
     public partial class AccidentPositionPage : ContentPage
     {
 
+        public event EventHandler<EventArgs> SavePosition;
+
         /// <summary>
         /// 点击了键盘的搜索按钮
         /// </summary>
@@ -117,10 +119,8 @@ namespace AepApp.View.EnvironmentalEmergency
         void savePosition(object sender, System.EventArgs e)
         {
             Console.WriteLine(centercoorLab.Text);
-
-            MessagingCenter.Send<ContentPage, string>(this, "savePosition", centercoorLab.Text);
+            SavePosition.Invoke(centercoorLab.Text, new EventArgs());
             Navigation.PopAsync();
-
         }
 
         //回到当前位置
@@ -198,7 +198,6 @@ namespace AepApp.View.EnvironmentalEmergency
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
         }
 
 

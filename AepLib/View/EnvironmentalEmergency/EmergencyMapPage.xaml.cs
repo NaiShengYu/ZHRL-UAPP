@@ -17,6 +17,7 @@ namespace AepApp.View.EnvironmentalEmergency
         AzmMarkerView currentMarker;
         List<BuDianItem> list = new List<BuDianItem>();
         ObservableCollection<BuDianItem> sources = new ObservableCollection<BuDianItem>();
+        string _incidengtId = "";
 
         async void openMapNav(double lat, double lng, string destination)
         {
@@ -164,6 +165,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
                 }
             }
+            _incidengtId = incidengtId;
             ReqPlanLis(incidengtId);
 
         }
@@ -308,16 +310,15 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 return;
             }
-            await DisplayActionSheet("点击" + bu.name, "取消", "确定");
+            lvPlanList.SelectedItem = null;
+            await Navigation.PushAsync(new AddPlacementPage(bu.id));
         }
 
         private async void BtnAdd_Clicked(object sender, EventArgs e)
         {
             AccidentPositionPage page = new AccidentPositionPage(null, null, "布点位置");
-            page.Title = "事故位置";
-            await Navigation.PushAsync(page);
-            MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
-            MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", async (arg1, arg2) =>
+            page.Title = "布点位置";
+            page.SavePosition += (arg2, arg1) =>
             {
                 var aaa = arg2 as string;
                 aaa = aaa.Replace("E", "");
@@ -328,8 +329,11 @@ namespace AepApp.View.EnvironmentalEmergency
                 string[] bbb = aaa.Split(",".ToCharArray());
                 double lon = Convert.ToDouble(bbb[0]);
                 double lat = Convert.ToDouble(bbb[1]);
+                Navigation.InsertPageBefore(new AddPlacementPage(_incidengtId, bbb[1], bbb[0]), page);
+
                 //todo
-            });
+            };
+            await Navigation.PushAsync(page);
         }
 
         //删除点位
@@ -366,7 +370,7 @@ namespace AepApp.View.EnvironmentalEmergency
                         sources = new ObservableCollection<BuDianItem>(list);
                         lvPlanList.ItemsSource = sources;
                     }
-                    if(mLastClickMv != null)
+                    if (mLastClickMv != null)
                     {
                         mLastClickMv.Detached();
                     }

@@ -177,10 +177,7 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             AccidentPositionPage page = new AccidentPositionPage(null, null);
             page.Title = "事故位置";
-            await Navigation.PushAsync(page);
-            MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
-
-            MessagingCenter.Subscribe<ContentPage, string>(this, "savePosition", async (arg1, arg2) =>
+            page.SavePosition +=async (object arg2, EventArgs arg1) => 
             {
                 var aaa = arg2 as string;
                 aaa = aaa.Replace("E", "");
@@ -192,7 +189,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 double lon = System.Convert.ToDouble(bbb[0]);
                 double lat = System.Convert.ToDouble(bbb[1]);
 
-                MessagingCenter.Unsubscribe<ContentPage, string>(this, "savePosition");
                 UploadEmergencyModel emergencyModel = new UploadEmergencyModel
                 {
                     uploadStatus = "notUploaded",
@@ -235,7 +231,10 @@ namespace AepApp.View.EnvironmentalEmergency
                 dataListDelete.Add(showModel);
                 saveList.Add(emergencyModel);
                 listView.ScrollTo(showModel, ScrollToPosition.End, true);
-            });
+            };
+
+            await Navigation.PushAsync(page);
+
         }
         //左滑删除
         async void Handle_Clicked(object sender, System.EventArgs e)
@@ -917,27 +916,32 @@ namespace AepApp.View.EnvironmentalEmergency
             saveList.Add(emergencyModel);
             listView.ScrollTo(ShowModel, ScrollToPosition.End, true);
         }
+        //添加布点
+        async void AddPlacement(object sender, System.EventArgs e)
+        {
+            AccidentPositionPage page = new AccidentPositionPage(null, null, "布点位置");
+            page.Title = "布点位置";
+            page.SavePosition += (arg2, arg1) =>
+            {
+                var aaa = arg2 as string;
+                aaa = aaa.Replace("E", "");
+                aaa = aaa.Replace("N", "");
+                aaa = aaa.Replace("W", "");
+                aaa = aaa.Replace("S", "");
+                aaa = aaa.Replace(" ", "");
+                string[] bbb = aaa.Split(",".ToCharArray());
+                double lon = Convert.ToDouble(bbb[0]);
+                double lat = Convert.ToDouble(bbb[1]);
+                Navigation.InsertPageBefore(new AddPlacementPage(emergencyId, bbb[1], bbb[0]), page);
+            };
+            await Navigation.PushAsync(page);
+        }
 
         public AddEmergencyAccidentInfoPage(string id)
         {
             InitializeComponent();
 
-            //键盘高度改变
-            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
-            MessagingCenter.Subscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged", (ContentPage arg1, KeyboardSizeModel arg2) => {
-               
-                Console.WriteLine(arg2.Height);
-                Console.WriteLine(arg2.Wight);
-                if (arg2.Y != App.ScreenHeight)
-                {
-                    cccc.Height = 55 - (206 - arg2.Height);
-                }
-                else
-                {
-                    cccc.Height = 55;
-                }
-            });
-
+            NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             emergencyId = id;
 
             //进入上传数据界面先清空contaminantsList
@@ -951,13 +955,30 @@ namespace AepApp.View.EnvironmentalEmergency
             base.OnDisappearing();
             DependencyService.Get<IAudio>().stopPlay();
             MessagingCenter.Unsubscribe<ContentPage, UploadEmergencyShowModel>(this, "deleteUnUploadData");
-
+            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
         }
 
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            //键盘高度改变
+            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
+            MessagingCenter.Subscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged", (ContentPage arg1, KeyboardSizeModel arg2) => {
+
+                Console.WriteLine(arg2.Height);
+                Console.WriteLine(arg2.Wight);
+                if (arg2.Y != App.ScreenHeight)
+                {
+                    cccc.Height = 55 - (206 - arg2.Height);
+                }
+                else
+                {
+                    cccc.Height = 55;
+                }
+            });
+
+
             //删除不要的错误的数据
             MessagingCenter.Subscribe<ContentPage, UploadEmergencyShowModel>(this, "deleteUnUploadData", (ContentPage arg1, UploadEmergencyShowModel arg2) => {
                 var i = dataListDelete.IndexOf(arg2);

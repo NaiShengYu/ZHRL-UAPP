@@ -5,60 +5,68 @@
              xmlns:views="clr-namespace:AepApp.MaterialForms" 
              Title="任务">
     <ContentPage.Content>
-        <StackLayout Spacing="0">
-            <Grid>
-                <Label Text="任务名称" TextColor="Black" Font="18"  VerticalTextAlignment="Center" HorizontalOptions="Start" HeightRequest="70"  Margin="10,0,0,0"/>
-                <views:BorderlessEntry Placeholder="输入任务名称" HorizontalTextAlignment="End" VerticalOptions="Center" Margin="0,0,10,0"
-                                           HorizontalOptions="EndAndExpand" TextColor="Gray" FontSize="16"/>
-            </Grid>
-            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-            <Grid >
-                <Label Text="样本类型" TextColor="Black" Font="18" HorizontalOptions="Start" VerticalTextAlignment="Center" HeightRequest="70" Margin="10, 0, 0, 0"/>
-                <views:BorderlessPicker WidthRequest="100" TextColor="Gray" x:Name="pickerType" FontSize="16" XAlign="End" Margin="0,0,10,0"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Spacing="0">
+                <Grid>
+                    <Label Text="任务名称" TextColor="Black" Font="18"  VerticalTextAlignment="Center" HorizontalOptions="Start" HeightRequest="70"  Margin="10,0,0,0"/>
+                    <views:BorderlessEntry Placeholder="输入任务名称" XAlign="End" VerticalOptions="Center" Margin="0,0,10,0" x:Name="EntryName"
+                                           HorizontalOptions="EndAndExpand" TextColor="Gray" FontSize="16" Text="{Binding taskname}" IsEnabled="{Binding canEdit}"/>
+                </Grid>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                <Grid >
+                    <Label Text="样本类型" TextColor="Black" Font="18" HorizontalOptions="Start" VerticalTextAlignment="Center" HeightRequest="70" Margin="10, 0, 0, 0"/>
+                    <views:BorderlessPicker WidthRequest="100" TextColor="Gray" x:Name="pickerType" FontSize="16" XAlign="End" Margin="0,0,10,0" IsEnabled="{Binding canEdit}"
                                             SelectedIndexChanged="pickerType_SelectedIndexChanged" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>地表水</x:String>
-                            <x:String>废水</x:String>
-                            <x:String>饮用水</x:String>
-                            <x:String>废气</x:String>
-                            <x:String>环境空气</x:String>
-                            <x:String>室内空气</x:String>
-                            <x:String>农业用地</x:String>
-                            <x:String>工业用地</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </views:BorderlessPicker>
-            </Grid>
-            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-            <Grid BackgroundColor="#E6E6E6">
-                <Label Text="检测项目" TextColor="Black" Font="18" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" HeightRequest="50" Margin="10,0,0,0" VerticalTextAlignment="Center" />
-                <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20" CornerRadius="12.5" 
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>地表水</x:String>
+                                <x:String>废水</x:String>
+                                <x:String>饮用水</x:String>
+                                <x:String>废气</x:String>
+                                <x:String>环境空气</x:String>
+                                <x:String>室内空气</x:String>
+                                <x:String>农业用地</x:String>
+                                <x:String>工业用地</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </views:BorderlessPicker>
+                </Grid>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
+                <Grid BackgroundColor="#E6E6E6">
+                    <Label Text="检测项目" TextColor="Black" Font="18" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" HeightRequest="50" Margin="10,0,0,0" VerticalTextAlignment="Center" />
+                    <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="20" HeightRequest="20" CornerRadius="12.5" 
                                Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#B9B9B9" IsVisible="True" Margin="0, 0, 10, 0">
-                    <Label x:Name="LbNum" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White" />
-                </Frame>
-            </Grid>
-            <ListView x:Name="LvItems" HasUnevenRows="True" SeparatorColor="#e6e6e6" SeparatorVisibility="Default">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem x:Name="Del" Text="删除" Clicked="Del_Clicked" IsDestructive="true"/>
-                            </ViewCell.ContextActions>
-                            <Label TextColor="Black" FontSize="18" Margin="10" HorizontalOptions="StartAndExpand" Text="{Binding name}"/>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Footer>
-                    <StackLayout x:Name="LayoutAdd" Orientation="Horizontal">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
-                        </StackLayout.GestureRecognizers>
-                        <Image WidthRequest="20" HeightRequest="20" Source="add" Margin="10"/>
-                        <Label Text="添加项目" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
-                    </StackLayout>
-                </ListView.Footer>
-            </ListView>            
-        </StackLayout>
+                        <Label x:Name="LbNum" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White" />
+                    </Frame>
+                </Grid>
+                <ListView x:Name="LvItems" HasUnevenRows="True" SeparatorColor="#e6e6e6" SeparatorVisibility="Default">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem x:Name="Del" Text="删除" Clicked="Del_Clicked" IsDestructive="true"/>
+                                </ViewCell.ContextActions>
+                                <Label TextColor="Black" FontSize="18" Margin="10" HorizontalOptions="StartAndExpand" Text="{Binding atname}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <StackLayout x:Name="LayoutAdd" Orientation="Horizontal" IsVisible="{Binding canEdit}">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                            <Image WidthRequest="20" HeightRequest="20" Source="add" Margin="10"/>
+                            <Label Text="添加项目" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout>
+            <Button IsVisible="{Binding canEdit}" Grid.Row="1" x:Name="BtnOk" VerticalOptions="End" HeightRequest="49" BackgroundColor="#EDEDED" 
+                Image="doctick" Clicked="BtnOk_Clicked" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
