@@ -3,7 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-//using CN.Jpush.Android.Api;
+using CN.Jpush.Android.Api;
 using OxyPlot;
 using Plugin.CurrentActivity;
 using System;
@@ -114,28 +114,25 @@ namespace AepApp.Droid
         /// </summary>
         private void InitJPush(Context context)
         {
-            //JPushInterface.SetDebugMode(true);
-            //JPushInterface.Init(context);
-            //JPushInterface.SetAlias(context, 0, "alias_test");
-
-            //BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(this);
-            //builder.StatusBarDrawable = Resource.Drawable.jpush_notification_icon;
-            //JPushInterface.SetPushNotificationBuilder(new Java.Lang.Integer(1), builder);
+            JPushInterface.SetDebugMode(true);
+            JPushInterface.Init(context);
+            JPushInterface.SetAlias(context, 0, "uapp_alias_test");
+            BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(this);
+            builder.StatusBarDrawable = Resource.Drawable.jpush_notification_icon;
+            JPushInterface.SetPushNotificationBuilder(new Java.Lang.Integer(1), builder);
         }
 
 
         protected override void OnResume()
         {
             base.OnResume();
-
-            //JPushInterface.OnResume(this);
+            JPushInterface.OnResume(this);
         }
 
         protected override void OnPause()
         {
             base.OnPause();
-
-            //JPushInterface.OnPause(this);
+            JPushInterface.OnPause(this);
         }
     }
 

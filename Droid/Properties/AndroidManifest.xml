@@ -64,7 +64,7 @@
 		<!-- 发到其他市场的 APK 可以设置为 xxx-market。 -->
 		<meta-data android:name="JPUSH_CHANNEL" android:value="developer-default" />
 		<!-- Required. AppKey copied from Portal -->
-		<meta-data android:name="JPUSH_APPKEY" android:value="b838614b1a6ff9b76cbdd392" />
+		<meta-data android:name="JPUSH_APPKEY" android:value="47ddd95d443bebfbce7859a4" />
 		<!--   JPush End  -->
 	</application>
 	<uses-permission android:name="android.permission.INTERNET" />

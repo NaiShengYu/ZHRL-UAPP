@@ -20,7 +20,7 @@ namespace AepApp.Droid.JPush
             get;
         }
 
-        public virtual void Handle(Bundle bundle)
+        public virtual void Handle(Intent bundle)
         {
         }
     }

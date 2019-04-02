@@ -32,7 +32,7 @@ namespace AepApp.Droid.JPush
 
             var action = intent.Action;
             System.Diagnostics.Debug.WriteLine(action);
-            var bundle = intent.Extras;
+            var bundle = intent;
             await ReceiverHandler.Handle(intent.Action, bundle);
         }
     }
