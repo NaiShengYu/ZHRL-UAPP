@@ -288,12 +288,12 @@ namespace AepApp.View.EnvironmentalEmergency
             }
             bottomH.Height = 50;
             BindingContext = _placementModel;
-            personLV.ItemsSource = _placementModel.staffs;
-            PersonNumFrame.BindingContext = _placementModel.staffs;
-            equipmentLV.ItemsSource = _placementModel.equips;
-            equipmentNumFrame.BindingContext = _placementModel.equips;
-            taskLV.ItemsSource = _placementModel.tasklist;
-            taskNumFrame.BindingContext = _placementModel.tasklist;
+            //personLV.ItemsSource = _placementModel.staffs;
+            //PersonNumFrame.BindingContext = _placementModel.staffs;
+            //equipmentLV.ItemsSource = _placementModel.equips;
+            //equipmentNumFrame.BindingContext = _placementModel.equips;
+            //taskLV.ItemsSource = _placementModel.tasklist;
+            //taskNumFrame.BindingContext = _placementModel.tasklist;
 
             _projectId = projectId;
         }
@@ -307,13 +307,14 @@ namespace AepApp.View.EnvironmentalEmergency
                 _placementModel = JsonConvert.DeserializeObject<AddPlacementModel>(hTTPResponse.Results);
                 _placementModel.canEdit = false;
                 BindingContext = _placementModel;
-                personLV.ItemsSource = _placementModel.staffs;
-                PersonNumFrame.BindingContext = _placementModel.staffs;
-                equipmentLV.ItemsSource = _placementModel.equips;
-                equipmentNumFrame.BindingContext = _placementModel.equips;
-                taskLV.ItemsSource = _placementModel.tasklist;
-                taskNumFrame.BindingContext = _placementModel.tasklist;
-                _placementModel.canEdit = false;
+
+                //personLV.ItemsSource = _placementModel.staffs;
+                //PersonNumFrame.BindingContext = _placementModel.staffs;
+                //equipmentLV.ItemsSource = _placementModel.equips;
+                //equipmentNumFrame.BindingContext = _placementModel.equips;
+                //taskLV.ItemsSource = _placementModel.tasklist;
+                //taskNumFrame.BindingContext = _placementModel.tasklist;
+
             }
             else
             {

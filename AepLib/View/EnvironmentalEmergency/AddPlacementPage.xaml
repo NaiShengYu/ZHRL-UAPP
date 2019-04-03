@@ -60,10 +60,10 @@
                     <Grid BackgroundColor="Silver">
                         <Label VerticalOptions="CenterAndExpand" Margin="10,5,0,5" Text="相关人员" Font="17" />
                         <Frame x:Name="PersonNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0" IsClippedToBounds="true" BackgroundColor="Gray" Margin="0,0,15,0">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding staffs.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
+                    <ListView ItemsSource="{Binding staffs}" x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="PersonBindingChanged">
@@ -85,10 +85,10 @@
                     <Grid BackgroundColor="Silver">
                         <Label VerticalOptions="CenterAndExpand" Margin="10,5,0,5" Text="相关设备" Font="17" />
                         <Frame x:Name="equipmentNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="Gray" Margin="0,0,15,0">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding equips.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView x:Name="equipmentLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
+                    <ListView x:Name="equipmentLV" ItemsSource="{Binding equips}" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="EquipmentBindingChanged">
@@ -111,10 +111,10 @@
                     <Grid BackgroundColor="Silver">
                         <Label VerticalOptions="CenterAndExpand" Margin="10,5,0,5" Text="任务" Font="17" />
                         <Frame x:Name="taskNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="Gray" Margin="0,0,15,0">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Count}" TextColor="White" />
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding tasklist.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView x:Name="taskLV" ItemSelected="Handle_TaskSelected" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="50" SeparatorVisibility="None">
+                    <ListView x:Name="taskLV" ItemsSource="{Binding tasklist}" ItemSelected="Handle_TaskSelected" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="50" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="taskBindingChanged">

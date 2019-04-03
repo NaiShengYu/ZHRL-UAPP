@@ -116,7 +116,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     {
                         //Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
                         var coord1 = new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat));
-
+                        //红色原点
                         AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("reddot"), new Size(25, 25), coord1)
                         {
                         };

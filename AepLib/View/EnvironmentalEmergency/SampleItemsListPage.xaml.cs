@@ -19,11 +19,18 @@ namespace AepApp.View.EnvironmentalEmergency
     public partial class SampleItemsListPage : ContentPage
     {
         private string mSearchKey;
+        public int _type = 1;
+        public EventHandler<EventArgs> SelectItem;
         private ObservableCollection<SampleExamineItem> dataList = new ObservableCollection<SampleExamineItem>();
 
-        public SampleItemsListPage()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:AepApp.View.EnvironmentalEmergency.SampleItemsListPage"/> class.
+        /// </summary>
+        /// <param name="type">1表示因子组，2表示单因子</param>
+        public SampleItemsListPage(int type)
         {
             InitializeComponent();
+            _type = type;
             SearchData();
         }
 
@@ -35,7 +42,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 return;
             }
-            MessagingCenter.Send<ContentPage, SampleExamineItem>(this, "selectItem", s);
+            SelectItem.Invoke(s, new EventArgs());
             Navigation.PopAsync();
         }
 
@@ -60,7 +67,12 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private async void ReqList()
         {
-            string url = App.SamplingModule.url + "/api/Analysistype/PagedList";
+
+            string url = "";
+            if (_type==1)
+                url = App.SamplingModule.url + "/api/Analysistype/PagedList";
+            else
+                url = App.SamplingModule.url + "/api/Factor/PagedList";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", -1);
             map.Add("searchKey", mSearchKey);

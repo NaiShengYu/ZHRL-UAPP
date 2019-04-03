@@ -40,7 +40,7 @@
                     <Label Text="检测项目" TextColor="Black" Font="18" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" HeightRequest="50" Margin="10,0,0,0" VerticalTextAlignment="Center" />
                     <Frame VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" 
                                Padding="0,0,0,0" IsClippedToBounds="true" BackgroundColor="#B9B9B9" IsVisible="True" Margin="0, 0, 10, 0">
-                        <Label x:Name="LbNum" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White" Font="14"/>
+                        <Label Text="{Binding taskAnas.Count}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" Font="14"/>
                     </Frame>
                 </Grid>
                 <ListView x:Name="LvItems" CachingStrategy="RecycleElementAndDataTemplate" HasUnevenRows="True" SeparatorColor="#e6e6e6" SeparatorVisibility="Default">
