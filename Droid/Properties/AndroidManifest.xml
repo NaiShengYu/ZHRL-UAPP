@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.zhrl.AepApp" android:installLocation="auto" android:versionCode="19" android:versionName="1.1.4">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.zhrl.AepApp" android:installLocation="auto" android:versionCode="20" android:versionName="1.1.5">
 	<uses-sdk android:minSdkVersion="15" />
 	<application android:label="环保监管" android:icon="@drawable/icon">
 		<service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"></service>
@@ -64,7 +64,7 @@
 		<!-- 发到其他市场的 APK 可以设置为 xxx-market。 -->
 		<meta-data android:name="JPUSH_CHANNEL" android:value="developer-default" />
 		<!-- Required. AppKey copied from Portal -->
-		<meta-data android:name="JPUSH_APPKEY" android:value="b838614b1a6ff9b76cbdd392" />
+		<meta-data android:name="JPUSH_APPKEY" android:value="47ddd95d443bebfbce7859a4" />
 		<!--   JPush End  -->
 	</application>
 	<uses-permission android:name="android.permission.INTERNET" />

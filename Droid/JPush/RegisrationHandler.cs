@@ -23,10 +23,10 @@ namespace AepApp.Droid.JPush
             }
         }
 
-        public override void Handle(Bundle bundle)
+        public override void Handle(Intent bundle)
         {
             //SDK 向 JPush Server 注册所得到的注册 全局唯一的 ID ，可以通过此 ID 向对应的客户端发送消息和通知。
-            var id = bundle.GetString(JPushInterface.ExtraRegistrationId);
+            var id = bundle.GetStringExtra(JPushInterface.ExtraRegistrationId);
         }
     }
 }
