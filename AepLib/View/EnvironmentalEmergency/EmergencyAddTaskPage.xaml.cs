@@ -1,7 +1,6 @@
 ﻿using AepApp.Models;
 using AepApp.Tools;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
@@ -12,7 +11,6 @@ namespace AepApp.View.EnvironmentalEmergency
     public partial class EmergencyAddTaskPage : ContentPage
     {
         private AddPlacement_Task mTask;
-        private List<AddPlacement_Analysist> examineItems = new List<AddPlacement_Analysist>();
         private ObservableCollection<AddPlacement_Analysist> datas = new ObservableCollection<AddPlacement_Analysist>();
 
         public event EventHandler<EventArgs> SaveTask;
@@ -28,8 +26,11 @@ namespace AepApp.View.EnvironmentalEmergency
                 mTask.canEdit = true;
                 mTask.flag = "Add";
                 mTask.taskstatus = "0";
+                mTask.taskAnas = datas;
             }
             BindingContext = mTask;
+            LvItems.ItemsSource = datas;
+
         }
 
         public EmergencyAddTaskPage(AddPlacement_Task task) : this()
@@ -48,28 +49,36 @@ namespace AepApp.View.EnvironmentalEmergency
                 pickerType.SelectedIndex = code;
             }
             datas = mTask.taskAnas;
-            examineItems.Clear();
-            foreach (var item in datas)
-            {
-                examineItems.Add(item);
-            }
             LvItems.ItemsSource = datas;
-            LbNum.Text = datas.Count + "";
             BindingContext = mTask;
         }
 
         //添加项目
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SampleItemsListPage());
-            MessagingCenter.Unsubscribe<ContentPage, SampleExamineItem>(this, "selectItem");
-            MessagingCenter.Subscribe<ContentPage, SampleExamineItem>(this, "selectItem", async (arg1, arg2) =>
+
+            int type = 1;
+            var action = await DisplayActionSheet("检测项目", "取消", "", new string[] { "因子组监测", "单因子监测" });
+            switch (action)
             {
-                var item = arg2 as SampleExamineItem;
+                case "因子组监测":
+                    type = 1;
+                    break;
+                case "单因子监测":
+                    type = 2;
+                    break;
+
+                default: break;
+            }
+            SampleItemsListPage samepleOther = new SampleItemsListPage(type);
+            await Navigation.PushAsync(samepleOther);
+            samepleOther.SelectItem += (object item, EventArgs bbb) =>
+            {
+                SampleExamineItem selectItem = item as SampleExamineItem;
                 bool has = false;
-                foreach (var s in examineItems)
+                foreach (var s in datas)
                 {
-                    if (s.atid == item.id)
+                    if (s.atid == selectItem.id)
                     {
                         has = true;
                         break;
@@ -78,22 +87,19 @@ namespace AepApp.View.EnvironmentalEmergency
                 if (!has)
                 {
                     AddPlacement_Analysist anas = new AddPlacement_Analysist();
-                    anas.atid = item.id;
-                    anas.atname = item.name;
-                    anas.attype = "0";
-                    examineItems.Add(anas);
+                    anas.atid = selectItem.id;
+                    anas.atname = selectItem.name;
+                    anas.attype = type == 2 ? "2" : "0";
+                    datas.Add(anas);
                 }
-                datas = new ObservableCollection<AddPlacement_Analysist>(examineItems);
                 mTask.taskAnas = datas;
-                LvItems.ItemsSource = datas;
-                LbNum.Text = examineItems.Count + "";
-            });
+            };
         }
 
         void taskBindingChanged(object sender, System.EventArgs e)
         {
             ViewCell cell = sender as ViewCell;
-            if (cell ==null)
+            if (cell == null)
             {
                 return;
             }
@@ -117,14 +123,14 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             MenuItem item = sender as MenuItem;
             AddPlacement_Analysist s = item.BindingContext as AddPlacement_Analysist;
-            examineItems.Remove(s);
             datas.Remove(s);
-            LbNum.Text = examineItems.Count + "";
+            datas.Remove(s);
+
         }
 
         private void BtnOk_Clicked(object sender, EventArgs e)
         {
-            if (mTask ==null || !mTask.canEdit)
+            if (mTask == null || !mTask.canEdit)
             {
                 return;
             }
