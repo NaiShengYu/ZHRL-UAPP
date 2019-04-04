@@ -1,4 +1,5 @@
 ﻿using AepApp.AuxiliaryExtension;
+using AepApp.Services;
 using AepApp.Tools;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace AepApp.View
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetBackButtonTitle(this, "");
+            DependencyService.Get<IPushService>().SetAlias("");
         }
 
         private void Select_site(object sender, EventArgs e)

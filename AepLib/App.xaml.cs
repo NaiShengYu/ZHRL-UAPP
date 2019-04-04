@@ -1,6 +1,7 @@
 using AepApp.AuxiliaryExtension;
 using AepApp.Interface;
 using AepApp.Models;
+using AepApp.Services;
 //using AepApp.View.SecondaryFunction;
 using AepApp.Tools;
 using AepApp.View;
@@ -307,7 +308,10 @@ namespace AepApp
             if (fwtoken == null) return false;
             App.userInfo = await getUserInfoAsync(fwtoken.access_token);//获取用户信息
             if (App.userInfo == null) return false;
-
+            if(App.userInfo.id != null)//设置JPush别名
+            {
+                DependencyService.Get<IPushService>().SetAlias(App.userInfo.id.ToString());
+            }
             _autologgedin = true;
             FrameworkToken = fwtoken.access_token;
 
