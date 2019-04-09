@@ -513,6 +513,7 @@
     <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
     <Compile Include="Renderers\BorderlessTimePickerRenderer.cs" />
     <Compile Include="Renderers\WebViewRender.cs" />
+    <Compile Include="Services\PushService.cs" />
     <Compile Include="Services\WebviewBaseUrl.cs" />
     <Compile Include="StatusBar.cs" />
     <Compile Include="TextMeter.cs" />

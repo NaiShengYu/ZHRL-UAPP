@@ -120,6 +120,10 @@ namespace AepApp.Models
             get
             {
                 string aa = "";
+                if(taskAnas == null || taskAnas.Count == 0)
+                {
+                    return aa;
+                }
                 foreach (AddPlacement_Analysist item in taskAnas)
                 {
                     if (string.IsNullOrWhiteSpace(aa))

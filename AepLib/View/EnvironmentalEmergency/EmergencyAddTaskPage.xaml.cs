@@ -1,7 +1,6 @@
 ﻿using AepApp.Models;
 using AepApp.Tools;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
@@ -73,10 +72,12 @@ namespace AepApp.View.EnvironmentalEmergency
 
                         return;
                 }
+
             }
             SampleItemsListPage samepleOther = new SampleItemsListPage(type);
             await Navigation.PushAsync(samepleOther);
-            samepleOther.SelectItem += (object item, EventArgs bbb) => {
+            samepleOther.SelectItem += (object item, EventArgs bbb) =>
+            {
                 SampleExamineItem selectItem = item as SampleExamineItem;
                 bool has = false;
                 foreach (var s in datas)
@@ -92,7 +93,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     AddPlacement_Analysist anas = new AddPlacement_Analysist();
                     anas.atid = selectItem.id;
                     anas.atname = selectItem.name;
-                    anas.attype = "0";
+                    anas.attype = type == 2 ? "2" : "0";
                     datas.Add(anas);
                 }
                 mTask.taskAnas = datas;
@@ -102,7 +103,7 @@ namespace AepApp.View.EnvironmentalEmergency
         void taskBindingChanged(object sender, System.EventArgs e)
         {
             ViewCell cell = sender as ViewCell;
-            if (cell ==null)
+            if (cell == null)
             {
                 return;
             }
@@ -133,7 +134,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private void BtnOk_Clicked(object sender, EventArgs e)
         {
-            if (!mTask.canEdit)
+            if (mTask == null || !mTask.canEdit)
             {
                 return;
             }

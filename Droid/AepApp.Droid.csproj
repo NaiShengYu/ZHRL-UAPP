@@ -409,6 +409,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\PushService.cs" />
     <Compile Include="Services\RecordService.cs" />
     <Compile Include="Services\WebviewBaseUrl.cs" />
     <Compile Include="StatusBar.cs" />

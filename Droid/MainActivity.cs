@@ -116,7 +116,6 @@ namespace AepApp.Droid
         {
             JPushInterface.SetDebugMode(true);
             JPushInterface.Init(context);
-            JPushInterface.SetAlias(context, 0, "uapp_alias_test");
             BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(this);
             builder.StatusBarDrawable = Resource.Drawable.jpush_notification_icon;
             JPushInterface.SetPushNotificationBuilder(new Java.Lang.Integer(1), builder);
