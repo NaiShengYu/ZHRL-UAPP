@@ -17,13 +17,13 @@ namespace AepApp.View.EnvironmentalEmergency
             if (string.IsNullOrWhiteSpace(searchKey))
             {
                 dataList.Clear();
-                ReqEmergencyPlan(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+                ReqEmergencyPlan(searchKey, ""); //网络请求专家库，10条每次       
             }
         }
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
             dataList.Clear();
-            ReqEmergencyPlan(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            ReqEmergencyPlan(searchKey, ""); //网络请求专家库，10条每次       
         }
         string searchKey = "";
         private int totalNum = 0;
@@ -45,7 +45,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public EmergencyPlan()
         {
             InitializeComponent();
-            ReqEmergencyPlan(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            ReqEmergencyPlan(searchKey, ""); //网络请求专家库，10条每次       
     
         }
         private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
@@ -55,7 +55,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (dataList.Count < totalNum)
                 {
-                    ReqEmergencyPlan(searchKey, "", dataList.Count, 10); //网络请求敏感源，10条每次
+                    ReqEmergencyPlan(searchKey, ""); //网络请求敏感源，10条每次
                 }
             }
         }
@@ -70,9 +70,9 @@ namespace AepApp.View.EnvironmentalEmergency
         }
 
 
-        private async void ReqEmergencyPlan(String Filter, String Sorting, int SkipCount, int MaxResultCount)
+        private async void ReqEmergencyPlan(String Filter, String Sorting)
         {
-            string url = App.EmergencyModule.url + DetailUrl.EmergencyPlan + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
+            string url = App.EmergencyModule.url + DetailUrl.EmergencyPlan + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=10" +"&SkipCount=" + dataList.Count;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {

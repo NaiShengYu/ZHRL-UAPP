@@ -311,12 +311,6 @@
     <Reference Include="Plugin.AudioRecorder">
       <HintPath>..\packages\Plugin.AudioRecorder.1.0.1\lib\xamarinios10\Plugin.AudioRecorder.dll</HintPath>
     </Reference>
-    <Reference Include="InTheHand.Forms">
-      <HintPath>..\packages\InTheHand.Forms.1.0.2018.423\lib\Xamarin.iOS10\InTheHand.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="InTheHand.Forms.Platform.iOS">
-      <HintPath>..\packages\InTheHand.Forms.1.0.2018.423\lib\Xamarin.iOS10\InTheHand.Forms.Platform.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.EntityFrameworkCore">
@@ -327,6 +321,12 @@
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Sqlite">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Sqlite.Core.2.0.0\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="InTheHand.Forms">
+      <HintPath>..\packages\InTheHand.Forms.1.0.2019.118\lib\Xamarin.iOS10\InTheHand.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="InTheHand.Forms.Platform.iOS">
+      <HintPath>..\packages\InTheHand.Forms.1.0.2019.118\lib\Xamarin.iOS10\InTheHand.Forms.Platform.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

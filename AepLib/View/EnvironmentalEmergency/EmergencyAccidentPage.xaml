@@ -2,11 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.EnvironmentalEmergency.EmergencyAccidentPage" 
+             xmlns:views="clr-namespace:AepApp.MaterialForms"
              Title="应急事故">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Fill" Spacing="0" Orientation="Vertical">
             <SearchBar BackgroundColor="White" Placeholder="搜索" TextChanged="Handle_TextChanged" x:Name="seach" StyleClass="sbar" SearchButtonPressed="Handle_SearchButtonPressed" />
             <ListView CachingStrategy="RecycleElementAndDataTemplate" x:Name="listView" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" ItemAppearing="listView_ItemAppearing">
+                <ListView.Header>
+                    <Grid>
+                       <Grid BackgroundColor="#ededed" x:Name="addGrid">
+                            <Label Text="添加新事故" Margin="10" TextColor="Black" Font="19" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Button Margin="10,10,20,10" Image="add" Clicked="Handle_AddEmergencyAccident" BackgroundColor="Transparent" Padding="0" WidthRequest="35" HeightRequest="35" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </Grid> 
+                        
+                         <Grid BackgroundColor="#ededed" x:Name="editGrid" IsVisible="false">
+                            <StackLayout Margin="0,0,70,0" Orientation="Vertical" Spacing="7">
+                            <views:BorderlessEntry x:Name="titleEntry" Placeholder="请输入标题" XAlign="Start" HorizontalOptions="Fill" HorizontalTextAlignment="End" VerticalOptions="Center" Margin="20,10,10,0" TextColor="Black" HeightRequest="30" />
+                            <StackLayout Margin="20,0,0,7" Orientation="Horizontal" Spacing="2" VerticalOptions="Center">
+                                    <Button Clicked="Handle_SelectGas" TextColor="#ededed" WidthRequest="30" HeightRequest="30" BackgroundColor="White" BorderRadius="0" Padding="0" Text="气" HorizontalOptions="Start" VerticalOptions="Start"/>
+                                    <Button Clicked="Handle_SelectWater" TextColor="#ededed" WidthRequest="30" HeightRequest="30" BackgroundColor="White" BorderRadius="0" Padding="0" Text="水" HorizontalOptions="Start" VerticalOptions="Start"/>
+                                    <Button Clicked="Handle_SelectSoil" TextColor="#ededed" WidthRequest="30" HeightRequest="30" BackgroundColor="White" BorderRadius="0" Padding="0" Text="土" HorizontalOptions="Start" VerticalOptions="Start"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <Button Margin="10,20,20,20" Image="greentick" Clicked="Handle_EditEmergencyAccident" BackgroundColor="Transparent" Padding="0" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Center"/>
+
+                        </Grid> 
+                    </Grid>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

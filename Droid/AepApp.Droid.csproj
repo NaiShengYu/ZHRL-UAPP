@@ -364,13 +364,13 @@
     <Reference Include="Plugin.AudioRecorder">
       <HintPath>..\packages\Plugin.AudioRecorder.1.0.1\lib\monoandroid81\Plugin.AudioRecorder.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="InTheHand.Forms">
-      <HintPath>..\packages\InTheHand.Forms.1.0.2018.423\lib\MonoAndroid10\InTheHand.Forms.dll</HintPath>
+      <HintPath>..\packages\InTheHand.Forms.1.0.2019.118\lib\MonoAndroid10\InTheHand.Forms.dll</HintPath>
     </Reference>
     <Reference Include="InTheHand.Forms.Platform.Android">
-      <HintPath>..\packages\InTheHand.Forms.1.0.2018.423\lib\MonoAndroid10\InTheHand.Forms.Platform.Android.dll</HintPath>
+      <HintPath>..\packages\InTheHand.Forms.1.0.2019.118\lib\MonoAndroid10\InTheHand.Forms.Platform.Android.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

@@ -221,8 +221,6 @@ namespace AepApp.View.EnvironmentalEmergency
            
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
-                if (dataList.Count != 0)
-                    
                     Navigation.PushAsync(new EmergencyMapPage(dataList,id));
             }));
          
@@ -251,6 +249,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 rightListV.ItemsSource = null;
                 for (int i = count-1; i >=0; i--)
                 {
+                    EmergencyAccidentInfoDetail.IncidentLoggingEventsBean bean = list[i];
                     string cagy = list[i].category;
                     if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent"
                         )
@@ -262,13 +261,14 @@ namespace AepApp.View.EnvironmentalEmergency
 
                     if (cagy == "IncidentLocationSendingEvent")
                     {
-                        AzmCoord center=new AzmCoord(list[i].TargetLng == null ? 0 : list[i].TargetLng.Value, list[i].TargetLat == null ? 0 : list[i].TargetLat.Value);
+                        AzmCoord center=new AzmCoord(list[i].targetLng == null ? 0 : list[i].targetLng.Value, list[i].targetLat == null ? 0 : list[i].targetLat.Value);
                         list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("事故中心点", center)); });
                     }
                     else if (cagy == "IncidentFactorMeasurementEvent")
                     {
                         AzmCoord center = StringUtils.string2Coord(list[i].lng, list[i].lat);
-                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("数据位置", center)); });
+                        string measment = list[i].measurement;
+                        list[i].LocateOnMapCommand = new Command(async () => {await Navigation.PushAsync(new RescueSiteMapPage("数据位置", center,measment)); });
                     }
                     else if (cagy == "IncidentMessageSendingEvent")
                     {
@@ -319,8 +319,37 @@ namespace AepApp.View.EnvironmentalEmergency
                 creatScrollerView();
                 rightListV.ItemsSource = dataList;
                 listView.ItemsSource = dataList;
+                GetEmergencyCenterCoord();
             }
         }
+
+        void GetEmergencyCenterCoord()
+        {
+            App.EmergencyCenterCoord = null;
+            if(App.currentLocation !=null)//初始给一个当前定位
+                App.EmergencyCenterCoord = new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude);
+            foreach (IncidentLoggingEventsBean item in dataList)
+            {
+                if (item.targetLat != 0 && item.targetLng != 0 && item.targetLat != null && item.targetLng != null)
+                {//筛选最新的一次事故中心位置
+                    if (App.EmergencyCenterCoord == null)
+                    {
+                        if (Convert.ToDouble(item.targetLat) <= 90.0) App.EmergencyCenterCoord = new AzmCoord(Convert.ToDouble(item.targetLng), Convert.ToDouble(item.targetLat));
+                    }
+                }
+            }
+            if (App.EmergencyCenterCoord == null)
+            {//如果无法获取当前定位，就给一个默认值
+                App.EmergencyCenterCoord = new AzmCoord(121.630325, 29.889472);
+            }
+            if (App.EmergencyCenterCoord.lat != 0.0f && App.EmergencyCenterCoord.lng != 0.0)
+            {
+                Gps gps = PositionUtil.gcj_To_Gps84(App.EmergencyCenterCoord.lat, App.EmergencyCenterCoord.lng);
+                App.EmergencyCenterCoord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+            }
+
+        }
+
 
 
         bool isStart = true;

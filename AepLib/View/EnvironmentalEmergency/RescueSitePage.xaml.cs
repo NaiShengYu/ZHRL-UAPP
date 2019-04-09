@@ -32,13 +32,13 @@ namespace AepApp.View.EnvironmentalEmergency
             if (string.IsNullOrWhiteSpace(searchKey))
             {
                 dataList.Clear();
-                ReqRescueSite(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+                ReqRescueSite(searchKey, ""); //网络请求专家库，10条每次       
             }
         }
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
             dataList.Clear();
-            ReqRescueSite(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            ReqRescueSite(searchKey, ""); //网络请求专家库，10条每次       
         }
 
         string searchKey = "";
@@ -52,7 +52,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 if(dataList.Count !=0)
                     Navigation.PushAsync(new RescueSiteMapPage(dataList));
             }));
-            ReqRescueSite(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            ReqRescueSite(searchKey, ""); //网络请求专家库，10条每次       
         }
         private void listView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
@@ -61,13 +61,13 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (dataList.Count < totalNum)
                 {
-                    ReqRescueSite(searchKey, "", dataList.Count, 10); //网络请求救援地点，10条每次
+                    ReqRescueSite(searchKey, ""); //网络请求救援地点，10条每次
                 }
             }
         }
-        private async void ReqRescueSite(String Filter, String Sorting, int SkipCount, int MaxResultCount)
+        private async void ReqRescueSite(String Filter, String Sorting)
         {
-            string url = App.EmergencyModule.url + DetailUrl.RescueSite + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
+            string url = App.EmergencyModule.url + DetailUrl.RescueSite + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=10" + "&SkipCount=" + dataList.Count;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {

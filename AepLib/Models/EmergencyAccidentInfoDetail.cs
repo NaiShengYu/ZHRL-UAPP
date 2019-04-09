@@ -62,8 +62,8 @@ namespace AepApp.Models
             public string lat { get; set; }   /// 纬度
             public string lng { get; set; } /// 经度
             public string index { get; set; } /// 排序索引
-            public double? TargetLat { get; set; }   /// 目标点位纬度
-            public double? TargetLng { get; set; }  /// 目标点位经度
+            public double? targetLat { get; set; }   /// 目标点位纬度
+            public double? targetLng { get; set; }  /// 目标点位经度
             public string TargetAddress { get; set; } /// 目标点位地址
             public string Content { get; set; } /// 内容
             public string Title { get; set; }   /// 标题
@@ -162,7 +162,7 @@ namespace AepApp.Models
             {
                 get
                 {
-                    return TargetLng.Value.ToString("0.0#####") + " E, " + TargetLat.Value.ToString("0.0#####") + " N";
+                    return targetLng.Value.ToString("0.0#####") + " E, " + targetLat.Value.ToString("0.0#####") + " N";
                 }
             }
 

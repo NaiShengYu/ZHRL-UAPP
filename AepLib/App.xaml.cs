@@ -77,6 +77,8 @@ namespace AepApp
 
         public static MySamplePlanResult mySamplePlanResult = null;
 
+        //最新的事故中心位置
+        public static AzmCoord EmergencyCenterCoord = null;
         //样本类型数组
         public static List<SampleTypeModel> sampleTypeList = null;
 

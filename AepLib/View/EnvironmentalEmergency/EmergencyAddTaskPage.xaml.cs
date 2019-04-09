@@ -59,17 +59,20 @@ namespace AepApp.View.EnvironmentalEmergency
         {
 
             int type = 1;
-          var action =await DisplayActionSheet("检测项目", "取消", "",new string[]{"因子组监测","单因子监测" });
+            var action =await DisplayActionSheet("检测项目", "取消", null,new string[]{ "因子组检测", "单因子检测" });
             switch (action)
             {
-                case "因子组监测":
+                case "因子组检测":
                         type = 1;
                     break;
-                case "单因子监测":
+                case "单因子检测":
                         type = 2;
                     break;
              
-                default: break;
+                default: {
+
+                        return;
+                }
             }
             SampleItemsListPage samepleOther = new SampleItemsListPage(type);
             await Navigation.PushAsync(samepleOther);

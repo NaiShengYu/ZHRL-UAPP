@@ -99,16 +99,9 @@ namespace AepApp.View.EnvironmentalEmergency
 
         public EmergencyMapPage(ObservableCollection<IncidentLoggingEventsBean> dataList, string incidengtId) : this()
         {
-            AzmCoord coord = null;
             foreach (IncidentLoggingEventsBean item in dataList)
             {
-                if (item.TargetLat != 0 && item.TargetLng != 0)
-                {//筛选最新的一次事故中心位置
-                    if (coord == null)
-                    {
-                        if (Convert.ToDouble(item.TargetLat) <= 90.0) coord = new AzmCoord(Convert.ToDouble(item.TargetLng), Convert.ToDouble(item.TargetLat));
-                    }
-                }
+               
                 if (item.lat != null && Convert.ToDouble(item.lat) != 0.0)
                 {
                     //因子上传位置
@@ -125,17 +118,13 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
             }
 
-            Console.WriteLine("lat===" + coord.lat + "lng==" + coord.lng);
             //设置target坐标//事故中心位置
-            if (coord.lat != 0.0f && coord.lng != 0.0)
+            if (App.EmergencyCenterCoord.lat != 0.0f && App.EmergencyCenterCoord.lng != 0.0)
             {
                 try
                 {
-                    Gps gps = PositionUtil.gcj_To_Gps84(coord.lat, coord.lng);
-                    coord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
                     ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
-
-                    NavLabelView cv = new NavLabelView("事发地点", coord)
+                    NavLabelView cv = new NavLabelView("事发地点", App.EmergencyCenterCoord)
                     {
                         BackgroundColor = Color.FromHex("#f0f0f0"),
                         Size = new Size(100, 25),
@@ -144,21 +133,21 @@ namespace AepApp.View.EnvironmentalEmergency
                     };
 
                     cv.BindingContext = cv;
-                    cv.NavCommand = new Command(() => { openMapNav(coord.lat, coord.lng, "事故地点"); });
+                    cv.NavCommand = new Command(() => { openMapNav(App.EmergencyCenterCoord.lat, App.EmergencyCenterCoord.lng, "事故地点"); });
 
-                    AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(35, 35), coord)
+                    AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(35, 35), App.EmergencyCenterCoord)
                     {
                         BackgroundColor = Color.Transparent,
                         CustomView = cv
                     };
                     map.Overlays.Add(mv);
 
-                    var fivekmcir = new AzmEllipseView(coord, 5000.0);
+                    var fivekmcir = new AzmEllipseView(App.EmergencyCenterCoord, 5000.0);
                     fivekmcir.StrokeThickness = 6;
                     fivekmcir.DashArray = new float[2] { 10.0f, 10.0f };
                     map.ShapeOverlays.Add(fivekmcir);
 
-                    map.SetCenter(13, coord, false);
+                    map.SetCenter(12, App.EmergencyCenterCoord, true);
                 }
                 catch (Exception ex)
                 {
@@ -330,8 +319,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 double lon = Convert.ToDouble(bbb[0]);
                 double lat = Convert.ToDouble(bbb[1]);
                 Navigation.InsertPageBefore(new AddPlacementPage(_incidengtId, bbb[1], bbb[0]), page);
-
-                //todo
             };
             await Navigation.PushAsync(page);
         }
