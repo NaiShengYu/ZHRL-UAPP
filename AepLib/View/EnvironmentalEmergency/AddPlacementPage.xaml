@@ -63,8 +63,8 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding staffs.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView ItemsSource="{Binding staffs}" x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" 
-                              SeparatorVisibility="None"  BackgroundColor="White">
+                    <ListView SelectionMode="None" ItemsSource="{Binding staffs}" x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
+
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="PersonBindingChanged">
@@ -89,8 +89,8 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding equips.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView x:Name="equipmentLV" ItemsSource="{Binding equips}" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45"
-                              SeparatorVisibility="None"  BackgroundColor="White">
+                    <ListView SelectionMode="None" x:Name="equipmentLV" ItemsSource="{Binding equips}" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
+
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="EquipmentBindingChanged">
@@ -121,7 +121,6 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="taskBindingChanged">
-                                    
                                     <Grid>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -131,7 +130,7 @@
                                             <StackLayout Spacing="3">
                                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,5,0,0">
                                                     <Label Text="{Binding taskname}" TextColor="Black" Font="17" HorizontalOptions="Start" VerticalOptions="Center" />
-                                                    <Label Text="{Binding taskTypeDes}" TextColor="White" Font="15" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="rgb(45,126, 251)" />
+                                                    <Label Text="{Binding taskTypeDes}" TextColor="White" Font="15" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="rgb(45,126, 251)" LineBreakMode="TailTruncation"/>
                                                 </StackLayout>
                                                 <Label Margin="10,0,0,5" Text="{Binding factorName}" TextColor="Gray" Font="14" HorizontalOptions="Start" VerticalOptions="Center" />
                                             </StackLayout>

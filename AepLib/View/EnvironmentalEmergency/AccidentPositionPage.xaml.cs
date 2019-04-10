@@ -86,7 +86,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 App.currentLocation = location;
                 if (location != null)
                 {
-                    map.SetCenter(12, new AzmCoord(location.Longitude, location.Latitude), false);
+                    map.SetCenter(12, new AzmCoord(location.Longitude, location.Latitude), true);
                     if (aaa != null)
                     {
                         return;
@@ -164,34 +164,60 @@ namespace AepApp.View.EnvironmentalEmergency
 
         ObservableCollection<poisModel> dataList = new ObservableCollection<poisModel>();
 
-        public AccidentPositionPage(string lng, string lat)
-        {
+        public AccidentPositionPage() {
             InitializeComponent();
-
             searchBar.Margin = new Thickness(0, 0, 0, -App.ScreenHeight);
             searchBar.HeightRequest = App.ScreenHeight - 150;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             listView.ItemsSource = dataList;
 
 
+        }
+        public AccidentPositionPage(string lng, string lat):this()
+        {
+
             if (string.IsNullOrWhiteSpace(lng) || string.IsNullOrWhiteSpace(lat))
             {
                 if (App.currentLocation != null)
                 {
-                    map.SetCenter(12, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude), false);
+                    map.SetCenter(12, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude), true);
                 }
             }
             else
             {
-                map.SetCenter(12, new AzmCoord(Convert.ToDouble(lng), Convert.ToDouble(lat)), false);
+                map.SetCenter(12, new AzmCoord(Convert.ToDouble(lng), Convert.ToDouble(lat)), true);
             }
 
             HandleEventHandler();
         }
 
-        public AccidentPositionPage(string lng, string lat, string title) : this(lng, lat)
+        public AccidentPositionPage(string lng, string lat, string title) : this()
         {
             Title = title;
+
+            //设置target坐标//事故中心位置
+            if (App.EmergencyCenterCoord.lat != 0.0f && App.EmergencyCenterCoord.lng != 0.0)
+            {
+                try
+                {
+                    AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("markerred"), new Size(35, 35), App.EmergencyCenterCoord)
+                    {
+                        BackgroundColor = Color.Transparent,
+                    };
+                    map.Overlays.Add(mv);
+
+                    var fivekmcir = new AzmEllipseView(App.EmergencyCenterCoord, 5000.0);
+                    fivekmcir.StrokeThickness = 6;
+                    fivekmcir.DashArray = new float[2] { 10.0f, 10.0f };
+                    map.ShapeOverlays.Add(fivekmcir);
+
+                    map.SetCenter(12, App.EmergencyCenterCoord, true);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
         }
 
 

@@ -141,9 +141,12 @@ namespace AepApp.View.EnvironmentalEmergency
             ViewCell cell = sender as ViewCell;
             if (_placementModel.canEdit == true)
             {
-                var deletPersonAction = new MenuItem { Text = "删除", IsDestructive = true };
-                deletPersonAction.Clicked += Handle_DeletPerson;
-                cell.ContextActions.Add(deletPersonAction);
+                if (cell.ContextActions.Count == 0)
+                {
+                    var deletPersonAction = new MenuItem { Text = "删除", IsDestructive = true };
+                    deletPersonAction.Clicked += Handle_DeletPerson;
+                    cell.ContextActions.Add(deletPersonAction);
+                }
             }
         }
         void Handle_DeletPerson(object sender, System.EventArgs e)
@@ -178,9 +181,12 @@ namespace AepApp.View.EnvironmentalEmergency
             ViewCell cell = sender as ViewCell;
             if (_placementModel.canEdit == true)
             {
-                var deletEquipmentAction = new MenuItem { Text = "删除", IsDestructive = true };
-                deletEquipmentAction.Clicked += Handle_DeletEquipment;
-                cell.ContextActions.Add(deletEquipmentAction);
+                if (cell.ContextActions.Count == 0)
+                {
+                    var deletEquipmentAction = new MenuItem { Text = "删除", IsDestructive = true };
+                    deletEquipmentAction.Clicked += Handle_DeletEquipment;
+                    cell.ContextActions.Add(deletEquipmentAction);
+                }
             }
         }
         void Handle_DeletEquipment(object sender, System.EventArgs e)
@@ -219,11 +225,14 @@ namespace AepApp.View.EnvironmentalEmergency
             ViewCell cell = sender as ViewCell;
             if (_placementModel.canEdit == true)
             {
-                var deletTaskAction = new MenuItem { Text = "删除", IsDestructive = true };
-                deletTaskAction.Clicked += Handle_DeletTask;
-                cell.ContextActions.Add(deletTaskAction);
+                if(cell.ContextActions.Count == 0) {
+                    var deletTaskAction = new MenuItem { Text = "删除", IsDestructive = true };
+                    deletTaskAction.Clicked += Handle_DeletTask;
+                    cell.ContextActions.Add(deletTaskAction);
+                }
             }
         }
+
         void Handle_DeletTask(object sender, System.EventArgs e)
         {
             MenuItem item = sender as MenuItem;
@@ -288,12 +297,7 @@ namespace AepApp.View.EnvironmentalEmergency
             }
             bottomH.Height = 50;
             BindingContext = _placementModel;
-            //personLV.ItemsSource = _placementModel.staffs;
-            //PersonNumFrame.BindingContext = _placementModel.staffs;
-            //equipmentLV.ItemsSource = _placementModel.equips;
-            //equipmentNumFrame.BindingContext = _placementModel.equips;
-            //taskLV.ItemsSource = _placementModel.tasklist;
-            //taskNumFrame.BindingContext = _placementModel.tasklist;
+        
 
             _projectId = projectId;
         }
@@ -307,14 +311,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 _placementModel = JsonConvert.DeserializeObject<AddPlacementModel>(hTTPResponse.Results);
                 _placementModel.canEdit = false;
                 BindingContext = _placementModel;
-
-                //personLV.ItemsSource = _placementModel.staffs;
-                //PersonNumFrame.BindingContext = _placementModel.staffs;
-                //equipmentLV.ItemsSource = _placementModel.equips;
-                //equipmentNumFrame.BindingContext = _placementModel.equips;
-                //taskLV.ItemsSource = _placementModel.tasklist;
-                //taskNumFrame.BindingContext = _placementModel.tasklist;
-
             }
             else
             {

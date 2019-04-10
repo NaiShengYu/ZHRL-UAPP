@@ -18,13 +18,13 @@ namespace AepApp.View.EnvironmentalEmergency
             if (string.IsNullOrWhiteSpace(searchKey))
             {
                 dataList.Clear();
-                ReqSuccessCase(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+                ReqSuccessCase(searchKey, ""); //网络请求专家库，10条每次       
             }
         }
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
             dataList.Clear();
-            ReqSuccessCase(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            ReqSuccessCase(searchKey, ""); //网络请求专家库，10条每次       
         }
         string searchKey = "";
 
@@ -52,7 +52,7 @@ namespace AepApp.View.EnvironmentalEmergency
           
             };
 
-            ReqSuccessCase(searchKey, "", 0, 10);
+            ReqSuccessCase(searchKey, "");
 
         }
 
@@ -64,9 +64,9 @@ namespace AepApp.View.EnvironmentalEmergency
             await Navigation.PushAsync(new ShowFilePage(fileFormat));
         }
 
-        private async void ReqSuccessCase(String Filter, String Sorting, int SkipCount, int MaxResultCount)
+        private async void ReqSuccessCase(String Filter, String Sorting)
         {
-            string url = App.EmergencyModule.url + DetailUrl.SuccessCase + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
+            string url = App.EmergencyModule.url + DetailUrl.SuccessCase + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=10" + "&SkipCount=" + dataList.Count;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -92,7 +92,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (dataList.Count < totalNum)
                 {
-                    ReqSuccessCase(searchKey, "", dataList.Count, 10); //网络请求敏感源，10条每次
+                    ReqSuccessCase(searchKey, ""); //网络请求敏感源，10条每次
                 }
             }
         }

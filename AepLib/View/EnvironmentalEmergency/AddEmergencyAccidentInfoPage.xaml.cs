@@ -168,7 +168,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //点击了位置按钮
         async void AccidentPosition(object sender, System.EventArgs e)
         {
-            AccidentPositionPage page = new AccidentPositionPage(null, null);
+            AccidentPositionPage page = new AccidentPositionPage(App.EmergencyCenterCoord.lng.ToString(),App.EmergencyCenterCoord.lat.ToString());
             page.Title = "事故位置";
             page.SavePosition += async (object arg2, EventArgs arg1) =>
              {
@@ -1121,7 +1121,7 @@ namespace AepApp.View.EnvironmentalEmergency
                         else if (cagy == "IncidentFactorMeasurementEvent")
                         {
                             AzmCoord center = new AzmCoord(Convert.ToDouble(model.lng), Convert.ToDouble(model.lat));
-                            ShowModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("数据位置", center)); });
+                            ShowModel.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("数据位置", center, ShowModel.measurement)); });
                         }
                         else if (cagy == "IncidentMessageSendingEvent")
                         {

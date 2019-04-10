@@ -4,6 +4,7 @@ using Plugin.MediaManager;
 using Plugin.MediaManager.Abstractions;
 using Plugin.MediaManager.Abstractions.Implementations;
 using System;
+using InTheHand.Forms;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency

@@ -45,7 +45,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (dataList.Count < totalNum)
                 {
-                    ReqExpertLibrary(searchKey,"",  dataList.Count, 10); //网络请求专家库，10条每次
+                    ReqExpertLibrary(searchKey,""); //网络请求专家库，10条每次
                 }
             }
         }
@@ -53,9 +53,9 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
 
-        private async void ReqExpertLibrary(String Filter, String Sorting, int SkipCount, int MaxResultCount)
+        private async void ReqExpertLibrary(String Filter, String Sorting)
         {
-            string url = App.EmergencyModule.url + DetailUrl.ExpertLibraryUrl + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount;
+            string url = App.EmergencyModule.url + DetailUrl.ExpertLibraryUrl + "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=10" + "&SkipCount=" + dataList.Count;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -80,13 +80,13 @@ namespace AepApp.View.EnvironmentalEmergency
             if (string.IsNullOrWhiteSpace(searchKey))
             {
                 dataList.Clear();
-                ReqExpertLibrary(searchKey,"",  0, 10); //网络请求专家库，10条每次       
+                ReqExpertLibrary(searchKey,""); //网络请求专家库，10条每次       
             }
         }
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
             dataList.Clear();
-            ReqExpertLibrary(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            ReqExpertLibrary(searchKey, ""); //网络请求专家库，10条每次       
         }
 
         string searchKey = "";
@@ -94,7 +94,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public ExpertLibraryPage()
         {
             InitializeComponent();
-            ReqExpertLibrary(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            ReqExpertLibrary(searchKey, ""); //网络请求专家库，10条每次       
         }
     }
 }

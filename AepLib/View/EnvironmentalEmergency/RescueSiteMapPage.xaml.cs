@@ -180,6 +180,13 @@ namespace AepApp.View.EnvironmentalEmergency
             AddOverLays(singlecoord, title, 30);
             map.SetCenter(13, singlecoord, false);
         }
+        //事故详情列表数据参数进入
+        public RescueSiteMapPage(string title, AzmCoord singlecoord,string content) : this()
+        {
+            Title = title;
+            AddOverLays(singlecoord, content, 30);
+            map.SetCenter(13, singlecoord, false);
+        }
 
         private void AddOverLays(AzmCoord coord, string overlayName, int imgSize)
         {
@@ -189,8 +196,8 @@ namespace AepApp.View.EnvironmentalEmergency
             NavLabelView cv = new NavLabelView(overlayName, coord)
             {
                 BackgroundColor = Color.FromHex("#f0f0f0"),
-                Size = new Size(100, 25),
-                Anchor = new Point(50, 25),
+                //Size = new Size(100, 25),
+                //Anchor = new Point(50, 25),
                 ControlTemplate = cvt,
             };
 

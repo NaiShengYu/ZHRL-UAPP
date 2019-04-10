@@ -30,6 +30,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public SampleItemsListPage(int type)
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "");
             _type = type;
             SearchData();
         }

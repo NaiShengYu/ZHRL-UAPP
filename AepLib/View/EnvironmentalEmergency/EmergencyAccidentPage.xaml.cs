@@ -1,6 +1,7 @@
 ﻿using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using Sample;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,19 +14,94 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class EmergencyAccidentPage : ContentPage
     {
+        bool _isWater = false;
+        bool _isGas = false;
+        bool _isSoil = false;
+        void Handle_AddEmergencyAccident(object sender, System.EventArgs e)
+        {
+            editGrid.IsVisible = true;
+            addGrid.IsVisible = false;
+            var toolbar = new ToolbarItem("取消", "", () =>
+            {
+                editGrid.IsVisible = false;
+                addGrid.IsVisible = true;
+                ToolbarItems.RemoveAt(0);
+            });
+            ToolbarItems.Add(toolbar);
+        }
+
+        void Handle_SelectGas(object sender, System.EventArgs e)
+        {
+            _isGas = !_isGas;
+            var but = sender as Button;
+            but.BackgroundColor = _isGas == true ? Color.FromHex("#92A6B0") :Color.FromHex("#FFFFFF");
+
+        }
+        void Handle_SelectWater(object sender, System.EventArgs e)
+        {
+            _isWater = !_isWater;
+            var but = sender as Button;
+            but.BackgroundColor = _isWater == true ? Color.FromHex("#2772A5") : Color.FromHex("#FFFFFF");
+
+        }
+        void Handle_SelectSoil(object sender, System.EventArgs e)
+        {
+            _isSoil = !_isSoil;
+            var but = sender as Button;
+            but.BackgroundColor = _isSoil == true ? Color.FromHex("#A56827") : Color.FromHex("#FFFFFF");
+        }
+       async void Handle_EditEmergencyAccident(object sender, System.EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(titleEntry.Text))
+            {
+                DependencyService.Get<IToast>().ShortAlert("请输入标题");
+                return;
+            }
+
+            string url = App.EmergencyModule.url + DetailUrl.AddEmergencyAccident;
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("name", titleEntry.Text);
+            string aaa = "";
+            aaa = _isGas == true ? "1" : "0";
+            aaa = aaa + (_isWater == true ? "1" : "0");
+            aaa = aaa+(_isSoil == true ? "1" : "0");
+            dic.Add("natureString", aaa);
+            string parma = JsonConvert.SerializeObject(dic);
+
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, parma, "POST", App.EmergencyToken);
+            if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
+            {
+                Dictionary<string, object> result = JsonConvert.DeserializeObject<Dictionary<string, object>>(hTTPResponse.Results);
+                var itemdic = result["result"];
+                string itemString = JsonConvert.SerializeObject(itemdic);
+                EmergencyAccidentPageModels.ItemsBean item = JsonConvert.DeserializeObject<EmergencyAccidentPageModels.ItemsBean>(itemString);
+                dataList.Insert(0, item);
+                addGrid.IsVisible = true;
+                editGrid.IsVisible = false;
+                ToolbarItems.RemoveAt(0);
+            }
+            else
+            {
+                DependencyService.Get<IToast>().ShortAlert("添加失败");
+
+            }
+
+
+
+        }
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             searchKey = e.NewTextValue;
             if (string.IsNullOrWhiteSpace(searchKey))
             {
                 dataList.Clear();
-                ReqEmergencyAccidentInfo(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+                ReqEmergencyAccidentInfo(searchKey, "");      
             }
         }
         void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
             dataList.Clear();
-            ReqEmergencyAccidentInfo(searchKey, "", 0, 10); //网络请求专家库，10条每次       
+            ReqEmergencyAccidentInfo(searchKey, ""); //网络请求专家库，10条每次       
         }
         string searchKey = "";
 
@@ -78,15 +154,15 @@ namespace AepApp.View.EnvironmentalEmergency
         public EmergencyAccidentPage()
         {
             InitializeComponent();
-            ReqEmergencyAccidentInfo(searchKey, "", 0, 10);
+            ReqEmergencyAccidentInfo(searchKey, "");
             NavigationPage.SetBackButtonTitle(this, "");
 
         }
 
-        private async void ReqEmergencyAccidentInfo(String Filter, String Sorting, int SkipCount, int MaxResultCount)
+        private async void ReqEmergencyAccidentInfo(String Filter, String Sorting)
         {
             string url = App.EmergencyModule.url + DetailUrl.GetEmergencyAccidentList +
-                    "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=" + MaxResultCount + "&SkipCount=" + SkipCount; ;
+                    "?Filter=" + Filter + "&Sorting=" + Sorting + "&MaxResultCount=10" + "&SkipCount=" + dataList.Count; ;
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, "", "GET", App.EmergencyToken);
             if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
             {
@@ -119,7 +195,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 if (dataList.Count < totalNum)
                 {
-                    ReqEmergencyAccidentInfo(searchKey, "", 0, 10); //网络请求救援地点，10条每次
+                    ReqEmergencyAccidentInfo(searchKey, ""); //网络请求救援地点，10条每次
                 }
             }
         }
