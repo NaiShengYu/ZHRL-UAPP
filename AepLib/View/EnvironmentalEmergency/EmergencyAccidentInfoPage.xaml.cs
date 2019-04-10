@@ -304,6 +304,14 @@ namespace AepApp.View.EnvironmentalEmergency
 
                         }
                     }
+                    else if(cagy == "IncidentVideoSendingEvent")
+                    {
+                        string videoPath = list[i].VideoPath;
+                        if (!string.IsNullOrWhiteSpace(videoPath) && i < list.Count && i >= 0)
+                        {
+                            list[i].CoverPath = FileUtils.ReplaceFileSuffix(videoPath, ".jpg");
+                        }
+                    }
 
                     else if (cagy == "IncidentReportGenerationEvent" || cagy == "IncidentPlanGenerationEvent")
                     {

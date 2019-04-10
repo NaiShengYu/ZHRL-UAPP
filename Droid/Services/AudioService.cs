@@ -2,6 +2,12 @@
 using Xamarin.Forms;
 using SimpleAudioForms.Droid;
 using Android.Media;
+using System.Collections.Generic;
+using Android.Graphics;
+using Java.IO;
+using System.IO;
+using Android.Content;
+using System.Threading.Tasks;
 
 [assembly: Dependency(typeof(AudioService))]
 
@@ -66,7 +72,7 @@ namespace SimpleAudioForms.Droid
             }
             catch (Exception ex)
             {
-                Console.WriteLine("there was an error trying to start the MediaPlayer! cause:" + ex);
+                System.Console.WriteLine("there was an error trying to start the MediaPlayer! cause:" + ex);
             }
         }
 
@@ -81,6 +87,68 @@ namespace SimpleAudioForms.Droid
             }
             mediaPlayer.Release();
             mediaPlayer = null;
+        }
+
+        public ImageSource GenerateThumbImage(string savePath, string url, long usecond)
+        {
+            try
+            {
+                MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                retriever.SetDataSource(url, new Dictionary<string, string>());
+                Bitmap bitmap = retriever.GetFrameAtTime(usecond <= 0 ? 2 * 1000 * 1000 : usecond, Option.ClosestSync);
+                retriever.Release();
+                if (bitmap != null)
+                {
+                    MemoryStream stream = new MemoryStream();
+                    bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
+                    byte[] bitmapData = stream.ToArray();
+                    return ImageSource.FromStream(() => new MemoryStream(bitmapData));
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }            
+            return null;
+        }
+
+        public void SaveThumbImage(string savePath, string fileName, string url, long usecond)
+        {
+            if (string.IsNullOrWhiteSpace(savePath) || string.IsNullOrWhiteSpace(url)) return;
+            
+            try
+            {
+                if (savePath.StartsWith("http") || savePath.StartsWith("https"))
+                {
+                    Context c = Android.App.Application.Context;
+                    Java.IO.File f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryMovies);
+                    savePath = f.AbsolutePath;
+                }
+                Java.IO.FileInputStream input = new FileInputStream(url);
+                MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                //retriever.SetDataSource(url, new Dictionary<string, string>());
+                retriever.SetDataSource(input.FD);
+                Bitmap bitmap = retriever.GetFrameAtTime(usecond <= 0 ? 2 * 1000 * 1000 : usecond, Option.ClosestSync);
+                if (bitmap != null)
+                {
+                    MemoryStream stream = new MemoryStream();
+                    bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
+                    byte[] bitmapData = stream.ToArray();
+                    System.IO.File.WriteAllBytes(savePath + fileName, bitmapData);
+                }
+                retriever.Release();
+                bitmap.Recycle();
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("===error:" + e);
+            }
+            
+        }
+
+        public Task<bool> CompressVideo(string inputPath, string outputPath)
+        {
+            throw new NotImplementedException();
         }
     }
 }

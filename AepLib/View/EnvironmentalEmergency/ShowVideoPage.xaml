@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-
-             xmlns:forms="clr-namespace:InTheHand.Forms;assembly=InTheHand.Forms"
-
+             xmlns:inthe="clr-namespace:InTheHand.Forms;assembly=InTheHand.Forms"
+             xmlns:video="clr-namespace:Plugin.MediaManager;assembly=Plugin.MediaManager.Forms"
              x:Class="AepApp.View.EnvironmentalEmergency.ShowVideoPage">
     <ContentPage.Content>
         <Grid>
+            <inthe:MediaElement CurrentStateChanged="Handle_CurrentStateChanged" HorizontalOptions="Center" BackgroundColor="Black" VerticalOptions="FillAndExpand" 
+                                x:Name="MV" IsLooping="false" KeepScreenOn="true" AreTransportControlsEnabled="true" AutoPlay="false" 
+                                Source="{Binding VideoPath}" Stretch="UniformToFill"/>
 
-            <forms:MediaElement CurrentStateChanged="Handle_CurrentStateChanged" HorizontalOptions="Fill" BackgroundColor="Black" VerticalOptions="Start" HeightRequest="300" x:Name="MV" IsLooping="false" KeepScreenOn="true" AreTransportControlsEnabled="true" AutoPlay="false" Source="{Binding VideoPath}"/>
- 
+            <!--<video:VideoView x:Name="MV"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AspectMode="AspectFill"
+                             />-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>
