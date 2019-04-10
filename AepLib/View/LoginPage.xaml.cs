@@ -85,19 +85,19 @@ namespace AepApp.View
             }
 
             //获取存储文件下的内容
-            var acc = AccountStore.Create().FindAccountsForService(App.AppName).LastOrDefault();
-
-            var siteData = AccountStore.Create().FindAccountsForService(App.SiteData).LastOrDefault();
+            LoginModel userModel = null;
+            List<LoginModel> userModels = await App.Database.GetUserModelAsync();
+            if (userModels != null && userModels.Count > 0)
+                userModel = userModels[0];
             if (isFirstAppear)
             {
-                if (acc != null)
+                if (userModel != null)
                 {
-                    account.Text = acc.Username;
-                    password.Text = acc.Properties["pwd"];
+                    account.Text = userModel.userName;
+                    password.Text = userModel.password;
                     remember_pwd.IsToggled = true;
                 }
                 isFirstAppear = false;
-                //Login();
             }
             else if (App.isDeleteInfo)
             {
@@ -173,27 +173,25 @@ namespace AepApp.View
 
         }
 
-        private void deleteData()
+        private async void deleteData()
         {
 
-            //#if !(DEBUG && __IOS__)
-
-            //循环删除所存的数据
-            IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.AppName);
-            for (int i = 0; i < outs.Count(); i++)
-            {
-                AccountStore.Create().Delete(outs.ElementAt(i), App.AppName);
-            }
-            if (remember_pwd.IsToggled)
-            {
-                Account count = new Account
+            ////循环删除所存的数据
+             List<LoginModel> userModels = await App.Database.GetUserModelAsync();
+            if (userModels != null && userModels.Count > 0)
+                foreach (var item in userModels)
                 {
-                    Username = acc
-                };
-                count.Properties.Add("pwd", pwd);
-                AccountStore.Create().Save(count, App.AppName);
-            }
-            //#endif
+                    await App.Database.DeleteUserModelAsync(item);
+                }
+
+            LoginModel loginModel = new LoginModel
+            {
+                ID = 0,
+                userName = account.Text,
+                password = password.Text
+            };
+
+            await App.Database.SaveUserModelAsync(loginModel);
         }
 
     }

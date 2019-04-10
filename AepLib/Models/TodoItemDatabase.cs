@@ -16,43 +16,32 @@ namespace Todo
     {
 
         readonly SQLiteAsyncConnection database;
-
-
-
         public TodoItemDatabase(string dbPath)
-
         {
-
             database = new SQLiteAsyncConnection(dbPath);
-
             database.CreateTableAsync<TodoItem>().Wait();
             database.CreateTableAsync<UploadEmergencyModel>().Wait();
+            database.CreateTableAsync<LoginModel>().Wait();
             Console.WriteLine("表创建成功");
         }
 
-        public void CreatEmergencyTable()
-        {
-            database.CreateTableAsync<UploadEmergencyModel>();
-        }
-
         public Task<List<TodoItem>> GetItemsAsync()
-
         {
             return database.Table<TodoItem>().ToListAsync();
         }
         public Task<List<UploadEmergencyModel>> GetEmergencyAsync()
-
         {
             return database.Table<UploadEmergencyModel>().ToListAsync();
+        }
+        public Task<List<LoginModel>> GetUserModelAsync()
+        {
+            return database.Table<LoginModel>().ToListAsync();
         }
 
 
         public Task<List<TodoItem>> GetItemsNotDoneAsync()
-
         {
-
             return database.QueryAsync<TodoItem>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-
         }
 
 
@@ -89,6 +78,17 @@ namespace Todo
             }
         }
 
+        public Task<int> SaveUserModelAsync(LoginModel item)
+        {
+            if (item.ID != 0)
+            {
+                return database.UpdateAsync(item);
+            }
+            else
+            {
+                return database.InsertAsync(item);
+            }
+        }
 
 
         public Task<int> DeleteItemAsync(TodoItem item)
@@ -96,6 +96,11 @@ namespace Todo
             return database.DeleteAsync(item);
         }
         public Task<int> DeleteEmergencyAsync(UploadEmergencyModel item)
+        {
+            return database.DeleteAsync(item);
+        }
+
+        public Task<int> DeleteUserModelAsync(LoginModel item)
         {
             return database.DeleteAsync(item);
         }

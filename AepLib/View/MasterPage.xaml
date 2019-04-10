@@ -274,7 +274,7 @@
                             <Label Text="{Binding menuDutyRosterLabel}">
                             </Label>
                         </Grid>
-                        <StackLayout x:Name="layoutEP" Spacing="0">
+                        <StackLayout x:Name="layoutEP" Spacing="0" IsVisible="{Binding menuPollutionSrc}">
                             <Label Text="{Binding menu360Label}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             <Grid StyleClass="menuitem" IsVisible="{Binding menuPollutionSrc}">
                                 <Label BindingContext="AepApp.View.PollutionSourcePage" HeightRequest="0" />

@@ -16,7 +16,7 @@
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
             <Color x:Key="LightTextColor">#999999</Color>
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="rgb(45,126, 251)" />
+                <Setter Property="BarBackgroundColor" Value="#2D7EFB"/>
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
             <DataTemplate x:Key="natureDT">
