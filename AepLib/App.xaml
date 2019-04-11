@@ -2,9 +2,7 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.App"
-
-             xmlns:forms="clr-namespace:InTheHand.Forms;assembly=InTheHand.Forms"
-
+             xmlns:forms="clr-namespace:Plugin.MediaManager.Forms;assembly=Plugin.MediaManager.Forms"
               xmlns:roxv="clr-namespace:Rox;assembly=Rox.Xamarin.Video.Portable">
     <Application.Resources>
         <ResourceDictionary>
@@ -368,8 +366,11 @@
                 </TextCell.ContextActions>
                     <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
                         <Grid x:Name="pic" VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1" HeightRequest="300" IsClippedToBounds="true">
-                            <forms:MediaElement Margin="-200" Source="{Binding VideoPath}"  BackgroundColor="Black"  VerticalOptions="Fill" HorizontalOptions="Fill" x:Name="MV" IsLooping="false"  AreTransportControlsEnabled="false" AutoPlay="false"/>
-                            <Image HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" Source="open" VerticalOptions="Center" IsEnabled="false"/>
+                            <!--<forms:MediaElement Margin="-200" Source="{Binding VideoPath}"  BackgroundColor="Black"  VerticalOptions="Fill" HorizontalOptions="Fill" 
+                                                x:Name="MV" IsLooping="false"  AreTransportControlsEnabled="false" AutoPlay="false"/>-->
+                          <!--<forms:VideoView VerticalOptions="Fill" HorizontalOptions="Fill" x:Name="MV" Margin="-200" Source="{Binding VideoPath}"  BackgroundColor="Black"/>-->
+                            <Image Source ="{Binding CoverPath}"  VerticalOptions="Fill" HorizontalOptions="Fill" Margin="-200"/>  
+                          <Image HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" Source="open" VerticalOptions="Center" IsEnabled="false"/>
                             <StackLayout Orientation="Horizontal" Margin="-1,-1,0,0" HorizontalOptions="Start" VerticalOptions="Start" >
                                 <Frame Padding="4,1,4,1" CornerRadius="0" HasShadow="False" BorderColor="Transparent" BackgroundColor="#c9b750">
                                     <StackLayout Orientation="Horizontal" Spacing="0">

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using AVFoundation;
+using CoreGraphics;
+using CoreMedia;
 using Foundation;
 using SimpleAudioForms.iOS;
-
+using UIKit;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AudioService))]
@@ -86,5 +89,32 @@ namespace SimpleAudioForms.iOS
 
         }
         #endregion IAudio
+
+
+        public ImageSource GenerateThumbImage(string savePath, string url, long usecond)
+        {
+            AVAssetImageGenerator imageGenerator = new AVAssetImageGenerator(AVAsset.FromUrl((new Foundation.NSUrl(url))));
+            imageGenerator.AppliesPreferredTrackTransform = true;
+            CMTime actualTime;
+            NSError error;
+            CGImage cgImage = imageGenerator.CopyCGImageAtTime(new CMTime(usecond, 1000000), out actualTime, out error);
+            //File.WriteAllBytes(savePath, cgImage);
+            return ImageSource.FromStream(() => new UIImage(cgImage).AsPNG().AsStream());
+        }
+
+        public void SaveThumbImage(string savePath, string fileName, string url, long usecond)
+        {
+            AVAssetImageGenerator imageGenerator = new AVAssetImageGenerator(AVAsset.FromUrl((new Foundation.NSUrl(url))));
+            imageGenerator.AppliesPreferredTrackTransform = true;
+            CMTime actualTime;
+            NSError error;
+            CGImage cgImage = imageGenerator.CopyCGImageAtTime(new CMTime(usecond, 1000000), out actualTime, out error);
+            //File.WriteAllBytes(savePath, cgImage);
+        }
+
+        public Task<bool> CompressVideo(string inputPath, string outputPath)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -103,7 +103,9 @@ namespace AepApp.Models
             public string StorePath { get; set; }/// 存储路径(相对路径)
             public string imagePath {
                 get { return App.EmergencyModule.url + StorePath; }
+                set { }
             }
+            public string CoverPath { get; set; }//视频封面路径
             public string VideoPath {
                 get { return App.EmergencyModule.url + StorePath; }
             }// 录像的显示路径

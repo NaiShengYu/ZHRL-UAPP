@@ -13,6 +13,8 @@ namespace AepApp.Tools
         //文件上传--应急模块
         //public const string UPLOAD_EMERGENCY_BASEURL = "http://gx.azuratech.com:5000";
         public const string UPLOAD_EMERGENCY_API = "/api/File/Upload";
+        //上传视频封面
+        public const string UPLOAD_COVER = "/api/File/UploadCover";
         //文件上传--网格化模块
         //public const string UPLOAD_GRID_BASEURL = "http://dev.azuratech.com:50015";
         //public const string UPLOAD_GRID_BASEURL = "http://192.168.2.97:50015";

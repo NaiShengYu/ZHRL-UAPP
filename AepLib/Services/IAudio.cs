@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace SimpleAudioForms
 {
@@ -7,5 +9,8 @@ namespace SimpleAudioForms
         void PlayNetFile(string fileName);
         void PlayLocalFile(string fileName);
         void stopPlay();
-	}
+        ImageSource GenerateThumbImage(string savePath, string url, long usecond);//单位秒
+        void SaveThumbImage(string savePath, string fileName, string url, long usecond);
+        Task<bool> CompressVideo(string inputPath, string outputPath);
+    }
 }

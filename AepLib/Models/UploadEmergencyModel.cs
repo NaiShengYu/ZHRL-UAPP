@@ -73,6 +73,7 @@ namespace AepApp.Models
         public string VideoPath { get; set; }// 录像的显示路径
         public string VoiceStorePath { get; set; }// 录音的显示路径
         public string VoicePath { get; set; }// 录音的显示路径
+        public string CoverPath { get; set; }// 视频封面路径
 
         public string VoiceLenth
         {
