@@ -14,7 +14,9 @@
                 <StackLayout>
                     <Grid>
                         <Label Text="标题" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
-                        <views:BorderlessEntry Placeholder="输入事件标题" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding title}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="100,15,10,5" TextColor="Gray" TextChanged="Handle_TextChanged" HeightRequest="30" />
+                        <views:BorderlessEntry Placeholder="输入事件标题" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding title}" 
+                                               VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="100,15,10,5" TextColor="Gray" 
+                                               TextChanged="Handle_TextChanged" HeightRequest="30" XAlign="End"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>

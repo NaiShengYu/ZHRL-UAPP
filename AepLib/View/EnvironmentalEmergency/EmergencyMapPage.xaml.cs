@@ -377,7 +377,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
         private void BtnBack_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EmergencyAddTaskPage());
+            Navigation.PopAsync();
         }
 
     }

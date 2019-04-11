@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using AVFoundation;
+using CoreGraphics;
+using CoreMedia;
 using Foundation;
 using SimpleAudioForms.iOS;
-
+using UIKit;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AudioService))]
@@ -111,7 +114,7 @@ namespace SimpleAudioForms.iOS
 
         public Task<bool> CompressVideo(string inputPath, string outputPath)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,7 +10,9 @@
                 <StackLayout Spacing="0">
                     <Grid>
                         <Label Text="标题" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,25,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessEntry Placeholder="输入任务标题" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding title}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="100,15,10,5" TextColor="Gray" TextChanged="Handle_TextChanged" HeightRequest="30" />
+                        <views:BorderlessEntry Placeholder="输入任务标题" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" 
+                                               Text="{Binding title}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="100,15,10,5" 
+                                               TextColor="Gray" TextChanged="Handle_TextChanged" HeightRequest="30" XAlign="End"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>

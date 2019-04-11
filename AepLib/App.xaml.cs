@@ -21,9 +21,11 @@ using Todo;
 using Xamarin.Auth;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace AepApp
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class App : Application, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -94,7 +96,6 @@ namespace AepApp
 
         // needed in AccountStore for credential storing
         public static string AppName = "Aep";
-        public static string SiteData = "site";
 
         ///////////////////////////
         public static string token = "";    // old app token
@@ -133,8 +134,7 @@ namespace AepApp
 
 
         private TodoItem item;
-        private Account acc;
-
+        private LoginModel userModel;
         public static VM vm { get; set; }
 
         public App()
@@ -243,18 +243,18 @@ namespace AepApp
 
 
             //获取存储的账号密码
-            acc = (await AccountStore.Create().FindAccountsForServiceAsync(App.AppName)).LastOrDefault();
-
-            if (acc == null)
+            List<LoginModel> userModels = await App.Database.GetUserModelAsync();
+            if (userModels != null && userModels.Count > 0)
+                userModel = userModels[0];
+            if (userModel == null)
             {
                 MainPage = new NavigationPage(new LoginPage());
                 return;
             }
 
             await GetSqlDataAsync();
-
-            string password = acc.Properties["pwd"];
-            string username = acc.Username;
+            string password = userModel.password;
+            string username = userModel.userName;
 
             // try auto login
             _autologgedin = await LoginAsync(username, password);
