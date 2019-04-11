@@ -37,6 +37,7 @@ namespace AepApp.View
 
         protected override async void OnAppearing()
         {
+
             if (App.ScreenWidth < 374)
             {
                 lab1.FontSize = 20;
@@ -184,14 +185,16 @@ namespace AepApp.View
                     await App.Database.DeleteUserModelAsync(item);
                 }
 
-            LoginModel loginModel = new LoginModel
-            {
-                ID = 0,
-                userName = account.Text,
-                password = password.Text
-            };
+            if(remember_pwd.IsToggled == true) {
+                LoginModel loginModel = new LoginModel
+                {
+                    ID = 0,
+                    userName = account.Text,
+                    password = password.Text
+                };
+                await App.Database.SaveUserModelAsync(loginModel);
+            }
 
-            await App.Database.SaveUserModelAsync(loginModel);
         }
 
     }

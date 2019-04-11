@@ -169,12 +169,19 @@ namespace AepApp.View
             bool answer = await DisplayAlert("提示", "是否删除个人账号信息", "确定", "取消");
             if (answer)
             {
-                //循环删除所存的数据
-                IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.AppName);
-                for (int i = 0; i < outs.Count(); i++)
-                {
-                    AccountStore.Create().Delete(outs.ElementAt(i), App.AppName);
-                }
+                ////循环删除所存的数据
+                //IEnumerable<Account> outs = AccountStore.Create().FindAccountsForService(App.AppName);
+                //for (int i = 0; i < outs.Count(); i++)
+                //{
+                //    AccountStore.Create().Delete(outs.ElementAt(i), App.AppName);
+                //}
+                List<LoginModel> userModels = await App.Database.GetUserModelAsync();
+                if (userModels != null && userModels.Count > 0)
+                    foreach (var item in userModels)
+                    {
+                        await App.Database.DeleteUserModelAsync(item);
+                    }
+
                 App.isDeleteInfo = true;
             }
         }
