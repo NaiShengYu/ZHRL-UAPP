@@ -20,9 +20,9 @@ namespace AepApp.Tools
             String path = DependencyService.Get<IFileService>().GetExtrnalStoragePath();
             if (Device.RuntimePlatform == Device.Android)
             {
-                path = path + "/Android/data/com.zhrl.AepApp/logs";
+                path = path + "/logs";
             }
-            Console.WriteLine("file path:" + path);
+            Console.WriteLine("===file path:" + path);
             SaveFile(content, path, fileName);
         }
 

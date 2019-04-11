@@ -273,7 +273,7 @@ namespace AepApp.View.Samples
         private async void GetSampleListOfTask()
         {
             //string url = App.EP360Module.url + "/Api/WaterData/GetListByTid";
-            string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/GetListByTid?taskid=" + _taskId;
+            string url = ApiUtils.SAMPLE_TEST_URL + "/Api/WaterData/GetListByTid?taskid=" + _taskId;
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "");
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -314,8 +314,8 @@ namespace AepApp.View.Samples
             }
             //CrossHud.Current.Show("样本数据上传中...");
             //string url = App.EP360Module.url + "/Api/WaterData/Add";
-            string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/Add";
-            string urlUpdate = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/Update";
+            string url = ApiUtils.SAMPLE_TEST_URL + "/Api/WaterData/Add";
+            string urlUpdate = ApiUtils.SAMPLE_TEST_URL + "/Api/WaterData/Update";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("appearance", _currentSample.Appearance);
             map.Add("depth", _currentSample.Depth);
@@ -389,7 +389,7 @@ namespace AepApp.View.Samples
         {
 
             //string url = App.EP360Module.url + "/Api/Delete?id=" + sampleId;
-            string url = ConstantUtils.SAMPLE_TEST_URL + "/Api/WaterData/Delete?id=" + sampleId;
+            string url = ApiUtils.SAMPLE_TEST_URL + "/Api/WaterData/Delete?id=" + sampleId;
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, "", "POST");
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {

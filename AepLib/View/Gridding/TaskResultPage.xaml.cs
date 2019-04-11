@@ -193,7 +193,7 @@ namespace AepApp.View.Gridding
                 }
                 NameValueCollection nameValue = new NameValueCollection();
                 nameValue.Add("id", mIsEdit ? Guid.NewGuid().ToString() : mRecord.id.ToString());
-                HTTPResponse res = await EasyWebRequest.upload(item.url, ".png", App.EP360Module.url, ConstantUtils.UPLOAD_GRID_API, nameValue);
+                HTTPResponse res = await EasyWebRequest.upload(item.url, ".png", App.EP360Module.url, ApiUtils.UPLOAD_GRID_API, nameValue);
                 if (res.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     try

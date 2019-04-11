@@ -15,6 +15,11 @@ namespace AepApp.iOS.Services
         {
             return System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
         }
+
+        public string GetExtrnalStoragePath(string type)
+        {
+            return System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
+        }
     }
 
 }

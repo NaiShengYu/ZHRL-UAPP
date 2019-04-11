@@ -8,5 +8,6 @@ namespace AepApp.Services
     {
         string GetDbPath();
         String GetExtrnalStoragePath();
+        string GetExtrnalStoragePath(string type);
     }
 }

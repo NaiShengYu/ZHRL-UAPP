@@ -78,7 +78,7 @@ namespace AepApp.View.Gridding
             string url = App.EP360Module.url + "/api/gbm/GetTasksByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", ConstantUtils.PAGE_SIZE);
+            map.Add("pageSize", ApiUtils.PAGE_SIZE);
             if (isSearchMultiple)
             {
                 if (filterCondition.isKeyOn)
@@ -160,7 +160,7 @@ namespace AepApp.View.Gridding
             GridTaskModel item = e.Item as GridTaskModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (hasMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
+                if (hasMore && dataList.Count >= ApiUtils.PAGE_SIZE)
                 {
                     ReqGridTaskList();
                 }
