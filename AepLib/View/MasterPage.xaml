@@ -275,7 +275,9 @@
                             </Label>
                         </Grid>
                         <StackLayout x:Name="layoutEP" Spacing="0">
-                            <Label Text="{Binding menu360Label}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                            <Label Text="{Binding menu360Label}" TextColor="White" BackgroundColor="rgb(48, 116, 163)" FontSize="15" 
+                                   HorizontalOptions="Start" VerticalOptions="Center" Margin="20,10,0,0" WidthRequest="90" 
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  IsVisible="{Binding menuPollutionSrc}"/>
                             <Grid StyleClass="menuitem" IsVisible="{Binding menuPollutionSrc}">
                                 <Label BindingContext="AepApp.View.PollutionSourcePage" HeightRequest="0" />
                                 <Label Text="{Binding menuPollutionSrcLabel}" />
