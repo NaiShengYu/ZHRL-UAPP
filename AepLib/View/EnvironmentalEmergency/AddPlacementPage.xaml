@@ -63,8 +63,8 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding staffs.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView SelectionMode="None" ItemsSource="{Binding staffs}" x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
-
+                    <ListView SelectionMode="None" ItemsSource="{Binding staffs}" x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" 
+                              RowHeight="45" SeparatorVisibility="None"   BackgroundColor="White">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="PersonBindingChanged">
@@ -89,7 +89,8 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding equips.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView SelectionMode="None" x:Name="equipmentLV" ItemsSource="{Binding equips}" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None">
+                    <ListView SelectionMode="None" x:Name="equipmentLV" ItemsSource="{Binding equips}" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" 
+                              RowHeight="45" SeparatorVisibility="None"   BackgroundColor="White">
 
                         <ListView.ItemTemplate>
                             <DataTemplate>

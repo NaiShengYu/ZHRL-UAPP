@@ -118,12 +118,6 @@ namespace SimpleAudioForms.Droid
             
             try
             {
-                if (savePath.StartsWith("http") || savePath.StartsWith("https"))
-                {
-                    Context c = Android.App.Application.Context;
-                    Java.IO.File f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryMovies);
-                    savePath = f.AbsolutePath;
-                }
                 Java.IO.FileInputStream input = new FileInputStream(url);
                 MediaMetadataRetriever retriever = new MediaMetadataRetriever();
                 //retriever.SetDataSource(url, new Dictionary<string, string>());

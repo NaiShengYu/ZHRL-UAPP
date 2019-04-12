@@ -112,7 +112,7 @@ namespace AepApp.View.Gridding
             GridTaskHandleRecordModel item = e.Item as GridTaskHandleRecordModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (hasMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
+                if (hasMore && dataList.Count >= ApiUtils.PAGE_SIZE)
                 {
                     ReqGridTaskList();
                 }

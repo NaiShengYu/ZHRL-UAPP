@@ -7,7 +7,7 @@ namespace AepApp.Tools
     /// <summary>
     /// 常量类
     /// </summary>
-    public class ConstantUtils
+    public class ApiUtils
     {
         public const int PAGE_SIZE = 20;
         //文件上传--应急模块

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using AepApp.Droid.Services;
+﻿using AepApp.Droid.Services;
 using AepApp.Services;
-using Android.App;
+using AepApp.Tools;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using System.IO;
 
 [assembly: Xamarin.Forms.Dependency(typeof(FileService))]
 namespace AepApp.Droid.Services
@@ -24,7 +16,37 @@ namespace AepApp.Droid.Services
 
         public string GetExtrnalStoragePath()
         {
-            return Android.OS.Environment.ExternalStorageDirectory.Path;
+
+            Context c = Android.App.Application.Context;
+            Java.IO.File f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
+            return f.AbsolutePath;
+        }
+
+        public string GetExtrnalStoragePath(string type)
+        {
+            Context c = Android.App.Application.Context;
+            Java.IO.File f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
+            if (Constants.STORAGE_TYPE_DOC.Equals(type))
+            {
+                f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
+            }
+            else if (Constants.STORAGE_TYPE_DOWNLOAD.Equals(type))
+            {
+                f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryDownloads);
+            }
+            else if (Constants.STORAGE_TYPE_PICTURES.Equals(type))
+            {
+                f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryPictures);
+            }
+            else if (Constants.STORAGE_TYPE_MOVIES.Equals(type))
+            {
+                f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryMovies);
+            }
+            else if (Constants.STORAGE_TYPE_MUSIC.Equals(type))
+            {
+                f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryMusic);
+            }
+            return f.AbsolutePath;
         }
     }
 }

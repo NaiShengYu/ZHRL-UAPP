@@ -1410,7 +1410,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             //HTTPResponse hTTPResponse = await EasyWebRequest.SendImageAsync(model.StorePath);
 
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.StorePath, ".png", App.EmergencyModule.url, ConstantUtils.UPLOAD_EMERGENCY_API);
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.StorePath, ".png", App.EmergencyModule.url, ApiUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
@@ -1460,7 +1460,7 @@ namespace AepApp.View.EnvironmentalEmergency
         private async void PostupLoadVideoCoverSending(UploadEmergencyShowModel model)
         {
             HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.CoverPath, FileUtils.GetFileName(model.VideoStorePath, false) + ".jpg", 
-                App.EmergencyModule.url, ConstantUtils.UPLOAD_COVER);
+                App.EmergencyModule.url, ApiUtils.UPLOAD_COVER);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 //uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
@@ -1505,7 +1505,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //上传视频
         private async void PostupLoadVideoSending(UploadEmergencyShowModel model)
         {
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VideoStorePath, ".mp4", App.EmergencyModule.url, ConstantUtils.UPLOAD_EMERGENCY_API);
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VideoStorePath, ".mp4", App.EmergencyModule.url, ApiUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
@@ -1556,7 +1556,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //上传录音
         private async void PostupLoadVoiceSending(UploadEmergencyShowModel model)
         {
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VoiceStorePath, ".mp4", App.EmergencyModule.url, ConstantUtils.UPLOAD_EMERGENCY_API);
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VoiceStorePath, ".mp4", App.EmergencyModule.url, ApiUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);

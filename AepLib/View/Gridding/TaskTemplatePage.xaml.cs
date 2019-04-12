@@ -73,7 +73,7 @@ namespace AepApp.View.Gridding
             string url = App.EP360Module.url + "/api/gbm/GetTemplateByKey";
             Dictionary<string, object> map = new Dictionary<string, object>();
             map.Add("pageIndex", pageIndex);
-            map.Add("pageSize", ConstantUtils.PAGE_SIZE);
+            map.Add("pageSize", ApiUtils.PAGE_SIZE);
             map.Add("searchKey", mSearchKey);
             string param = JsonConvert.SerializeObject(map);
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
@@ -108,7 +108,7 @@ namespace AepApp.View.Gridding
             TaskTemplateModel item = e.Item as TaskTemplateModel;
             if (item == dataList[dataList.Count - 1] && item != null)
             {
-                if (hasMore && dataList.Count >= ConstantUtils.PAGE_SIZE)
+                if (hasMore && dataList.Count >= ApiUtils.PAGE_SIZE)
                 {
                     ReqTaskTemplateList();
                 }

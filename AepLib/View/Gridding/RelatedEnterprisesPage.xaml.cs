@@ -92,7 +92,7 @@ namespace AepApp.View.Gridding
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("keys", searchKey);
             param.Add("pageIndex", pageIndex);
-            param.Add("pageSize", ConstantUtils.PAGE_SIZE);
+            param.Add("pageSize", ApiUtils.PAGE_SIZE);
 
             string Pa = JsonConvert.SerializeObject(param);
 

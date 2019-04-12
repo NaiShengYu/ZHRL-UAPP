@@ -310,6 +310,7 @@ namespace AepApp.View.EnvironmentalEmergency
                         if (!string.IsNullOrWhiteSpace(videoPath) && i < list.Count && i >= 0)
                         {
                             list[i].CoverPath = FileUtils.ReplaceFileSuffix(videoPath, ".jpg");
+                            dataList[0].CoverPath = list[i].CoverPath;
                         }
                     }
 
