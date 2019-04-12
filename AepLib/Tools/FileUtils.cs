@@ -61,12 +61,20 @@ namespace AepApp.Tools
         {
             if (string.IsNullOrWhiteSpace(videoPath) || string.IsNullOrWhiteSpace(thumbName)) return "";
             string dirPath = "";
-            int index = videoPath.LastIndexOf("/");
-            if (index >= 0)
+
+            if (Device.RuntimePlatform == Device.Android)
             {
-                dirPath = videoPath.Substring(0, index + 1);
+                int index = videoPath.LastIndexOf("/");
+                if (index >= 0)
+                {
+                    dirPath = videoPath.Substring(0, index + 1);
+                }
             }
-            DependencyService.Get<IAudio>().stopPlay();
+            if (Device.RuntimePlatform == Device.iOS) { 
+                dirPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal)+"/";
+            }
+
+            DependencyService.Get<IAudio>().stopPlay(); 
             DependencyService.Get<IAudio>().SaveThumbImage(dirPath, thumbName, videoPath, 1);
             return dirPath + thumbName;
 

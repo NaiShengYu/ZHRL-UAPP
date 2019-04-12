@@ -374,7 +374,7 @@ namespace AepApp.View.EnvironmentalEmergency
             if (dataList.Count > 0) rightListV.ScrollTo(dataList[0], ScrollToPosition.Start, true);
 
             //定时器
-            if (_isArchived == "true")
+            if (_isArchived == "false")
             {
             rowOne.Height = 55;
             timeBut.IsVisible = true;

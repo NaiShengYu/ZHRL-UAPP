@@ -6,6 +6,7 @@ using Plugin.MediaManager.Abstractions.Implementations;
 using System;
 using InTheHand.Forms;
 using Xamarin.Forms;
+using SimpleAudioForms;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
@@ -62,6 +63,8 @@ namespace AepApp.View.EnvironmentalEmergency
             if (model != null)
             {
                 _videoPath = model.VideoPath;
+                DependencyService.Get<IAudio>().SaveThumbImage("", "", model.VideoPath, 1);
+
                 play();
             }
         }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using AVFoundation;
 using CoreGraphics;
 using CoreMedia;
 using Foundation;
+using MediaPlayer;
 using SimpleAudioForms.iOS;
 using UIKit;
 using Xamarin.Forms;
@@ -19,7 +21,16 @@ namespace SimpleAudioForms.iOS
         private AVAudioPlayer audioPlayer;
         private string lastFileName;
         public AudioService() {
-       
+            UIImagePickerController controller = new UIImagePickerController();
+            controller.ShowViewController(new UIViewController(),new NSObject());
+            controller.FinishedPickingMedia += (object sender, UIImagePickerMediaPickedEventArgs e) => {
+                UIImagePickerController pickerController = sender as UIImagePickerController;
+               
+ pickerController.DismissViewController(true,
+                     () => { });
+            
+            };
+
         }
         /// <summary>
         /// 播放录音
@@ -104,17 +115,30 @@ namespace SimpleAudioForms.iOS
 
         public void SaveThumbImage(string savePath, string fileName, string url, long usecond)
         {
-            AVAssetImageGenerator imageGenerator = new AVAssetImageGenerator(AVAsset.FromUrl((new Foundation.NSUrl(url))));
+
+            var asset = AVAsset.FromUrl(NSUrl.FromString(url));
+            var imageGenerator = AVAssetImageGenerator.FromAsset(asset);
             imageGenerator.AppliesPreferredTrackTransform = true;
-            CMTime actualTime;
+
+            var actualTime = asset.Duration;
+            CoreMedia.CMTime cmTime = new CoreMedia.CMTime(1, 60);
+
             NSError error;
-            CGImage cgImage = imageGenerator.CopyCGImageAtTime(new CMTime(usecond, 1000000), out actualTime, out error);
-            //File.WriteAllBytes(savePath, cgImage);
+            var imageRef = imageGenerator.CopyCGImageAtTime(cmTime, out actualTime, out error);
+
+            if (imageRef == null)
+                return ;
+            var image = UIImage.FromImage(imageRef);
+            NSData data = image.AsPNG();
+            string aa = Path.Combine(savePath, fileName);
+            data.Save(aa, false, out error);
+
         }
 
         public Task<bool> CompressVideo(string inputPath, string outputPath)
         {
             throw new NotImplementedException();
         }
+
     }
 }

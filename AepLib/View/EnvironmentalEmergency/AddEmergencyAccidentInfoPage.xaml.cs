@@ -881,12 +881,12 @@ namespace AepApp.View.EnvironmentalEmergency
                 Name = videoName,
                 Directory = "Video",
                 SaveToAlbum = true,
-                CompressionQuality = 0,
-                Quality = Plugin.Media.Abstractions.VideoQuality.Low,
+                CompressionQuality = 92,
+                Quality = Plugin.Media.Abstractions.VideoQuality.Medium,
             });
             if (file == null || string.IsNullOrWhiteSpace(file.Path)) return;
 
-            string thumbPath = FileUtils.SaveThumbImage(file.Path, imgName);
+            string thumbPath = FileUtils.SaveThumbImage(file.AlbumPath, imgName);
 
             UploadEmergencyModel emergencyModel = new UploadEmergencyModel
             {
