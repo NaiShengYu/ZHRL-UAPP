@@ -784,7 +784,6 @@ namespace AepApp.View.EnvironmentalEmergency
         //点击了拍照
         async void paiZhao(object sender, System.EventArgs e)
         {
-
             await CrossMedia.Current.Initialize();
 
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
@@ -818,10 +817,10 @@ namespace AepApp.View.EnvironmentalEmergency
                 {
                     uploadStatus = "notUploaded",
                     creationTime = System.DateTime.Now,
-                    //StorePath = "/Sample/" + imageName,
-                    //imagePath = "/Sample/" + imageName,
-                    StorePath = file.Path,
-                    imagePath = file.Path,
+                    StorePath = "Sample/" + imageName,
+                    imagePath = "Sample/" + imageName,
+                    //StorePath = imageName,
+                    //imagePath = imageName,
                     emergencyid = emergencyId,
                     category = "IncidentPictureSendingEvent",
                     creatorusername = App.userInfo.userName,
@@ -872,8 +871,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 await DisplayAlert("No Camera", ":( No camera available.", "OK");
                 return;
             }
-            string videoName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
-            string imgName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_thumb.jpg";
+            string videoName ="RVideo/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
+            string imgName =DateTime.Now.ToString("yyyyMMddHHmmss") + "_thumb.jpg";
 
             var file = await CrossMedia.Current.TakeVideoAsync(new Plugin.Media.Abstractions.StoreVideoOptions
             {
@@ -887,7 +886,7 @@ namespace AepApp.View.EnvironmentalEmergency
             if (file == null || string.IsNullOrWhiteSpace(file.Path)) return;
 
             string thumbPath = FileUtils.SaveThumbImage(file.AlbumPath, imgName);
-            string videoPath = "";
+            string videoPath = file.Path;
             if (Device.RuntimePlatform == Device.iOS)
             {
                 videoPath = FileUtils.VidioTranscoding(file.AlbumPath, videoName);
@@ -897,12 +896,12 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 uploadStatus = "notUploaded",
                 creationTime = System.DateTime.Now,
-                VideoPath = videoPath,
-                VideoStorePath = videoPath,
+                VideoPath = videoName,
+                VideoStorePath = videoName,
                 emergencyid = emergencyId,
                 category = "IncidentVideoSendingEvent",
                 creatorusername = App.userInfo.userName,
-                CoverPath = thumbPath,
+                CoverPath = imgName,
             };
             try
             {
@@ -1097,8 +1096,8 @@ namespace AepApp.View.EnvironmentalEmergency
                         }
                         else if (cagy == "IncidentPictureSendingEvent")
                         {
-                            //ShowModel.StorePath = path + ShowModel.StorePath;
-                            //ShowModel.imagePath = path + ShowModel.imagePath;
+                            ShowModel.StorePath = path+ "/" + ShowModel.StorePath;
+                            ShowModel.imagePath = path + "/" + ShowModel.imagePath;
                         }
                         else if (cagy == "IncidentVoiceSendingEvent")
                         {
@@ -1119,8 +1118,9 @@ namespace AepApp.View.EnvironmentalEmergency
                         }
                         else if (cagy == "IncidentVideoSendingEvent")
                         {
-                            //ShowModel.VideoPath = path + ShowModel.VideoPath;
-                            //ShowModel.VideoStorePath = path + ShowModel.StorePath;
+                            ShowModel.VideoPath = path+"/" + ShowModel.VideoPath;
+                            ShowModel.VideoStorePath = ShowModel.VideoPath;
+                            ShowModel.CoverPath = path + "/" + ShowModel.CoverPath;
                         }
 
                         else if (cagy == "IncidentFactorMeasurementEvent")
@@ -1523,31 +1523,7 @@ namespace AepApp.View.EnvironmentalEmergency
                         model.VideoStorePath = imageResurtData.storeUrl;
                         PostupLoadVideoCoverSending(model);
                     }
-                    //uploadVidoeModel parama = new uploadVidoeModel
-                    //{
-                    //    index = 0,
-                    //    incidentId = model.emergencyid,
-                    //    storePath = imageResurtData.storeUrl,
-                    //    lat = Convert.ToDouble(model.lat),
-                    //    lng = Convert.ToDouble(model.lng),
-                    //    loggingTime = model.creationTime,
-                    //};
-
-                    //string param = JsonConvert.SerializeObject(parama);
-
-                    //HTTPResponse hTTPResponse1 = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/IncidentLoggingEvent/AppendIncidentVideoSendingEvent", param, "POST", App.EmergencyToken);
-                    //Console.WriteLine(hTTPResponse1);
-                    //if (hTTPResponse1.StatusCode == System.Net.HttpStatusCode.OK)
-                    //{
-                    //    var i = dataListDelete.IndexOf(model);
-                    //    await App.Database.DeleteEmergencyAsync(saveList[i]);
-                    //    model.uploadStatus = "UploadedOver";
-                    //    dataListDelete.Remove(model);
-                    //}
-                    //else
-                    //{
-                    //    Console.WriteLine(hTTPResponse);
-                    //}
+                   
 
                 }
             }

@@ -138,7 +138,7 @@ namespace SimpleAudioForms.iOS
         //视频压缩及转码
         public async void VideoTranscoding(string vidoPath, string url)
         {
-
+            //var asset = AVAsset.FromUrl(NSBundle.MainBundle.GetUrlForResource("111.mp4",""));
             var asset = AVAsset.FromUrl(NSUrl.FromString(url));
             AVAssetExportSession session = new AVAssetExportSession(asset, AVAssetExportSessionPreset.Preset640x480);
             session.OutputFileType = AVFileType.Mpeg4;

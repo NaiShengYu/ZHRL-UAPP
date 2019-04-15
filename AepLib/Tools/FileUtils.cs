@@ -80,13 +80,18 @@ namespace AepApp.Tools
 
         }
 
+        //视频转码地址
         public static string VidioTranscoding(string videoPath, string videoName)
         {
             if (string.IsNullOrWhiteSpace(videoPath) || string.IsNullOrWhiteSpace(videoName)) return "";
-            string dirPath = "";
-            dirPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + "/";
-            DependencyService.Get<IAudio>().VideoTranscoding(dirPath + videoName,videoPath);
-            return dirPath + videoName;
+           bool isHave = Directory.Exists(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "RVideo"));
+            if (!isHave)
+            {
+                Directory.CreateDirectory(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "RVideo"));
+            }
+            string dirPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),videoName);
+            DependencyService.Get<IAudio>().VideoTranscoding(dirPath, videoPath);
+            return dirPath;
         }
 
         /// <summary>
