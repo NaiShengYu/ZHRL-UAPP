@@ -21,8 +21,6 @@ namespace AepApp.iOS.Services
 
         public void  startRecord(string filePath){
 
-
-
             var audioSession = AVAudioSession.SharedInstance();
             var err = audioSession.SetCategory(AVAudioSessionCategory.PlayAndRecord);//必须先把声道改成录音模式
             if (err != null)

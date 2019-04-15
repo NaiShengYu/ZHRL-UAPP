@@ -133,7 +133,44 @@ namespace SimpleAudioForms.iOS
             string aa = Path.Combine(savePath, fileName);
             data.Save(aa, false, out error);
 
+         }
+
+        //视频压缩及转码
+        public async void VideoTranscoding(string vidoPath, string url)
+        {
+
+            var asset = AVAsset.FromUrl(NSUrl.FromString(url));
+            AVAssetExportSession session = new AVAssetExportSession(asset, AVAssetExportSessionPreset.Preset640x480);
+            session.OutputFileType = AVFileType.Mpeg4;
+            session.ShouldOptimizeForNetworkUse = true;
+            //必须用fromFileName
+            var ss = NSUrl.FromFilename(vidoPath);   
+
+            session.OutputUrl = ss;
+            session.ExportAsynchronously(new Action(async delegate {
+                Console.WriteLine(session.Status);
+             }));
+           
+
         }
+
+        void HandleAction2()
+        {
+        }
+
+
+        void HandleAction1()
+        {
+        }
+
+
+        void HandleAction(object send)
+        {
+
+
+        }
+
+
 
         public Task<bool> CompressVideo(string inputPath, string outputPath)
         {

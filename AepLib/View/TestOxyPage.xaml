@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <Grid>
         <Button HorizontalOptions="Fill" VerticalOptions="Fill" x:Name="but" Clicked="Handle_Clicked"/>
-        <WebView HorizontalOptions="Fill" VerticalOptions="Fill" Source="http://sx.azuratech.com:32021/upload/4b862f7321d74637a620e2800c39f682.mp4"/>            
+<!--        <WebView HorizontalOptions="Fill" VerticalOptions="Fill" Source="http://sx.azuratech.com:32021/upload/4b862f7321d74637a620e2800c39f682.mp4"/>            -->
         </Grid>
   </ContentPage.Content>
 </ContentPage>

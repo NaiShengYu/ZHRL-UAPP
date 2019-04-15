@@ -35,30 +35,33 @@ namespace AepApp.View
 
        async void Handle_Clicked(object sender, System.EventArgs e)
         {
-            await CrossMedia.Current.Initialize();
+            //await CrossMedia.Current.Initialize();
 
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakeVideoSupported)
-            {
-                await DisplayAlert("No Camera", ":( No camera available.", "OK");
-                return;
-            }
+            //if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakeVideoSupported)
+            //{
+            //    await DisplayAlert("No Camera", ":( No camera available.", "OK");
+            //    return;
+            //}
             string videoName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
             string imgName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_thumb.jpg";
 
-            var file = await CrossMedia.Current.TakeVideoAsync(new Plugin.Media.Abstractions.StoreVideoOptions
-            {
-                DesiredLength = new TimeSpan(0, 0, 10),
-                Name = videoName,
-                Directory = "Video",
-                SaveToAlbum = true,
-                CompressionQuality = 0,
-                Quality = Plugin.Media.Abstractions.VideoQuality.Low,
-            });
-            if (file == null || string.IsNullOrWhiteSpace(file.Path)) return;
+            //var file = await CrossMedia.Current.TakeVideoAsync(new Plugin.Media.Abstractions.StoreVideoOptions
+            //{
+            //    DesiredLength = new TimeSpan(0, 0, 10),
+            //    Name = videoName,
+            //    Directory = "Video",
+            //    SaveToAlbum = true,
+            //    CompressionQuality = 0,
+            //    Quality = Plugin.Media.Abstractions.VideoQuality.Low,
+            //});
+            //if (file == null || string.IsNullOrWhiteSpace(file.Path)) return;
 
-            string thumbPath = FileUtils.SaveThumbImage(file.AlbumPath, imgName);
+            //string thumbPath = FileUtils.SaveThumbImage(file.AlbumPath, imgName);
 
-            but.Image = ImageSource.FromFile(thumbPath) as FileImageSource;
+            //but.Image = ImageSource.FromFile(thumbPath) as FileImageSource;
+
+           var videoPath = FileUtils.VidioTranscoding("", videoName);
+
         }
 
         void Handle_CurrentStateChanged(object sender, System.EventArgs e)

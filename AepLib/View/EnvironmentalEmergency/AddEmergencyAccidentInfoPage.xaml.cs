@@ -882,18 +882,23 @@ namespace AepApp.View.EnvironmentalEmergency
                 Directory = "Video",
                 SaveToAlbum = true,
                 CompressionQuality = 92,
-                Quality = Plugin.Media.Abstractions.VideoQuality.Medium,
+                Quality = Plugin.Media.Abstractions.VideoQuality.High,
             });
             if (file == null || string.IsNullOrWhiteSpace(file.Path)) return;
 
             string thumbPath = FileUtils.SaveThumbImage(file.AlbumPath, imgName);
+            string videoPath = "";
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                videoPath = FileUtils.VidioTranscoding(file.AlbumPath, videoName);
+            }
 
             UploadEmergencyModel emergencyModel = new UploadEmergencyModel
             {
                 uploadStatus = "notUploaded",
                 creationTime = System.DateTime.Now,
-                VideoPath = file.Path,
-                VideoStorePath = file.Path,
+                VideoPath = videoPath,
+                VideoStorePath = videoPath,
                 emergencyid = emergencyId,
                 category = "IncidentVideoSendingEvent",
                 creatorusername = App.userInfo.userName,
@@ -913,8 +918,8 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 uploadStatus = "notUploaded",
                 creationTime = emergencyModel.creationTime,
-                VideoPath = file.Path,
-                VideoStorePath = file.Path,
+                VideoPath = videoPath,
+                VideoStorePath = videoPath,
                 CoverPath = thumbPath,
                 emergencyid = emergencyId,
                 category = "IncidentVideoSendingEvent",

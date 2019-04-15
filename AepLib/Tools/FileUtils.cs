@@ -80,6 +80,15 @@ namespace AepApp.Tools
 
         }
 
+        public static string VidioTranscoding(string videoPath, string videoName)
+        {
+            if (string.IsNullOrWhiteSpace(videoPath) || string.IsNullOrWhiteSpace(videoName)) return "";
+            string dirPath = "";
+            dirPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + "/";
+            DependencyService.Get<IAudio>().VideoTranscoding(dirPath + videoName,videoPath);
+            return dirPath + videoName;
+        }
+
         /// <summary>
         /// 获取本地或网络文件的文件名
         /// </summary>
