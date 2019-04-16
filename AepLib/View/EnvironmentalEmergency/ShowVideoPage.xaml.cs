@@ -2,9 +2,7 @@
 using AepApp.Models;
 using Plugin.MediaManager;
 using Plugin.MediaManager.Abstractions;
-using Plugin.MediaManager.Abstractions.Implementations;
 using System;
-using InTheHand.Forms;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
@@ -13,27 +11,17 @@ namespace AepApp.View.EnvironmentalEmergency
     {
         string _videoPath;
         private IPlaybackController PlaybackController => CrossMediaManager.Current.PlaybackController;
+
         void Handle_CurrentStateChanged(object sender, System.EventArgs e)
         {
-
-            //Console.WriteLine("播放器状态：" +MV.CurrentState);
-
-
+            //Console.WriteLine("播放器状态：" +MV.CurrentState);            
         }
 
         public ShowVideoPage()
         {
             InitializeComponent();
-            NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
+            NavigationPage.SetBackButtonTitle(this, "");
             Title = "视频播放";
-            //SetVideoView();
-        }
-
-        private void SetVideoView()
-        {
-            CrossMediaManager.Current.VolumeManager.Mute = false;
-            CrossMediaManager.Current.MediaFileChanged += Current_MediaFileChanged;
-            CrossMediaManager.Current.StatusChanged += Current_StatusChanged;
         }
 
         private void Current_MediaFileChanged(object sender, Plugin.MediaManager.Abstractions.EventArguments.MediaFileChangedEventArgs e)
@@ -47,33 +35,17 @@ namespace AepApp.View.EnvironmentalEmergency
             //e.Status == Plugin.MediaManager.Abstractions.Enums.MediaPlayerStatus.Playing
         }
 
-        private void play()
-        {
-            if (string.IsNullOrWhiteSpace(_videoPath)) return;
-            //MV.Source = _videoPath;
-            //PlaybackController.Play();
-        }
 
+        //上传数据页面播放视频
         public ShowVideoPage(UploadEmergencyShowModel model) : this()
         {
-
             this.BindingContext = model;
             //Console.WriteLine("时间长度" + MV.NaturalDuration);
-            if (model != null)
-            {
-                _videoPath = model.VideoPath;
-                play();
-            }
         }
+        //事故详情页播放视频
         public ShowVideoPage(EmergencyAccidentInfoDetail.IncidentLoggingEventsBean model) : this()
         {
             this.BindingContext = model;
-            //Console.WriteLine("时间长度" + MV.NaturalDuration);
-            if (model != null)
-            {
-                _videoPath = model.VideoPath;
-                play();
-            }
         }
 
     }

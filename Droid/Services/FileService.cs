@@ -25,7 +25,7 @@ namespace AepApp.Droid.Services
         public string GetExtrnalStoragePath(string type)
         {
             Context c = Android.App.Application.Context;
-            Java.IO.File f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
+            Java.IO.File f = c.GetExternalFilesDir(null);
             if (Constants.STORAGE_TYPE_DOC.Equals(type))
             {
                 f = c.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);

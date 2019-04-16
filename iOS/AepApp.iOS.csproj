@@ -515,6 +515,7 @@
     <BundleResource Include="Resources\village.png" />
     <BundleResource Include="Resources\xls.png" />
     <BundleResource Include="Resources\banner_envq.png" />
+    <BundleResource Include="Resources\111.mp4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

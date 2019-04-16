@@ -28,6 +28,7 @@ namespace AepApp.Droid
         MediaRecorder recorder;
         string savePath = "";
         string dirPath = "";
+        string videoName = "";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -47,7 +48,7 @@ namespace AepApp.Droid
 
         private void resetSavePath()
         {
-            string videoName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
+            videoName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
             savePath = dirPath + "/" + videoName;
         }
 
@@ -228,7 +229,7 @@ namespace AepApp.Droid
         private void back()
         {
             stop(true);
-            Xamarin.Forms.MessagingCenter.Send<ContentPage, string>(new ContentPage(), "RecordVideo", savePath);
+            Xamarin.Forms.MessagingCenter.Send<ContentPage, string>(new ContentPage(), "RecordVideo", videoName);
             Finish();
         }
 

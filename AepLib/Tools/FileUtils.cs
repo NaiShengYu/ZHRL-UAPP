@@ -53,23 +53,31 @@ namespace AepApp.Tools
         }
 
         /// <summary>
-        /// 
+        /// 保存封面，并返回封面完整地址
         /// </summary>
-        /// <param name="videoPath">video的完整路径</param>
+        /// <param name="videoPath">video的相对路径</param>
         /// <param name="thumbName"></param>
         public static string SaveThumbImage(string videoPath, string thumbName)
         {
             if (string.IsNullOrWhiteSpace(videoPath) || string.IsNullOrWhiteSpace(thumbName)) return "";
-            string dirPath = "";
-            int index = videoPath.LastIndexOf("/");
-            if (index >= 0)
-            {
-                dirPath = videoPath.Substring(0, index + 1);
-            }
+            string dirPath = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MOVIES) + "/";
             DependencyService.Get<IAudio>().stopPlay();
             DependencyService.Get<IAudio>().SaveThumbImage(dirPath, thumbName, videoPath, 1);
             return dirPath + thumbName;
+        }
 
+        //视频转码地址
+        public static string VidioTranscoding(string videoPath, string videoName)
+        {
+            if (string.IsNullOrWhiteSpace(videoPath) || string.IsNullOrWhiteSpace(videoName)) return "";
+            bool isHave = Directory.Exists(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "RVideo"));
+            if (!isHave)
+            {
+                Directory.CreateDirectory(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "RVideo"));
+            }
+            string dirPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), videoName);
+            DependencyService.Get<IAudio>().VideoTranscoding(dirPath, videoPath);
+            return dirPath;
         }
 
         /// <summary>
@@ -93,6 +101,13 @@ namespace AepApp.Tools
                 {
                     int suffixLength = filePath.Length - formatIndex;
                     name = filePath.Substring(index + 1, filePath.Length - index - suffixLength - 1);
+                }
+            }
+            else if (index < 0 && formatIndex >= 0)
+            {
+                if (!containsSuffix)
+                {
+                    name = filePath.Substring(0, formatIndex);
                 }
             }
             return name;

@@ -2,61 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AepApp.View.TestOxyPage" 
+             xmlns:inthe="clr-namespace:InTheHand.Forms;assembly=InTheHand.Forms"
              xmlns:forms="clr-namespace:InTheHand.Forms;assembly=InTheHand.Forms" 
              xmlns:roxv="clr-namespace:Rox;assembly=Rox.Xamarin.Video.Portable">
     <ContentPage.Content>
-        
-         <StackLayout Margin="20,35,20,20">
-            
-               <Button Text="增加" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Clicked="Handle_Clicked"/>
-            <Button Text="减少" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="End" VerticalOptions="End" Clicked="Handle_Clicked_1"/>            
-        <CollectionView ItemsSource="{Binding Monkeys}"
-                        ItemsLayout="{x:Static ListItemsLayout.HorizontalList}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="35" />
-                            <RowDefinition Height="35" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="140" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2" 
-                               Source="{Binding ImageUrl}" 
-                               Aspect="AspectFill"
-                               HeightRequest="60" 
-                               WidthRequest="60" />
-                        <Label Grid.Column="1" 
-                               Text="{Binding Name}" 
-                               FontAttributes="Bold"
-                               LineBreakMode="TailTruncation" />
-                        <Label Grid.Row="1"
-                               Grid.Column="1" 
-                               Text="{Binding Location}"
-                               LineBreakMode="TailTruncation"
-                               FontAttributes="Italic" 
-                               VerticalOptions="End" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
-     <!-- <Grid>
-            <Button Text="增加" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Clicked="Handle_Clicked"/>
-            <Button Text="减少" TextColor="Black" WidthRequest="100" HeightRequest="100" HorizontalOptions="End" VerticalOptions="End" Clicked="Handle_Clicked_1"/>
-
-            <CollectionView BackgroundColor="Fuchsia" x:Name="ssss" HeightRequest="120" HorizontalOptions="Fill" VerticalOptions="Center" ItemsLayout="{x:Static ListItemsLayout.HorizontalList}">
-            
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid WidthRequest="100" HeightRequest="100">
-                        <Label WidthRequest="100" HeightRequest="100" BackgroundColor="Olive" Text="{Binding .}" HorizontalOptions="Start" VerticalOptions="Fill"/>                        
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        </Grid>-->
-    </ContentPage.Content>
+        <Grid>
+        <Button HorizontalOptions="Fill" VerticalOptions="Fill" x:Name="but" Clicked="Handle_Clicked"/>
+<!--        <WebView HorizontalOptions="Fill" VerticalOptions="Fill" Source="http://sx.azuratech.com:32021/upload/4b862f7321d74637a620e2800c39f682.mp4"/>            -->
+        </Grid>
+  </ContentPage.Content>
 </ContentPage>

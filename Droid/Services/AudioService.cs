@@ -1,16 +1,14 @@
-﻿using System;
-using Xamarin.Forms;
-using SimpleAudioForms.Droid;
-using Android.Media;
-using System.Collections.Generic;
-using Android.Graphics;
-using Java.IO;
-using System.IO;
+﻿using AepApp.Droid;
 using Android.Content;
+using Android.Graphics;
+using Android.Media;
+using Java.IO;
+using SimpleAudioForms.Droid;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
-using Android.Provider;
-using Android.OS;
-using AepApp.Droid;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AudioService))]
 
@@ -111,17 +109,24 @@ namespace SimpleAudioForms.Droid
             catch (Exception)
             {
                 return null;
-            }            
+            }
             return null;
         }
 
-        public void SaveThumbImage(string savePath, string fileName, string url, long usecond)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dirPath"></param>
+        /// <param name="fileName"></param>
+        /// <param name="url">视频相对路径</param>
+        /// <param name="usecond"></param>
+        public void SaveThumbImage(string dirPath, string fileName, string url, long usecond)
         {
-            if (string.IsNullOrWhiteSpace(savePath) || string.IsNullOrWhiteSpace(url)) return;
-            
+            if (string.IsNullOrWhiteSpace(dirPath) || string.IsNullOrWhiteSpace(url)) return;
+
             try
             {
-                Java.IO.FileInputStream input = new FileInputStream(url);
+                Java.IO.FileInputStream input = new FileInputStream(dirPath + url);
                 MediaMetadataRetriever retriever = new MediaMetadataRetriever();
                 //retriever.SetDataSource(url, new Dictionary<string, string>());
                 retriever.SetDataSource(input.FD);
@@ -131,7 +136,7 @@ namespace SimpleAudioForms.Droid
                     MemoryStream stream = new MemoryStream();
                     bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
                     byte[] bitmapData = stream.ToArray();
-                    System.IO.File.WriteAllBytes(savePath + fileName, bitmapData);
+                    System.IO.File.WriteAllBytes(dirPath + fileName, bitmapData);
                 }
                 retriever.Release();
                 bitmap.Recycle();
@@ -140,7 +145,7 @@ namespace SimpleAudioForms.Droid
             {
                 System.Console.WriteLine("===error:" + e);
             }
-            
+
         }
 
         public Task<bool> CompressVideo(string inputPath, string outputPath)
@@ -157,5 +162,9 @@ namespace SimpleAudioForms.Droid
             c.StartActivity(intent);
         }
 
+        public void VideoTranscoding(string vidoPath, string url)
+        {
+
+        }
     }
 }

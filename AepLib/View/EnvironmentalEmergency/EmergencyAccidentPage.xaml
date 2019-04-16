@@ -39,13 +39,25 @@
                                 </StackLayout>
 
                                 <Grid HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,20,0">
-                                    <Grid BackgroundColor="#800000" WidthRequest="64" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Start">
+                                    <Grid WidthRequest="64" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Start">
                                         <Grid.Triggers>
                                             <DataTrigger TargetType="Grid" Binding="{Binding isArchived}" Value="false" >
-                                                <Setter Property="BackgroundColor" Value="#EDEDED" />
+                                                <Setter Property="BackgroundColor" Value="#800000" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Grid" Binding="{Binding isArchived}" Value="true" >
+                                                <Setter Property="BackgroundColor" Value="Green" />
                                             </DataTrigger>
                                         </Grid.Triggers>
-                                        <Label FontSize="15" TextColor="White" Text="进展中" HorizontalOptions="Center" />
+                                        <Label FontSize="15" TextColor="White" HorizontalOptions="Center">
+                                            <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding isArchived}" Value="false" >
+                                                <Setter Property="Text" Value="进行中" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" Binding="{Binding isArchived}" Value="true" >
+                                                <Setter Property="Text" Value="已完成" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                        </Label>
                                     </Grid>
 
                                     <Grid HorizontalOptions="Center" VerticalOptions="Start" 

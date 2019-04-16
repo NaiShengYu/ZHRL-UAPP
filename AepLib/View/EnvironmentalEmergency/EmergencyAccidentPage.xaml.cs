@@ -57,7 +57,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 DependencyService.Get<IToast>().ShortAlert("请输入标题");
                 return;
             }
-
             string url = App.EmergencyModule.url + DetailUrl.AddEmergencyAccident;
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("name", titleEntry.Text);
@@ -83,11 +82,7 @@ namespace AepApp.View.EnvironmentalEmergency
             else
             {
                 DependencyService.Get<IToast>().ShortAlert("添加失败");
-
             }
-
-
-
         }
         void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
@@ -146,7 +141,7 @@ namespace AepApp.View.EnvironmentalEmergency
             App.sampleTypeList = aaa;
             App.EmergencyAccidentID = item.id;
             App.EmergencyAccidengtModel = item;
-            Navigation.PushAsync(new EmergencyAccidentInfoPage(item.name,item.id,item.isArchived));
+            Navigation.PushAsync(new EmergencyAccidentInfoPage(item));
             listView.SelectedItem = null;
 
         }

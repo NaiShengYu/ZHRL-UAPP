@@ -212,18 +212,10 @@ namespace AepApp
         {
             base.OnStart();
 
-            //MainPage = new NavigationPage(new EditContentPage("检查大队", true, ""));
 
             //return;
 
-            //if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
-            //{
-            //    bool al = await LoginAsync("admin", "123456");
-            //    if (al) MainPage = new NavigationPage(new MasterAndDetailPage());
-            //    else MainPage = new NavigationPage(new LoginPage());
-
-            //    return;
-            //}
+          
 
             //return;
             //获取站点URL

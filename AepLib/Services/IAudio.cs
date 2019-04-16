@@ -14,5 +14,6 @@ namespace SimpleAudioForms
         void SaveThumbImage(string savePath, string fileName, string url, long usecond);
         Task<bool> CompressVideo(string inputPath, string outputPath);
         void TakeVideo();
+        void VideoTranscoding(string vidoPath, string url);
     }
 }

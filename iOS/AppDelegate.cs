@@ -19,7 +19,6 @@ namespace AepApp.iOS
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
         //JPushInterface jPushRegister { get; set; }
-
         void HandleAction(NSNotification obj)
         {
             var dic = obj.UserInfo as NSMutableDictionary;
@@ -33,7 +32,6 @@ namespace AepApp.iOS
                 Height = Convert.ToInt32(r.Size.Height),
             };
             MessagingCenter.Send<ContentPage,KeyboardSizeModel>(new ContentPage(), "keyBoardFrameChanged",keyboardSizeModel);
-
         }
 
 
