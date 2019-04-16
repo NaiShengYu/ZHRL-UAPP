@@ -1307,7 +1307,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 lng = model.lng,
                 index = 0,
                 loggingTime = model.creationTime.ToString(),
-
                 incidentId = emergencyId
             };
             string param = JsonConvert.SerializeObject(parameter);

@@ -17,7 +17,7 @@ namespace AepApp.View.EnvironmentalEmergency
     {
         private ObservableCollection<IncidentLoggingEventsBean> dataList = new ObservableCollection<IncidentLoggingEventsBean>();
         private ObservableCollection<IncidentLoggingEventsBean> appearList = new ObservableCollection<IncidentLoggingEventsBean>();
-        private string emergencyId;
+        private EmergencyAccidentPageModels.ItemsBean _accident = null;
         bool isSelectText = false;
         bool isSelectImage = false;
         bool isSelectData = false;
@@ -143,30 +143,21 @@ namespace AepApp.View.EnvironmentalEmergency
                     {
                         creationTime = System.DateTime.Now,
                         natureString = emergencyModel1.natureString,
-                        emergencyid = emergencyId,
+                        emergencyid = _accident.id,
                         category = "IncidentNatureIdentificationEvent"
                     };
                     App.LastNatureAccidentModel = emergencyModel;
                     break;
                 }
             }
-            Navigation.PushAsync(new AddEmergencyAccidentInfoPage(emergencyId));
+            Navigation.PushAsync(new AddEmergencyAccidentInfoPage(_accident.id));
         }
 
         void selectAll(object sender, System.EventArgs e)
         {
-            //ChangeBtBackgroundColor(false, false, false, false, true);
-            //isSelectText = !isSelectText;
-            //var but = sender as Button;
-            //if (isSelectText == true)
-            //    but.BackgroundColor = Color.FromRgba(0, 0, 0, 0.2);
-            //else
-            //    but.BackgroundColor = Color.Transparent;
             appearList.Clear();
             listView.ItemsSource = dataList;
         }
-
-
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
@@ -204,24 +195,20 @@ namespace AepApp.View.EnvironmentalEmergency
             if (item.category == "IncidentVideoSendingEvent"){
                 Navigation.PushAsync(new ShowVideoPage(item));
             } 
-           
             listView.SelectedItem = null;
         }
 
-        public EmergencyAccidentInfoPage(string name, string id, string isArchived)
+        public EmergencyAccidentInfoPage(EmergencyAccidentPageModels.ItemsBean accident)
         {
             InitializeComponent();
-            emergencyId = id;
-
-            _isArchived = isArchived;
-            this.Title = name;
+            _accident = accident;
+            this.Title = accident.name;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             BindingContext = this;
 
-           
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
-                    Navigation.PushAsync(new EmergencyMapPage(dataList,id));
+                    Navigation.PushAsync(new EmergencyMapPage(dataList,_accident.id));
             }));
          
         }
@@ -250,31 +237,31 @@ namespace AepApp.View.EnvironmentalEmergency
                 for (int i = count-1; i >=0; i--)
                 {
                     EmergencyAccidentInfoDetail.IncidentLoggingEventsBean bean = list[i];
-                    string cagy = list[i].category;
+                    string cagy = bean.category;
                     if (cagy != "IncidentNameModificationEvent" && cagy != "IncidentOccurredTimeRespecifyingEvent"
                         )
                     {
 
-                        //dataList.Add(list[i]);
-                        dataList.Insert(0, list[i]);
+                        //dataList.Add(bean);
+                        dataList.Insert(0, bean);
                     }
 
                     if (cagy == "IncidentLocationSendingEvent")
                     {
-                        AzmCoord center=new AzmCoord(list[i].targetLng == null ? 0 : list[i].targetLng.Value, list[i].targetLat == null ? 0 : list[i].targetLat.Value);
-                        list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("事故中心点", center)); });
+                        AzmCoord center=new AzmCoord(bean.targetLng == null ? 0 : bean.targetLng.Value, bean.targetLat == null ? 0 : bean.targetLat.Value);
+                        bean.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("事故中心点", center)); });
                     }
                     else if (cagy == "IncidentFactorMeasurementEvent")
                     {
-                        AzmCoord center = StringUtils.string2Coord(list[i].lng, list[i].lat);
-                        string measment = list[i].measurement;
-                        list[i].LocateOnMapCommand = new Command(async () => {await Navigation.PushAsync(new RescueSiteMapPage("数据位置", center,measment)); });
+                        AzmCoord center = StringUtils.string2Coord(bean.lng, bean.lat);
+                        string measment = bean.measurement;
+                        bean.LocateOnMapCommand = new Command(async () => {await Navigation.PushAsync(new RescueSiteMapPage("数据位置", center,measment)); });
                     }
                     else if (cagy == "IncidentMessageSendingEvent")
                     {
                         try{
-                            AzmCoord center = StringUtils.string2Coord(list[i].lng, list[i].lat);
-                            list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("文字信息发出位置", center)); });
+                            AzmCoord center = StringUtils.string2Coord(bean.lng, bean.lat);
+                            bean.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("文字信息发出位置", center)); });
                         }catch(Exception ex){
                         }
                     }
@@ -282,8 +269,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     {
                         try
                         {
-                            AzmCoord center = StringUtils.string2Coord(list[i].lng, list[i].lat);
-                            list[i].LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("风速风向发出位置", center)); });
+                            AzmCoord center = StringUtils.string2Coord(bean.lng, bean.lat);
+                            bean.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("风速风向发出位置", center)); });
                         }
                         catch (Exception ex)
                         {
@@ -294,8 +281,8 @@ namespace AepApp.View.EnvironmentalEmergency
                     {
                         try
                         {
-                            EmergencyAccidentInfoDetail.IncidentLoggingEventsBean item = list[i];
-                            list[i].PlayVoiceCommand = new Command( () => {
+                            EmergencyAccidentInfoDetail.IncidentLoggingEventsBean item = bean;
+                            bean.PlayVoiceCommand = new Command( () => {
                             DependencyService.Get<IAudio>().PlayNetFile(item.VoicePath); 
                             });
                         }
@@ -306,19 +293,19 @@ namespace AepApp.View.EnvironmentalEmergency
                     }
                     else if(cagy == "IncidentVideoSendingEvent")
                     {
-                        string videoPath = list[i].VideoPath;
+                        string videoPath = bean.VideoPath;
                         if (!string.IsNullOrWhiteSpace(videoPath) && i < list.Count && i >= 0)
                         {
-                            list[i].CoverPath = FileUtils.ReplaceFileSuffix(videoPath, ".jpg");
-                            dataList[0].CoverPath = list[i].CoverPath;
+                            bean.CoverPath = FileUtils.ReplaceFileSuffix(videoPath, ".jpg");
+                            dataList[0].CoverPath = bean.CoverPath;
                         }
                     }
 
                     else if (cagy == "IncidentReportGenerationEvent" || cagy == "IncidentPlanGenerationEvent")
                     {
-                        string fileurl = App.EmergencyModule.url + list[i].StorePath;
-                        string fileFormat = list[i].id + ".docx"; // TODO: need to figure out how to pass url and fileformat
-                        list[i].DocumentDownloadCommand = new Command(async () => 
+                        string fileurl = App.EmergencyModule.url + bean.StorePath;
+                        string fileFormat = bean.id + ".docx"; // TODO: need to figure out how to pass url and fileformat
+                        bean.DocumentDownloadCommand = new Command(async () => 
                         {
                             HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(fileurl, fileFormat, App.EmergencyToken);
                             await Navigation.PushAsync(new ShowFilePage(fileFormat));
@@ -326,6 +313,9 @@ namespace AepApp.View.EnvironmentalEmergency
                     }
                 }
                 creatScrollerView();
+                //清空listView数据为了显示最新数据
+                listView.ItemsSource = null;
+                rightListV.ItemsSource = null;
                 rightListV.ItemsSource = dataList;
                 listView.ItemsSource = dataList;
                 GetEmergencyCenterCoord();
@@ -362,12 +352,11 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
         bool isStart = true;
-        string _isArchived = "";
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            ReqEmergencyAccidentDetail(emergencyId);
+            ReqEmergencyAccidentDetail(_accident.id);
 
             isStart = true;
             //为了进入界面item在顶部
@@ -375,7 +364,7 @@ namespace AepApp.View.EnvironmentalEmergency
             if (dataList.Count > 0) rightListV.ScrollTo(dataList[0], ScrollToPosition.Start, true);
 
             //定时器
-            if (_isArchived == "false")
+            if (_accident.isArchived == "false")
             {
             rowOne.Height = 55;
             timeBut.IsVisible = true;
@@ -384,7 +373,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 if (isStart == false) return false;
 
                 var nowTime = DateTime.Now;
-                var lastTime = new DateTime(2018, 6, 12, 11, 32, 12);
+                var lastTime = _accident.startDate;
                 TimeSpan time1 = lastTime.Subtract(nowTime).Duration();
                 //注意：需要用小写字母来显示时时间
                 timeBut.Text = time1.ToString("d'天 'h'小时 'm'分 's'秒'");

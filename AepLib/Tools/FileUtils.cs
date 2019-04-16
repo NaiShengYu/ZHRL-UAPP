@@ -77,7 +77,6 @@ namespace AepApp.Tools
             DependencyService.Get<IAudio>().stopPlay(); 
             DependencyService.Get<IAudio>().SaveThumbImage(dirPath, thumbName, videoPath, 1);
             return dirPath + thumbName;
-
         }
 
         //视频转码地址
