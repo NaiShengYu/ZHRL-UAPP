@@ -70,7 +70,12 @@ namespace AepApp.Tools
                     dirPath = videoPath.Substring(0, index + 1);
                 }
             }
-            if (Device.RuntimePlatform == Device.iOS) { 
+            if (Device.RuntimePlatform == Device.iOS) {
+                bool isHave = Directory.Exists(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "ThuImage"));
+                if (!isHave)
+                {
+                    Directory.CreateDirectory(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "ThuImage"));
+                }
                 dirPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal)+"/";
             }
 

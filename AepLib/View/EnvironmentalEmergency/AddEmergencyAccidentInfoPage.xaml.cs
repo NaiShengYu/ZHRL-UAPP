@@ -801,7 +801,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 Name = imageName,
                 SaveToAlbum = true,
             });
-
             if (file == null)
             {
                 return;
@@ -872,7 +871,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 return;
             }
             string videoName ="RVideo/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
-            string imgName =DateTime.Now.ToString("yyyyMMddHHmmss") + "_thumb.jpg";
+            string imgName = "ThuImage/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_thumb.jpg";
 
             var file = await CrossMedia.Current.TakeVideoAsync(new Plugin.Media.Abstractions.StoreVideoOptions
             {
@@ -927,7 +926,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 creatorusername = App.userInfo.userName,
                 isEdit = true,
             };
-
             await App.Database.SaveEmergencyAsync(emergencyModel);
             dataList.Add(ShowModel);
             dataListDelete.Add(ShowModel);
@@ -1148,7 +1146,19 @@ namespace AepApp.View.EnvironmentalEmergency
                 isFirstAppear = false;
                 if (dataList.Count > 0) listView.ScrollTo(dataList[dataList.Count - 1], ScrollToPosition.End, true);
 
-
+                //删除老的图片，视频
+                if (Device.RuntimePlatform == Device.iOS && dataList.Count ==0)
+                {
+                    string mainPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                    if (Directory.Exists(Path.Combine(mainPath, "ThuImage")))
+                        Directory.Delete(Path.Combine(mainPath, "ThuImage"), true);
+                    if (Directory.Exists(Path.Combine(mainPath, "RVideo")))
+                        Directory.Delete(Path.Combine(mainPath, "RVideo"),true);
+                    if (Directory.Exists(Path.Combine(mainPath, "Sample")))
+                        Directory.Delete(Path.Combine(mainPath, "Sample"), true);
+                    if (Directory.Exists(Path.Combine(mainPath, "Video")))
+                        Directory.Delete(Path.Combine(mainPath, "Video"), true);
+                }
             }
 
 

@@ -25,7 +25,7 @@
 
                 <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" 
                           ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}" BackgroundColor="#fafafa"
-                          ItemSelected="Handle_ItemSelected" ItemAppearing="Handle_ItemAppearing">
+                          ItemSelected="Handle_ItemSelected">
                </ListView>
                 <ListView x:Name="rightListV" HasUnevenRows="true" Grid.Column="1" BackgroundColor="#fafafa" SeparatorColor="Transparent" IsPullToRefreshEnabled="false" >
                     <ListView.ItemTemplate>
@@ -71,7 +71,7 @@
                 <Button x:Name="select_Image" Clicked="selectImage" Image="image" VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
                 <Button x:Name="select_Data" Clicked="selectData" Image="data"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
                 <Button x:Name="select_Report" Clicked="selectReport" Image="report"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
-                <Button  Image="add"  VerticalOptions="Center"  BackgroundColor="Transparent" HorizontalOptions="End" WidthRequest="45" HeightRequest="45" Clicked="addSouce" Margin="0,0,10,0"/>
+                <Button x:Name="addbut" Image="add"  VerticalOptions="Center"  BackgroundColor="Transparent" HorizontalOptions="End" WidthRequest="45" HeightRequest="45" Clicked="addSouce" Margin="0,0,10,0"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

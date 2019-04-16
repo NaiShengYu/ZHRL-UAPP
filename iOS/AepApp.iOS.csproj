@@ -461,9 +461,6 @@
     <BundleResource Include="Resources\hamburger%402x.png" />
     <BundleResource Include="Resources\hamburger.png" />
     <BundleResource Include="Resources\reddot.png" />
-    <BundleResource Include="Resources\open%403x.png" />
-    <BundleResource Include="Resources\open%402x.png" />
-    <BundleResource Include="Resources\open.png" />
     <BundleResource Include="Resources\qrcode%403x.png" />
     <BundleResource Include="Resources\qrcode%402x.png" />
     <BundleResource Include="Resources\upload2%403x.png" />
@@ -516,6 +513,7 @@
     <BundleResource Include="Resources\xls.png" />
     <BundleResource Include="Resources\banner_envq.png" />
     <BundleResource Include="Resources\111.mp4" />
+    <BundleResource Include="Resources\open.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

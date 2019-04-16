@@ -115,7 +115,6 @@ namespace SimpleAudioForms.iOS
 
         public void SaveThumbImage(string savePath, string fileName, string url, long usecond)
         {
-
             var asset = AVAsset.FromUrl(NSUrl.FromString(url));
             var imageGenerator = AVAssetImageGenerator.FromAsset(asset);
             imageGenerator.AppliesPreferredTrackTransform = true;
@@ -145,7 +144,6 @@ namespace SimpleAudioForms.iOS
             session.ShouldOptimizeForNetworkUse = true;
             //必须用fromFileName
             var ss = NSUrl.FromFilename(vidoPath);   
-
             session.OutputUrl = ss;
             session.ExportAsynchronously(new Action(async delegate {
                 Console.WriteLine(session.Status);

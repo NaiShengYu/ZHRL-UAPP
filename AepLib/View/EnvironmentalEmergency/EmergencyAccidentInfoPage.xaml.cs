@@ -170,15 +170,7 @@ namespace AepApp.View.EnvironmentalEmergency
             listView.ScrollTo(item, ScrollToPosition.Start, true);
         }
 
-        void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
-        {
 
-            var item = e.Item as IncidentLoggingEventsBean;
-
-            //如果最后一个参数是 false 无法调用该函数
-            //rightListV.ScrollTo(item, ScrollToPosition.Start, true);
-
-        }
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
@@ -205,7 +197,7 @@ namespace AepApp.View.EnvironmentalEmergency
             this.Title = accident.name;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             BindingContext = this;
-
+            addbut.IsVisible = accident.isArchived == "false" ? true : false;
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
                     Navigation.PushAsync(new EmergencyMapPage(dataList,_accident.id));
@@ -314,8 +306,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 }
                 creatScrollerView();
                 //清空listView数据为了显示最新数据
-                listView.ItemsSource = null;
-                rightListV.ItemsSource = null;
+                //listView.ItemsSource = null;
+                //rightListV.ItemsSource = null;
                 rightListV.ItemsSource = dataList;
                 listView.ItemsSource = dataList;
                 GetEmergencyCenterCoord();
