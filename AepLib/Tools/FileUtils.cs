@@ -73,7 +73,7 @@ namespace AepApp.Tools
         }
 
         /// <summary>
-        /// 获取本地或网络文件的文件名
+        /// 获取本地或网络文件的文件名(不含路径)
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns>带/不带文件后缀的文件名</returns>

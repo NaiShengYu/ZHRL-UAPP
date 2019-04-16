@@ -102,7 +102,8 @@
 	<uses-permission android:name="android.permission.LOCATION_HARDWARE" />
 	<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 	<uses-permission android:name="android.permission.CAMERA" />
-	<uses-permission android:name="android.permission.READ_LOGS" />
+  <uses-feature android:name="android.hardware.camera"/>
+  <uses-permission android:name="android.permission.READ_LOGS" />
 	<uses-permission android:name="android.permission.RECORD_AUDIO" />
 	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 	<!-- 极光推送特需权限 -->

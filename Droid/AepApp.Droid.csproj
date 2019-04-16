@@ -156,6 +156,9 @@
     <Reference Include="OxyPlot.Xamarin.Forms.Platform.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Xamarin.Forms.1.0.0\lib\MonoAndroid10\OxyPlot.Xamarin.Forms.Platform.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Media, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.Media.4.0.1.1\lib\monoandroid71\Plugin.Media.dll</HintPath>
+    </Reference>
     <Reference Include="Plugin.MediaManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Plugin.MediaManager.0.4.5\lib\MonoAndroid\Plugin.MediaManager.dll</HintPath>
     </Reference>
@@ -373,9 +376,6 @@
     <Reference Include="SkiaSharp">
       <HintPath>..\packages\SkiaSharp.1.60.1\lib\MonoAndroid\SkiaSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Media">
-      <HintPath>..\packages\Xam.Plugin.Media.4.0.1.1\lib\monoandroid71\Plugin.Media.dll</HintPath>
-    </Reference>
     <Reference Include="Rox.Xamarin.Video.Android">
       <HintPath>..\packages\Rox.Xamarin.Video.2.1.0\lib\MonoAndroid10\Rox.Xamarin.Video.Android.dll</HintPath>
     </Reference>
@@ -422,6 +422,7 @@
     <Compile Include="MasterAndDetailPageRenderer.cs" />
     <Compile Include="OxyExData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordActivity.cs" />
     <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
@@ -854,6 +855,23 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\avi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\layout_record.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\nim_video_capture_start_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\nim_video_capture_stop_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\video_finish.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\video_delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Annotations.27.0.2\build\MonoAndroid81\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Annotations.27.0.2\build\MonoAndroid81\Xamarin.Android.Support.Annotations.targets')" />

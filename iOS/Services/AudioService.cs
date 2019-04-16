@@ -116,5 +116,10 @@ namespace SimpleAudioForms.iOS
         {
             throw new NotImplementedException();
         }
+
+        public void TakeVideo()
+        {
+            
+        }
     }
 }

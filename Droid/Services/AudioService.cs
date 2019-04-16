@@ -8,6 +8,9 @@ using Java.IO;
 using System.IO;
 using Android.Content;
 using System.Threading.Tasks;
+using Android.Provider;
+using Android.OS;
+using AepApp.Droid;
 
 [assembly: Dependency(typeof(AudioService))]
 
@@ -144,5 +147,15 @@ namespace SimpleAudioForms.Droid
         {
             throw new NotImplementedException();
         }
+
+        public void TakeVideo()
+        {
+            Context c = Android.App.Application.Context;
+            Intent intent = new Intent();
+            intent.SetClass(c, typeof(RecordActivity));
+            intent.SetFlags(ActivityFlags.NewTask);
+            c.StartActivity(intent);
+        }
+
     }
 }

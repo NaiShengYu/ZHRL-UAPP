@@ -5,7 +5,6 @@ using System.Net;
 using AepApp.Models;
 using CloudWTO.Services;
 using Xamarin.Forms;
-using AepApp.Models;
 using Newtonsoft.Json;
 
 namespace AepApp.View.EnvironmentalEmergency
