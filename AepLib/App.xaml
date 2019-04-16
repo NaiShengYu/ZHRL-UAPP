@@ -369,8 +369,8 @@
                             <!--<forms:MediaElement Margin="-200" Source="{Binding VideoPath}"  BackgroundColor="Black"  VerticalOptions="Fill" HorizontalOptions="Fill" 
                                                 x:Name="MV" IsLooping="false"  AreTransportControlsEnabled="false" AutoPlay="false"/>-->
                           <!--<forms:VideoView VerticalOptions="Fill" HorizontalOptions="Fill" x:Name="MV" Margin="-200" Source="{Binding VideoPath}"  BackgroundColor="Black"/>-->
-                            <Image Source ="{Binding CoverPath}"  VerticalOptions="Fill" HorizontalOptions="Fill" Margin="-200"/>  
-                          <Image HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" Source="open" VerticalOptions="Center" IsEnabled="false"/>
+                            <Image Source ="{Binding CoverPath}"  VerticalOptions="Fill" HorizontalOptions="Fill" Margin="-200"/>
+                            <Image HeightRequest="60" WidthRequest="60" HorizontalOptions="Center" Source="play_video" VerticalOptions="Center" IsEnabled="false"/>
                             <StackLayout Orientation="Horizontal" Margin="-1,-1,0,0" HorizontalOptions="Start" VerticalOptions="Start" >
                                 <Frame Padding="4,1,4,1" CornerRadius="0" HasShadow="False" BorderColor="Transparent" BackgroundColor="#c9b750">
                                     <StackLayout Orientation="Horizontal" Spacing="0">

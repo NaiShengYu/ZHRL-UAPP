@@ -1,5 +1,6 @@
 using AepApp.Interface;
 using AepApp.Models;
+using AepApp.Services;
 using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
@@ -50,7 +51,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
 
         //当前位置名称
-        Location _location = null;
+        Xamarin.Essentials.Location _location = null;
         //获取当前位置
         async void HandleEventHandler()
         {
@@ -168,7 +169,7 @@ namespace AepApp.View.EnvironmentalEmergency
         //点击了位置按钮
         async void AccidentPosition(object sender, System.EventArgs e)
         {
-            AccidentPositionPage page = new AccidentPositionPage(App.EmergencyCenterCoord.lng.ToString(),App.EmergencyCenterCoord.lat.ToString());
+            AccidentPositionPage page = new AccidentPositionPage(App.EmergencyCenterCoord.lng.ToString(), App.EmergencyCenterCoord.lat.ToString());
             page.Title = "事故位置";
             page.SavePosition += async (object arg2, EventArgs arg1) =>
              {
@@ -251,7 +252,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 if (isRecording == false)
                 {
                     isRecording = true;
-                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    string path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(null);
                     var dir = path + "/Voice/";
                     if (!Directory.Exists(dir))
                     {
@@ -870,33 +871,63 @@ namespace AepApp.View.EnvironmentalEmergency
                 await DisplayAlert("No Camera", ":( No camera available.", "OK");
                 return;
             }
-            string videoName ="RVideo/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
-            string imgName = "ThuImage/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_thumb.jpg";
 
-            var file = await CrossMedia.Current.TakeVideoAsync(new Plugin.Media.Abstractions.StoreVideoOptions
-            {
-                DesiredLength = new TimeSpan(0, 0, 10),
-                Name = videoName,
-                Directory = "Video",
-                SaveToAlbum = true,
-                CompressionQuality = 92,
-                Quality = Plugin.Media.Abstractions.VideoQuality.High,
-            });
-            if (file == null || string.IsNullOrWhiteSpace(file.Path)) return;
-
-            string thumbPath = FileUtils.SaveThumbImage(file.AlbumPath, imgName);
-            string videoPath = file.Path;
             if (Device.RuntimePlatform == Device.iOS)
             {
-                videoPath = FileUtils.VidioTranscoding(file.AlbumPath, videoName);
+                string videoName = "RVideo/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
+                string imgName = "ThuImage/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_thumb.jpg";
+                var file = await CrossMedia.Current.TakeVideoAsync(new Plugin.Media.Abstractions.StoreVideoOptions
+                {
+                    DesiredLength = new TimeSpan(0, 0, 10),
+                    Name = videoName,
+                    Directory = "Video",
+                    SaveToAlbum = true,
+                    CompressionQuality = 92,
+                    Quality = Plugin.Media.Abstractions.VideoQuality.High,
+
+                });
+                if (file == null || string.IsNullOrWhiteSpace(file.Path)) return;
+                string thumbPath = FileUtils.SaveThumbImage(file.AlbumPath, imgName);
+                string _videoPath = FileUtils.VidioTranscoding(file.AlbumPath, videoName);//完整路径
+                RecordBackSuccess(_videoPath, videoName, imgName);
             }
+            else if (Device.RuntimePlatform == Device.Android)
+            {
+                DependencyService.Get<IAudio>().TakeVideo();
+                MessagingCenter.Unsubscribe<ContentPage, string>(this, "RecordVideo");
+                MessagingCenter.Subscribe<ContentPage, string>(this, "RecordVideo", async (arg1, arg2) =>
+                {
+                    string _videoPartPath = arg2 as string;//相对路径
+                    if (string.IsNullOrWhiteSpace(_videoPartPath)) return;
+                    string imgName = FileUtils.GetFileName(_videoPartPath, false) + "_thumb.jpg";
+                    string dirPath = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MOVIES) + "/";
+                    MessagingCenter.Unsubscribe<ContentPage, string>(this, "RecordVideo");
+                    RecordBackSuccess(dirPath + _videoPartPath, _videoPartPath, imgName);
+                });
+            }
+
+
+        }
+
+
+        /// <summary>
+        /// 视频拍摄后，插入数据并更新UI
+        /// </summary>
+        /// <param name="videoTotalPath">视频完整路径</param>
+        /// <param name="_videoPartPath">相对路径</param>
+        /// <param name="imgName"></param>
+        private async void RecordBackSuccess(string videoTotalPath, string _videoPartPath, string imgName)
+        {
+            if (string.IsNullOrWhiteSpace(videoTotalPath) || string.IsNullOrWhiteSpace(_videoPartPath) || string.IsNullOrWhiteSpace(imgName)) return;
+            string thumbPath = FileUtils.SaveThumbImage(_videoPartPath, imgName);
+
 
             UploadEmergencyModel emergencyModel = new UploadEmergencyModel
             {
                 uploadStatus = "notUploaded",
                 creationTime = System.DateTime.Now,
-                VideoPath = videoName,
-                VideoStorePath = videoName,
+                VideoPath = _videoPartPath,
+                VideoStorePath = _videoPartPath,
                 emergencyid = emergencyId,
                 category = "IncidentVideoSendingEvent",
                 creatorusername = App.userInfo.userName,
@@ -916,8 +947,8 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 uploadStatus = "notUploaded",
                 creationTime = emergencyModel.creationTime,
-                VideoPath = videoPath,
-                VideoStorePath = videoPath,
+                VideoPath = videoTotalPath,
+                VideoStorePath = videoTotalPath,
                 CoverPath = thumbPath,
                 emergencyid = emergencyId,
                 category = "IncidentVideoSendingEvent",
@@ -932,6 +963,7 @@ namespace AepApp.View.EnvironmentalEmergency
             saveList.Add(emergencyModel);
             listView.ScrollTo(ShowModel, ScrollToPosition.End, true);
         }
+
         //添加布点
         async void AddPlacement(object sender, System.EventArgs e)
         {
@@ -972,6 +1004,7 @@ namespace AepApp.View.EnvironmentalEmergency
             DependencyService.Get<IAudio>().stopPlay();
             MessagingCenter.Unsubscribe<ContentPage, UploadEmergencyShowModel>(this, "deleteUnUploadData");
             MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "keyBoardFrameChanged");
+            MessagingCenter.Unsubscribe<ContentPage, KeyboardSizeModel>(this, "RecordVideo");
         }
 
 
@@ -1094,18 +1127,28 @@ namespace AepApp.View.EnvironmentalEmergency
                         }
                         else if (cagy == "IncidentPictureSendingEvent")
                         {
-                            ShowModel.StorePath = path+ "/" + ShowModel.StorePath;
+
+                            if (Device.RuntimePlatform == Device.Android)
+                            {
+                                path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_PICTURES);
+                            }
+                            ShowModel.StorePath = path + "/" + ShowModel.StorePath;
                             ShowModel.imagePath = path + "/" + ShowModel.imagePath;
                         }
                         else if (cagy == "IncidentVoiceSendingEvent")
                         {
-                            ShowModel.VoicePath = path + ShowModel.VoicePath;
-                            ShowModel.VoiceStorePath = path + ShowModel.VoiceStorePath;
+
+                            if (Device.RuntimePlatform == Device.Android)
+                            {
+                                path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(null);
+                            }
+                            ShowModel.VoicePath = path + "/" + ShowModel.VoicePath;
+                            ShowModel.VoiceStorePath = path + "/" + ShowModel.VoiceStorePath;
                             try
                             {
                                 ShowModel.PlayVoiceCommand = new Command(() =>
                                 {
-                                    var dir = path + model.VoicePath;
+                                    var dir = path + "/" + model.VoicePath;
                                     DependencyService.Get<IAudio>().PlayLocalFile(dir);
                                 });
                             }
@@ -1116,8 +1159,13 @@ namespace AepApp.View.EnvironmentalEmergency
                         }
                         else if (cagy == "IncidentVideoSendingEvent")
                         {
-                            ShowModel.VideoPath = path+"/" + ShowModel.VideoPath;
-                            ShowModel.VideoStorePath = ShowModel.VideoPath;
+
+                            if (Device.RuntimePlatform == Device.Android)
+                            {
+                                path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MOVIES);
+                            }
+                            ShowModel.VideoPath = path + "/" + ShowModel.VideoPath;
+                            ShowModel.VideoStorePath = path + "/" + ShowModel.VideoStorePath;
                             ShowModel.CoverPath = path + "/" + ShowModel.CoverPath;
                         }
 
@@ -1446,7 +1494,7 @@ namespace AepApp.View.EnvironmentalEmergency
                     };
 
                     string param = JsonConvert.SerializeObject(parama);
-                    
+
                     HTTPResponse hTTPResponse1 = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/IncidentLoggingEvent/AppendIncidentPictureSendingEvent", param, "POST", App.EmergencyToken);
                     Console.WriteLine(hTTPResponse1);
                     if (hTTPResponse1.StatusCode == System.Net.HttpStatusCode.OK)
@@ -1473,40 +1521,35 @@ namespace AepApp.View.EnvironmentalEmergency
         //上传视频封面
         private async void PostupLoadVideoCoverSending(UploadEmergencyShowModel model)
         {
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.CoverPath, FileUtils.GetFileName(model.VideoStorePath, false) + ".jpg", 
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.CoverPath, FileUtils.GetFileName(model.VideoStorePath, false) + ".jpg",
                 App.EmergencyModule.url, ApiUtils.UPLOAD_COVER);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                //uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
-                //if (resultData.result == null) return;
-                //if (resultData.result.Count > 0)
-                //{
-                    //uploadImageResurtData imageResurtData = resultData.result[0];
-                    uploadVidoeModel parama = new uploadVidoeModel
-                    {
-                        index = 0,
-                        incidentId = model.emergencyid,
-                        storePath = model.VideoStorePath,
-                        lat = Convert.ToDouble(model.lat),
-                        lng = Convert.ToDouble(model.lng),
-                        loggingTime = model.creationTime,
-                    };
+                uploadVidoeModel parama = new uploadVidoeModel
+                {
+                    index = 0,
+                    incidentId = model.emergencyid,
+                    storePath = model.VideoStorePath,
+                    lat = Convert.ToDouble(model.lat),
+                    lng = Convert.ToDouble(model.lng),
+                    loggingTime = model.creationTime,
+                };
 
-                    string param = JsonConvert.SerializeObject(parama);
+                string param = JsonConvert.SerializeObject(parama);
 
-                    HTTPResponse hTTPResponse1 = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/IncidentLoggingEvent/AppendIncidentVideoSendingEvent", param, "POST", App.EmergencyToken);
-                    Console.WriteLine(hTTPResponse1);
-                    if (hTTPResponse1.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var i = dataListDelete.IndexOf(model);
-                        await App.Database.DeleteEmergencyAsync(saveList[i]);
-                        model.uploadStatus = "UploadedOver";
-                        dataListDelete.Remove(model);
-                    }
-                    else
-                    {
-                        Console.WriteLine(hTTPResponse);
-                    }
+                HTTPResponse hTTPResponse1 = await EasyWebRequest.SendHTTPRequestAsync(App.EmergencyModule.url + "/api/services/app/IncidentLoggingEvent/AppendIncidentVideoSendingEvent", param, "POST", App.EmergencyToken);
+                Console.WriteLine(hTTPResponse1);
+                if (hTTPResponse1.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var i = dataListDelete.IndexOf(model);
+                    await App.Database.DeleteEmergencyAsync(saveList[i]);
+                    model.uploadStatus = "UploadedOver";
+                    dataListDelete.Remove(model);
+                }
+                else
+                {
+                    Console.WriteLine(hTTPResponse);
+                }
 
                 //}
             }
@@ -1519,7 +1562,9 @@ namespace AepApp.View.EnvironmentalEmergency
         //上传视频
         private async void PostupLoadVideoSending(UploadEmergencyShowModel model)
         {
-            HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VideoStorePath, ".mp4", App.EmergencyModule.url, ApiUtils.UPLOAD_EMERGENCY_API);
+            if (model == null) return;
+            string path = model.VideoStorePath;
+            HTTPResponse hTTPResponse = await EasyWebRequest.upload(path, ".mp4", App.EmergencyModule.url, ApiUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
@@ -1527,12 +1572,12 @@ namespace AepApp.View.EnvironmentalEmergency
                 if (resultData.result.Count > 0)
                 {
                     uploadImageResurtData imageResurtData = resultData.result[0];
-                    if(imageResurtData != null)
+                    if (imageResurtData != null)
                     {
                         model.VideoStorePath = imageResurtData.storeUrl;
                         PostupLoadVideoCoverSending(model);
                     }
-                   
+
 
                 }
             }

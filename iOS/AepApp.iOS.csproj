@@ -513,7 +513,7 @@
     <BundleResource Include="Resources\xls.png" />
     <BundleResource Include="Resources\banner_envq.png" />
     <BundleResource Include="Resources\111.mp4" />
-    <BundleResource Include="Resources\open.png" />
+    <BundleResource Include="Resources\play_video.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

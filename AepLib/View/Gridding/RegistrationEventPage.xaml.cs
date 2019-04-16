@@ -8,7 +8,6 @@ using CloudWTO.Services;
 using Newtonsoft.Json;
 using Plugin.Media;
 using Xamarin.Forms;
-using AepApp.Tools;
 using System.Collections.Specialized;
 using Sample;
 

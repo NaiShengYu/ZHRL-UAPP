@@ -1,14 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using AVFoundation;
+﻿using AVFoundation;
 using CoreGraphics;
 using CoreMedia;
 using Foundation;
-using MediaPlayer;
 using SimpleAudioForms.iOS;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 using UIKit;
 using Xamarin.Forms;
 
@@ -20,15 +18,17 @@ namespace SimpleAudioForms.iOS
     {
         private AVAudioPlayer audioPlayer;
         private string lastFileName;
-        public AudioService() {
+        public AudioService()
+        {
             UIImagePickerController controller = new UIImagePickerController();
-            controller.ShowViewController(new UIViewController(),new NSObject());
-            controller.FinishedPickingMedia += (object sender, UIImagePickerMediaPickedEventArgs e) => {
+            controller.ShowViewController(new UIViewController(), new NSObject());
+            controller.FinishedPickingMedia += (object sender, UIImagePickerMediaPickedEventArgs e) =>
+            {
                 UIImagePickerController pickerController = sender as UIImagePickerController;
-               
- pickerController.DismissViewController(true,
-                     () => { });
-            
+
+                pickerController.DismissViewController(true,
+                                    () => { });
+
             };
 
         }
@@ -39,7 +39,7 @@ namespace SimpleAudioForms.iOS
         /// <param name="type">录音的方式，网络或者本地</param>
         private void Play(string fileName, string type)
         {
-   
+
 
             var audioSession = AVAudioSession.SharedInstance();
             var err = audioSession.SetCategory(AVAudioSessionCategory.Playback);//使播放器用免提播放声音
@@ -52,29 +52,33 @@ namespace SimpleAudioForms.iOS
             if (err != null)
             {
                 Console.WriteLine("audioSession: {0}", err);
-                return ;
+                return;
             }
 
 
-            try{
-                
+            try
+            {
+
                 NSData data = NSData.FromUrl(new NSUrl(fileName));
                 NSError error;
-                if(audioPlayer !=null){
-                    if (audioPlayer.Playing == true)audioPlayer.Stop();
+                if (audioPlayer != null)
+                {
+                    if (audioPlayer.Playing == true) audioPlayer.Stop();
                     if (lastFileName == fileName) return;
                 }
-                if (type == "Net") 
+                if (type == "Net")
                     audioPlayer = new AVAudioPlayer(data, AVFileType.Mpeg4, out error);
-                if (type == "local") 
+                if (type == "local")
                     audioPlayer = new AVAudioPlayer(new NSUrl(fileName), AVFileType.Wave, out error);
                 Debug.WriteLine("时间长度：" + audioPlayer.Duration);
 
                 audioPlayer.Play();
                 Debug.WriteLine("数据长度：" + audioPlayer.Data.Length / 1024);
-   
-            }catch(Exception ex){
-            
+
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
@@ -82,16 +86,17 @@ namespace SimpleAudioForms.iOS
         public void PlayNetFile(string fileName)
         {
             Debug.WriteLine($"PlayNetFile(string {fileName})");
-             Play(fileName, "Net");
+            Play(fileName, "Net");
         }
 
         public void PlayLocalFile(string fileName)
         {
             Debug.WriteLine($"PlayWavFile(string {fileName})");
-             Play(fileName, "local");
+            Play(fileName, "local");
         }
 
-        public void stopPlay(){
+        public void stopPlay()
+        {
             try
             {
                 audioPlayer.Stop();
@@ -126,13 +131,13 @@ namespace SimpleAudioForms.iOS
             var imageRef = imageGenerator.CopyCGImageAtTime(cmTime, out actualTime, out error);
 
             if (imageRef == null)
-                return ;
+                return;
             var image = UIImage.FromImage(imageRef);
             NSData data = image.AsPNG();
             string aa = Path.Combine(savePath, fileName);
             data.Save(aa, false, out error);
 
-         }
+        }
 
         //视频压缩及转码
         public async void VideoTranscoding(string vidoPath, string url)
@@ -143,12 +148,14 @@ namespace SimpleAudioForms.iOS
             session.OutputFileType = AVFileType.Mpeg4;
             session.ShouldOptimizeForNetworkUse = true;
             //必须用fromFileName
-            var ss = NSUrl.FromFilename(vidoPath);   
+
+            var ss = NSUrl.FromFilename(vidoPath);
             session.OutputUrl = ss;
-            session.ExportAsynchronously(new Action(async delegate {
+            session.ExportAsynchronously(new Action(async delegate
+            {
                 Console.WriteLine(session.Status);
-             }));
-           
+            }));
+
 
         }
 
@@ -173,6 +180,11 @@ namespace SimpleAudioForms.iOS
         public Task<bool> CompressVideo(string inputPath, string outputPath)
         {
             throw new NotImplementedException();
+        }
+
+        public void TakeVideo()
+        {
+
         }
 
     }

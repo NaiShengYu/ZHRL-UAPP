@@ -4,7 +4,6 @@ using AepApp.Models;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using Xamarin.Forms;
-using AepApp.Models;
 using AepApp.Tools;
 
 namespace AepApp.View.Common
