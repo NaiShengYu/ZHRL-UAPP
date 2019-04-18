@@ -97,6 +97,12 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            map.InvalidateSurface();
+        }
+
         public EmergencyMapPage(ObservableCollection<IncidentLoggingEventsBean> dataList, string incidengtId) : this()
         {
             foreach (IncidentLoggingEventsBean item in dataList)
