@@ -15,8 +15,8 @@
                 <Image Source="stopwatch" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
                 <Label x:Name="timeBut" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="White" FontSize="20" />
             </StackLayout>
-<!--            <Label x:Name="timeBut" HorizontalTextAlignment="Center" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="#e1a541" TextColor="White" FontSize="20" />-->
-<!--                <Button x:Name="timeBut" Image="stopwatch" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="#e1a541" TextColor="White" FontSize="20" BorderRadius="0" />-->
+            <!--            <Label x:Name="timeBut" HorizontalTextAlignment="Center" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="#e1a541" TextColor="White" FontSize="20" />-->
+            <!--                <Button x:Name="timeBut" Image="stopwatch" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="#e1a541" TextColor="White" FontSize="20" BorderRadius="0" />-->
             <Grid Grid.Row="1" ColumnSpacing="1" BackgroundColor="#e5e5e5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -26,7 +26,7 @@
                 <ListView x:Name="listView" HasUnevenRows="true" SeparatorColor="Transparent" 
                           ItemTemplate="{x:Static eme:EventDataTemplateSelector.Instance}" BackgroundColor="#fafafa"
                           ItemSelected="Handle_ItemSelected">
-               </ListView>
+                </ListView>
                 <ListView x:Name="rightListV" HasUnevenRows="true" Grid.Column="1" BackgroundColor="#fafafa" SeparatorColor="Transparent" IsPullToRefreshEnabled="false" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -63,16 +63,25 @@
                     </ListView.ItemTemplate>
 
                 </ListView>
-             
+
             </Grid>
-            <StackLayout BackgroundColor="#e8e8e8" Orientation="Horizontal" Spacing="0" Grid.Row="2">
-                <Button x:Name="select_All" Clicked="selectAll" FontSize="15" Text="全部" TextColor="#2772a5" VerticalOptions="Center"  BackgroundColor="Transparent"  WidthRequest="60" HeightRequest="45" Margin="0,0,0,0"/>
-                <Button x:Name="select_Text" Clicked="selectText" Image="text"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
-                <Button x:Name="select_Image" Clicked="selectImage" Image="image" VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
-                <Button x:Name="select_Data" Clicked="selectData" Image="data"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
-                <Button x:Name="select_Report" Clicked="selectReport" Image="report"  VerticalOptions="Center"  BackgroundColor="Transparent" WidthRequest="45" HeightRequest="45" Margin="10,0,0,0"/>
-                <Button x:Name="addbut" Image="add"  VerticalOptions="Center"  BackgroundColor="Transparent" HorizontalOptions="End" WidthRequest="45" HeightRequest="45" Clicked="addSouce" Margin="0,0,10,0"/>
-            </StackLayout>
+            <Grid x:Name="GridBottom" BackgroundColor="#e8e8e8" Grid.Row="2" Padding="10, 0, 10, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="select_All" Grid.Column="0" Clicked="selectAll" FontSize="15" Text="全部" TextColor="#2772a5" VerticalOptions="Center" 
+                        BackgroundColor="Transparent"  HeightRequest="45"/>
+                <Button x:Name="select_Text" Grid.Column="1" Clicked="selectText" Image="text"  VerticalOptions="Center"  BackgroundColor="Transparent" HeightRequest="45"/>
+                <Button x:Name="select_Image" Grid.Column="2" Clicked="selectImage" Image="image" VerticalOptions="Center"  BackgroundColor="Transparent" HeightRequest="45" />
+                <Button x:Name="select_Data" Grid.Column="3" Clicked="selectData" Image="data"  VerticalOptions="Center"  BackgroundColor="Transparent" HeightRequest="45"/>
+                <Button x:Name="select_Report" Grid.Column="4" Clicked="selectReport" Image="report"  VerticalOptions="Center"  BackgroundColor="Transparent" HeightRequest="45" />
+                <Button x:Name="addbut" Image="add" Grid.Column="5"  VerticalOptions="Center"  BackgroundColor="Transparent" HorizontalOptions="End" HeightRequest="45" Clicked="addSouce" />
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

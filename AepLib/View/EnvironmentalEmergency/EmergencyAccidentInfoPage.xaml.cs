@@ -197,7 +197,10 @@ namespace AepApp.View.EnvironmentalEmergency
             this.Title = accident.name;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             BindingContext = this;
-            addbut.IsVisible = accident.isArchived == "false" ? true : false;
+            if (accident.isArchived != "false")
+            {
+                GridBottom.ColumnDefinitions[5].Width = 0;
+            }
             ToolbarItems.Add(new ToolbarItem("", "map", () =>
             {
                     Navigation.PushAsync(new EmergencyMapPage(dataList,_accident.id));

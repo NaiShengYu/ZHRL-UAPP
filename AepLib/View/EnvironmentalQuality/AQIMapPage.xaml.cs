@@ -156,7 +156,7 @@ namespace AepApp.View.EnvironmentalQuality
         {
             Button b = sender as Button;
             string factorname = b.BindingContext as string;
-
+            Title = factorname+"分布情况";//设置标题
             aqi.BackgroundColor = Color.FromHex("#4169E1");
             pm10.BackgroundColor = Color.FromHex("#4169E1");
             pm25.BackgroundColor = Color.FromHex("#4169E1");

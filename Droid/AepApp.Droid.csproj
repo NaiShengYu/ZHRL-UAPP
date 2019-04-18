@@ -574,9 +574,6 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\noise.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\open.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\orange.png" />
   </ItemGroup>
   <ItemGroup>
