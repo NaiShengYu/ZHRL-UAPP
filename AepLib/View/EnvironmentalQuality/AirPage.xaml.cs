@@ -85,7 +85,7 @@ namespace AepApp.View.EnvironmentalQuality
                 if (airPages[i].info != null)
                 {
                     AirPageModels.AirInfo info = airPages[i];
-                    if (info.info.PM25 !="null"){
+                    if (info.info != null && !string.IsNullOrWhiteSpace(info.info.PM25) && info.info.PM25 !="null"){
                         info.showLab = Convert.ToDouble(info.info.PM25);
                         info.facName = info.info.facName;
                     }
@@ -101,9 +101,9 @@ namespace AepApp.View.EnvironmentalQuality
             dataList.Clear();
             for (int i = 0; i < num; i++)
             {
-                if (airPages[i].StationName.Contains(serchKey))//数据匹配
+                if (!string.IsNullOrWhiteSpace(airPages[i].StationName) &&  airPages[i].StationName.Contains(serchKey))//数据匹配
                 {
-                    if (airPages[i].info.PM25 != "null")
+                    if (airPages[i].info != null && !string.IsNullOrWhiteSpace(airPages[i].info.PM25) && airPages[i].info.PM25 != "null")
                     {
                         dataList.Add(airPages[i]);
                         airPages[i].Rank = dataList.Count.ToString();
