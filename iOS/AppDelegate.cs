@@ -35,17 +35,16 @@ namespace AepApp.iOS
         }
 
 
-        public override void WillEnterForeground(UIApplication uiApplication)
-        {
-            base.WillEnterForeground(uiApplication);
-            uiApplication.ApplicationIconBadgeNumber = new nint(0);
-         }
+        //public override void WillEnterForeground(UIApplication uiApplication)
+        //{
+         //   base.WillEnterForeground(uiApplication);
+         //   //uiApplication.ApplicationIconBadgeNumber = new nint(0);
+         //}
 
-        public override void ProtectedDataDidBecomeAvailable(UIApplication application)
-        {
-            base.ProtectedDataDidBecomeAvailable(application);
-
-        }
+        //public override void ProtectedDataDidBecomeAvailable(UIApplication application)
+        //{
+        //    base.ProtectedDataDidBecomeAvailable(application);
+        //}
 
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)

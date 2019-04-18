@@ -167,8 +167,8 @@ namespace AepApp.Tools
         public static List<string> GetAllTaskType()
         {
             List<string> list = new List<string>();
-            list.Add("日常任务");
             list.Add("事件任务");
+            list.Add("日常任务");
             return list;
         }
 

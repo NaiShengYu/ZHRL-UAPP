@@ -256,7 +256,7 @@ namespace AepApp.View.Gridding
                     deadline = DateTime.Now,
                     staff = App.userInfo.id,
                     state = 1,
-                    type = 1,
+                    type = 2,
                     id = Guid.NewGuid(),
                     index = 2,
                     userName = App.userInfo.userName,
@@ -666,7 +666,6 @@ namespace AepApp.View.Gridding
             {
                 if (hTTPResponse.Results == "\"OK\"") _infoModel.rowState = "upd";
             }
-
         }
 
 
