@@ -21,6 +21,7 @@ namespace AepApp.View.Gridding
         string _eventId = "";
         bool mNeedUp = true;
         string _assignmentId = "";
+        string _followupId = "";
         public delegate void AddTaskToEvent(object sender, object model, EventArgs args);
         public event AddTaskToEvent AddATask;
         ObservableCollection<UserDepartmentsModel> _departMentList = new ObservableCollection<UserDepartmentsModel>();
@@ -232,7 +233,7 @@ namespace AepApp.View.Gridding
         /// <param name="taskId"></param>
         /// <param name="needExcute">是否需要执行记录 true：可以添加执行结果 false：只能查看执行结果</param>
         ///  <param name="needUp">是否需要上传任务 true：可以上传 false：将任务提交到上一级</param>
-        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId, bool needUp, string assignmentId)
+        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId, bool needUp, string assignmentId, string followupid)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
@@ -241,6 +242,7 @@ namespace AepApp.View.Gridding
             mNeedExcute = needExcute;
             mNeedUp = needUp;
             _assignmentId = assignmentId;
+            _followupId = followupid;
             //
             SK.IsVisible = mNeedExcute;
 
@@ -601,7 +603,7 @@ namespace AepApp.View.Gridding
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("id", _infoModel.id);
             dic.Add("rowState", _infoModel.rowState);
-            if (_infoModel.incident != Guid.Empty) dic.Add("incident", _infoModel.incident);
+            if (!string.IsNullOrWhiteSpace(_followupId)) dic.Add("incident", _followupId);
             dic.Add("staff", _infoModel.staff);
             if (_infoModel.template != Guid.Empty) dic.Add("template", _infoModel.template);
             dic.Add("title", _infoModel.title);
