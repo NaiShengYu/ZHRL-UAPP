@@ -105,6 +105,8 @@ namespace AepApp.View
             GestureRecognizers.Add(pinch);
 
             this.BindingContext = this;
+
+            Device.BeginInvokeOnMainThread(() => InvalidateSurface());
         }
 
         AzmCoord centerBeforePinch;
@@ -537,6 +539,7 @@ namespace AepApp.View
 
                 }
             }
+            Device.BeginInvokeOnMainThread(() => InvalidateSurface());
         }
 
         private void Deserialization_Error<ErrorEventArgs>(object sender, ErrorEventArgs e)
@@ -956,12 +959,12 @@ namespace AepApp.View
                 foreach (AzmOverlayView o in e.OldItems)
                 {
                     o.Detached();
-                    //if (o is AzmMarkerView)
-                    //{
-                    //    AzmMarkerView mv = o as AzmMarkerView;
-                    //    if (mv.Label != null) overlayviews.Children.Remove(mv.Label);
-                    //}
-                    //overlayviews.Children.Remove(o);
+                    if (o is AzmMarkerView)
+                    {
+                        AzmMarkerView mv = o as AzmMarkerView;
+                        if (mv.Label != null) overlayviews.Children.Remove(mv.Label);
+                    }
+                    overlayviews.Children.Remove(o);
                 }
             }
         }
