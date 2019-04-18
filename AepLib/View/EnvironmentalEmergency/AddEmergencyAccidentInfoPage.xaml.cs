@@ -742,7 +742,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse);
             }
         }
-
         //上传图片
         private async void PostupLoadImageSending(UploadEmergencyShowModel model, Dictionary<string, object> dic)
         {
