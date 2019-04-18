@@ -70,14 +70,9 @@ namespace AepApp.Tools
         public static string VidioTranscoding(string videoPath, string videoName)
         {
             if (string.IsNullOrWhiteSpace(videoPath) || string.IsNullOrWhiteSpace(videoName)) return "";
-            bool isHave = Directory.Exists(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "RVideo"));
-            if (!isHave)
-            {
-                Directory.CreateDirectory(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "RVideo"));
-            }
-            string dirPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), videoName);
-            DependencyService.Get<IAudio>().VideoTranscoding(dirPath, videoPath);
-            return dirPath;
+            string dirPath = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MOVIES) + "/";
+            DependencyService.Get<IAudio>().VideoTranscoding(dirPath+videoName, videoPath);
+            return dirPath +videoName;
         }
 
         /// <summary>

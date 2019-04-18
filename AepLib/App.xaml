@@ -27,9 +27,9 @@
                             <StackLayout Orientation="Horizontal" Margin="-1,-1,0,0" HorizontalOptions="Start" VerticalOptions="Start" >
                                 <Frame Padding="4,1,4,1" CornerRadius="0" HasShadow="False" BorderColor="Transparent" BackgroundColor="#a6a6a6">
                                     <StackLayout Orientation="Horizontal" Spacing="0">
-                                        <Label Font="15" TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
-                                        <Label Font="15" TextColor="White" Text=" / " />
-                                        <Label Font="15" TextColor="White" Text="{Binding creatorusername}"  />
+                                        <Label HorizontalOptions="Fill" VerticalOptions="Center" Font="15" TextColor="White" Text="{Binding creationTime, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" />
+                                        <Label HorizontalOptions="Fill" VerticalOptions="Center" Font="15" TextColor="White" Text=" / " />
+                                        <Label HorizontalOptions="Fill" VerticalOptions="Center" Font="15" TextColor="White" Text="{Binding creatorusername}"  />
                                     </StackLayout>
                                 </Frame>
                                 <Image Source="greentick" WidthRequest="20" HeightRequest="20" IsVisible="{Binding isNew}">
@@ -120,8 +120,6 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-
-            
             <DataTemplate x:Key="FactorMeasurementDT">
                 <ViewCell >
                     <TextCell.ContextActions>
@@ -398,7 +396,7 @@
 
               <DataTemplate x:Key="VoiceDT">
                 <ViewCell >
-                     <ViewCell.ContextActions>
+                    <ViewCell.ContextActions>
                     <MenuItem Clicked="deleteUnUploadData" IsEnabled="{Binding isEdit}" CommandParameter="{Binding .}" Text="{Binding editTitle}" IsDestructive="{Binding isEdit}"/>                       
                 </ViewCell.ContextActions>
                     <Grid Margin="10,3,10,3">
@@ -406,7 +404,6 @@
                             <Grid HorizontalOptions="Start"  Margin="10,35,0,10"  VerticalOptions="Start"  WidthRequest="{Binding VoiceWight}">
                                 <Label Text="{Binding VoiceLenth}"  TextColor="Black"  HorizontalOptions="Start" VerticalOptions="Center"/>
                             </Grid>
-
                                <Image Source="play" HorizontalOptions="End" VerticalOptions="Start" Margin="10" WidthRequest="45" HeightRequest="45">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding PlayVoiceCommand}" />
