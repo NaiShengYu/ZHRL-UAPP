@@ -16,7 +16,7 @@ namespace AepApp.Models
         public Guid? approvedBy { get; set; }
         public string title { get; set; }
         public double? period { get; set; }
-        public int? type { get; set; }
+        public int? type { get; set; }//1日常任务 2事件任务
         public int? state { get; set; }
         public int? index { get; set; }
         public DateTime date { get; set; }
@@ -142,6 +142,8 @@ namespace AepApp.Models
             set { Result = value; NotifyPropertyChanged(); }
         }
 
+        public bool IsToDepartment { get; set; }
+
         public ObservableCollection<Assignments> assignments { get; set; }
         public ObservableCollection<Coords> coords { get; set; }
         public ObservableCollection<Enterprise> enterprise { get; set; }
@@ -163,8 +165,8 @@ namespace AepApp.Models
         public string rowState { get; set; }
         public Guid? dept { get; set; }
         public Guid? staff { get; set; }
-        public Guid? grid { get; set; }
-        public int type { get; set; }
+        public Guid? grid { get; set; }//所属网格的id
+        public int type { get; set; }//0指派给网格员(staff、grid必传) 1指派给网格(grid必传) 2指派给部门人员(staff、dept必传) 3指派给部门(dept必传)
         public string gridName { get; set; }
 
 
@@ -225,7 +227,7 @@ namespace AepApp.Models
         public string dept { get; set; }
         public string gridName { get; set; }
         public Guid? staff { get; set; }
-        public int? type { get; set; }
+        public int? type { get; set; }//0给网格员 1给网格 2给部门人员 3给部门
         public Guid? grid { get; set; }
         public taskassignment nextLevel { get; set; }
 

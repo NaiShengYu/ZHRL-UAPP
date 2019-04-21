@@ -75,6 +75,7 @@ namespace AepApp.ViewModel
             }
             public bool isChecked { get; set; }
             public bool isExpanded { get; set; }
+            public Guid parentId { get; set; }
             public Guid id { get; set; }
             public int? level { get; set; }
             public int? count { get; set; }

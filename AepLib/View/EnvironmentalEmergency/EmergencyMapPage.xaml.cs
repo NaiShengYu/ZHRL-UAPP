@@ -84,7 +84,6 @@ namespace AepApp.View.EnvironmentalEmergency
             NavigationPage.SetBackButtonTitle(this, "");
             try
             {
-                //Gps gps = PositionUtil.gcj_To_Gps84(App.currentLocation.Latitude, App.currentLocation.Longitude);
                 var singlecoord = new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude);
 
                 currentMarker = new AzmMarkerView(ImageSource.FromFile("loc2.png"), new Size(30, 30), singlecoord);
@@ -95,6 +94,12 @@ namespace AepApp.View.EnvironmentalEmergency
             {
 
             }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            map.InvalidateSurface();
         }
 
         public EmergencyMapPage(ObservableCollection<IncidentLoggingEventsBean> dataList, string incidengtId) : this()
@@ -357,14 +362,14 @@ namespace AepApp.View.EnvironmentalEmergency
                         sources = new ObservableCollection<BuDianItem>(list);
                         lvPlanList.ItemsSource = sources;
                     }
-                    if (mLastClickMv != null)
-                    {
-                        mLastClickMv.Detached();
-                    }
-                    //if (map != null && map.Overlays != null && mLastClickMv != null)
+                    //if (mLastClickMv != null)
                     //{
-                    //    map.Overlays.Remove(mLastClickMv);
+                    //    mLastClickMv.Detached();
                     //}
+                    if (map != null && map.Overlays != null && mLastClickMv != null)
+                    {
+                        map.Overlays.Remove(mLastClickMv);
+                    }
                     dianSelect = null;
                     mLastClickMv = null;
                 }

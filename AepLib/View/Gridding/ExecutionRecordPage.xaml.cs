@@ -183,14 +183,21 @@ namespace AepApp.View.Gridding
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, par, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
-                if (enterpriseModel != null)
+                try
                 {
-                    model.enterpriseName = enterpriseModel.name;
+                    var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
+                    if (enterpriseModel != null)
+                    {
+                        model.enterpriseName = enterpriseModel.name;
+                    }
+                    listView.ItemsSource = null;
+                    listView.ItemsSource = dataList;
+                    GetSubTitle();
                 }
-                listView.ItemsSource = null;
-                listView.ItemsSource = dataList;
-                GetSubTitle();
+                catch (Exception)
+                {
+
+                }                
             }
         }
 

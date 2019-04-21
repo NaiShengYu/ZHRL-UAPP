@@ -274,7 +274,10 @@ namespace AepApp.View.Gridding
                 Dictionary<string, object> dic = new Dictionary<string, object>();
                 dic.Add("id", _taskInfoModel.id);
                 dic.Add("rowState", _taskInfoModel.rowState);
-                if (_followMoel.incident != Guid.Empty) dic.Add("incident", _followMoel.incident);
+                if (_followMoel.incident != Guid.Empty)
+                {
+                    dic.Add("incident", _followMoel.incident);
+                }
                 dic.Add("staff", _followMoel.staff);
                 if (_taskInfoModel.template != Guid.Empty) dic.Add("template", _taskInfoModel.template);
                 dic.Add("title", _taskInfoModel.title);

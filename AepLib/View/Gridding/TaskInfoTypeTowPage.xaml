@@ -22,8 +22,8 @@
                                                 Margin="100,0,35,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
-                                    <x:String>日常任务</x:String>
                                     <x:String>事件任务</x:String>
+                                    <x:String>日常任务</x:String>
                                 </x:Array>
                             </Picker.ItemsSource>
                         </views:BorderlessPicker>
