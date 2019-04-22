@@ -8,17 +8,17 @@ using OxyPlot;
 using Xamarin.Forms;
 using CoreGraphics;
 using AepApp.Models;
-//using AepApp.iOS.Notification.JPush;
+using AepApp.iOS.Notification.JPush;
 using UserNotifications;
 using Xamarin.Essentials;
-//using JPush.Binding.iOS;
+using JPush.Binding.iOS;
 
 namespace AepApp.iOS
 {
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
-        //JPushInterface jPushRegister { get; set; }
+        JPushInterface jPushRegister { get; set; }
         void HandleAction(NSNotification obj)
         {
             var dic = obj.UserInfo as NSMutableDictionary;
@@ -69,7 +69,8 @@ namespace AepApp.iOS
             OxyPlot.Xamarin.Forms.Platform.iOS.PlotViewRenderer.Init();
             //扫描
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
-
+            //地图
+            Xamarin.FormsMaps.Init();
             //collectionView横向
             AiForms.Renderers.iOS.CollectionViewInit.Init(); 
 
@@ -80,11 +81,11 @@ namespace AepApp.iOS
                 MessagingCenter.Send<Grid, NetworkAccess>(new Grid(), "NetworkChanged", access);
             };
 
-            ////注册apns远程推送
-            //if (options == null) options = new NSDictionary();
-            //jPushRegister = new JPushInterface();
-            //jPushRegister.Register(this, options);
-            //this.RegistLogin(options);
+            //注册apns远程推送
+            if (options == null) options = new NSDictionary();
+            jPushRegister = new JPushInterface();
+            jPushRegister.Register(this, options);
+            this.RegistLogin(options);
 
             return base.FinishedLaunching(app, options);
         }

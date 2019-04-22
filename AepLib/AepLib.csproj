@@ -75,6 +75,7 @@
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
     <PackageReference Include="HubConnectionManager" Version="1.0.5" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="3.6.0.344457" />
   </ItemGroup>
 
   <ItemGroup>

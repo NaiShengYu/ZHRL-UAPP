@@ -160,8 +160,8 @@ namespace AepApp
 
         protected void HandleUnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
-            if (args == null || args.ExceptionObject == null)
             {
+                if (args == null || args.ExceptionObject == null)
                 return;
             }
             Exception e = (Exception)args.ExceptionObject;

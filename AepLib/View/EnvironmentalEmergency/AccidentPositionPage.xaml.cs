@@ -104,16 +104,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 // Unable to get location
             }
         }
-        //地图放大
-        void zoomout(object sender, System.EventArgs e)
-        {
-            map.ZoomOut();
-        }
-        //地图缩小
-        void zoomin(object sender, System.EventArgs e)
-        {
-            map.ZoomIn();
-        }
+
+
 
         //保存此位置
         void savePosition(object sender, System.EventArgs e)
@@ -171,8 +163,9 @@ namespace AepApp.View.EnvironmentalEmergency
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             listView.ItemsSource = dataList;
 
-
         }
+        
+
         public AccidentPositionPage(string lng, string lat):this()
         {
 
@@ -190,6 +183,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
             HandleEventHandler();
         }
+        
 
         public AccidentPositionPage(string lng, string lat, string title) : this()
         {
@@ -220,10 +214,21 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (MapGrid.Children.Contains(map) ==true)
+            {
+                MapGrid.Children.Remove(map);
+            }
+
+            MapGrid.Children.Insert(0,map);
+        }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+            MapGrid.Children.Remove(map);
         }
 
 

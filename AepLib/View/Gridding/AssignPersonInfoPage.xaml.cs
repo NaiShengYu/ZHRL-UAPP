@@ -73,7 +73,6 @@ namespace AepApp.View.Gridding
             InitializeComponent();
         }
 
-
         /// <summary>
         /// 
         /// </summary>

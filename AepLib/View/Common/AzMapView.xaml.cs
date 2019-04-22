@@ -105,9 +105,10 @@ namespace AepApp.View
             GestureRecognizers.Add(pinch);
 
             this.BindingContext = this;
-
             Device.BeginInvokeOnMainThread(() => InvalidateSurface());
         }
+
+
 
         AzmCoord centerBeforePinch;
         int nPrevLevel;
@@ -355,7 +356,7 @@ namespace AepApp.View
         public void InvalidateSurface()
         {
             DateTime now = DateTime.Now;
-            if ((now - lastPaintTime).TotalMilliseconds < 20) return;
+            //if ((now - lastPaintTime).TotalMilliseconds < 20) return;
             can.InvalidateSurface();
         }
 
@@ -534,7 +535,7 @@ namespace AepApp.View
 
                     if (_maptype == AzmMapType.Normal)
                     {
-                        LoadTileVectors(level, x, y, 0, false);
+                        LoadTileVectors(level, x, y, 0, true);
                     }
 
                 }
@@ -654,13 +655,11 @@ namespace AepApp.View
                         // limit to 5 retries to avoid from stack overflow
                         if (retrycount<5) LoadTileVectors(level, x, y, retrycount+1);
                     }
-
                     if (refresh) Device.BeginInvokeOnMainThread(() => InvalidateSurface());
 
                 }, null);
             }
         }
-
 
 
 
@@ -1434,7 +1433,7 @@ namespace AepApp.View
 
                             //合肥
                         case 196790: col = Color.FromHex("#d75a5d").ToSKColor(); break;
-                        case 196773: col = Color.FromHex("#d75a5d").ToSKColor(); break;
+                        case 196773: col = Color.FromHex("#f0ebe1").ToSKColor(); break;
 
                             //南宁
                         case 196755: col = Color.FromHex("#f7715d").ToSKColor(); break;
@@ -1613,6 +1612,7 @@ namespace AepApp.View
                         case 196769: col = Color.FromHex("#efece7").ToSKColor(); break;
                         case 196770: col = Color.FromHex("#f8eaeb").ToSKColor(); break;
                         case 196771: col = Color.FromHex("#faf7f2").ToSKColor(); break;
+                        case 196774: col = Color.FromHex("#f3e5e0").ToSKColor(); break;
                         default:
                             col = Color.FromHex("#f00").ToSKColor();
                             Console.WriteLine("&&&&&&& " + p.Item1.ToString());
@@ -1867,8 +1867,10 @@ namespace AepApp.View
 
                             //上海
                         case 65660: col = Color.FromHex("#000000").ToSKColor(); break;  
-                        case 65661: col = Color.FromHex("#000000").ToSKColor(); break;  
+                        case 65661: col = Color.FromHex("#000000").ToSKColor(); break; 
 
+                        case 66295: col = Color.FromHex("#000000").ToSKColor(); textsize = 10; break;
+                        case 66296: col = Color.FromHex("#000000").ToSKColor(); textsize = 10; break;
 
 
                         case 65668: col = Color.FromHex("#333333").ToSKColor(); icon = 113; break;     // hong kong subway station name
@@ -1908,6 +1910,8 @@ namespace AepApp.View
                         case 65756: col = Color.FromHex("#caa1a2").ToSKColor(); textsize = 15; break;
                         case 65757: col = Color.FromHex("#bdbcbc").ToSKColor(); textsize = 15; break;
                         case 65877: col = Color.FromHex("#bdbcbc").ToSKColor(); textsize = 8; break;
+
+                        case 66188: col = Color.FromHex("#5f6f97").ToSKColor(); icon = 259; break;
 
                      
                         case 65836: col = Color.FromHex("#84bcf8").ToSKColor(); icon = 300; break;//北京出站口
@@ -1983,6 +1987,7 @@ namespace AepApp.View
                             backcol = Color.FromHex("#a292bc").ToSKColor(); break;
                         case 65985: col = Color.FromHex("#fff").ToSKColor();            // hk ma on shan line	
                             backcol = Color.FromHex("#bea37e").ToSKColor(); break;
+                        //颜色相近
                         case 65986: col = Color.FromHex("#fff").ToSKColor();            // hk tsuen wan line		
                             backcol = Color.FromHex("#e17a7e").ToSKColor(); break;
                         case 65987: col = Color.FromHex("#fff").ToSKColor();            // hk west rail line		
@@ -2614,7 +2619,6 @@ namespace AepApp.View
                         case 262789: col = Color.FromHex("#a34b15").ToSKColor(); textsize = 10; break;
                         case 262797: col = Color.FromHex("#8ebfe4").ToSKColor(); textsize = 8; break;
 
-                            
                         default:
 #if DEBUG
                             col = Color.Magenta.ToSKColor(); suf = " " + t.key.ToString();

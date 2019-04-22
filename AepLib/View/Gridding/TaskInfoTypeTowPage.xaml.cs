@@ -379,7 +379,6 @@ namespace AepApp.View.Gridding
             {
                 return await getAssignName(currentItem.nextLevel, currentName);
             }
-
             if (currentItem.staff == null) return currentName;
             UserInfoModel auditor = await (App.Current as App).GetUserInfo(currentItem.staff.Value);
             if (auditor != null)
@@ -667,9 +666,6 @@ namespace AepApp.View.Gridding
                 if (hTTPResponse.Results == "\"OK\"") _infoModel.rowState = "upd";
             }
         }
-
-
-
 
         /// <summary>
         /// 相关企业列表

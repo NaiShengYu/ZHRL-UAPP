@@ -6,7 +6,7 @@
              xmlns:s="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              Title="事故位置">
     <ContentPage.Content>
-         <Grid>
+         <Grid x:Name="MapGrid">
             <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White" IsZoomButtonVisible="false">
                 <m:AzMapView.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>

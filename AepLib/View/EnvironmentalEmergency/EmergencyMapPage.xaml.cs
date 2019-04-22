@@ -17,6 +17,8 @@ namespace AepApp.View.EnvironmentalEmergency
         AzmMarkerView currentMarker;
         List<BuDianItem> list = new List<BuDianItem>();
         ObservableCollection<BuDianItem> sources = new ObservableCollection<BuDianItem>();
+        ObservableCollection<IncidentLoggingEventsBean> _factors = new ObservableCollection<IncidentLoggingEventsBean>();//因子数据列表
+
         string _incidengtId = "";
 
         async void openMapNav(double lat, double lng, string destination)
@@ -100,28 +102,25 @@ namespace AepApp.View.EnvironmentalEmergency
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            map.InvalidateSurface();
+            if (MapGrid.Children.Contains(map) == true)
+            {
+                map.Overlays.Clear();
+                MapGrid.Children.Remove(map);
+            }
+            MapGrid.Children.Insert(0, map);
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MapGrid.Children.Remove(map);
         }
 
         public EmergencyMapPage(ObservableCollection<IncidentLoggingEventsBean> dataList, string incidengtId) : this()
         {
-            foreach (IncidentLoggingEventsBean item in dataList)
+            if (dataList !=null)
             {
-               
-                if (item.lat != null && Convert.ToDouble(item.lat) != 0.0)
-                {
-                    //因子上传位置
-                    if (item.category == "IncidentFactorMeasurementEvent")
-                    {
-                        //Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
-                        var coord1 = new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat));
-                        //红色原点
-                        AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("reddot"), new Size(25, 25), coord1)
-                        {
-                        };
-                        map.Overlays.Add(mv);
-                    }
-                }
+                _factors = dataList;
             }
 
             //设置target坐标//事故中心位置
@@ -162,6 +161,7 @@ namespace AepApp.View.EnvironmentalEmergency
             }
             _incidengtId = incidengtId;
             ReqPlanLis(incidengtId);
+
 
         }
 
@@ -223,6 +223,41 @@ namespace AepApp.View.EnvironmentalEmergency
                 tap.Tapped += MarkerIcon_Tapped;
                 mv.GestureRecognizers.Add(tap);
                 map.Overlays.Add(mv);
+            }
+
+            AddFactorDataToMap();
+
+        }
+        //因子数据mark
+        private void AddFactorDataToMap() {
+
+            foreach (IncidentLoggingEventsBean item in _factors)
+            {
+                if (item.lat != null && Convert.ToDouble(item.lat) != 0.0)
+                {
+                    //因子上传位置
+                    if (item.category == "IncidentFactorMeasurementEvent")
+                    {
+                        //Gps gps = PositionUtil.gcj_To_Gps84(Convert.ToDouble(item.lat), Convert.ToDouble(item.lng));
+                        var coord1 = new AzmCoord(Convert.ToDouble(item.lng), Convert.ToDouble(item.lat));
+                        ControlTemplate cvt = Resources["labelwithnavtemp"] as ControlTemplate;
+                        NavLabelView cv = new NavLabelView(item.measurement, coord1)
+                        {
+                            BackgroundColor = Color.FromHex("#f0f0f0"),
+                            ControlTemplate = cvt,
+                        };
+
+                        cv.BindingContext = cv;
+                        cv.NavCommand = new Command(() => { openMapNav(coord1.lat, coord1.lng, "数据上传位置"); });
+
+                        //红色原点
+                        AzmMarkerView mv = new AzmMarkerView(ImageSource.FromFile("reddot"), new Size(25, 25), coord1)
+                        {
+                            CustomView = cv,
+                        };
+                        map.Overlays.Add(mv);
+                    }
+                }
             }
         }
 
