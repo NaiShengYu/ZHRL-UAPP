@@ -9,6 +9,7 @@ using Xamarin.Forms;
 
 namespace AepApp.View.Gridding
 {
+    //一级网格处理事件
     public partial class DisposeEventTypeTowPage : ContentPage
     {
         private GridEventModel _eventModel;
@@ -20,7 +21,7 @@ namespace AepApp.View.Gridding
         {
             GridEventFollowTaskModel task = e.SelectedItem as GridEventFollowTaskModel;
             if (task == null) return;
-            TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage(task.id.ToString(), false, _followMoel.id.ToString(),false,"");
+            TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage(task.id.ToString(), false, _followMoel.id.ToString(), false, "", _followMoel.id.ToString());
             Navigation.PushAsync(towPage);
             listV.SelectedItem = null;
         }
@@ -52,7 +53,7 @@ namespace AepApp.View.Gridding
         }
         void AddEventTask(object sender, System.EventArgs e){
 
-            TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage("", false, _eventModel.id.ToString(),false,"");
+            TaskInfoTypeTowPage towPage = new TaskInfoTypeTowPage("", false, _eventModel.id.ToString(),false,"", _followMoel.id.ToString());
             towPage.AddATask += (object taskinfo,object taskModel1, EventArgs args) =>
             {
                 Dictionary<string, object> task = taskinfo as Dictionary<string,object>;
@@ -241,7 +242,8 @@ namespace AepApp.View.Gridding
             //3表示处理完毕，1表示没处理
             _followMoel.state = SW.IsToggled == true ? 3 : 1;
             Dictionary<string, object> par = new Dictionary<string, object>();
-            par.Add("id", Guid.NewGuid());
+            //par.Add("id", Guid.NewGuid());
+            par.Add("id", _followMoel.id);
             par.Add("rowState", "add");
             par.Add("incident", _eventModel.id);
             par.Add("staff", _followMoel.staff);

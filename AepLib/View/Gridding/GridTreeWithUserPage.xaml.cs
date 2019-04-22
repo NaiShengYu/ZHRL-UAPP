@@ -1,21 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using AepApp.MaterialForms.TreeViews;
+﻿using AepApp.MaterialForms.TreeViews;
 using AepApp.Models;
 using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using static AepApp.ViewModel.GridTreeViewModel;
 
 namespace AepApp.View.Gridding
 {
+    //指派网格员
     public partial class GridTreeWithUserPage : ContentPage
     {
         ObservableCollection<TestTreeModel> gridList = new ObservableCollection<TestTreeModel>();
         GridTaskInfoModel _taskModel;
         private List<GridTreeNode> checkModelList = new List<GridTreeNode>();
+
+
+        private void SetAssignment(TestTreeModel parentModel, ObservableCollection<TestTreeModel> parentChildren, string baseName)
+        {
+            if (parentModel == null && parentChildren == null)
+            {
+                return;
+            }
+            ObservableCollection<TestTreeModel> childern = new ObservableCollection<TestTreeModel>();
+            if (parentModel == null)
+            {
+                parentModel = new TestTreeModel
+                {
+                    id = Guid.NewGuid(),
+                };
+                childern = parentChildren;
+            }
+            else
+            {
+                childern = parentModel.children;
+            }
+            foreach (var child in childern)
+            {
+                if (child.isChecked)
+                {
+                    Assignments s1 = new Assignments
+                    {
+                        id = Guid.NewGuid(),
+                        rowState = "add",
+                        type = child.type.Value,
+                    };
+                    if (child.type == 0)//网格员
+                    {
+                        s1.staff = child.id;
+                        s1.grid = child.parentId;
+                    }
+                    else if (child.type == 1)//网格
+                    {
+                        s1.grid = child.id;
+                    }
+                    _taskModel.assignments.Add(s1);
+                    if (string.IsNullOrWhiteSpace(baseName))
+                    {
+                        _taskModel.AssignName = _taskModel.AssignName + "  " + parentModel.name + child.name;
+                    }
+                    else
+                    {
+                        _taskModel.AssignName = _taskModel.AssignName + "  " + baseName + parentModel.name + child.name;
+                    }
+                }
+                SetAssignment(child, child.children, parentModel.name);
+            }
+        }
 
         public GridTreeWithUserPage(GridTaskInfoModel taskModel)
         {
@@ -26,78 +80,7 @@ namespace AepApp.View.Gridding
             ToolbarItems.Add(new ToolbarItem("确定", "", () =>
             {
                 _taskModel.assignments.Clear();
-                foreach (var rootModel in gridList)
-                {
-                    if (rootModel.isChecked)
-                    {
-                        Assignments s1 = new Assignments
-                        {
-                            id = Guid.NewGuid(),
-                            rowState = "add",
-                            type = rootModel.type.Value,
-                        };
-                        if (rootModel.type == 0) s1.staff = rootModel.id;
-                        if (rootModel.type == 1) s1.grid = rootModel.id;
-                        taskModel.assignments.Add(s1);
-                        taskModel.AssignName = taskModel.AssignName + "  " + rootModel.name;
-                    }
-                    else
-                    {
-                        foreach (var children1 in rootModel.children)
-                        {
-                            if (children1.isChecked)
-                            {
-                                Assignments s1 = new Assignments
-                                {
-                                    id = Guid.NewGuid(),
-                                    rowState = "add",
-                                    type = children1.type.Value,
-                                };
-                                if (children1.type == 0)
-                                {
-                                    s1.staff = children1.id;
-                                    s1.grid = rootModel.id;
-                                }
-                                if (children1.type == 1) s1.grid = children1.id;
-                                taskModel.assignments.Add(s1);
-                                taskModel.AssignName = taskModel.AssignName + "  " + rootModel.name + children1.name;
-
-                            }
-                            else
-                            {
-                                foreach (var children2 in children1.children)
-                                {
-                                    if (children2.isChecked)
-                                    {
-                                        Assignments s1 = new Assignments
-                                        {
-                                            id = Guid.NewGuid(),
-                                            rowState = "add",
-                                            type = children1.type.Value,
-                                        };
-                                        if (children2.type == 0)
-                                        {
-                                            s1.staff = children2.id;
-                                            s1.grid = children1.id;
-                                        }
-                                        if (children2.type == 1) s1.grid = children2.id;
-                                        taskModel.assignments.Add(s1);
-                                        taskModel.AssignName = taskModel.AssignName + "  " + rootModel.name + children1.name + children2.name;
-                                    }
-                                    else
-                                    {
-
-
-                                    }
-                                }
-
-
-                            }
-                        }
-
-                    }
-
-                }
+                SetAssignment(null, gridList, "");
                 Navigation.PopAsync();
             }));
 
@@ -223,9 +206,11 @@ namespace AepApp.View.Gridding
                     for (int i = 0; i < resultList.Count; i++)
                     {
                         GridCellUnder under = resultList[i];
+                        under.parentId = grid;
                         TestTreeModel testTreeModel = new TestTreeModel
                         {
                             children = new ObservableCollection<TestTreeModel>(),
+                            parentId = under.parentId,
                             id = under.id,
                             name = under.name,
                             count = under.count,
@@ -240,7 +225,15 @@ namespace AepApp.View.Gridding
 
                         foreach (var s1 in _taskModel.assignments)
                         {
-                            if (s1.staff == testTreeModel.id || s1.grid == testTreeModel.id) testTreeModel.isChecked = true;
+                            if (testTreeModel.type == 1)
+                            {
+                                if (s1.grid == testTreeModel.id) testTreeModel.isChecked = true;
+                            }
+                            else if (testTreeModel.type == 0)
+                            {
+                                if (s1.staff == testTreeModel.id) testTreeModel.isChecked = true;
+                            }
+                            //if (s1.staff == testTreeModel.id || s1.grid == testTreeModel.id) testTreeModel.isChecked = true;
                         }
 
 
@@ -263,6 +256,7 @@ namespace AepApp.View.Gridding
 
         private class GridCellUnder
         {
+            public Guid parentId { get; set; }//父级id（及所属网格id）
             public Guid id { get; set; }
             public string name { get; set; }
             public int? count { get; set; }

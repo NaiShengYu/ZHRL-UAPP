@@ -10,6 +10,7 @@ using static AepApp.ViewModel.GridTreeViewModel;
 
 namespace AepApp.View.Gridding
 {
+    //指派部门/部门人员
     public partial class AssignPersonInfoPage : ContentPage
     {
       
@@ -29,26 +30,30 @@ namespace AepApp.View.Gridding
             UserDepartmentsModel model = e.SelectedItem as UserDepartmentsModel;
             if (model == null) return;
 
-            if(_type ==1){
+            if(_type ==1){//部门/网格员类
                 _infoModel.assignments.Clear();
-                _infoModel.AssignName = "";
-                Assignments s1 = new Assignments
+                _infoModel.AssignName = model.name;
+                if(model.name != "网格员")
+                {
+                    Assignments s1 = new Assignments
                     {
                         id = Guid.NewGuid(),
                         rowState = "add",
-                        type = 0,
+                        type = 3,
                         dept = model.id,
                     };
                     _infoModel.assignments.Add(s1);
+                }
             }
-            if (_type ==2)
+            if (_type ==2)//部门人员
             {
                 Assignments s1 = new Assignments
                 {
                     id = Guid.NewGuid(),
                     rowState = "add",
-                    type = 0,
+                    type = 2,
                     staff = model.id,
+                    dept = _infoModel.assignments[0].dept.Value,
                 };
                 if (_infoModel.assignments.Count >1)
                 {
@@ -58,7 +63,7 @@ namespace AepApp.View.Gridding
                 _infoModel.AssignName = model.name;
             }
 
-            if(_type == 3){
+            if(_type == 3){//子部门
                 _subDic.Remove("toDept");
                 _subDic.Add("toDept", model.id);
             }

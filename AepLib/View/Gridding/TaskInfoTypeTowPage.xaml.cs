@@ -3,6 +3,7 @@ using AepApp.Tools;
 using AepApp.View.EnvironmentalEmergency;
 using CloudWTO.Services;
 using Newtonsoft.Json;
+using Plugin.Hud;
 using Sample;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace AepApp.View.Gridding
         string _eventId = "";
         bool mNeedUp = true;
         string _assignmentId = "";
+        string _followupId = "";
         public delegate void AddTaskToEvent(object sender, object model, EventArgs args);
         public event AddTaskToEvent AddATask;
         ObservableCollection<UserDepartmentsModel> _departMentList = new ObservableCollection<UserDepartmentsModel>();
@@ -90,7 +92,7 @@ namespace AepApp.View.Gridding
         {
 
         }
-        //指派网格员
+        //指派网格员/部门
         void choiseUser(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new AssignPersonPage(_infoModel));
@@ -147,9 +149,38 @@ namespace AepApp.View.Gridding
 
         }
 
+        //获取用户执行当前任务的assignmentid
+        private string getAssignmentId()
+        {
+            string assignmentId = "";
+            Guid currentUserId = App.userInfo == null ? Guid.Empty : App.userInfo.id;
+            Guid currentGuid = App.gridUser == null ? Guid.Empty : App.gridUser.grid;
+            if (_infoModel == null || _infoModel.taskassignments2 == null)
+            {
+                return assignmentId;
+            }
+            foreach (var item in _infoModel.taskassignments2)
+            {
+                if (!string.IsNullOrWhiteSpace(item.dept))//指派给部门
+                {
+                    assignmentId = item.id != null ? item.id.ToString() : "";
+                }
+                else//指派给网格/网格员
+                {
+                    if(item.staff != null && item.staff == currentUserId)
+                    {
+                        assignmentId = item.id != null ? item.id.ToString() : "";
+                    }else if(item.grid != null && item.grid == currentGuid)
+                    {
+                        assignmentId = item.id != null ? item.id.ToString() : "";
+                    }
+                }
+            }
+            return assignmentId;
+        }
 
         /// <summary>
-        /// 编辑任务结果
+        /// 添加执行结果
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">E.</param>
@@ -162,7 +193,7 @@ namespace AepApp.View.Gridding
             GridTaskHandleRecordModel record = new GridTaskHandleRecordModel
             {
                 date = DateTime.Now,
-                assignment = (_infoModel.staff != null && _infoModel.staff.Value == App.userInfo.id) ? _infoModel.staff.Value.ToString() : _assignmentId,
+                assignment = getAssignmentId(),
                 results = _infoModel.results,
                 editName = App.userInfo.userName,
             };
@@ -232,7 +263,7 @@ namespace AepApp.View.Gridding
         /// <param name="taskId"></param>
         /// <param name="needExcute">是否需要执行记录 true：可以添加执行结果 false：只能查看执行结果</param>
         ///  <param name="needUp">是否需要上传任务 true：可以上传 false：将任务提交到上一级</param>
-        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId, bool needUp, string assignmentId)
+        public TaskInfoTypeTowPage(string taskId, bool needExcute, string eventId, bool needUp, string assignmentId, string followupid)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
@@ -241,6 +272,7 @@ namespace AepApp.View.Gridding
             mNeedExcute = needExcute;
             mNeedUp = needUp;
             _assignmentId = assignmentId;
+            _followupId = followupid;
             //
             SK.IsVisible = mNeedExcute;
 
@@ -256,7 +288,7 @@ namespace AepApp.View.Gridding
                     deadline = DateTime.Now,
                     staff = App.userInfo.id,
                     state = 1,
-                    type = 2,
+                    type = 2,//默认事件任务
                     id = Guid.NewGuid(),
                     index = 2,
                     userName = App.userInfo.userName,
@@ -370,20 +402,90 @@ namespace AepApp.View.Gridding
             }
         }
 
+        //获取部门某人员的所有上级部门名称
+        private async Task<string> getParentDepartment(string parentId, string currentName)
+        {
+            if (string.IsNullOrWhiteSpace(parentId)) return null;
+            UserDepartmentsModel parentDepart = await (App.Current as App).GetDepartmentInfo(parentId);
+            if (parentDepart != null)
+            {
+                if (string.IsNullOrWhiteSpace(currentName))
+                {
+                    currentName = parentDepart.name;
+                }
+                else
+                {
+                    currentName = parentDepart.name + "-" + currentName;
+                }
+                if (parentDepart.parentid == null)
+                {
+                    return currentName;
+                }
+                else
+                {
+                    return await getParentDepartment(parentDepart.parentid.ToString(), currentName);
+                }
+            }
+            else
+            {
+                return currentName;
+            }
+
+        }
+
+        //获取被指派人员名称
         private async Task<string> getAssignName(taskassignment currentItem, string currentName)
         {
-            if (string.IsNullOrEmpty(currentName)) currentName = currentItem.gridName;
-            else currentName = string.IsNullOrWhiteSpace(currentName) ? currentItem.gridName : (currentName + "-" + currentItem.gridName);
-
-            if (currentItem.nextLevel != null)
+            UserInfoModel staff = null;
+            if (currentItem == null) return "";
+            if (currentItem.staff != null)
             {
-                return await getAssignName(currentItem.nextLevel, currentName);
+                staff = await (App.Current as App).GetUserInfo(currentItem.staff.Value);
             }
-            if (currentItem.staff == null) return currentName;
-            UserInfoModel auditor = await (App.Current as App).GetUserInfo(currentItem.staff.Value);
-            if (auditor != null)
-                return currentName + "-" + auditor.userName;
-            else return currentName;
+            if (currentItem.grid != null)//网格/网格员
+            {
+                currentName = (string.IsNullOrWhiteSpace(currentName) ? "" : (currentName + "-")) + currentItem.gridName;
+                if (currentItem.nextLevel != null)
+                {
+                    return await getAssignName(currentItem.nextLevel, currentName);
+                }
+                else
+                {
+                    if (currentItem.staff != null && staff != null)
+                    {
+                        currentName += "-" + staff.userName;
+                    }
+                    return currentName;
+                }
+            }
+            else //部门/部门人员
+            {
+                UserDepartmentsModel depart = await (App.Current as App).GetDepartmentInfo(currentItem.dept);
+                if (currentItem.staff != null && staff != null)//给部门人员
+                {
+                    currentName = staff.userName;
+                    if (depart != null)
+                    {
+                        if (depart.parentid != null)
+                        {
+                            currentName = await getParentDepartment(depart.parentid.ToString(), currentName);
+                        }
+                        else
+                        {
+                            currentName = depart.name + "-" + currentName;
+                        }
+                    }
+                }
+                else//给部门
+                {
+                    currentName = depart != null ? depart.name : "";
+                    if (depart != null && depart.parentid != null)
+                    {
+                        currentName = await getParentDepartment(depart.parentid.ToString(), currentName);
+                    }
+                }
+            }
+            return currentName;
         }
 
         //获取事件详情
@@ -502,7 +604,7 @@ namespace AepApp.View.Gridding
                 }
                 catch (Exception e)
                 {
-                    DependencyService.Get<IToast>().ShortAlert("任务执行记录失败："+e +"\n\n" +res.Results);
+                    DependencyService.Get<IToast>().ShortAlert("任务执行记录失败：" + e + "\n\n" + res.Results);
 
                 }
             }
@@ -543,8 +645,13 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    if (res.Results == "\"OK\"") upDepartBut.IsVisible = false;
-
+                    if (res.Results == "\"OK\"")
+                    {
+                        upDepartBut.IsVisible = false;
+                        //DependencyService.Get<IToast>().ShortAlert("");
+                        CrossHud.Current.ShowSuccess(message: "任务分派成功!", timeout: new TimeSpan(0, 0, 2), cancelCallback: cancel);
+                        await Navigation.PopAsync();
+                    }
                 }
                 catch (Exception e)
                 {
@@ -553,7 +660,10 @@ namespace AepApp.View.Gridding
             }
         }
 
-
+        private void cancel()
+        {
+            //CrossHud.Current.Dismiss();
+        }
         //反地理编码
         private async void getAddressWihtLocation(Coords coords)
         {
@@ -591,7 +701,7 @@ namespace AepApp.View.Gridding
                 return;
             }
 
-            if (_infoModel.assignments.Count ==0)
+            if (_infoModel.assignments.Count == 0)
             {
                 await DisplayAlert("提示", "请选择任务执行人", "确定");
                 return;
@@ -600,7 +710,10 @@ namespace AepApp.View.Gridding
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("id", _infoModel.id);
             dic.Add("rowState", _infoModel.rowState);
-            if (_infoModel.incident != Guid.Empty) dic.Add("incident", _infoModel.incident);
+            if (_infoModel.type == 2 && !string.IsNullOrWhiteSpace(_followupId))//事件任务才传incident字段
+            {
+                dic.Add("incident", _followupId);
+            }
             dic.Add("staff", _infoModel.staff);
             if (_infoModel.template != Guid.Empty) dic.Add("template", _infoModel.template);
             dic.Add("title", _infoModel.title);
@@ -612,16 +725,24 @@ namespace AepApp.View.Gridding
             dic.Add("index", _infoModel.index);
             dic.Add("date", _infoModel.date);
             ObservableCollection<Dictionary<string, object>> assigmengtList = new ObservableCollection<Dictionary<string, object>>();
-            foreach (var item in _infoModel.assignments)
+            for (int i = _infoModel.assignments.Count - 1; i >= 0; i--)
             {
+                var assign = _infoModel.assignments[i];
                 Dictionary<string, object> assigmengtdic = new Dictionary<string, object>();
-                assigmengtdic.Add("id", item.id);
-                assigmengtdic.Add("rowState", item.rowState);
-                assigmengtdic.Add("dept", item.dept);
-                assigmengtdic.Add("staff", item.staff);
-                assigmengtdic.Add("grid", item.grid);
-                assigmengtdic.Add("type", item.type);
+                assigmengtdic.Add("id", assign.id);
+                assigmengtdic.Add("rowState", assign.rowState);
+                assigmengtdic.Add("dept", assign.dept);
+                assigmengtdic.Add("staff", assign.staff);
+                assigmengtdic.Add("grid", assign.grid);
+                assigmengtdic.Add("type", assign.type);
                 assigmengtList.Add(assigmengtdic);
+                if (_infoModel.IsToDepartment)
+                {
+                    if(i == _infoModel.assignments.Count - 1)
+                    {
+                        break;
+                    }
+                }
             }
 
             ObservableCollection<Dictionary<string, object>> coordsList = new ObservableCollection<Dictionary<string, object>>();

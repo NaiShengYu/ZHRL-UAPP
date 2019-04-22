@@ -328,13 +328,13 @@ namespace AepApp.View.Gridding
                 PickSK.Children.Add(grid);
                 Console.WriteLine("图片张数：" + photoList.Count);
 
-                if (isFromNetwork)
-                {
-                    attach.url = "/grid/GetImage/";
-                }
+                //if (isFromNetwork)
+                //{
+                //    attach.url = "/grid/GetImage/";
+                //}
                 Image img = new Image
                 {
-                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(App.EP360Module.url + attach.url + attach.id)) : ImageSource.FromFile(attach.url) as FileImageSource,
+                    Source = isFromNetwork ? ImageSource.FromUri(new Uri(App.EP360Module.url + attach.url)) : ImageSource.FromFile(attach.url) as FileImageSource,
                     HeightRequest = 80,
                     WidthRequest = 80,
                     BackgroundColor = Color.White,
@@ -354,7 +354,7 @@ namespace AepApp.View.Gridding
                     List<string> imgs = new List<string>();
                     foreach (var item in photoList)
                     {
-                        imgs.Add(item.url);
+                        imgs.Add((isFromNetwork ? App.EP360Module.url : "") + item.url);
                     }
                     Navigation.PushAsync(new BrowseImagesPage(imgs));
                 };

@@ -61,7 +61,7 @@
                                                 StyleClass="itemsubtitle" SelectedIndexChanged="pickerNature_SelectedIndexChanged" XAlign="End">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
-                                    <x:String>污水偷拍事件</x:String>
+                                    <x:String>污水偷排事件</x:String>
                                     <x:String>恶臭事件</x:String>
                                 </x:Array>
                             </Picker.ItemsSource>
