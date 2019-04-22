@@ -26,10 +26,13 @@ namespace AepApp.View.Gridding
         public TaskListPage()
         {
             InitializeComponent();
-
-
             NavigationPage.SetBackButtonTitle(this, "");
             filterCondition = new TaskFilterCondition();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             SearchData();
         }
 

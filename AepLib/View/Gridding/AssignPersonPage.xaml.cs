@@ -42,6 +42,11 @@ namespace AepApp.View.Gridding
             InitializeComponent();
             _taskInfomodel = taskInfoModel;
             ToolbarItems.Add(new ToolbarItem("确定","",() => {
+                if(departmentLab.Text == "网格员" && personnelLab.Text == "网格员")
+                {
+                    DisplayAlert("提示", "请至少选择一个网格或网格员", "确定");
+                    return;
+                }
                 Navigation.PopAsync();
             }));
             BindingContext = _taskInfomodel;

@@ -643,8 +643,12 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    if (res.Results == "\"OK\"") upDepartBut.IsVisible = false;
-
+                    if (res.Results == "\"OK\"")
+                    {
+                        upDepartBut.IsVisible = false;
+                        DependencyService.Get<IToast>().ShortAlert("任务分派成功!");
+                        await Navigation.PopAsync();
+                    }
                 }
                 catch (Exception e)
                 {

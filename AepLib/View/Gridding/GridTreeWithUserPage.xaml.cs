@@ -225,7 +225,15 @@ namespace AepApp.View.Gridding
 
                         foreach (var s1 in _taskModel.assignments)
                         {
-                            if (s1.staff == testTreeModel.id || s1.grid == testTreeModel.id) testTreeModel.isChecked = true;
+                            if (testTreeModel.type == 1)
+                            {
+                                if (s1.grid == testTreeModel.id) testTreeModel.isChecked = true;
+                            }
+                            else if (testTreeModel.type == 0)
+                            {
+                                if (s1.staff == testTreeModel.id) testTreeModel.isChecked = true;
+                            }
+                            //if (s1.staff == testTreeModel.id || s1.grid == testTreeModel.id) testTreeModel.isChecked = true;
                         }
 
 

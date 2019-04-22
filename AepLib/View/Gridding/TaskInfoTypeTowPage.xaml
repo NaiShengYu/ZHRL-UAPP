@@ -101,7 +101,8 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="状态" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessPicker IsEnabled="false" WidthRequest="120" XAlign="End" TextColor="Gray" x:Name="pickerStatus" Title="{Binding stateName}" HorizontalOptions="End" VerticalOptions="Center" Margin="100,0,25,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatud_SelectedIndexChanged">
+                        <views:BorderlessPicker IsEnabled="false" WidthRequest="120" XAlign="End" TextColor="Gray" x:Name="pickerStatus" Title="{Binding stateName}" HorizontalOptions="End" 
+                                                VerticalOptions="Center" Margin="100,0,25,0" StyleClass="itemsubtitle" SelectedIndexChanged="pickerStatud_SelectedIndexChanged" FontSize="16">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>未下发</x:String>
@@ -127,14 +128,16 @@
                     <StackLayout x:Name="enterpriseSK" Spacing="0" />
                     <Button Clicked="AddEnterprise" IsVisible="{Binding canEdit}" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,20" />
                     <!--                相关位置列表-->
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                         <Label Text="相关位置" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
-                        <Frame Margin="0,5,25,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
+                        <Frame Margin="0,5,10,5" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Silver" Padding="2" CornerRadius="15" WidthRequest="25" HeightRequest="25" HasShadow="false">
                             <Label x:Name="positionNum" Text="0" TextColor="White" BackgroundColor="Transparent" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
                         </Frame>
                     </Grid>
                     <StackLayout x:Name="positionSK" Spacing="0" />
                     <Button IsVisible="{Binding canEdit}" Clicked="AddPosition" Image="add" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" Margin="30,15,30,20" />
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid BackgroundColor="#e6e6e6" HeightRequest="40">
                         <Label Text="指派" TextColor="Black" Font="16" VerticalOptions="Center" Margin="10,5,10,5" HorizontalOptions="Start" />
                     </Grid>
