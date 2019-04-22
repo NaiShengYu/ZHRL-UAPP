@@ -127,10 +127,11 @@ namespace AepApp.View.Gridding
             }
             if (App.gridUser == null)
             {
-                foreach (var item in dataList)
+                for (int i = 0; i < dataList.Count; i++)
                 {
                     try
                     {
+                        var item = dataList[i];
                         string sub = await GetStaffGridInfo(item.staff.Value) + " - " + await GetStaffInfo(item.staff.Value);
                         item.SubTitle = sub;
                     }
@@ -190,14 +191,23 @@ namespace AepApp.View.Gridding
                     {
                         model.enterpriseName = enterpriseModel.name;
                     }
-                    listView.ItemsSource = null;
-                    listView.ItemsSource = dataList;
-                    GetSubTitle();
                 }
                 catch (Exception)
                 {
 
-                }                
+                }
+                finally
+                {
+                    listView.ItemsSource = null;
+                    listView.ItemsSource = dataList;
+                    GetSubTitle();
+                }
+            }
+            else
+            {
+                listView.ItemsSource = null;
+                listView.ItemsSource = dataList;
+                GetSubTitle();
             }
         }
 

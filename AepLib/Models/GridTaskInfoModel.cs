@@ -149,6 +149,7 @@ namespace AepApp.Models
         public ObservableCollection<Enterprise> enterprise { get; set; }
         public ObservableCollection<Guid> taskenterprises { get; set; }
         public ObservableCollection<taskassignment> taskassignments { get; set; }
+        public ObservableCollection<taskassignment2> taskassignments2 { get; set; }//用来查找assignmentid
 
         private Func<string, Task<string>> _evaluateJavascript;//webview调用js
         public Func<string, Task<string>> EvaluateJavascript
@@ -230,8 +231,14 @@ namespace AepApp.Models
         public int? type { get; set; }//0给网格员 1给网格 2给部门人员 3给部门
         public Guid? grid { get; set; }
         public taskassignment nextLevel { get; set; }
-
-        //public ObservableCollection<taskassignment> nextLevel { get; set; }
     }
 
+    public class taskassignment2 : BaseModel
+    {
+        public Guid? id { get; set; }
+        public Guid? staff { get; set; }
+        public Guid? grid { get; set; }
+        public string dept { get; set; }
+        public string type { get; set; }
+    }
 }

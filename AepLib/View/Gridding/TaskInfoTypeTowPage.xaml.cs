@@ -148,9 +148,38 @@ namespace AepApp.View.Gridding
 
         }
 
+        //获取用户执行当前任务的assignmentid
+        private string getAssignmentId()
+        {
+            string assignmentId = "";
+            Guid currentUserId = App.userInfo == null ? Guid.Empty : App.userInfo.id;
+            Guid currentGuid = App.gridUser == null ? Guid.Empty : App.gridUser.grid;
+            if (_infoModel == null || _infoModel.taskassignments2 == null)
+            {
+                return assignmentId;
+            }
+            foreach (var item in _infoModel.taskassignments2)
+            {
+                if (!string.IsNullOrWhiteSpace(item.dept))//指派给部门
+                {
+                    assignmentId = item.id != null ? item.id.ToString() : "";
+                }
+                else//指派给网格/网格员
+                {
+                    if(item.staff != null && item.staff == currentUserId)
+                    {
+                        assignmentId = item.id != null ? item.id.ToString() : "";
+                    }else if(item.grid != null && item.grid == currentGuid)
+                    {
+                        assignmentId = item.id != null ? item.id.ToString() : "";
+                    }
+                }
+            }
+            return assignmentId;
+        }
 
         /// <summary>
-        /// 编辑任务结果
+        /// 添加执行结果
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">E.</param>
@@ -163,7 +192,7 @@ namespace AepApp.View.Gridding
             GridTaskHandleRecordModel record = new GridTaskHandleRecordModel
             {
                 date = DateTime.Now,
-                assignment = (_infoModel.staff != null && _infoModel.staff.Value == App.userInfo.id) ? _infoModel.staff.Value.ToString() : _assignmentId,
+                assignment = getAssignmentId(),
                 results = _infoModel.results,
                 editName = App.userInfo.userName,
             };
