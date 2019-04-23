@@ -113,11 +113,14 @@ namespace AepApp.View.Monitor
                 //var jsetting = new JsonSerializerSettings();
                 //jsetting.NullValueHandling = NullValueHandling.Ignore;//这个设置，反序列化的时候，不处理为空的值。
                 //result = "{'items':[],'count':'5.0','ncount':'2.0'}";
-                list = JsonConvert.DeserializeObject<List<SupervisionAndInspectionInfo>>(result);
-                foreach (var a in list)
+                list = Tools.JsonUtils.DeserializeObject<List<SupervisionAndInspectionInfo>>(result);
+                if (list != null)
                 {
-                    a.UNIT = ReplacePower(a.UNIT);
-                    a.VALUE = ReplacePower(a.VALUE);
+                    foreach (var a in list)
+                    {
+                        a.UNIT = ReplacePower(a.UNIT);
+                        a.VALUE = ReplacePower(a.VALUE);
+                    }
                 }
                 CrossHud.Current.Dismiss();
             }

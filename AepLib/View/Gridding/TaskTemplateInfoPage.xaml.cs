@@ -33,7 +33,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    TaskTemplateModel data = JsonConvert.DeserializeObject<TaskTemplateModel>(res.Results);
+                    TaskTemplateModel data = Tools.JsonUtils.DeserializeObject<TaskTemplateModel>(res.Results);
                     BindingContext = data;
                     SetWebviewInfo(data);
                 }

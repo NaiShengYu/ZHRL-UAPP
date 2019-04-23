@@ -225,7 +225,11 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 EmergencyAccidentInfoDetail.EmergencyAccidentBean emergencyAccidentBean = new EmergencyAccidentInfoDetail.EmergencyAccidentBean();
-                emergencyAccidentBean = JsonConvert.DeserializeObject<EmergencyAccidentInfoDetail.EmergencyAccidentBean>(hTTPResponse.Results);
+                emergencyAccidentBean = Tools.JsonUtils.DeserializeObject<EmergencyAccidentInfoDetail.EmergencyAccidentBean>(hTTPResponse.Results);
+                if(emergencyAccidentBean == null || emergencyAccidentBean.result == null || emergencyAccidentBean.result.items == null)
+                {
+                    return;
+                }
                 List<EmergencyAccidentInfoDetail.IncidentLoggingEventsBean> list = emergencyAccidentBean.result.items;
                 int count = list.Count;
                 rightListV.ItemsSource = null;

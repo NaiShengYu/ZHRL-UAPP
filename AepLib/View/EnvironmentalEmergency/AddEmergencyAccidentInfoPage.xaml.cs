@@ -635,7 +635,11 @@ namespace AepApp.View.EnvironmentalEmergency
                     if (!string.IsNullOrWhiteSpace(model.category))
                     {
                         string data = JsonConvert.SerializeObject(model);
-                        UploadEmergencyShowModel ShowModel = JsonConvert.DeserializeObject<UploadEmergencyShowModel>(data);
+                        UploadEmergencyShowModel ShowModel = Tools.JsonUtils.DeserializeObject<UploadEmergencyShowModel>(data);
+                        if(ShowModel == null)
+                        {
+                            continue;
+                        }
                         ShowModel.isEdit = true;
                         dataList.Add(ShowModel);
                         saveList.Add(model);
@@ -748,7 +752,7 @@ namespace AepApp.View.EnvironmentalEmergency
             HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.StorePath, ".png", App.EmergencyModule.url, ApiUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
+                uploadImageResurt resultData = Tools.JsonUtils.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
                 if (resultData == null || resultData.result == null) return;
                 if (resultData.result.Count > 0)
                 {
@@ -789,8 +793,8 @@ namespace AepApp.View.EnvironmentalEmergency
             HTTPResponse hTTPResponse = await EasyWebRequest.upload(path, ".mp4", App.EmergencyModule.url, ApiUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
-                if (resultData.result == null) return;
+                uploadImageResurt resultData = Tools.JsonUtils.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
+                if (resultData == null || resultData.result == null) return;
                 if (resultData.result.Count > 0)
                 {
                     uploadImageResurtData imageResurtData = resultData.result[0];
@@ -815,8 +819,8 @@ namespace AepApp.View.EnvironmentalEmergency
             HTTPResponse hTTPResponse = await EasyWebRequest.upload(model.VoiceStorePath, ".mp4", App.EmergencyModule.url, ApiUtils.UPLOAD_EMERGENCY_API);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                uploadImageResurt resultData = JsonConvert.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
-                if (resultData.result == null) return;
+                uploadImageResurt resultData = Tools.JsonUtils.DeserializeObject<uploadImageResurt>(hTTPResponse.Results);
+                if (resultData == null || resultData.result == null) return;
                 if (resultData.result.Count > 0)
                 {
                     uploadImageResurtData imageResurtData = resultData.result[0];

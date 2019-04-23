@@ -154,7 +154,8 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    var resultList = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(hTTPResponse.Results);
+                    var resultList = Tools.JsonUtils.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(hTTPResponse.Results);
+                    if (resultList == null) return;
                     foreach (var item in resultList)
                     {
                         gridList.Add(item);
@@ -179,7 +180,8 @@ namespace AepApp.View.Gridding
                 try
                 {
                     ObservableCollection<string> departIds = new ObservableCollection<string>();
-                    var resultList = JsonConvert.DeserializeObject<ObservableCollection<Dictionary<string,string>>>(hTTPResponse.Results);
+                    var resultList = Tools.JsonUtils.DeserializeObject<ObservableCollection<Dictionary<string, string>>>(hTTPResponse.Results);
+                    if (resultList == null) return;
                     foreach (var item in resultList)
                     {
                         departIds.Add(item["userid"]);
@@ -205,7 +207,8 @@ namespace AepApp.View.Gridding
                 try
                 {
                     string result = hTTPResponse.Results.Replace("username", "name");
-                    var resultList = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(result);
+                    var resultList = Tools.JsonUtils.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(result);
+                    if (resultList == null) return;
                     foreach (var item in resultList)
                     {
                         gridList.Add(item);

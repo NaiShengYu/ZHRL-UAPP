@@ -73,7 +73,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    List<GridTaskHandleRecordModel> list = JsonConvert.DeserializeObject<List<GridTaskHandleRecordModel>>(res.Results);
+                    List<GridTaskHandleRecordModel> list = Tools.JsonUtils.DeserializeObject<List<GridTaskHandleRecordModel>>(res.Results);
                     if (list != null && list.Count > 0)
                     {
                         foreach (var item in list)
@@ -186,7 +186,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
+                    var enterpriseModel = Tools.JsonUtils.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
                     if (enterpriseModel != null)
                     {
                         model.enterpriseName = enterpriseModel.name;

@@ -57,6 +57,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public PersonListPage()
         {
             InitializeComponent();
+            Title = "人员";
             ReqEquipmentList("", Index, 10);
         }
 
@@ -74,9 +75,14 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 Index += 1;
-               var staffList = JsonConvert.DeserializeObject<StaffList>(hTTPResponse.Results);
-                total = staffList.count;
-                List<Staff> list = staffList.items;
+                var staffList = Tools.JsonUtils.DeserializeObject<StaffList>(hTTPResponse.Results);
+                List<Staff> list = new List<Staff>();
+                if (staffList != null)
+                {
+                    total = staffList.count;
+                    list = staffList.items;
+                }
+                if (list == null) return;
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
                 {

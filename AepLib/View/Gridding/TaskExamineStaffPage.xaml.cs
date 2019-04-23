@@ -35,7 +35,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    model = JsonConvert.DeserializeObject<TaskExamineStaffModel>(res.Results);
+                    model = Tools.JsonUtils.DeserializeObject<TaskExamineStaffModel>(res.Results);
                     BindingContext = model;
                 }
                 catch (Exception e)

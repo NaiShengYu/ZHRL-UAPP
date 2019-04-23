@@ -35,6 +35,7 @@
     <item name="android:paddingBottom">0dp</item>
     <item name="android:colorPressedHighlight">@android:color/transparent</item>
     <item name="android:colorFocusedHighlight">@android:color/transparent</item>
+    <item name="android:background">@android:color/transparent</item>
   </style>
   <style name="MyDialogStyle">
     <item name="android:windowBackground">@android:color/transparent</item>

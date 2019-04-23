@@ -44,7 +44,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    GridSendInformationModel detail = JsonConvert.DeserializeObject<GridSendInformationModel>(res.Results);
+                    GridSendInformationModel detail = Tools.JsonUtils.DeserializeObject<GridSendInformationModel>(res.Results);
                     BindingContext = detail;
                     if (detail != null)
                     {

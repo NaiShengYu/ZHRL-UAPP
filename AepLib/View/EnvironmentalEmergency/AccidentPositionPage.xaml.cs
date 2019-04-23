@@ -239,11 +239,14 @@ namespace AepApp.View.EnvironmentalEmergency
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                searchAddressResultModel resultModel = JsonConvert.DeserializeObject<searchAddressResultModel>(hTTPResponse.Results);
+                searchAddressResultModel resultModel = Tools.JsonUtils.DeserializeObject<searchAddressResultModel>(hTTPResponse.Results);
                 dataList.Clear();
-                for (int i = 0; i < resultModel.pois.Count; i++)
+                if (resultModel != null && resultModel.pois != null)
                 {
-                    dataList.Add(resultModel.pois[i]);
+                    for (int i = 0; i < resultModel.pois.Count; i++)
+                    {
+                        dataList.Add(resultModel.pois[i]);
+                    }
                 }
             }
             else

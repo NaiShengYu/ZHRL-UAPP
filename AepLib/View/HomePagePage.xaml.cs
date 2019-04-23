@@ -93,7 +93,7 @@ namespace AepApp.View
             {
                 try
                 {
-                    List<GridCellModel> list = JsonConvert.DeserializeObject<List<GridCellModel>>(res.Results);
+                    List<GridCellModel> list = Tools.JsonUtils.DeserializeObject<List<GridCellModel>>(res.Results);
                     if (list != null && list.Count > 0)
                     {
                         HomePagePage.gridCells = list;
@@ -161,7 +161,7 @@ namespace AepApp.View
             {
                 try
                 {
-                    int info = JsonConvert.DeserializeObject<int>(res.Results);
+                    int info = Tools.JsonUtils.DeserializeObject<int>(res.Results);
                     BtnWorkingTaskNum.Text = info + "";
                 }
                 catch (Exception e)
@@ -183,7 +183,7 @@ namespace AepApp.View
             {
                 try
                 {
-                    int info = JsonConvert.DeserializeObject<int>(res.Results);
+                    int info = Tools.JsonUtils.DeserializeObject<int>(res.Results);
                     BtnRegularTaskNum.Text = info + "";
                 }
                 catch (Exception e)
@@ -205,8 +205,7 @@ namespace AepApp.View
             {
                 try
                 {
-                    int info = JsonConvert.DeserializeObject<int>(res.Results);
-
+                    int info = Tools.JsonUtils.DeserializeObject<int>(res.Results);
                     BtnReportEventNum.Text = info + "";
                 }
                 catch (Exception e)
@@ -229,7 +228,7 @@ namespace AepApp.View
             {
                 try
                 {
-                    info = JsonConvert.DeserializeObject<InformationStaticsModel>(res.Results);
+                    info = Tools.JsonUtils.DeserializeObject<InformationStaticsModel>(res.Results);
                     if (info != null && info != null && info.count > 0)
                     {
                         LayoutSendInformation.IsVisible = true;
@@ -261,7 +260,7 @@ namespace AepApp.View
             {
                 try
                 {
-                    int info = JsonConvert.DeserializeObject<int>(res.Results);
+                    int info = Tools.JsonUtils.DeserializeObject<int>(res.Results);
                     Btn360CompanyNum.Text = info + "";
                 }
                 catch (Exception e)
@@ -283,7 +282,7 @@ namespace AepApp.View
             {
                 try
                 {
-                    int info = JsonConvert.DeserializeObject<int>(res.Results);
+                    int info = Tools.JsonUtils.DeserializeObject<int>(res.Results);
                     Btn360AlarmNum.Text = info + "";
                 }
                 catch (Exception e)
@@ -307,7 +306,8 @@ namespace AepApp.View
             {
                 try
                 {
-                    var result = JsonConvert.DeserializeObject<VOCSiteResult>(res.Results);
+                    var result = Tools.JsonUtils.DeserializeObject<VOCSiteResult>(res.Results);
+                    if (result == null || result.Items == null) return;
                     List<VOCSiteListModel> list = result.Items;
                     int countAir = 0;
                     int countVocs = 0;
@@ -351,9 +351,10 @@ namespace AepApp.View
             {
                 try
                 {
-                    List<OfflineSiteModel> list = JsonConvert.DeserializeObject<List<OfflineSiteModel>>(res.Results);
+                    List<OfflineSiteModel> list = Tools.JsonUtils.DeserializeObject<List<OfflineSiteModel>>(res.Results);
                     int countAir = 0;
                     int countVocs = 0;
+                    if (list == null) return;
                     foreach (var item in list)
                     {
                         int subtype = item.subtype;

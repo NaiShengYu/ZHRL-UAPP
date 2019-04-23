@@ -30,7 +30,7 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);
-                dataList = JsonConvert.DeserializeObject<ObservableCollection<ChemicalStandardModel>>(hTTPResponse.Results);
+                dataList = Tools.JsonUtils.DeserializeObject<ObservableCollection<ChemicalStandardModel>>(hTTPResponse.Results);
                if(dataList ==null ||dataList.Count ==0) DependencyService.Get<IToast>().ShortAlert("无数据");
                else listView.ItemsSource = dataList;
             }

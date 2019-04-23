@@ -72,7 +72,8 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 SuccessCaseModels.SuccessCaseBean successCaseBean = new SuccessCaseModels.SuccessCaseBean();
-                successCaseBean = JsonConvert.DeserializeObject<SuccessCaseModels.SuccessCaseBean>(hTTPResponse.Results);
+                successCaseBean = Tools.JsonUtils.DeserializeObject<SuccessCaseModels.SuccessCaseBean>(hTTPResponse.Results);
+                if (successCaseBean == null || successCaseBean.result == null || successCaseBean.result.cases == null || successCaseBean.result.cases.items == null) return;
                 totalNum = successCaseBean.result.cases.totalCount;
                 List<SuccessCaseModels.ItemsBean> list = successCaseBean.result.cases.items;
                 int count = list.Count;

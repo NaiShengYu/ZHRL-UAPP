@@ -104,7 +104,8 @@ namespace AepApp.View.Gridding
                 try
                 {
                     if (pageIndex == 0) dataList.Clear();
-                    var result = JsonConvert.DeserializeObject<resultModel>(hTTPResponse.Results);
+                    var result = Tools.JsonUtils.DeserializeObject<resultModel>(hTTPResponse.Results);
+                    if (result == null || result.items == null) return;
                     foreach (var item in result.items)
                     {
                         dataList.Add(item);

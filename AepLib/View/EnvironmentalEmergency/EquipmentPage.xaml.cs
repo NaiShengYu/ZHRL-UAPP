@@ -62,6 +62,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public EquipmentPage()
         {
             InitializeComponent();
+            Title = "设备";
             ReqEquipmentList("", Index, 10);         
         }
 
@@ -90,9 +91,14 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse.Results);
                 Index += 1;
                 EquipmentPageModel.EquipmentPageModelBean equipmentPageModel = new EquipmentPageModel.EquipmentPageModelBean();
-                equipmentPageModel = JsonConvert.DeserializeObject<EquipmentPageModel.EquipmentPageModelBean>(hTTPResponse.Results);
-                total = equipmentPageModel.count;
-                List<EquipmentPageModel.ItemsBean> list = equipmentPageModel.items;
+                equipmentPageModel = Tools.JsonUtils.DeserializeObject<EquipmentPageModel.EquipmentPageModelBean>(hTTPResponse.Results);
+                List<EquipmentPageModel.ItemsBean> list = new List<EquipmentPageModel.ItemsBean>();
+                if (equipmentPageModel != null)
+                {
+                    total = equipmentPageModel.count;
+                    list = equipmentPageModel.items;
+                }
+                if (list == null) return;
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
                 {

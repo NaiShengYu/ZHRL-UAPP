@@ -60,9 +60,11 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 ExpertLibraryModels.SpecialBean specialBean = new ExpertLibraryModels.SpecialBean();
-                specialBean = JsonConvert.DeserializeObject<ExpertLibraryModels.SpecialBean>(hTTPResponse.Results);
+                specialBean = Tools.JsonUtils.DeserializeObject<ExpertLibraryModels.SpecialBean>(hTTPResponse.Results);
+                if (specialBean == null || specialBean.result == null || specialBean.result.professionals == null) return;
                 totalNum = specialBean.result.professionals.totalCount;
                 List<ExpertLibraryModels.ItemsBean> list = specialBean.result.professionals.items;
+                if (list == null) return;
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
                 {

@@ -81,7 +81,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    List<TaskTemplateModel> list = JsonConvert.DeserializeObject<List<TaskTemplateModel>>(res.Results);
+                    List<TaskTemplateModel> list = Tools.JsonUtils.DeserializeObject<List<TaskTemplateModel>>(res.Results);
                     if (list != null && list.Count > 0)
                     {
                         foreach (var item in list)

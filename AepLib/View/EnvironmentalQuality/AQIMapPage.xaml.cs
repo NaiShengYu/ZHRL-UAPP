@@ -182,7 +182,8 @@ namespace AepApp.View.EnvironmentalQuality
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {
-                List<AirDetailModels.Factors> factor = JsonConvert.DeserializeObject<List<AirDetailModels.Factors>>(result);
+                List<AirDetailModels.Factors> factor = Tools.JsonUtils.DeserializeObject<List<AirDetailModels.Factors>>(result);
+                if (factor == null) return;
                 for (int i = 0; i < factor.Count; i++)
                 {
                     AirDetailModels.Factors facValue = factor[i];
@@ -241,7 +242,7 @@ namespace AepApp.View.EnvironmentalQuality
                 for (int i = 0; i < sites.Count; i++) parameter.refIds[i] = sites[i].StationId;
                 string param = JsonConvert.SerializeObject(parameter);
                 String result = EasyWebRequest.sendPOSTHttpWebWithTokenRequest(uri, param);//尝试过用SendHTTPRequestAsync函数，但是会卡死
-                details = JsonConvert.DeserializeObject<List<AirDetailModels.FacValsDetails>>(result);
+                details = Tools.JsonUtils.DeserializeObject<List<AirDetailModels.FacValsDetails>>(result);
             };
             wrk.RunWorkerCompleted += (sender1, e1) =>
             {

@@ -178,8 +178,8 @@ namespace AepApp.View.EnvironmentalEmergency
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                List<LHXZAddressMode> dataList = JsonConvert.DeserializeObject<List<LHXZAddressMode>>(hTTPResponse.Results);
-
+                List<LHXZAddressMode> dataList = Tools.JsonUtils.DeserializeObject<List<LHXZAddressMode>>(hTTPResponse.Results);
+                if (dataList == null) return;
                 for (int i = 0; i < dataList.Count;i ++){
                     dataList1.Add(dataList[i]);
                 }

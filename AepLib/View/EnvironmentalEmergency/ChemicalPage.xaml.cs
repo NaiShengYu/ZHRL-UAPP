@@ -76,6 +76,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public ChemicalPage(int type)
         {
             InitializeComponent();
+            Title = "化学品";
             _type = type;
             NavigationPage.SetBackButtonTitle(this,"");//去掉返回键文字
             ReqChemicalList("", Index, 10);
@@ -105,13 +106,19 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse.Results);
                 Index += 1;
                 ReqChemicalPageModel.ReqChemicalBean reqChemicalBean = new ReqChemicalPageModel.ReqChemicalBean();
-                reqChemicalBean = JsonConvert.DeserializeObject<ReqChemicalPageModel.ReqChemicalBean>(hTTPResponse.Results);
-                total = reqChemicalBean.count;
-                List<ReqChemicalPageModel.ItemsBean> list = reqChemicalBean.items;
-                int count = list.Count;
-                for (int i = 0; i < count; i++)
+                reqChemicalBean = Tools.JsonUtils.DeserializeObject<ReqChemicalPageModel.ReqChemicalBean>(hTTPResponse.Results);
+                List<ReqChemicalPageModel.ItemsBean> list = new List<ReqChemicalPageModel.ItemsBean>();
+                if (reqChemicalBean != null)
                 {
-                    dataList.Add(list[i]);
+                    total = reqChemicalBean.count;
+                    list = reqChemicalBean.items;
+                }
+                if (list != null)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        dataList.Add(list[i]);
+                    }
                 }
                 if (total != 0) Title = "化学品（" + total + "）";
                 else Title = "化学品";

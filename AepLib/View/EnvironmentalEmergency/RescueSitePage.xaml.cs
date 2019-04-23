@@ -73,7 +73,9 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 RescueSiteModel.RescueSiteModelBean rescueSiteModel = new RescueSiteModel.RescueSiteModelBean();
-                rescueSiteModel = JsonConvert.DeserializeObject<RescueSiteModel.RescueSiteModelBean>(hTTPResponse.Results);
+                rescueSiteModel = Tools.JsonUtils.DeserializeObject<RescueSiteModel.RescueSiteModelBean>(hTTPResponse.Results);
+                if (rescueSiteModel == null || rescueSiteModel.result == null || rescueSiteModel.result.rescuePoints == null 
+                    || rescueSiteModel.result.rescuePoints.items == null) return;
                 totalNum = rescueSiteModel.result.rescuePoints.totalCount;
                 List<RescueSiteModel.ItemsBean> list = rescueSiteModel.result.rescuePoints.items;
                 int count = list.Count;

@@ -72,7 +72,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    List<GridSendInformationModel> list = JsonConvert.DeserializeObject<List<GridSendInformationModel>>(res.Results);
+                    List<GridSendInformationModel> list = Tools.JsonUtils.DeserializeObject<List<GridSendInformationModel>>(res.Results);
                     if (list != null && list.Count > 0)
                     {
                         foreach (var item in list)

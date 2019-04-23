@@ -306,7 +306,7 @@ namespace AepApp.View.Gridding
                     try
                     {
                         //await DisplayAlert("上传结果", res.Results, "确定");
-                        List<GridAttachmentResultModel> result = JsonConvert.DeserializeObject<List<GridAttachmentResultModel>>(res.Results);
+                        List<GridAttachmentResultModel> result = Tools.JsonUtils.DeserializeObject<List<GridAttachmentResultModel>>(res.Results);
                         if (result != null && result.Count > 0)
                         {
                             item.isUploaded = true;
@@ -451,7 +451,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
+                    var enterpriseModel = Tools.JsonUtils.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
                     if (enterpriseModel != null)
                     {
                         _infoModel.EnterpriseName = enterpriseModel.name;

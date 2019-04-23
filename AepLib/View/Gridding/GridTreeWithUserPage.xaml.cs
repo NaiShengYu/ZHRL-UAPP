@@ -201,8 +201,8 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    var resultList = JsonConvert.DeserializeObject<ObservableCollection<GridCellUnder>>(hTTPResponse.Results);
-
+                    var resultList = Tools.JsonUtils.DeserializeObject<ObservableCollection<GridCellUnder>>(hTTPResponse.Results);
+                    if (resultList == null) return;
                     for (int i = 0; i < resultList.Count; i++)
                     {
                         GridCellUnder under = resultList[i];

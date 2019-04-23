@@ -78,9 +78,11 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 EmergencyPlanModels.EmergencyPlanBean emergencyPlanBean = new EmergencyPlanModels.EmergencyPlanBean();
-                emergencyPlanBean = JsonConvert.DeserializeObject<EmergencyPlanModels.EmergencyPlanBean>(hTTPResponse.Results);
+                emergencyPlanBean = Tools.JsonUtils.DeserializeObject<EmergencyPlanModels.EmergencyPlanBean>(hTTPResponse.Results);
+                if (emergencyPlanBean == null || emergencyPlanBean.result == null || emergencyPlanBean.result.preplans == null) return;
                 totalNum = emergencyPlanBean.result.preplans.totalCount;
                 List<EmergencyPlanModels.ItemsBean> list = emergencyPlanBean.result.preplans.items;
+                if (list == null) return;
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
                 {

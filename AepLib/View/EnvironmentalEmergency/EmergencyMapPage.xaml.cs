@@ -175,7 +175,7 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(hTTPResponse.Results);
-                list = JsonConvert.DeserializeObject<List<BuDianItem>>(hTTPResponse.Results);
+                list = Tools.JsonUtils.DeserializeObject<List<BuDianItem>>(hTTPResponse.Results);
                 if (list != null && list.Count > 0)
                 {
                     lvPlanList.IsVisible = true;
@@ -387,7 +387,7 @@ namespace AepApp.View.EnvironmentalEmergency
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(param), "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                bool res = JsonConvert.DeserializeObject<Boolean>(hTTPResponse.Results);
+                bool res = Tools.JsonUtils.DeserializeObject<Boolean>(hTTPResponse.Results);
                 if (res)
                 {
                     await DisplayAlert("提示", "删除成功", "确定");

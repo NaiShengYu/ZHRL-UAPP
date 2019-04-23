@@ -90,21 +90,24 @@ namespace AepApp.View.Monitor
                 //var jsetting = new JsonSerializerSettings();
                 //jsetting.NullValueHandling = NullValueHandling.Ignore;//这个设置，反序列化的时候，不处理为空的值。
                 //result = "{'items':[],'count':'5.0','ncount':'2.0'}";
-                list = JsonConvert.DeserializeObject<aaaa>(result);
+                list = Tools.JsonUtils.DeserializeObject<aaaa>(result);
                 CrossHud.Current.Dismiss();
 
                 if (_page == 1)
                     dataList.Clear();
-                for (int i = 0; i < list.items.Count; i++)
+                if (list != null && list.items != null)
                 {
-                    ProjectApproval item = list.items[i];
-                    dataList.Add(item);
-                }
+                    for (int i = 0; i < list.items.Count; i++)
+                    {
+                        ProjectApproval item = list.items[i];
+                        dataList.Add(item);
+                    }
 
-                if (list.count <= (float)dataList.Count)
-                    _haveMore = false;
-                else
-                    _haveMore = true;
+                    if (list.count <= (float)dataList.Count)
+                        _haveMore = false;
+                    else
+                        _haveMore = true;
+                }
 
             }
             catch (Exception ex)

@@ -68,8 +68,11 @@ namespace AepApp.Tools
         public static UploadEmergencyShowModel creatingUploadEmergencyShowModel(UploadEmergencyModel emergencyModel)
         {
             string data = JsonConvert.SerializeObject(emergencyModel);
-            UploadEmergencyShowModel showModel = JsonConvert.DeserializeObject<UploadEmergencyShowModel>(data);
-            showModel.isEdit = true;
+            UploadEmergencyShowModel showModel = Tools.JsonUtils.DeserializeObject<UploadEmergencyShowModel>(data);
+            if (showModel != null)
+            {
+                showModel.isEdit = true;
+            }
             return showModel;
         }
         //请求参数字典
@@ -247,8 +250,11 @@ namespace AepApp.Tools
             if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
             {
                 Console.WriteLine(hTTPResponse.Results);
-                AddDataIncidentFactorModel.Factor fa = JsonConvert.DeserializeObject<AddDataIncidentFactorModel.Factor>(hTTPResponse.Results);
-
+                AddDataIncidentFactorModel.Factor fa = Tools.JsonUtils.DeserializeObject<AddDataIncidentFactorModel.Factor>(hTTPResponse.Results);
+                if(fa == null || fa.result == null || fa.result.items == null)
+                {
+                    return;
+                }
                 for (int i = 0; i < fa.result.items.Count; i++)
                 {
                     AddDataIncidentFactorModel.ItemsBean model = fa.result.items[i];
