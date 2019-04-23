@@ -127,10 +127,11 @@ namespace AepApp.View.Gridding
             }
             if (App.gridUser == null)
             {
-                foreach (var item in dataList)
+                for (int i = 0; i < dataList.Count; i++)
                 {
                     try
                     {
+                        var item = dataList[i];
                         string sub = await GetStaffGridInfo(item.staff.Value) + " - " + await GetStaffInfo(item.staff.Value);
                         item.SubTitle = sub;
                     }
@@ -183,11 +184,27 @@ namespace AepApp.View.Gridding
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, par, "POST", App.FrameworkToken);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
-                if (enterpriseModel != null)
+                try
                 {
-                    model.enterpriseName = enterpriseModel.name;
+                    var enterpriseModel = JsonConvert.DeserializeObject<GridEnterpriseModel>(hTTPResponse.Results);
+                    if (enterpriseModel != null)
+                    {
+                        model.enterpriseName = enterpriseModel.name;
+                    }
                 }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    listView.ItemsSource = null;
+                    listView.ItemsSource = dataList;
+                    GetSubTitle();
+                }
+            }
+            else
+            {
                 listView.ItemsSource = null;
                 listView.ItemsSource = dataList;
                 GetSubTitle();

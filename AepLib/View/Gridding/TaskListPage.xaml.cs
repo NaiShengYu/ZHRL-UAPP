@@ -26,10 +26,13 @@ namespace AepApp.View.Gridding
         public TaskListPage()
         {
             InitializeComponent();
-
-
             NavigationPage.SetBackButtonTitle(this, "");
             filterCondition = new TaskFilterCondition();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             SearchData();
         }
 
@@ -40,7 +43,7 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            Navigation.PushAsync(new TaskInfoTypeTowPage(taskM.task.ToString(), true, "", true, taskM.assignment));
+            Navigation.PushAsync(new TaskInfoTypeTowPage(taskM.task.ToString(), true, "", true, taskM.assignment, ""));
             listView.SelectedItem = null;
         }
 

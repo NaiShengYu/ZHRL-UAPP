@@ -165,7 +165,11 @@ namespace AepApp.iOS
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
             JPUSHService.RegisterDeviceToken(deviceToken);
+<<<<<<< HEAD
             System.Console.WriteLine("DeviceToken:" + deviceToken);
+=======
+
+>>>>>>> 2367bf589d190c74ffb57deaa5af561985d6ff1b
             // Get current device token
             var DeviceToken = deviceToken.Description;
             if (!string.IsNullOrWhiteSpace(DeviceToken))
@@ -187,7 +191,14 @@ namespace AepApp.iOS
 
 
         }
-
+          public void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
+        {
+            //这个是在前台
+            if (application.ApplicationState == UIApplicationState.Active)
+            {
+            }
+            completionHandler(UIBackgroundFetchResult.NewData);
+        }
         /// <summary>
         /// 注册token失败
         /// </summary>

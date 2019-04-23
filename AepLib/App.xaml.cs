@@ -487,6 +487,25 @@ namespace AepApp
         }
 
 
+        /// <summary>
+        /// 获取特定用户的信息
+        /// </summary>
+        /// <param name="staffId"></param>
+        /// <returns></returns>
+        public async Task<UserDepartmentsModel> GetDepartmentInfo(string departId)
+        {
+            if (string.IsNullOrWhiteSpace(departId)) return null;
+            string url = App.BasicDataModule.url + "/api/Modmanage/GetDepartmentByid";
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("id", departId);
+            HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, JsonConvert.SerializeObject(param), "POST", App.FrameworkToken);
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                UserDepartmentsModel depart = JsonConvert.DeserializeObject<UserDepartmentsModel>(res.Results);
+                return depart;
+            }
+            return null;
+        }
 
         /// <summary>
         /// 获取所有部门

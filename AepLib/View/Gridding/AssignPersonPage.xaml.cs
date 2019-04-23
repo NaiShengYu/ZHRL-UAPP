@@ -14,8 +14,22 @@ namespace AepApp.View.Gridding
             {
                 return;
             }
-            if(departmentLab.Text=="网格员") Navigation.PushAsync(new GridTreeWithUserPage(_taskInfomodel));
-            else Navigation.PushAsync(new AssignPersonInfoPage(_taskInfomodel,2,personnelLab));
+            if (departmentLab.Text == "网格员")
+            {
+                if(_taskInfomodel != null)
+                {
+                    _taskInfomodel.IsToDepartment = false;
+                }
+                Navigation.PushAsync(new GridTreeWithUserPage(_taskInfomodel));
+            }
+            else
+            {
+                if (_taskInfomodel != null)
+                {
+                    _taskInfomodel.IsToDepartment = true;
+                }
+                Navigation.PushAsync(new AssignPersonInfoPage(_taskInfomodel, 2, personnelLab));
+            }
         }
 
         void AssignDepartment(object sender, System.EventArgs e)
@@ -28,6 +42,11 @@ namespace AepApp.View.Gridding
             InitializeComponent();
             _taskInfomodel = taskInfoModel;
             ToolbarItems.Add(new ToolbarItem("确定","",() => {
+                if(departmentLab.Text == "网格员" && personnelLab.Text == "网格员")
+                {
+                    DisplayAlert("提示", "请至少选择一个网格或网格员", "确定");
+                    return;
+                }
                 Navigation.PopAsync();
             }));
             BindingContext = _taskInfomodel;
