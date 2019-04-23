@@ -344,6 +344,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 emergencyModel.unitName = item.unitName;
                 emergencyModel.factorValue = item.jianCeZhi;
                 emergencyModel.unitId = Guid.NewGuid().ToString();
+                emergencyModel.lat = Convert.ToDouble(item.lat);
+                emergencyModel.lng = Convert.ToDouble(item.lng);
 
                 if (item.yangBenLeiXing == "大气") emergencyModel.incidentNature = "4";
                 else if (item.yangBenLeiXing == "水质") emergencyModel.incidentNature = "2";

@@ -177,8 +177,10 @@ namespace AepApp.View.EnvironmentalEmergency
         public RescueSiteMapPage(string title, AzmCoord singlecoord) : this()
         {
             Title = title;
-            AddOverLays(singlecoord, title, 30);
-            map.SetCenter(13, singlecoord, false);
+            Gps gps = PositionUtil.gcj_To_Gps84(singlecoord.lat, singlecoord.lng);
+            var center = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+            AddOverLays(center, title, 30);
+            map.SetCenter(13, center, true);
         }
         //事故详情列表数据参数进入
         public RescueSiteMapPage(string title, AzmCoord singlecoord,string content) : this()

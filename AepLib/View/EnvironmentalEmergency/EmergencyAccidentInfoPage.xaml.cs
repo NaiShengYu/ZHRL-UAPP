@@ -243,7 +243,7 @@ namespace AepApp.View.EnvironmentalEmergency
 
                     if (cagy == "IncidentLocationSendingEvent")
                     {
-                        AzmCoord center=new AzmCoord(bean.targetLng == null ? 0 : bean.targetLng.Value, bean.targetLat == null ? 0 : bean.targetLat.Value);
+                        AzmCoord center =new AzmCoord(bean.targetLng == null ? 0 : bean.targetLng.Value, bean.targetLat == null ? 0 : bean.targetLat.Value);
                         bean.LocateOnMapCommand = new Command(async () => { await Navigation.PushAsync(new RescueSiteMapPage("事故中心点", center)); });
                     }
                     else if (cagy == "IncidentFactorMeasurementEvent")
@@ -320,8 +320,6 @@ namespace AepApp.View.EnvironmentalEmergency
         void GetEmergencyCenterCoord()
         {
             App.EmergencyCenterCoord = null;
-            if(App.currentLocation !=null)//初始给一个当前定位
-                App.EmergencyCenterCoord = new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude);
             foreach (IncidentLoggingEventsBean item in dataList)
             {
                 if (item.targetLat != 0 && item.targetLng != 0 && item.targetLat != null && item.targetLng != null)
@@ -332,9 +330,13 @@ namespace AepApp.View.EnvironmentalEmergency
                     }
                 }
             }
+
             if (App.EmergencyCenterCoord == null)
-            {//如果无法获取当前定位，就给一个默认值
-                App.EmergencyCenterCoord = new AzmCoord(121.630325, 29.889472);
+            {
+                if (App.currentLocation != null)//初始给一个当前定位
+                    App.EmergencyCenterCoord = new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude);
+                //如果无法获取当前定位，就给一个默认值
+                else App.EmergencyCenterCoord = new AzmCoord(121.630325, 29.889472);
             }
             if (App.EmergencyCenterCoord.lat != 0.0f && App.EmergencyCenterCoord.lng != 0.0)
             {

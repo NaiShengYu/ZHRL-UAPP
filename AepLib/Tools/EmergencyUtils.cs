@@ -51,7 +51,7 @@ namespace AepApp.Tools
                 creationTime = System.DateTime.Now,
                 emergencyid = emergencyId,
                 category = type,
-                creatorusername = App.userInfo.userName,
+                creatorUserName = App.userInfo.userid,
             };
             try
             {
@@ -106,7 +106,7 @@ namespace AepApp.Tools
                     {
                         dic.Add("content", model.Content);
                         dic.Add("title", model.Title);
-                        dic.Add("creatorUserName", model.creatorusername);
+                        dic.Add("creatorUserName", model.creatorUserName);
 
                     }
                     break;
