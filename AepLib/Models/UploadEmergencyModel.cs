@@ -101,7 +101,7 @@ namespace AepApp.Models
             set { }
         }
         public DateTime creationTime { get; set; }
-        public string creatorusername { get; set; }
+        public string creatorUserName { get; set; }
         public string category { get; set; }
         public string emergencyid { get; set; }
 

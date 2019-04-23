@@ -8,10 +8,10 @@ using OxyPlot;
 using Xamarin.Forms;
 using CoreGraphics;
 using AepApp.Models;
-using AepApp.iOS.Notification.JPush;
 using UserNotifications;
 using Xamarin.Essentials;
 using JPush.Binding.iOS;
+using AepApp.iOS.Notification.JPush;
 
 namespace AepApp.iOS
 {
@@ -49,7 +49,7 @@ namespace AepApp.iOS
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            
+
             var not = NSNotificationCenter.DefaultCenter;
             not.AddObserver(UIKeyboard.WillChangeFrameNotification, HandleAction);
 
@@ -74,7 +74,8 @@ namespace AepApp.iOS
             //collectionView横向
             AiForms.Renderers.iOS.CollectionViewInit.Init(); 
 
-            LoadApplication(new App());
+
+
 
             Connectivity.ConnectivityChanged += (ConnectivityChangedEventArgs e) => {
                 var access = e.NetworkAccess;
@@ -86,6 +87,9 @@ namespace AepApp.iOS
             jPushRegister = new JPushInterface();
             jPushRegister.Register(this, options);
             this.RegistLogin(options);
+
+
+            LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
@@ -161,6 +165,7 @@ namespace AepApp.iOS
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
             JPUSHService.RegisterDeviceToken(deviceToken);
+            System.Console.WriteLine("DeviceToken:" + deviceToken);
 
             // Get current device token
             var DeviceToken = deviceToken.Description;
@@ -181,7 +186,6 @@ namespace AepApp.iOS
             // Save new device token 
             NSUserDefaults.StandardUserDefaults.SetString(DeviceToken, "PushDeviceToken");
 
-            System.Console.WriteLine(DeviceToken);
 
         }
           public void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
@@ -213,8 +217,5 @@ namespace AepApp.iOS
             else
                 Console.WriteLine("RegistrationID Failed. ResultCode:{0}", resCode);
         }
-
-
-
     }
 }

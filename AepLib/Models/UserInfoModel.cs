@@ -20,7 +20,11 @@ namespace AepApp.Models
             get;
             set;
         }
-
+        public string userid
+        {
+            get;
+            set;
+        }
 
         public string telephone
         {
