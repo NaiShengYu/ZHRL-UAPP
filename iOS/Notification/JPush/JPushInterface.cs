@@ -1,14 +1,15 @@
 ﻿using Foundation;
-using JPush.Binding.iOS;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using UserNotifications;
+using AepApp.iOS;
+using JPush.Binding.iOS;
 
 namespace AepApp.iOS.Notification.JPush
 {
     public class JPushInterface : JPUSHRegisterDelegate
-    {
+    {//ab4f6d9522395eb71a74c0cc
         internal static string JPushAppKey = "47ddd95d443bebfbce7859a4";
         internal static string Channel = "";
         JPushRegisterEntity entity { get; set; }
@@ -21,6 +22,8 @@ namespace AepApp.iOS.Notification.JPush
             JPUSHService.RegisterForRemoteNotificationConfig(entity, this);
             JPUSHService.SetupWithOption(options, JPushAppKey, Channel, true, advertisingId);
             JPUSHService.RegistrationIDCompletionHandler(app.GetRegistrationID);
+            NSSet<NSString> nSSet = new NSSet<NSString>(new NSString[] { (NSString)"jjououwoeur"});
+            JPUSHService.AddTags(nSSet, (arg0, arg1, arg2) => { }, 1);
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace AepApp.iOS.Notification.JPush
 
             if (completionHandler != null)
             {
-                completionHandler(2);//UNNotificationPresentationOptions： None = 0,Badge = 1,Sound = 2,Alert = 4,
+                completionHandler(4);//UNNotificationPresentationOptions： None = 0,Badge = 1,Sound = 2,Alert = 4,
             }
         }
 
