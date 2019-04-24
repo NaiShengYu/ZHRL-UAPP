@@ -24,7 +24,7 @@
                                     <Button Clicked="Handle_SelectSoil" TextColor="#ededed" WidthRequest="30" HeightRequest="30" BackgroundColor="White" BorderRadius="0" Padding="0" Text="土" HorizontalOptions="Start" VerticalOptions="Start"/>
                                 </StackLayout>
                             </StackLayout>
-                            <Button Margin="10,20,20,20" Image="greentick" Clicked="Handle_EditEmergencyAccident" BackgroundColor="Transparent" Padding="0" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Center"/>
+                            <Button Margin="10,20,20,20" Image="ok_small" Clicked="Handle_EditEmergencyAccident" BackgroundColor="Transparent" Padding="0" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Center"/>
 
                         </Grid> 
                     </Grid>
