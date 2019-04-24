@@ -179,7 +179,7 @@ namespace AepApp.Tools
 
                 if (Device.RuntimePlatform == Device.Android)
                 {
-                    path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(null);
+                    path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MUSIC);
                 }
                 ShowModel.VoicePath = path + "/" + ShowModel.VoicePath;
                 ShowModel.VoiceStorePath = path + "/" + ShowModel.VoiceStorePath;
@@ -187,8 +187,7 @@ namespace AepApp.Tools
                 {
                     ShowModel.PlayVoiceCommand = new Command(() =>
                     {
-                        var dir = path + "/" + ShowModel.VoicePath;
-                        DependencyService.Get<IAudio>().PlayLocalFile(dir);
+                        DependencyService.Get<IAudio>().PlayLocalFile(ShowModel.VoicePath);
                     });
                 }
                 catch (Exception ex)

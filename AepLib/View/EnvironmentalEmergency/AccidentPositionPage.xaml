@@ -24,7 +24,7 @@
             <Button BackgroundColor="White" Clicked="SearchLoactionClick" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,40" WidthRequest="50" HeightRequest="50" Image="magglass" BorderRadius="25" BorderWidth="2" BorderColor="Black"/>
 
             <Button BackgroundColor="Transparent" Clicked="Handle_Clicked" HorizontalOptions="Start" VerticalOptions="End" Margin="30,0,0,40" WidthRequest="55" HeightRequest="55" Image="loc2"/>
-            <Button BackgroundColor="Transparent" Clicked="savePosition" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,3 0" WidthRequest="100" HeightRequest="100" Image="greentick"/>
+            <Button BackgroundColor="Transparent" Clicked="savePosition" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,30" WidthRequest="100" HeightRequest="100" Image="greentick"/>
 
             <Grid VerticalOptions="EndAndExpand" x:Name="searchBar" RowSpacing="0">
                 <Grid.RowDefinitions>
