@@ -166,21 +166,13 @@ namespace AepApp.Tools
             }
             else if (cagy == "IncidentPictureSendingEvent")
             {
-
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_PICTURES);
-                }
+                path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_PICTURES);
                 ShowModel.StorePath = path + "/" + ShowModel.StorePath;
                 ShowModel.imagePath = path + "/" + ShowModel.imagePath;
             }
             else if (cagy == "IncidentVoiceSendingEvent")
             {
-
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MUSIC);
-                }
+                path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MUSIC);
                 ShowModel.VoicePath = path + "/" + ShowModel.VoicePath;
                 ShowModel.VoiceStorePath = path + "/" + ShowModel.VoiceStorePath;
                 try
@@ -197,11 +189,7 @@ namespace AepApp.Tools
             }
             else if (cagy == "IncidentVideoSendingEvent")
             {
-
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MOVIES);
-                }
+                path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MOVIES);
                 ShowModel.VideoPath = path + "/" + ShowModel.VideoPath;
                 ShowModel.VideoStorePath = path + "/" + ShowModel.VideoStorePath;
                 ShowModel.CoverPath = path + "/" + ShowModel.CoverPath;
