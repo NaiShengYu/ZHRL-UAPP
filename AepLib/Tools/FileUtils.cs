@@ -65,8 +65,12 @@ namespace AepApp.Tools
             DependencyService.Get<IAudio>().SaveThumbImage(dirPath, thumbName, videoPath, 1);
             return dirPath + thumbName;
         }
-
-        //视频转码地址
+        /// <summary>
+        /// 视频转码地址
+        /// </summary>
+        /// <returns>The transcoding.</returns>
+        /// <param name="videoPath">Video path.</param>
+        /// <param name="videoName">Video name.</param>
         public static string VidioTranscoding(string videoPath, string videoName)
         {
             if (string.IsNullOrWhiteSpace(videoPath) || string.IsNullOrWhiteSpace(videoName)) return "";

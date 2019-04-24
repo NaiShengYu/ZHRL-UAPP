@@ -11,9 +11,8 @@ namespace AepApp.View.EnvironmentalEmergency
     {
         public ShowFilePage(string info) : this()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string filename = Path.Combine(path, info);
-            web.Source = filename;
+       
+            web.Source = info;
     }
 
         public ShowFilePage(string url, bool isFromNet) : this()

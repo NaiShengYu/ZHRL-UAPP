@@ -1,9 +1,12 @@
 ﻿using AepApp.Models;
+using AepApp.Services;
+using AepApp.Tools;
 using CloudWTO.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using Xamarin.Forms;
 
 namespace AepApp.View.EnvironmentalEmergency
@@ -60,8 +63,14 @@ namespace AepApp.View.EnvironmentalEmergency
         private async void downloadPlan(String filePath, string fileFormat)
         {
             string url = App.EmergencyModule.url + filePath;
-            HTTPResponse hTTPResponse = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileFormat, App.EmergencyToken);
-            await Navigation.PushAsync(new ShowFilePage(fileFormat));
+            string dirPath = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_DOC);
+            //存储文件名
+            string filename = Path.Combine(dirPath, fileFormat);
+            if (!File.Exists(filename))
+            {
+                HTTPResponse hTTPResponse = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileFormat, App.EmergencyToken);
+            }
+            await Navigation.PushAsync(new ShowFilePage(filename));
         }
 
         private async void ReqSuccessCase(String Filter, String Sorting)

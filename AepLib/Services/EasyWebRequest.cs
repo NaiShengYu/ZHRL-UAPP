@@ -14,6 +14,9 @@ using Plugin.Media.Abstractions;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Collections.Specialized;
+using AepApp.Services;
+using Xamarin.Forms;
+using AepApp.Tools;
 
 #if __MOBILE__
 using Newtonsoft.Json;
@@ -144,7 +147,7 @@ namespace CloudWTO.Services
                 WebResponse wr = await req.GetResponseAsync();
                 res = wr as HttpWebResponse;
                 //存储路径
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                string path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_DOC);
                 //存储文件名
                 string filename = Path.Combine(path, fileN);
                 //创建一个文件流，路径为flieName

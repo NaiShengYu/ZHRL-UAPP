@@ -150,16 +150,14 @@ namespace AepApp.View.EnvironmentalEmergency
                 if (isRecording == false)
                 {
                     isRecording = true;
-                    string path = DependencyService.Get<IFileService>().GetExtrnalStoragePath(null);
-                    var dir = path + "/Voice/";
+                    var dir = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_MUSIC)+"/";
                     if (!Directory.Exists(dir))
                     {
                         Directory.CreateDirectory(dir);
                     }
                     //存储文件名
-                    string name = DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
-                    voisePath = "/Voice/" + name;
-                    _filename = Path.Combine(dir, name);
+                    voisePath = DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
+                    _filename = Path.Combine(dir, voisePath);
                     Console.WriteLine(_filename);
                     DependencyService.Get<IRecordVoice>().startRecord(_filename);
                 }
@@ -489,8 +487,8 @@ namespace AepApp.View.EnvironmentalEmergency
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                string videoName = "RVideo/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
-                string imgName = "ThuImage/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_thumb.jpg";
+                string videoName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
+                string imgName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_thumb.jpg";
                 var file = await CrossMedia.Current.TakeVideoAsync(new Plugin.Media.Abstractions.StoreVideoOptions
                 {
                     DesiredLength = new TimeSpan(0, 0, 10),
@@ -520,8 +518,6 @@ namespace AepApp.View.EnvironmentalEmergency
                     RecordBackSuccess(dirPath + _videoPartPath, _videoPartPath, imgName);
                 });
             }
-
-
         }
 
 
