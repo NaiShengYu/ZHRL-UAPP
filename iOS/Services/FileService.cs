@@ -53,6 +53,11 @@ namespace AepApp.iOS.Services
             }
             return mainPath;
         }
+
+        public void OpenFileDocument(string localPath, string suffix)
+        {
+
+        }
     }
 
 }

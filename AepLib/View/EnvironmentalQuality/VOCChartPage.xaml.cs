@@ -78,7 +78,7 @@ namespace AepApp.View.EnvironmentalQuality
             {
                 try
                 {
-                    List<Charts> list = JsonConvert.DeserializeObject<List<Charts>>(res.Results);
+                    List<Charts> list = Tools.JsonUtils.DeserializeObject<List<Charts>>(res.Results);
                     if (list != null)
                     {
                         DrawOxy(list);

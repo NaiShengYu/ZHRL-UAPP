@@ -35,7 +35,7 @@
                         <Label Text="{Binding gridName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
-                    <Grid IsVisible="false">
+                    <Grid x:Name="StateLayout" IsVisible="false">
                         <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding state}" Value="2">
                                 <Setter Property="IsVisible" Value="true"/>

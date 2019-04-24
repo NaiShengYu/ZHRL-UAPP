@@ -101,7 +101,7 @@ namespace AepApp.ViewModel
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                App.mySamplePlanResult = JsonConvert.DeserializeObject<MySamplePlanResult>(hTTPResponse.Results);
+                App.mySamplePlanResult = Tools.JsonUtils.DeserializeObject<MySamplePlanResult>(hTTPResponse.Results);
                 //Console.WriteLine("结果是：" + App.mySamplePlanResult);
 
                 //if (PlanMap.ContainsKey(CurrentDay2String()))
@@ -113,7 +113,7 @@ namespace AepApp.ViewModel
 
 
 
-
+                if (App.mySamplePlanResult == null || App.mySamplePlanResult.Items == null) return;
                 foreach (MySamplePlanItems p in App.mySamplePlanResult.Items)
                 {
                     if (p.tasklist == null) p.tasklist = new ObservableCollection<TasksList>();

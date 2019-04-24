@@ -67,14 +67,20 @@ namespace AepApp.View.EnvironmentalEmergency
         private async void downloadPlan(String filePath,string fileFormat){
             string url = App.EmergencyModule.url + filePath;
             string dirPath = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_DOC);
-            //存储文件名
-            string filename = Path.Combine(dirPath, fileFormat);
-            if (!File.Exists(filename))
+            //存储文件路径
+            string absPath = Path.Combine(dirPath, fileFormat);
+            if (!File.Exists(absPath))
             {
                 HTTPResponse hTTPResponse = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileFormat, App.EmergencyToken);
             }
-            await Navigation.PushAsync(new ShowFilePage(filename));
-
+            if(Device.RuntimePlatform == Device.Android)
+            {
+                DependencyService.Get<IFileService>().OpenFileDocument(absPath, FileUtils.GetFileSuffix(absPath));
+            }
+            else
+            {
+                await Navigation.PushAsync(new ShowFilePage(absPath));
+            }
         }
 
 
@@ -86,9 +92,11 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 EmergencyPlanModels.EmergencyPlanBean emergencyPlanBean = new EmergencyPlanModels.EmergencyPlanBean();
-                emergencyPlanBean = JsonConvert.DeserializeObject<EmergencyPlanModels.EmergencyPlanBean>(hTTPResponse.Results);
+                emergencyPlanBean = Tools.JsonUtils.DeserializeObject<EmergencyPlanModels.EmergencyPlanBean>(hTTPResponse.Results);
+                if (emergencyPlanBean == null || emergencyPlanBean.result == null || emergencyPlanBean.result.preplans == null) return;
                 totalNum = emergencyPlanBean.result.preplans.totalCount;
                 List<EmergencyPlanModels.ItemsBean> list = emergencyPlanBean.result.preplans.items;
+                if (list == null) return;
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
                 {

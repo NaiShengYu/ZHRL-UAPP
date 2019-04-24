@@ -15,25 +15,25 @@
                     <Grid>
                         <Label Text="标题" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,20,10,10" HorizontalOptions="Start" />
                         <views:BorderlessEntry Placeholder="输入事件标题" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding title}" 
-                                               VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="100,15,10,5" TextColor="Gray" 
+                                               VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="100,15,25,5" TextColor="Gray" 
                                                TextChanged="Handle_TextChanged" HeightRequest="30" XAlign="End"/>
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="时间" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label Text="{Binding date ,StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,10,10" />
+                        <Label Text="{Binding date ,StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="网络员" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label Text="{Binding UserName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,100,10" />
-                        <Button IsVisible="{Binding hasPhone}" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" BackgroundColor="Transparent" Image="phone" Margin="0, 0, 10, 0" Clicked="phone_Tapped" />
-                        <Button IsVisible="{Binding hasPhone}" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" BackgroundColor="Transparent" Image="text2" Margin="10,0,50,0" Clicked="sms_Tapped" />
+                        <Label Text="{Binding UserName}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,110,10" />
+                        <Button IsVisible="{Binding hasPhone}" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" BackgroundColor="Transparent" Image="phone" Margin="0, 0, 25, 0" Clicked="phone_Tapped" />
+                        <Button IsVisible="{Binding hasPhone}" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="27" HeightRequest="40" BackgroundColor="Transparent" Image="text2" Margin="10,0,60,0" Clicked="sms_Tapped" />
                     </Grid>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#e6e6e6" />
                     <Grid>
                         <Label Text="地址" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,10,10,10" HorizontalOptions="Start" />
-                        <Label Text="{Binding Addr}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="100,10,10,10" />
+                        <Label Text="{Binding Addr}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="100,10,25,10" />
                       <!--  <Image IsVisible="{Binding canEdit}" Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                         <Button IsEnabled="{Binding canEdit}" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" />-->
                     </Grid>

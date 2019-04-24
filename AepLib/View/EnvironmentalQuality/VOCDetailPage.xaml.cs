@@ -58,7 +58,7 @@ namespace AepApp.View.EnvironmentalQuality
             {
                 try
                 {
-                    List<Factors> list = JsonConvert.DeserializeObject<List<Factors>>(res.Results);
+                    List<Factors> list = Tools.JsonUtils.DeserializeObject<List<Factors>>(res.Results);
                     if (list != null && list.Count > 0)
                     {
                         factors.Clear();
@@ -92,7 +92,7 @@ namespace AepApp.View.EnvironmentalQuality
             {
                 try
                 {
-                    List<FactorLatestValue> list = JsonConvert.DeserializeObject<List<FactorLatestValue>>(res.Results);
+                    List<FactorLatestValue> list = Tools.JsonUtils.DeserializeObject<List<FactorLatestValue>>(res.Results);
                     if (list != null && list.Count > 0)
                     {
                         foreach (var item in list)

@@ -54,6 +54,7 @@ namespace AepApp.View.Gridding
 
         public void creatView()
         {
+            if (gridList == null) return;
             for (int i = 0; i < gridList.Count; i++)
             {
                 GridTreeView tree = new GridTreeView(showChildrenCount)
@@ -248,7 +249,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    gridList = JsonConvert.DeserializeObject<ObservableCollection<TestTreeModel>>(hTTPResponse.Results);
+                    gridList = Tools.JsonUtils.DeserializeObject<ObservableCollection<TestTreeModel>>(hTTPResponse.Results);
                     creatView();
                 }
                 catch (Exception ex)

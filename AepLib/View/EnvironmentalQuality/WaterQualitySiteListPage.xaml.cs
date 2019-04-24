@@ -92,7 +92,8 @@ namespace AepApp.View.EnvironmentalQuality
                 try
                 {
                     _pageIndex += 1;
-                    var result = JsonConvert.DeserializeObject<WaterQualitySiteModel>(hTTPResponse.Results);
+                    var result = Tools.JsonUtils.DeserializeObject<WaterQualitySiteModel>(hTTPResponse.Results);
+                    if (result == null || result.Items == null) return;
                     var total = result.Totals;
                     List<WaterQualityItem> list = result.Items;
                     foreach (var item in list)

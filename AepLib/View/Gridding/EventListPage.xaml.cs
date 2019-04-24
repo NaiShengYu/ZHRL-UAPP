@@ -125,7 +125,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    List<GridEventModel> eventList = JsonConvert.DeserializeObject<List<GridEventModel>>(hTTPResponse.Results);
+                    List<GridEventModel> eventList = Tools.JsonUtils.DeserializeObject<List<GridEventModel>>(hTTPResponse.Results);
                     if(eventList != null && eventList.Count > 0)
                     {
                         int count = eventList.Count;

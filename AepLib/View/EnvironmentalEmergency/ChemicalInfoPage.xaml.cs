@@ -65,11 +65,13 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse.Results);
                 hTTPResponse.Results = hTTPResponse.Results.Replace("null","\"\"");
                 ChemicalInfoPageModel.ChemicalInfoPageModelBean chemicalInfo = new ChemicalInfoPageModel.ChemicalInfoPageModelBean();
-                chemicalInfo = JsonConvert.DeserializeObject<ChemicalInfoPageModel.ChemicalInfoPageModelBean>(hTTPResponse.Results);
-
-                chemicalInfo.molecular_str = ReplaceSubs(chemicalInfo.molecular_str);
-                //chemicalInfo.env_impact = "“英文名称”：“2-甲基苯硼酸< Br> 2-甲基苯基硼酸< Br> 2-甲苯基硼酸< Br> AKO-BRN-017BR>邻甲基苯基硼酸< Br>邻甲苯基硼酸< Br> ReaChanm AH Pb 0228 Br＞甲苯-2-硼酸< Br> 2-甲苯基硼酸（2-甲基苯硼酸）< BR> 2-甲基苯基硼酸< BR>邻甲苯硼酸<Br> 2-甲基苯基硼酸<Br>邻甲苯基硼酸，M.97.%Br> 2-甲基苯基硼酸，邻甲苯硼酸< Br> 2-甲基磺酰基苯硼酸< BR> 2-甲基苯基硼酸（含不同量酸酐）< Br> 2-甲基苯基硼酸（邻甲苯基硼酸）< Br> 2-甲苯硼酸盐NIC酸＞Br＞O-硼酸甲苯＞Br> 2-甲苯基硼酸，98%，";
-                BindingContext = chemicalInfo;
+                chemicalInfo = Tools.JsonUtils.DeserializeObject<ChemicalInfoPageModel.ChemicalInfoPageModelBean>(hTTPResponse.Results);
+                if (chemicalInfo != null)
+                {
+                    chemicalInfo.molecular_str = ReplaceSubs(chemicalInfo.molecular_str);
+                    //chemicalInfo.env_impact = "“英文名称”：“2-甲基苯硼酸< Br> 2-甲基苯基硼酸< Br> 2-甲苯基硼酸< Br> AKO-BRN-017BR>邻甲基苯基硼酸< Br>邻甲苯基硼酸< Br> ReaChanm AH Pb 0228 Br＞甲苯-2-硼酸< Br> 2-甲苯基硼酸（2-甲基苯硼酸）< BR> 2-甲基苯基硼酸< BR>邻甲苯硼酸<Br> 2-甲基苯基硼酸<Br>邻甲苯基硼酸，M.97.%Br> 2-甲基苯基硼酸，邻甲苯硼酸< Br> 2-甲基磺酰基苯硼酸< BR> 2-甲基苯基硼酸（含不同量酸酐）< Br> 2-甲基苯基硼酸（邻甲苯基硼酸）< Br> 2-甲苯硼酸盐NIC酸＞Br＞O-硼酸甲苯＞Br> 2-甲苯基硼酸，98%，";
+                    BindingContext = chemicalInfo;
+                }
             }
         }
 

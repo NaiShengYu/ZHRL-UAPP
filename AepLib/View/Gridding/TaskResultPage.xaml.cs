@@ -158,7 +158,8 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    mRecord = JsonConvert.DeserializeObject<GridTaskHandleRecordModel>(res.Results);
+                    mRecord = Tools.JsonUtils.DeserializeObject<GridTaskHandleRecordModel>(res.Results);
+                    if (mRecord == null) return;
                     mRecord.enterpriseName = _enterpriseName;
                     SetRecordInfo(mRecord);
                 }
@@ -198,7 +199,7 @@ namespace AepApp.View.Gridding
                 {
                     try
                     {
-                        List<GridAttachmentResultModel> result = JsonConvert.DeserializeObject<List<GridAttachmentResultModel>>(res.Results);
+                        List<GridAttachmentResultModel> result = Tools.JsonUtils.DeserializeObject<List<GridAttachmentResultModel>>(res.Results);
                         if (result != null && result.Count > 0)
                         {
                             item.isUploaded = true;
@@ -255,7 +256,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    string status = JsonConvert.DeserializeObject<string>(res.Results);
+                    string status = Tools.JsonUtils.DeserializeObject<string>(res.Results);
                     if ("OK".Equals(status))
                     {
                         //DependencyService.Get<IToast>().LongAlert("添加成功！");

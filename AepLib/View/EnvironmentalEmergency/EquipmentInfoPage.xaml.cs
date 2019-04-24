@@ -32,7 +32,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 EquipmentInfoPageModel.EquipmentInfoBean equipmentInfo = new EquipmentInfoPageModel.EquipmentInfoBean();
-                equipmentInfo = JsonConvert.DeserializeObject<EquipmentInfoPageModel.EquipmentInfoBean>(hTTPResponse.Results);
+                equipmentInfo = Tools.JsonUtils.DeserializeObject<EquipmentInfoPageModel.EquipmentInfoBean>(hTTPResponse.Results);
                 BindingContext = equipmentInfo;
             }
         }

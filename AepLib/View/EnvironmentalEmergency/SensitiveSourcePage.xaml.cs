@@ -57,7 +57,9 @@ namespace AepApp.View.EnvironmentalEmergency
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK) {
                 Console.WriteLine(hTTPResponse.Results);
                 SensitiveModels.SensitiveBean sensitiveBean = new SensitiveModels.SensitiveBean();
-                sensitiveBean = JsonConvert.DeserializeObject<SensitiveModels.SensitiveBean>(hTTPResponse.Results);
+                sensitiveBean = Tools.JsonUtils.DeserializeObject<SensitiveModels.SensitiveBean>(hTTPResponse.Results);
+                if (sensitiveBean == null || sensitiveBean.result == null || sensitiveBean.result.sensitiveUnits == null 
+                    || sensitiveBean.result.sensitiveUnits.items == null) return;
                 totalNum = sensitiveBean.result.sensitiveUnits.totalCount;
                 List<SensitiveModels.ItemsBean> list = sensitiveBean.result.sensitiveUnits.items;
                 int count = list.Count;

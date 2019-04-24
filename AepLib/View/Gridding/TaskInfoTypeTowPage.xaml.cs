@@ -354,7 +354,7 @@ namespace AepApp.View.Gridding
                     GH.Height = 0;
                     BindingContext = _infoModel;
                     ReqGridTaskList();
-                    if (_infoModel.state == 6) addTaskResulGR.IsVisible = false;
+                    if (_infoModel.state == 6 || _infoModel.state == 5 || _infoModel.state == 3) addTaskResulGR.IsVisible = false;
                     _infoModel.enterprise = new ObservableCollection<Enterprise>();
                     GetStaffInfo();
                     GetSendUserInfo();
@@ -391,7 +391,8 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    TaskTemplateModel data = JsonConvert.DeserializeObject<TaskTemplateModel>(res.Results);
+                    TaskTemplateModel data = Tools.JsonUtils.DeserializeObject<TaskTemplateModel>(res.Results);
+                    if (data == null) return;
                     _infoModel.templateName = data.title;
 
                 }
@@ -502,7 +503,8 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    var eventInfoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    var eventInfoModel = Tools.JsonUtils.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    if (eventInfoModel == null) return;
                     _infoModel.incidentTitle = eventInfoModel.title;
                 }
                 catch (Exception ex)
@@ -563,7 +565,7 @@ namespace AepApp.View.Gridding
             if (res.StatusCode == HttpStatusCode.OK)
             {
                 string result = res.Results.Replace("name", "enterpriseName");
-                _infoModel.enterprise = JsonConvert.DeserializeObject<ObservableCollection<Enterprise>>(result);
+                _infoModel.enterprise = Tools.JsonUtils.DeserializeObject<ObservableCollection<Enterprise>>(result);
                 creatEnterpriseList();
             }
         }
@@ -586,7 +588,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    List<GridTaskHandleRecordModel> list = JsonConvert.DeserializeObject<List<GridTaskHandleRecordModel>>(res.Results);
+                    List<GridTaskHandleRecordModel> list = Tools.JsonUtils.DeserializeObject<List<GridTaskHandleRecordModel>>(res.Results);
                     //DependencyService.Get<IToast>().ShortAlert( "请求结果：" + res.Results);
 
                     if (list != null && list.Count > 0)
@@ -622,9 +624,14 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    _departMentList = JsonConvert.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(res.Results);
+                    _departMentList = Tools.JsonUtils.DeserializeObject<ObservableCollection<UserDepartmentsModel>>(res.Results);
                     if (_departMentList != null && _departMentList.Count > 0)
-                        SKT.IsVisible = true;
+                    {
+                        if(_infoModel == null || _infoModel.state == null || (_infoModel.state.Value != 3 && _infoModel.state.Value != 6))
+                        {
+                            SKT.IsVisible = true;
+                        }
+                    }
                 }
                 catch (Exception e)
                 {
@@ -794,6 +801,7 @@ namespace AepApp.View.Gridding
         void creatEnterpriseList()
         {
             enterpriseSK.Children.Clear();
+            if (_infoModel == null || _infoModel.enterprise == null) return;
             for (int i = 0; i < _infoModel.enterprise.Count; i++)
             {
                 var po = _infoModel.enterprise[i];

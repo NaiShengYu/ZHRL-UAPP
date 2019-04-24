@@ -82,7 +82,7 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 try
                 {
-                    SampleExamineModel examineModel = JsonConvert.DeserializeObject<SampleExamineModel>(res.Results);
+                    SampleExamineModel examineModel = Tools.JsonUtils.DeserializeObject<SampleExamineModel>(res.Results);
                     if (examineModel != null && examineModel.items != null && examineModel.items.Count > 0)
                     {
                         List<SampleExamineItem> list = examineModel.items;

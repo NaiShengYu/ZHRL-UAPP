@@ -112,6 +112,12 @@ namespace AepApp.Tools
             return name;
         }
 
+        /// <summary>
+        /// 替换文件的后缀名
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="suffix"></param>
+        /// <returns></returns>
         public static string ReplaceFileSuffix(string filePath, string suffix)
         {
             if (string.IsNullOrWhiteSpace(filePath) || string.IsNullOrWhiteSpace(suffix)) return "";
@@ -120,6 +126,25 @@ namespace AepApp.Tools
             StringBuilder sb = new StringBuilder();
             string path = sb.Append(filePath.Substring(0, index)).Append(suffix).ToString();
             return path;
+        }
+
+        /// <summary>
+        /// 获取文件的后缀名
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns>带点.的后缀名</returns>
+        public static string GetFileSuffix(string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath)) return "";
+            string suffix = "";
+            int index = filePath.LastIndexOf(".");
+            if (index < 0) return suffix;
+            suffix = filePath.Substring(index, filePath.Length - index);
+            if (!string.IsNullOrWhiteSpace(suffix))
+            {
+                suffix = suffix.ToLower();
+            }
+            return suffix;
         }
     }
 }

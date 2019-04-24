@@ -85,7 +85,7 @@ namespace AepApp.View
                 idsList.Clear();
                 try
                 {
-                    pollutions = JsonConvert.DeserializeObject<resutlDic>(res.Results);
+                    pollutions = Tools.JsonUtils.DeserializeObject<resutlDic>(res.Results);
                     if (pollutions != null)
                     {
                         totalCount = pollutions.count;
@@ -136,7 +136,7 @@ namespace AepApp.View
             {
                 try
                 {
-                    List<EnterpriseModel> extraList = JsonConvert.DeserializeObject<List<EnterpriseModel>>(res.Results);
+                    List<EnterpriseModel> extraList = Tools.JsonUtils.DeserializeObject<List<EnterpriseModel>>(res.Results);
                     if (extraList != null && extraList.Count > 0)
                     {
                         foreach (var extra in extraList)
@@ -174,7 +174,7 @@ namespace AepApp.View
                 //CrossHud.Current.Show("请求中...");
                 string uri = App.environmentalQualityModel.url + "/api/AppEnterprise/GetEnterpriseList?keys=";
                 result = EasyWebRequest.sendGetHttpWebRequest(uri);
-                pollutions = JsonConvert.DeserializeObject<resutlDic>(result);
+                pollutions = Tools.JsonUtils.DeserializeObject<resutlDic>(result);
                 //pollutions.Items.Sort(delegate (EnterpriseModel x, EnterpriseModel y)
                 //{
                 //    return y.count.CompareTo(x.count);
@@ -200,6 +200,7 @@ namespace AepApp.View
         private void getCurrentData(String value)
         {
             dataList.Clear();
+            if (pollutions == null || pollutions.Items == null) return;
             for (int i = 0; i < pollutions.Items.Count; i++)
             {
                 EnterpriseModel item = pollutions.Items[i];

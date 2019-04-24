@@ -69,13 +69,13 @@ namespace AepApp.View.Monitor
                 //var jsetting = new JsonSerializerSettings();
                 //jsetting.NullValueHandling = NullValueHandling.Ignore;//这个设置，反序列化的时候，不处理为空的值。
                 //result = "{'items':[],'count':'5.0','ncount':'2.0'}";
-                currentModel = JsonConvert.DeserializeObject<resultModel>(result);
-                if (currentModel.SPETITIONCONTENT != null)
+                currentModel = Tools.JsonUtils.DeserializeObject<resultModel>(result);
+                if (currentModel != null && currentModel.SPETITIONCONTENT != null)
                 {
                     currentModel.SPETITIONCONTENT = HtmlRemoval.StripTagsRegex(currentModel.SPETITIONCONTENT);
                     currentModel.SPETITIONCONTENT = currentModel.SPETITIONCONTENT.Replace("&nbsp;", " ");
                 }
-                if (currentModel.RESULTCONTENT != null)
+                if (currentModel != null && currentModel.RESULTCONTENT != null)
                 {
                     currentModel.RESULTCONTENT = HtmlRemoval.StripTagsRegex(currentModel.RESULTCONTENT);
                     currentModel.RESULTCONTENT = currentModel.RESULTCONTENT.Replace("&nbsp;", " ");

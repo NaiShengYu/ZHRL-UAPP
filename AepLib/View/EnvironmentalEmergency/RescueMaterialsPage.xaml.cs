@@ -39,7 +39,8 @@ namespace AepApp.View.EnvironmentalEmergency
                 Console.WriteLine(hTTPResponse.Results);
                 start += 10;
                 RescueMaterialsModel.RescueMaterialsModelBean rescueMaterials = new RescueMaterialsModel.RescueMaterialsModelBean();
-                rescueMaterials = JsonConvert.DeserializeObject<RescueMaterialsModel.RescueMaterialsModelBean>(hTTPResponse.Results);            
+                rescueMaterials = Tools.JsonUtils.DeserializeObject<RescueMaterialsModel.RescueMaterialsModelBean>(hTTPResponse.Results);
+                if (rescueMaterials == null || rescueMaterials.result == null || rescueMaterials.result.reliefSupplies == null) return;
                 List<RescueMaterialsModel.ReliefSuppliesBean> list = rescueMaterials.result.reliefSupplies;
                 int count = list.Count;
                 for (int i = 0; i < count; i++)

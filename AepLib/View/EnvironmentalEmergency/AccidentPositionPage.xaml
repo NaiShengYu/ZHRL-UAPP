@@ -6,14 +6,14 @@
              xmlns:s="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              Title="事故位置">
     <ContentPage.Content>
-         <Grid x:Name="MapGrid">
+        <Grid x:Name="MapGrid">
             <m:AzMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White" IsZoomButtonVisible="false">
                 <m:AzMapView.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
                 </m:AzMapView.GestureRecognizers>
             </m:AzMapView>
             <s:SKCanvasView x:Name="can" PaintSurface="Handle_PaintSurface" IsEnabled="false"/>
-           <Frame HasShadow="false" Padding="0" CornerRadius="0"  HeightRequest="50" VerticalOptions="Start" HorizontalOptions="Fill" Margin="20,20,20,0" OutlineColor="#b8b8b8" BackgroundColor="#fafafa">
+            <Frame HasShadow="false" Padding="0" CornerRadius="0"  HeightRequest="50" VerticalOptions="Start" HorizontalOptions="Fill" Margin="20,20,20,0" OutlineColor="#b8b8b8" BackgroundColor="#fafafa">
                 <Label x:Name="centercoorLab" FontSize="22" BackgroundColor="#fafafa" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Source={Reference map}, Path=CenterCoord, StringFormat='{0}'}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
@@ -24,37 +24,34 @@
             <Button BackgroundColor="White" Clicked="SearchLoactionClick" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,40" WidthRequest="50" HeightRequest="50" Image="magglass" BorderRadius="25" BorderWidth="2" BorderColor="Black"/>
 
             <Button BackgroundColor="Transparent" Clicked="Handle_Clicked" HorizontalOptions="Start" VerticalOptions="End" Margin="30,0,0,40" WidthRequest="55" HeightRequest="55" Image="loc2"/>
-            <Button BackgroundColor="Transparent" Clicked="savePosition" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,30" WidthRequest="80" HeightRequest="80" Image="greentick"/>
-            
-               <Grid VerticalOptions="EndAndExpand" x:Name="searchBar" RowSpacing="0">
-               <Grid.RowDefinitions>
+            <Button BackgroundColor="Transparent" Clicked="savePosition" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,3 0" WidthRequest="100" HeightRequest="100" Image="greentick"/>
+
+            <Grid VerticalOptions="EndAndExpand" x:Name="searchBar" RowSpacing="0">
+                <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-             <SearchBar Grid.Row="0" Placeholder="搜索" x:Name="seach" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_SearchButtonPressed" StyleClass="sbar" BackgroundColor="White"/>
-            <ListView CachingStrategy="RecycleElementAndDataTemplate" Grid.Row="1" x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" ItemSelected="Handle_ItemSelected" >
-                <ListView.GestureRecognizers>
-<!--                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>-->
-                 </ListView.GestureRecognizers>
+                <SearchBar Grid.Row="0" Placeholder="搜索" x:Name="seach" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_SearchButtonPressed" StyleClass="sbar" BackgroundColor="White"/>
+                <ListView CachingStrategy="RecycleElementAndDataTemplate" Grid.Row="1" x:Name="listView" StyleClass="mainlist" HasUnevenRows="true" 
+                          ItemSelected="Handle_ItemSelected" BackgroundColor="White">
+                    <ListView.GestureRecognizers>
+                        <!--                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>-->
+                    </ListView.GestureRecognizers>
                     <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid VerticalOptions="Center" StyleClass="item">
-                                <StackLayout VerticalOptions="Center" Margin="20,5,20,5" Spacing="2">
-                                    <Label StyleClass="itemtitle" Text="{Binding name}" Font="17"/>
-                                    <Label StyleClass="itemsubtitle" Text="{Binding address}" TextColor="Silver" Font="15">                                     
-                                    </Label>
-                                </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid VerticalOptions="Center" StyleClass="item">
+                                    <StackLayout VerticalOptions="Center" Margin="20,5,20,5" Spacing="2">
+                                        <Label StyleClass="itemtitle" Text="{Binding name}" Font="17"/>
+                                        <Label StyleClass="itemsubtitle" Text="{Binding address}" TextColor="Silver" Font="15">
+                                        </Label>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
-
-
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>

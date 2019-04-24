@@ -94,7 +94,8 @@ namespace AepApp.View.EnvironmentalQuality
                 try
                 {
                     _pageIndex += 1;
-                    var result = JsonConvert.DeserializeObject<VOCSiteResult>(hTTPResponse.Results);
+                    var result = Tools.JsonUtils.DeserializeObject<VOCSiteResult>(hTTPResponse.Results);
+                    if (result == null || result.Items == null) return;
                     var total = result.count;
                     List<VOCSiteListModel> list = result.Items;
                     foreach (var item in list)

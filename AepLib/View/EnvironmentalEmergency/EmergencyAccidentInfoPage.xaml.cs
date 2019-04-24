@@ -227,7 +227,11 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 EmergencyAccidentInfoDetail.EmergencyAccidentBean emergencyAccidentBean = new EmergencyAccidentInfoDetail.EmergencyAccidentBean();
-                emergencyAccidentBean = JsonConvert.DeserializeObject<EmergencyAccidentInfoDetail.EmergencyAccidentBean>(hTTPResponse.Results);
+                emergencyAccidentBean = Tools.JsonUtils.DeserializeObject<EmergencyAccidentInfoDetail.EmergencyAccidentBean>(hTTPResponse.Results);
+                if(emergencyAccidentBean == null || emergencyAccidentBean.result == null || emergencyAccidentBean.result.items == null)
+                {
+                    return;
+                }
                 List<EmergencyAccidentInfoDetail.IncidentLoggingEventsBean> list = emergencyAccidentBean.result.items;
                 int count = list.Count;
                 rightListV.ItemsSource = null;
@@ -305,13 +309,19 @@ namespace AepApp.View.EnvironmentalEmergency
                         bean.DocumentDownloadCommand = new Command(async () => 
                         {
                             string dirPath = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_DOC);
-                            //存储文件名
-                            string filename = Path.Combine(dirPath, fileFormat);
-                            if (!File.Exists(filename))
+                            string absPath = Path.Combine(dirPath, fileFormat);
+                            if (!File.Exists(absPath))
                             {
                                 HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(fileurl, fileFormat, App.EmergencyToken);
                             }
-                            await Navigation.PushAsync(new ShowFilePage(filename));
+                            if (Device.RuntimePlatform == Device.Android)
+                            {
+                                DependencyService.Get<IFileService>().OpenFileDocument(absPath, FileUtils.GetFileSuffix(absPath));
+                            }
+                            else
+                            {
+                                await Navigation.PushAsync(new ShowFilePage(absPath));
+                            }
                         });
                     }
                 }

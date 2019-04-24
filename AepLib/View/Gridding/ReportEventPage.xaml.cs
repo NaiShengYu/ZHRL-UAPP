@@ -87,7 +87,7 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    List<GridEventModel> list = JsonConvert.DeserializeObject<List<GridEventModel>>(res.Results);
+                    List<GridEventModel> list = Tools.JsonUtils.DeserializeObject<List<GridEventModel>>(res.Results);
                     if (list != null && list.Count > 0)
                     {
                         foreach (var item in list)

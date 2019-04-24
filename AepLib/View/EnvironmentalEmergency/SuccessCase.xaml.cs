@@ -64,13 +64,19 @@ namespace AepApp.View.EnvironmentalEmergency
         {
             string url = App.EmergencyModule.url + filePath;
             string dirPath = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_DOC);
-            //存储文件名
-            string filename = Path.Combine(dirPath, fileFormat);
-            if (!File.Exists(filename))
+            string absPath = Path.Combine(dirPath, fileFormat);
+            if (!File.Exists(absPath))
             {
                 HTTPResponse hTTPResponse = await EasyWebRequest.HTTPRequestDownloadAsync(url, fileFormat, App.EmergencyToken);
             }
-            await Navigation.PushAsync(new ShowFilePage(filename));
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                DependencyService.Get<IFileService>().OpenFileDocument(absPath, FileUtils.GetFileSuffix(absPath));
+            }
+            else
+            {
+                await Navigation.PushAsync(new ShowFilePage(absPath));
+            }
         }
 
         private async void ReqSuccessCase(String Filter, String Sorting)
@@ -81,7 +87,8 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 SuccessCaseModels.SuccessCaseBean successCaseBean = new SuccessCaseModels.SuccessCaseBean();
-                successCaseBean = JsonConvert.DeserializeObject<SuccessCaseModels.SuccessCaseBean>(hTTPResponse.Results);
+                successCaseBean = Tools.JsonUtils.DeserializeObject<SuccessCaseModels.SuccessCaseBean>(hTTPResponse.Results);
+                if (successCaseBean == null || successCaseBean.result == null || successCaseBean.result.cases == null || successCaseBean.result.cases.items == null) return;
                 totalNum = successCaseBean.result.cases.totalCount;
                 List<SuccessCaseModels.ItemsBean> list = successCaseBean.result.cases.items;
                 int count = list.Count;

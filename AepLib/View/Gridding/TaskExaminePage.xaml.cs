@@ -50,11 +50,10 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    model = JsonConvert.DeserializeObject<TaskExamineModel>(res.Results);
+                    model = Tools.JsonUtils.DeserializeObject<TaskExamineModel>(res.Results);
                     BindingContext = model;
                     if (model != null)
                     {
-
                         ListView.ItemsSource = model.children;
                     }
                 }

@@ -102,7 +102,7 @@ namespace AepApp.View.Samples
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 hTTPResponse.Results = hTTPResponse.Results.Replace("id", "basicDataModelID");
-                SampleBasicDataModel basicDataModel = JsonConvert.DeserializeObject<SampleBasicDataModel>(hTTPResponse.Results);
+                SampleBasicDataModel basicDataModel = Tools.JsonUtils.DeserializeObject<SampleBasicDataModel>(hTTPResponse.Results);
                 Console.WriteLine("结果是：" + App.mySamplePlanResult);
                 if(basicDataModel !=null)
                     _samplePlanItems.basicDataModel = basicDataModel;
@@ -182,7 +182,7 @@ namespace AepApp.View.Samples
                 {
                     DependencyService.Get<Sample.IToast>().ShortAlert("修改成功");
                     if (string.IsNullOrWhiteSpace(_samplePlanItems.basicDataModel.basicDataModelID)){
-                        string result = JsonConvert.DeserializeObject<string>(hTTPResponse.Results);
+                        string result = Tools.JsonUtils.DeserializeObject<string>(hTTPResponse.Results);
                         _samplePlanItems.basicDataModel.basicDataModelID = result;
 
                     }

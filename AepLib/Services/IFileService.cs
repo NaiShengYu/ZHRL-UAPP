@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AepApp.Services
 {
     public interface IFileService
     {
         string GetDbPath();
-        String GetExtrnalStoragePath();
+        string GetExtrnalStoragePath();
         string GetExtrnalStoragePath(string type);
+        void OpenFileDocument(string localPath, string suffix);//打开文档
     }
 }

@@ -107,7 +107,8 @@ namespace AepApp.View.Gridding
                 try
                 {
 
-                    var eventInfoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    var eventInfoModel = Tools.JsonUtils.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    if (eventInfoModel == null) return;
                     if (eventInfoModel.state == 3)
                     {
                         _followMoel = new GridEventFollowModel

@@ -125,7 +125,8 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    var eventInfoModel = JsonConvert.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    var eventInfoModel = Tools.JsonUtils.DeserializeObject<GridEventInfoModel>(hTTPResponse.Results);
+                    if (eventInfoModel == null) return;
                     if (eventInfoModel.state == 3)//事件处理完成了
                     {
                         _followMoel = new GridEventFollowModel
@@ -383,7 +384,8 @@ namespace AepApp.View.Gridding
             {
                 try
                 {
-                    _taskInfoModel = JsonConvert.DeserializeObject<GridTaskInfoModel>(hTTPResponse.Results);
+                    _taskInfoModel = Tools.JsonUtils.DeserializeObject<GridTaskInfoModel>(hTTPResponse.Results);
+                    if(_taskInfoModel == null)return;
                     _taskInfoModel.canEdit = false;
 
                     if(_taskInfoModel.assignments !=null && _taskInfoModel.assignments.Count >0){

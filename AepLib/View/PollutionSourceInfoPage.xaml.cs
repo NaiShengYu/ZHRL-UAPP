@@ -114,7 +114,7 @@ namespace AepApp.View
                 try
                 {
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    _group = JsonConvert.DeserializeObject<ObservableCollection<ProjectApprovalInfoDischargePort>>(response.Results);
+                    _group = Tools.JsonUtils.DeserializeObject<ObservableCollection<ProjectApprovalInfoDischargePort>>(response.Results);
             }
                 catch
                 {
@@ -144,7 +144,7 @@ namespace AepApp.View
                 try
                 {
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    _chartData = JsonConvert.DeserializeObject<ObservableCollection<FactorForDateData>>(response.Results);
+                    _chartData = Tools.JsonUtils.DeserializeObject<ObservableCollection<FactorForDateData>>(response.Results);
                 }
                 catch(Exception ex)
                 {

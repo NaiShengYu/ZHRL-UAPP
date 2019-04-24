@@ -37,7 +37,7 @@ namespace AepApp.View.Common
                 try
                 {
                     res.Results.Replace("null", "");
-                    EnterpriseInformationModel information = JsonConvert.DeserializeObject<EnterpriseInformationModel>(res.Results);
+                    EnterpriseInformationModel information = Tools.JsonUtils.DeserializeObject<EnterpriseInformationModel>(res.Results);
                     BindingContext = information;
                 }
                 catch (Exception e)

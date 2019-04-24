@@ -73,7 +73,7 @@ namespace AepApp.View.Monitor
                 //var jsetting = new JsonSerializerSettings();
                 //jsetting.NullValueHandling = NullValueHandling.Ignore;//这个设置，反序列化的时候，不处理为空的值。
                 //result = "{'items':[],'count':'5.0','ncount':'2.0'}";
-                dataList = JsonConvert.DeserializeObject<ObservableCollection<EmissionPermitManagement.EmissionPermitManagementList>>(result);
+                dataList = Tools.JsonUtils.DeserializeObject<ObservableCollection<EmissionPermitManagement.EmissionPermitManagementList>>(result);
                 CrossHud.Current.Dismiss();
             }
             catch (Exception ex)

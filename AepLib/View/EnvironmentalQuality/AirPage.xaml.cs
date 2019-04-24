@@ -1,14 +1,9 @@
 ﻿using AepApp.Models;
 using CloudWTO.Services;
-using Newtonsoft.Json;
-using Plugin.Hud;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -35,39 +30,42 @@ namespace AepApp.View.EnvironmentalQuality
             {
                 Navigation.PushAsync(new AQIMapPage(sendPages));
             }));
-             
-                //请求网络数据
+
+            //请求网络数据
             //CrossHud.Current.Show("加载中...");
-            ReqAirSiteData();       
+            ReqAirSiteData();
         }
 
         async void ReqAirSiteData()
         {
-                string uri = App.environmentalQualityModel.url + "/api/FactorData/GetLastAQIValsForPhone";
-                HTTPResponse hTTPResponse =await EasyWebRequest.SendHTTPRequestAsync(uri, "", "GET", "", "json");
-                try{
-                    airPages = JsonConvert.DeserializeObject<List<AirPageModels.AirInfo>>(hTTPResponse.Results);
-                    SortAQI();
+            string uri = App.environmentalQualityModel.url + "/api/FactorData/GetLastAQIValsForPhone";
+            HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(uri, "", "GET", "", "json");
+            try
+            {
+                airPages = Tools.JsonUtils.DeserializeObject<List<AirPageModels.AirInfo>>(hTTPResponse.Results);
+                SortAQI();
                 listView.ItemsSource = dataList;
                 if (dataList.Count != 0)
-                    Title =App.moduleConfigENVQ.menuAirLabel + "（" + dataList.Count + "）";
+                    Title = App.moduleConfigENVQ.menuAirLabel + "（" + dataList.Count + "）";
                 else
                     Title = App.moduleConfigENVQ.menuAirLabel;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-              
-                }
+
+            }
         }
 
         private void SortAQI()
         {
+            if (airPages == null) return;
             airPages.Sort((a, b) => { if (a.info == null) return 1; else if (b.info == null) return -1; else return -a.info.AQI.CompareTo(b.info.AQI); });
             sendPages.Clear();
             for (int i = 0; i < airPages.Count; i++)
             {
-                airPages[i].Rank = (i + 1) + "";               
-                if (airPages[i].info != null) {
+                airPages[i].Rank = (i + 1) + "";
+                if (airPages[i].info != null)
+                {
                     AirPageModels.AirInfo info = airPages[i];
                     info.showLab = info.info.AQI;
                     info.facName = info.info.facName;
@@ -78,14 +76,15 @@ namespace AepApp.View.EnvironmentalQuality
         }
         private void SortPM()
         {
-            airPages.Sort((a, b) => { if (a.info == null || a.info.PM25 =="null") return 1; else if (b.info == null || b.info.PM25 == "null") return -1; else  return -a.info.PM25.CompareTo(b.info.PM25);});
+            airPages.Sort((a, b) => { if (a.info == null || a.info.PM25 == "null") return 1; else if (b.info == null || b.info.PM25 == "null") return -1; else return -a.info.PM25.CompareTo(b.info.PM25); });
             for (int i = 0; i < airPages.Count; i++)
             {
                 airPages[i].Rank = (i + 1) + "";
                 if (airPages[i].info != null)
                 {
                     AirPageModels.AirInfo info = airPages[i];
-                    if (info.info != null && !string.IsNullOrWhiteSpace(info.info.PM25) && info.info.PM25 !="null"){
+                    if (info.info != null && !string.IsNullOrWhiteSpace(info.info.PM25) && info.info.PM25 != "null")
+                    {
                         info.showLab = Convert.ToDouble(info.info.PM25);
                         info.facName = info.info.facName;
                     }
@@ -101,7 +100,7 @@ namespace AepApp.View.EnvironmentalQuality
             dataList.Clear();
             for (int i = 0; i < num; i++)
             {
-                if (!string.IsNullOrWhiteSpace(airPages[i].StationName) &&  airPages[i].StationName.Contains(serchKey))//数据匹配
+                if (!string.IsNullOrWhiteSpace(airPages[i].StationName) && airPages[i].StationName.Contains(serchKey))//数据匹配
                 {
                     if (airPages[i].info != null && !string.IsNullOrWhiteSpace(airPages[i].info.PM25) && airPages[i].info.PM25 != "null")
                     {
@@ -130,7 +129,7 @@ namespace AepApp.View.EnvironmentalQuality
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (listView.SelectedItem == null) return;
-            AirPageModels.AirInfo airInfo =  e.SelectedItem as AirPageModels.AirInfo;
+            AirPageModels.AirInfo airInfo = e.SelectedItem as AirPageModels.AirInfo;
             if (airInfo.info != null)
             {
                 Navigation.PushAsync(new AirDetailPage(airInfo));
@@ -149,7 +148,7 @@ namespace AepApp.View.EnvironmentalQuality
             int num = airPages.Count();
             dataList.Clear();
             for (int i = 0; i < num; i++)
-            {             
+            {
                 if (airPages[i].StationName.Contains(value))//数据匹配
                 {
                     dataList.Add(airPages[i]);

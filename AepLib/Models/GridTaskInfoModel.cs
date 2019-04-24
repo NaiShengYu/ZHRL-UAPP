@@ -17,7 +17,7 @@ namespace AepApp.Models
         public string title { get; set; }
         public double? period { get; set; }
         public int? type { get; set; }//1日常任务 2事件任务
-        public int? state { get; set; }
+        public int? state { get; set; }//0未发布 1待审核 2审核通过 3撤销 4执行中 5结果退回 6完成
         public int? index { get; set; }
         public DateTime date { get; set; }
         public DateTime? approveTime { get; set; }

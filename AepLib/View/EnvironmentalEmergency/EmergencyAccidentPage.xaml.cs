@@ -70,10 +70,12 @@ namespace AepApp.View.EnvironmentalEmergency
             HTTPResponse hTTPResponse = await EasyWebRequest.SendHTTPRequestAsync(url, parma, "POST", App.EmergencyToken);
             if (hTTPResponse.StatusCode != HttpStatusCode.ExpectationFailed)
             {
-                Dictionary<string, object> result = JsonConvert.DeserializeObject<Dictionary<string, object>>(hTTPResponse.Results);
+                Dictionary<string, object> result = Tools.JsonUtils.DeserializeObject<Dictionary<string, object>>(hTTPResponse.Results);
+                if (result == null || result["result"] == null) return;
                 var itemdic = result["result"];
                 string itemString = JsonConvert.SerializeObject(itemdic);
-                EmergencyAccidentPageModels.ItemsBean item = JsonConvert.DeserializeObject<EmergencyAccidentPageModels.ItemsBean>(itemString);
+                EmergencyAccidentPageModels.ItemsBean item = Tools.JsonUtils.DeserializeObject<EmergencyAccidentPageModels.ItemsBean>(itemString);
+                if (item == null) return;
                 dataList.Insert(0, item);
                 addGrid.IsVisible = true;
                 editGrid.IsVisible = false;
@@ -163,9 +165,11 @@ namespace AepApp.View.EnvironmentalEmergency
             {
                 Console.WriteLine(hTTPResponse.Results);
                 EmergencyAccidentPageModels.EmergencyAccidentBean accidentPageModels = new EmergencyAccidentPageModels.EmergencyAccidentBean();
-                accidentPageModels = JsonConvert.DeserializeObject<EmergencyAccidentPageModels.EmergencyAccidentBean>(hTTPResponse.Results);
+                accidentPageModels = Tools.JsonUtils.DeserializeObject<EmergencyAccidentPageModels.EmergencyAccidentBean>(hTTPResponse.Results);
+                if (accidentPageModels == null || accidentPageModels.result == null || accidentPageModels.result.incidents == null) return;
                 totalNum = accidentPageModels.result.incidents.totalCount;
                 List<EmergencyAccidentPageModels.ItemsBean> list = accidentPageModels.result.incidents.items;
+                if (list == null) return;
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
                 {

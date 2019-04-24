@@ -246,10 +246,12 @@ namespace AepApp.View.EnvironmentalEmergency
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                Dictionary<string, object> dic = JsonConvert.DeserializeObject<Dictionary<string, object>>(hTTPResponse.Results);
-                Dictionary<string, object> resultDic = JsonConvert.DeserializeObject<Dictionary<string, object>>(dic["result"].ToString());
+                Dictionary<string, object> dic = Tools.JsonUtils.DeserializeObject<Dictionary<string, object>>(hTTPResponse.Results);
+                if (dic == null) return;
+                Dictionary<string, object> resultDic = Tools.JsonUtils.DeserializeObject<Dictionary<string, object>>(dic["result"].ToString());
                 try
                 {
+                    if (resultDic == null || resultDic["address"] == null) return;
                     _placementModel.address = resultDic["address"].ToString();
                 }
                 catch (Exception ex)
@@ -308,9 +310,12 @@ namespace AepApp.View.EnvironmentalEmergency
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                _placementModel = JsonConvert.DeserializeObject<AddPlacementModel>(hTTPResponse.Results);
-                _placementModel.canEdit = false;
-                BindingContext = _placementModel;
+                _placementModel = Tools.JsonUtils.DeserializeObject<AddPlacementModel>(hTTPResponse.Results);
+                if (_placementModel != null)
+                {
+                    _placementModel.canEdit = false;
+                    BindingContext = _placementModel;
+                }
             }
             else
             {
@@ -341,7 +346,7 @@ namespace AepApp.View.EnvironmentalEmergency
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                string planId = JsonConvert.DeserializeObject<string>(hTTPResponse.Results);
+                string planId = Tools.JsonUtils.DeserializeObject<string>(hTTPResponse.Results);
                 _placementModel.id = planId;
                 updatePlacement();
             }
@@ -417,7 +422,7 @@ namespace AepApp.View.EnvironmentalEmergency
             Console.WriteLine(hTTPResponse);
             if (hTTPResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                bool success = JsonConvert.DeserializeObject<bool>(hTTPResponse.Results);
+                bool success = Tools.JsonUtils.DeserializeObject<bool>(hTTPResponse.Results);
                 if (success == true)
                     await Navigation.PopAsync();
                 else
