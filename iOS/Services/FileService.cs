@@ -41,7 +41,7 @@ namespace AepApp.iOS.Services
             }
             else if (Constants.STORAGE_TYPE_PICTURES.Equals(type))
             {
-                mainPath = Path.Combine(mainPath, "Sample");
+                //mainPath = Path.Combine(mainPath, "Sample");
             }
             else if (Constants.STORAGE_TYPE_MOVIES.Equals(type))
             {
