@@ -9,6 +9,8 @@ using Xamarin.Forms;
 using SimpleAudioForms;
 using static AepApp.Models.EmergencyAccidentInfoDetail;
 using AepApp.Tools;
+using System.IO;
+using AepApp.Services;
 
 namespace AepApp.View.EnvironmentalEmergency
 {
@@ -303,11 +305,23 @@ namespace AepApp.View.EnvironmentalEmergency
                     else if (cagy == "IncidentReportGenerationEvent" || cagy == "IncidentPlanGenerationEvent")
                     {
                         string fileurl = App.EmergencyModule.url + bean.StorePath;
-                        string fileFormat = bean.id + ".docx"; // TODO: need to figure out how to pass url and fileformat
+                        string fileFormat = FileUtils.GetFileName(bean.StorePath, true);
                         bean.DocumentDownloadCommand = new Command(async () => 
                         {
-                            HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(fileurl, fileFormat, App.EmergencyToken);
-                            await Navigation.PushAsync(new ShowFilePage(fileFormat));
+                            string dirPath = DependencyService.Get<IFileService>().GetExtrnalStoragePath(Constants.STORAGE_TYPE_DOC);
+                            string absPath = Path.Combine(dirPath, fileFormat);
+                            if (!File.Exists(absPath))
+                            {
+                                HTTPResponse res = await EasyWebRequest.HTTPRequestDownloadAsync(fileurl, fileFormat, App.EmergencyToken);
+                            }
+                            if (Device.RuntimePlatform == Device.Android)
+                            {
+                                DependencyService.Get<IFileService>().OpenFileDocument(absPath, FileUtils.GetFileSuffix(absPath));
+                            }
+                            else
+                            {
+                                await Navigation.PushAsync(new ShowFilePage(absPath));
+                            }
                         });
                     }
                 }

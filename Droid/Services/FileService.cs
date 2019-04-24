@@ -2,6 +2,7 @@
 using AepApp.Services;
 using AepApp.Tools;
 using Android.Content;
+using Android.Net;
 using System.IO;
 
 [assembly: Xamarin.Forms.Dependency(typeof(FileService))]
@@ -48,5 +49,34 @@ namespace AepApp.Droid.Services
             }
             return f.AbsolutePath;
         }
+
+        /// <summary>
+        /// 打开手机本地文档
+        /// </summary>
+        /// <param name="localPath"></param>
+        public void OpenFileDocument(string localPath, string suffix)
+        {
+            if (string.IsNullOrWhiteSpace(localPath)) return;
+            try
+            {
+                string dataType = "application/msword";
+                if (".pdf".Equals(suffix))
+                {
+                    dataType = "application/pdf";
+                }
+                Java.IO.File f = new Java.IO.File(localPath);
+                Context c = Android.App.Application.Context;
+                Intent intent = new Intent(Intent.ActionView);
+                intent.SetDataAndType(Uri.FromFile(f), dataType);
+                intent.SetFlags(ActivityFlags.ClearTop);
+                intent.SetFlags(ActivityFlags.NewTask);
+                c.StartActivity(intent);
+            }
+            catch (System.Exception)
+            {
+
+            }
+        }
+
     }
 }
