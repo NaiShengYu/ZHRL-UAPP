@@ -87,8 +87,7 @@ namespace AepApp.iOS
             jPushRegister = new JPushInterface();
             jPushRegister.Register(this, options);
             this.RegistLogin(options);
-
-
+            
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
@@ -164,6 +163,7 @@ namespace AepApp.iOS
         /// <param name="deviceToken"></param>
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
+
             JPUSHService.RegisterDeviceToken(deviceToken);
             System.Console.WriteLine("DeviceToken:" + deviceToken);
 

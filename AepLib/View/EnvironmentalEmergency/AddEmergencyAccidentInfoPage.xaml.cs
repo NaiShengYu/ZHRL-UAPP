@@ -471,7 +471,6 @@ namespace AepApp.View.EnvironmentalEmergency
                 showModel.imagePath = file.Path;
                 saveUploadEmergencyModel(emergencyModel, showModel);
             }
-
         }
         //点击了录制视频
         async void recordVideo(object sender, System.EventArgs e)

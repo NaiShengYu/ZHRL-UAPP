@@ -22,8 +22,10 @@ namespace AepApp.iOS.Notification.JPush
             JPUSHService.RegisterForRemoteNotificationConfig(entity, this);
             JPUSHService.SetupWithOption(options, JPushAppKey, Channel, true, advertisingId);
             JPUSHService.RegistrationIDCompletionHandler(app.GetRegistrationID);
-            NSSet<NSString> nSSet = new NSSet<NSString>(new NSString[] { (NSString)"jjououwoeur"});
+            NSSet<NSString> nSSet = new NSSet<NSString>(new NSString[] { (NSString)"http://demo.azuratech.com:51000" });
             JPUSHService.AddTags(nSSet, (arg0, arg1, arg2) => { }, 1);
+            //JPUSHService.SetAlias("", (arg0, arg1, arg2) => { }, 1);
+
         }
 
         /// <summary>
@@ -39,9 +41,8 @@ namespace AepApp.iOS.Notification.JPush
             var userInfo = notification.Request.Content.UserInfo;
             if (typeof(UserNotifications.UNPushNotificationTrigger) == notification.Request.Trigger.GetType())
             {//远程通知
-                System.Console.WriteLine(" 收到远程通知,Title:{0} -SubTitle:{1}, -Body:{2}", content.Title, content.Subtitle, content.Body);
+                System.Console.WriteLine(" 前台收到远程通知,Title:{0} -SubTitle:{1}, -Body:{2}", content.Title, content.Subtitle, content.Body);
                 this.AddNotificationToView(content);
-
                 JPUSHService.HandleRemoteNotification(userInfo);
             }
             else
@@ -68,7 +69,7 @@ namespace AepApp.iOS.Notification.JPush
             var userInfo = response.Notification.Request.Content.UserInfo;
             if (typeof(UserNotifications.UNPushNotificationTrigger) == response.Notification.Request.Trigger.GetType())
             {//远程通知
-                System.Console.WriteLine(" 收到远程通知,Title:{0} -SubTitle:{1}, -Body:{2}", content.Title, content.Subtitle, content.Body);
+                System.Console.WriteLine("后台收到远程通知,Title:{0} -SubTitle:{1}, -Body:{2}", content.Title, content.Subtitle, content.Body);
                 this.AddNotificationToView(content);
                 JPUSHService.HandleRemoteNotification(userInfo);
             }
@@ -89,13 +90,13 @@ namespace AepApp.iOS.Notification.JPush
         /// <param name="content"></param>
         public void AddNotificationToView(UNNotificationContent content)
         {
-            //App1.ViewModel.PushsPageViewModel.Item item = new ViewModel.PushsPageViewModel.Item()
+            //AepApp.ViewModel.PushsPageViewModel.Item item = new ViewModel.PushsPageViewModel.Item()
             //{
             //    Id = content.CategoryIdentifier,
             //    Text = content.Title,
             //    Detail = content.Body,
             //};
-            //App1.ViewModel.PushsPageViewModel.Instance.AddItem(item);
+            //AepApp.ViewModel.PushsPageViewModel.Instance.AddItem(item);
         }
     }
 }
