@@ -1,4 +1,5 @@
-﻿using AepApp.Droid.Services;
+﻿using System.Linq;
+using AepApp.Droid.Services;
 using AepApp.Services;
 using Android.App;
 using CN.Jpush.Android.Api;
@@ -16,6 +17,18 @@ namespace AepApp.Droid.Services
                 userid = userid.Replace("-", "");
                 ThirdLogger.I(TAG, "SetAlias userid = " + userid);
                 JPushInterface.SetAlias(Application.Context, 0, userid);
+
+                //设置tag
+                string[] tags = App.FrameworkURL.Split(":");
+                string tag = "";
+                if (tags.Count() > 1)
+                {
+                    tag = tags[1];
+                    tag = tag.Replace("//", "");
+                    tag = tags[0] + tag;
+                }
+
+
             }
             else
             {

@@ -19,9 +19,24 @@ namespace AepApp.iOS.Services
         {
             if (!string.IsNullOrWhiteSpace(userid))
             {
-                Console.WriteLine(" ios SetAlias userid = " + userid);
-                JPUSHService.SetAlias("admin123456", (arg0, arg1, arg2) => { }, 1);
-               //JPUSHService.DeleteAlias((arg0, arg1, arg2) => { }, 1);
+
+                if (!string.IsNullOrWhiteSpace(userid))
+                {
+                    string alias = userid.Replace("-", "");
+                    string[] tags = App.FrameworkURL.Split(":");
+                    string tag = "";
+                    if (tags.Count() >1)
+                    {
+                        tag = tags[1];
+                        tag = tag.Replace("//", "");
+                        tag = tags[0] + tag;
+                    }
+                    Console.WriteLine(" ios SetAlias userid = " + userid);
+                    NSSet<NSString> nSSet = new NSSet<NSString>(new NSString[] { (NSString)tag});
+                    JPUSHService.SetTags(nSSet, (arg0, arg1, arg2) => { }, 1);
+                    JPUSHService.SetAlias(alias, (arg0, arg1, arg2) => { }, 1);
+                }
+                //JPUSHService.DeleteAlias((arg0, arg1, arg2) => { }, 1);
 
                 //todo
             }

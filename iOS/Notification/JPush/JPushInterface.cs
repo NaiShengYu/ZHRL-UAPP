@@ -22,8 +22,7 @@ namespace AepApp.iOS.Notification.JPush
             JPUSHService.RegisterForRemoteNotificationConfig(entity, this);
             JPUSHService.SetupWithOption(options, JPushAppKey, Channel, true, advertisingId);
             JPUSHService.RegistrationIDCompletionHandler(app.GetRegistrationID);
-            NSSet<NSString> nSSet = new NSSet<NSString>(new NSString[] { (NSString)"http://demo.azuratech.com:51000" });
-            JPUSHService.AddTags(nSSet, (arg0, arg1, arg2) => { }, 1);
+           
             //JPUSHService.SetAlias("", (arg0, arg1, arg2) => { }, 1);
 
         }
