@@ -400,7 +400,7 @@
                     <ViewCell.ContextActions>
                     <MenuItem Clicked="deleteUnUploadData" IsEnabled="{Binding isEdit}" CommandParameter="{Binding .}" Text="{Binding editTitle}" IsDestructive="{Binding isEdit}"/>                       
                 </ViewCell.ContextActions>
-                    <Grid Margin="10,3,10,3">
+                    <Grid Margin="10,3,10,3" BackgroundColor="#dadada" >
                         <Grid x:Name="pic" VerticalOptions="Center" BackgroundColor="#f3f3f3" Margin="1">
                             <Grid HorizontalOptions="Start"  Margin="10,35,0,10"  VerticalOptions="Start"  WidthRequest="{Binding VoiceWight}">
                                 <Label Text="{Binding VoiceLenth}"  TextColor="Black"  HorizontalOptions="Start" VerticalOptions="Center"/>

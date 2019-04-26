@@ -11,7 +11,7 @@
                 <ListView.Header>
                     <Grid>
                        <Grid BackgroundColor="#ededed" x:Name="addGrid">
-                            <Label Text="添加新事故" Margin="10" TextColor="Black" Font="19" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Label Text="添加新事故" Margin="20, 10, 10, 10" TextColor="Black" Font="19" HorizontalOptions="Start" VerticalOptions="Center"/>
                             <Button Margin="10,10,20,10" Image="add" Clicked="Handle_AddEmergencyAccident" BackgroundColor="Transparent" Padding="0" WidthRequest="35" HeightRequest="35" HorizontalOptions="End" VerticalOptions="Center"/>
                         </Grid> 
                         
