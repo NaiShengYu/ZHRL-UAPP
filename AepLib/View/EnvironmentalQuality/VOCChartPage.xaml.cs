@@ -93,23 +93,33 @@ namespace AepApp.View.EnvironmentalQuality
             }
         }
 
+        private void clearFocus()
+        {
+            pickerType.Unfocus();
+            PickerStart.Unfocus();
+            PickerEnd.Unfocus();
+        }
+
         private void pickerType_SelectedIndexChanged(object sender, EventArgs e)
         {
             var picker = sender as Picker;
             var typeName = picker.SelectedItem as string;
             filterType = picker2Type(typeName);
+            clearFocus();
             GetFactorData();
         }
 
         private void DatePickerStart_DateSelected(object sender, DateChangedEventArgs e)
         {
             startTime = e.NewDate;
+            clearFocus();
             GetFactorData();
         }
 
         private void DatePickerEnd_DateSelected(object sender, DateChangedEventArgs e)
         {
             endTime = e.NewDate;
+            clearFocus();
             GetFactorData();
         }
 
