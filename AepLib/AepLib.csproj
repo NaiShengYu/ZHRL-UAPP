@@ -70,12 +70,12 @@
     <PackageReference Include="Xam.Plugin.Hud" Version="1.0.5" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xamarin.Auth" Version="1.6.0.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.8055-pre1" />
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
-    <PackageReference Include="HubConnectionManager" Version="1.0.5" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="3.6.0.344457" />
+    <PackageReference Include="HubConnectionManager" Version="1.0.5" />
   </ItemGroup>
 
   <ItemGroup>
