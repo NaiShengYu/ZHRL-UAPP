@@ -51,7 +51,7 @@ namespace AepApp.iOS.Notification.JPush
 
             if (completionHandler != null)
             {
-                completionHandler(4);//UNNotificationPresentationOptions： None = 0,Badge = 1,Sound = 2,Alert = 4,
+                completionHandler(4|2);//UNNotificationPresentationOptions： None = 0,Badge = 1,Sound = 2,Alert = 4,
             }
         }
 
