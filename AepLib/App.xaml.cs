@@ -417,15 +417,14 @@ namespace AepApp
                 string url = FrameworkURL + "/token";
                 string param = "username=" + username + "&password=" + password + "&grant_type=password";
 
-                //string url = "http://dev2.azuratech.com:30000/token";
+                //string url = "http://sx.azuratech.com:30000/Token";
                 //Dictionary<string, object> map = new Dictionary<string, object>();
                 //map.Add("userid", username);
                 //map.Add("password", password);
                 //map.Add("grant_type", "password");
                 //string param = JsonConvert.SerializeObject(map);
 
-
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null,"json",false);
                 FrameworkToken ft = null;
                 if (res.StatusCode == HttpStatusCode.OK)
                 {

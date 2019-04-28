@@ -62,7 +62,7 @@ namespace CloudWTO.Services
             return result;
         }
 
-        public static async Task<HTTPResponse> SendHTTPRequestAsync(string url, string param, string method = "GET", string token = null, string contenttype = "json")
+        public static async Task<HTTPResponse> SendHTTPRequestAsync(string url, string param, string method = "GET", string token = null, string contenttype = "json",bool isNeedCookie =true)
         {
             HttpWebResponse res = null;
             string result = null;
@@ -75,7 +75,14 @@ namespace CloudWTO.Services
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
                 if (!string.IsNullOrWhiteSpace(token))
                 {
-                    req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);//给请求添加权限
+                    if (isNeedCookie)
+                    {
+                        req.Headers.Add(HttpRequestHeader.Cookie, token);
+                    }
+                    else
+                    {
+                        req.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);//给请求添加权限
+                    }
                 }
                 req.ContentType = "application/json";
                 if (method.Equals("GET"))
