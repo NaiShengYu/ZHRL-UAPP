@@ -205,6 +205,7 @@ namespace AepApp
             }
             catch (Exception ex)
             {
+                HandleEventHandler();
                 // Unable to get location
             }
         }
