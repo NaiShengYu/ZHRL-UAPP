@@ -5,6 +5,8 @@ using System.Text;
 using UserNotifications;
 using AepApp.iOS;
 using JPush.Binding.iOS;
+using UIKit;
+
 
 namespace AepApp.iOS.Notification.JPush
 {
@@ -42,6 +44,7 @@ namespace AepApp.iOS.Notification.JPush
             {//远程通知
                 System.Console.WriteLine(" 前台收到远程通知,Title:{0} -SubTitle:{1}, -Body:{2}", content.Title, content.Subtitle, content.Body);
                 this.AddNotificationToView(content);
+                UIApplication.SharedApplication.ApplicationIconBadgeNumber =new nint(0);
                 JPUSHService.HandleRemoteNotification(userInfo);
             }
             else
@@ -70,6 +73,7 @@ namespace AepApp.iOS.Notification.JPush
             {//远程通知
                 System.Console.WriteLine("后台收到远程通知,Title:{0} -SubTitle:{1}, -Body:{2}", content.Title, content.Subtitle, content.Body);
                 this.AddNotificationToView(content);
+                UIApplication.SharedApplication.ApplicationIconBadgeNumber = new nint(0);
                 JPUSHService.HandleRemoteNotification(userInfo);
             }
             else

@@ -37,9 +37,9 @@ namespace AepApp.iOS
 
         //public override void WillEnterForeground(UIApplication uiApplication)
         //{
-         //   base.WillEnterForeground(uiApplication);
-         //   //uiApplication.ApplicationIconBadgeNumber = new nint(0);
-         //}
+        //   base.WillEnterForeground(uiApplication);
+        //   //uiApplication.ApplicationIconBadgeNumber = new nint(0);
+        //}
 
         //public override void ProtectedDataDidBecomeAvailable(UIApplication application)
         //{
@@ -81,7 +81,7 @@ namespace AepApp.iOS
                 var access = e.NetworkAccess;
                 MessagingCenter.Send<Grid, NetworkAccess>(new Grid(), "NetworkChanged", access);
             };
-
+            app.ApplicationIconBadgeNumber = new nint(0);
             //注册apns远程推送
             if (options == null) options = new NSDictionary();
             jPushRegister = new JPushInterface();

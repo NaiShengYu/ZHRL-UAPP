@@ -424,7 +424,7 @@ namespace AepApp
                 //map.Add("grant_type", "password");
                 //string param = JsonConvert.SerializeObject(map);
 
-                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null,"json",false);
+                HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", null,"json");
                 FrameworkToken ft = null;
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
