@@ -23,7 +23,7 @@
                 </Label>
             </Frame>
 
-            <Frame HasShadow="false" Padding="0" CornerRadius="0"  HeightRequest="50" VerticalOptions="Start" HorizontalOptions="Fill" Margin="20,80,20,0" BackgroundColor="#fafafa">
+            <Frame x:Name="frameRemarks" IsVisible="false" HasShadow="false" Padding="0" CornerRadius="0"  HeightRequest="50" VerticalOptions="Start" HorizontalOptions="Fill" Margin="20,80,20,0" BackgroundColor="#fafafa">
                 <views:BorderlessEntry x:Name="EntryRemarks" Placeholder="输入备注内容（选填）" XAlign="Center" HorizontalOptions="Fill" 
                                        VerticalOptions="Center" Margin="20,0,20,0" TextColor="Gray" FontSize="16"/>
             </Frame>

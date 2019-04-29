@@ -177,7 +177,7 @@ namespace AepApp.View.EnvironmentalEmergency
         public AccidentPositionPage(string lng, string lat, bool _hasRemarks) : this(lng, lat)
         {
             hasRemarks = _hasRemarks;
-            EntryRemarks.IsVisible = hasRemarks;
+            frameRemarks.IsVisible = hasRemarks;
         }
 
         public AccidentPositionPage(string lng, string lat):this()

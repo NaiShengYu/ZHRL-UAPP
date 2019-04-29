@@ -20,7 +20,7 @@ namespace AepApp.View.EnvironmentalEmergency
                 //DependencyService.Get<Sample.IToast>().ShortAlert("布点名称不能为空");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(_placementModel.lat) || string.IsNullOrWhiteSpace(_placementModel.lng))
+            if (string.IsNullOrWhiteSpace(_placementModel.lat) || string.IsNullOrWhiteSpace(_placementModel.lng) || string.IsNullOrWhiteSpace(_placementModel.address))
             {
                 await DisplayAlert("提示", "布点位置不能为空", "确定");
                 //DependencyService.Get<Sample.IToast>().ShortAlert("布点名称不能为空");
