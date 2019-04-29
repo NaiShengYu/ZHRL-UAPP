@@ -6,6 +6,7 @@ using AepApp.Services;
 using AepApp.Tools;
 using AepApp.View;
 using AepApp.View.EnvironmentalEmergency;
+using AepApp.View.EnvironmentalQuality;
 using AepApp.ViewModel;
 using AepApp.ViewModels;
 using CloudWTO.Services;
@@ -22,6 +23,7 @@ using Xamarin.Auth;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static AepApp.Models.VOCDetailModels;
 
 namespace AepApp
 {
@@ -155,6 +157,21 @@ namespace AepApp
             //aaaa();
 
             AppDomain.CurrentDomain.UnhandledException += HandleUnhandledException;
+
+            //推送后跳转到指定页面
+            MessagingCenter.Unsubscribe<ContentPage, PushResultModel>(this, "PushResult");
+            MessagingCenter.Subscribe<ContentPage, PushResultModel>(this, "PushResult", (ContentPage arg1, PushResultModel arg2) =>
+            {
+                if (!string.IsNullOrWhiteSpace(FrameworkToken))
+                {
+                    Factors factorInfo = new Factors { id = arg2.factorid, name = arg2.factorname };
+                    VOCChartPage vOCChartPage = new VOCChartPage(arg2.locid, factorInfo, Convert.ToInt32(arg2.type));
+                    MainPage.Navigation.PushAsync(vOCChartPage);
+                    VOCDetailPage vOCDetailPage = new VOCDetailPage(arg2.locid, Convert.ToInt32(arg2.type)) { Title = arg2.locname };
+                    MainPage.Navigation.InsertPageBefore(vOCDetailPage, vOCChartPage);
+                }
+            });
+
 
         }
 

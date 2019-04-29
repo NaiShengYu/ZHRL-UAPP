@@ -6,7 +6,8 @@ using UserNotifications;
 using AepApp.iOS;
 using JPush.Binding.iOS;
 using UIKit;
-
+using Xamarin.Forms;
+using AepApp.Models;
 
 namespace AepApp.iOS.Notification.JPush
 {
@@ -73,8 +74,22 @@ namespace AepApp.iOS.Notification.JPush
             {//远程通知
                 System.Console.WriteLine("后台收到远程通知,Title:{0} -SubTitle:{1}, -Body:{2}", content.Title, content.Subtitle, content.Body);
                 this.AddNotificationToView(content);
+                NSString from = (NSString)"from";
+                PushResultModel pushResultModel = new PushResultModel();
+                if (userInfo.ObjectForKey(from) !=null && userInfo.ObjectForKey(from).ToString() == "1")
+                {
+                    pushResultModel.type = userInfo.ObjectForKey((NSString)"type").ToString();
+                    pushResultModel.from = userInfo.ObjectForKey((NSString)"from").ToString();
+                    pushResultModel.factorid = userInfo.ObjectForKey((NSString)"factorid").ToString();
+                    pushResultModel.factorname = userInfo.ObjectForKey((NSString)"factorname").ToString();
+                    pushResultModel.locid = userInfo.ObjectForKey((NSString)"locid").ToString();
+                    pushResultModel.locname = userInfo.ObjectForKey((NSString)"locname").ToString();
+                  
+                    MessagingCenter.Send<ContentPage, PushResultModel>(new ContentPage(), "PushResult", pushResultModel);
 
-                UIApplication.SharedApplication.ApplicationIconBadgeNumber = new nint(0);
+                }
+
+                UIApplication.SharedApplication.ApplicationIconBadgeNumber = new nint(UIApplication.SharedApplication.ApplicationIconBadgeNumber-1);
                 JPUSHService.HandleRemoteNotification(userInfo);
             }
             else

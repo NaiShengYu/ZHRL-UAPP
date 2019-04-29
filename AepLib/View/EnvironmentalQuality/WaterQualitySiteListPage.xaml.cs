@@ -43,7 +43,7 @@ namespace AepApp.View.EnvironmentalQuality
             WaterQualityItem item = e.SelectedItem as WaterQualityItem;
             if (item == null)
                 return;
-            Navigation.PushAsync(new VOCDetailPage(item.basic, 1));
+            Navigation.PushAsync(new VOCDetailPage(item.basic.id, 1) { Title = item.basic.name});
             listView.SelectedItem = null;
 
         }

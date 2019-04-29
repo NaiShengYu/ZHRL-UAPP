@@ -81,7 +81,6 @@ namespace AepApp.iOS
                 var access = e.NetworkAccess;
                 MessagingCenter.Send<Grid, NetworkAccess>(new Grid(), "NetworkChanged", access);
             };
-            app.ApplicationIconBadgeNumber = new nint(0);
             //注册apns远程推送
             if (options == null) options = new NSDictionary();
             jPushRegister = new JPushInterface();

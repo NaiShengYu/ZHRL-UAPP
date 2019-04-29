@@ -4,25 +4,31 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="0" x:Name="bottomH"/>
+                <RowDefinition Height="0" x:Name="bottomH" />
             </Grid.RowDefinitions>
             <ScrollView>
                 <StackLayout Spacing="1" BackgroundColor="Silver">
                     <Grid BackgroundColor="White">
                         <Label Text="布点名称" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,25,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessEntry Placeholder="输入任务标题" XAlign="End" HorizontalOptions="Fill" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding name}" VerticalOptions="Center" Margin="120,15,10,5" TextColor="Gray" TextChanged="Handle_TextChanged" HeightRequest="30" />
+                        <views:BorderlessEntry Placeholder="输入任务标题" XAlign="End" HorizontalOptions="Fill" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding name}" VerticalOptions="Center" Margin="120,15,10,5" TextColor="Gray" TextChanged="Handle_TextChanged"
+                            HeightRequest="30" />
                     </Grid>
                     <Grid BackgroundColor="White">
                         <Label Text="预计执行时间" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,25,10,15" HorizontalOptions="Start" />
-                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" Date="{Binding plantime, StringFormat='{0:yyyy-MM-dd}'}" Format="yyyy-MM-dd" DateSelected="Handle_DateSelected" XAlign="End" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="130,15,10,5"/>
+                        <views:BorderlessDatePicker IsEnabled="{Binding canEdit}" Date="{Binding plantime, StringFormat='{0:yyyy-MM-dd}'}" Format="yyyy-MM-dd" DateSelected="Handle_DateSelected" XAlign="End" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="130,15,10,5" />
                     </Grid>
                     <Grid BackgroundColor="White" IsEnabled="{Binding canEidt}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Handle_editAddress" NumberOfTapsRequired="1" />
                         </Grid.GestureRecognizers>
-                        <Label Text="地址" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
-                        <Label LineBreakMode="TailTruncation" Text="{Binding address}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
+                        <Label Text="经纬度" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding location}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                    <Grid BackgroundColor="White" IsEnabled="{Binding canEidt}">
+                        <Label Text="地址名称" TextColor="Black" Font="18" VerticalOptions="Center" Margin="10,15,10,15" HorizontalOptions="Start" />
+                        <views:BorderlessEntry Placeholder="输入地址名称" XAlign="End" HorizontalOptions="Fill" HorizontalTextAlignment="End" IsEnabled="{Binding canEdit}" Text="{Binding address}" VerticalOptions="Center" Margin="120,15,10,5" TextColor="Gray" TextChanged="Handle_AddressChanged"
+                            HeightRequest="30" />
                     </Grid>
                     <Grid BackgroundColor="White">
                         <Grid.GestureRecognizers>
@@ -56,15 +62,13 @@
                         <Label LineBreakMode="TailTruncation" Text="{Binding remarks}" Font="16" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End" Margin="100,10,25,10" />
                         <Image Margin="10" Source="right" HeightRequest="20" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
                     </Grid>
-                    
                     <Grid BackgroundColor="Silver">
                         <Label VerticalOptions="CenterAndExpand" Margin="10,5,0,5" Text="相关人员" Font="17" />
                         <Frame x:Name="PersonNumFrame" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="25" HeightRequest="25" CornerRadius="12.5" Padding="0" IsClippedToBounds="true" BackgroundColor="Gray" Margin="0,0,15,0">
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding staffs.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView SelectionMode="None" ItemsSource="{Binding staffs}" x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" 
-                              RowHeight="45" SeparatorVisibility="None"   BackgroundColor="White">
+                    <ListView SelectionMode="None" ItemsSource="{Binding staffs}" x:Name="personLV" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None" BackgroundColor="White">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="PersonBindingChanged">
@@ -89,13 +93,10 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding equips.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView SelectionMode="None" x:Name="equipmentLV" ItemsSource="{Binding equips}" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" 
-                              RowHeight="45" SeparatorVisibility="None"   BackgroundColor="White">
-
+                    <ListView SelectionMode="None" x:Name="equipmentLV" ItemsSource="{Binding equips}" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="45" SeparatorVisibility="None" BackgroundColor="White">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="EquipmentBindingChanged">
-                                    
                                     <Grid>
                                         <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="10,10,10,10" Font="17" TextColor="Black" Text="{Binding equipname}" />
                                         <BoxView BackgroundColor="Silver" HeightRequest="0.5" HorizontalOptions="Fill" VerticalOptions="EndAndExpand" />
@@ -117,8 +118,7 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding tasklist.Count}" TextColor="White" />
                         </Frame>
                     </Grid>
-                    <ListView x:Name="taskLV" ItemsSource="{Binding tasklist}" ItemSelected="Handle_TaskSelected" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate"
-                              RowHeight="50" SeparatorVisibility="None"  BackgroundColor="White">
+                    <ListView x:Name="taskLV" ItemsSource="{Binding tasklist}" ItemSelected="Handle_TaskSelected" HeightRequest="150" CachingStrategy="RecycleElementAndDataTemplate" RowHeight="50" SeparatorVisibility="None" BackgroundColor="White">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell BindingContextChanged="taskBindingChanged">
@@ -131,7 +131,7 @@
                                             <StackLayout Spacing="3">
                                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,5,0,0">
                                                     <Label Text="{Binding taskname}" TextColor="Black" Font="17" HorizontalOptions="Start" VerticalOptions="Center" />
-                                                    <Label Text="{Binding taskTypeDes}" TextColor="White" Font="15" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="rgb(45,126, 251)" LineBreakMode="TailTruncation"/>
+                                                    <Label Text="{Binding taskTypeDes}" TextColor="White" Font="15" HorizontalOptions="Start" VerticalOptions="Center" BackgroundColor="rgb(45,126, 251)" LineBreakMode="TailTruncation" />
                                                 </StackLayout>
                                                 <Label Margin="10,0,0,5" Text="{Binding factorName}" TextColor="Gray" Font="14" HorizontalOptions="Start" VerticalOptions="Center" />
                                             </StackLayout>

@@ -16,7 +16,7 @@ namespace AepApp.View.EnvironmentalQuality
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VOCDetailPage : ContentPage
     {
-        private string siteId; //站点ID
+        private string _siteId; //站点ID
         ObservableCollection<Factors> factors = new ObservableCollection<Factors>();
 
         int _type = 0;//1环境VOCs，邵峰倪黎腾负责  2。排口厂界张东明负责
@@ -28,19 +28,10 @@ namespace AepApp.View.EnvironmentalQuality
 
         }
 
-        public VOCDetailPage(WaterQualityBasic siteInfo, int type) : this()
+        public VOCDetailPage(string siteId, int type) : this()
         {
             _type = type;
-            this.Title = siteInfo.name;
-            siteId = siteInfo.id;
-            ReqSiteFactors();
-        }
-
-        public VOCDetailPage(VOCSiteListModel siteInfo, int type):this()
-        {
-            _type = type;
-            this.Title = siteInfo.name;
-            siteId = siteInfo.id;
+            _siteId = siteId;
             ReqSiteFactors();
         }
 
@@ -50,7 +41,7 @@ namespace AepApp.View.EnvironmentalQuality
             if (_type == 1) url = App.environmentalQualityModel.url + DetailUrl.GetVOCSiteFactor;
             else url = App.EP360Module.url + DetailUrl.GetPaiKouAndChangJieSiteFactor;
             Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("id", siteId);
+            map.Add("id", _siteId);
             string param = JsonConvert.SerializeObject(map);
 
             HTTPResponse res = await EasyWebRequest.SendHTTPRequestAsync(url, param, "POST", App.FrameworkToken);
@@ -83,7 +74,7 @@ namespace AepApp.View.EnvironmentalQuality
             if (_type == 1) url = App.environmentalQualityModel.url + DetailUrl.GetVOCSiteFactorLatestValue;
             else url = App.EP360Module.url + DetailUrl.GetPaiKouAndChangJieSiteFactorLatestValue;
             Dictionary<string, object> map = new Dictionary<string, object>();
-            map.Add("refId", siteId);
+            map.Add("refId", _siteId);
             map.Add("fromType", "0");
             string param = JsonConvert.SerializeObject(map);
 
@@ -119,7 +110,7 @@ namespace AepApp.View.EnvironmentalQuality
             if (listView.SelectedItem == null) return;
             Factors factorInfo = e.SelectedItem as Factors;
             if (factorInfo == null) return;
-            Navigation.PushAsync(new VOCChartPage(siteId, factorInfo, _type));
+            Navigation.PushAsync(new VOCChartPage(_siteId, factorInfo, _type));
             listView.SelectedItem = null;
         }
 

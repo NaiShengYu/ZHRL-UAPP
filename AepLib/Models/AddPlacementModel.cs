@@ -13,6 +13,22 @@ namespace AepApp.Models
         public string lng { get; set; }
         public string lat { get; set; }
 
+        public string location 
+        {
+            get {
+                if (!string.IsNullOrWhiteSpace(lat) && !string.IsNullOrWhiteSpace(lng))
+                {
+                    return lat + "N ," + lng + "E";
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            set { }
+        }
+
+
         public bool canEdit { get; set; }
 
 
@@ -46,6 +62,9 @@ namespace AepApp.Models
             get { return Qctip; }
             set { Qctip = value; NotifyPropertyChanged("qctip"); }
         }
+
+
+
         public ObservableCollection<AddPlacement_Staff> staffs { get; set; }
         public ObservableCollection<AddPlacement_Equipment> equips { get; set; }
         public ObservableCollection<AddPlacement_Task> tasklist { get; set; }

@@ -42,7 +42,7 @@ namespace AepApp.View.EnvironmentalQuality
             VOCSiteListModel item = e.SelectedItem as VOCSiteListModel;
             if (item == null)
                 return;
-            Navigation.PushAsync(new VOCDetailPage(item, 2));
+            Navigation.PushAsync(new VOCDetailPage(item.id, 2) { Title = item.name });
             listView.SelectedItem = null;
 
         }

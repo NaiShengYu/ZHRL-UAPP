@@ -122,6 +122,8 @@ namespace AepApp.View.EnvironmentalEmergency
             for (int i = Navigation.NavigationStack.Count; i >= 0;i--){
                 if (Navigation.NavigationStack[i - 2] is AddEmergencyAccidentInfoPage) break;
                 else Navigation.RemovePage(Navigation.NavigationStack[i-2]);
+
+
             }
 
             Navigation.PopAsync();

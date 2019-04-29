@@ -113,12 +113,14 @@ namespace AepApp.View.EnvironmentalQuality
             else type = 1;
             if (item != null)
             {
-                Navigation.PushAsync(new VOCDetailPage(item, type));
+                Navigation.PushAsync(new VOCDetailPage(item.id, type) {
+                    Title = item.name
+                });
             }
             else
             {
                 WaterQualityBasic item1 = lv.BindingContext as WaterQualityBasic;
-                Navigation.PushAsync(new VOCDetailPage(item1, type));
+                Navigation.PushAsync(new VOCDetailPage(item1.id, type) { Title = item1.name});
             }
         }
 

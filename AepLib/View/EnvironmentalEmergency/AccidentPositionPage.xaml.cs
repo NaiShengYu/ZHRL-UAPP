@@ -175,13 +175,13 @@ namespace AepApp.View.EnvironmentalEmergency
                 {
                     map.SetCenter(12, new AzmCoord(App.currentLocation.Longitude, App.currentLocation.Latitude), true);
                 }
+                HandleEventHandler();
             }
             else
             {
                 map.SetCenter(12, new AzmCoord(Convert.ToDouble(lng), Convert.ToDouble(lat)), true);
             }
 
-            HandleEventHandler();
         }
         
 

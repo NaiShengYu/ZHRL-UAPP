@@ -36,7 +36,9 @@ namespace AepApp.iOS.Services
                     JPUSHService.SetTags(nSSet, (arg0, arg1, arg2) => { }, 1);
                     JPUSHService.SetAlias(alias, (arg0, arg1, arg2) => { }, 1);
                 }
-                //JPUSHService.DeleteAlias((arg0, arg1, arg2) => { }, 1);
+                else {
+                    JPUSHService.DeleteAlias((arg0, arg1, arg2) => { }, 1);
+                }
 
                 //todo
             }
