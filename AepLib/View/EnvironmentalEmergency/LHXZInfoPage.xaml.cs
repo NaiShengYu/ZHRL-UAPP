@@ -49,6 +49,7 @@ namespace AepApp.View.EnvironmentalEmergency
         void getUnit(object sender, System.EventArgs e){
 
             Button but = sender as Button;
+           
             Navigation.PushAsync(new DetectionValueUnitPage());
             MessagingCenter.Subscribe<ContentPage, string>(this, "DetectionValueUnit", (arg1, arg2) =>
             {
