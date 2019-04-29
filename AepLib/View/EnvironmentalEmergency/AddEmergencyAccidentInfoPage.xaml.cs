@@ -15,6 +15,7 @@ using System.IO;
 using System.Net;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static AepApp.View.EnvironmentalEmergency.AccidentPositionPage;
 #if __IOS__
 using Foundation;
 using UIKit;
@@ -114,6 +115,7 @@ namespace AepApp.View.EnvironmentalEmergency
             page.SavePosition += async (object arg2, EventArgs arg1) =>
              {
                  var aaa = arg2 as string;
+                 if (string.IsNullOrWhiteSpace(aaa)) return;
                  aaa = aaa.Replace("E", "");
                  aaa = aaa.Replace("N", "");
                  aaa = aaa.Replace("W", "");
