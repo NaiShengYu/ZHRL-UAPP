@@ -29,8 +29,6 @@ namespace AepApp.View
                 menu1.BindingContext = App.moduleConfigSampling;
                 layoutEP.IsVisible = App.moduleConfigEP360 != null;
                 layoutEP.BindingContext = App.moduleConfigEP360;
-                //LayoutBasicData.IsVisible = App.
-
                 try
                 {
                     layoutGrid.IsVisible = App.moduleConfigEP360.menuGridTask;

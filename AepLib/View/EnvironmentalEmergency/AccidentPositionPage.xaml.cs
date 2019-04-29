@@ -13,8 +13,9 @@ namespace AepApp.View.EnvironmentalEmergency
 {
     public partial class AccidentPositionPage : ContentPage
     {
-
-        public event EventHandler<EventArgs> SavePosition;
+        private bool hasRemarks = false;
+        public event EventHandler<EventArgs> SavePosition;//保存坐标
+        public event EventHandler<EventArgs> SavePositionAndRemarks;//保存坐标和备注
 
         /// <summary>
         /// 点击了键盘的搜索按钮
@@ -69,7 +70,6 @@ namespace AepApp.View.EnvironmentalEmergency
         public AzmMarkerView aaa = null;
         async void HandleEventHandler()
         {
-
             try
             {
                 Location location;
@@ -111,7 +111,17 @@ namespace AepApp.View.EnvironmentalEmergency
         void savePosition(object sender, System.EventArgs e)
         {
             Console.WriteLine(centercoorLab.Text);
-            SavePosition.Invoke(centercoorLab.Text, new EventArgs());
+            if (hasRemarks)
+            {
+                PositionAndRemarks p = new PositionAndRemarks();
+                p.position = centercoorLab.Text;
+                p.remarks = EntryRemarks.Text;
+                SavePositionAndRemarks.Invoke(p, new EventArgs());
+            }
+            else
+            {
+                SavePosition.Invoke(centercoorLab.Text, new EventArgs());
+            }
             Navigation.PopAsync();
         }
 
@@ -162,13 +172,16 @@ namespace AepApp.View.EnvironmentalEmergency
             searchBar.HeightRequest = App.ScreenHeight - 150;
             NavigationPage.SetBackButtonTitle(this, "");//去掉返回键文字
             listView.ItemsSource = dataList;
-
         }
         
+        public AccidentPositionPage(string lng, string lat, bool _hasRemarks) : this(lng, lat)
+        {
+            hasRemarks = _hasRemarks;
+            EntryRemarks.IsVisible = hasRemarks;
+        }
 
         public AccidentPositionPage(string lng, string lat):this()
         {
-
             if (string.IsNullOrWhiteSpace(lng) || string.IsNullOrWhiteSpace(lat))
             {
                 if (App.currentLocation != null)
@@ -255,6 +268,11 @@ namespace AepApp.View.EnvironmentalEmergency
             }
         }
 
+        public class PositionAndRemarks
+        {
+            public string position { get; set; }
+            public string remarks { get; set; }
+        }
 
         internal class searchAddressResultModel
         {

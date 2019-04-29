@@ -356,11 +356,11 @@ namespace AepApp.View.EnvironmentalEmergency
                 //如果无法获取当前定位，就给一个默认值
                 else App.EmergencyCenterCoord = new AzmCoord(121.630325, 29.889472);
             }
-            if (App.EmergencyCenterCoord.lat != 0.0f && App.EmergencyCenterCoord.lng != 0.0)
-            {
-                Gps gps = PositionUtil.gcj_To_Gps84(App.EmergencyCenterCoord.lat, App.EmergencyCenterCoord.lng);
-                App.EmergencyCenterCoord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
-            }
+            //if (App.EmergencyCenterCoord.lat != 0.0f && App.EmergencyCenterCoord.lng != 0.0)
+            //{
+            //    Gps gps = PositionUtil.gcj_To_Gps84(App.EmergencyCenterCoord.lat, App.EmergencyCenterCoord.lng);
+            //    App.EmergencyCenterCoord = new AzmCoord(gps.getWgLon(), gps.getWgLat());
+            //}
 
         }
 

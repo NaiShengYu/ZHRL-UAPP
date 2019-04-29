@@ -4,6 +4,7 @@
              x:Class="AepApp.View.EnvironmentalEmergency.AccidentPositionPage"
              xmlns:m="clr-namespace:AepApp.View"
              xmlns:s="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:views="clr-namespace:AepApp.MaterialForms"
              Title="事故位置">
     <ContentPage.Content>
         <Grid x:Name="MapGrid">
@@ -13,12 +14,18 @@
                 </m:AzMapView.GestureRecognizers>
             </m:AzMapView>
             <s:SKCanvasView x:Name="can" PaintSurface="Handle_PaintSurface" IsEnabled="false"/>
+            
             <Frame HasShadow="false" Padding="0" CornerRadius="0"  HeightRequest="50" VerticalOptions="Start" HorizontalOptions="Fill" Margin="20,20,20,0" OutlineColor="#b8b8b8" BackgroundColor="#fafafa">
                 <Label x:Name="centercoorLab" FontSize="22" BackgroundColor="#fafafa" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Source={Reference map}, Path=CenterCoord, StringFormat='{0}'}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
                     </Label.GestureRecognizers>
                 </Label>
+            </Frame>
+
+            <Frame HasShadow="false" Padding="0" CornerRadius="0"  HeightRequest="50" VerticalOptions="Start" HorizontalOptions="Fill" Margin="20,80,20,0" BackgroundColor="#fafafa">
+                <views:BorderlessEntry x:Name="EntryRemarks" Placeholder="输入备注内容（选填）" XAlign="Center" HorizontalOptions="Fill" 
+                                       VerticalOptions="Center" Margin="20,0,20,0" TextColor="Gray" FontSize="16"/>
             </Frame>
 
             <Button BackgroundColor="White" Clicked="SearchLoactionClick" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,40" WidthRequest="50" HeightRequest="50" Image="magglass" BorderRadius="25" BorderWidth="2" BorderColor="Black"/>
