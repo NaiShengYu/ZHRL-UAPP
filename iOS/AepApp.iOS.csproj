@@ -45,7 +45,6 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <MtouchExtraArgs>--linksdkonly</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -343,12 +342,6 @@
     <Reference Include="Xamarin.Auth">
       <HintPath>..\packages\Xamarin.Auth.1.6.0.4\lib\Xamarin.iOS10\Xamarin.Auth.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Maps">
-      <HintPath>..\packages\Xamarin.Forms.Maps.3.6.0.344457\lib\Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Maps.iOS">
-      <HintPath>..\packages\Xamarin.Forms.Maps.3.6.0.344457\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -547,7 +540,6 @@
     <Compile Include="Services\OpenApp.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
-    <Compile Include="Renderers\CustomMapRenderer.cs" />
     <Compile Include="Notification\JPush\JPushInterface.cs" />
     <Compile Include="Notification\JPush\JPushRegisterEntity.cs" />
   </ItemGroup>

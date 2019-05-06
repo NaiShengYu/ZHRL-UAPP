@@ -195,7 +195,7 @@ namespace AepApp.View
             //{
             App.isSetToLogin = true;  //从设置按钮进入登入按钮
             Application.Current.MainPage = new NavigationPage(new LoginPage());
-
+            App.FrameworkToken = "";
             App.gridUser = null;//清空数据
             App.EP360Module = null;
             App.SamplingModule = null;

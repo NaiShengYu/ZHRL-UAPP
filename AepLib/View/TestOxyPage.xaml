@@ -9,7 +9,6 @@
              xmlns:local="clr-namespace:AepApp.MaterialForms">
     <ContentPage.Content>
         <Grid x:Name="gr">
-            <local:CustomMapView x:Name="map" HorizontalOptions="Fill" VerticalOptions="Fill" IsShowingUser="true"/>
 <!--            <Button HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Olive" WidthRequest="100" HeightRequest="100" Clicked="Handle_Clicked"/>
 --><!--        <WebView HorizontalOptions="Fill" VerticalOptions="Fill" Source="http://sx.azuratech.com:32021/upload/4b862f7321d74637a620e2800c39f682.mp4"/>            -->
         </Grid>

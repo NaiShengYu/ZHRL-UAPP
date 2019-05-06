@@ -15,7 +15,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace AepApp.View
@@ -27,8 +26,7 @@ namespace AepApp.View
         public TestOxyPage()
         {
             InitializeComponent();
-            Position position = new Position(App.currentLocation.Latitude,App.currentLocation.Longitude);
-            map.MoveToRegion(new MapSpan(position,0.01,0.01));
+      
 
         }
 

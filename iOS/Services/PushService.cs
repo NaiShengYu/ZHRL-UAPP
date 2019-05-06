@@ -17,9 +17,6 @@ namespace AepApp.iOS.Services
         public static string TAG = "JIGUANG-ios";
         public void SetAlias(string userid)
         {
-            if (!string.IsNullOrWhiteSpace(userid))
-            {
-
                 if (!string.IsNullOrWhiteSpace(userid))
                 {
                     string alias = userid.Replace("-", "");
@@ -41,7 +38,6 @@ namespace AepApp.iOS.Services
                 }
 
                 //todo
-            }
         }
     }
 }
